@@ -1,0 +1,27 @@
+application
+    CMakeLists.txt
+    interfaces
+        I_SomeClass.h    
+    inc
+        baselib.h
+        Concat.h
+        SomeClass.h
+    src
+        baselib.cpp
+        Concat.cpp
+        SomeClass.cpp
+testing
+    CMakeLists.txt (test)
+    testenv
+        inc
+            M_Base.h
+            M_SomeClass.h
+            TestStepper.h
+        src
+            M_Base.cpp
+            M_SomeClass.cpp
+            TestStepper.cpp
+    tests
+        T_01.cpp
+        T_02.cpp
+        testmain.cpp
