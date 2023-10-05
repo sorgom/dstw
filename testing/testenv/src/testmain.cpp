@@ -8,12 +8,12 @@
 #include <CppUTestExt/MockSupport.h>
 #include <CppUTest/TestRegistry.h>
 
-int main(int argc, const char* argv[])
+int main(int argc, char* argv[])
 {
-    const char* argvDef[] = {"exe", "-v"};
+    // const char* argvDef[] = {"exe", "-v"};
 
     MemoryLeakWarningPlugin::turnOffNewDeleteOverloads();
-    CommandLineTestRunner::RunAllTests(2, argvDef);
+    CommandLineTestRunner::RunAllTests(argc, argv);
 
     return 0;
 }

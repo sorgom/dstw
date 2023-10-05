@@ -1,27 +1,37 @@
 application
-    CMakeLists.txt
     interfaces
         I_SomeClass.h    
-    inc
-        baselib.h
-        Concat.h
-        SomeClass.h
-    src
-        baselib.cpp
-        Concat.cpp
-        SomeClass.cpp
+    modules
+        ddi
+            ddi.h
+            DdiPlug.h
+            src
+                ddi.cpp
+        base, namespace base
+            baselib.h
+            concat.h
+            src
+                baselib.cpp
+                concat.cpp
+        topo, namespace topo
+            SomeClass.h
+            src
+                SomeClass.cpp
 testing
-    CMakeLists.txt (test)
-    testenv
-        inc
-            M_Base.h
-            M_SomeClass.h
-            TestStepper.h
+    premake5.lua
+    testenv, namespace testenv
+        M_Base.h
+        M_SomeClass.h
+        TestStepper.h
+        BM.h
         src
             M_Base.cpp
             M_SomeClass.cpp
             TestStepper.cpp
-    tests
-        T_01.cpp
-        T_02.cpp
-        testmain.cpp
+            testmain.cpp
+    tests, namespace test
+        base
+            T_base_01.cpp       
+        topo
+            T_topo_01.cpp
+            T_topo_02.cpp
