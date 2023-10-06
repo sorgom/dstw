@@ -34,4 +34,5 @@
 # premake
 Makefile
 build
+bin
 *.make

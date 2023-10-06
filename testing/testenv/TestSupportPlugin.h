@@ -70,8 +70,7 @@ namespace test
 
         //! default constructor
         inline TestSupportPlugin() :
-            MockSupportPlugin(0),
-            // MockSupportPlugin(cName),
+            MockSupportPlugin(cName),
             mPostAction(0)
         {}
     };

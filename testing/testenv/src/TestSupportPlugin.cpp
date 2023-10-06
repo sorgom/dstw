@@ -28,6 +28,12 @@ namespace test
 
     const CONST_C_STRING TestSupportPlugin::cName = "TSP";
 
+    void TestSupportPlugin::preTestAction(UtestShell& s, TestResult& r)
+    {
+        MockSupportPlugin::preTestAction(s, r);
+        TestStepper::clear();
+    }
+
     void TestSupportPlugin::postTestAction(UtestShell& test, TestResult& result)
     {
         if (test.hasFailed())
@@ -39,13 +45,8 @@ namespace test
             }
         }
         mock().clear();
-        // TODO:
+        // TODO: why not supported
         // mock().removeAllComparators();
     }
 
-    void TestSupportPlugin::preTestAction(UtestShell& s, TestResult& r)
-    {
-        MockSupportPlugin::preTestAction(s, r);
-        TestStepper::clear();
-    }
 } // namespace

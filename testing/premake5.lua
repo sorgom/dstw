@@ -5,10 +5,10 @@ workspace 'Wumpel'
 project 'moduletests'
     kind        'ConsoleApp'
     language    'C++'
-    targetdir   'build/%{cfg.buildcfg}'
+    targetdir   'bin'
     objdir      'build/obj/%{cfg.buildcfg}'
 
-    includedirs { 
+    includedirs {
         '../application/interfaces',
         '../application/modules',
         './'
@@ -23,8 +23,6 @@ project 'moduletests'
     defines { 'MODULE_TEST' }
 
     links { 'CppUTest', 'CppUTestExt' }
-
-    libdirs { '/usr/local/lib' }
 
     filter 'configurations:debug'
         defines { 'DEBUG' }
