@@ -10,8 +10,8 @@ project 'moduletests'
 
     includedirs { 
         '../application/interfaces',
-        '../application/modules/*/inc',
-        'testenv/inc'
+        '../application/modules',
+        './'
     }
 
     files { 
@@ -23,6 +23,8 @@ project 'moduletests'
     defines { 'MODULE_TEST' }
 
     links { 'CppUTest', 'CppUTestExt' }
+
+    libdirs { '/usr/local/lib' }
 
     filter 'configurations:debug'
         defines { 'DEBUG' }

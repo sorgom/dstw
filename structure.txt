@@ -19,7 +19,7 @@ application
                 SomeClass.cpp
 testing
     premake5.lua
-    testenv, namespace testenv
+    testenv, namespace test
         M_Base.h
         M_SomeClass.h
         TestStepper.h
