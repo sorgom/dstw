@@ -9,14 +9,14 @@ project 'moduletests'
     objdir      'build/obj/%{cfg.buildcfg}'
 
     includedirs {
-        '../application/interfaces',
+        '../application',
         '../application/modules',
         './'
     }
 
     files { 
-        '../application/modules/src/*.cpp',
-        'testenv/src/*.cpp',
+        '../application/modules/*/src/*.cpp',
+        '*/src/*.cpp',
         'tests/**.cpp',
     }
 
@@ -30,5 +30,5 @@ project 'moduletests'
 
     filter 'configurations:release'
         defines { 'NDEBUG' }
-        optimize 'On'
+        -- optimize 'On'
 

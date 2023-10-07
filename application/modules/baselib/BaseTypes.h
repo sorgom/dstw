@@ -1,9 +1,3 @@
-//! @file
-//! @brief      minimal type definitions
-//!
-//! @author     Manfred Sorgo, ms@sorgo.de
-//!
-//!
 
 #ifndef BASETYPES_H
 #define BASETYPES_H

@@ -1,24 +1,8 @@
-//! @file
-//! @brief      cstring (memset / memcpy) shortcut templates for size safety
-//!
-//! @author     SOM, Manfred Sorgo, manfred.sorgo.ext@siemens.com
-//!
-//! @reviewer   TODO: assign reviewer
-//!
-//! @copyright (c) Siemens Mobility AG 2020 all rights reserved confidential
-//!
-//! Change History
-//! @date 2019-10-31 SOM: creation of file
-//! @date 2020-06-18 SRM: review performed
-//! @date 2020-07-29 SRM: review ok
 
 #ifndef BASELIB_MEM_H
 #define BASELIB_MEM_H
 
-//! @(#)97f5464b17ca3d9ad7a2d92662aabecb 2021-08-23 13:05:33 Mem.h >
-
 #include <baselib/BaseTypes.h>
-
 #include <cstring>
 
 namespace baselib
