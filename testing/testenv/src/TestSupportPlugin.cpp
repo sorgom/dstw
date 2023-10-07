@@ -46,7 +46,7 @@ namespace test
         }
         mock().clear();
         // TODO: why not supported
-        // mock().removeAllComparators();
+        mock().removeAllComparatorsAndCopiers();
     }
 
 } // namespace
