@@ -6,4 +6,4 @@ cd $basedir
 
 ./cleanup.sh
 premake5 gmake2
-make
+make verbose=1

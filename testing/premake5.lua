@@ -4,10 +4,11 @@ workspace 'Wumpel'
     objdir      'obj/%{prj.name}'
 
     includedirs {
+        './',
         '../application',
         '../application/modules',
-        './'
     }
+    
     defines { 'MODULE_TEST' }
 
 -- module tests release   
