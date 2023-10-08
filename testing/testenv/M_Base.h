@@ -9,12 +9,9 @@
 
 namespace test
 {
-    //! Basisklasse fuer Mocks
     class M_Base
     {
     protected:
-        //! Konstruktor mit Namen der gemockten Klasse
-        //! e.g. "BATimer"
         M_Base(const CONST_C_STRING name):
             mName(name)
         {}
@@ -22,47 +19,41 @@ namespace test
         const CONST_C_STRING mName;
         static std::ostringstream mStream;
 
-        inline static std::ostringstream& prep()
-        {
-            mStream.str("");
-            mStream << "I_";
-            return mStream;
-        }
-
-        //! Standard Aufrufbeginn
-        //! kann ueberlagert werden
         inline virtual std::ostringstream& begin() const
         {
             prep() << mName;
             return mStream;
         }
 
-        //! Einen mock() Call kreieren / beginnen
-        inline MockActualCall& mkCall(const CONST_C_STRING call) const
+        inline MockActualCall& call(const CONST_C_STRING meth) const
         {
-            begin() << "::" << call;
+            begin() << "::" << meth;
             return mkCall();
         }
 
+        inline MockExpectedCall& expect(const CONST_C_STRING meth) const
+        {
+            begin() << "::" << meth;
+            return mkExpect();
+        }
+
+        inline MockExpectedCall& expect(const UINT16 numCalls, const CONST_C_STRING meth) const
+        {
+            begin()  << "::" << meth;
+            return mkExpect(numCalls);
+        }
+
+    private:
+        inline static std::ostringstream& prep()
+        {
+            mStream.str("");
+            mStream << "I_";
+            return mStream;
+        }
         inline static MockActualCall& mkCall()
         {
             return mock().actualCall(mStream.str().c_str());
         }
-
-        //! Eine mock() Expectation kreieren / beginnen
-        inline MockExpectedCall& mkExpect(const CONST_C_STRING call) const
-        {
-            begin() << "::" << call;
-            return mkExpect();
-        }
-
-        //! Eine mock() Expectation kreieren / beginnen
-        inline MockExpectedCall& mkExpect(const UINT16 numCalls, const CONST_C_STRING call) const
-        {
-            begin()  << "::" << call;
-            return mkExpect(numCalls);
-        }
-
         inline static MockExpectedCall& mkExpect()
         {
             return mock().expectOneCall(mStream.str().c_str());
@@ -73,7 +64,5 @@ namespace test
             return mock().expectNCalls(numCalls, mStream.str().c_str());
         }
     };
-
-
 } // namespace
 #endif // _H

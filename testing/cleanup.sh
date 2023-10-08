@@ -4,6 +4,4 @@ basedir=$(dirname $0)
 
 cd $basedir
 
-./cleanup.sh
-premake5 gmake2
-make
+rm -rf obj bin lib Makefile *.make *.gcov report.txt

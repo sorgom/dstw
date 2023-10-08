@@ -8,24 +8,21 @@ class TrackSwitch : public I_TrackSwitch
 {
 public:
     inline TrackSwitch(
-        I_TrackSwitchToField& rTrackSwitchToField,
-        I_TrackSwitchToGui& rTrackSwitchToGui    
+        I_TrackSwitchPort& port
     ):
-        mTrackSwitchToField(rTrackSwitchToField),
-        mTrackSwitchToGui(rTrackSwitchToGui),
+        mPort(port),
         mState(TSW_TO_GUI_UNDEF)
     {}
 
     E_Result WU();
     
-    void rcv(E_RcvTswTromFld rcv);
+    void fromFld(E_TswTromFld rcv);
 
 private:
-    I_TrackSwitchToField& mTrackSwitchToField;
-    I_TrackSwitchToGui&   mTrackSwitchToGui;
-    E_CmdTswToGui mState;
+    I_TrackSwitchPort& mPort;
+    E_TswToGui mState;
 
-    void chngState(E_CmdTswToGui state);
+    void chgState(E_TswToGui state);
 
     // Standard 8.1.1
     TrackSwitch();

@@ -1,7 +1,6 @@
 #include <testenv/CppUTest.h>
 #include <testenv/TestGroupBase.h>
-#include <mocks/M_TrackSwitchToField.h>
-#include <mocks/M_TrackSwitchToGui.h>
+#include <mocks/M_TrackSwitchPort.h>
 
 #include <TrackSwitch/TrackSwitch.h>
 
@@ -10,21 +9,19 @@ namespace test
     class TestGroupTSW : public TestGroupBase
     {
     protected:
-        M_TrackSwitchToField mTrackSwitchToField;
-        M_TrackSwitchToGui   mTrackSwitchToGui;
+        M_TrackSwitchPort mTrackSwitchPort;
         TrackSwitch mTrackSwitch;
 
         inline TestGroupTSW():
-            mTrackSwitch(
-                mTrackSwitchToField,
-                mTrackSwitchToGui
-            )
+            mTrackSwitch(mTrackSwitchPort)
         {}
     };
 
     TEST_GROUP_BASE(TSW, TestGroupTSW)
     {};
 
+    //! test type: equivalence class test
+    //! TrackSwitch transitions & reactions pt. 1
     TEST(TSW, T01)
     {
         SETUP()
@@ -36,18 +33,18 @@ namespace test
 
         STEP(2)
         //  stimulation: feedback from field: LEFT
-        //  reaction   : cmd to GUI: LEFT       
-        mTrackSwitchToGui.expectCmd(TSW_TO_GUI_LEFT);
-        mTrackSwitch.rcv(TSW_FROM_FLD_LEFT);
+        //  reaction   : cmd to GUI: LEFT
+        mTrackSwitchPort.expectToGui(TSW_TO_GUI_LEFT);
+        mTrackSwitch.fromFld(TSW_FROM_FLD_LEFT);
         CHECK_N_CLEAR()
 
         STEP(3)
         //  stimulation: WU()
-        //  reaction   : 
+        //  reaction   :
         //      cmd to field: RIGHT
         //      cmd to GUI: WAIT_RIGHT
-        mTrackSwitchToField.expectCmd(TSW_TO_FLD_RIGHT);
-        mTrackSwitchToGui.expectCmd(TSW_TO_GUI_WAIT_RIGHT);
+        mTrackSwitchPort.expectToFld(TSW_TO_FLD_RIGHT);
+        mTrackSwitchPort.expectToGui(TSW_TO_GUI_WAIT_RIGHT);
         mTrackSwitch.WU();
         CHECK_N_CLEAR()
 
@@ -58,47 +55,40 @@ namespace test
         CHECK_N_CLEAR()
 
         STEP(5)
-        //  stimulation: WU() repeated
-        //  reaction   : none
-        mTrackSwitch.WU();
+        //  stimulation: feedback from field: RIGHT
+        //  reaction   : cmd to GUI: RIGHT
+        mTrackSwitchPort.expectToGui(TSW_TO_GUI_RIGHT);
+        mTrackSwitch.fromFld(TSW_FROM_FLD_RIGHT);
         CHECK_N_CLEAR()
 
         STEP(6)
-        //  stimulation: feedback from field: RIGHT
-        //  reaction   : cmd to GUI: RIGHT       
-        mTrackSwitchToGui.expectCmd(TSW_TO_GUI_RIGHT);
-        mTrackSwitch.rcv(TSW_FROM_FLD_RIGHT);
+        //  stimulation: WU()
+        //  reaction   :
+        //      cmd to field: LEFT
+        //      cmd to GUI: WAIT_LEFT
+        mTrackSwitchPort.expectToFld(TSW_TO_FLD_LEFT);
+        mTrackSwitchPort.expectToGui(TSW_TO_GUI_WAIT_LEFT);
+        mTrackSwitch.WU();
         CHECK_N_CLEAR()
 
         STEP(7)
-        //  stimulation: WU()
-        //  reaction   : 
-        //      cmd to field: LEFT
-        //      cmd to GUI: WAIT_LEFT
-        mTrackSwitchToField.expectCmd(TSW_TO_FLD_LEFT);
-        mTrackSwitchToGui.expectCmd(TSW_TO_GUI_WAIT_LEFT);
+        //  stimulation: WU() repeated
+        //  reaction   : none
         mTrackSwitch.WU();
         CHECK_N_CLEAR()
 
         STEP(8)
-        //  stimulation: WU() repeated
-        //  reaction   : none
-        mTrackSwitch.WU();
+        //  stimulation: feedback from field: LEFT
+        //  reaction   : cmd to GUI: LEFT
+        mTrackSwitchPort.expectToGui(TSW_TO_GUI_LEFT);
+        mTrackSwitch.fromFld(TSW_FROM_FLD_LEFT);
         CHECK_N_CLEAR()
 
         STEP(9)
-        //  stimulation: feedback from field: LEFT
-        //  reaction   : cmd to GUI: LEFT       
-        mTrackSwitchToGui.expectCmd(TSW_TO_GUI_LEFT);
-        mTrackSwitch.rcv(TSW_FROM_FLD_LEFT);
-        CHECK_N_CLEAR()
-
-        //  This test fails: second feedback of same type
-        STEP(10)
-        //  stimulation: feedback from field: LEFT
-        //  reaction   : cmd to GUI: LEFT       
-        mTrackSwitchToGui.expectCmd(TSW_TO_GUI_LEFT);
-        mTrackSwitch.rcv(TSW_FROM_FLD_LEFT);
+        //  stimulation: feedback from field: LEFT repeated
+        //  reaction   : none
+        mTrackSwitchPort.expectToGui(TSW_TO_GUI_LEFT);
+        mTrackSwitch.fromFld(TSW_FROM_FLD_LEFT);
         CHECK_N_CLEAR()
     }
 

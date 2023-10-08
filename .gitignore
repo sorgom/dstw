@@ -31,8 +31,18 @@
 *.out
 *.app
 
-# premake
+# premake / build
 Makefile
 build
 bin
+obj
 *.make
+
+# gcov
+gcov
+*.gcov
+*.gcda
+*.gcno
+
+# IDE
+.vscode
