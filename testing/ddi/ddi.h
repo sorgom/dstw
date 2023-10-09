@@ -16,9 +16,9 @@
 
 namespace ddi
 {
-    //#  DDI_DEC
+    //# DDI_DEC
     DDI_DEC(TrackSwitchPort)
-    //#  END
+    //# END
 
     void reset();
 }

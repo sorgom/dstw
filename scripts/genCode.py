@@ -42,10 +42,13 @@ def replInc(mo):
 
 def genTarget(file:str):
     with open(file, 'r') as fh:
-        txt = fh.read()
-        txt = rxSec.sub(replSec, txt)
-        txt = rxInc.sub(replInc, txt)
-        print(txt)
+        oTxt = fh.read()
+        fh.close()
+        nTxt = rxInc.sub(replInc, rxSec.sub(replSec, oTxt))
+        if nTxt != oTxt:
+            with open(file, 'w') as fh:
+                print('>>', file)
+                fh.write(nTxt)
 
 if __name__ == '__main__':
     from os import name as osname

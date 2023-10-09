@@ -1,4 +1,3 @@
-from genCode import genCode
 from os.path import normpath
 import re
 

@@ -38,17 +38,17 @@ namespace ddi
     INSTANCE_DEF(DDI)
     
     DDI::DDI():
-    //# DDI_CON
+        //# DDI_CON
         DDI_CON(TrackSwitchPort)
-    //# END
+        //# END
         mTerm(0)
     {}
 
     void DDI::reset()
     {
-    //# DDI_RESET
+        //# DDI_RESET
         DDI_RESET(TrackSwitchPort)
-    //# END
+        //# END
     }
 
     //# DDI_DEF

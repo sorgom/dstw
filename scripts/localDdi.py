@@ -6,8 +6,6 @@ from localDirs import modDir, tstDir
 
 appHeaders = glob(modDir + '/*/*.h')
 includes, names = scanDdi(appHeaders)
-print(includes)
-print(names)
 targets = [
     modDir + '/ddi/ddi.h',
     tstDir + '/ddi/ddi.h',

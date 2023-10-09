@@ -14,9 +14,9 @@
 
 namespace ddi
 {
-    //#  DDI_INLINE
+    //# DDI_INLINE
     DDI_INLINE(TrackSwitchPort)
-    //#  END
+    //# END
 }
 
 #endif // _H
