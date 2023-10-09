@@ -4,7 +4,7 @@
 #ifndef DDI_H
 #define DDI_H
 
-//## INCLUSIONS
+//## INCLUDES
 #include <TrackSwitch/TrackSwitchPort.h>
 //## END
 

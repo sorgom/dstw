@@ -49,3 +49,7 @@ report.txt
 
 # IDE
 .vscode
+
+python
+__pycache__
+*.pyc
