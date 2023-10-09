@@ -6,10 +6,12 @@ from glob import glob
 import re
 from sys import exit
 
-rxNot = re.compile(r'^ *#*: *\d+:', re.M)
-rxDef = re.compile(r'^ *#*: *\d+: *default *: *\n *#*: *\d+: *break; *$', re.M)
+rxUnc = re.compile(r'^ *#*: *\d+:', re.M)
+rxNoc = re.compile(r'// *NO_COV *>> *\n(.*?)// *<< *NO_COV', re.S)
 rxSrc = re.compile(r'^.*?0:Source:(.*)')
+rxLin = re.compile(r'\n')
 
+cntNoc = 0
 uncov = list()
 
 chdir(abspath(dirname(__file__)))
@@ -20,19 +22,26 @@ def com(cmd:str):
 com('./bin/moduletests_coverage')
 com('gcov -o obj/application_coverage ../application/modules/*/src/*.cpp')
 
+def cntLines(mo):
+    global cntNoc
+    cntNoc += len(rxLin.findall(mo.group(1)))
+    return ''
+
 def chkcov(fn:str):
     global uncov
     with open(fn) as fh:
         txt = fh.read()
-        cntDef = len(rxDef.findall(txt))
-        cntNot = len(rxNot.findall(txt))
-        cntBad = cntNot - cntDef * 2
-        if cntBad > 0:
+        txt = rxNoc.sub(cntLines, txt)
+        cntUnc = len(rxUnc.findall(txt))
+        if cntUnc > 0:
             src = rxSrc.match(txt).group(1)
-            uncov.append((cntBad, src))
+            uncov.append((cntUnc, src))
 
-for fn in glob('*.cpp.gcov'):
+for fn in glob('*.gcov'):
     chkcov(fn)
+
+if cntNoc:
+    print('>> exculded lines:', cntNoc)
 
 if uncov:
     print('>> not covered:')

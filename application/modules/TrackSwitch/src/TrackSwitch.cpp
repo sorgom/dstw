@@ -6,19 +6,21 @@ E_Result TrackSwitch::WU()
     switch(mState)
     {
     case TSW_TO_GUI_LEFT:
-        mPort.toFld(TSW_TO_FLD_RIGHT);
+        mPort().toFld(TSW_TO_FLD_RIGHT);
         chgState(TSW_TO_GUI_WAIT_RIGHT);
         break;
     case TSW_TO_GUI_RIGHT:
-        mPort.toFld(TSW_TO_FLD_LEFT);
+        mPort().toFld(TSW_TO_FLD_LEFT);
         chgState(TSW_TO_GUI_WAIT_LEFT);
         break;
     case TSW_TO_GUI_WAIT_LEFT:
     case TSW_TO_GUI_WAIT_RIGHT:
     case TSW_TO_GUI_UNDEF:
         break;
+//  NO_COV >>
     default:
-        break;    
+        break;
+//  << NO_COV
     };
     return RES_OK;
 }
@@ -39,8 +41,10 @@ void TrackSwitch::fromFld(E_TswTromFld rcv)
     case TSW_FROM_FLD_DEFECT:
         chgState(TSW_TO_GUI_DEFECT);
         break;
+//  NO_COV >>
     default:
         break;
+//  << NO_COV
     }
 }
 
@@ -49,6 +53,7 @@ void TrackSwitch::chgState(E_TswToGui state)
     if (state != mState)
     {
         mState = state;
-        mPort.toGui(mState);
+        mPort().toGui(mState);
     }
 }
+

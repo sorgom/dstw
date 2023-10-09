@@ -10,6 +10,8 @@
 #define INSTANCE_DEC_CONST(cName) \
     static const cName& instance();
 
+#define DDI_INSTANCE_DEC(cName) INSTANCE_DEC(cName)
+
 //  CLASS SOURCE FILE MACROS
 #define INSTANCE_DEF(cName) \
     cName& cName::instance() \

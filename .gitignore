@@ -44,5 +44,8 @@ gcov
 *.gcda
 *.gcno
 
+# testing
+report.txt
+
 # IDE
 .vscode

@@ -11,7 +11,7 @@ public:
     inline void toFld(E_TswToFld cmd) const {}
     inline void toGui(E_TswToGui cmd) const {}
 
-    INSTANCE_DEC(TrackSwitchPort)
+    DDI_INSTANCE_DEC(TrackSwitchPort)
 };
 
 #endif // _H
