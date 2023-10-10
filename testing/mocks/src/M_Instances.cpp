@@ -10,6 +10,7 @@
 namespace test
 {
     //# MOCK_DEF
+    MOCK_DEF(SignalPort)
     MOCK_DEF(TrackSwitchPort)
     //# END
 }
