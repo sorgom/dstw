@@ -3,14 +3,12 @@
 #define TRACKSWITCH_H
 
 #include <ifs/I_TrackSwitch.h>
+#include <ddi/ddiMacros.h>
 
 class TrackSwitch : public I_TrackSwitch
 {
 public:
-    inline TrackSwitch(
-        I_TrackSwitchPort& port
-    ):
-        mPort(port),
+    inline TrackSwitch():
         mState(TSW_TO_GUI_UNDEF)
     {}
 
@@ -19,13 +17,12 @@ public:
     void fromFld(E_TswTromFld rcv);
 
 private:
-    I_TrackSwitchPort& mPort;
     E_TswToGui mState;
 
     void chgState(E_TswToGui state);
+    DDI_MEMB_C(mPort, TrackSwitchPort)
 
     // Standard 8.1.1
-    TrackSwitch();
     TrackSwitch(const TrackSwitch& o);
     TrackSwitch& operator=(const TrackSwitch& o);
 };

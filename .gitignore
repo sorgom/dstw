@@ -44,5 +44,12 @@ gcov
 *.gcda
 *.gcno
 
+# testing
+report.txt
+
 # IDE
 .vscode
+
+python
+__pycache__
+*.pyc
