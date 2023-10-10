@@ -30,6 +30,7 @@ namespace ddi
         void reset();
 
         //# DDI_MEMB
+        DDI_MEMB(SignalPort)
         DDI_MEMB(TrackSwitchPort)
         //# END
         int mTerm;
@@ -39,6 +40,7 @@ namespace ddi
     
     DDI::DDI():
         //# DDI_CON
+        DDI_CON(SignalPort)
         DDI_CON(TrackSwitchPort)
         //# END
         mTerm(0)
@@ -47,11 +49,13 @@ namespace ddi
     void DDI::reset()
     {
         //# DDI_RESET
+        DDI_RESET(SignalPort)
         DDI_RESET(TrackSwitchPort)
         //# END
     }
 
     //# DDI_DEF
+    DDI_DEF(SignalPort)
     DDI_DEF(TrackSwitchPort)
     //# END
 

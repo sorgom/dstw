@@ -4,7 +4,7 @@
 #define M_SIGNALPORT_H
 
 #include <ifs/I_SignalPort.h>
-#include <testenv/M_Base.h>
+#include "M_Base.h"
 
 namespace test
 {

@@ -5,6 +5,7 @@
 #define DDI_H
 
 //## INCLUDES
+#include <Signal/SignalPort.h>
 #include <TrackSwitch/TrackSwitchPort.h>
 //## END
 
@@ -17,6 +18,7 @@
 namespace ddi
 {
     //# DDI_DEC
+    DDI_DEC(SignalPort)
     DDI_DEC(TrackSwitchPort)
     //# END
 
