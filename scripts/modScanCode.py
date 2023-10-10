@@ -21,11 +21,12 @@ def scanCode(rx, headers:list):
 def scanDdi(headers:list):
     return scanCode(rxDdi, headers)
 
-def scanMoc(headers:list, appNames=None):
-    includes, mocNames = scanCode(rxMoc, headers)
-    if appNames:
-        mocNames = sorted(list(set(appNames).intersection(mocNames)))
-    return (includes, mocNames)
+def scanMoc(headers:list):
+    return scanCode(rxMoc, headers)
+    # includes, mocNames = scanCode(rxMoc, headers)
+    # if appNames:
+    #     mocNames = sorted(list(set(appNames).intersection(mocNames)))
+    # return (includes, mocNames)
 
 if __name__ == '__main__':
     from os import name as osname

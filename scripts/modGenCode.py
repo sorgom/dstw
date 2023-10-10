@@ -1,19 +1,21 @@
 import re
 from os.path import basename
 
-rxSec = re.compile(r'^([ \t]*)//#[ \t]*(\w+)[ \t]*\n.*?//#[ \t]*END', re.M | re.S)
+rxSec = re.compile(r'^(([ \t]*)//#[ \t]*(\w+)(?:[ \t]*:[ \t]*(\w+))?)[ \t]*\n.*?//#[ \t]*END', re.M | re.S)
 rxInc = re.compile(r'^[ \t]*//##[ \t]*(INCLUDES)(_LOCAL)?[ \t]*\n.*?//##[ \t]*END', re.M | re.S)
 rxSpl = re.compile(r'[/\\]')
 
 gIncs  = None
 gNames = None
 gSubs = 1
+gCond = None
 
-def genCode(targets=[], names=[], includes=[], nsub=1):
-    global gNames, gIncs, gSubs
+def genCode(targets=[], names=[], includes=[], cond=None, nsub=1):
+    global gNames, gIncs, gSubs, gCond
     gNames = names
     gIncs  = includes
     gSubs  = nsub
+    gCond  = cond
     for file in targets:
         genTarget(file)
 
@@ -24,10 +26,14 @@ def incLoc(header:str):
     return f'#include "{basename(header)}"'
 
 def replSec(mo):
-    ind = mo.group(1)
-    sec = mo.group(2)
+    top = mo.group(1)
+    ind = mo.group(2)
+    sec = mo.group(3)
+    cnd = mo.group(4)
+    if cnd != gCond:
+        return mo.group(0)
     cont = [ f'{ind}{sec}({name})' for name in gNames]
-    cont.insert(0, f'{ind}//# {sec}')
+    cont.insert(0, top)
     cont.append(f'{ind}//# END')
     return '\n'.join(cont)
 

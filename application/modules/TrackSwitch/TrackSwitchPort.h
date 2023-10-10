@@ -8,8 +8,10 @@
 class TrackSwitchPort : public I_TrackSwitchPort
 {
 public:
+//  NO_COV >>
     inline void toFld(E_TswToFld cmd) const {}
     inline void toGui(E_TswToGui cmd) const {}
+//  << NO_COV
 
     DDI_INSTANCE_DEC(TrackSwitchPort)
 };
