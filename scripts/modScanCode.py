@@ -1,28 +1,43 @@
 from os.path import normpath
 import re
+from modUtilz import isHaeder
 
 rxDdi = re.compile(r'^[ \t]*DDI_INSTANCE_DEC[ \t]*\([ \t]*(\w+)[ \t]*\)', re.M) 
-rxMoc = re.compile(r'^[ \t]*class[ \t]+M_(\w+)[^\{]+public[ \t]+I_\1\b', re.M) 
+rxMoc = re.compile(r'^[ \t]*MOCK_CLASS\([ \t]*(\w+)[ \t]*\)', re.M)
+rxDat = re.compile(r'^[ \t]*struct[ \t]+(\w+)', re.M)
+rxInt = re.compile(r'^[ \t]*class[ \t]+I_(\w+)', re.M)
+rxStr = re.compile(r'^[ \t]*STREAM_DEF\([ \t]*(\w+)[ \t]*\)', re.M)
 
-def scanCode(rx, headers:list):
+def scanCode(rxs:list, files:list):
     hs = set()
     ns = set()
-    for h in headers:
-        h = normpath(h)
-        with open(h, 'r') as fh:
+    for f in files:
+        f = normpath(f)
+        with open(f, 'r') as fh:
             txt = fh.read()
-            fnd = rx.findall(txt)
-            if fnd:
-                hs.add(h)
-                for n in fnd:
-                    ns.add(n)
+            for rx in rxs:
+                fnd = rx.findall(txt)
+                if fnd:
+                    if isHaeder(f):
+                        hs.add(f)
+                    for n in fnd:
+                        ns.add(n)
     return (hs, ns)
 
-def scanDdi(headers:list):
-    return scanCode(rxDdi, headers)
+def scanDdi(files:list):
+    return scanCode([rxDdi], files)
 
-def scanMoc(headers:list):
-    return scanCode(rxMoc, headers)
+def scanMoc(files:list):
+    return scanCode([rxMoc], files)
+
+def scanLit(files:list):
+    return scanCode([rxDat, rxInt], files)
+
+def scanCmp(files:list):
+    return scanCode([rxStr], files)
+
+def scanDat(files:list):
+    return scanCode([rxDat], files)
 
 if __name__ == '__main__':
     from projectDirs import modDir, envDir

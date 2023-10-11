@@ -12,6 +12,12 @@ struct TrackSwitchData
     INT32 state;
 };
 
+struct SignalData
+{
+    UINT32 id;
+    INT32 state;
+};
+
 #include <baselib/packEnd.h>
 
 #endif // H_

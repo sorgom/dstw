@@ -17,24 +17,24 @@ namespace test
 
         inline void toFld(E_SigToFld cmd) const
         {
-            call("toFld").withParameter("cmd", cmd);
+            call("toFld").PARAM(cmd);
         }
 
         inline void toGui(E_SigToGui cmd) const
         {
-            call("toGui").withParameter("cmd", cmd);
+            call("toGui").PARAM(cmd);
         }
 
         //  expected calls
 
         inline void expectToFld(E_SigToFld cmd) const
         {
-            expect("toFld").withParameter("cmd", cmd);
+            expect("toFld").PARAM(cmd);
         }
 
         inline void expectToGui(E_SigToGui cmd) const
         {
-            expect("toGui").withParameter("cmd", cmd);
+            expect("toGui").PARAM(cmd);
         }
     };
 }
