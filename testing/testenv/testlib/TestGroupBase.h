@@ -2,7 +2,7 @@
 #ifndef TESTGROUPBASE_H
 #define TESTGROUPBASE_H
 
-#include <testenv/CppUTest.h>
+#include <testlib/CppUTest.h>
 #include <mocks/M_Instances.h>
 
 namespace test

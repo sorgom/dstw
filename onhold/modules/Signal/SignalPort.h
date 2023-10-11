@@ -8,8 +8,10 @@
 class SignalPort : public I_SignalPort
 {
 public:
+//  NO_COV >>
     inline void toFld(E_SigToFld cmd) const {}
     inline void toGui(E_SigToGui cmd) const {}
+//  << NO_COV
 
     DDI_INSTANCE_DEC(SignalPort)
 };

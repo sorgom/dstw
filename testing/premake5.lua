@@ -1,16 +1,14 @@
-workspace 'Wumpel'
+workspace 'Testing'
     configurations { 'ci' }
     language    'C++'
     objdir      'obj/%{prj.name}'
 
     includedirs {
-        './',
+        'testenv/',
         '../application',
         '../application/modules',
     }
     
-    defines { 'MODULE_TEST' }
-
 -- module tests release   
 project 'moduletests'
     kind        'ConsoleApp'
@@ -18,7 +16,7 @@ project 'moduletests'
 
     files { 
         '../application/modules/*/src/*.cpp',
-        '*/src/*.cpp',
+        'testenv/*/src/*.cpp',
         'tests/**.cpp',
     }
 
@@ -40,12 +38,13 @@ project 'application_coverage'
     symbols 'On'
     buildoptions {'-fprofile-arcs -ftest-coverage'}
 
+-- test runtime using instrumented application library
 project 'moduletests_coverage'
     kind        'ConsoleApp'
     targetdir   'bin'
 
     files { 
-        '*/src/*.cpp',
+        'testenv/*/src/*.cpp',
         'tests/**.cpp',
     }
 

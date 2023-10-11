@@ -1,14 +1,20 @@
 #include <ddi/ddi.h>
 #include "DDIPlug.h"
 
+#include <mocks/M_Instances.h>
 #include <baselib/InstanceMacros.h>
 
 
 #define DDI_MEMB(NAME) \
     DDIPlug<I_ ## NAME> m ## NAME;
 
+// default: application instance
 #define DDI_CON(NAME) \
     m ## NAME(NAME::instance()),
+
+//  default: mock only
+#define DDI_CON_MOCK(NAME) \
+    m ## NAME(test::m_ ## NAME()),
 
 #define DDI_RESET(NAME) \
     m ## NAME.reset();
@@ -39,9 +45,11 @@ namespace ddi
     INSTANCE_DEF(DDI)
     
     DDI::DDI():
-        //# DDI_CON
-        DDI_CON(SignalPort)
+        //# DDI_CON : APP
         DDI_CON(TrackSwitchPort)
+        //# END
+        //# DDI_CON_MOCK : MOCK
+        DDI_CON_MOCK(SignalPort)
         //# END
         mTerm(0)
     {}

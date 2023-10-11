@@ -14,7 +14,7 @@
 //! @(#)51f816ed2ab7516810e0396710bd4879 2021-08-23 13:05:52 TestLibLiterals.cpp >
 
 //  associated header
-#include <testenv/TestLiterals.h>
+#include <testlib/TestLiterals.h>
 
 
 namespace test
