@@ -8,14 +8,10 @@
 
 namespace test
 {
-    class M_TrackSwitchPort :
-        public I_TrackSwitchPort,
-        private M_Base
+    MOCK_CLASS(TrackSwitchPort)
     {
     public:
-        inline M_TrackSwitchPort():
-            M_Base("TrackSwitchPort")
-        {}
+        MOCK_CON(TrackSwitchPort)
 
         // interface methods
 

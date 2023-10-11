@@ -11,6 +11,7 @@
 #include <CppUTest/TestHarness.h>
 #include <CppUTest/CommandLineTestRunner.h>
 #include <CppUTestExt/MockSupport.h>
+#include <testlib/TestLiterals.h>
 
 
 // #include <TestLib/Allocation.h>
@@ -25,6 +26,10 @@
 
 //! a bit (of) check
 #define CHECK_BIT(bit, value) CHECK_TRUE((value & bit) not_eq 0)
+
+//! must be in namespace test
+#define PTYPE(TYPE, NAME) withParameterOfType(c__ ## TYPE, #NAME, &NAME);
+
 
 // //! compare of telegrams (or any data pointers) with associated Comparator
 // //! @tparam T       telegram / data type

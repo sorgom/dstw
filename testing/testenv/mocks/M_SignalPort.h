@@ -8,14 +8,10 @@
 
 namespace test
 {
-    class M_SignalPort :
-        public I_SignalPort,
-        private M_Base
+    MOCK_CLASS(SignalPort)
     {
     public:
-        inline M_SignalPort():
-            M_Base("SignalPort")
-        {}
+        MOCK_CON(SignalPort)
 
         // interface methods
 
