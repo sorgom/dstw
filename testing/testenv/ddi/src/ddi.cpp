@@ -45,13 +45,11 @@ namespace ddi
     INSTANCE_DEF(DDI)
     
     DDI::DDI():
-        //# DDI_CON
-        DDI_CON(SignalPort)
+        //# DDI_CON : APP
         DDI_CON(TrackSwitchPort)
         //# END
-        //# DDI_CON_MOCK
+        //# DDI_CON_MOCK : MOCK
         DDI_CON_MOCK(SignalPort)
-        DDI_CON_MOCK(TrackSwitchPort)
         //# END
         mTerm(0)
     {}

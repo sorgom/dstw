@@ -12,6 +12,7 @@ rxSrc = re.compile(r'^.*?0:Source:(.*)')
 rxLin = re.compile(r'\n')
 
 class Gcov(object):
+
     def __init__(self):
         self.clear()
 
@@ -61,9 +62,9 @@ class Gcov(object):
 
 if __name__ == '__main__':
     print('run ...')
-    from projectDirs import tstDir
+    from projectDirs import tsgDir
     ret = Gcov().run(
-        tstDir,
+        tsgDir,
         './bin/moduletests_coverage',
         'obj/application_coverage',
         '../application/modules/*/src/*.cpp ../application/modules/*/*.h'

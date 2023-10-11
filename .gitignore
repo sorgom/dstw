@@ -50,6 +50,10 @@ report.txt
 # IDE
 .vscode
 
-python
+# python
 __pycache__
 *.pyc
+
+# temporary
+tmp.*
+tmp_*

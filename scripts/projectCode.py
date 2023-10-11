@@ -7,9 +7,7 @@ from projectDirs import modDir, envDir, mocDir
 appIncludes, appNames = scanDdi(glob(modDir + '/*/*.h'))
 genCode(
     targets = [
-        modDir + '/ddi/ddi.h',
-        envDir + '/ddi/ddi.h',
-        envDir + '/ddi/src/ddi.cpp'
+        modDir + '/ddi/ddi.h'
     ],
     names = appNames,
     includes = appIncludes,
@@ -24,5 +22,19 @@ genCode(
     ],
     names = mocNames,
     includes = mocIncludes,
+    nsub = 1
+)
+
+genCode(
+    targets = [
+        envDir + '/ddi/ddi.h',
+        envDir + '/ddi/src/ddi.cpp'
+    ],
+    names = {
+        None  : mocNames.union(appNames),
+        'APP' : appNames,
+        'MOCK': mocNames.difference(appNames)
+    },
+    includes = mocIncludes.union(appIncludes),
     nsub = 1
 )

@@ -1,7 +1,7 @@
 from modGcov import Gcov
-from projectDirs import tstDir
+from projectDirs import tsgDir
 ret = Gcov().run(
-    tstDir,
+    tsgDir,
     './bin/moduletests_coverage',
     'obj/application_coverage',
     '../application/modules/*/src/*.cpp ../application/modules/*/*.h'

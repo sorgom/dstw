@@ -5,8 +5,9 @@
 #define DDI_H
 
 //## INCLUDES
-#include <Signal/SignalPort.h>
 #include <TrackSwitch/TrackSwitchPort.h>
+#include <mocks/M_SignalPort.h>
+#include <mocks/M_TrackSwitchPort.h>
 //## END
 
 //  I_NAME& getNAME();
