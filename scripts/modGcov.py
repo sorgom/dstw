@@ -1,6 +1,6 @@
 
 from subprocess import call, DEVNULL
-from os import chdir, getcwd
+from os import chdir
 from os import name as oname
 from glob import glob
 import re
@@ -21,7 +21,6 @@ class Gcov(object):
         self.uncov = list()
 
     def com(self, cmd:str):
-        print('call:', cmd)
         call(cmd, shell=True, stdout=DEVNULL, stderr=DEVNULL)
 
     def run(self, workDir, app, objDir, srcs):
@@ -30,7 +29,6 @@ class Gcov(object):
             return -1
         self.clear()
         chdir(workDir)
-        print('pwd:', getcwd())
         self.com(app)
         self.com(f'gcov -o {objDir} {srcs}')
         for fn in glob('*.gcov'):
@@ -61,7 +59,6 @@ class Gcov(object):
                 self.uncov.append((cntUnc, src))
 
 if __name__ == '__main__':
-    print('run ...')
     from projectDirs import tsgDir
     ret = Gcov().run(
         tsgDir,
@@ -70,5 +67,4 @@ if __name__ == '__main__':
         '../application/modules/*/src/*.cpp ../application/modules/*/*.h'
     )
     exit(ret)
-
 
