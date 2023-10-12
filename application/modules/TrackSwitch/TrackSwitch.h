@@ -2,6 +2,11 @@
 #ifndef TRACKSWITCH_H
 #define TRACKSWITCH_H
 
+//  ============================================================
+//  class TrackSwitch realizing I_TrackSwitch
+//  ============================================================
+//  created by Manfred Sorgo
+
 #include <ifs/I_TrackSwitch.h>
 #include <ddi/ddiMacros.h>
 

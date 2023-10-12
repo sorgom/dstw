@@ -1,3 +1,8 @@
+//  ============================================================
+//  interface TrackSwitch
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef I_TRACKSWITCH_H
 #define I_TRACKSWITCH_H
@@ -5,7 +10,6 @@
 #include "E_Result.h"
 #include "I_TrackSwitchPort.h"
 
-//! interface TrackSwitch Element
 class I_TrackSwitch
 {
 public:

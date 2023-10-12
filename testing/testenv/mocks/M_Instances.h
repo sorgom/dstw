@@ -1,3 +1,11 @@
+//  ============================================================
+//  mock instances (for ddi)
+//  for interface I_<NAME>
+//  - function m_<NAME>() returns mock instance 
+//  - function mock_<NAME>() plugs mock instance into ddi
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef M_INSTANCES_H
 #define M_INSTANCES_H

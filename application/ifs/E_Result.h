@@ -1,3 +1,8 @@
+//  ============================================================
+//  commonly used result type
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef E_RESRULT_H
 #define E_RESRULT_H

@@ -1,3 +1,8 @@
+//  ============================================================
+//  base CppUTest test group
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef TESTGROUPBASE_H
 #define TESTGROUPBASE_H
@@ -21,7 +26,6 @@ namespace test
         inline void teardown()
         {
             CHECK_N_CLEAR()
-
         }
     };
 }

@@ -1,3 +1,8 @@
+//  ============================================================
+//  class TrackSwitchPort realizing I_TrackSwitchPort
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef TRACKSWITCHPORT_H
 #define TRACKSWITCHPORT_H

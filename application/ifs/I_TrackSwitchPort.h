@@ -1,3 +1,8 @@
+//  ============================================================
+//  interface TrackSwitchPort
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef I_TRACKSWITCHPORT_H
 #define I_TRACKSWITCHPORT_H

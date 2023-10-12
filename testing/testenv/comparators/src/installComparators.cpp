@@ -1,12 +1,12 @@
 #include <comparators/installComparators.h>
-#include <comparators/BaseComparator.h>
+
+#include <ifs/DataTypes.h>
+#include <comparators/Comparator.h>
 #include <comparators/ostreams.h>
 #include <testlib/TestLiterals.h>
 
-#include <ifs/DataTypes.h>
-
 #define ADD_COMP(NAME) \
-    static BaseComperator<NAME> cmp_ ## NAME; \
+    static Comparator<NAME> cmp_ ## NAME; \
     plugin.installComparator(c__ ## NAME, cmp_ ## NAME);
 
 namespace test

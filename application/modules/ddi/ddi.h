@@ -1,4 +1,9 @@
-//  real application ddi
+//  ============================================================
+//  service locator pattern
+//  - production application version
+//  - no exchange of providers 
+//  ============================================================
+//  created by Manfred Sorgo
 
 #pragma once
 #ifndef DDI_H

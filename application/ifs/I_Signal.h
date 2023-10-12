@@ -1,3 +1,8 @@
+//  ============================================================
+//  interface Signal
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef I_SIGNAL_H
 #define I_SIGNAL_H
@@ -5,7 +10,6 @@
 #include "E_Result.h"
 #include "I_SignalPort.h"
 
-//! interface Signal Element
 class I_Signal
 {
 public:

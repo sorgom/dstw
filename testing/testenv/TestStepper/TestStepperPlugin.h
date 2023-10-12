@@ -1,9 +1,14 @@
+//  ============================================================
+//  CppUTest plugin to invoke TestStepper
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef TESTSTEPPERPLUGIN_H
 #define TESTSTEPPERPLUGIN_H
 
 #include <CppUTestExt/MockSupportPlugin.h>
-#include <CppUTest/TestPlugin.h>
+// TODO: #include <CppUTest/TestPlugin.h>
 
 #include <baselib/BaseTypes.h>
 

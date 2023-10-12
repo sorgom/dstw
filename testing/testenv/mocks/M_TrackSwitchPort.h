@@ -1,3 +1,7 @@
+//  ============================================================
+//  mock for interface I_TrackSwitchPort
+//  ============================================================
+//  created by Manfred Sorgo
 
 #pragma once
 #ifndef M_TRACKSWITCHPORT_H

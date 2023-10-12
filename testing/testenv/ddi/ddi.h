@@ -1,4 +1,10 @@
-//  TEST ENV DDI
+//  ============================================================
+//  service locator pattern
+//  - module test version
+//  - providers can be exchanged by mocks
+//  - if no provider implemented in application: mock only
+//  ============================================================
+//  created by Manfred Sorgo
 
 #pragma once
 #ifndef DDI_H

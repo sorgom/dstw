@@ -1,35 +1,29 @@
+//  ============================================================
+//  CppUTest style comparator
+//  This comparator template works for all complex types,
+//  Precondition: ostream operator for a type is defined.
+//  See ostrems.h
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef BASECOMPERATOR_H
 #define BASECOMPERATOR_H
 
 #include <baselib/BaseTypes.h>
 #include <baselib/InstanceMacros.h>
-#include <sstream>
 #include <iostream>
 #include <cstring>
 
 #include <CppUTest/SimpleString.h>
 #include <CppUTestExt/MockNamedValue.h>
 
+#include <comparators/CompOstream.h>
+
 namespace test
 {
-    class CompStream
-    {
-    public:
-        std::ostream& begin();
-        inline const std::ostringstream& get() const
-        {
-            return mStream;
-        }
-        
-        INSTANCE_DEC(CompStream)
-
-    private:
-        std::ostringstream mStream;
-    };
-
     template <class T>
-    class BaseComperator : public MockNamedValueComparator
+    class Comparator : public MockNamedValueComparator
     {
     public:
         SimpleString valueToString(CPTR ptr)
@@ -44,11 +38,11 @@ namespace test
     protected:
         inline static std::ostream& begin()
         {
-            return CompStream::instance().begin();
+            return CompOstream::instance().begin();
         }
         inline static const std::ostringstream& get()
         {
-            return CompStream::instance().get();
+            return CompOstream::instance().get();
         }
 
     }; 
