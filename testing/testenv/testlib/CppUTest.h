@@ -13,12 +13,6 @@
 #include <CppUTestExt/MockSupport.h>
 #include <testlib/TestLiterals.h>
 
-
-// #include <TestLib/Allocation.h>
-// #include <TestLib/Comparator.h>
-// #include <TestLib/Call.h>
-
-
 //! standard check 'n' clear
 #ifndef CHECK_N_CLEAR
 #define CHECK_N_CLEAR() mock().checkExpectations(); mock().clear();

@@ -1,17 +1,26 @@
 #include <comparators/ostreams.h>
 
+#include <iomanip>
+
 using std::ostream;
 using std::endl;
 
-#define STREAM_DEF(NAME) \
+
+#define OSTREAM_DEF(NAME) \
     ostream& operator << (ostream& os, const NAME& d)
 
-STREAM_DEF(SignalData)
-{
-    return os << d.id << endl << d.state;
-}
+#define DL(NAME) \
+    std::setw(16) << std::left << #NAME << d.NAME << endl 
 
-STREAM_DEF(TrackSwitchData)
+
+OSTREAM_DEF(RastaTelegram)
 {
-    return os << d.id << endl << d.state;
+    return os 
+        << DL(type)
+        << DL(id)
+        << DL(state1)
+        << DL(state2)
+        << DL(state3)
+        << DL(md4)
+    ;
 }

@@ -5,6 +5,7 @@
 #include <baselib/BaseTypes.h>
 #include <baselib/InstanceMacros.h>
 #include <sstream>
+#include <iostream>
 #include <cstring>
 
 #include <CppUTest/SimpleString.h>
@@ -15,7 +16,7 @@ namespace test
     class CompStream
     {
     public:
-        std::ostringstream& begin();
+        std::ostream& begin();
         inline const std::ostringstream& get() const
         {
             return mStream;
@@ -27,28 +28,29 @@ namespace test
         std::ostringstream mStream;
     };
 
-    inline std::ostringstream& beginStr()
-    {
-        return CompStream::instance().begin();
-    }
-    inline const std::ostringstream& getStr()
-    {
-        return CompStream::instance().get();
-    }
-
     template <class T>
     class BaseComperator : public MockNamedValueComparator
     {
     public:
         SimpleString valueToString(CPTR ptr)
         {
-            beginStr() << *reinterpret_cast<const T*>(ptr);
-            return getStr().str().c_str();
+            begin() << std::endl << *reinterpret_cast<const T*>(ptr);
+            return get().str().c_str();
         }
         inline bool isEqual(CPTR ptr1, CPTR ptr2)
         {
             return std::memcmp(ptr1, ptr2, sizeof(T)) == 0;
         }
+    protected:
+        inline static std::ostream& begin()
+        {
+            return CompStream::instance().begin();
+        }
+        inline static const std::ostringstream& get()
+        {
+            return CompStream::instance().get();
+        }
+
     }; 
 
 }

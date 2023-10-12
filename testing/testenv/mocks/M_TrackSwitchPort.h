@@ -15,26 +15,26 @@ namespace test
 
         // interface methods
 
-        inline void toFld(E_TswToFld cmd) const
+        inline void toFld(UINT32 id, E_TswToFld cmd) const
         {
-            call("toFld").PARAM(cmd);
+            call("toFld").PARAM(id).PARAM(cmd);
         }
 
-        inline void toGui(E_TswToGui cmd) const
+        inline void toGui(UINT32 id, E_TswToGui cmd) const
         {
-            call("toGui").PARAM(cmd);
+            call("toGui").PARAM(id).PARAM(cmd);
         }
 
         //  expected calls
 
-        inline void expectToFld(E_TswToFld cmd) const
+        inline void expectToFld(UINT32 id, E_TswToFld cmd) const
         {
-            expect("toFld").PARAM(cmd);
+            expect("toFld").PARAM(id).PARAM(cmd);
         }
 
-        inline void expectToGui(E_TswToGui cmd) const
+        inline void expectToGui(UINT32 id, E_TswToGui cmd) const
         {
-            expect("toGui").PARAM(cmd);
+            expect("toGui").PARAM(id).PARAM(cmd);
         }
     };
 }

@@ -4,10 +4,10 @@ namespace test
 {
     INSTANCE_DEF(CompStream)
 
-    std::ostringstream& CompStream::begin()
+    std::ostream& CompStream::begin()
     {
         mStream.str("");
-        return mStream;
+        return mStream << std::endl;
     }
 
 }

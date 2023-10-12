@@ -6,7 +6,7 @@ rxDdi = re.compile(r'^[ \t]*DDI_INSTANCE_DEC[ \t]*\([ \t]*(\w+)[ \t]*\)', re.M)
 rxMoc = re.compile(r'^[ \t]*MOCK_CLASS\([ \t]*(\w+)[ \t]*\)', re.M)
 rxDat = re.compile(r'^[ \t]*struct[ \t]+(\w+)', re.M)
 rxInt = re.compile(r'^[ \t]*class[ \t]+I_(\w+)', re.M)
-rxStr = re.compile(r'^[ \t]*STREAM_DEF\([ \t]*(\w+)[ \t]*\)', re.M)
+rxStr = re.compile(r'^[ \t]*OSTREAM_DEF\([ \t]*(\w+)[ \t]*\)', re.M)
 
 def scanCode(rxs:list, files:list):
     hs = set()

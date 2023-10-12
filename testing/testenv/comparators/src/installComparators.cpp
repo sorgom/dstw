@@ -14,7 +14,7 @@ namespace test
     void installComparators(MockSupportPlugin& plugin)
     {
         //# ADD_COMP
-        ADD_COMP(TrackSwitchData)
+        ADD_COMP(RastaTelegram)
         //# END
     }
 }

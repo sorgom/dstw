@@ -7,11 +7,11 @@
 namespace test
 {
     //# C_STR_DEF
+    C_STR_DEF(RastaPort)
+    C_STR_DEF(RastaTelegram)
     C_STR_DEF(Signal)
-    C_STR_DEF(SignalData)
     C_STR_DEF(SignalPort)
     C_STR_DEF(TrackSwitch)
-    C_STR_DEF(TrackSwitchData)
     C_STR_DEF(TrackSwitchPort)
     //# END
 
