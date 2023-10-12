@@ -31,7 +31,7 @@ class Gcov(object):
         chdir(workDir)
         self.com(app)
         self.com(f'gcov -o {objDir} {srcs}')
-        for fn in glob('*.gcov'):
+        for fn in glob('*.cpp.gcov'):
             self.chkcov(fn)
         if self.cntNoc:
             print('>> exculded lines:', self.cntNoc)

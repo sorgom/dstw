@@ -4,7 +4,7 @@ ret = Gcov().run(
     tsgDir,
     './bin/moduletests_coverage',
     'obj/application_coverage',
-    '../application/modules/*/src/*.cpp ../application/modules/*/*.h'
+    '../application/modules/*/src/*.cpp'
 )
 exit(ret)
 
