@@ -11,7 +11,6 @@
 #define BASECOMPERATOR_H
 
 #include <baselib/BaseTypes.h>
-#include <baselib/InstanceMacros.h>
 #include <iostream>
 #include <cstring>
 

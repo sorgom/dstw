@@ -1,4 +1,3 @@
-
 #include <Signal/Signal.h>
 
 E_Result Signal::HN0()
