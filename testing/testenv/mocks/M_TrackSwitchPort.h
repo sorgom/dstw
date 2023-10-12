@@ -8,37 +8,33 @@
 
 namespace test
 {
-    class M_TrackSwitchPort :
-        public I_TrackSwitchPort,
-        private M_Base
+    MOCK_CLASS(TrackSwitchPort)
     {
     public:
-        inline M_TrackSwitchPort():
-            M_Base("TrackSwitchPort")
-        {}
+        MOCK_CON(TrackSwitchPort)
 
         // interface methods
 
-        inline void toFld(E_TswToFld cmd) const
+        inline void toFld(UINT32 id, E_TswToFld cmd) const
         {
-            call("toFld").withParameter("cmd", cmd);
+            call("toFld").PARAM(id).PARAM(cmd);
         }
 
-        inline void toGui(E_TswToGui cmd) const
+        inline void toGui(UINT32 id, E_TswToGui cmd) const
         {
-            call("toGui").withParameter("cmd", cmd);
+            call("toGui").PARAM(id).PARAM(cmd);
         }
 
         //  expected calls
 
-        inline void expectToFld(E_TswToFld cmd) const
+        inline void expectToFld(UINT32 id, E_TswToFld cmd) const
         {
-            expect("toFld").withParameter("cmd", cmd);
+            expect("toFld").PARAM(id).PARAM(cmd);
         }
 
-        inline void expectToGui(E_TswToGui cmd) const
+        inline void expectToGui(UINT32 id, E_TswToGui cmd) const
         {
-            expect("toGui").withParameter("cmd", cmd);
+            expect("toGui").PARAM(id).PARAM(cmd);
         }
     };
 }

@@ -1,5 +1,6 @@
 import re
 from os.path import basename
+from modUtilz import incHeader, locHeader
 
 rxSec = re.compile(r'^(([ \t]*)//#[ \t]*(\w+)(?:[ \t]*:[ \t]*(\w+))?)[ \t]*\n.*?//#[ \t]*END', re.M | re.S)
 rxInc = re.compile(r'^([ \t]*//##[ \t]*(INCLUDES)(_LOCAL)?)[ \t]*\n.*?//##[ \t]*END', re.M | re.S)
@@ -24,10 +25,7 @@ def genCode(targets=[], names=[], includes=[], cond=None, nsub=1):
         genTarget(file)
 
 def inc(header:str):
-    return f"#include <{'/'.join(rxSpl.split(header)[-(gSubs + 1):])}>"
-
-def incLoc(header:str):
-    return f'#include "{basename(header)}"'
+    return incHeader(header, gSubs)
 
 def replSec(mo):
     top = mo.group(1)
@@ -45,7 +43,7 @@ def replInc(mo):
     top  = mo.group(1)
     sec  = mo.group(2)
     loc  = mo.group(3) or ''
-    func = incLoc if loc else inc
+    func = locHeader if loc else inc
     cont = [ func(name) for name in gIncs]
     cont.insert(0, top)
     cont.append('//## END')

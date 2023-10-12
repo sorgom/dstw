@@ -9,6 +9,7 @@
 #include <CppUTest/TestRegistry.h>
 
 #include <TestStepper/TestStepperPlugin.h>
+#include <comparators/installComparators.h>
 
 int main(int argc, char** argv)
 {
@@ -17,6 +18,7 @@ int main(int argc, char** argv)
     MemoryLeakWarningPlugin::turnOffNewDeleteOverloads();
 
     TestStepperPlugin::setup();
+    test::installComparators(TestStepperPlugin::instance());
 
     CommandLineTestRunner::RunAllTests(argc, argv);
 

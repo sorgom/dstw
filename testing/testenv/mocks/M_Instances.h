@@ -5,6 +5,7 @@
 #include <ddi/ddi.h>
 
 //## INCLUDES_LOCAL
+#include "M_RastaPort.h"
 #include "M_SignalPort.h"
 #include "M_TrackSwitchPort.h"
 //## END
@@ -16,6 +17,7 @@
 namespace test
 {
     //# MOCK_DEC
+    MOCK_DEC(RastaPort)
     MOCK_DEC(SignalPort)
     MOCK_DEC(TrackSwitchPort)
     //# END

@@ -4,17 +4,19 @@
 
 #include <baselib/BaseTypes.h>
 
+#define C_STR_DEC(NAME) \
+    extern const CONST_C_STRING c__ ## NAME;
+
 namespace test
 {
-    extern const CONST_C_STRING c__expected;
-    extern const CONST_C_STRING c__actual;
-    extern const CONST_C_STRING c__matched;
-    extern const CONST_C_STRING c__line;
-    extern const CONST_C_STRING c__file;
-    extern const CONST_C_STRING c__func;
-    extern const CONST_C_STRING c__missing_comparator;
-    extern const CONST_C_STRING c__not_implemented;
-    extern const CONST_C_STRING c__byte_allocation_error;
+    //# C_STR_DEC
+    C_STR_DEC(RastaPort)
+    C_STR_DEC(RastaTelegram)
+    C_STR_DEC(Signal)
+    C_STR_DEC(SignalPort)
+    C_STR_DEC(TrackSwitch)
+    C_STR_DEC(TrackSwitchPort)
+    //# END
 } // namespace
 
 #endif // _H

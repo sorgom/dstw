@@ -6,11 +6,11 @@ E_Result TrackSwitch::WU()
     switch(mState)
     {
     case TSW_TO_GUI_LEFT:
-        mPort().toFld(TSW_TO_FLD_RIGHT);
+        toFld(TSW_TO_FLD_RIGHT);
         chgState(TSW_TO_GUI_WAIT_RIGHT);
         break;
     case TSW_TO_GUI_RIGHT:
-        mPort().toFld(TSW_TO_FLD_LEFT);
+        toFld(TSW_TO_FLD_LEFT);
         chgState(TSW_TO_GUI_WAIT_LEFT);
         break;
     case TSW_TO_GUI_WAIT_LEFT:
@@ -53,7 +53,13 @@ void TrackSwitch::chgState(E_TswToGui state)
     if (state != mState)
     {
         mState = state;
-        mPort().toGui(mState);
+        ddi::getTrackSwitchPort().toGui(mId, mState);
     }
 }
+
+void TrackSwitch::toFld(E_TswToFld state) const
+{
+    ddi::getTrackSwitchPort().toFld(mId, state);
+} 
+
 
