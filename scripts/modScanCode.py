@@ -1,3 +1,13 @@
+#   ============================================================
+#   simple code scanner for code generator features
+#   - application instance declarations for ddi
+#   - mocks
+#   - data structs
+#   - interface declarations
+#   - ostream specializations
+#   ============================================================
+#   created by Manfred Sorgo
+
 from os.path import normpath
 import re
 from modUtilz import isHaeder

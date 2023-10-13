@@ -1,3 +1,8 @@
+#   ============================================================
+#   simple code generator features
+#   ============================================================
+#   created by Manfred Sorgo
+
 import re
 from os.path import basename
 from modUtilz import incHeader, locHeader

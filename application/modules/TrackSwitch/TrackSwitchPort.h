@@ -1,5 +1,5 @@
 //  ============================================================
-//  class TrackSwitchPort realizing I_TrackSwitchPort
+//  class TrackSwitchPort implements I_TrackSwitchPort
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -15,9 +15,9 @@ class TrackSwitchPort : public I_TrackSwitchPort
 {
 public:
     void toFld(UINT32 id, E_TswToFld cmd) const;
-//  NO_COV >>
+
+//  TODO:
     inline void toGui(UINT32 id, E_TswToGui cmd) const {}
-//  << NO_COV
 
     DDI_INSTANCE_DEC(TrackSwitchPort)
 private:

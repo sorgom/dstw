@@ -1,3 +1,10 @@
+#   ============================================================
+#   application of gcov tool
+#   - run instrumented binary
+#   - invoke gcov
+#   - analyze *.gcov files of cpp sources
+#   ============================================================
+#   created by Manfred Sorgo
 
 from subprocess import call, DEVNULL
 from os import chdir

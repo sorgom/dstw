@@ -1,3 +1,8 @@
+#   ============================================================
+#   code coverage of this project
+#   ============================================================
+#   created by Manfred Sorgo
+
 from modGcov import Gcov
 from projectDirs import tsgDir
 ret = Gcov().run(

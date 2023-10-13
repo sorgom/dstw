@@ -1,5 +1,5 @@
 //  ============================================================
-//  class Signal realizing I_Signal
+//  class Signal implements I_Signal
 //  ============================================================
 //  created by Manfred Sorgo
 

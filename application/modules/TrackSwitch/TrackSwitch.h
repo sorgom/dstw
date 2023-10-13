@@ -3,7 +3,7 @@
 #define TRACKSWITCH_H
 
 //  ============================================================
-//  class TrackSwitch realizing I_TrackSwitch
+//  class TrackSwitch implements I_TrackSwitch
 //  ============================================================
 //  created by Manfred Sorgo
 
