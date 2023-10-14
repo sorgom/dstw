@@ -15,6 +15,13 @@ instance declaration & definion macros
 type safe memset & memcpy
 ```
 
+**SortAndMap.h**
+```
+sort and map using
+- bubble sort
+- b-tree search
+```
+
 **packBegin.h**
 ```
 begin of packed alignment for data structs
