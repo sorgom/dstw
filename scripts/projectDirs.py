@@ -3,7 +3,7 @@
 #   ============================================================
 #   created by Manfred Sorgo
 
-from modGit import repoDir
+from modUtilz import repoDir
 
 topDir = repoDir()
 modDir = topDir + '/application/modules'

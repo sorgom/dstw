@@ -3,55 +3,52 @@
 #   ============================================================
 #   created by Manfred Sorgo
 
-from os import walk as oswalk
-from os import remove, chdir
-from os.path import exists
-from sys import exit
+from os import chdir
+from os.path import exists, basename, dirname
 import re
-from modUtilz import cleanFileTxt, isTxtFile, writeFile, procOutList, procOut
-from subprocess import Popen, DEVNULL, PIPE
+from modUtilz import cleanFileTxt, fileTxt, writeFile, repoDir, repoFiles, mdCode
 
+mdf = 'README.md'
+ttl = '## directory content'
+
+rxTtl = re.compile(r'\s*' + ttl + r'.*', re.M | re.S)
 rxMd  = re.compile(r'\.md$')
+#   pre, char, inf
 rxInf = re.compile(r'^(.*?)([*=-])\2{19,}\n(.*?)\n\1\2{20,}', re.M | re.S)
+
 
 def isMd(fn):
     return rxMd.search(fn)
 
-def genMd(
-        folders=[],
-        tabs=4
-    ):
-    for fd in folders:
-        print(fd)
-        cnt = 1
-        for dir, sdirs, fns in oswalk(fd):
-            trg = f'{dir}/readme.md'
-            res = ['## directory content']
-            for (fn, fp) in [ (fn, f'{dir}/{fn}') for fn in fns if isTxtFile(fn) and not isMd(fn)]:
-                print(fn, fp)
-                txt = cleanFileTxt(fp)
+def genMd(tabs=4):
+    # split into path : [files] 
+    pfs = {}
+    for p, f in [ (dirname(fp), basename(fp)) for fp in repoFiles()]:
+        if not isMd(f): pfs.setdefault(p, []).append(f)
+    rDir = repoDir()
+    # scan files in directories    
+    for p, fs in pfs.items():
+        chdir(f'{rDir}/{p}')
+        res = []
+        for f in fs:
+            try:
+                txt = cleanFileTxt(f)
                 cont = []
-                for mo in rxInf.findall(txt):
-                    rx = re.compile(r'^' + mo[0].replace(' ', ' ?'), re.M)
-                    inf = rx.sub('', mo[2])
-                    if inf:
-                        cont.append(inf)
-                if cont:
-                    res.append('\n'.join([f'#### {fn}', '\n\n'.join(cont)]))
-            if len(res) > 1:
-                writeFile(trg, '\n\n'.join(res))
-            elif exists(trg):
-                remove(trg)
-
+                for pre, char, inf in rxInf.findall(txt):
+                    rx = re.compile(r'^' + pre.replace(' ', ' ?'), re.M)
+                    inf = rx.sub('', inf)
+                    if inf: cont.append(inf)
+                if cont: res.append('\n'.join([f'**{f}**', mdCode('\n\n'.join(cont))]))
+            except:
+                pass
+        if not res: continue
+        res.insert(0, ttl)
+        if exists(mdf):
+            txt = rxTtl.sub('', fileTxt(mdf))
+            if txt: res.insert(0, txt)
+        writeFile(mdf, '\n\n'.join(res) + '\n')
 
 if __name__ == '__main__':
-    from projectDirs import *
-    chdir(ifsDir)
-    # with Popen('git ls-tree --full-tree --name-only -r HEAD'.split(), stdout=PIPE) as proc:
-    # with Popen('git ls-tree --name-only -r HEAD'.split(), stdout=PIPE) as proc:
-        # print(str(proc.stdout.read()).split('\n'))
-    print(procOutList('git ls-tree --full-tree --name-only -r HEAD'))
-    print(procOut('git rev-parse --show-toplevel'))
-    # genMd([topDir])
+    genMd()
 
 

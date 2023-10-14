@@ -2,7 +2,7 @@
 //  CppUTest style comparator
 //  This comparator template works for all complex types,
 //  Precondition: ostream operator for a type is defined.
-//  See ostrems.h
+//  See ostreams.h
 //  ============================================================
 //  created by Manfred Sorgo
 
