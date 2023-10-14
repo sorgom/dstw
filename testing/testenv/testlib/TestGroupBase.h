@@ -9,6 +9,7 @@
 
 #include <testlib/CppUTest.h>
 #include <mocks/M_Instances.h>
+#include <comparators/ostreams.h>
 
 namespace test
 {

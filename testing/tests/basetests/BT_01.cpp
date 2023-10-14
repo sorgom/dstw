@@ -79,4 +79,21 @@ namespace test
         STEP(2)
         CHECK_EQUAL(5, sizeof(Packed));
     }
+
+    //  ostreams
+    TEST(BT_01, T04)
+    {
+        STEP(1)
+        FieldName fn = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5' };
+
+        cout << "FIX CHAR: " << fixC(fn) << endl;
+
+        fn[4] = 0;
+
+        cout << "FIX CHAR: " << fixC(fn) << endl;
+
+        STEP(2)
+        CHECK_EQUAL(5, sizeof(Packed));
+    }
+
 }

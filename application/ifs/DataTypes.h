@@ -13,6 +13,8 @@
 
 #include <baselib/packBegin.h>
 
+typedef CHAR FieldName[16];
+
 struct RastaTelegram
 {
     INT32 type;
