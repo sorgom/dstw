@@ -11,3 +11,11 @@ OSTREAM_DEF(FixChar)
     }
     return os;
 }
+
+const FixChar& getFixC(const CONST_C_STRING str, const size_t size)
+{
+    static FixChar fc;
+    fc.str  = str;
+    fc.size = size;
+    return fc;
+}

@@ -36,26 +36,16 @@
 
 struct FixChar
 {
-    const CONST_C_STRING str;
-    const size_t size;
-    inline FixChar(const CONST_C_STRING str, const size_t size):
-        str(str),
-        size(size)
-    {}
-    inline FixChar(const FixChar& o):
-        str(o.str),
-        size(o.size)
-    {}
-
-private:
-    FixChar();
-    FixChar& operator =(const FixChar&);
+    CONST_C_STRING str;
+    size_t size;
 };
+
+const FixChar& getFixC(CONST_C_STRING str, size_t size);
 
 template <size_t N>
 inline FixChar fixC(const CHAR (&str)[N])
 {
-    return FixChar(str, N);
+    return getFixC(str, N);
 }
 
 OSTREAM_DEC(FixChar)
