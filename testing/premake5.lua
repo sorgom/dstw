@@ -13,6 +13,8 @@ workspace 'Testing'
         '../application',
         '../application/modules',
     }
+
+    buildoptions { '-std=c++98 -pedantic-errors' }
     
 -- module tests release   
 project 'moduletests'
@@ -27,7 +29,6 @@ project 'moduletests'
 
     defines { 'NDEBUG' }
     optimize 'On'
-
     links { 'CppUTest', 'CppUTestExt' }
 
 -- coverage instrumented application library

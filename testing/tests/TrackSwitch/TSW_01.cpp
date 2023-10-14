@@ -9,11 +9,12 @@ namespace test
     class TestGroupTSW : public TestGroupBase
     {
     protected:
-        const UINT32 mId = 12345;
+        const UINT32 mId;
         TrackSwitch mSUT;
         M_TrackSwitchPort& mPort;
 
         inline TestGroupTSW():
+            mId(12345),
             mSUT(mId),
             mPort(m_TrackSwitchPort())
         {

@@ -14,13 +14,13 @@ enum E_SigTromFld
     SIG_FROM_FLD_HN0,
     SIG_FROM_FLD_HN1,
     SIG_FROM_FLD_UNDEF,
-    SIG_FROM_FLD_DEFECT,
+    SIG_FROM_FLD_DEFECT
 };
 
 enum E_SigToFld
 {
     SIG_TO_FLD_HN0,
-    SIG_TO_FLD_HN1,
+    SIG_TO_FLD_HN1
 };
 
 enum E_SigToGui
@@ -30,7 +30,7 @@ enum E_SigToGui
     SIG_TO_GUI_WAIT_HN0,
     SIG_TO_GUI_WAIT_HN1,
     SIG_TO_GUI_UNDEF,
-    SIG_TO_GUI_DEFECT,
+    SIG_TO_GUI_DEFECT
 };
 
 class I_SignalPort
