@@ -1,4 +1,3 @@
-
 #include <Signal/Signal.h>
 
 E_Result Signal::HN0()
@@ -31,8 +30,10 @@ void Signal::fromFld(E_SigTromFld rcv)
     case SIG_FROM_FLD_DEFECT:
         chgState(SIG_TO_GUI_DEFECT);
         break;
+//  NO_COV >>
     default:
         break;
+//  << NO_COV
     }
 }
 

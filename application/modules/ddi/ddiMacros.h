@@ -1,3 +1,8 @@
+//  ============================================================
+//  pseudo member definitions
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef DDIMACROS_H
 #define DDIMACROS_H

@@ -1,3 +1,8 @@
+//  ============================================================
+//  basic integral types
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef BASETYPES_H
 #define BASETYPES_H

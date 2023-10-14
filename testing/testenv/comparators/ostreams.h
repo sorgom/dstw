@@ -1,3 +1,10 @@
+//  ============================================================
+//  ostream operators for complex data types
+//  - mainly used for test comparator
+//  - but also handy for tracing purposes
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef OSTREAMS_H
 #define OSTREAMS_H

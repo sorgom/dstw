@@ -1,3 +1,8 @@
+#   ============================================================
+#   code automatization of this project
+#   ============================================================
+#   created by Manfred Sorgo
+
 from glob import glob
 
 from modScanCode import *

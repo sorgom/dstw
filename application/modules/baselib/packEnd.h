@@ -1,3 +1,8 @@
+//  ============================================================
+//  end of packed alignment for data structs
+//  ============================================================
+//  created by Manfred Sorgo
+
 #ifndef PACKEND_H
 #define PACKEND_H
 #endif // _H

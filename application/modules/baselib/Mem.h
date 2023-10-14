@@ -1,3 +1,8 @@
+//  ============================================================
+//  type safe memset & memcpy
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef MEM_H
 #define MEM_H
@@ -5,7 +10,6 @@
 #include <baselib/BaseTypes.h>
 #include <cstring>
 
-//! static methods provider class
 class Mem
 {
 public:

@@ -1,10 +1,15 @@
+//  ============================================================
+//  definiton of complex data types
+//  - mainly communication telegrams
+//  ============================================================
+//  created by Manfred Sorgo 
+
 #pragma once
 #ifndef DATATYPES_H
 #define DATATYPES_H
 
 #include <baselib/BaseTypes.h>
-//  TODO: static_assert sizes
-// #include <cstddef>
+#include <cstddef>
 
 #include <baselib/packBegin.h>
 
@@ -17,6 +22,8 @@ struct RastaTelegram
     INT32 state3;
     UINT16 md4;
 };
+
+static_assert(22 == sizeof(RastaTelegram), "");
 
 #include <baselib/packEnd.h>
 

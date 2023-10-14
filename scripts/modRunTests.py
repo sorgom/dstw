@@ -1,3 +1,11 @@
+#   ============================================================
+#   run CppUTest tests
+#   - run test binary
+#   - output to report text
+#   - count failures reported
+#   ============================================================
+#   created by Manfred Sorgo
+
 from subprocess import call
 from os import chdir
 import re

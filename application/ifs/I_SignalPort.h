@@ -1,3 +1,8 @@
+//  ============================================================
+//  interface SignalPort
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef I_SIGNALPORT_H
 #define I_SIGNALPORT_H

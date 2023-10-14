@@ -1,3 +1,7 @@
+//  ============================================================
+//  mock for interface I_SignalPort
+//  ============================================================
+//  created by Manfred Sorgo
 
 #pragma once
 #ifndef M_SIGNALPORT_H

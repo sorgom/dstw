@@ -1,3 +1,8 @@
+//  ============================================================
+//  interface RastaPort
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef I_RASTAPORT_H
 #define I_RASTAPORT_H

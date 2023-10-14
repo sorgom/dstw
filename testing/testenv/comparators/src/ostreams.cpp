@@ -10,8 +10,7 @@ using std::endl;
     ostream& operator << (ostream& os, const NAME& d)
 
 #define DL(NAME) \
-    std::setw(16) << std::left << #NAME << d.NAME << endl 
-
+    std::setw(16) << std::setfill('.') << std::left << #NAME << ':' << ' ' << d.NAME << endl 
 
 OSTREAM_DEF(RastaTelegram)
 {

@@ -1,3 +1,25 @@
+//  ============================================================
+//  The test stepper
+//  solves a great disadvantage of CppUTest:
+//  
+//  when CppUTest exits a test due to an unmatched expectation
+//  it only provides
+//  - the test name
+//  - the source line of the test's begin
+//  so if you have a test with some amount of lines
+//  you will have a hard time to figure out
+//  where exactly the mismatch happens
+//
+//  using TestStepper's STEP() macro
+//  will provide you with line of the last STEP() macro placed
+//  
+//  the STEP() macro also helps
+//  to give your tests a more readable structure
+//
+//  see TestStepper documentation on github for more details
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef TESTSTEPPER_H
 #define TESTSTEPPER_H
@@ -123,9 +145,7 @@ private:
     TestStepper& operator =(const TestStepper& o);
 };
 
-//! ============================================================
 //! common test step macros
-//! ============================================================
 #if defined(COMPILER_CADUL)
 #define __STEPPER_FUNCTION__ 0
 #elif defined(_MSC_VER)
@@ -138,35 +158,22 @@ private:
 #define PRECONDITION() TestStepper::precondition(__FILE__, __LINE__, __STEPPER_FUNCTION__);
 #define SETUP() PRECONDITION()
 
-//! assign a step
+//! place a step
 #define STEP(n) TestStepper::step(n, __FILE__, __LINE__, __STEPPER_FUNCTION__);
 
-//! ============================================================
-//! test step macros that need to bee defined
-//! in a method other than CppUTest UTest body
-//! ============================================================
 //! begin set of steps including precondition
 #define BEGINSTEPS() TestStepper::beginSteps(__FILE__, __LINE__, __STEPPER_FUNCTION__);
 
 //! leave set of steps
 #define ENDSTEPS() TestStepper::endSteps();
 
-//! ============================================================
-//! test step macros for
-//! - compatibility to recent stuff
-//! - less typing
-//! ============================================================
-
 //! go into sub step level for current scope
 #define SUBSTEPS() BEGINSTEPS()
 #define STEPS() BEGINSTEPS()
 
-//! ============================================================
 //! Utest macros extensions
-//! ============================================================
 //! equality check with update of TestStepper line
 #define L_CHECK_EQUAL(expected, actual) TestStepper::setLine(__LINE__); CHECK_EQUAL(expected, actual);
-
 
 
 #endif // _H

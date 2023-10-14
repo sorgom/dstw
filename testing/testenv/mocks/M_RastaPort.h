@@ -1,3 +1,7 @@
+//  ============================================================
+//  mock for interface I_RastaPort
+//  ============================================================
+//  created by Manfred Sorgo
 
 #pragma once
 #ifndef M_RASTAPORT_H

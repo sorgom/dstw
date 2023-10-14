@@ -147,6 +147,9 @@ void TestStepper::trace(const bool insertLine)
             {
                 printf("\n");
             }
+            printf(c__step);
+            stepOut(trc.step);
+            printf(")\n");
             if (trc.file not_eq 0)
             {
                 printf(c__printFile, trc.file);
@@ -156,9 +159,6 @@ void TestStepper::trace(const bool insertLine)
                 printf(c__printFunc, trc.func);
             }
             printf(c__printLine, trc.line);
-            printf(c__step);
-            stepOut(trc.step);
-            printf(")\n");
         }
     }
 }

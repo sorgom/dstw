@@ -1,3 +1,8 @@
+//  ============================================================
+//  packed and unpacked version of same data
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef TESTPACK_H
 #define TESTPACK_H

@@ -1,3 +1,10 @@
+#   ============================================================
+#   application of gcov tool
+#   - run instrumented binary
+#   - invoke gcov
+#   - analyze *.gcov files of cpp sources
+#   ============================================================
+#   created by Manfred Sorgo
 
 from subprocess import call, DEVNULL
 from os import chdir
@@ -31,7 +38,7 @@ class Gcov(object):
         chdir(workDir)
         self.com(app)
         self.com(f'gcov -o {objDir} {srcs}')
-        for fn in glob('*.gcov'):
+        for fn in glob('*.cpp.gcov'):
             self.chkcov(fn)
         if self.cntNoc:
             print('>> exculded lines:', self.cntNoc)

@@ -1,3 +1,8 @@
+//  ============================================================
+//  class Signal implements I_Signal
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef SIGNAL_H
 #define SIGNAL_H
