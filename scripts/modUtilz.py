@@ -52,7 +52,8 @@ def repoDir():
     return procOut('git rev-parse --show-toplevel')
 
 def repoFiles():
-    return procOutList('git ls-tree --full-tree --name-only -r HEAD')
+    return procOutList('git ls-files')
+    # return procOutList('git ls-tree --full-tree --name-only -r HEAD')
 
 def mdCode(cont:str):
     return '\n'.join(['```', cont, '```'])

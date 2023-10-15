@@ -15,6 +15,17 @@ all build steps
 clean all build artifacts
 ```
 
+**makeApp.sh**
+```
+build application library from Makefile
+```
+
+**makeGcov.sh**
+```
+build coverage tests from Makefile
+- see also projectGcov.py
+```
+
 **makeTests.sh**
 ```
 build module tests from Makefile
@@ -60,6 +71,11 @@ simple code scanner for code generator features
 **modUtilz.py**
 ```
 some commonly used features
+```
+
+**premake.sh**
+```
+re-build Makefiles
 ```
 
 **projectCode.py**

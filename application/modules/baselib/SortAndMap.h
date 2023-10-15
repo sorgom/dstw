@@ -32,10 +32,7 @@ public:
     virtual bool isEqual(UINT32 posA, UINT32 posB) const = 0;
 
     //  position of element to search for
-    inline virtual UINT32 getSearchPos()
-    {
-        return size();
-    }
+    virtual UINT32 getSearchPos() const = 0;
 };
 
 //  apply bubble sort to sortable

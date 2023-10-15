@@ -8,7 +8,7 @@
 #define TESTCLASSES_H
 
 #include <baselib/SortAndMap.h>
-#include <baselib/StaticArray.h>
+#include <baselib/StaticArrays.h>
 
 namespace test
 {
@@ -91,9 +91,14 @@ namespace test
     {
         INT32 m1;
         INT32 m2;
+        inline TestDataInt(const INT32 m1, const INT32 m2):
+            m1(m1),
+            m2(m2)
+        {}
     };
 
-    class TestArray : public StaticArray<TestDataInt, 20>
+    //  test array with ascending order of 1st data member
+    class TestArray : public StaticArrayMappable<TestDataInt, 20>
     {
     public:
         inline virtual bool isGreater(UINT32 posA, UINT32 posB) const
@@ -106,7 +111,8 @@ namespace test
         }
     };
 
-    class TestArrayRev : TestArray
+    //  test array with descending order of 1st data member
+    class TestArrayRev : public TestArray
     {
     public:
         inline virtual bool isGreater(UINT32 posA, UINT32 posB) const

@@ -15,6 +15,18 @@ workspace 'Testing'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
+
+-- application library (build check for app sources)
+project 'application_lib'
+    kind        'StaticLib'
+    targetdir   'lib'
+    
+    files { 
+        '../application/modules/*/src/*.cpp',
+    }
+
+    defines { 'NDEBUG' }
+    optimize 'On'
     
 -- module tests release   
 project 'moduletests'

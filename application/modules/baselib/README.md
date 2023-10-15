@@ -5,6 +5,11 @@
 basic integral types
 ```
 
+**ByteArrays.h**
+```
+byte handling for fixed size data container
+```
+
 **InstanceMacros.h**
 ```
 instance declaration & definion macros
@@ -20,6 +25,16 @@ type safe memset & memcpy
 sort and map using
 - bubble sort
 - b-tree search
+```
+
+**StaticArrays.h**
+```
+fixed size data container
+```
+
+**coding.h**
+```
+misc coding enhancers
 ```
 
 **packBegin.h**
