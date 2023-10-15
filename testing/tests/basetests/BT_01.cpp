@@ -22,7 +22,7 @@ namespace test
     cout << setw(4) << sizeof(TYPE) << " : " << #TYPE << endl;
 
     //  integer sizes (info)
-    TEST(BT_01, T01)
+    IGNORE_TEST(BT_01, T01)
     {
         cout << endl << "unsigned" << endl;
         SIZEOUT(unsigned char)

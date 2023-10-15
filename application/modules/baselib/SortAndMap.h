@@ -25,19 +25,22 @@ public:
     virtual void swap(UINT32 posA, UINT32 posB) = 0;
 };
 
-class I_Searchable : public I_Sortable
+class I_Mapable : public I_Sortable
 {
 public:
     //  element at position A is equal to element at position B
     virtual bool isEqual(UINT32 posA, UINT32 posB) const = 0;
 
-    //  init position of search element
-    virtual UINT32 initSearchPos();
+    //  position of element to search for
+    inline virtual UINT32 getSearchPos()
+    {
+        return size();
+    }
 };
 
 //  apply bubble sort to sortable
-void bSort(I_Sortable& srt);
+void bSort(I_Sortable& obj);
 
-INT32 bSearch(I_Searchable& src);
+INT32 bSearch(I_Mapable& obj);
 
 #endif // H_

@@ -30,7 +30,7 @@ private:
 
     void chgState(E_SigToGui state);
 
-    // Standard 8.1.1
+    //  Standard 8.1.1
     Signal();
     Signal(const Signal& o);
     Signal& operator=(const Signal& o);

@@ -1,15 +1,15 @@
 #include <baselib/SortAndMap.h>
 
-void bSort(I_Sortable& srt)
+void bSort(I_Sortable& obj)
 {
-    for (UINT32 n = srt.size(); n > 0; --n)
+    for (UINT32 n = obj.size(); n > 0; --n)
     {
         bool swapped = false;
-        for (UINT32 p = 0; p < n; ++p)
+        for (UINT32 p = 0; p < n - 1; ++p)
         {
-            if (srt.isGreater(p, p + 1))
+            if (obj.isGreater(p, p + 1))
             {
-                srt.swap(p, p + 1);
+                obj.swap(p, p + 1);
                 swapped = true;
             }
         }
@@ -20,31 +20,28 @@ void bSort(I_Sortable& srt)
     }
 }
 
-//  TODO: not ready
-//  reach pos 0 with even size
-INT32 bSearch(I_Searchable& src)
+INT32 bSearch(I_Mapable& obj)
 {
-    const UINT32 sPos = src.initSearchPos();
-    UINT32 stp = src.size() / 2;
-    UINT32 pos = stp;
+    const UINT32 pSrc = obj.getSearchPos();
+    INT32 pMin = 0;
+    INT32 pMax = obj.size() - 1;
     INT32 res = -1;
 
-    while (stp > 0)
+    while (pMax >= pMin)
     {
-        if (src.isEqual(sPos, pos))
+        const INT32 pCur = (pMin + pMax + 1) / 2;
+        if (obj.isEqual(pSrc, pCur))
         {
-            res = pos;
+            res = pCur;
             break;
         }
-        //  ERROR: permanent loop
-        stp = (stp + 1) / 2;
-        if (src.isGreater(sPos, pos))
+        if (obj.isGreater(pSrc, pCur))
         {
-            pos += stp;
+            pMin = pCur + 1;
         }
         else
         {
-            pos -= stp;
+            pMax = pCur - 1;
         }
     }
     return res;

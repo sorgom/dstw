@@ -30,7 +30,7 @@ private:
     void chgState(E_TswToGui state);
     void toFld(E_TswToFld state) const;
 
-    // Standard 8.1.1
+    //  Standard 8.1.1
     TrackSwitch(const TrackSwitch& o);
     TrackSwitch& operator=(const TrackSwitch& o);
 };

@@ -1,9 +1,11 @@
 #!/usr/bin/bash
 #   ============================================================
-#   run module tests of this project
-#   - see makeTests.sh
+#   build coverage tests from Makefile
+#   - see also projectGcov.py
 #   ============================================================
 #   created by Manfred Sorgo
 
 mydir=$(dirname $0)
-$mydir/../testing/bin/moduletests $@
+
+cd $mydir/../testing
+make verbose=$1 application_coverage moduletests_coverage

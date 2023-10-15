@@ -14,16 +14,16 @@ namespace test
 
     struct Unpacked
     {
-        UINT8 memb1;
-        UINT32 memb2;
+        UINT8  m1;
+        UINT32 m2;
     };
 
     #include <baselib/packBegin.h>
 
     struct Packed
     {
-        UINT8 memb1;
-        UINT32 memb2;
+        UINT8  m1;
+        UINT32 m2;
     };
 
     #include <baselib/packEnd.h>
