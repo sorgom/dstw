@@ -16,6 +16,9 @@ struct NameNum
     UINT32 num;
 };
 
+const NameNum& getNameNum(const ElementName& name, UINT32 num = 0);
+
+
 template<UINT32 CAP>
 class TeleMap : public StaticArrayMappable<NameNum, CAP>
 {
@@ -30,16 +33,8 @@ public:
     }
 };
 
-class GetNameNum
-{
-protected:
-    static const NameNum& getNameNum(const ElementName& name, UINT32 num = 0);
-private:
-    static NameNum mNameNum;
-};
-
 template<UINT32 CAP>
-class TeleMapper : private GetNameNum
+class TeleMapper
 {
 public:
 
