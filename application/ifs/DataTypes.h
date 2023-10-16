@@ -9,11 +9,10 @@
 #define DATATYPES_H
 
 #include <baselib/BaseTypes.h>
-// #include <cstddef>
+#include <ifs/ProjData.h>
+
 
 #include <baselib/packBegin.h>
-
-typedef CHAR ElementName[16];
 
 struct RastaTelegram
 {
@@ -42,11 +41,6 @@ struct GuiTelegram
     INT32 state;
     UINT16 md4;
 };
-
-
-
-
-// static_assert(22 == sizeof(RastaTelegram), "");
 
 #include <baselib/packEnd.h>
 

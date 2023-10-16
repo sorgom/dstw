@@ -32,6 +32,11 @@ sort and map using
 fixed size data container
 ```
 
+**TeleMapper.h**
+```
+telegram mapping based on ElementName type
+```
+
 **coding.h**
 ```
 misc coding enhancers

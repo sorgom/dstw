@@ -17,6 +17,7 @@ namespace test
         ADD_COMP(FldTelegram)
         ADD_COMP(GuiTelegram)
         ADD_COMP(RastaTelegram)
+        ADD_COMP(TrackSwitchProj)
         //# END
     }
 }

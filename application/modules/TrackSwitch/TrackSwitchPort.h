@@ -21,6 +21,8 @@ public:
     inline void fromFld(const FldTelegram& tele) const {}
     inline void fromGui(const GuiTelegram& tele) const {}
 
+    inline bool load(UINT32 num, const TrackSwitchProj* data) { return false; }
+
     DDI_INSTANCE_DEC(TrackSwitchPort)
 private:
 };

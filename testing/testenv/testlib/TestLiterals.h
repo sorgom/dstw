@@ -15,6 +15,7 @@
 namespace test
 {
     //# C_STR_DEC
+    C_STR_DEC(ElementName)
     C_STR_DEC(FldTelegram)
     C_STR_DEC(GuiTelegram)
     C_STR_DEC(RastaPort)
@@ -23,6 +24,7 @@ namespace test
     C_STR_DEC(SignalPort)
     C_STR_DEC(TrackSwitch)
     C_STR_DEC(TrackSwitchPort)
+    C_STR_DEC(TrackSwitchProj)
     //# END
 } // namespace
 

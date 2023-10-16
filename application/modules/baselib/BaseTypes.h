@@ -31,4 +31,8 @@ typedef const CHAR*     CONST_C_STRING;
 
 typedef bool            BOOL;
 
+#ifndef UINT32_MAX
+#define UINT32_MAX 0xFFFFFFFF
+#endif
+
 #endif // _H

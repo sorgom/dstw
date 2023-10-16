@@ -182,7 +182,7 @@ namespace test
 
         // sort
         STEP(2)
-        bSort(a);
+        a.sort();
 
         //  search elements
         STEP(3)
@@ -191,10 +191,6 @@ namespace test
         for (INT32 i = 0; i < c.size(); ++i)
         {
             STEP(i + 1)
-            // const TestDataInt& d = c[i];
-            // const TestDataInt ds(d);
-            // c.setSearch(c[i]);
-            // const UINT32 p = bSearch(c);
             const UINT32 p = c.search(c[i]);
             L_CHECK_EQUAL(i, p)
         }

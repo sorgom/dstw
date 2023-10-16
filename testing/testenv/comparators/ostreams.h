@@ -11,14 +11,17 @@
 
 //## INCLUDES
 #include <ifs/DataTypes.h>
+#include <ifs/ProjData.h>
 //## END
 #include <ostream>
 #include <comparators/ostreamHelpers.h>
 
 //# OSTREAM_DEC
+OSTREAM_DEC(ElementName)
 OSTREAM_DEC(FldTelegram)
 OSTREAM_DEC(GuiTelegram)
 OSTREAM_DEC(RastaTelegram)
+OSTREAM_DEC(TrackSwitchProj)
 //# END
 
 #endif // H_

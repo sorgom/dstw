@@ -38,6 +38,14 @@ namespace test
         {
             call("fromGui").TPARAM(GuiTelegram, tele);
         }
+
+        inline bool load(UINT32 num, const TrackSwitchProj* data)
+        {
+            call("load").PARAM(num);
+            // TODO: the CppUTest way
+            return true;
+        }
+
         //  expected calls
 
         inline void expectToFld(UINT32 id, INT32 cmd) const
@@ -58,6 +66,11 @@ namespace test
         inline void expectFromGui(const GuiTelegram& tele) const
         {
             expect("fromGui").TPARAM(GuiTelegram, tele);
+        }
+        
+        inline void expectLoad(UINT32 num) const
+        {
+            expect("load").PARAM(num);
         }
     };
 }

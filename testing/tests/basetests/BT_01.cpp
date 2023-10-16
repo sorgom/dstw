@@ -1,14 +1,9 @@
 #include <testlib/CppUTest.h>
 #include <testlib/TestGroupBase.h>
+#include <devel/useCout.h>
 
 #include "TestPack.h"
 //  General System Testing
-
-#include <iostream>
-#include <iomanip>
-using std::cout;
-using std::setw;
-using std::endl;
 
 namespace test
 {
@@ -68,6 +63,9 @@ namespace test
         STEP(3)
         S_CHECK(1, BYTE)
         S_CHECK(1, CHAR)
+
+        const UINT32 n = 0xFFFFFFFF;
+        cout << "UINT32_MAX: " << n << endl;
     }
 
     //  Test of pack 
@@ -84,13 +82,13 @@ namespace test
     TEST(BT_01, T04)
     {
         STEP(1)
-        ElementName fn = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5' };
+        ElementName fn = {{ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5' }};
 
-        cout << "FIX CHAR: " << fixC(fn) << endl;
+        cout << "FIX CHAR: " << fixC(fn.name) << endl;
 
-        fn[4] = 0;
+        fn.name[4] = 0;
 
-        cout << "FIX CHAR: " << fixC(fn) << endl;
+        cout << "FIX CHAR: " << fixC(fn.name) << endl;
 
         STEP(2)
         CHECK_EQUAL(5, sizeof(Packed));

@@ -43,6 +43,8 @@ public:
 
     virtual void fromFld(const FldTelegram& tele) const = 0;
     virtual void fromGui(const GuiTelegram& tele) const = 0;
+
+    virtual bool load(UINT32 num, const TrackSwitchProj* data) = 0;
 };
 
 #endif // _H

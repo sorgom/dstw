@@ -91,9 +91,19 @@ public:
     }
 
     //  the search
-    inline UINT32 search(const T& what) const
+    inline void sort()
+    {
+        bSort(*this);
+    }
+
+    inline void setSearch(const T& what) const
     {
         setSearchBytes(&what, sizeof(T));
+    }
+
+    inline UINT32 search(const T& what) const
+    {
+        setSearch(what);
         return bSearch(*this);
     }
 

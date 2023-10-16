@@ -33,5 +33,12 @@ public:
     {
         std::memcpy(&ref, &src, sizeof(T));
     }
+
+    template <class T>
+    inline static INT32 cmp(const T& r1, const T& r2)
+    {
+        return std::memcmp(&r1, &r2, sizeof(T));
+    }
+
 };
 #endif // _H
