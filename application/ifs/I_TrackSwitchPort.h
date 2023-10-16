@@ -9,6 +9,7 @@
 
 #include <baselib/BaseTypes.h>
 #include "E_Result.h"
+#include "DataTypes.h"
 
 enum E_TswTromFld
 {
@@ -37,8 +38,11 @@ enum E_TswToGui
 class I_TrackSwitchPort
 {
 public:
-    virtual void toFld(UINT32 id, E_TswToFld cmd) const = 0;
-    virtual void toGui(UINT32 id, E_TswToGui cmd) const = 0;
+    virtual void toFld(UINT32 id, INT32 cmd) const = 0;
+    virtual void toGui(UINT32 id, INT32 cmd) const = 0;
+
+    virtual void fromFld(const FldTelegram& tele) const = 0;
+    virtual void fromGui(const GuiTelegram& tele) const = 0;
 };
 
 #endif // _H

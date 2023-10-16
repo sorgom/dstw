@@ -37,6 +37,11 @@ protected:
     const UINT32 mStep;
     UINT32 mSize;
 
+    inline virtual bool isRef(const UINT32 pos) const
+    {
+        return false;
+    }
+
 private:
     //  Standard 8.1.1
     ByteArray();
@@ -56,8 +61,14 @@ protected:
     {}
 
     void swappBytes(UINT32 posA, UINT32 posB) const;
+    
     UINT32 getSearchBytePos() const; 
-    void setSearchBytes(CPTR ptr, UINT32 bytes);
+    void setSearchBytes(CPTR ptr, UINT32 bytes) const;
+
+    inline bool isRef(const UINT32 pos) const
+    {
+        return mCap == pos;
+    }
 
 private:
     //  Standard 8.1.1

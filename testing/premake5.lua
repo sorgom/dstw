@@ -40,7 +40,7 @@ project 'moduletests'
     }
 
     defines { 'NDEBUG' }
-    optimize 'On'
+    -- optimize 'On'
     links { 'CppUTest', 'CppUTestExt' }
 
 -- coverage instrumented application library

@@ -16,6 +16,8 @@
 #include <comparators/ostreamHelpers.h>
 
 //# OSTREAM_DEC
+OSTREAM_DEC(FldTelegram)
+OSTREAM_DEC(GuiTelegram)
 OSTREAM_DEC(RastaTelegram)
 //# END
 

@@ -1,14 +1,12 @@
 #include <baselib/ByteArrays.h>
 #include <baselib/coding.h>
-
 #include <cstring>
-using std::memcpy;
-using std::memcmp;
 
 void ByteArray::reset()
 {
     mSize = 0;
 }
+
 PTR ByteArray::getPtr(const UINT32 pos) const
 {
     PTR p = 0;
@@ -16,9 +14,14 @@ PTR ByteArray::getPtr(const UINT32 pos) const
     {
         p = mBytes + (mStep * pos);
     }
+    else if (isRef(pos))
+    {
+        p = mBytes + (mStep * pos);
+    }
     else { pass(); }
     return p;
 }
+
 PTR ByteArray::addPtr()
 {
     PTR p = 0;
@@ -89,11 +92,11 @@ UINT32 ByteArrayMappable::getSearchBytePos() const
     return mCap;
 }
 
-void ByteArrayMappable::setSearchBytes(const CPTR ptr, const UINT32 bytes)
+void ByteArrayMappable::setSearchBytes(const CPTR ptr, const UINT32 bytes) const
 {
     if (bytes == mStep)
     {
-        const PTR pS = mBytes + (mStep * getSearchBytePos());
+        const PTR pS = mBytes + (mStep * mCap);
         memcpy(pS, ptr, mStep);
     }
     else { pass(); }

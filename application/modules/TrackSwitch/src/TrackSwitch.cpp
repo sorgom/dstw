@@ -25,7 +25,7 @@ E_Result TrackSwitch::WU()
     return RES_OK;
 }
 
-void TrackSwitch::fromFld(E_TswTromFld rcv)
+void TrackSwitch::fromFld(const INT32 rcv)
 {
     switch(rcv)
     {
@@ -41,14 +41,12 @@ void TrackSwitch::fromFld(E_TswTromFld rcv)
     case TSW_FROM_FLD_DEFECT:
         chgState(TSW_TO_GUI_DEFECT);
         break;
-//  NO_COV >>
     default:
         break;
-//  << NO_COV
     }
 }
 
-void TrackSwitch::chgState(E_TswToGui state)
+void TrackSwitch::chgState(INT32 state)
 {
     if (state != mState)
     {
@@ -57,7 +55,7 @@ void TrackSwitch::chgState(E_TswToGui state)
     }
 }
 
-void TrackSwitch::toFld(E_TswToFld state) const
+void TrackSwitch::toFld(INT32 state) const
 {
     ddi::getTrackSwitchPort().toFld(mId, state);
 } 

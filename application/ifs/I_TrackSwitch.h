@@ -19,7 +19,7 @@ public:
 
 //  infos from field element
 
-    virtual void fromFld(E_TswTromFld rcv) = 0;
+    virtual void fromFld(INT32 rcv) = 0;
 };
 
 #endif // _H

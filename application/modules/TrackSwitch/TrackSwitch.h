@@ -19,16 +19,14 @@ public:
     {}
 
     E_Result WU();
-    
-    void fromFld(E_TswTromFld rcv);
+    void fromFld(INT32 rcv);
 
 private:
     const UINT32 mId;
-    E_TswToGui mState;
-    DDI_MEMB_C(mPort, TrackSwitchPort)
+    INT32 mState;
 
-    void chgState(E_TswToGui state);
-    void toFld(E_TswToFld state) const;
+    void chgState(INT32 state);
+    void toFld(INT32 state) const;
 
     //  Standard 8.1.1
     TrackSwitch(const TrackSwitch& o);

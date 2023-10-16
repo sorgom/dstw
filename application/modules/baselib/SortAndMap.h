@@ -38,6 +38,6 @@ public:
 //  apply bubble sort to sortable
 void bSort(I_Sortable& obj);
 
-INT32 bSearch(I_Mapable& obj);
+INT32 bSearch(const I_Mapable& obj);
 
 #endif // H_

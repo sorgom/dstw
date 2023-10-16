@@ -90,10 +90,11 @@ public:
         swappBytes(posA, posB);
     }
 
-    //  search initialization
-    inline void setSearch(const T& what)
+    //  the search
+    inline UINT32 search(const T& what) const
     {
         setSearchBytes(&what, sizeof(T));
+        return bSearch(*this);
     }
 
     inline UINT32 getSearchPos() const
@@ -126,7 +127,7 @@ public:
     }
 
 private:
-    BYTE mBytes[sizeof(T) * CAP + 1];
+    BYTE mBytes[sizeof(T) * (CAP + 1)];
 
     //  Standard 8.1.1
     StaticArrayMappable(const StaticArrayMappable& o);

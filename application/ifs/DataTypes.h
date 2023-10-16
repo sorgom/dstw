@@ -13,7 +13,7 @@
 
 #include <baselib/packBegin.h>
 
-typedef CHAR FieldName[16];
+typedef CHAR ElementName[16];
 
 struct RastaTelegram
 {
@@ -24,6 +24,27 @@ struct RastaTelegram
     INT32 state3;
     UINT16 md4;
 };
+
+struct FldTelegram
+{
+    INT32 type;
+    ElementName name;
+    INT32 state1;
+    INT32 state2;
+    INT32 state3;
+    UINT16 md4;
+};
+
+struct GuiTelegram
+{
+    INT32 type;
+    ElementName name;
+    INT32 state;
+    UINT16 md4;
+};
+
+
+
 
 // static_assert(22 == sizeof(RastaTelegram), "");
 

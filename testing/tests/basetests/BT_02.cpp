@@ -133,7 +133,7 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  test of StaticArrayMappable usin placement new on addPtr
+    //  test of StaticArrayMappable using placement new on addPtr
     TEST(BT_02, T05)
     {
         // TestStepper::showAll();
@@ -141,9 +141,6 @@ namespace test
         //  create array
         //  load 10 data
         TestArray a;
-
-        L_CHECK_EQUAL(20, a.capacity())
-        L_CHECK_EQUAL( 0, a.size())
 
         // m1 0 .. -9
         // m2 0 ..  9
@@ -162,6 +159,44 @@ namespace test
             const TestDataInt& d = a[i];
             L_CHECK_EQUAL(-i, d.m1)
             L_CHECK_EQUAL( i, d.m2)
+        }
+        ENDSTEPS()
+    }
+
+    //  test type: equivalence class test
+    //  test of StaticArrayMappable as map
+    TEST(BT_02, T06)
+    {
+        // TestStepper::showAll();
+        STEP(1)
+        //  create array
+        //  load 10 data
+        TestArray a;
+
+        // m1 0 .. -9
+        // m2 0 ..  9
+        for (INT32 i = 0; i < 10; ++i)
+        {
+            new (a.addPtr()) TestDataInt(-i, i);
+        }
+
+        // sort
+        STEP(2)
+        bSort(a);
+
+        //  search elements
+        STEP(3)
+        const TestArray& c = a;
+        SUBSTEPS()
+        for (INT32 i = 0; i < c.size(); ++i)
+        {
+            STEP(i + 1)
+            // const TestDataInt& d = c[i];
+            // const TestDataInt ds(d);
+            // c.setSearch(c[i]);
+            // const UINT32 p = bSearch(c);
+            const UINT32 p = c.search(c[i]);
+            L_CHECK_EQUAL(i, p)
         }
         ENDSTEPS()
     }

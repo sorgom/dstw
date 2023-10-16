@@ -95,6 +95,11 @@ namespace test
             m1(m1),
             m2(m2)
         {}
+        inline TestDataInt(const TestDataInt& o):
+            m1(o.m1),
+            m2(o.m2)
+        {}
+
     };
 
     //  test array with ascending order of 1st data member

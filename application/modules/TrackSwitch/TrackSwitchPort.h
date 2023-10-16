@@ -14,14 +14,15 @@
 class TrackSwitchPort : public I_TrackSwitchPort
 {
 public:
-    void toFld(UINT32 id, E_TswToFld cmd) const;
-
 //  TODO:
-    inline void toGui(UINT32 id, E_TswToGui cmd) const {}
+    inline void toFld(UINT32 id, INT32 cmd) const {}
+    inline void toGui(UINT32 id, INT32 cmd) const {}
+
+    inline void fromFld(const FldTelegram& tele) const {}
+    inline void fromGui(const GuiTelegram& tele) const {}
 
     DDI_INSTANCE_DEC(TrackSwitchPort)
 private:
-    static RastaTelegram mTele;
 };
 
 #endif // _H
