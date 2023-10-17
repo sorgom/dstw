@@ -10,11 +10,6 @@ basic integral types
 byte handling for fixed size data container
 ```
 
-**ElementNameMap.h**
-```
-position mapping based on ElementName type
-```
-
 **InstanceMacros.h**
 ```
 instance declaration & definion macros
@@ -23,6 +18,11 @@ instance declaration & definion macros
 **Mem.h**
 ```
 type safe memset & memcpy
+```
+
+**NameTypePosMap.h**
+```
+type & position mapping based on ElementName
 ```
 
 **SortAndSearch.h**

@@ -6,11 +6,6 @@ definiton of complex data types
 - mainly communication telegrams
 ```
 
-**SystemEnums.h**
-```
-commonly used result type
-```
-
 **I_FldCom.h**
 ```
 Interface FldCom
@@ -40,4 +35,11 @@ interface TrackSwitchPort
 **ProjData.h**
 ```
 projectation data types
+```
+
+**SystemEnums.h**
+```
+system wide enumerations
+- commonly used result type
+- subsytems
 ```

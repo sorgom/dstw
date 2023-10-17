@@ -19,7 +19,7 @@ test of basic functionality
 **BT_03.cpp**
 ```
 test of basic functionality
-- ElementNameMap
+- NameTypePosMap
 ```
 
 **TestClasses.h**

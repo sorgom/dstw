@@ -60,3 +60,6 @@ tmp_*
 
 # vscode
 tempCodeRunnerFile.py
+
+# special directories
+onhold/**/README.md

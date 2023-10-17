@@ -7,4 +7,8 @@ capacities of element containers
 - track switches
 - segments
 - level crossings
+
+pre-defined here
+defineable at compile time
+e.g.: -DCAPACITY_SIG=500
 ```
