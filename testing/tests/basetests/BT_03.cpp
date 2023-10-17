@@ -1,12 +1,12 @@
 //  ============================================================
 //  test of basic functionality
-//  - TeleMapper
+//  - ElementNameMap
 //  ============================================================
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
 
-#include <baselib/TeleMapper.h>
+#include <baselib/ElementNameMap.h>
 
 #include <qnd/useCout.h>
 
@@ -21,7 +21,7 @@ namespace test
     //  test type: equivalence class test
     TEST(BT_03, T01)
     {
-        TeleMap<10> map;
+        ElementNameMap<100> map;
 
         cout << endl;
         STEP(1)
@@ -31,7 +31,7 @@ namespace test
         {
             map.addName(genElementName(cap - p));
         }
-        L_CHECK_EQUAL(10, map.size())
+        L_CHECK_EQUAL(100, map.size())
 
         STEP(2)
         map.sort();

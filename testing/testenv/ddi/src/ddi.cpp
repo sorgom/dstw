@@ -36,6 +36,7 @@ namespace ddi
         void reset();
 
         //# DDI_MEMB
+        DDI_MEMB(FldCom)
         DDI_MEMB(RastaPort)
         DDI_MEMB(SignalPort)
         DDI_MEMB(TrackSwitchPort)
@@ -50,6 +51,7 @@ namespace ddi
         DDI_CON(TrackSwitchPort)
         //# END
         //# DDI_CON_MOCK : MOCK
+        DDI_CON_MOCK(FldCom)
         DDI_CON_MOCK(RastaPort)
         DDI_CON_MOCK(SignalPort)
         //# END
@@ -59,6 +61,7 @@ namespace ddi
     void DDI::reset()
     {
         //# DDI_RESET
+        DDI_RESET(FldCom)
         DDI_RESET(RastaPort)
         DDI_RESET(SignalPort)
         DDI_RESET(TrackSwitchPort)
@@ -66,6 +69,7 @@ namespace ddi
     }
 
     //# DDI_DEF
+    DDI_DEF(FldCom)
     DDI_DEF(RastaPort)
     DDI_DEF(SignalPort)
     DDI_DEF(TrackSwitchPort)

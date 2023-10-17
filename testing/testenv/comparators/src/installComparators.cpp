@@ -14,6 +14,7 @@ namespace test
     void installComparators(MockSupportPlugin& plugin)
     {
         //# ADD_COMP
+        ADD_COMP(ElementName)
         ADD_COMP(FldTelegram)
         ADD_COMP(GuiTelegram)
         ADD_COMP(RastaTelegram)

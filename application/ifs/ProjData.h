@@ -13,7 +13,7 @@
 
 struct ElementName
 {
-    CHAR name[16];
+    CHAR chars[16];
 };
 
 struct TrackSwitchProj

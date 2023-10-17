@@ -41,6 +41,6 @@ namespace test
             expect("toGui").PARAM(cmd);
         }
     };
-}
+} // namespace
 
 #endif // _H

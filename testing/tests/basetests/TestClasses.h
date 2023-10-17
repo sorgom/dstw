@@ -7,7 +7,7 @@
 #ifndef TESTCLASSES_H
 #define TESTCLASSES_H
 
-#include <baselib/SortAndMap.h>
+#include <baselib/SortAndSearch.h>
 #include <baselib/StaticArrays.h>
 
 namespace test

@@ -10,7 +10,7 @@ namespace test
     {
         static ElementName eName = {{""}};
         Mem::zero(eName);
-        std::sprintf(eName.name, "%s %04X", name, num);
+        std::sprintf(eName.chars, "%s %04X", name, num);
         return eName;
     }
 

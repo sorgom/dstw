@@ -8,7 +8,7 @@
 #define STATICARRAY_H
 
 #include <baselib/ByteArrays.h>
-#include <baselib/SortAndMap.h>
+#include <baselib/SortAndSearch.h>
 
 #include <new>
 

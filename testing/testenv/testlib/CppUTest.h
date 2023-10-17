@@ -43,8 +43,16 @@
 //      .PARAM(param)
 //  ============================================================
 //! must be in namespace test
-#define TPARAM(TYPE, NAME) withParameterOfType(c__ ## TYPE, #NAME, &NAME);
-#define PARAM(NAME) withParameter(#NAME, NAME)
+#define TPARAM(TYPE, NAME) \
+    withParameterOfType(c__ ## TYPE, #NAME, &NAME);
+#define PARAM(NAME) \
+    withParameter(#NAME, NAME)
+#define RETI(VAL) \
+    returnIntValueOrDefault(VAL)
+#define RETU(VAL) \
+    returnUnsignedIntValueOrDefault(VAL)
+#define ARETV(VAL) \
+    andReturnValue(VAL);
 
 #endif // _H
 

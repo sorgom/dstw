@@ -12,6 +12,7 @@
 
 //## INCLUDES
 #include <TrackSwitch/TrackSwitchPort.h>
+#include <mocks/M_FldCom.h>
 #include <mocks/M_RastaPort.h>
 #include <mocks/M_SignalPort.h>
 #include <mocks/M_TrackSwitchPort.h>
@@ -26,6 +27,7 @@
 namespace ddi
 {
     //# DDI_DEC
+    DDI_DEC(FldCom)
     DDI_DEC(RastaPort)
     DDI_DEC(SignalPort)
     DDI_DEC(TrackSwitchPort)

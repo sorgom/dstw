@@ -17,7 +17,7 @@ OSTREAM_DEF(RastaTelegram)
 
 OSTREAM_DEF(ElementName)
 {
-    return os << fixC(d.name);
+    return os << fixC(d.chars);
 }
 
 OSTREAM_DEF(FldTelegram)

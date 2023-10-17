@@ -20,7 +20,7 @@ instance declaration & definion macros
 type safe memset & memcpy
 ```
 
-**SortAndMap.h**
+**SortAndSearch.h**
 ```
 sort and map using
 - bubble sort
@@ -32,7 +32,7 @@ sort and map using
 fixed size data container
 ```
 
-**TeleMapper.h**
+**ElementNameMap.h**
 ```
 telegram mapping based on ElementName type
 ```

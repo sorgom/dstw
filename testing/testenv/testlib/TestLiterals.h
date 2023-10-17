@@ -18,6 +18,7 @@ namespace test
 
     //# C_STR_DEC
     C_STR_DEC(ElementName)
+    C_STR_DEC(FldCom)
     C_STR_DEC(FldTelegram)
     C_STR_DEC(GuiTelegram)
     C_STR_DEC(RastaPort)
