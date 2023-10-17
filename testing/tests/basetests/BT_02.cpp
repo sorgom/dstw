@@ -1,13 +1,14 @@
-#include <testlib/CppUTest.h>
+//  ============================================================
+//  test of basic functionality
+//  - bSort 
+//  - bSearch
+//  - mappable StaticArray
+//  ============================================================
+//  created by Manfred Sorgo
+
 #include <testlib/TestGroupBase.h>
 
 #include "TestClasses.h"
-
-#include <iostream>
-// #include <iomanip>
-using std::cout;
-// using std::setw;
-using std::endl;
 
 namespace test
 {
@@ -35,12 +36,13 @@ namespace test
     //  check of bSearch
     TEST(BT_02, T02)
     {
-        // TestStepper::showAll();
         STEP(1)
+        //  even number of elements
         TestSortMap<10> tsmEven;
         tsmEven.checkSearch();
 
         STEP(2)
+        //  odd number of elements
         TestSortMap<11> tsmOdd;
         tsmOdd.checkSearch();
     }
@@ -49,7 +51,6 @@ namespace test
     //  test of StaticArrayMappable
     TEST(BT_02, T03)
     {
-        // TestStepper::showAll();
         STEP(1)
         //  create array
         //  load 10 data
@@ -136,7 +137,6 @@ namespace test
     //  test of StaticArrayMappable using placement new on addPtr
     TEST(BT_02, T05)
     {
-        // TestStepper::showAll();
         STEP(1)
         //  create array
         //  load 10 data
@@ -167,7 +167,6 @@ namespace test
     //  test of StaticArrayMappable as map
     TEST(BT_02, T06)
     {
-        // TestStepper::showAll();
         STEP(1)
         //  create array
         //  load 10 data

@@ -31,6 +31,15 @@ public:
     {
         return Mem::cmp(this->at(posA).name, this->at(posB).name) == 0;
     }
+    inline INT32 find(const ElementName& eName)
+    {
+        const INT32 p = this->search(getNameNum(eName));
+        return (p < 0 ? p : this->at(p).num);
+    }
+    inline bool addName(const ElementName& eName)
+    {
+        return this->add(getNameNum(eName, this->size()));
+    }
 };
 
 template<UINT32 CAP>

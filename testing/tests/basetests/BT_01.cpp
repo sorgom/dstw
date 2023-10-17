@@ -1,9 +1,14 @@
-#include <testlib/CppUTest.h>
-#include <testlib/TestGroupBase.h>
-#include <devel/useCout.h>
+//  ============================================================
+//  test of basic functionality
+//  - sizes of base types
+//  - pack headers
+//  - output of fixed size strings
+//  ============================================================
+//  created by Manfred Sorgo
 
-#include "TestPack.h"
-//  General System Testing
+#include <testlib/TestGroupBase.h>
+
+#include <sstream>
 
 namespace test
 {
@@ -13,40 +18,11 @@ namespace test
         
     };
 
-#define SIZEOUT(TYPE) \
-    cout << setw(4) << sizeof(TYPE) << " : " << #TYPE << endl;
-
-    //  integer sizes (info)
-    IGNORE_TEST(BT_01, T01)
-    {
-        cout << endl << "unsigned" << endl;
-        SIZEOUT(unsigned char)
-        SIZEOUT(unsigned short)
-        SIZEOUT(unsigned)
-        SIZEOUT(unsigned long)
-        cout << endl << "signed" << endl;
-        SIZEOUT(char)
-        SIZEOUT(short)
-        SIZEOUT(int)
-        SIZEOUT(long int)
-        cout << endl << "baselib unsigned" << endl;
-        SIZEOUT(UINT8)
-        SIZEOUT(UINT16)
-        SIZEOUT(UINT32)
-        SIZEOUT(UINT64)
-        cout << endl << "baselib signed" << endl;
-        SIZEOUT(CHAR)
-        SIZEOUT(INT8)
-        SIZEOUT(INT16)
-        SIZEOUT(INT32)
-        SIZEOUT(INT64)
-    }
-
 #define S_CHECK(SIZE, TYPE) \
     L_CHECK_EQUAL(SIZE, sizeof(TYPE))    
     
     //  integer sizes (check)
-    TEST(BT_01, T02)
+    TEST(BT_01, T01)
     {
         STEP(1)
         S_CHECK(1, UINT8)
@@ -63,13 +39,26 @@ namespace test
         STEP(3)
         S_CHECK(1, BYTE)
         S_CHECK(1, CHAR)
-
-        const UINT32 n = 0xFFFFFFFF;
-        cout << "UINT32_MAX: " << n << endl;
     }
 
+    struct Unpacked
+    {
+        UINT8  m1;
+        UINT32 m2;
+    };
+
+    #include <baselib/packBegin.h>
+
+    struct Packed
+    {
+        UINT8  m1;
+        UINT32 m2;
+    };
+
+    #include <baselib/packEnd.h>
+
     //  Test of pack 
-    TEST(BT_01, T03)
+    TEST(BT_01, T02)
     {
         STEP(1)
         CHECK_EQUAL(8, sizeof(Unpacked));
@@ -79,19 +68,21 @@ namespace test
     }
 
     //  ostreams
-    TEST(BT_01, T04)
+    TEST(BT_01, T03)
     {
         STEP(1)
         ElementName fn = {{ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5' }};
 
-        cout << "FIX CHAR: " << fixC(fn.name) << endl;
-
-        fn.name[4] = 0;
-
-        cout << "FIX CHAR: " << fixC(fn.name) << endl;
+        std::ostringstream os;
+        os << fixC(fn.name);
+        STRCMP_EQUAL("0123456789012345", os.str().c_str());
 
         STEP(2)
-        CHECK_EQUAL(5, sizeof(Packed));
+        fn.name[4]  = 0;
+        fn.name[10] = 127;
+        os.str("");
+        os << fixC(fn.name);
+        STRCMP_EQUAL("0123*56789*12345", os.str().c_str());
     }
 
 }

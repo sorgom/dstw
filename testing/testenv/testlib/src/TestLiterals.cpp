@@ -6,6 +6,8 @@
 
 namespace test
 {
+    C_STR_DEF(ELEM)
+
     //# C_STR_DEF
     C_STR_DEF(ElementName)
     C_STR_DEF(FldTelegram)

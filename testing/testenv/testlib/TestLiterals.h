@@ -14,6 +14,8 @@
 
 namespace test
 {
+    C_STR_DEC(ELEM)
+
     //# C_STR_DEC
     C_STR_DEC(ElementName)
     C_STR_DEC(FldTelegram)

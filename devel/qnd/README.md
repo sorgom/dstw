@@ -1,3 +1,5 @@
+# qick 'n dirty development helpers
+
 ## directory content
 
 **useCout.h**

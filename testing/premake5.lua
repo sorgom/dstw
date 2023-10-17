@@ -9,9 +9,10 @@ workspace 'Testing'
     objdir      'obj/%{prj.name}'
 
     includedirs {
-        'testenv/',
+        'testenv',
         '../application',
         '../application/modules',
+        '../devel'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
