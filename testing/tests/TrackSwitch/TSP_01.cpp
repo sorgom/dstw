@@ -4,9 +4,6 @@
 
 #include <TrackSwitch/TrackSwitchPort.h>
 #include <baselib/Mem.h>
-#include <iostream>
-using std::cout;
-using std::endl;
 
 namespace test
 {
@@ -14,42 +11,35 @@ namespace test
     {
     protected:
         TrackSwitchPort mSUT;
-        M_RastaPort& mPort;
+        M_FldCom& mCom;
         // static RastaTelegram mTele;
-        RastaTelegram mTele;
+        FldTelegram mTele;
 
         inline TestGroupTSP():
-            mPort(m_RastaPort())
+            mCom(m_FldCom())
         {
-            mock_RastaPort();
+            mock_FldCom();
             Mem::zero(mTele);
-            mTele.type = RASTA_TSW;
         }
     };
 
-    // RastaTelegram TestGroupTSP::mTele = {0};
-
-    TEST_GROUP_BASE(TSP, TestGroupTSP)
+    TEST_GROUP_BASE(TSP_01, TestGroupTSP)
     {};
 
     //! test type: equivalence class test
-    TEST(TSP, T01)
+    TEST(TSP_01, T01)
     {
         STEP(1)
-        mTele.id = 123;
-        mTele.state1 = TSW_TO_FLD_RIGHT;
-        mPort.expectSend(mTele);
+        mCom.expectSend();
         mSUT.toFld(123, TSW_TO_FLD_LEFT);
         CHECK_N_CLEAR()
     }
     //! test type: equivalence class test
-    TEST(TSP, T02)
+    TEST(TSP_01, T02)
     {
         STEP(1)
-        mTele.id = 123;
-        mTele.state1 = TSW_TO_FLD_RIGHT;
-        mPort.expectSend(mTele);
-        mPort.expectSend(mTele);
+        mCom.expectSend();
+        mCom.expectSend();
         mSUT.toFld(123, TSW_TO_FLD_RIGHT);
         CHECK_N_CLEAR()
     }

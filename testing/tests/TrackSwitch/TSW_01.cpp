@@ -22,12 +22,12 @@ namespace test
         }
     };
 
-    TEST_GROUP_BASE(TSW, TestGroupTSW)
+    TEST_GROUP_BASE(TSW_01, TestGroupTSW)
     {};
 
     //! test type: equivalence class test
     //! TrackSwitch transitions & reactions pt. 1
-    TEST(TSW, T01)
+    TEST(TSW_01, T01)
     {
         SETUP()
         STEP(1)

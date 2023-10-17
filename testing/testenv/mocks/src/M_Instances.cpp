@@ -11,7 +11,6 @@ namespace test
 {
     //# MOCK_DEF
     MOCK_DEF(FldCom)
-    MOCK_DEF(RastaPort)
     MOCK_DEF(SignalPort)
     MOCK_DEF(TrackSwitchPort)
     //# END

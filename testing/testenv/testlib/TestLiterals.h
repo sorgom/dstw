@@ -21,7 +21,6 @@ namespace test
     C_STR_DEC(FldCom)
     C_STR_DEC(FldTelegram)
     C_STR_DEC(GuiTelegram)
-    C_STR_DEC(RastaPort)
     C_STR_DEC(RastaTelegram)
     C_STR_DEC(Signal)
     C_STR_DEC(SignalPort)

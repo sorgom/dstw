@@ -18,11 +18,6 @@ for interface I_<NAME>
 - function mock_<NAME>() plugs mock instance into ddi
 ```
 
-**M_RastaPort.h**
-```
-mock for interface I_RastaPort
-```
-
 **M_SignalPort.h**
 ```
 mock for interface I_SignalPort

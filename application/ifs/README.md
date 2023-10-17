@@ -17,11 +17,6 @@ Interface FldCom
 - field communication device
 ```
 
-**I_RastaPort.h**
-```
-interface RastaPort
-```
-
 **I_Signal.h**
 ```
 interface Signal

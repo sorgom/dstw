@@ -13,7 +13,6 @@ namespace test
     C_STR_DEF(FldCom)
     C_STR_DEF(FldTelegram)
     C_STR_DEF(GuiTelegram)
-    C_STR_DEF(RastaPort)
     C_STR_DEF(RastaTelegram)
     C_STR_DEF(Signal)
     C_STR_DEF(SignalPort)
