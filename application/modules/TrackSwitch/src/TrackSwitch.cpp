@@ -22,7 +22,7 @@ E_Result TrackSwitch::WU()
         break;
 //  << NO_COV
     };
-    return RES_OK;
+    return RESULT_OK;
 }
 
 void TrackSwitch::fromFld(const INT32 rcv)

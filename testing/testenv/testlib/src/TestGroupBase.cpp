@@ -13,5 +13,9 @@ namespace test
         std::sprintf(eName.chars, "%s %04X", name, num);
         return eName;
     }
+    void TestGroupBase::genElementName(ElementName& eName, const UINT32 num, const CONST_C_STRING name)
+    {
+        Mem::copy(eName, genElementName(num, name));
+    }
 
 } // namespace

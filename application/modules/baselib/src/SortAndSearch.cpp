@@ -20,7 +20,7 @@ void bSort(I_Sortable& obj)
     }
 }
 
-INT32 bSearch(const I_Mapable& obj)
+INT32 bSearch(const I_Searchable& obj)
 {
     const UINT32 pSrc = obj.getSearchPos();
     INT32 pMin = 0;

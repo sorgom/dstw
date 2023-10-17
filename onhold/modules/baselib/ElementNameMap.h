@@ -19,7 +19,7 @@ struct NamePos
 const NamePos& getNamePos(const ElementName& name, UINT32 pos = 0);
 
 template<UINT32 CAP>
-class ElementNameMap : public StaticArrayMappable<NamePos, CAP>
+class ElementNameMap : public SearchableStaticArray<NamePos, CAP>
 {
 public:
     inline bool isGreater(UINT32 posA, UINT32 posB) const

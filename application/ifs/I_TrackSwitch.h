@@ -7,7 +7,7 @@
 #ifndef I_TRACKSWITCH_H
 #define I_TRACKSWITCH_H
 
-#include "E_Result.h"
+#include "SystemEnums.h"
 #include "I_TrackSwitchPort.h"
 
 class I_TrackSwitch

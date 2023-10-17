@@ -7,7 +7,7 @@
 #ifndef I_SIGNALPORT_H
 #define I_SIGNALPORT_H
 
-#include "E_Result.h"
+#include "SystemEnums.h"
 
 enum E_SigTromFld
 {

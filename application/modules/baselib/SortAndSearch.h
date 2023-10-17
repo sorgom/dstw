@@ -7,8 +7,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef SORTANDMAP_H
-#define SORTANDMAP_H
+#ifndef SORTANDSEARCH_H
+#define SORTANDSEARCH_H
 
 #include <baselib/BaseTypes.h> 
 
@@ -25,7 +25,7 @@ public:
     virtual void swap(UINT32 posA, UINT32 posB) = 0;
 };
 
-class I_Mapable : public I_Sortable
+class I_Searchable : public I_Sortable
 {
 public:
     //  element at position A is equal to element at position B
@@ -38,6 +38,6 @@ public:
 //  apply bubble sort to sortable
 void bSort(I_Sortable& obj);
 
-INT32 bSearch(const I_Mapable& obj);
+INT32 bSearch(const I_Searchable& obj);
 
 #endif // H_

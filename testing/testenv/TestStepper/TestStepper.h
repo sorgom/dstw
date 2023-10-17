@@ -171,6 +171,9 @@ private:
 #define SUBSTEPS() BEGINSTEPS()
 #define STEPS() BEGINSTEPS()
 
+//! use loop counter 0 .. for steps
+#define LSTEP(n) STEP(n + 1)
+
 //! Utest macros extensions
 //! equality check with update of TestStepper line
 #define L_CHECK_EQUAL(expected, actual) TestStepper::setLine(__LINE__); CHECK_EQUAL(expected, actual);

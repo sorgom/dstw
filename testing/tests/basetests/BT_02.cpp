@@ -48,7 +48,7 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  test of StaticArrayMappable
+    //  test of SearchableStaticArray
     TEST(BT_02, T03)
     {
         STEP(1)
@@ -72,7 +72,7 @@ namespace test
         SUBSTEPS()
         for (INT32 i = 0; i < a.size(); ++i)
         {
-            STEP(i + 1)
+            LSTEP(i)
             const TestDataInt& d = a[i];
             L_CHECK_EQUAL(-i, d.m1)
             L_CHECK_EQUAL( i, d.m2)
@@ -88,7 +88,7 @@ namespace test
         SUBSTEPS()
         for (INT32 i = 0; i < a.size(); ++i)
         {
-            STEP(i + 1)
+            LSTEP(i)
             const TestDataInt& d = a[i];
             L_CHECK_EQUAL(-9 + i, d.m1)
             L_CHECK_EQUAL( 9 - i, d.m2)
@@ -97,7 +97,7 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  test of StaticArrayMappable with reversed order
+    //  test of SearchableStaticArray with reversed order
     TEST(BT_02, T04)
     {
         STEP(1)
@@ -125,7 +125,7 @@ namespace test
         SUBSTEPS()
         for (INT32 i = 0; i < a.size(); ++i)
         {
-            STEP(i + 1)
+            LSTEP(i)
             const TestDataInt& d = a[i];
             L_CHECK_EQUAL(-i, d.m1)
             L_CHECK_EQUAL( i, d.m2)
@@ -134,7 +134,7 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  test of StaticArrayMappable using placement new on addPtr
+    //  test of SearchableStaticArray using placement new on addPtr
     TEST(BT_02, T05)
     {
         STEP(1)
@@ -155,7 +155,7 @@ namespace test
         SUBSTEPS()
         for (INT32 i = 0; i < a.size(); ++i)
         {
-            STEP(i + 1)
+            LSTEP(i)
             const TestDataInt& d = a[i];
             L_CHECK_EQUAL(-i, d.m1)
             L_CHECK_EQUAL( i, d.m2)
@@ -164,7 +164,7 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  test of StaticArrayMappable as map
+    //  test of SearchableStaticArray as map
     TEST(BT_02, T06)
     {
         STEP(1)
@@ -189,7 +189,7 @@ namespace test
         SUBSTEPS()
         for (INT32 i = 0; i < c.size(); ++i)
         {
-            STEP(i + 1)
+            LSTEP(i)
             const UINT32 p = c.search(c[i]);
             L_CHECK_EQUAL(i, p)
         }

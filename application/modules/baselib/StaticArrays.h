@@ -18,13 +18,9 @@ class StaticArray :
 {
 public:
     inline StaticArray():
-        ByteArray(mBytes, CAP, sizeof(T))
+        ByteArray(mBytes, CAP, sizeof(T)),
+        mData(reinterpret_cast<T*>(mBytes))
     {}
-
-    inline static UINT32 capacity()
-    {
-        return CAP;
-    }
 
     inline UINT32 size() const
     {
@@ -34,30 +30,30 @@ public:
     // getters
     inline const T& at(UINT32 pos) const
     {
-        return *reinterpret_cast<const T*>(getPtr(pos));
+        return mData[pos];
     }
     inline T& at(UINT32 pos)
     {
-        return *reinterpret_cast<T*>(getPtr(pos));
+        return mData[pos];
     }
     inline const T& operator [](UINT32 pos) const
     {
-        return at(pos);
+        return mData[pos];
     }
     inline T& operator [](UINT32 pos)
     {
-        return at(pos);
+        return mData[pos];
     }
 
     //  adders
-    inline bool add(const T& obj)
+    inline INT32 add(const T& obj)
     {
         return addBytes(&obj, sizeof(T));
     }
 
-
 private:
     BYTE mBytes[sizeof(T) * CAP];
+    T* mData;
 
     //  Standard 8.1.1
     StaticArray(const StaticArray& o);
@@ -65,19 +61,15 @@ private:
 };
 
 template <class T, UINT32 CAP>
-class StaticArrayMappable : 
-    public I_Mapable,
-    public ByteArrayMappable
+class SearchableStaticArray : 
+    public I_Searchable,
+    public SearchableByteArray
 {
 public:
-    inline StaticArrayMappable():
-        ByteArrayMappable(mBytes, CAP + 1, sizeof(T))
+    inline SearchableStaticArray():
+        SearchableByteArray(mBytes, CAP + 1, sizeof(T)),
+        mData(reinterpret_cast<const T*>(mBytes))
     {}
-
-    inline static UINT32 capacity()
-    {
-        return CAP;
-    }
 
     //  I_Sortable
     inline UINT32 size() const
@@ -115,33 +107,26 @@ public:
     // getters
     inline const T& at(UINT32 pos) const
     {
-        return *reinterpret_cast<const T*>(getPtr(pos));
-    }
-    inline T& at(UINT32 pos)
-    {
-        return *reinterpret_cast<T*>(getPtr(pos));
+        return mData[pos];
     }
     inline const T& operator [](UINT32 pos) const
     {
-        return at(pos);
-    }
-    inline T& operator [](UINT32 pos)
-    {
-        return at(pos);
+        return mData[pos];
     }
 
     //  adders
-    inline bool add(const T& obj)
+    inline INT32 add(const T& obj)
     {
         return addBytes(&obj, sizeof(T));
     }
 
 private:
     BYTE mBytes[sizeof(T) * (CAP + 1)];
+    const T* mData;
 
     //  Standard 8.1.1
-    StaticArrayMappable(const StaticArrayMappable& o);
-    StaticArrayMappable& operator=(const StaticArrayMappable& o);
+    SearchableStaticArray(const SearchableStaticArray& o);
+    SearchableStaticArray& operator=(const SearchableStaticArray& o);
 };
 
 

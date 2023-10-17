@@ -30,6 +30,7 @@ namespace test
 
         //  preset an ElmentName for testing
         static const ElementName& genElementName(UINT32 num, CONST_C_STRING name = c__ELEM);
+        static void genElementName(ElementName& eName, UINT32 num, CONST_C_STRING name = c__ELEM);
     };
 
 

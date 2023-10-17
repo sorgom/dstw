@@ -16,6 +16,15 @@ public:
     PTR addPtr();
     void reset();
 
+    inline UINT32 capacity() const
+    {
+        return mCap;
+    }
+    inline bool full() const
+    {
+        return getSize() >= mCap;
+    }
+
 protected:
     inline ByteArray(
         BYTE* const bytes,
@@ -28,7 +37,7 @@ protected:
         mSize(0)
     {}
 
-    bool addBytes(CPTR ptr, UINT32 bytes);
+    INT32 addBytes(CPTR ptr, UINT32 bytes);
     UINT32 getSize() const;
     bool okPos(UINT32 posA, UINT32 posB) const;
 
@@ -49,10 +58,10 @@ private:
     ByteArray& operator=(const ByteArray& o);
 };
 
-class ByteArrayMappable : public ByteArray
+class SearchableByteArray : public ByteArray
 {
 protected:
-    inline ByteArrayMappable(
+    inline SearchableByteArray(
         BYTE* const bytes,
         const UINT32 cap,
         const UINT32 step
@@ -72,9 +81,9 @@ protected:
 
 private:
     //  Standard 8.1.1
-    ByteArrayMappable();
-    ByteArrayMappable(const ByteArrayMappable& o);
-    ByteArrayMappable& operator=(const ByteArrayMappable& o);
+    SearchableByteArray();
+    SearchableByteArray(const SearchableByteArray& o);
+    SearchableByteArray& operator=(const SearchableByteArray& o);
 };
 
 

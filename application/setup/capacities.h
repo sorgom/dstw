@@ -4,6 +4,10 @@
 //  - track switches
 //  - segments
 //  - level crossings
+//
+//  pre-defined here
+//  defineable at compile time
+//  e.g.: -DCAPACITY_SIG=500 
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -26,5 +30,11 @@
 #ifndef CAPACITY_LRC
 #define CAPACITY_LCR 100
 #endif 
+
+#define CAPACITY_ELEMENTS \
+    CAPACITY_TSW + \
+    CAPACITY_SIG + \
+    CAPACITY_SEG + \
+    CAPACITY_LCR
 
 #endif // H_

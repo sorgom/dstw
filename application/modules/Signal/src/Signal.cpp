@@ -4,14 +4,14 @@ E_Result Signal::HN0()
 {
     mPort.toFld(SIG_TO_FLD_HN0);
     chgState(SIG_TO_GUI_WAIT_HN0);
-    return RES_OK;
+    return RESULT_OK;
 }
 
 E_Result Signal::HN1()
 {
     mPort.toFld(SIG_TO_FLD_HN1);
     chgState(SIG_TO_GUI_WAIT_HN1);
-    return RES_OK;
+    return RESULT_OK;
 }
 
 void Signal::fromFld(E_SigTromFld rcv)

@@ -6,7 +6,7 @@ definiton of complex data types
 - mainly communication telegrams
 ```
 
-**E_Result.h**
+**SystemEnums.h**
 ```
 commonly used result type
 ```

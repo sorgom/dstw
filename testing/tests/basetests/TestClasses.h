@@ -13,7 +13,7 @@
 namespace test
 {
     template<UINT32 S>
-    class TestSortMap : public I_Mapable
+    class TestSortMap : public I_Searchable
     {
     public:
         inline TestSortMap()
@@ -103,7 +103,7 @@ namespace test
     };
 
     //  test array with ascending order of 1st data member
-    class TestArray : public StaticArrayMappable<TestDataInt, 20>
+    class TestArray : public SearchableStaticArray<TestDataInt, 20>
     {
     public:
         inline virtual bool isGreater(UINT32 posA, UINT32 posB) const

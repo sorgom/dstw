@@ -8,7 +8,7 @@
 #define I_TRACKSWITCHPORT_H
 
 #include <baselib/BaseTypes.h>
-#include "E_Result.h"
+#include "SystemEnums.h"
 #include "DataTypes.h"
 
 enum E_TswTromFld

@@ -7,7 +7,7 @@
 #ifndef I_SIGNAL_H
 #define I_SIGNAL_H
 
-#include "E_Result.h"
+#include "SystemEnums.h"
 #include "I_SignalPort.h"
 
 class I_Signal
