@@ -5,6 +5,11 @@
 base class for mocks
 ```
 
+**M_FldCom.h**
+```
+mock for interface I_FldCom
+```
+
 **M_Instances.h**
 ```
 mock instances (for ddi)

@@ -1,6 +1,6 @@
 ## directory content
 
-**buildTests.sh**
+**buildAll.sh**
 ```
 all build steps
 - clean everything

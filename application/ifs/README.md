@@ -11,6 +11,12 @@ definiton of complex data types
 commonly used result type
 ```
 
+**I_FldCom.h**
+```
+Interface FldCom
+- field communication device
+```
+
 **I_RastaPort.h**
 ```
 interface RastaPort
