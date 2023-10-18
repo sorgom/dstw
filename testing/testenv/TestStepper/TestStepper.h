@@ -177,7 +177,8 @@ private:
 //! Utest macros extensions
 //! equality check with update of TestStepper line
 #define L_CHECK_EQUAL(expected, actual) TestStepper::setLine(__LINE__); CHECK_EQUAL(expected, actual);
-
+#define L_CHECK_TRUE(actual) L_CHECK_EQUAL(true, actual)
+#define L_CHECK_FALSE(actual) L_CHECK_EQUAL(false, actual)
 
 #endif // _H
 

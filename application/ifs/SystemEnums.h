@@ -1,7 +1,7 @@
 //  ============================================================
 //  system wide enumerations
-//  - commonly used result type
-//  - subsytems 
+//  -   E_Result commonly used result type
+//  -   E_Subsys subsytems 
 //  ============================================================
 //  created by Manfred Sorgo
 
