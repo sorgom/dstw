@@ -6,6 +6,8 @@
 #include <baselib/Baselib.h>
 #include <baselib/Mem.h>
 
+#include <new>
+
 template <class T, UINT32 CAP>
 class StackArray : public I_Searchable<T>
 {
@@ -20,6 +22,11 @@ public:
         return CAP;
     }
 
+    inline void reset()
+    {
+        mSize = 0;
+    }
+
     inline UINT32 size() const
     {
         return mSize;
@@ -30,11 +37,10 @@ public:
         return mSize >= CAP;
     }
 
-    inline void add(const T& obj)
+    inline UINT32 add(const T& obj)
     {
         Mem::copy(at(mSize), obj);
-        ++mSize;
-        // TODO at(mSize++)
+        return mSize++;
     }
 
     inline PTR getPtr(UINT32 pos)
@@ -47,11 +53,9 @@ public:
         return mBytes + sizeof(T) * pos;
     }
 
-    inline PTR addPtr(UINT32 pos) 
+    inline PTR addPtr() 
     {
-        ++mSize;
-        return getPtr(mSize - 1);
-        // TODO return getPtr(mSize++);
+        return getPtr(mSize++);
     }
 
     inline const T& at(UINT32 pos) const
@@ -92,56 +96,50 @@ private:
     T* mData;
     UINT32 mSize;
 
-
-    // void bSort()
-    // {
-    //     for (UINT32 n = mSize; n > 0; --n)
-    //     {
-    //         bool swapped = false;
-    //         for (UINT32 p = 0; p < n - 1; ++p)
-    //         {
-    //             if (isGreater(at(p), at(p + 1)))
-    //             {
-    //                 swap(p, p + 1);
-    //                 swapped = true;
-    //             }
-    //         }
-    //         if (not swapped)
-    //         {
-    //             break;
-    //         }
-    //     }
-    // }
-
-    // INT32 bSearch(const T& obj) const
-    // {
-    //     INT32 pMin = 0;
-    //     INT32 pMax = mSize - 1;
-    //     INT32 res = -1;
-
-    //     while (pMax >= pMin)
-    //     {
-    //         const INT32 pCur = (pMin + pMax + 1) / 2;
-    //         if (isGreater(obj, at(pCur)))
-    //         {
-    //             pMin = pCur + 1;
-    //         }
-    //         else if (isGreater(at(pCur), obj))
-    //         {
-    //             pMax = pCur - 1;
-    //         }
-    //         else
-    //         {
-    //             res = pCur;
-    //             break;
-    //         }
-    //     }
-    //     return res;
-    // }
-
     //  Standard 8.1.1
     StackArray(const StackArray& o);
     StackArray& operator=(const StackArray& o);
+};
+
+template <class T, UINT32 CAP>
+class StackArrayIndex : public StackArray<Ref<T>, CAP>
+{
+public:
+    inline StackArrayIndex(const StackArray<T, CAP>& a):
+        mArray(a)
+    {}
+
+    inline bool isGreater(const Ref<T>& a, const Ref<T>& b) const
+    {
+        return mArray.isGreater(a.ref(), b.ref());
+    }
+
+    void adapt()
+    {
+        this->reset();
+        for (UINT32 p = 0; p < mArray.size(); ++p)
+        {
+            new (this->addPtr()) Ref<T>(mArray[p]);
+        }
+        this->sort();
+    }
+
+    inline INT32 findRef(const T& obj) const
+    {
+        return this->find(Ref<T>(obj));
+    }
+
+    inline const T& getRef(UINT32 pos) const
+    {
+        return this->at(pos).ref();
+    }
+
+private:
+    const StackArray<T, CAP>& mArray;
+    //  Standard 8.1.1
+    StackArrayIndex();
+    StackArrayIndex(const StackArrayIndex& o);
+    StackArrayIndex& operator=(const StackArrayIndex& o);
 };
 
 #endif // H_

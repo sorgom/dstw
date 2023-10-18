@@ -1,13 +1,12 @@
 //  ============================================================
-//  test of StackArry
-//  - bSort 
-//  - bSearch
-//  - mappable StaticArray
+//  test of StackArry, StackArrayIndex
 //  ============================================================
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
 #include <baselib/StackArray.h>
+
+#include <qnd/useCout.h>
 
 namespace test
 {
@@ -27,7 +26,7 @@ namespace test
         {}
     };
 
-    class IdadaArray : public StackArray<Idata, 20>
+    class IdataArray : public StackArray<Idata, 20>
     {
     public:
         inline bool isGreater(const Idata& a, const Idata& b) const
@@ -35,35 +34,29 @@ namespace test
             return a.m1 > b.m1;
         }
     };
+    typedef StackArrayIndex<Idata, 20> IdataIndex;
 
     //  test type: equivalence class test
-    //  check of bSort
+    //  test of StackArray: with ad()
     TEST(BT_02, T01)
-    {
-    }
-
-    
-    //  test type: equivalence class test
-    //  test of SearchableStaticArray
-    TEST(BT_02, T03)
     {
         STEP(1)
         //  create array
-        //  load 10 data
-        IdadaArray a;
+        //  load data
+        IdataArray a;
 
         L_CHECK_EQUAL(20, a.capacity())
         L_CHECK_EQUAL( 0, a.size())
 
-        // m1 0 .. -9
-        // m2 0 ..  9
         for (INT32 i = 0; i < a.capacity(); ++i)
         {
             L_CHECK_FALSE(a.isFull())
-            a.add(Idata(-i, i));
+            const UINT32 p = a.add(Idata(-i, i));
+            L_CHECK_EQUAL(i, p);
         }
         L_CHECK_EQUAL(a.capacity(), a.size())
         L_CHECK_TRUE(a.isFull())
+
 
         STEP(2)
         //  test unsorted data as loaded
@@ -93,106 +86,84 @@ namespace test
         ENDSTEPS()
 
         STEP(4)
-        //  add data
+        //  apply find() to const object
+        const IdataArray& c = a;
+        SUBSTEPS()
+        for (INT32 i = 0; i < a.size(); ++i)
+        {
+            LSTEP(i)
+            const INT32 p = c.find(c[i]);
+            L_CHECK_EQUAL(i, p)
+        }
+        ENDSTEPS()
     }
 
-    // //  test type: equivalence class test
-    // //  test of SearchableStaticArray with reversed order
-    // TEST(BT_02, T04)
-    // {
-    //     STEP(1)
-    //     //  create array
-    //     //  load 10 data
-    //     TestArrayRev a;
+    //  test type: equivalence class test
+    //  test of StackArray: with placement new
+    TEST(BT_02, T02)
+    {
+        STEP(1)
+        IdataArray a;
 
-    //     L_CHECK_EQUAL(20, a.capacity())
-    //     L_CHECK_EQUAL( 0, a.size())
+        for (INT32 i = 0; i < a.capacity(); ++i)
+        {
+            L_CHECK_FALSE(a.isFull())
+            new (a.addPtr()) Idata(-i, i);
+        }
+        L_CHECK_EQUAL(a.capacity(), a.size())
+        L_CHECK_TRUE(a.isFull())
 
-    //     // m1 0 .. -9
-    //     // m2 0 ..  9
-    //     for (INT32 i = 0; i < 10; ++i)
-    //     {
-    //         a.add(TestDataInt(-i, i));
-    //     }
-    //     L_CHECK_EQUAL(10, a.size())
+        STEP(2)
+        //  test unsorted data as loaded
+        SUBSTEPS()
+        for (INT32 i = 0; i < a.size(); ++i)
+        {
+            LSTEP(i)
+            const Idata& d = a[i];
+            L_CHECK_EQUAL(-i, d.m1)
+            L_CHECK_EQUAL( i, d.m2)
+        }
+        ENDSTEPS()
+    }
 
-    //     STEP(2)
-    //     //  apply bSort
-    //     //  test sorted data
-    //     bSort(a);
-    //     //  m1 0 .. -9
-    //     //  m2 0 ..  9
-    //     SUBSTEPS()
-    //     for (INT32 i = 0; i < a.size(); ++i)
-    //     {
-    //         LSTEP(i)
-    //         const TestDataInt& d = a[i];
-    //         L_CHECK_EQUAL(-i, d.m1)
-    //         L_CHECK_EQUAL( i, d.m2)
-    //     }
-    //     ENDSTEPS()
-    // }
+    //  test type: equivalence class test
+    //  test of StackArrayIndex
+    TEST(BT_02, T03)
+    {
+        STEP(1)
+        //  create array
+        //  load data
+        IdataArray a;
+        IdataIndex ix(a);
+        L_CHECK_EQUAL(a.capacity(), ix.capacity())
 
-    // //  test type: equivalence class test
-    // //  test of SearchableStaticArray using placement new on addPtr
-    // TEST(BT_02, T05)
-    // {
-    //     STEP(1)
-    //     //  create array
-    //     //  load 10 data
-    //     TestArray a;
+        for (INT32 i = 0; i < a.capacity(); ++i)
+        {
+            a.add(Idata(-i, i));
+        }
+        L_CHECK_TRUE(a.isFull())
 
-    //     // m1 0 .. -9
-    //     // m2 0 ..  9
-    //     for (INT32 i = 0; i < 10; ++i)
-    //     {
-    //         new (a.addPtr()) TestDataInt(-i, i);
-    //     }
-    //     L_CHECK_EQUAL(10, a.size())
+        STEP(2)
+        //  adapt index
+        //  find all data in index
+        ix.adapt();
+        L_CHECK_TRUE(ix.isFull())
+        SUBSTEPS()
+        for (INT32 i = 0; i < a.size(); ++i)
+        {
+            LSTEP(i)
+            const Idata& d = a[i];
+            const INT32  f = ix.findRef(d);
+            const Idata& r = ix.getRef(f);
+            L_CHECK_EQUAL(d.m1, r.m1)
+            L_CHECK_EQUAL(d.m2, r.m2)
+        }
+        ENDSTEPS()
+    }
+    //  test type: equivalence class test
+    //  test of NtpArray / NtpIndex
+    TEST(BT_02, T04)
+    {
 
-    //     STEP(2)
-    //     //  test unsorted data as loaded
-    //     SUBSTEPS()
-    //     for (INT32 i = 0; i < a.size(); ++i)
-    //     {
-    //         LSTEP(i)
-    //         const TestDataInt& d = a[i];
-    //         L_CHECK_EQUAL(-i, d.m1)
-    //         L_CHECK_EQUAL( i, d.m2)
-    //     }
-    //     ENDSTEPS()
-    // }
-
-    // //  test type: equivalence class test
-    // //  test of SearchableStaticArray as map
-    // TEST(BT_02, T06)
-    // {
-    //     STEP(1)
-    //     //  create array
-    //     //  load 10 data
-    //     TestArray a;
-
-    //     // m1 0 .. -9
-    //     // m2 0 ..  9
-    //     for (INT32 i = 0; i < 10; ++i)
-    //     {
-    //         new (a.addPtr()) TestDataInt(-i, i);
-    //     }
-
-    //     // sort
-    //     STEP(2)
-    //     a.sort();
-
-    //     //  search elements
-    //     STEP(3)
-    //     const TestArray& c = a;
-    //     SUBSTEPS()
-    //     for (INT32 i = 0; i < c.size(); ++i)
-    //     {
-    //         LSTEP(i)
-    //         const UINT32 p = c.search(c[i]);
-    //         L_CHECK_EQUAL(i, p)
-    //     }
-    //     ENDSTEPS()
-    // }
+    }
 } // namespace

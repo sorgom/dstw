@@ -15,5 +15,6 @@ using std::setw;
 using std::left;
 using std::setfill;
 
+#include <cstdio>
 
 #endif // H_
