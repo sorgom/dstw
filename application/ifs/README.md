@@ -47,9 +47,9 @@ interface TrackSwitch
 interface TrackSwitchFactory
 ```
 
-**I_TrackSwitchPort.h**
+**I_TrackSwitchHub.h**
 ```
-interface TrackSwitchPort
+interface TrackSwitchHub
 ```
 
 **ProjData.h**

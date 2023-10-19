@@ -7,13 +7,27 @@ A collection of things to do that are not big enough to create an issue.
 -   safe casts
 -   capacity check for containers
 -   DATASIZE
--   L_CHECK_TRUE
 
-2023-10-18
--   IGNORE in Mocks
--   telegrams: GuiCmd, StateGui, CmdFld, FldState
--   I_Dispatcher / M_Dispatcher / Dispatcher
--   I_TrackSwitchPort / TrackSwitchPort / M_TrackSwitchPort
+### How long does it take to rename an interface?
+-   rename alle appearances in sources
+-   git rename files
+        -   I_
+        -   impl
+            -   header
+            -   source
+        -   mocks
+-   change include gards        
+-   git rename sources
+-   update code / mds
+-   gen Makefiles
+-   build
+-   run
+-   check test names
+    -   git rename files
+    -   replace names in tests
+-   build, run
 
-
-
+#### sample TrackSwitchHub -> TrackSwitchHub
+start: 2023-10-19 23:15
+end  ; 2024-10-19 00:05
+-> approx 1 houre

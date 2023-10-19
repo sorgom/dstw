@@ -28,7 +28,7 @@ namespace test
     C_STR_DEC(StateGui)
     C_STR_DEC(TrackSwitch)
     C_STR_DEC(TrackSwitchFactory)
-    C_STR_DEC(TrackSwitchPort)
+    C_STR_DEC(TrackSwitchHub)
     C_STR_DEC(TrackSwitchProj)
     //# END
 } // namespace

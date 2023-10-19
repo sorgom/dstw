@@ -1,16 +1,16 @@
 //  ============================================================
-//  interface TrackSwitchPort
+//  interface TrackSwitchHub
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef I_TRACKSWITCHPORT_H
-#define I_TRACKSWITCHPORT_H
+#ifndef I_TRACKSWITCHHUB_H
+#define I_TRACKSWITCHHUB_H
 
 #include <baselib/BaseTypes.h>
 #include "DataTypes.h"
 
-class I_TrackSwitchPort
+class I_TrackSwitchHub
 {
 public:
     virtual void toFld(UINT32 id, INT32 cmd) const = 0;

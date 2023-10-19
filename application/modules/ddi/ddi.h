@@ -12,7 +12,7 @@
 //## INCLUDES
 #include <Dispatcher/Dispatcher.h>
 #include <TrackSwitch/TrackSwitchFactory.h>
-#include <TrackSwitch/TrackSwitchPort.h>
+#include <TrackSwitch/TrackSwitchHub.h>
 //## END
 
 //  I_NAME& getNAME() { return NAME::instance(); }
@@ -24,7 +24,7 @@ namespace ddi
     //# DDI_INLINE
     DDI_INLINE(Dispatcher)
     DDI_INLINE(TrackSwitchFactory)
-    DDI_INLINE(TrackSwitchPort)
+    DDI_INLINE(TrackSwitchHub)
     //# END
 }
 

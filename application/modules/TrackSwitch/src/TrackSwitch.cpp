@@ -51,13 +51,13 @@ void TrackSwitch::chgState(INT32 state)
     if (state != mState)
     {
         mState = state;
-        ddi::getTrackSwitchPort().toGui(mId, mState);
+        ddi::getTrackSwitchHub().toGui(mId, mState);
     }
 }
 
 void TrackSwitch::toFld(INT32 state) const
 {
-    ddi::getTrackSwitchPort().toFld(mId, state);
+    ddi::getTrackSwitchHub().toFld(mId, state);
 } 
 
 

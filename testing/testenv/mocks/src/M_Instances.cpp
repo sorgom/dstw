@@ -10,6 +10,6 @@ namespace test
     MOCK_DEF(SignalPort)
     MOCK_DEF(TrackSwitch)
     MOCK_DEF(TrackSwitchFactory)
-    MOCK_DEF(TrackSwitchPort)
+    MOCK_DEF(TrackSwitchHub)
     //# END
 }

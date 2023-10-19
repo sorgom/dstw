@@ -41,7 +41,7 @@ namespace ddi
         DDI_MEMB(SignalPort)
         DDI_MEMB(TrackSwitch)
         DDI_MEMB(TrackSwitchFactory)
-        DDI_MEMB(TrackSwitchPort)
+        DDI_MEMB(TrackSwitchHub)
         //# END
         int mTerm;
     };
@@ -52,7 +52,7 @@ namespace ddi
         //# DDI_CON : APP
         DDI_CON(Dispatcher)
         DDI_CON(TrackSwitchFactory)
-        DDI_CON(TrackSwitchPort)
+        DDI_CON(TrackSwitchHub)
         //# END
         //# DDI_CON_MOCK : MOCK
         DDI_CON_MOCK(FldCom)
@@ -70,7 +70,7 @@ namespace ddi
         DDI_RESET(SignalPort)
         DDI_RESET(TrackSwitch)
         DDI_RESET(TrackSwitchFactory)
-        DDI_RESET(TrackSwitchPort)
+        DDI_RESET(TrackSwitchHub)
         //# END
     }
 
@@ -80,7 +80,7 @@ namespace ddi
     DDI_DEF(SignalPort)
     DDI_DEF(TrackSwitch)
     DDI_DEF(TrackSwitchFactory)
-    DDI_DEF(TrackSwitchPort)
+    DDI_DEF(TrackSwitchHub)
     //# END
 
     void reset()

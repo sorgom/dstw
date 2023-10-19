@@ -1,20 +1,16 @@
-#include <testlib/CppUTest.h>
 #include <testlib/TestGroupBase.h>
-#include <mocks/M_Instances.h>
-
-#include <TrackSwitch/TrackSwitchPort.h>
-#include <baselib/Mem.h>
+#include <TrackSwitch/TrackSwitchHub.h>
 
 namespace test
 {
-    class TestGroupTSP : public TestGroupBase
+    class TestGroupTSH : public TestGroupBase
     {
     protected:
-        TrackSwitchPort mSUT;
+        TrackSwitchHub mSUT;
         M_FldCom& mCom;
         CmdFld mTele;
 
-        inline TestGroupTSP():
+        inline TestGroupTSH():
             mCom(m_FldCom())
         {
             mock_FldCom();
@@ -22,11 +18,11 @@ namespace test
         }
     };
 
-    TEST_GROUP_BASE(TSP_01, TestGroupTSP)
+    TEST_GROUP_BASE(TSH_01, TestGroupTSH)
     {};
 
     //! test type: equivalence class test
-    TEST(TSP_01, T01)
+    TEST(TSH_01, T01)
     {
         STEP(1)
         mCom.expectSend();
@@ -34,7 +30,7 @@ namespace test
         CHECK_N_CLEAR()
     }
     //! test type: equivalence class test
-    TEST(TSP_01, T02)
+    TEST(TSH_01, T02)
     {
         STEP(1)
         mCom.expectSend();

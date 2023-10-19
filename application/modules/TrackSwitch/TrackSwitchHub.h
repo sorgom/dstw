@@ -1,23 +1,23 @@
 //  ============================================================
-//  class TrackSwitchPort implements I_TrackSwitchPort
+//  class TrackSwitchHub implements I_TrackSwitchHub
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef TRACKSWITCHPORT_H
-#define TRACKSWITCHPORT_H
+#ifndef TRACKSWITCHHUB_H
+#define TRACKSWITCHHUB_H
 
 #include <baselib/InstanceMacros.h>
 #include <baselib/StackArray.h>
 #include <ifs/DataTypes.h>
-#include <ifs/I_TrackSwitchPort.h>
+#include <ifs/I_TrackSwitchHub.h>
 #include <setup/capacities.h>
 #include <TrackSwitch/TrackSwitch.h>
 
-class TrackSwitchPort : public I_TrackSwitchPort
+class TrackSwitchHub : public I_TrackSwitchHub
 {
 public:
-    inline TrackSwitchPort()
+    inline TrackSwitchHub()
     {}
 
 //  TODO:
@@ -29,7 +29,7 @@ public:
 
     bool load(UINT32 num, const TrackSwitchProj* data);
 
-    DDI_INSTANCE_DEC(TrackSwitchPort)
+    DDI_INSTANCE_DEC(TrackSwitchHub)
 };
 
 #endif // _H

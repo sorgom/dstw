@@ -1,7 +1,4 @@
-#include <testlib/CppUTest.h>
 #include <testlib/TestGroupBase.h>
-#include <mocks/M_Instances.h>
-
 #include <TrackSwitch/TrackSwitch.h>
 
 namespace test
@@ -11,14 +8,14 @@ namespace test
     protected:
         const UINT32 mId;
         TrackSwitch mSUT;
-        M_TrackSwitchPort& mPort;
+        M_TrackSwitchHub& mPort;
 
         inline TestGroupTSW():
             mId(12345),
             mSUT(mId),
-            mPort(m_TrackSwitchPort())
+            mPort(m_TrackSwitchHub())
         {
-            mock_TrackSwitchPort();
+            mock_TrackSwitchHub();
         }
     };
 

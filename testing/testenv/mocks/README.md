@@ -33,7 +33,7 @@ mock for interface TrackSwitch
 mock for interface TrackSwitchFactory
 ```
 
-**M_TrackSwitchPort.h**
+**M_TrackSwitchHub.h**
 ```
-mock for interface I_TrackSwitchPort
+mock for interface I_TrackSwitchHub
 ```

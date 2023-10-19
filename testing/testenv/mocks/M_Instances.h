@@ -17,7 +17,7 @@
 #include "M_SignalPort.h"
 #include "M_TrackSwitch.h"
 #include "M_TrackSwitchFactory.h"
-#include "M_TrackSwitchPort.h"
+#include "M_TrackSwitchHub.h"
 //## END
 
 #define MOCK_DEC(NAME) \
@@ -31,7 +31,7 @@ namespace test
     MOCK_DEC(SignalPort)
     MOCK_DEC(TrackSwitch)
     MOCK_DEC(TrackSwitchFactory)
-    MOCK_DEC(TrackSwitchPort)
+    MOCK_DEC(TrackSwitchHub)
     //# END
 
     inline void unmock() { ddi::reset(); }

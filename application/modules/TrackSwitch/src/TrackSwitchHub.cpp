@@ -1,12 +1,12 @@
-#include <TrackSwitch/TrackSwitchPort.h>
+#include <TrackSwitch/TrackSwitchHub.h>
 
 #include <baselib/InstanceMacros.h>
 #include <baselib/coding.h>
 #include <ddi/ddi.h>
 
-INSTANCE_DEF(TrackSwitchPort)
+INSTANCE_DEF(TrackSwitchHub)
 
-bool TrackSwitchPort::load(const UINT32 num, const TrackSwitchProj* const data)
+bool TrackSwitchHub::load(const UINT32 num, const TrackSwitchProj* const data)
 {
     I_TrackSwitchFactory& factory = ddi::getTrackSwitchFactory();
     I_Dispatcher& disp = ddi::getDispatcher();

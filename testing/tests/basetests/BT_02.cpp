@@ -6,8 +6,6 @@
 #include <testlib/TestGroupBase.h>
 #include <baselib/StackArray.h>
 
-#include <qnd/useCout.h>
-
 namespace test
 {
 

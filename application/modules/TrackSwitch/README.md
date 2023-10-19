@@ -10,7 +10,7 @@ class TrackSwitch implements I_TrackSwitch
 class TrackSwitchFactory implements I_TrackSwitchFactory
 ```
 
-**TrackSwitchPort.h**
+**TrackSwitchHub.h**
 ```
-class TrackSwitchPort implements I_TrackSwitchPort
+class TrackSwitchHub implements I_TrackSwitchHub
 ```
