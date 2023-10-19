@@ -6,6 +6,21 @@ definiton of complex data types
 - mainly communication telegrams
 ```
 
+**I_Dispatcher.h**
+```
+interface Dispatcher
+
+    //  when loading project data
+    //  subsytems assign themselfs with:
+    //  - element name
+    //  - subsystem id
+    //  - own processing element position
+    //  and recieve:
+    //  - dispatcher id
+    //  ============================================================
+    virtual INT32 assign(const ElementName& name, E_Subsys subs, UINT32 pos) = 0;
+```
+
 **I_FldCom.h**
 ```
 Interface FldCom
@@ -27,6 +42,11 @@ interface SignalPort
 interface TrackSwitch
 ```
 
+**I_TrackSwitchFactory.h**
+```
+interface TrackSwitchFactory
+```
+
 **I_TrackSwitchPort.h**
 ```
 interface TrackSwitchPort
@@ -40,6 +60,6 @@ projectation data types
 **SystemEnums.h**
 ```
 system wide enumerations
-- commonly used result type
-- subsytems
+-   E_Result commonly used result type
+-   E_Subsys subsytems
 ```

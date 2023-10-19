@@ -10,16 +10,7 @@ test of basic functionality
 
 **BT_02.cpp**
 ```
-test of basic functionality
-- bSort
-- bSearch
-- mappable StaticArray
-```
-
-**BT_03.cpp**
-```
-test of basic functionality
-- NameTypePosMap
+test of StackArry, StackArrayIndex
 ```
 
 **TestClasses.h**

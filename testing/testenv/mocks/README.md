@@ -23,6 +23,16 @@ for interface I_<NAME>
 mock for interface I_SignalPort
 ```
 
+**M_TrackSwitch.h**
+```
+mock for interface TrackSwitch
+```
+
+**M_TrackSwitchFactory.h**
+```
+mock for interface TrackSwitchFactory
+```
+
 **M_TrackSwitchPort.h**
 ```
 mock for interface I_TrackSwitchPort
