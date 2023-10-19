@@ -11,36 +11,72 @@
 #include <baselib/BaseTypes.h>
 #include <ifs/ProjData.h>
 
-
 #include <baselib/packBegin.h>
 
-struct RastaTelegram
+//  command to field
+struct CmdFld
 {
-    INT32 type;
-    UINT32 id;
-    INT32 state1;
-    INT32 state2;
-    INT32 state3;
-    UINT16 md4;
+    ElementName name;
+    INT32 cmd;
+    INT32 param1;
+    INT32 param2;
 };
 
-struct FldTelegram
+//  state from field
+struct FldState
 {
-    INT32 type;
     ElementName name;
     INT32 state1;
     INT32 state2;
-    INT32 state3;
-    UINT16 md4;
 };
 
-struct GuiTelegram
+//  command from GUI
+struct GuiCmd
 {
-    INT32 type;
     ElementName name;
-    INT32 state;
-    UINT16 md4;
+    INT32 cmd;
+    INT32 param1;
+    INT32 param2;
 };
+
+//  state to GUI
+struct StateGui
+{
+    ElementName name;
+    INT32 state1;
+    INT32 state2;
+};
+
+//  DEPRECATED:
+
+// struct FldTelegram
+// {
+//     INT32 type;
+//     ElementName name;
+//     INT32 state1;
+//     INT32 state2;
+//     INT32 state3;
+//     UINT16 md4;
+// };
+
+// struct GuiTelegram
+// {
+//     INT32 type;
+//     ElementName name;
+//     INT32 state;
+//     UINT16 md4;
+// };
+
+// struct RastaTelegram
+// {
+//     INT32 type;
+//     UINT32 id;
+//     INT32 state1;
+//     INT32 state2;
+//     INT32 state3;
+//     UINT16 md4;
+// };
+
 
 #include <baselib/packEnd.h>
 

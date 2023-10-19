@@ -18,17 +18,21 @@ namespace test
         MOCK_CON(FldCom)
 
         // interface methods
-        inline bool send(const FldTelegram& tele) const
+        inline bool send(const CmdFld& tele) const
         {
-            return call("send").RETI(true);
+            return call("send").TPARAM(CmdFld, tele).RETI(true);
         }
 
         //  expected calls
+        inline void expectSend(const CmdFld& tele, bool ret = true) const
+        {
+            expect("send").TPARAM(CmdFld, tele).ARETV(ret);
+        }
+        
         inline void expectSend(bool ret = true) const
         {
-            expect("send").ARETV(ret);
+            expect("send").IGNORE().ARETV(ret);
         }
-
     };
 } // namespace
 

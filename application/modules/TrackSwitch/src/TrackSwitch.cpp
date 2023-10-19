@@ -1,7 +1,8 @@
 
 #include <TrackSwitch/TrackSwitch.h>
+#include <ddi/ddi.h>
 
-E_Result TrackSwitch::WU()
+void TrackSwitch::WU()
 {
     switch(mState)
     {
@@ -22,12 +23,11 @@ E_Result TrackSwitch::WU()
         break;
 //  << NO_COV
     };
-    return RESULT_OK;
 }
 
-void TrackSwitch::fromFld(const INT32 rcv)
+void TrackSwitch::fromFld(const INT32 state)
 {
-    switch(rcv)
+    switch(state)
     {
     case TSW_FROM_FLD_LEFT:
         chgState(TSW_TO_GUI_LEFT);

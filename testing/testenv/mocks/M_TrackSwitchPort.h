@@ -29,21 +29,19 @@ namespace test
             call("toGui").PARAM(id).PARAM(cmd);
         }
 
-        inline void fromFld(const FldTelegram& tele) const
+        inline void fromFld(const FldState& tele, UINT32 pos)
         {
-            call("fromFld").TPARAM(FldTelegram, tele);
+            call("fromFld").TPARAM(FldState, tele).PARAM(pos);
         }
 
-        inline void fromGui(const GuiTelegram& tele) const
+        inline void fromGui(const GuiCmd& tele, UINT32 pos)
         {
-            call("fromGui").TPARAM(GuiTelegram, tele);
+            call("fromGui").TPARAM(GuiCmd, tele).PARAM(pos);
         }
 
         inline bool load(UINT32 num, const TrackSwitchProj* data)
         {
-            call("load").PARAM(num);
-            // TODO: the CppUTest way
-            return true;
+            return call("load").PARAM(num).RETI(true);
         }
 
         //  expected calls
@@ -58,19 +56,27 @@ namespace test
             expect("toGui").PARAM(id).PARAM(cmd);
         }
 
-        inline void expectFromFld(const FldTelegram& tele) const
+        inline void expectFromFld(const FldState& tele, UINT32 pos) const
         {
-            expect("fromFld").TPARAM(FldTelegram, tele);
+            expect("fromFld").TPARAM(FldState, tele).PARAM(pos);
+        }
+        inline void expectFromFld(UINT32 pos) const
+        {
+            expect("fromFld").IGNORE().PARAM(pos);
         }
         
-        inline void expectFromGui(const GuiTelegram& tele) const
+        inline void expectFromGui(const GuiCmd& tele, UINT32 pos) const
         {
-            expect("fromGui").TPARAM(GuiTelegram, tele);
+            expect("fromGui").TPARAM(GuiCmd, tele).PARAM(pos);
+        }
+        inline void expectFromGui(UINT32 pos) const
+        {
+            expect("fromGui").IGNORE().PARAM(pos);
         }
         
-        inline void expectLoad(UINT32 num) const
+        inline void expectLoad(UINT32 num, bool ret = true) const
         {
-            expect("load").PARAM(num);
+            expect("load").PARAM(num).ARETV(ret);
         }
     };
 }

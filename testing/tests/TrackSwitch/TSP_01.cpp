@@ -12,8 +12,7 @@ namespace test
     protected:
         TrackSwitchPort mSUT;
         M_FldCom& mCom;
-        // static RastaTelegram mTele;
-        FldTelegram mTele;
+        CmdFld mTele;
 
         inline TestGroupTSP():
             mCom(m_FldCom())

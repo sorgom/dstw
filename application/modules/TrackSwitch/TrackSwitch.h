@@ -8,7 +8,6 @@
 //  created by Manfred Sorgo
 
 #include <ifs/I_TrackSwitch.h>
-#include <ddi/ddiMacros.h>
 
 class TrackSwitch : public I_TrackSwitch
 {
@@ -18,8 +17,8 @@ public:
         mState(TSW_TO_GUI_UNDEF)
     {}
 
-    E_Result WU();
-    void fromFld(INT32 rcv);
+    void WU();
+    void fromFld(INT32 state);
 
 private:
     const UINT32 mId;

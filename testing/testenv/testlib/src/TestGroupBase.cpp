@@ -10,8 +10,8 @@ namespace test
     {
         static ElementName eName = {{""}};
         Mem::zero(eName);
-        Mem::set(eName, '_');
-        std::sprintf(eName.chars, "%s %04X", name, num);
+        Mem::set(eName, 0);
+        std::sprintf(eName.chars + 1, "%s %3u ", name, num);
         return eName;
     }
     void TestGroupBase::genElementName(ElementName& eName, const UINT32 num, const CONST_C_STRING name)

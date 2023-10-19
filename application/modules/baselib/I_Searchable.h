@@ -4,8 +4,6 @@
 
 #include <baselib/BaseTypes.h>
 
-#include <qnd/useCout.h>
-
 template <class T>
 class I_Searchable
 {
@@ -40,7 +38,6 @@ void bSort(I_Searchable<T>& src)
 template <class T>
 INT32 bSearch(const I_Searchable<T>& src, const T& obj)
 {
-    cout << "START bsearch" << endl;
     INT32 pMin = 0;
     INT32 pMax = src.size() - 1;
     INT32 res = -1;
@@ -49,17 +46,13 @@ INT32 bSearch(const I_Searchable<T>& src, const T& obj)
     {
         const INT32 pCur = (pMin + pMax + 1) / 2;
 
-        cout << "bSearch: " << pMin << ", " << pCur << ", " << pMax << endl;
-
         if (src.isGreater(obj, src.at(pCur)))
         {
-            cout << "object is greater" << endl;
             pMin = pCur + 1;
         }
         else if (src.isGreater(src.at(pCur), obj))
         {
             pMax = pCur - 1;
-            cout << "current is greater" << endl;
         }
         else
         {
@@ -67,7 +60,6 @@ INT32 bSearch(const I_Searchable<T>& src, const T& obj)
             break;
         }
     }
-    cout << "bSearch res: " << res << endl; 
     return res;
 }
 

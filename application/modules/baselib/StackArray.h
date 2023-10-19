@@ -37,6 +37,11 @@ public:
         return mSize >= CAP;
     }
 
+    inline bool hasSpace() const
+    {
+        return mSize < CAP;
+    }
+
     inline UINT32 add(const T& obj)
     {
         Mem::copy(at(mSize), obj);
@@ -99,6 +104,23 @@ private:
     //  Standard 8.1.1
     StackArray(const StackArray& o);
     StackArray& operator=(const StackArray& o);
+};
+
+template <class T, UINT32 CAP>
+class SimpleStackArray : public StackArray<T, CAP>
+{
+public:
+    inline SimpleStackArray()
+    {}
+    
+    inline bool isGreater(const T& a, const T& b) const
+    {
+        return false;
+    }
+private:
+    //  Standard 8.1.1
+    SimpleStackArray(const SimpleStackArray& o);
+    SimpleStackArray& operator=(const SimpleStackArray& o);
 };
 
 template <class T, UINT32 CAP>

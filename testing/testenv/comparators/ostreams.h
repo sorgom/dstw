@@ -17,10 +17,11 @@
 #include <comparators/ostreamHelpers.h>
 
 //# OSTREAM_DEC
+OSTREAM_DEC(CmdFld)
 OSTREAM_DEC(ElementName)
-OSTREAM_DEC(FldTelegram)
-OSTREAM_DEC(GuiTelegram)
-OSTREAM_DEC(RastaTelegram)
+OSTREAM_DEC(FldState)
+OSTREAM_DEC(GuiCmd)
+OSTREAM_DEC(StateGui)
 OSTREAM_DEC(TrackSwitchProj)
 //# END
 

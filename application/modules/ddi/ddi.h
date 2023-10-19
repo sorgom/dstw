@@ -10,6 +10,8 @@
 #define DDI_H
 
 //## INCLUDES
+#include <Dispatcher/Dispatcher.h>
+#include <TrackSwitch/TrackSwitchFactory.h>
 #include <TrackSwitch/TrackSwitchPort.h>
 //## END
 
@@ -20,6 +22,8 @@
 namespace ddi
 {
     //# DDI_INLINE
+    DDI_INLINE(Dispatcher)
+    DDI_INLINE(TrackSwitchFactory)
     DDI_INLINE(TrackSwitchPort)
     //# END
 }

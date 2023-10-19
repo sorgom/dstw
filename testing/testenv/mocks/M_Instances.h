@@ -15,11 +15,13 @@
 //## INCLUDES_LOCAL
 #include "M_FldCom.h"
 #include "M_SignalPort.h"
+#include "M_TrackSwitch.h"
+#include "M_TrackSwitchFactory.h"
 #include "M_TrackSwitchPort.h"
 //## END
 
 #define MOCK_DEC(NAME) \
-    M_ ## NAME& m_ ## NAME(); \
+    inline M_ ## NAME& m_ ## NAME() { return M_ ## NAME::instance(); } \
     inline void mock_ ## NAME() { ddi::set ## NAME(m_ ## NAME()); }
 
 namespace test
@@ -27,6 +29,8 @@ namespace test
     //# MOCK_DEC
     MOCK_DEC(FldCom)
     MOCK_DEC(SignalPort)
+    MOCK_DEC(TrackSwitch)
+    MOCK_DEC(TrackSwitchFactory)
     MOCK_DEC(TrackSwitchPort)
     //# END
 

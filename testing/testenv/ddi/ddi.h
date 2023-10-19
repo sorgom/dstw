@@ -11,9 +11,13 @@
 #define DDI_H
 
 //## INCLUDES
+#include <Dispatcher/Dispatcher.h>
+#include <TrackSwitch/TrackSwitchFactory.h>
 #include <TrackSwitch/TrackSwitchPort.h>
 #include <mocks/M_FldCom.h>
 #include <mocks/M_SignalPort.h>
+#include <mocks/M_TrackSwitch.h>
+#include <mocks/M_TrackSwitchFactory.h>
 #include <mocks/M_TrackSwitchPort.h>
 //## END
 
@@ -26,8 +30,11 @@
 namespace ddi
 {
     //# DDI_DEC
+    DDI_DEC(Dispatcher)
     DDI_DEC(FldCom)
     DDI_DEC(SignalPort)
+    DDI_DEC(TrackSwitch)
+    DDI_DEC(TrackSwitchFactory)
     DDI_DEC(TrackSwitchPort)
     //# END
 

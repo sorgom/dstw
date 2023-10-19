@@ -29,14 +29,14 @@ class NtpArray : public StackArray<Ntp, CAP>
 public:
     inline bool isGreater(const Ntp& a, const Ntp& b) const
     {
-        const INT32 c = Mem::cmp(a.name, b.name);
-        cout << endl
-            << "- a: " << a.name << endl
-            << "- b: " << b.name << endl
-            << "- c: " << c << endl
-        ;
+        // const INT32 c = Mem::cmp(a.name, b.name);
+        // cout << endl
+        //     << "- a: " << a.name << endl
+        //     << "- b: " << b.name << endl
+        //     << "- c: " << c << endl
+        // ;
 
-        return Mem::cmp(a.name, b.name) > 1;
+        return Mem::cmp(a.name, b.name) > 0;
     }
     
     inline UINT32 addNtp(

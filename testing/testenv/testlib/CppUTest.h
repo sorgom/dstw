@@ -44,7 +44,7 @@
 //  ============================================================
 //! must be in namespace test
 #define TPARAM(TYPE, NAME) \
-    withParameterOfType(c__ ## TYPE, #NAME, &NAME);
+    withParameterOfType(c__ ## TYPE, #NAME, &NAME)
 #define PARAM(NAME) \
     withParameter(#NAME, NAME)
 #define RETI(VAL) \
@@ -53,6 +53,7 @@
     returnUnsignedIntValueOrDefault(VAL)
 #define ARETV(VAL) \
     andReturnValue(VAL);
-
+#define IGNORE() \
+    ignoreOtherParameters()
 #endif // _H
 

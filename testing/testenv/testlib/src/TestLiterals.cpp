@@ -9,14 +9,17 @@ namespace test
     C_STR_DEF(ELEM)
 
     //# C_STR_DEF
+    C_STR_DEF(CmdFld)
+    C_STR_DEF(Dispatcher)
     C_STR_DEF(ElementName)
     C_STR_DEF(FldCom)
-    C_STR_DEF(FldTelegram)
-    C_STR_DEF(GuiTelegram)
-    C_STR_DEF(RastaTelegram)
+    C_STR_DEF(FldState)
+    C_STR_DEF(GuiCmd)
     C_STR_DEF(Signal)
     C_STR_DEF(SignalPort)
+    C_STR_DEF(StateGui)
     C_STR_DEF(TrackSwitch)
+    C_STR_DEF(TrackSwitchFactory)
     C_STR_DEF(TrackSwitchPort)
     C_STR_DEF(TrackSwitchProj)
     //# END
