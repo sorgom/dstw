@@ -10,6 +10,12 @@ all build steps
     - coverage
 ```
 
+**cleanMdj.py**
+```
+put line breaks into mdj files
+to create smaller git diffs
+```
+
 **cleanSvg.py**
 ```
 clean SVG files from UNREGISTERED background
