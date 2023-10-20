@@ -5,9 +5,9 @@
 class TrackSwitch implements I_TrackSwitch
 ```
 
-**TrackSwitchFactory.h**
+**TrackSwitchProvider.h**
 ```
-class TrackSwitchFactory implements I_TrackSwitchFactory
+class TrackSwitchProvider implements I_TrackSwitchProvider
 ```
 
 **TrackSwitchHub.h**

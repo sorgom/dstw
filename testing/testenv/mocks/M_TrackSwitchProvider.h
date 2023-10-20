@@ -1,23 +1,23 @@
 //  ============================================================
-//  mock for interface TrackSwitchFactory
+//  mock for interface TrackSwitchProvider
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef M_TRACKSWITCHFACTORY_H
-#define M_TRACKSWITCHFACTORY_H
+#ifndef M_TRACKSWITCHPROVIDER_H
+#define M_TRACKSWITCHPROVIDER_H
 
-#include <ifs/I_TrackSwitchFactory.h>
+#include <ifs/I_TrackSwitchProvider.h>
 #include <setup/capacities.h>
 #include "M_Base.h"
 #include "M_TrackSwitch.h"
 
 namespace test
 {
-    MOCK_CLASS(TrackSwitchFactory)
+    MOCK_CLASS(TrackSwitchProvider)
     {
     public:
-        MOCK_CON(TrackSwitchFactory)
+        MOCK_CON(TrackSwitchProvider)
 
         inline void reset()
         {

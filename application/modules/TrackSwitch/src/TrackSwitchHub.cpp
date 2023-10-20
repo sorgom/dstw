@@ -8,7 +8,7 @@ INSTANCE_DEF(TrackSwitchHub)
 
 bool TrackSwitchHub::load(const UINT32 num, const TrackSwitchProj* const data)
 {
-    I_TrackSwitchFactory& factory = ddi::getTrackSwitchFactory();
+    I_TrackSwitchProvider& factory = ddi::getTrackSwitchProvider();
     I_Dispatcher& disp = ddi::getDispatcher();
 
     bool ok = true;

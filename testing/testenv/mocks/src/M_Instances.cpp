@@ -9,7 +9,7 @@ namespace test
     MOCK_DEF(FldCom)
     MOCK_DEF(SignalPort)
     MOCK_DEF(TrackSwitch)
-    MOCK_DEF(TrackSwitchFactory)
+    MOCK_DEF(TrackSwitchProvider)
     MOCK_DEF(TrackSwitchHub)
     //# END
 }

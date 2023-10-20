@@ -28,9 +28,9 @@ mock for interface I_SignalPort
 mock for interface TrackSwitch
 ```
 
-**M_TrackSwitchFactory.h**
+**M_TrackSwitchProvider.h**
 ```
-mock for interface TrackSwitchFactory
+mock for interface TrackSwitchProvider
 ```
 
 **M_TrackSwitchHub.h**

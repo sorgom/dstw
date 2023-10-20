@@ -1,3 +1,8 @@
+//  ============================================================
+//  Storage of Name Type Position
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef NTPARRAY_H
 #define NTPARRAY_H
@@ -5,10 +10,6 @@
 #include <ifs/DataTypes.h>
 #include <baselib/StackArray.h>
 #include <baselib/Mem.h>
-#include <setup/capacities.h>
-
-#include <comparators/ostreams.h>
-#include <qnd/useCout.h>
 
 struct Ntp
 {
@@ -29,21 +30,10 @@ class NtpArray : public StackArray<Ntp, CAP>
 public:
     inline bool isGreater(const Ntp& a, const Ntp& b) const
     {
-        // const INT32 c = Mem::cmp(a.name, b.name);
-        // cout << endl
-        //     << "- a: " << a.name << endl
-        //     << "- b: " << b.name << endl
-        //     << "- c: " << c << endl
-        // ;
-
         return Mem::cmp(a.name, b.name) > 0;
     }
     
-    inline UINT32 addNtp(
-        const ElementName& name,
-        INT32 type,
-        UINT32 pos
-    )
+    inline UINT32 addNtp(const ElementName& name, INT32 type, UINT32 pos)
     {
         return this->add(genNtp(name, type, pos));
     }

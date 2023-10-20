@@ -1,19 +1,19 @@
 //  ============================================================
-//  class TrackSwitchFactory implements I_TrackSwitchFactory
+//  class TrackSwitchProvider implements I_TrackSwitchProvider
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef TRACKSWITCHFACTORY_H
-#define TRACKSWITCHFACTORY_H
+#ifndef TRACKSWITCHPROVIDER_H
+#define TRACKSWITCHPROVIDER_H
 
 #include <baselib/InstanceMacros.h>
 #include <baselib/StackArray.h>
-#include <ifs/I_TrackSwitchFactory.h>
+#include <ifs/I_TrackSwitchProvider.h>
 #include <setup/capacities.h>
 #include <TrackSwitch/TrackSwitch.h>
 
-class TrackSwitchFactory : public I_TrackSwitchFactory
+class TrackSwitchProvider : public I_TrackSwitchProvider
 {
 public:
     inline void reset()
@@ -37,7 +37,7 @@ public:
         return mSwitches.at(pos);
     }
 
-    DDI_INSTANCE_DEC(TrackSwitchFactory)
+    DDI_INSTANCE_DEC(TrackSwitchProvider)
 
 private:
     SimpleStackArray<TrackSwitch, CAPACITY_TSW> mSwitches;

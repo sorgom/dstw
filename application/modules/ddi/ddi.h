@@ -11,7 +11,7 @@
 
 //## INCLUDES
 #include <Dispatcher/Dispatcher.h>
-#include <TrackSwitch/TrackSwitchFactory.h>
+#include <TrackSwitch/TrackSwitchProvider.h>
 #include <TrackSwitch/TrackSwitchHub.h>
 //## END
 
@@ -23,7 +23,7 @@ namespace ddi
 {
     //# DDI_INLINE
     DDI_INLINE(Dispatcher)
-    DDI_INLINE(TrackSwitchFactory)
+    DDI_INLINE(TrackSwitchProvider)
     DDI_INLINE(TrackSwitchHub)
     //# END
 }

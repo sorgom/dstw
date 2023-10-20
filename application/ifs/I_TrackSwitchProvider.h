@@ -1,15 +1,15 @@
 //  ============================================================
-//  interface TrackSwitchFactory
+//  interface TrackSwitchProvider
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef I_TRACKSWITCHFACTORY_H
-#define I_TRACKSWITCHFACTORY_H
+#ifndef I_TRACKSWITCHPROVIDER_H
+#define I_TRACKSWITCHPROVIDER_H
 
 #include <ifs/I_TrackSwitch.h>
 
-class I_TrackSwitchFactory
+class I_TrackSwitchProvider
 {
 public:
     virtual void reset() = 0;

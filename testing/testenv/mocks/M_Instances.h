@@ -16,7 +16,7 @@
 #include "M_FldCom.h"
 #include "M_SignalPort.h"
 #include "M_TrackSwitch.h"
-#include "M_TrackSwitchFactory.h"
+#include "M_TrackSwitchProvider.h"
 #include "M_TrackSwitchHub.h"
 //## END
 
@@ -30,7 +30,7 @@ namespace test
     MOCK_DEC(FldCom)
     MOCK_DEC(SignalPort)
     MOCK_DEC(TrackSwitch)
-    MOCK_DEC(TrackSwitchFactory)
+    MOCK_DEC(TrackSwitchProvider)
     MOCK_DEC(TrackSwitchHub)
     //# END
 
