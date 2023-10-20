@@ -6,6 +6,8 @@
 import re
 from os.path import basename
 from subprocess import Popen, DEVNULL, PIPE
+from os import name as oname
+from sys import exit
 
 rxSpl = re.compile(r'[/\\]')
 rxHdr = re.compile(r'\.h$')
@@ -53,10 +55,14 @@ def repoDir():
 
 def repoFiles():
     return procOutList('git ls-files')
-    # return procOutList('git ls-tree --full-tree --name-only -r HEAD')
 
 def mdCode(cont:str):
     return '\n'.join(['```', cont, '```'])
+
+def checkLinux():
+    if oname != 'posix':
+        print('linux required')
+        exit(-1)
 
 if __name__ == '__main__':
     from projectDirs import *

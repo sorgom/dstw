@@ -42,14 +42,14 @@ interface SignalPort
 interface TrackSwitch
 ```
 
-**I_TrackSwitchProvider.h**
-```
-interface TrackSwitchProvider
-```
-
 **I_TrackSwitchHub.h**
 ```
 interface TrackSwitchHub
+```
+
+**I_TrackSwitchProvider.h**
+```
+interface TrackSwitchProvider
 ```
 
 **ProjData.h**

@@ -8,12 +8,12 @@ INSTANCE_DEF(TrackSwitchHub)
 
 bool TrackSwitchHub::load(const UINT32 num, const TrackSwitchProj* const data)
 {
-    I_TrackSwitchProvider& factory = ddi::getTrackSwitchProvider();
+    I_TrackSwitchProvider& prov = ddi::getTrackSwitchProvider();
     I_Dispatcher& disp = ddi::getDispatcher();
 
     bool ok = true;
-    factory.reset();
-    if (num > factory.capacity())
+    prov.reset();
+    if (num > prov.capacity())
     { 
         ok = false;
     }
@@ -25,11 +25,11 @@ bool TrackSwitchHub::load(const UINT32 num, const TrackSwitchProj* const data)
             if (id < 0)
             {
                 ok = false;
-                factory.reset();
+                prov.reset();
             }
             else
             { 
-                factory.add(id);
+                prov.add(id);
             }
         }
     }

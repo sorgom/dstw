@@ -8,10 +8,10 @@
 
 from subprocess import call, DEVNULL
 from os import chdir
-from os import name as oname
 from glob import glob
 import re
 from sys import exit
+from modUtilz import checkLinux
 
 rxUnc = re.compile(r'^ *#*: *\d+:', re.M)
 rxNoc = re.compile(r'// *NO_COV *>> *\n(.*?)// *<< *NO_COV', re.S)
@@ -31,9 +31,7 @@ class Gcov(object):
         call(cmd, shell=True, stdout=DEVNULL, stderr=DEVNULL)
 
     def run(self, workDir, app, objDir, srcs):
-        if oname != 'posix':
-            print('wrong os:', oname)
-            return -1
+        checkLinux()
         self.clear()
         chdir(workDir)
         self.com(app)
