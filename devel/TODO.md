@@ -7,6 +7,7 @@ A collection of things to do that are not big enough to create an issue.
 -   safe casts
 -   capacity check for containers
 -   DATASIZE
+-   overview UML: wrong link to Loader
 
 ### How long does it take to rename an interface?
 -   rename alle appearances in sources
