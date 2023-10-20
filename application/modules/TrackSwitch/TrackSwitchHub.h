@@ -27,7 +27,7 @@ public:
     inline void fromFld(const FldState& tele, UINT32 pos) {}
     inline void fromGui(const GuiCmd&   tele, UINT32 pos) {}
 
-    bool load(UINT32 num, const TrackSwitchProj* data);
+    bool load(UINT32 num, const ProjTSW* data);
 
     DDI_INSTANCE_DEC(TrackSwitchHub)
 };

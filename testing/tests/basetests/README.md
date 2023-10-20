@@ -1,3 +1,7 @@
+# base tests
+-   tests of application base classes
+-   test of test environment
+
 ## directory content
 
 **BT_01.cpp**
@@ -11,9 +15,4 @@ test of basic functionality
 **BT_02.cpp**
 ```
 test of StackArry, StackArrayIndex
-```
-
-**TestClasses.h**
-```
-test classes
 ```

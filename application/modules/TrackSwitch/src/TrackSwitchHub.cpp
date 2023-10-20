@@ -6,7 +6,7 @@
 
 INSTANCE_DEF(TrackSwitchHub)
 
-bool TrackSwitchHub::load(const UINT32 num, const TrackSwitchProj* const data)
+bool TrackSwitchHub::load(const UINT32 num, const ProjTSW* const data)
 {
     I_TrackSwitchProvider& prov = ddi::getTrackSwitchProvider();
     I_Dispatcher& disp = ddi::getDispatcher();

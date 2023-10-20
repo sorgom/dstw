@@ -48,6 +48,11 @@ public:
         return mSize++;
     }
 
+    inline const T* getData() const
+    {
+        return mData;
+    }
+
     inline PTR getPtr(UINT32 pos)
     {
         return mBytes + sizeof(T) * pos;

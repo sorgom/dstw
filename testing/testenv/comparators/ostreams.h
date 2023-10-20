@@ -22,7 +22,7 @@ OSTREAM_DEC(ElementName)
 OSTREAM_DEC(FldState)
 OSTREAM_DEC(GuiCmd)
 OSTREAM_DEC(StateGui)
-OSTREAM_DEC(TrackSwitchProj)
+OSTREAM_DEC(ProjTSW)
 //# END
 
 #endif // H_

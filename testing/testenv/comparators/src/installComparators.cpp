@@ -19,7 +19,7 @@ namespace test
         ADD_COMP(FldState)
         ADD_COMP(GuiCmd)
         ADD_COMP(StateGui)
-        ADD_COMP(TrackSwitchProj)
+        ADD_COMP(ProjTSW)
         //# END
     }
 }

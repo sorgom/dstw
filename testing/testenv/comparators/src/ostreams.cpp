@@ -46,7 +46,7 @@ OSTREAM_DEF(StateGui)
     ;
 }
 
-OSTREAM_DEF(TrackSwitchProj)
+OSTREAM_DEF(ProjTSW)
 {
     return os 
         << DOUT(name)

@@ -39,7 +39,7 @@ namespace test
             call("fromGui").TPARAM(GuiCmd, tele).PARAM(pos);
         }
 
-        inline bool load(UINT32 num, const TrackSwitchProj* data)
+        inline bool load(UINT32 num, const ProjTSW* data)
         {
             return call("load").PARAM(num).RETI(true);
         }

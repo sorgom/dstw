@@ -8,10 +8,12 @@
 #define TESTGROUPBASE_H
 
 #include <testlib/CppUTest.h>
-#include <mocks/M_Instances.h>
+
+#include <baselib/Mem.h>
 #include <comparators/ostreams.h>
+#include <mocks/M_Instances.h>
+#include <testlib/genElementName.h>
 #include <testlib/TestLiterals.h>
-#include <ifs/DataTypes.h>
 
 namespace test
 {
@@ -28,13 +30,11 @@ namespace test
             CHECK_N_CLEAR()
         }
 
-        //  preset an ElmentName for testing
-        static const ElementName& genElementName(UINT32 num, CONST_C_STRING name = c__ELEM);
-        static void genElementName(ElementName& eName, UINT32 num, CONST_C_STRING name = c__ELEM);
     };
 
-
 } // namespace
+
+#define L_CHECK_ELEMENT_NAME(exp, act) L_CHECK_EQUAL(0, Mem::cmp(exp, act))
 
 #endif // _H
 
