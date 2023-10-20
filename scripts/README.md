@@ -10,6 +10,13 @@ all build steps
     - coverage
 ```
 
+**cleanSvg.py**
+```
+clean SVG files from UNREGISTERED background
+also put line breaks behind tags
+to create smaller git diffs
+```
+
 **cleanTests.sh**
 ```
 clean all build artifacts
@@ -30,6 +37,12 @@ build coverage tests from Makefile
 ```
 build module tests from Makefile
 - see also runTests.sh
+```
+
+**modCloc.py**
+```
+application of cloc tool for C++ lines of code
+- writes CLOC.md
 ```
 
 **modGcov.py**

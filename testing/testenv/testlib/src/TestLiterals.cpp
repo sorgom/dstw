@@ -19,9 +19,9 @@ namespace test
     C_STR_DEF(SignalPort)
     C_STR_DEF(StateGui)
     C_STR_DEF(TrackSwitch)
-    C_STR_DEF(TrackSwitchProvider)
     C_STR_DEF(TrackSwitchHub)
     C_STR_DEF(TrackSwitchProj)
+    C_STR_DEF(TrackSwitchProvider)
     //# END
 
 } // namespace

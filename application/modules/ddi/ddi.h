@@ -11,8 +11,8 @@
 
 //## INCLUDES
 #include <Dispatcher/Dispatcher.h>
-#include <TrackSwitch/TrackSwitchProvider.h>
 #include <TrackSwitch/TrackSwitchHub.h>
+#include <TrackSwitch/TrackSwitchProvider.h>
 //## END
 
 //  I_NAME& getNAME() { return NAME::instance(); }
@@ -23,8 +23,8 @@ namespace ddi
 {
     //# DDI_INLINE
     DDI_INLINE(Dispatcher)
-    DDI_INLINE(TrackSwitchProvider)
     DDI_INLINE(TrackSwitchHub)
+    DDI_INLINE(TrackSwitchProvider)
     //# END
 }
 

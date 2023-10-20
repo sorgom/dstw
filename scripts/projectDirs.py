@@ -12,6 +12,7 @@ tsgDir = topDir + '/testing'
 envDir = tsgDir + '/testenv'
 mocDir = envDir + '/mocks'
 ifsDir = topDir + '/application/ifs'
+docDir = topDir + '/doc'
 
 if __name__ == '__main__':
     print(modDir)

@@ -12,13 +12,13 @@
 
 //## INCLUDES
 #include <Dispatcher/Dispatcher.h>
-#include <TrackSwitch/TrackSwitchProvider.h>
 #include <TrackSwitch/TrackSwitchHub.h>
+#include <TrackSwitch/TrackSwitchProvider.h>
 #include <mocks/M_FldCom.h>
 #include <mocks/M_SignalPort.h>
 #include <mocks/M_TrackSwitch.h>
-#include <mocks/M_TrackSwitchProvider.h>
 #include <mocks/M_TrackSwitchHub.h>
+#include <mocks/M_TrackSwitchProvider.h>
 //## END
 
 //  I_NAME& getNAME();
@@ -34,8 +34,8 @@ namespace ddi
     DDI_DEC(FldCom)
     DDI_DEC(SignalPort)
     DDI_DEC(TrackSwitch)
-    DDI_DEC(TrackSwitchProvider)
     DDI_DEC(TrackSwitchHub)
+    DDI_DEC(TrackSwitchProvider)
     //# END
 
     void reset();
