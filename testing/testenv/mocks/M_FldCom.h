@@ -20,18 +20,18 @@ namespace test
         // interface methods
         inline bool send(const CmdFld& tele) const
         {
-            return call("send").TPARAM(CmdFld, tele).RETI(true);
+            return call("send").TPARAM(CmdFld, tele).RETURN_DEF_INT(true);
         }
 
         //  expected calls
         inline void expectSend(const CmdFld& tele, bool ret = true) const
         {
-            expect("send").TPARAM(CmdFld, tele).ARETV(ret);
+            expect("send").TPARAM(CmdFld, tele).AND_RETURN(ret);
         }
         
         inline void expectSend(bool ret = true) const
         {
-            expect("send").IGNORE().ARETV(ret);
+            expect("send").IGNORE().AND_RETURN(ret);
         }
     };
 } // namespace

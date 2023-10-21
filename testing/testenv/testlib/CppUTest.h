@@ -32,7 +32,7 @@
 //  CppUTest parameter macros
 //  raw typing:
 //      .withParameterOfType("SomeStruct", "param", param)
-//  strinc constant c__SomeStruct defined:
+//  strin constant c__SomeStruct defined:
 //      .withParameterOfType(c__SomeStruct, "param", param)
 //  use:
 //    .TPARAM(SomeStruct, param)
@@ -45,15 +45,21 @@
 //! must be in namespace test
 #define TPARAM(TYPE, NAME) \
     withParameterOfType(c__ ## TYPE, #NAME, &NAME)
+
 #define PARAM(NAME) \
     withParameter(#NAME, NAME)
-#define RETI(VAL) \
+
+#define RETURN_DEF_INT(VAL) \
     returnIntValueOrDefault(VAL)
-#define RETU(VAL) \
+
+#define RETURN_DEF_UNSIGNED(VAL) \
     returnUnsignedIntValueOrDefault(VAL)
-#define ARETV(VAL) \
+
+#define AND_RETURN(VAL) \
     andReturnValue(VAL);
+
 #define IGNORE() \
     ignoreOtherParameters()
+
 #endif // _H
 

@@ -27,7 +27,7 @@ public:
     inline void fromFld(const FldState& tele, UINT32 pos) {}
     inline void fromGui(const GuiCmd&   tele, UINT32 pos) {}
 
-    bool load(UINT32 num, const ProjTSW* data);
+    bool load(const ProjTSW* data, UINT32 num);
 
     DDI_INSTANCE_DEC(TSW_Hub)
 };

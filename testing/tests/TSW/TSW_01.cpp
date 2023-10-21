@@ -26,8 +26,8 @@ namespace test
     TEST_GROUP_BASE(TSW_01, TestGroupTSW)
     {};
 
-    //! test type: equivalence class test
-    //! TSW transitions & reactions pt. 1
+    //  test type: equivalence class test
+    //  TSW transitions & reactions pt. 1
     TEST(TSW_01, T01)
     {
         SETUP()

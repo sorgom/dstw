@@ -39,9 +39,9 @@ namespace test
             call("fromGui").TPARAM(GuiCmd, tele).PARAM(pos);
         }
 
-        inline bool load(UINT32 num, const ProjTSW* data)
+        inline bool load(const ProjTSW* data, UINT32 num)
         {
-            return call("load").PARAM(num).RETI(true);
+            return call("load").PARAM(num).RETURN_DEF_INT(true);
         }
 
         //  expected calls
@@ -76,7 +76,7 @@ namespace test
         
         inline void expectLoad(UINT32 num, bool ret = true) const
         {
-            expect("load").PARAM(num).ARETV(ret);
+            expect("load").PARAM(num).AND_RETURN(ret);
         }
     };
 }

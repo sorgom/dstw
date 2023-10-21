@@ -6,7 +6,7 @@
 
 INSTANCE_DEF(TSW_Hub)
 
-bool TSW_Hub::load(const UINT32 num, const ProjTSW* const data)
+bool TSW_Hub::load(const ProjTSW* const data, const UINT32 num)
 {
     I_TSW_Provider& prov = ddi::getTSW_Provider();
     I_Dispatcher& disp = ddi::getDispatcher();

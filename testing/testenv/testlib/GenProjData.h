@@ -13,7 +13,7 @@
 
 namespace test
 {
-    template <UINT32 NTSW, UINT32 NSIG, UINT32 NLCR, UINT32 NSEG>
+    template <UINT32 NTSW, UINT32 NSIG = 1, UINT32 NLCR = 1, UINT32 NSEG = 1>
     class GenProjData : public ProjData
     {
     public:
