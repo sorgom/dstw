@@ -15,7 +15,7 @@
 #include <TSW/TSW_Hub.h>
 #include <TSW/TSW_Provider.h>
 #include <mocks/M_FldCom.h>
-#include <mocks/M_SignalPort.h>
+#include <mocks/M_SIG_Hub.h>
 #include <mocks/M_TSW.h>
 #include <mocks/M_TSW_Hub.h>
 #include <mocks/M_TSW_Provider.h>
@@ -32,7 +32,7 @@ namespace ddi
     //# DDI_DEC
     DDI_DEC(Dispatcher)
     DDI_DEC(FldCom)
-    DDI_DEC(SignalPort)
+    DDI_DEC(SIG_Hub)
     DDI_DEC(TSW)
     DDI_DEC(TSW_Hub)
     DDI_DEC(TSW_Provider)

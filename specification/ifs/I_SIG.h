@@ -1,16 +1,16 @@
 //  ============================================================
-//  interface Signal
+//  interface SIG
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef I_SIGNAL_H
-#define I_SIGNAL_H
+#ifndef I_SIG_H
+#define I_SIG_H
 
 #include "SystemEnums.h"
-#include "I_SignalPort.h"
+#include "I_SIG_Hub.h"
 
-class I_Signal
+class I_SIG
 {
 public:
 //  commands from GUI

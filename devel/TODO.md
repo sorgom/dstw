@@ -33,10 +33,8 @@ start: 2023-10-19 23:15
 end  ; 2024-10-19 00:05
 -> approx 1 houre
 
-TSW_Hub TSW_Hub
-TSW_HUB TSW_HUB
+SIG_Hub SIG_Hub
+SIG_HUB SIG_HUB
 
-TSW_Provider TSW_Provider
-TSW_PROVIDER TSW_PROVIDER
-
-TSW TSW
+SIG SIG
+SIG SIG

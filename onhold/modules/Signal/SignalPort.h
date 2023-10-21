@@ -1,11 +1,11 @@
 #pragma once
-#ifndef SIGNALPORT_H
-#define SIGNALPORT_H
+#ifndef SIG_HUB_H
+#define SIG_HUB_H
 
-#include <ifs/I_SignalPort.h>
+#include <ifs/I_SIG_Hub.h>
 #include <baselib/InstanceMacros.h>
 
-class SignalPort : public I_SignalPort
+class SIG_Hub : public I_SIG_Hub
 {
 public:
 //  NO_COV >>
@@ -13,7 +13,7 @@ public:
     inline void toGui(E_SigToGui cmd) const {}
 //  << NO_COV
 
-    DDI_INSTANCE_DEC(SignalPort)
+    DDI_INSTANCE_DEC(SIG_Hub)
 };
 
 #endif // _H

@@ -14,7 +14,7 @@
 
 //## INCLUDES_LOCAL
 #include "M_FldCom.h"
-#include "M_SignalPort.h"
+#include "M_SIG_Hub.h"
 #include "M_TSW.h"
 #include "M_TSW_Hub.h"
 #include "M_TSW_Provider.h"
@@ -28,7 +28,7 @@ namespace test
 {
     //# MOCK_DEC
     MOCK_DEC(FldCom)
-    MOCK_DEC(SignalPort)
+    MOCK_DEC(SIG_Hub)
     MOCK_DEC(TSW)
     MOCK_DEC(TSW_Hub)
     MOCK_DEC(TSW_Provider)

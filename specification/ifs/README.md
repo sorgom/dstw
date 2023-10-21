@@ -44,14 +44,14 @@ the Loader is called at sytem start and shall:
     -   reset I_Dispatcher
 ```
 
-**I_Signal.h**
+**I_SIG.h**
 ```
-interface Signal
+interface SIG
 ```
 
-**I_SignalPort.h**
+**I_SIG_Hub.h**
 ```
-interface SignalPort
+interface SIG_Hub
 ```
 
 **I_TSW.h**

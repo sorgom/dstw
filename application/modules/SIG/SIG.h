@@ -1,21 +1,21 @@
 //  ============================================================
-//  class Signal implements I_Signal
+//  class SIG implements I_SIG
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef SIGNAL_H
-#define SIGNAL_H
+#ifndef SIG_H
+#define SIG_H
 
-#include <ifs/I_Signal.h>
+#include <ifs/I_SIG.h>
 
-class Signal : public I_Signal
+class SIG : public I_SIG
 {
 public:
-    inline Signal(
-        I_SignalPort& port
+    inline SIG(
+        I_SIG_Hub& port
     ):
-        mPort(port),
+        mHub(port),
         mState(SIG_TO_GUI_UNDEF)
     {}
 
@@ -25,15 +25,15 @@ public:
     void fromFld(E_SigTromFld rcv);
 
 private:
-    I_SignalPort& mPort;
+    I_SIG_Hub& mHub;
     E_SigToGui mState;
 
     void chgState(E_SigToGui state);
 
     //  Standard 8.1.1
-    Signal();
-    Signal(const Signal& o);
-    Signal& operator=(const Signal& o);
+    SIG();
+    SIG(const SIG& o);
+    SIG& operator=(const SIG& o);
 };
 
 

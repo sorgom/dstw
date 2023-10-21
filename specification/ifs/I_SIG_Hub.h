@@ -1,11 +1,11 @@
 //  ============================================================
-//  interface SignalPort
+//  interface SIG_Hub
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef I_SIGNALPORT_H
-#define I_SIGNALPORT_H
+#ifndef I_SIG_HUB_H
+#define I_SIG_HUB_H
 
 #include "SystemEnums.h"
 
@@ -33,7 +33,7 @@ enum E_SigToGui
     SIG_TO_GUI_DEFECT
 };
 
-class I_SignalPort
+class I_SIG_Hub
 {
 public:
     virtual void toFld(E_SigToFld cmd) const = 0;

@@ -1,20 +1,20 @@
-#include <Signal/Signal.h>
+#include <SIG/SIG.h>
 
-E_Result Signal::HN0()
+E_Result SIG::HN0()
 {
-    mPort.toFld(SIG_TO_FLD_HN0);
+    mHub.toFld(SIG_TO_FLD_HN0);
     chgState(SIG_TO_GUI_WAIT_HN0);
     return RESULT_OK;
 }
 
-E_Result Signal::HN1()
+E_Result SIG::HN1()
 {
-    mPort.toFld(SIG_TO_FLD_HN1);
+    mHub.toFld(SIG_TO_FLD_HN1);
     chgState(SIG_TO_GUI_WAIT_HN1);
     return RESULT_OK;
 }
 
-void Signal::fromFld(E_SigTromFld rcv)
+void SIG::fromFld(E_SigTromFld rcv)
 {
     switch(rcv)
     {
@@ -37,11 +37,11 @@ void Signal::fromFld(E_SigTromFld rcv)
     }
 }
 
-void Signal::chgState(E_SigToGui state)
+void SIG::chgState(E_SigToGui state)
 {
     if (state != mState)
     {
         mState = state;
-        mPort.toGui(mState);
+        mHub.toGui(mState);
     }
 }

@@ -1,21 +1,21 @@
 //  ============================================================
-//  mock for interface I_SignalPort
+//  mock for interface I_SIG_Hub
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef M_SIGNALPORT_H
-#define M_SIGNALPORT_H
+#ifndef M_SIG_HUB_H
+#define M_SIG_HUB_H
 
-#include <ifs/I_SignalPort.h>
+#include <ifs/I_SIG_Hub.h>
 #include "M_Base.h"
 
 namespace test
 {
-    MOCK_CLASS(SignalPort)
+    MOCK_CLASS(SIG_Hub)
     {
     public:
-        MOCK_CON(SignalPort)
+        MOCK_CON(SIG_Hub)
 
         // interface methods
 
