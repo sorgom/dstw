@@ -23,13 +23,18 @@ namespace test
     C_STR_DEC(FldCom)
     C_STR_DEC(FldState)
     C_STR_DEC(GuiCmd)
+    C_STR_DEC(Loader)
+    C_STR_DEC(ProjData)
+    C_STR_DEC(ProjLCR)
+    C_STR_DEC(ProjSEG)
+    C_STR_DEC(ProjSIG)
+    C_STR_DEC(ProjTSW)
     C_STR_DEC(Signal)
     C_STR_DEC(SignalPort)
     C_STR_DEC(StateGui)
-    C_STR_DEC(TrackSwitch)
-    C_STR_DEC(TrackSwitchHub)
-    C_STR_DEC(ProjTSW)
-    C_STR_DEC(TrackSwitchProvider)
+    C_STR_DEC(TSW)
+    C_STR_DEC(TSW_Hub)
+    C_STR_DEC(TSW_Provider)
     //# END
 } // namespace
 

@@ -28,7 +28,15 @@ A collection of things to do that are not big enough to create an issue.
     -   replace names in tests
 -   build, run
 
-#### sample TrackSwitchHub -> TrackSwitchHub
+#### sample TSW_Hub -> TSW_Hub
 start: 2023-10-19 23:15
 end  ; 2024-10-19 00:05
 -> approx 1 houre
+
+TSW_Hub TSW_Hub
+TSW_HUB TSW_HUB
+
+TSW_Provider TSW_Provider
+TSW_PROVIDER TSW_PROVIDER
+
+TSW TSW

@@ -1,23 +1,23 @@
 //  ============================================================
-//  mock for interface TrackSwitchProvider
+//  mock for interface TSW_Provider
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef M_TRACKSWITCHPROVIDER_H
-#define M_TRACKSWITCHPROVIDER_H
+#ifndef M_TSW_PROVIDER_H
+#define M_TSW_PROVIDER_H
 
-#include <ifs/I_TrackSwitchProvider.h>
+#include <ifs/I_TSW_Provider.h>
 #include <setup/capacities.h>
 #include "M_Base.h"
-#include "M_TrackSwitch.h"
+#include "M_TSW.h"
 
 namespace test
 {
-    MOCK_CLASS(TrackSwitchProvider)
+    MOCK_CLASS(TSW_Provider)
     {
     public:
-        MOCK_CON(TrackSwitchProvider)
+        MOCK_CON(TSW_Provider)
 
         inline void reset()
         {
@@ -59,9 +59,9 @@ namespace test
             expect(num, "add").IGNORE();
         }
 
-        inline I_TrackSwitch& at(UINT32 pos)
+        inline I_TSW& at(UINT32 pos)
         {
-            return M_TrackSwitch::instance();
+            return M_TSW::instance();
         }
     private:
         UINT32 mSize;

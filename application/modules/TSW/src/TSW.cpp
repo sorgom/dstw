@@ -1,8 +1,8 @@
 
-#include <TrackSwitch/TrackSwitch.h>
+#include <TSW/TSW.h>
 #include <ddi/ddi.h>
 
-void TrackSwitch::WU()
+void TSW::WU()
 {
     switch(mState)
     {
@@ -25,7 +25,7 @@ void TrackSwitch::WU()
     };
 }
 
-void TrackSwitch::fromFld(const INT32 state)
+void TSW::fromFld(const INT32 state)
 {
     switch(state)
     {
@@ -46,18 +46,18 @@ void TrackSwitch::fromFld(const INT32 state)
     }
 }
 
-void TrackSwitch::chgState(INT32 state)
+void TSW::chgState(INT32 state)
 {
     if (state != mState)
     {
         mState = state;
-        ddi::getTrackSwitchHub().toGui(mId, mState);
+        ddi::getTSW_Hub().toGui(mId, mState);
     }
 }
 
-void TrackSwitch::toFld(INT32 state) const
+void TSW::toFld(INT32 state) const
 {
-    ddi::getTrackSwitchHub().toFld(mId, state);
+    ddi::getTSW_Hub().toFld(mId, state);
 } 
 
 

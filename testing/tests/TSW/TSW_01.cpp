@@ -1,5 +1,5 @@
 #include <testlib/TestGroupBase.h>
-#include <TrackSwitch/TrackSwitch.h>
+#include <TSW/TSW.h>
 
 namespace test
 {
@@ -7,15 +7,15 @@ namespace test
     {
     protected:
         const UINT32 mId;
-        TrackSwitch mSUT;
-        M_TrackSwitchHub& mHub;
+        TSW mSUT;
+        M_TSW_Hub& mHub;
 
         inline TestGroupTSW():
             mId(12345),
             mSUT(mId),
-            mHub(m_TrackSwitchHub())
+            mHub(m_TSW_Hub())
         {
-            mock_TrackSwitchHub();
+            mock_TSW_Hub();
         }
     };
 
@@ -23,7 +23,7 @@ namespace test
     {};
 
     //! test type: equivalence class test
-    //! TrackSwitch transitions & reactions pt. 1
+    //! TSW transitions & reactions pt. 1
     TEST(TSW_01, T01)
     {
         SETUP()

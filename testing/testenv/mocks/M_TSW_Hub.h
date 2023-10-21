@@ -1,21 +1,21 @@
 //  ============================================================
-//  mock for interface I_TrackSwitchHub
+//  mock for interface I_TSW_Hub
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef M_TRACKSWITCHHUB_H
-#define M_TRACKSWITCHHUB_H
+#ifndef M_TSW_HUB_H
+#define M_TSW_HUB_H
 
-#include <ifs/I_TrackSwitchHub.h>
+#include <ifs/I_TSW_Hub.h>
 #include "M_Base.h"
 
 namespace test
 {
-    MOCK_CLASS(TrackSwitchHub)
+    MOCK_CLASS(TSW_Hub)
     {
     public:
-        MOCK_CON(TrackSwitchHub)
+        MOCK_CON(TSW_Hub)
 
         // interface methods
 

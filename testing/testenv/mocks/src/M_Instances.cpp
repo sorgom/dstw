@@ -11,9 +11,9 @@ namespace test
     //# MOCK_DEF
     MOCK_DEF(FldCom)
     MOCK_DEF(SignalPort)
-    MOCK_DEF(TrackSwitch)
-    MOCK_DEF(TrackSwitchHub)
-    MOCK_DEF(TrackSwitchProvider)
+    MOCK_DEF(TSW)
+    MOCK_DEF(TSW_Hub)
+    MOCK_DEF(TSW_Provider)
     //# END
 
     void mockAll()
@@ -21,9 +21,9 @@ namespace test
         //# MOCK_ACT
         MOCK_ACT(FldCom)
         MOCK_ACT(SignalPort)
-        MOCK_ACT(TrackSwitch)
-        MOCK_ACT(TrackSwitchHub)
-        MOCK_ACT(TrackSwitchProvider)
+        MOCK_ACT(TSW)
+        MOCK_ACT(TSW_Hub)
+        MOCK_ACT(TSW_Provider)
         //# END
     }
 }

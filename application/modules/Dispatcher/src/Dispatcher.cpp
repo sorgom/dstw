@@ -57,7 +57,7 @@ bool Dispatcher::dispatch(const FldState& tele) const
         switch (ntp.type)
         {
         case SUBSYS_TSW:
-            ddi::getTrackSwitchHub().fromFld(tele, ntp.pos);
+            ddi::getTSW_Hub().fromFld(tele, ntp.pos);
             break;
         case SUBSYS_SIG:
             break;
@@ -86,7 +86,7 @@ bool Dispatcher::dispatch(const GuiCmd& tele) const
         switch (ntp.type)
         {
         case SUBSYS_TSW:
-            ddi::getTrackSwitchHub().fromGui(tele, ntp.pos);
+            ddi::getTSW_Hub().fromGui(tele, ntp.pos);
             break;
         case SUBSYS_SIG:
             break;

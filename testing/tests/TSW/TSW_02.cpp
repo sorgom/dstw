@@ -1,12 +1,12 @@
 #include <testlib/TestGroupBase.h>
-#include <TrackSwitch/TrackSwitchHub.h>
+#include <TSW/TSW_Hub.h>
 
 namespace test
 {
     class TestGroupTSH : public TestGroupBase
     {
     protected:
-        TrackSwitchHub mSUT;
+        TSW_Hub mSUT;
         M_FldCom& mCom;
         CmdFld mTele;
 
@@ -18,11 +18,11 @@ namespace test
         }
     };
 
-    TEST_GROUP_BASE(TSH_01, TestGroupTSH)
+    TEST_GROUP_BASE(TSW_02, TestGroupTSH)
     {};
 
     //! test type: equivalence class test
-    TEST(TSH_01, T01)
+    TEST(TSW_02, T01)
     {
         STEP(1)
         mCom.expectSend();
@@ -30,7 +30,7 @@ namespace test
         CHECK_N_CLEAR()
     }
     //! test type: equivalence class test
-    TEST(TSH_01, T02)
+    TEST(TSW_02, T02)
     {
         STEP(1)
         mCom.expectSend();

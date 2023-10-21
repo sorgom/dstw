@@ -1,14 +1,14 @@
-#include <TrackSwitch/TrackSwitchHub.h>
+#include <TSW/TSW_Hub.h>
 
 #include <baselib/InstanceMacros.h>
 #include <baselib/coding.h>
 #include <ddi/ddi.h>
 
-INSTANCE_DEF(TrackSwitchHub)
+INSTANCE_DEF(TSW_Hub)
 
-bool TrackSwitchHub::load(const UINT32 num, const ProjTSW* const data)
+bool TSW_Hub::load(const UINT32 num, const ProjTSW* const data)
 {
-    I_TrackSwitchProvider& prov = ddi::getTrackSwitchProvider();
+    I_TSW_Provider& prov = ddi::getTSW_Provider();
     I_Dispatcher& disp = ddi::getDispatcher();
 
     bool ok = true;

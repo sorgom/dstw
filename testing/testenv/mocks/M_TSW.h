@@ -1,21 +1,21 @@
 //  ============================================================
-//  mock for interface TrackSwitch
+//  mock for interface TSW
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef M_TRACKSWITCH_H
-#define M_TRACKSWITCH_H
+#ifndef M_TSW_H
+#define M_TSW_H
 
-#include <ifs/I_TrackSwitch.h>
+#include <ifs/I_TSW.h>
 #include "M_Base.h"
 
 namespace test
 {
-    MOCK_CLASS(TrackSwitch)
+    MOCK_CLASS(TSW)
     {
     public:
-        MOCK_CON(TrackSwitch)
+        MOCK_CON(TSW)
         
         // interface methods
 

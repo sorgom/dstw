@@ -1,23 +1,23 @@
 //  ============================================================
-//  class TrackSwitchHub implements I_TrackSwitchHub
+//  class TSW_Hub implements I_TSW_Hub
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef TRACKSWITCHHUB_H
-#define TRACKSWITCHHUB_H
+#ifndef TSW_HUB_H
+#define TSW_HUB_H
 
 #include <baselib/InstanceMacros.h>
 #include <baselib/StackArray.h>
 #include <ifs/DataTypes.h>
-#include <ifs/I_TrackSwitchHub.h>
+#include <ifs/I_TSW_Hub.h>
 #include <setup/capacities.h>
-#include <TrackSwitch/TrackSwitch.h>
+#include <TSW/TSW.h>
 
-class TrackSwitchHub : public I_TrackSwitchHub
+class TSW_Hub : public I_TSW_Hub
 {
 public:
-    inline TrackSwitchHub()
+    inline TSW_Hub()
     {}
 
 //  TODO:
@@ -29,7 +29,7 @@ public:
 
     bool load(UINT32 num, const ProjTSW* data);
 
-    DDI_INSTANCE_DEC(TrackSwitchHub)
+    DDI_INSTANCE_DEC(TSW_Hub)
 };
 
 #endif // _H

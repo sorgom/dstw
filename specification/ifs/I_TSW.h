@@ -1,11 +1,11 @@
 //  ============================================================
-//  interface TrackSwitch
+//  interface TSW
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef I_TRACKSWITCH_H
-#define I_TRACKSWITCH_H
+#ifndef I_TSW_H
+#define I_TSW_H
 
 #include <baselib/BaseTypes.h>
 
@@ -33,7 +33,7 @@ enum E_TswToGui
     TSW_TO_GUI_DEFECT
 };
 
-class I_TrackSwitch
+class I_TSW
 {
 public:
 //  commands from GUI

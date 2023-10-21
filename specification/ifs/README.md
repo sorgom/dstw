@@ -54,19 +54,19 @@ interface Signal
 interface SignalPort
 ```
 
-**I_TrackSwitch.h**
+**I_TSW.h**
 ```
-interface TrackSwitch
-```
-
-**I_TrackSwitchHub.h**
-```
-interface TrackSwitchHub
+interface TSW
 ```
 
-**I_TrackSwitchProvider.h**
+**I_TSW_Hub.h**
 ```
-interface TrackSwitchProvider
+interface TSW_Hub
+```
+
+**I_TSW_Provider.h**
+```
+interface TSW_Provider
 ```
 
 **ProjData.h**

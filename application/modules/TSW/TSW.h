@@ -1,18 +1,18 @@
 #pragma once
-#ifndef TRACKSWITCH_H
-#define TRACKSWITCH_H
+#ifndef TSW_H
+#define TSW_H
 
 //  ============================================================
-//  class TrackSwitch implements I_TrackSwitch
+//  class TSW implements I_TSW
 //  ============================================================
 //  created by Manfred Sorgo
 
-#include <ifs/I_TrackSwitch.h>
+#include <ifs/I_TSW.h>
 
-class TrackSwitch : public I_TrackSwitch
+class TSW : public I_TSW
 {
 public:
-    inline TrackSwitch(UINT32 id = 0):
+    inline TSW(UINT32 id = 0):
         mId(id),
         mState(TSW_TO_GUI_UNDEF)
     {}
@@ -28,8 +28,8 @@ private:
     void toFld(INT32 state) const;
 
     //  Standard 8.1.1
-    TrackSwitch(const TrackSwitch& o);
-    TrackSwitch& operator=(const TrackSwitch& o);
+    TSW(const TSW& o);
+    TSW& operator=(const TSW& o);
 };
 
 

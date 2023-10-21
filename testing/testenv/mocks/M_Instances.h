@@ -15,9 +15,9 @@
 //## INCLUDES_LOCAL
 #include "M_FldCom.h"
 #include "M_SignalPort.h"
-#include "M_TrackSwitch.h"
-#include "M_TrackSwitchHub.h"
-#include "M_TrackSwitchProvider.h"
+#include "M_TSW.h"
+#include "M_TSW_Hub.h"
+#include "M_TSW_Provider.h"
 //## END
 
 #define MOCK_DEC(NAME) \
@@ -29,9 +29,9 @@ namespace test
     //# MOCK_DEC
     MOCK_DEC(FldCom)
     MOCK_DEC(SignalPort)
-    MOCK_DEC(TrackSwitch)
-    MOCK_DEC(TrackSwitchHub)
-    MOCK_DEC(TrackSwitchProvider)
+    MOCK_DEC(TSW)
+    MOCK_DEC(TSW_Hub)
+    MOCK_DEC(TSW_Provider)
     //# END
 
     inline void unmock() { ddi::reset(); }

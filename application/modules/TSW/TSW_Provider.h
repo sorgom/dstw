@@ -1,19 +1,19 @@
 //  ============================================================
-//  class TrackSwitchProvider implements I_TrackSwitchProvider
+//  class TSW_Provider implements I_TSW_Provider
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef TRACKSWITCHPROVIDER_H
-#define TRACKSWITCHPROVIDER_H
+#ifndef TSW_PROVIDER_H
+#define TSW_PROVIDER_H
 
 #include <baselib/InstanceMacros.h>
 #include <baselib/StackArray.h>
-#include <ifs/I_TrackSwitchProvider.h>
+#include <ifs/I_TSW_Provider.h>
 #include <setup/capacities.h>
-#include <TrackSwitch/TrackSwitch.h>
+#include <TSW/TSW.h>
 
-class TrackSwitchProvider : public I_TrackSwitchProvider
+class TSW_Provider : public I_TSW_Provider
 {
 public:
     inline void reset()
@@ -30,16 +30,16 @@ public:
     }
     inline void add(UINT32 id)
     {
-        new (mSwitches.addPtr()) TrackSwitch(id);
+        new (mSwitches.addPtr()) TSW(id);
     }
-    inline I_TrackSwitch& at(UINT32 pos)
+    inline I_TSW& at(UINT32 pos)
     {
         return mSwitches.at(pos);
     }
 
-    DDI_INSTANCE_DEC(TrackSwitchProvider)
+    DDI_INSTANCE_DEC(TSW_Provider)
 
 private:
-    SimpleStackArray<TrackSwitch, CAPACITY_TSW> mSwitches;
+    SimpleStackArray<TSW, CAPACITY_TSW> mSwitches;
 };
 #endif // H_

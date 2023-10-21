@@ -39,9 +39,9 @@ namespace ddi
         DDI_MEMB(Dispatcher)
         DDI_MEMB(FldCom)
         DDI_MEMB(SignalPort)
-        DDI_MEMB(TrackSwitch)
-        DDI_MEMB(TrackSwitchHub)
-        DDI_MEMB(TrackSwitchProvider)
+        DDI_MEMB(TSW)
+        DDI_MEMB(TSW_Hub)
+        DDI_MEMB(TSW_Provider)
         //# END
         int mTerm;
     };
@@ -51,13 +51,13 @@ namespace ddi
     DDI::DDI():
         //# DDI_CON : APP
         DDI_CON(Dispatcher)
-        DDI_CON(TrackSwitchHub)
-        DDI_CON(TrackSwitchProvider)
+        DDI_CON(TSW_Hub)
+        DDI_CON(TSW_Provider)
         //# END
         //# DDI_CON_MOCK : MOCK
         DDI_CON_MOCK(FldCom)
         DDI_CON_MOCK(SignalPort)
-        DDI_CON_MOCK(TrackSwitch)
+        DDI_CON_MOCK(TSW)
         //# END
         mTerm(0)
     {}
@@ -68,9 +68,9 @@ namespace ddi
         DDI_RESET(Dispatcher)
         DDI_RESET(FldCom)
         DDI_RESET(SignalPort)
-        DDI_RESET(TrackSwitch)
-        DDI_RESET(TrackSwitchHub)
-        DDI_RESET(TrackSwitchProvider)
+        DDI_RESET(TSW)
+        DDI_RESET(TSW_Hub)
+        DDI_RESET(TSW_Provider)
         //# END
     }
 
@@ -78,9 +78,9 @@ namespace ddi
     DDI_DEF(Dispatcher)
     DDI_DEF(FldCom)
     DDI_DEF(SignalPort)
-    DDI_DEF(TrackSwitch)
-    DDI_DEF(TrackSwitchHub)
-    DDI_DEF(TrackSwitchProvider)
+    DDI_DEF(TSW)
+    DDI_DEF(TSW_Hub)
+    DDI_DEF(TSW_Provider)
     //# END
 
     void reset()
