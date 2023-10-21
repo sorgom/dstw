@@ -1,3 +1,7 @@
+//  ============================================================
+//  test of module TSW
+//  ============================================================
+//  created by Manfred Sorgo
 #include <testlib/TestGroupBase.h>
 #include <TSW/TSW.h>
 
@@ -89,7 +93,6 @@ namespace test
         STEP(9)
         //  stimulation: feedback from field: LEFT repeated
         //  reaction   : none
-        mHub.expectToGui(mId, TSW_TO_GUI_LEFT);
         mSUT.fromFld(TSW_FROM_FLD_LEFT);
         CHECK_N_CLEAR()
     }

@@ -14,6 +14,7 @@
 #include <Dispatcher/Dispatcher.h>
 #include <TSW/TSW_Hub.h>
 #include <TSW/TSW_Provider.h>
+#include <mocks/M_Dispatcher.h>
 #include <mocks/M_FldCom.h>
 #include <mocks/M_SIG_Hub.h>
 #include <mocks/M_TSW.h>

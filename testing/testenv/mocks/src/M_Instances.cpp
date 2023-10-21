@@ -9,6 +9,7 @@
 namespace test
 {
     //# MOCK_DEF
+    MOCK_DEF(Dispatcher)
     MOCK_DEF(FldCom)
     MOCK_DEF(SIG_Hub)
     MOCK_DEF(TSW)
@@ -19,6 +20,7 @@ namespace test
     void mockAll()
     {
         //# MOCK_ACT
+        MOCK_ACT(Dispatcher)
         MOCK_ACT(FldCom)
         MOCK_ACT(SIG_Hub)
         MOCK_ACT(TSW)

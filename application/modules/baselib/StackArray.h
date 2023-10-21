@@ -42,6 +42,11 @@ public:
         return mSize < CAP;
     }
 
+    inline bool has(UINT32 pos)
+    {
+        return pos < mSize;
+    }
+
     inline UINT32 add(const T& obj)
     {
         Mem::copy(at(mSize), obj);

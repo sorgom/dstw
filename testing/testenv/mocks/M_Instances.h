@@ -13,6 +13,7 @@
 #include <ddi/ddi.h>
 
 //## INCLUDES_LOCAL
+#include "M_Dispatcher.h"
 #include "M_FldCom.h"
 #include "M_SIG_Hub.h"
 #include "M_TSW.h"
@@ -27,6 +28,7 @@
 namespace test
 {
     //# MOCK_DEC
+    MOCK_DEC(Dispatcher)
     MOCK_DEC(FldCom)
     MOCK_DEC(SIG_Hub)
     MOCK_DEC(TSW)
