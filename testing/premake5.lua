@@ -10,6 +10,7 @@ workspace 'Testing'
 
     includedirs {
         'testenv',
+        '../specification',
         '../application',
         '../application/modules',
         '../devel'

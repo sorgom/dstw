@@ -11,13 +11,13 @@ from sys import argv
 rxOpen  = re.compile(r'([\[\{}])\n?')
 rxClose = re.compile(r'\n?([\]\}])')
 
-def cleanSvg(fp):
-    txt = fileTxt(fp)
-    out = rxClose.sub(r'\n\1', rxOpen.sub(r'\1\n', txt))
-    writeFile(fp, out)
+def cleanMdj(fps:list):
+    for fp in fps:
+        txt = fileTxt(fp)
+        out = rxClose.sub(r'\n\1', rxOpen.sub(r'\1\n', txt))
+        writeFile(fp, out)
 
 if __name__ == '__main__':
-    for svg in argv[1:]:
-        cleanSvg(svg)
+    cleanMdj(argv[1:])
     
 

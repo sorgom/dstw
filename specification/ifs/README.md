@@ -15,16 +15,33 @@ interface Dispatcher
     //  - element name
     //  - subsystem id
     //  - own processing element position
-    //  and recieve:
+    //  and shall recieve:
     //  - dispatcher id
     //  ============================================================
     virtual INT32 assign(const ElementName& name, E_Subsys subs, UINT32 pos) = 0;
+
+    virtual bool label(ElementName& name, UINT32 id) const = 0;
+
+
+    virtual bool dispatch(const FldState& tele) const = 0;
+
 ```
 
 **I_FldCom.h**
 ```
 Interface FldCom
 - field communication device
+```
+
+**I_Loader.h**
+```
+interface Loader
+the Loader is called at sytem start and shall:
+-   reset I_Dispatcher
+-   distribute load to subsytems
+-   call indexing of I_Dispatcher
+-   in case of any subsystem load failure
+    -   reset I_Dispatcher
 ```
 
 **I_Signal.h**

@@ -28,6 +28,11 @@ to create smaller git diffs
 clean all build artifacts
 ```
 
+**genCode.py**
+```
+code automatization of this project
+```
+
 **makeApp.sh**
 ```
 build application library from Makefile
@@ -45,18 +50,18 @@ build module tests from Makefile
 - see also runTests.sh
 ```
 
-**modCloc.py**
-```
-application of cloc tool for C++ lines of code
-- writes CLOC.md
-```
-
 **modGcov.py**
 ```
 application of gcov tool
 - run instrumented binary
 - invoke gcov
 - analyze *.gcov files of cpp sources
+```
+
+**modGenCloc.py**
+```
+application of cloc tool for C++ lines of code
+- writes CLOC.md
 ```
 
 **modGenCode.py**
@@ -97,22 +102,17 @@ some commonly used features
 re-build Makefiles
 ```
 
-**projectCode.py**
-```
-code automatization of this project
-```
-
 **projectDirs.py**
 ```
 directories of this project in git
 ```
 
-**projectGcov.py**
+**runGcov.py**
 ```
 code coverage of this project
 ```
 
-**projectRunTests.py**
+**runTests.py**
 ```
 module test analyzis of this project
 ```

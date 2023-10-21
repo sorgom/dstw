@@ -12,13 +12,13 @@ from sys import argv
 rxClean = re.compile(r'<text.*?>UNREGISTERED</text>')
 rxTags  = re.compile(r'(<[^>]*>)\n?')
 
-def cleanSvg(fp):
-    txt = fileTxt(fp)
-    out = rxTags.sub(r'\1\n', rxClean.sub('', txt))
-    writeFile(fp, out)
+def cleanSvg(fps:list):
+    for fp in fps:
+        txt = fileTxt(fp)
+        out = rxTags.sub(r'\1\n', rxClean.sub('', txt))
+        writeFile(fp, out)
 
 if __name__ == '__main__':
-    for svg in argv[1:]:
-        cleanSvg(svg)
+    cleanSvg(argv[1:])
     
 

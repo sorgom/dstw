@@ -5,12 +5,14 @@
 
 from modGcov import Gcov
 from projectDirs import tsgDir
-ret = Gcov().run(
-    tsgDir,
-    './bin/moduletests_coverage',
-    'obj/application_coverage',
-    '../application/modules/*/src/*.cpp'
-)
-exit(ret)
 
+def runGcov():
+    Gcov().run(
+        tsgDir,
+        './bin/moduletests_coverage',
+        'obj/application_coverage',
+        '../application/modules/*/src/*.cpp'
+    )
 
+if __name__ == '__main__':
+    runGcov()
