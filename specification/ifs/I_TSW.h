@@ -33,12 +33,19 @@ enum E_TswToGui
     TSW_TO_GUI_DEFECT
 };
 
+enum E_TswGuiCmd
+{
+    TSW_GUI_GMD_WU,
+    TSW_GUI_GMD_LEFT,
+    TSW_GUI_GMD_RIGHT
+};
+
 class I_TSW
 {
 public:
 //  commands from GUI
 
-    virtual void WU() = 0;
+    virtual void fromGui(INT32 cmd) = 0;
 
 //  infos from field element
 

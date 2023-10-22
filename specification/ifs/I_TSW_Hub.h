@@ -14,7 +14,7 @@ class I_TSW_Hub
 {
 public:
     virtual void toFld(UINT32 id, INT32 cmd) const = 0;
-    virtual void toGui(UINT32 id, INT32 cmd) const = 0;
+    virtual void toGui(UINT32 id, INT32 state) const = 0;
 
     virtual void fromFld(const FldState& tele, UINT32 pos) = 0;
     virtual void fromGui(const GuiCmd&   tele, UINT32 pos) = 0;

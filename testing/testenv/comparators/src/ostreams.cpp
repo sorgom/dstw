@@ -22,8 +22,7 @@ OSTREAM_DEF(FldState)
 {
     return os 
         << DOUT(name)
-        << DOUT(state1)
-        << DOUT(state2)
+        << DOUT(state)
     ;
 }
 
@@ -41,8 +40,7 @@ OSTREAM_DEF(StateGui)
 {
     return os 
         << DOUT(name)
-        << DOUT(state1)
-        << DOUT(state2)
+        << DOUT(state)
     ;
 }
 

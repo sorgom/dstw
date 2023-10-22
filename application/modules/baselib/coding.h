@@ -10,4 +10,9 @@
 inline void pass() {}
 
 
+#define NOCOPY(CLASS) \
+private: \
+CLASS(const CLASS& o); \
+CLASS& operator = (const CLASS& o);
+
 #endif // H_

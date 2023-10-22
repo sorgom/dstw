@@ -26,8 +26,7 @@ struct CmdFld
 struct FldState
 {
     ElementName name;
-    INT32 state1;
-    INT32 state2;
+    INT32 state;
 };
 
 //  command from GUI
@@ -43,8 +42,7 @@ struct GuiCmd
 struct StateGui
 {
     ElementName name;
-    INT32 state1;
-    INT32 state2;
+    INT32 state;
 };
 
 //  DEPRECATED:

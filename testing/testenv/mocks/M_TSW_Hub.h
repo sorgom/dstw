@@ -17,45 +17,28 @@ namespace test
     public:
         MOCK_CON(TSW_Hub)
 
-        // interface methods
-
         inline void toFld(UINT32 id, INT32 cmd) const
         {
             call("toFld").PARAM(id).PARAM(cmd);
         }
-
-        inline void toGui(UINT32 id, INT32 cmd) const
+        inline void expectToFld(UINT32 id, INT32 cmd) const
         {
-            call("toGui").PARAM(id).PARAM(cmd);
+            expect("toFld").PARAM(id).PARAM(cmd);
+        }
+
+        inline void toGui(UINT32 id, INT32 state) const
+        {
+            call("toGui").PARAM(id).PARAM(state);
+        }
+        inline void expectToGui(UINT32 id, INT32 state) const
+        {
+            expect("toGui").PARAM(id).PARAM(state);
         }
 
         inline void fromFld(const FldState& tele, UINT32 pos)
         {
             call("fromFld").TPARAM(FldState, tele).PARAM(pos);
         }
-
-        inline void fromGui(const GuiCmd& tele, UINT32 pos)
-        {
-            call("fromGui").TPARAM(GuiCmd, tele).PARAM(pos);
-        }
-
-        inline bool load(const ProjTSW* data, UINT32 num)
-        {
-            return call("load").PARAM(num).RETURN_DEF_INT(true);
-        }
-
-        //  expected calls
-
-        inline void expectToFld(UINT32 id, INT32 cmd) const
-        {
-            expect("toFld").PARAM(id).PARAM(cmd);
-        }
-
-        inline void expectToGui(UINT32 id, INT32 cmd) const
-        {
-            expect("toGui").PARAM(id).PARAM(cmd);
-        }
-
         inline void expectFromFld(const FldState& tele, UINT32 pos) const
         {
             expect("fromFld").TPARAM(FldState, tele).PARAM(pos);
@@ -64,7 +47,11 @@ namespace test
         {
             expect("fromFld").IGNORE().PARAM(pos);
         }
-        
+
+        inline void fromGui(const GuiCmd& tele, UINT32 pos)
+        {
+            call("fromGui").TPARAM(GuiCmd, tele).PARAM(pos);
+        }
         inline void expectFromGui(const GuiCmd& tele, UINT32 pos) const
         {
             expect("fromGui").TPARAM(GuiCmd, tele).PARAM(pos);
@@ -73,7 +60,11 @@ namespace test
         {
             expect("fromGui").IGNORE().PARAM(pos);
         }
-        
+
+        inline bool load(const ProjTSW* data, UINT32 num)
+        {
+            return call("load").PARAM(num).RETURN_DEF_INT(true);
+        }
         inline void expectLoad(UINT32 num, bool ret = true) const
         {
             expect("load").PARAM(num).AND_RETURN(ret);

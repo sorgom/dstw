@@ -27,9 +27,9 @@ namespace test
             expect("reset");
         }
 
-        inline UINT32 size() const
+        inline bool has(UINT32 pos) const
         {
-            return mSize;
+            return mSize > pos;
         }
         inline void setSize(UINT32 val)
         {

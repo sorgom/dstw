@@ -17,13 +17,10 @@ namespace test
     public:
         MOCK_CON(FldCom)
 
-        // interface methods
         inline bool send(const CmdFld& tele) const
         {
             return call("send").TPARAM(CmdFld, tele).RETURN_DEF_INT(true);
         }
-
-        //  expected calls
         inline void expectSend(const CmdFld& tele, bool ret = true) const
         {
             expect("send").TPARAM(CmdFld, tele).AND_RETURN(ret);
@@ -32,6 +29,20 @@ namespace test
         inline void expectSend(bool ret = true) const
         {
             expect("send").IGNORE().AND_RETURN(ret);
+        }
+
+        inline bool send(const StateGui& tele) const
+        {
+            return call("send").TPARAM(StateGui, tele).RETURN_DEF_INT(true);
+        }
+        inline void expectSend(const StateGui& tele, bool ret = true) const
+        {
+            expect("send").TPARAM(StateGui, tele).AND_RETURN(ret);
+        }
+        
+        inline void expectNumSend(bool ret = true, UINT32 num = 1) const
+        {
+            expect(num, "send").IGNORE().AND_RETURN(ret);
         }
     };
 } // namespace

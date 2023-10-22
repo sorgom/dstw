@@ -2,6 +2,25 @@
 #include <TSW/TSW.h>
 #include <ddi/ddi.h>
 
+void TSW::fromGui(const INT32 cmd)
+{
+    switch(cmd)
+    {
+    case TSW_GUI_GMD_WU:
+        WU();
+        break;
+//  TODO:
+//  NO_COV >>
+    case TSW_GUI_GMD_LEFT:
+        break;
+    case TSW_GUI_GMD_RIGHT:
+        break;
+//  << NO_COV
+    default:
+        break;
+    };
+}
+
 void TSW::WU()
 {
     switch(mState)

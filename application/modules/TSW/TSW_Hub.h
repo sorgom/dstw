@@ -7,6 +7,7 @@
 #ifndef TSW_HUB_H
 #define TSW_HUB_H
 
+#include <baselib/coding.h>
 #include <baselib/InstanceMacros.h>
 #include <baselib/StackArray.h>
 #include <ifs/DataTypes.h>
@@ -20,16 +21,17 @@ public:
     inline TSW_Hub()
     {}
 
-//  TODO:
-    inline void toFld(UINT32 id, INT32 cmd) const {}
-    inline void toGui(UINT32 id, INT32 cmd) const {}
+    void toFld(UINT32 id, INT32 cmd) const;
+    void toGui(UINT32 id, INT32 state) const;
 
-    inline void fromFld(const FldState& tele, UINT32 pos) {}
-    inline void fromGui(const GuiCmd&   tele, UINT32 pos) {}
+    void fromFld(const FldState& tele, UINT32 pos);
+    void fromGui(const GuiCmd&   tele, UINT32 pos);
 
     bool load(const ProjTSW* data, UINT32 num);
 
     DDI_INSTANCE_DEC(TSW_Hub)
+
+    NOCOPY(TSW_Hub)
 };
 
 #endif // _H

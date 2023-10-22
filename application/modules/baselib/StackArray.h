@@ -4,6 +4,7 @@
 
 #include <baselib/I_Searchable.h>
 #include <baselib/Baselib.h>
+#include <baselib/coding.h>
 #include <baselib/Mem.h>
 
 #include <new>
@@ -42,7 +43,7 @@ public:
         return mSize < CAP;
     }
 
-    inline bool has(UINT32 pos)
+    inline bool has(UINT32 pos) const
     {
         return pos < mSize;
     }
@@ -95,6 +96,11 @@ public:
         bSort(*this);
     }
 
+    inline UINT32 dupCnt() const
+    {
+        return dupCnt(*this);
+    }
+
     inline INT32 find(const T& obj) const
     {
         return bSearch(*this, obj);
@@ -111,9 +117,7 @@ private:
     T* mData;
     UINT32 mSize;
 
-    //  Standard 8.1.1
-    StackArray(const StackArray& o);
-    StackArray& operator=(const StackArray& o);
+    NOCOPY(StackArray)
 };
 
 template <class T, UINT32 CAP>
@@ -128,9 +132,7 @@ public:
         return false;
     }
 private:
-    //  Standard 8.1.1
-    SimpleStackArray(const SimpleStackArray& o);
-    SimpleStackArray& operator=(const SimpleStackArray& o);
+    NOCOPY(SimpleStackArray)
 };
 
 template <class T, UINT32 CAP>
@@ -168,10 +170,9 @@ public:
 
 private:
     const StackArray<T, CAP>& mArray;
-    //  Standard 8.1.1
+
+    NOCOPY(StackArrayIndex)
     StackArrayIndex();
-    StackArrayIndex(const StackArrayIndex& o);
-    StackArrayIndex& operator=(const StackArrayIndex& o);
 };
 
 #endif // H_

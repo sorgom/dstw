@@ -34,7 +34,7 @@ namespace test
         STEP(1)
         //  stimulation: WU() to initial state
         //  reaction   : none
-        mSUT.WU();
+        mSUT.fromGui(TSW_GUI_GMD_WU);
         CHECK_N_CLEAR()
 
         STEP(2)
@@ -51,13 +51,13 @@ namespace test
         //      cmd to GUI: WAIT_RIGHT
         mHub.expectToFld(mId, TSW_TO_FLD_RIGHT);
         mHub.expectToGui(mId, TSW_TO_GUI_WAIT_RIGHT);
-        mSUT.WU();
+        mSUT.fromGui(TSW_GUI_GMD_WU);
         CHECK_N_CLEAR()
 
         STEP(4)
         //  stimulation: WU() repeated
         //  reaction   : none
-        mSUT.WU();
+        mSUT.fromGui(TSW_GUI_GMD_WU);
         CHECK_N_CLEAR()
 
         STEP(5)
@@ -74,13 +74,13 @@ namespace test
         //      cmd to GUI: WAIT_LEFT
         mHub.expectToFld(mId, TSW_TO_FLD_LEFT);
         mHub.expectToGui(mId, TSW_TO_GUI_WAIT_LEFT);
-        mSUT.WU();
+        mSUT.fromGui(TSW_GUI_GMD_WU);
         CHECK_N_CLEAR()
 
         STEP(7)
         //  stimulation: WU() repeated
         //  reaction   : none
-        mSUT.WU();
+        mSUT.fromGui(TSW_GUI_GMD_WU);
         CHECK_N_CLEAR()
 
         STEP(8)

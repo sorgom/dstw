@@ -4,6 +4,7 @@
 #define BASELIB_H
 
 #include <baselib/BaseTypes.h>
+#include <baselib/coding.h>
 
 void swapBytes(PTR pA, PTR pB, PTR pS, UINT32 size);
 
@@ -20,11 +21,11 @@ public:
     }
 private:
     const T* mPtr;
-    //  Standard 8.1.1
-    Ref();
-    Ref(const Ref& o);
-    Ref& operator=(const Ref& o);
+
+NOCOPY(Ref)
+Ref();
 };
+
 
 
 #endif // H_

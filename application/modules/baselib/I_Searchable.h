@@ -1,3 +1,9 @@
+//  ============================================================
+//  defintion of iterface I_Searchable to apply:
+//  - bubble sort
+//  - b-tree search
+//  - uniqueness check / duplicates count
+//  ============================================================
 #pragma once
 #ifndef I_SEARCHABLE_H
 #define I_SEARCHABLE_H
@@ -63,5 +69,20 @@ INT32 bSearch(const I_Searchable<T>& src, const T& obj)
     return res;
 }
 
+//  apply duplicates count to I_Searchable
+//  precondition: bSort applied before
+template <class T>
+UINT32 dupCnt(I_Searchable<T>& src)
+{
+    UINT32 ndups = 0;
+    for (UINT32 p = 0; p < src.size() - 1; ++p)
+    {
+        if (not src.isGreater(src.at(p + 1), src.at(p)))
+        {
+            ++ndups;
+        }
+    }
+    return ndups;
+}
 
 #endif // H_

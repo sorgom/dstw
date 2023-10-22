@@ -17,17 +17,6 @@ namespace test
     public:
         MOCK_CON(TSW)
         
-        // interface methods
-
-        inline void WU()
-        {
-            call("WU");
-        }
-        inline void expectWU() const
-        {
-            expect("WU");
-        }
-
         inline void fromFld(INT32 state)
         {
             call("fromFld").PARAM(state);
@@ -36,12 +25,23 @@ namespace test
         {
             expect("fromFld").PARAM(state);
         }
-
-        inline void expectFromFld()
+        inline void expectNumFromFld(UINT32 num = 0)
         {
-            expect("fromFld").IGNORE();
+            expect(num, "fromFld").IGNORE();
         }
-        
+
+        inline void fromGui(INT32 cmd)
+        {
+            call("fromGui").PARAM(cmd);
+        }
+        inline void expectFromGui(INT32 cmd)
+        {
+            expect("fromGui").PARAM(cmd);
+        }
+        inline void expectNumFromGui(UINT32 num = 0)
+        {
+            expect(num, "fromGui").IGNORE();
+        }
     };
 }
 #endif // H_

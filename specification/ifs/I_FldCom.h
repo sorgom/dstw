@@ -14,6 +14,7 @@ class I_FldCom
 {
 public:
     virtual bool send(const CmdFld& tele) const = 0;
+    virtual bool send(const StateGui& tele) const = 0;
 };
 
 #endif // H_

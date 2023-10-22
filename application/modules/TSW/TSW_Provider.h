@@ -20,9 +20,9 @@ public:
     {
         mSwitches.reset();
     }
-    inline UINT32 size() const
+    inline bool has(UINT32 pos) const
     {
-        return mSwitches.size();
+        return mSwitches.has(pos);
     }
     inline UINT32 capacity() const
     {
