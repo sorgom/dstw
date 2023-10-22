@@ -10,7 +10,7 @@ but also
 CppUTest parameter macros
 raw typing:
     .withParameterOfType("SomeStruct", "param", param)
-strinc constant c__SomeStruct defined:
+strin constant c__SomeStruct defined:
     .withParameterOfType(c__SomeStruct, "param", param)
 use:
   .TPARAM(SomeStruct, param)
