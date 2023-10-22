@@ -11,6 +11,7 @@
 </div>
 
 # test environment mocking
+Every component can be substituded by a mock.
 <div style="background-color:#F8F8F8;">
 <img src="specification/diagrams/mocking.svg" alt="Mocking">
 </div>
