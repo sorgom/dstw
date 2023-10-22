@@ -7,7 +7,7 @@ from modGcov import Gcov
 from projectDirs import tsgDir
 from modUtilz import mdTxt, mdCode, writeFile
 
-ttl = '## source code coverage'
+ttl = '## current source code coverage'
 
 def runGcov(verbose=True):
     return Gcov().run(
