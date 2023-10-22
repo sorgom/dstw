@@ -12,11 +12,15 @@ from runGcov import gcovToMd
 from modUtilz import checkLinux
 
 from glob import glob
+from sys import argv, exit
 
 print("* cleanMdj")
 cleanMdj(glob(f'{diaDir}/*.mdj'))
 print("* cleanSvg")
 cleanSvg(glob(f'{diaDir}/*.svg'))
+
+if len(argv) > 1: exit()
+
 print("* genMd")
 genMd()
 
