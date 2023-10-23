@@ -23,7 +23,8 @@ def genCloc(dirs, ext="h,cpp"):
         cont = procOut(f'cloc --include-ext="{ext}" {dir}')
         res.append(f'**{basename(dir)}**')
         res.append(mdCode(rxCont.search(cont).group(0)))
-        sum += int(rxSum.search(cont).group(1))
+        mo = rxSum.search(cont)
+        if mo: sum += int(rxSum.search(cont).group(1))
     res.insert(0, f'## total lines of code: {sum}')
     writeFile(mdf, '\n'.join(res))
     

@@ -61,14 +61,6 @@ namespace test
             expect("fromGui").IGNORE().PARAM(pos);
         }
 
-        inline bool load(const ProjTSW* data, UINT32 num)
-        {
-            return call("load").PARAM(num).RETURN_DEF_INT(true);
-        }
-        inline void expectLoad(UINT32 num, bool ret = true) const
-        {
-            expect("load").PARAM(num).AND_RETURN(ret);
-        }
     };
 }
 

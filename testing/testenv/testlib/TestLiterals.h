@@ -23,6 +23,7 @@ namespace test
     C_STR_DEC(FldCom)
     C_STR_DEC(FldState)
     C_STR_DEC(GuiCmd)
+    C_STR_DEC(GuiCom)
     C_STR_DEC(Loader)
     C_STR_DEC(ProjData)
     C_STR_DEC(ProjLCR)

@@ -18,15 +18,6 @@ namespace test
     public:
         MOCK_CON(TSW_Provider)
 
-        inline void reset()
-        {
-            call("reset");
-        }
-        inline void expectReset() const
-        {
-            expect("reset");
-        }
-
         inline bool has(UINT32 pos) const
         {
             return mSize > pos;
@@ -36,35 +27,22 @@ namespace test
             mSize = val;
         }
 
-        inline UINT32 capacity() const
-        {
-            return mCapacity;
-        }
-        inline void setCapacity(UINT32 val)
-        {
-            mCapacity = val;
-        }
-
-        inline void add(UINT32 id)
-        {
-            call("add").PARAM(id);
-        } 
-        inline void expectAdd(UINT32 id) 
-        {
-            expect("add").PARAM(id);
-        } 
-        inline void expectNumAdd(UINT16 num) 
-        {
-            expect(num, "add").IGNORE();
-        }
-
         inline I_TSW& at(UINT32 pos)
         {
             return M_TSW::instance();
         }
+
+        inline bool load(const ProjTSW* data, UINT32 num)
+        {
+            return call("load").PARAM(num).RETURN_DEF_BOOL(true);
+        }
+        inline void expectLoad(UINT32 num, bool ret = true) const
+        {
+            expect("load").PARAM(num).AND_RETURN_BOOL(ret);
+        }
+
     private:
         UINT32 mSize;
-        UINT32 mCapacity;
     };
 }
 #endif // H_

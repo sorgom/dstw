@@ -16,30 +16,21 @@
 class TSW_Provider : public I_TSW_Provider
 {
 public:
-    inline void reset()
-    {
-        mSwitches.reset();
-    }
     inline bool has(UINT32 pos) const
     {
-        return mSwitches.has(pos);
+        return mTSWs.has(pos);
     }
-    inline UINT32 capacity() const
-    {
-        return mSwitches.capacity();
-    }
-    inline void add(UINT32 id)
-    {
-        new (mSwitches.addPtr()) TSW(id);
-    }
+
     inline I_TSW& at(UINT32 pos)
     {
-        return mSwitches.at(pos);
+        return mTSWs.at(pos);
     }
+
+    bool load(const ProjTSW* data, UINT32 num);
 
     DDI_INSTANCE_DEC(TSW_Provider)
 
 private:
-    SimpleStackArray<TSW, CAPACITY_TSW> mSwitches;
+    SimpleStackArray<TSW, CAPACITY_TSW> mTSWs;
 };
 #endif // H_

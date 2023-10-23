@@ -131,7 +131,14 @@ public:
     {
         return false;
     }
-private:
+    inline void sort() {}
+
+    inline UINT32 dupCnt() const { return 0; }
+
+    inline INT32 find(const T& obj) const { return -1; }
+
+    inline void swap(UINT32 posA, UINT32 posB) {}
+
     NOCOPY(SimpleStackArray)
 };
 

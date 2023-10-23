@@ -55,19 +55,19 @@ class Gcov(object):
         srcs = [src[clen:] for src in srcs]
         nlen = max([len(src) for src in srcs])
 
-        form = f'%-{nlen}s  %5d  %7d  %7.1f'
-        head = f'%-{nlen}s  lines  covered  percent' % 'file'
+        form = f'%-{nlen}s  %5d  %9d  %7.1f'
+        head = f'%-{nlen}s  lines  uncovered  percent' % 'file'
         res = list()
         tloc = 0
-        tcov = 0
+        tuncov = 0
         for n, (src, loc) in enumerate(self.locs):
-            cov  = loc - self.uncov.get(src, 0)
+            uncov  = self.uncov.get(src, 0)
             tloc += loc
-            tcov += cov
-            res.append(form % (srcs[n], loc, cov, cov * 100.0 / loc))
+            tuncov += uncov
+            res.append(form % (srcs[n], loc, uncov, uncov * 100.0 / loc))
         res = sorted(res, key=str.lower)
         res.insert(0, head)
-        res.append(form % ('total', tloc, tcov, tcov * 100.0 / tloc))
+        res.append(form % ('total', tloc, tuncov, tuncov * 100.0 / tloc))
         out = '\n'.join(res)
         if self.verbose: print(out)
         return out

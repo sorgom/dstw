@@ -66,30 +66,30 @@ namespace test
         }
         inline void expectLabel(UINT32 id, bool ret = true) const
         {
-            expect("label").PARAM(id).AND_RETURN(ret);
+            expect("label").PARAM(id).AND_RETURN_BOOL(ret);
         }
 
         inline bool dispatch(const FldState& tele) const
         {
-            return call("dispatch").TPARAM(FldState, tele).RETURN_DEF_INT(true);
+            return call("dispatch").TPARAM(FldState, tele).RETURN_DEF_BOOL(true);
         }
         inline void expectDispatch(const FldState& tele, bool ret = true) const
         {
-            expect("dispatch").TPARAM(FldState, tele).AND_RETURN(ret);
+            expect("dispatch").TPARAM(FldState, tele).AND_RETURN_BOOL(ret);
         }
 
         inline bool dispatch(const GuiCmd& tele) const
         {
-            return call("dispatch").TPARAM(GuiCmd, tele).RETURN_DEF_INT(true);
+            return call("dispatch").TPARAM(GuiCmd, tele).RETURN_DEF_BOOL(true);
         }
         inline void expectDispatch(const GuiCmd& tele, bool ret = true) const
         {
-            expect("dispatch").TPARAM(GuiCmd, tele).AND_RETURN(ret);
+            expect("dispatch").TPARAM(GuiCmd, tele).AND_RETURN_BOOL(ret);
         }
 
         inline void expectDispatch(bool ret = true, UINT32 num = 1) const
         {
-            expect(num, "dispatch").IGNORE().AND_RETURN(ret);
+            expect(num, "dispatch").IGNORE().AND_RETURN_BOOL(ret);
         }
     private:
         ElementName mLabel;

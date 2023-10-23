@@ -12,7 +12,7 @@ ttl = '## current source code coverage'
 def runGcov(verbose=True):
     return Gcov().run(
         tsgDir,
-        './bin/moduletests_coverage',
+        './bin/tests_coverage',
         'obj/application_coverage',
         '../application/modules/*/src/*.cpp',
         verbose=verbose

@@ -1,6 +1,5 @@
 //  ============================================================
 //  system wide enumerations
-//  -   E_Result commonly used result type
 //  -   E_Subsys subsytems 
 //  ============================================================
 //  created by Manfred Sorgo
@@ -8,12 +7,6 @@
 #pragma once
 #ifndef SYSTEMENUMS_H
 #define SYSTEMENUMS_H
-
-enum E_Result
-{
-    RESULT_FAIL = -1,
-    RESULT_OK   = 0
-};
 
 enum E_Subsys
 {

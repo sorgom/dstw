@@ -18,8 +18,6 @@ public:
 
     virtual void fromFld(const FldState& tele, UINT32 pos) = 0;
     virtual void fromGui(const GuiCmd&   tele, UINT32 pos) = 0;
-
-    virtual bool load(const ProjTSW* data, UINT32 num) = 0;
 };
 
 #endif // _H

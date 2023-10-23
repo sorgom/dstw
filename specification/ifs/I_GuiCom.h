@@ -1,19 +1,19 @@
 //  ============================================================
-//  Interface FldCom
+//  Interface GuiCom
 //  - field communication device
 //  ============================================================
 //  created by Manfred Sorgo 
 
 #pragma once
-#ifndef I_FLDCOM_H
-#define I_FLDCOM_H
+#ifndef I_GUICOM_H
+#define I_GUICOM_H
 
 #include <ifs/DataTypes.h>
 
-class I_FldCom
+class I_GuiCom
 {
 public:
-    virtual bool send(const CmdFld& tele) const = 0;
+    virtual bool send(const StateGui& tele) const = 0;
 };
 
 #endif // H_
