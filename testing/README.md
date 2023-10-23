@@ -1,10 +1,4 @@
 
-|hello|world|wumpel| 
-|---|---|---|
-|paul|mike|zardoz|
-|total||**30075**|
-
-
 ## directory content
 
 **premake5.lua**
