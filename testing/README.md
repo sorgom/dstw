@@ -1,8 +1,8 @@
 
-|**hello**|world|wumpel| 
+|hello|world|wumpel| 
 |---|---|---|
 |paul|mike|zardoz|
-|**SUM**||**30075**|
+|total||**30075**|
 
 
 ## directory content
