@@ -11,8 +11,11 @@
 
 #include <baselib/Mem.h>
 #include <comparators/ostreams.h>
+#include <ddi/ddi.h>
 #include <mocks/M_Instances.h>
+#include <setup/capacities.h>
 #include <testlib/genElementName.h>
+#include <testlib/GenProjData.h>
 #include <testlib/TestLiterals.h>
 
 namespace test
@@ -20,7 +23,7 @@ namespace test
     class TestGroupBase : public Utest
     {
     protected:
-        inline ~TestGroupBase()
+        inline TestGroupBase()
         {
             unmock();
         }

@@ -52,11 +52,17 @@
 #define RETURN_DEF_INT(VAL) \
     returnIntValueOrDefault(VAL)
 
+#define RETURN_DEF_BOOL(VAL) \
+    returnUnsignedIntValueOrDefault(VAL)
+
 #define RETURN_DEF_UNSIGNED(VAL) \
     returnUnsignedIntValueOrDefault(VAL)
 
 #define AND_RETURN(VAL) \
-    andReturnValue(VAL);
+    andReturnValue(VAL)
+
+#define AND_RETURN_BOOL(VAL) \
+    andReturnValue(static_cast<unsigned>(VAL))
 
 #define IGNORE() \
     ignoreOtherParameters()

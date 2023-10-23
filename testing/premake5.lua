@@ -24,25 +24,24 @@ project 'application_lib'
     targetdir   'lib'
     
     files { 
-        '../application/modules/*/src/*.cpp',
+        '../application/**.cpp',
     }
 
     defines { 'NDEBUG' }
     optimize 'On'
     
--- module tests release   
-project 'moduletests'
+-- tests release   
+project 'tests'
     kind        'ConsoleApp'
     targetdir   'bin'
 
     files { 
-        '../application/modules/*/src/*.cpp',
-        'testenv/*/src/*.cpp',
-        'tests/**.cpp',
+        '../application/**.cpp',
+        '**.cpp'
     }
 
     defines { 'NDEBUG' }
-    -- optimize 'On'
+    optimize 'On'
     links { 'CppUTest', 'CppUTestExt' }
 
 -- coverage instrumented application library
@@ -51,7 +50,7 @@ project 'application_coverage'
     targetdir   'lib'
     
     files { 
-        '../application/modules/*/src/*.cpp',
+        '../application/**.cpp',
     }
 
     defines { 'DEBUG' }
@@ -59,13 +58,12 @@ project 'application_coverage'
     buildoptions {'-fprofile-arcs -ftest-coverage'}
 
 -- test runtime using instrumented application library
-project 'moduletests_coverage'
+project 'tests_coverage'
     kind        'ConsoleApp'
     targetdir   'bin'
 
     files { 
-        'testenv/*/src/*.cpp',
-        'tests/**.cpp',
+        '**.cpp',
     }
 
     defines { 'DEBUG' }

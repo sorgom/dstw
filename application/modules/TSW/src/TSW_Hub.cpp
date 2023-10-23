@@ -5,10 +5,14 @@
 #include <baselib/Mem.h>
 #include <ddi/ddi.h>
 
+#include <qnd/useCout.h>
+
 INSTANCE_DEF(TSW_Hub)
 
 bool TSW_Hub::load(const ProjTSW* const data, const UINT32 num)
 {
+    cout << "TSW_Hub::load " << num << endl;
+
     I_TSW_Provider& prov = ddi::getTSW_Provider();
     I_Dispatcher& disp = ddi::getDispatcher();
 
@@ -34,14 +38,17 @@ bool TSW_Hub::load(const ProjTSW* const data, const UINT32 num)
             }
         }
     }
+    cout << "TSW_Hub::loaded: " << ok << endl;
     return ok;
 }
 
 void TSW_Hub::fromFld(const FldState& tele, const UINT32 pos)
 {
+    cout << "TSW_Hub::fromFld " << pos << endl;
     I_TSW_Provider& prov = ddi::getTSW_Provider();
     if (prov.has(pos))
     {
+        cout << "ok" << endl;
         prov.at(pos).fromFld(tele.state);
     }
     else
@@ -74,6 +81,7 @@ void TSW_Hub::toFld(const UINT32 id, const INT32 cmd) const
 
 void TSW_Hub::toGui(const UINT32 id, const INT32 state) const
 {
+    cout << "TSW_Hub::toGui " << id << ", " << state << endl;
     static StateGui stateGui;
     Mem::zero(stateGui);
     if (ddi::getDispatcher().label(stateGui.name, id))

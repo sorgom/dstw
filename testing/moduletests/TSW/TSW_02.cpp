@@ -4,7 +4,6 @@
 //  created by Manfred Sorgo
 #include <testlib/TestGroupBase.h>
 #include <TSW/TSW_Hub.h>
-#include <testlib/GenProjData.h>
 
 namespace test
 {
@@ -15,7 +14,7 @@ namespace test
         M_FldCom&       mCom;
         M_TSW_Provider& mProv;
         M_Dispatcher&   mDisp;
-        GenProjData<10> mProjData;
+        GenProjData<10, 1, 1, 1> mProjData;
 
         inline TestGroupTSH():
             mCom(m_FldCom()),
@@ -24,7 +23,6 @@ namespace test
         {
             mockAll();
             mProv.setSize(1);
-            mProjData.preset();
         }
     };
 
