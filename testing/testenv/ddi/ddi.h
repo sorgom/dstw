@@ -13,6 +13,7 @@
 //## INCLUDES
 #include <Dispatcher/Dispatcher.h>
 #include <Loader/Loader.h>
+#include <SIG/SIG_Provider.h>
 #include <TSW/TSW_Hub.h>
 #include <TSW/TSW_Provider.h>
 #include <mocks/M_Dispatcher.h>
@@ -36,6 +37,7 @@ namespace ddi
     DDI_DEC(FldCom)
     DDI_DEC(GuiCom)
     DDI_DEC(Loader)
+    DDI_DEC(SIG_Provider)
     DDI_DEC(TSW)
     DDI_DEC(TSW_Hub)
     DDI_DEC(TSW_Provider)

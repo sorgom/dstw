@@ -44,11 +44,9 @@ class I_TSW
 {
 public:
 //  commands from GUI
-
     virtual void fromGui(INT32 cmd) = 0;
 
 //  infos from field element
-
     virtual void fromFld(INT32 state) = 0;
 };
 

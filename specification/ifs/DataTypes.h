@@ -17,64 +17,37 @@
 struct CmdFld
 {
     ElementName name;
-    INT32 cmd;
-    INT32 param1;
-    INT32 param2;
+    INT32 cmd1;
+    INT32 cmd2;
+    INT32 cmd3;
 };
 
 //  state from field
 struct FldState
 {
     ElementName name;
-    INT32 state;
+    INT32 state1;
+    INT32 state2;
+    INT32 state3;
 };
 
 //  command from GUI
 struct GuiCmd
 {
     ElementName name;
-    INT32 cmd;
-    INT32 param1;
-    INT32 param2;
+    INT32 cmd1;
+    INT32 cmd2;
+    INT32 cmd3;
 };
 
 //  state to GUI
 struct StateGui
 {
     ElementName name;
-    INT32 state;
+    INT32 state1;
+    INT32 state2;
+    INT32 state3;
 };
-
-//  DEPRECATED:
-
-// struct FldTelegram
-// {
-//     INT32 type;
-//     ElementName name;
-//     INT32 state1;
-//     INT32 state2;
-//     INT32 state3;
-//     UINT16 md4;
-// };
-
-// struct GuiTelegram
-// {
-//     INT32 type;
-//     ElementName name;
-//     INT32 state;
-//     UINT16 md4;
-// };
-
-// struct RastaTelegram
-// {
-//     INT32 type;
-//     UINT32 id;
-//     INT32 state1;
-//     INT32 state2;
-//     INT32 state3;
-//     UINT16 md4;
-// };
-
 
 #include <baselib/packEnd.h>
 

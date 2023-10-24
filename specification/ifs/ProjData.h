@@ -24,6 +24,7 @@ struct ProjTSW
 struct ProjSIG
 {
     ElementName name;
+    INT32 type;
 };
 
 struct ProjLCR

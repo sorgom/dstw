@@ -19,6 +19,8 @@ rxNoc = re.compile(r'// *NO_COV *>> *\n(.*?)// *<< *NO_COV', re.S)
 rxSrc = re.compile(r'^.*?0:Source:(.*)')
 rxLin = re.compile(r'\n')
 rxLoc = re.compile(r'^(\S+).*?(\d+)$', re.M)
+rxNul = re.compile(r' 0 ')
+rxNlp = re.compile(r' 0.0')
 
 class Gcov(object):
 
@@ -69,6 +71,7 @@ class Gcov(object):
         res.insert(0, head)
         res.append(form % ('total', tloc, tuncov, tuncov * 100.0 / tloc))
         out = '\n'.join(res)
+        out = rxNlp.sub('  --', rxNul.sub('-- ', out))
         if self.verbose: print(out)
         return out
 

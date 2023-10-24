@@ -19,7 +19,7 @@
 
 namespace test
 {
-    template <UINT32 NTSW = CAPACITY_TSW, UINT32 NSIG = CAPACITY_SIG, UINT32 NLCR = CAPACITY_LCR, UINT32 NSEG = CAPACITY_SEG>
+    template <UINT32 NTSW = 1, UINT32 NSIG = 1, UINT32 NLCR = 1, UINT32 NSEG = 1>
     class GenProjData : public ProjData
     {
     public:
@@ -41,6 +41,11 @@ namespace test
             preset(mSEG, "SEG");
         }
     
+        inline void setSigType(UINT32 pos, INT32 type)
+        {
+            mSIG.at(pos).type = type;
+        }
+
     private:
         SimpleStackArray<ProjTSW, NTSW> mTSW;
         SimpleStackArray<ProjSIG, NSIG> mSIG;

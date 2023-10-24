@@ -12,7 +12,7 @@ void TSW_Hub::fromFld(const FldState& tele, const UINT32 pos)
     I_TSW_Provider& prov = ddi::getTSW_Provider();
     if (prov.has(pos))
     {
-        prov.at(pos).fromFld(tele.state);
+        prov.at(pos).fromFld(tele.state1);
     }
     else
     {pass();}
@@ -23,7 +23,7 @@ void TSW_Hub::fromGui(const GuiCmd& tele, const UINT32 pos)
     I_TSW_Provider& prov = ddi::getTSW_Provider();
     if (prov.has(pos))
     {
-        prov.at(pos).fromGui(tele.cmd);
+        prov.at(pos).fromGui(tele.cmd1);
     }
     else
     {pass();}
@@ -35,7 +35,7 @@ void TSW_Hub::toFld(const UINT32 id, const INT32 cmd) const
     Mem::zero(cmdFld);
     if (ddi::getDispatcher().label(cmdFld.name, id))
     {
-        cmdFld.cmd = cmd;
+        cmdFld.cmd1 = cmd;
         ddi::getFldCom().send(cmdFld);
     }
     else
@@ -48,7 +48,7 @@ void TSW_Hub::toGui(const UINT32 id, const INT32 state) const
     Mem::zero(stateGui);
     if (ddi::getDispatcher().label(stateGui.name, id))
     {
-        stateGui.state = state;
+        stateGui.state1 = state;
         ddi::getGuiCom().send(stateGui);
     }
     else

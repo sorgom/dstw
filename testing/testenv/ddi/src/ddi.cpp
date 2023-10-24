@@ -40,6 +40,7 @@ namespace ddi
         DDI_MEMB(FldCom)
         DDI_MEMB(GuiCom)
         DDI_MEMB(Loader)
+        DDI_MEMB(SIG_Provider)
         DDI_MEMB(TSW)
         DDI_MEMB(TSW_Hub)
         DDI_MEMB(TSW_Provider)
@@ -53,6 +54,7 @@ namespace ddi
         //# DDI_CON : APP
         DDI_CON(Dispatcher)
         DDI_CON(Loader)
+        DDI_CON(SIG_Provider)
         DDI_CON(TSW_Hub)
         DDI_CON(TSW_Provider)
         //# END
@@ -71,6 +73,7 @@ namespace ddi
         DDI_RESET(FldCom)
         DDI_RESET(GuiCom)
         DDI_RESET(Loader)
+        DDI_RESET(SIG_Provider)
         DDI_RESET(TSW)
         DDI_RESET(TSW_Hub)
         DDI_RESET(TSW_Provider)
@@ -82,6 +85,7 @@ namespace ddi
     DDI_DEF(FldCom)
     DDI_DEF(GuiCom)
     DDI_DEF(Loader)
+    DDI_DEF(SIG_Provider)
     DDI_DEF(TSW)
     DDI_DEF(TSW_Hub)
     DDI_DEF(TSW_Provider)

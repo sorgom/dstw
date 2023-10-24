@@ -65,9 +65,12 @@ bool Dispatcher::dispatch(const FldState& tele) const
             break;
         case SUBSYS_LCR:
             break;
+// NO_COV >>
+// assignment limited by enum            
         default:
             res = false;
             break;
+// << NO_COV
         }
     }
     return res;
@@ -94,9 +97,12 @@ bool Dispatcher::dispatch(const GuiCmd& tele) const
             break;
         case SUBSYS_LCR:
             break;
+// NO_COV >>
+// assignment limited by enum            
         default:
             res = false;
             break;
+// << NO_COV
         }
     }
     return res;

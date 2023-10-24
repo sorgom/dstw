@@ -12,6 +12,7 @@
 //## INCLUDES
 #include <Dispatcher/Dispatcher.h>
 #include <Loader/Loader.h>
+#include <SIG/SIG_Provider.h>
 #include <TSW/TSW_Hub.h>
 #include <TSW/TSW_Provider.h>
 //## END
@@ -25,6 +26,7 @@ namespace ddi
     //# DDI_INLINE
     DDI_INLINE(Dispatcher)
     DDI_INLINE(Loader)
+    DDI_INLINE(SIG_Provider)
     DDI_INLINE(TSW_Hub)
     DDI_INLINE(TSW_Provider)
     //# END

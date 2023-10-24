@@ -23,7 +23,7 @@ namespace test
     C_STR_DEF(ProjSIG)
     C_STR_DEF(ProjTSW)
     C_STR_DEF(SIG)
-    C_STR_DEF(SIG_Hub)
+    C_STR_DEF(SIG_Provider)
     C_STR_DEF(StateGui)
     C_STR_DEF(TSW)
     C_STR_DEF(TSW_Hub)

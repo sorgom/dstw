@@ -182,4 +182,61 @@ private:
     StackArrayIndex();
 };
 
+template <UINT32 SIZE, UINT32 CAP>
+class StackByteArray
+{
+public:
+    inline StackByteArray():
+        mSize(0)
+    {}
+
+    inline static UINT32 capacity()
+    {
+        return CAP;
+    }
+
+    inline void reset()
+    {
+        mSize = 0;
+    }
+
+    inline UINT32 size() const
+    {
+        return mSize;
+    }
+
+    inline bool isFull() const
+    {
+        return mSize >= CAP;
+    }
+
+    inline bool hasSpace() const
+    {
+        return mSize < CAP;
+    }
+
+    inline bool has(UINT32 pos) const
+    {
+        return pos < mSize;
+    }
+
+    inline PTR getPtr(UINT32 pos)
+    {
+        return mBytes + SIZE * pos;
+    }
+
+    inline CPTR getPtr(UINT32 pos) const
+    {
+        return mBytes + SIZE * pos;
+    }
+
+    inline PTR addPtr() 
+    {
+        return getPtr(mSize++);
+    }
+private:
+    BYTE mBytes[SIZE * CAP];
+    UINT32 mSize;
+};
+
 #endif // H_
