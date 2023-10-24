@@ -1,4 +1,4 @@
-#include <Dispatcher/NtpArray.h>
+#include <baselib/NtpArray.h>
 
 const Ntp& genNtp(
     const ElementName& name,

@@ -3,7 +3,7 @@
 //  ============================================================
 //  created by Manfred Sorgo
 #include <testlib/TestGroupBase.h>
-#include <Dispatcher/Dispatcher.h>
+#include <system/Dispatcher.h>
 
 namespace test
 {
@@ -19,12 +19,12 @@ namespace test
         }
     };
 
-    TEST_GROUP_BASE(DSP_02, TestGroupDSP)
+    TEST_GROUP_BASE(DSP_01, TestGroupDSP)
     {};
 
     //  test type: equivalence class test
     //  Dispatcher assign and label
-    TEST(DSP_02, T01)
+    TEST(DSP_01, T01)
     {
         INT32 ret = false;
         bool ok = false;
@@ -62,7 +62,7 @@ namespace test
 
     //  test type: equivalence class test
     //  Dispatcher assign and label
-    TEST(DSP_02, T02)
+    TEST(DSP_01, T02)
     {
         SETUP()
         //  assign element names equivalent to capacity
@@ -147,7 +147,7 @@ namespace test
 
     //  test type: coverage
     //  retrieve instance
-    TEST(DSP_02, T03)
+    TEST(DSP_01, T03)
     {
         unmock();
         I_Dispatcher& inst = ddi::getDispatcher();

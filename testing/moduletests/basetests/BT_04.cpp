@@ -4,15 +4,15 @@
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <Dispatcher/NtpArray.h>
+#include <baselib/NtpArray.h>
 
 namespace test
 {
 
-    TEST_GROUP_BASE(DSP_01, TestGroupBase) {};
+    TEST_GROUP_BASE(BT_04, TestGroupBase) {};
 
     //  test type: equivalence class test
-    TEST(DSP_01, T01)
+    TEST(BT_04, T01)
     {
         // cout << endl;
         // TestStepper::show(1);

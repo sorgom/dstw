@@ -10,11 +10,11 @@
 #define DDI_H
 
 //## INCLUDES
-#include <Dispatcher/Dispatcher.h>
-#include <Loader/Loader.h>
 #include <SIG/SIG_Provider.h>
 #include <TSW/TSW_Hub.h>
 #include <TSW/TSW_Provider.h>
+#include <system/Dispatcher.h>
+#include <system/Loader.h>
 //## END
 
 //  I_NAME& getNAME() { return NAME::instance(); }
