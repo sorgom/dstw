@@ -1,4 +1,3 @@
-
 #include <TSW/TSW.h>
 #include <ddi/ddi.h>
 
@@ -7,21 +6,48 @@ void TSW::fromGui(const INT32 cmd)
     switch(cmd)
     {
     case TSW_GUI_GMD_WU:
-        WU();
+        wu();
         break;
-//  TODO:
-//  NO_COV >>
     case TSW_GUI_GMD_LEFT:
+        swLeft();
         break;
     case TSW_GUI_GMD_RIGHT:
+        swRight();
         break;
-//  << NO_COV
     default:
         break;
     };
 }
 
-void TSW::WU()
+void TSW::swLeft()
+{
+    switch (mState)
+    {
+    case TSW_TO_GUI_LEFT:
+    case TSW_TO_GUI_WAIT_LEFT:
+        break;
+    default:
+        toFld(TSW_TO_FLD_LEFT);
+        chgState(TSW_TO_GUI_WAIT_LEFT);
+        break;
+    }
+}
+
+void TSW::swRight()
+{
+    switch (mState)
+    {
+    case TSW_TO_GUI_RIGHT:
+    case TSW_TO_GUI_WAIT_RIGHT:
+        break;
+    default:
+        toFld(TSW_TO_FLD_RIGHT);
+        chgState(TSW_TO_GUI_WAIT_RIGHT);
+        break;
+    }
+}
+
+void TSW::wu()
 {
     switch(mState)
     {
@@ -33,14 +59,8 @@ void TSW::WU()
         toFld(TSW_TO_FLD_LEFT);
         chgState(TSW_TO_GUI_WAIT_LEFT);
         break;
-    case TSW_TO_GUI_WAIT_LEFT:
-    case TSW_TO_GUI_WAIT_RIGHT:
-    case TSW_TO_GUI_UNDEF:
-        break;
-//  NO_COV >>
     default:
         break;
-//  << NO_COV
     };
 }
 
@@ -78,5 +98,3 @@ void TSW::toFld(INT32 state) const
 {
     ddi::getTSW_Hub().toFld(mId, state);
 } 
-
-

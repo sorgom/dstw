@@ -28,7 +28,9 @@ private:
     const UINT32 mId;
     INT32 mState;
 
-    void WU();
+    void wu();
+    void swLeft();
+    void swRight();
     void chgState(INT32 state);
     void toFld(INT32 state) const;
 

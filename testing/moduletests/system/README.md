@@ -2,5 +2,5 @@
 
 **DSP_01.cpp**
 ```
-test of NtpArray / NtpIndex
+test of module Dispatcher
 ```

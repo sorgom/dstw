@@ -10,26 +10,32 @@ definiton of complex data types
 ```
 interface Dispatcher
 
-    //  when loading project data
-    //  subsytems assign themselfs with:
-    //  - element name
-    //  - subsystem id
-    //  - own processing element position
-    //  and shall recieve:
-    //  - dispatcher id
-    //  ============================================================
-    virtual INT32 assign(const ElementName& name, E_Subsys subs, UINT32 pos) = 0;
+when loading project data
+subsytems assign themselfs with:
+- element name
+- subsystem id
+- own processing element position
+and shall recieve:
+- dispatcher id
 
-    virtual bool label(ElementName& name, UINT32 id) const = 0;
+when sending telegrams
+subsytems shall retieve the assigned name with:
+- dispatcher id returned at assignement
 
+field states shall be dispatched to subsystems
 
-    virtual bool dispatch(const FldState& tele) const = 0;
-
+GUI commands shall be dispatched to subsystems
 ```
 
 **I_FldCom.h**
 ```
 Interface FldCom
+- field communication device
+```
+
+**I_GuiCom.h**
+```
+Interface GuiCom
 - field communication device
 ```
 
@@ -49,9 +55,9 @@ the Loader is called at sytem start and shall:
 interface SIG
 ```
 
-**I_SIG_Hub.h**
+**I_SIG_Provider.h**
 ```
-interface SIG_Hub
+interface SIG_Provider
 ```
 
 **I_TSW.h**
@@ -77,6 +83,5 @@ projectation data types
 **SystemEnums.h**
 ```
 system wide enumerations
--   E_Result commonly used result type
 -   E_Subsys subsytems
 ```

@@ -15,17 +15,17 @@ mock for interface Dispatcher
 mock for interface I_FldCom
 ```
 
+**M_GuiCom.h**
+```
+mock for interface I_CuiCom
+```
+
 **M_Instances.h**
 ```
 mock instances (for ddi)
 for interface I_<NAME>
 - function m_<NAME>() returns mock instance
 - function mock_<NAME>() plugs mock instance into ddi
-```
-
-**M_SIG_Hub.h**
-```
-mock for interface I_SIG_Hub
 ```
 
 **M_TSW.h**

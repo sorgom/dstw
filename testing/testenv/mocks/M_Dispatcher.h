@@ -58,7 +58,7 @@ namespace test
         inline bool label(ElementName& name, UINT32 id) const
         {
             Mem::copy(name, mLabel);
-            return call("label").PARAM(id).RETURN_DEF_INT(true);
+            return call("label").PARAM(id).RETURN_DEF_BOOL(true);
         }
         inline void setLabel(const ElementName& name)
         {

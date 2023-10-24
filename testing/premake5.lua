@@ -63,7 +63,8 @@ project 'tests_coverage'
     targetdir   'bin'
 
     files { 
-        '**.cpp',
+        'testenv/**.cpp',
+        'moduletests/**.cpp'
     }
 
     defines { 'DEBUG' }

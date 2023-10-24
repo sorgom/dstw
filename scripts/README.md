@@ -97,6 +97,11 @@ simple code scanner for code generator features
 some commonly used features
 ```
 
+**preCommit.py**
+```
+all pre-commit script calls in one
+```
+
 **premake.sh**
 ```
 re-build Makefiles

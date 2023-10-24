@@ -20,11 +20,11 @@ namespace test
 
         inline bool has(UINT32 pos) const
         {
-            return mSize > pos;
+            return call("has").PARAM(pos).RETURN_DEF_BOOL(true);
         }
-        inline void setSize(UINT32 val)
+        inline void expectHas(UINT32 pos, bool ret = true) const
         {
-            mSize = val;
+            expect("has").PARAM(pos).AND_RETURN_BOOL(ret);
         }
 
         inline I_TSW& at(UINT32 pos)
