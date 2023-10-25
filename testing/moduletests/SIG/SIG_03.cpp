@@ -11,12 +11,13 @@ namespace test
     {
     protected:
         SIG_Provider mSUT;
-        GenProjData<1, 2> mProjData;
+        GenProjData<1, 3> mProjData;
         inline TestGroupSIP()
         {
             mockAll();
             mProjData.setSigType(0, SIG_TYPE_H);
             mProjData.setSigType(1, SIG_TYPE_N); 
+            mProjData.setSigType(2, SIG_TYPE_H_N); 
         }
         const ElementName& sigName(UINT32 pos)
         {
@@ -33,6 +34,7 @@ namespace test
         STEP(1)
         L_CHECK_EQUAL_SIZE(SIG, SIG_H)
         L_CHECK_EQUAL_SIZE(SIG, SIG_N)
+        L_CHECK_EQUAL_SIZE(SIG, SIG_H_N)
     }
 
     //  test type: equivalence class test
@@ -42,13 +44,15 @@ namespace test
         STEP(1)
         m_Dispatcher().expectAssign(sigName(0), SUBSYS_SIG, 0, 0);
         m_Dispatcher().expectAssign(sigName(1), SUBSYS_SIG, 1, 1);
+        m_Dispatcher().expectAssign(sigName(2), SUBSYS_SIG, 2, 2);
         const bool ret = mSUT.load(mProjData.pSIG, mProjData.numSIG);
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ret)
-        L_CHECK_TRUE(mSUT.has(1))
-        L_CHECK_FALSE(mSUT.has(2))
-        L_CHECK_EQUAL(SIG_TYPE_H, mSUT.at(0).type())
-        L_CHECK_EQUAL(SIG_TYPE_N, mSUT.at(1).type())
+        L_CHECK_TRUE(mSUT.has(2))
+        L_CHECK_FALSE(mSUT.has(3))
+        L_CHECK_EQUAL(SIG_TYPE_H,   mSUT.at(0).type())
+        L_CHECK_EQUAL(SIG_TYPE_N,   mSUT.at(1).type())
+        L_CHECK_EQUAL(SIG_TYPE_H_N, mSUT.at(2).type())
     }
 
     //  test type: equivalence class test
@@ -56,11 +60,12 @@ namespace test
     TEST(SIG_03, T03)
     {
         SETUP()
-        mProjData.setSigType(1, SIG_TYPE_H + 100); 
+        mProjData.setSigType(2, SIG_TYPE_H + 100); 
         
         STEP(1)
         m_Dispatcher().expectAssign(sigName(0), SUBSYS_SIG, 0, 0);
         m_Dispatcher().expectAssign(sigName(1), SUBSYS_SIG, 1, 1);
+        m_Dispatcher().expectAssign(sigName(2), SUBSYS_SIG, 2, 2);
         const bool ret = mSUT.load(mProjData.pSIG, mProjData.numSIG);
         CHECK_N_CLEAR()
         L_CHECK_FALSE(ret)
@@ -84,7 +89,8 @@ namespace test
     {
         STEP(1)
         m_Dispatcher().expectAssign(sigName(0), SUBSYS_SIG, 0, 0);
-        m_Dispatcher().expectAssign(sigName(1), SUBSYS_SIG, 1, -1);
+        m_Dispatcher().expectAssign(sigName(1), SUBSYS_SIG, 1, 1);
+        m_Dispatcher().expectAssign(sigName(2), SUBSYS_SIG, 2, -1);
         const bool ret = mSUT.load(mProjData.pSIG, mProjData.numSIG);
         CHECK_N_CLEAR()
         L_CHECK_FALSE(ret)

@@ -18,7 +18,7 @@ class TSW : public I_TSW
 public:
     inline TSW(UINT32 id):
         mId(id),
-        mState(TSW_TO_GUI_UNDEF)
+        mState(TSW_STATE_UNDEF)
     {}
 
     void fromGui(INT32 cmd);

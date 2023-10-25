@@ -23,12 +23,12 @@ void TSW::swLeft()
 {
     switch (mState)
     {
-    case TSW_TO_GUI_LEFT:
-    case TSW_TO_GUI_WAIT_LEFT:
+    case TSW_STATE_LEFT:
+    case TSW_STATE_WAIT_LEFT:
         break;
     default:
-        toFld(TSW_TO_FLD_LEFT);
-        chgState(TSW_TO_GUI_WAIT_LEFT);
+        toFld(TSW_STATE_LEFT);
+        chgState(TSW_STATE_WAIT_LEFT);
         break;
     }
 }
@@ -37,12 +37,12 @@ void TSW::swRight()
 {
     switch (mState)
     {
-    case TSW_TO_GUI_RIGHT:
-    case TSW_TO_GUI_WAIT_RIGHT:
+    case TSW_STATE_RIGHT:
+    case TSW_STATE_WAIT_RIGHT:
         break;
     default:
-        toFld(TSW_TO_FLD_RIGHT);
-        chgState(TSW_TO_GUI_WAIT_RIGHT);
+        toFld(TSW_STATE_RIGHT);
+        chgState(TSW_STATE_WAIT_RIGHT);
         break;
     }
 }
@@ -51,13 +51,13 @@ void TSW::wu()
 {
     switch(mState)
     {
-    case TSW_TO_GUI_LEFT:
-        toFld(TSW_TO_FLD_RIGHT);
-        chgState(TSW_TO_GUI_WAIT_RIGHT);
+    case TSW_STATE_LEFT:
+        toFld(TSW_STATE_RIGHT);
+        chgState(TSW_STATE_WAIT_RIGHT);
         break;
-    case TSW_TO_GUI_RIGHT:
-        toFld(TSW_TO_FLD_LEFT);
-        chgState(TSW_TO_GUI_WAIT_LEFT);
+    case TSW_STATE_RIGHT:
+        toFld(TSW_STATE_LEFT);
+        chgState(TSW_STATE_WAIT_LEFT);
         break;
     default:
         break;
@@ -68,17 +68,11 @@ void TSW::fromFld(const INT32 state)
 {
     switch(state)
     {
-    case TSW_FROM_FLD_LEFT:
-        chgState(TSW_TO_GUI_LEFT);
-        break;
-    case TSW_FROM_FLD_RIGHT:
-        chgState(TSW_TO_GUI_RIGHT);
-        break;
-    case TSW_FROM_FLD_UNDEF:
-        chgState(TSW_TO_GUI_UNDEF);
-        break;
-    case TSW_FROM_FLD_DEFECT:
-        chgState(TSW_TO_GUI_DEFECT);
+    case TSW_STATE_LEFT:
+    case TSW_STATE_RIGHT:
+    case TSW_STATE_UNDEF:
+    case TSW_STATE_DEFECT:
+        chgState(state);
         break;
     default:
         break;

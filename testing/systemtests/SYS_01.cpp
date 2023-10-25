@@ -42,10 +42,10 @@ namespace test
         {
             LSTEP(n)
             genElementName(fldState.name, CAPACITY_TSW - n, "TSW");
-            fldState.state1 = TSW_FROM_FLD_LEFT;
+            fldState.state1 = TSW_STATE_LEFT;
 
             Mem::copy(stateGui.name, fldState.name);
-            stateGui.state1 = TSW_TO_GUI_LEFT;
+            stateGui.state1 = TSW_STATE_LEFT;
 
             m_GuiCom().expectSend(stateGui);
             ddi::getDispatcher().dispatch(fldState);
@@ -67,10 +67,10 @@ namespace test
             guiCmd.cmd1 = TSW_GUI_GMD_WU;
 
             Mem::copy(cmdFld.name, guiCmd.name);
-            cmdFld.cmd1 = TSW_TO_FLD_RIGHT;
+            cmdFld.cmd1 = TSW_STATE_RIGHT;
 
             Mem::copy(stateGui.name, guiCmd.name);
-            stateGui.state1 = TSW_TO_GUI_WAIT_RIGHT;
+            stateGui.state1 = TSW_STATE_WAIT_RIGHT;
 
             m_FldCom().expectSend(cmdFld);
             m_GuiCom().expectSend(stateGui);

@@ -9,28 +9,14 @@
 
 #include <baselib/BaseTypes.h>
 
-enum E_TswTromFld
+enum E_TswState
 {
-    TSW_FROM_FLD_LEFT = 101,
-    TSW_FROM_FLD_RIGHT,
-    TSW_FROM_FLD_UNDEF,
-    TSW_FROM_FLD_DEFECT
-};
-
-enum E_TswToFld
-{
-    TSW_TO_FLD_LEFT = 201,
-    TSW_TO_FLD_RIGHT
-};
-
-enum E_TswToGui
-{
-    TSW_TO_GUI_LEFT = 301,
-    TSW_TO_GUI_RIGHT,
-    TSW_TO_GUI_WAIT_LEFT,
-    TSW_TO_GUI_WAIT_RIGHT,
-    TSW_TO_GUI_UNDEF,
-    TSW_TO_GUI_DEFECT
+    TSW_STATE_LEFT = 101,
+    TSW_STATE_RIGHT,
+    TSW_STATE_UNDEF,
+    TSW_STATE_DEFECT,
+    TSW_STATE_WAIT_LEFT,
+    TSW_STATE_WAIT_RIGHT
 };
 
 enum E_TswGuiCmd
