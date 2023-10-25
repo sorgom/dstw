@@ -18,13 +18,13 @@ public:
     inline SIG(UINT32 id):
         mId(id),
         mStateGui(SIG_STATE_UNDEF),
-        mSpeed(0)
+        mSpeedGui(0)
     {}
 
 protected:
     const UINT32 mId;
     INT32 mStateGui;
-    INT32 mSpeed;
+    INT32 mSpeedGui;
 
     void toGui() const;
     void toFld(INT32 state, INT32 speed) const;

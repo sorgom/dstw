@@ -3,7 +3,7 @@
 
 void SIG::toGui() const
 {
-    ddi::getSIG_Hub().toGui(mId, mStateGui, mSpeed);
+    ddi::getSIG_Hub().toGui(mId, mStateGui, mSpeedGui);
 }
 
 void SIG::toFld(const INT32 state, const INT32 speed) const
@@ -54,10 +54,10 @@ void SIG_N::fromFld(const INT32 state, const INT32 speed)
     case SIG_STATE_N1:
     case SIG_STATE_UNDEF:
     case SIG_STATE_DEFECT:
-        if ((state != mStateGui) or (speed != mSpeed))
+        if ((state != mStateGui) or (speed != mSpeedGui))
         {
             mStateGui = state;
-            mSpeed = speed;
+            mSpeedGui = speed;
             toGui();
         }
     default:
@@ -71,7 +71,7 @@ void SIG_N::fromGui(const INT32 state, const INT32 speed)
     {
     case SIG_STATE_N0:
     case SIG_STATE_N1:
-        if ((state != mStateGui) or (speed != mSpeed))
+        if ((state != mStateGui) or (speed != mSpeedGui))
         {
             toFld(state, speed);
             mStateGui = SIG_STATE_WAIT;
@@ -92,10 +92,10 @@ void SIG_H_N::fromFld(const INT32 state, const INT32 speed)
     case SIG_STATE_H1_N1:
     case SIG_STATE_UNDEF:
     case SIG_STATE_DEFECT:
-        if ((state != mStateGui) or (speed != mSpeed))
+        if ((state != mStateGui) or (speed != mSpeedGui))
         {
             mStateGui = state;
-            mSpeed = speed;
+            mSpeedGui = speed;
             toGui();
         }
      default:
@@ -111,7 +111,7 @@ void SIG_H_N::fromGui(const INT32 state, const INT32 speed)
     case SIG_STATE_H0_N1:
     case SIG_STATE_H1_N0:
     case SIG_STATE_H1_N1:
-        if ((state != mStateGui) or (speed != mSpeed))
+        if ((state != mStateGui) or (speed != mSpeedGui))
         {
             toFld(state, speed);
             mStateGui = SIG_STATE_WAIT;
