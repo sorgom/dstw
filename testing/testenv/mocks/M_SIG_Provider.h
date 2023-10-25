@@ -1,22 +1,22 @@
 //  ============================================================
-//  mock for interface TSW_Provider
+//  mock for interface SIG_Provider
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef M_TSW_PROVIDER_H
-#define M_TSW_PROVIDER_H
+#ifndef M_SIG_PROVIDER_H
+#define M_SIG_PROVIDER_H
 
-#include <ifs/I_TSW_Provider.h>
+#include <ifs/I_SIG_Provider.h>
 #include "M_Base.h"
-#include "M_TSW.h"
+#include "M_SIG.h"
 
 namespace test
 {
-    MOCK_CLASS(TSW_Provider)
+    MOCK_CLASS(SIG_Provider)
     {
     public:
-        MOCK_CON(TSW_Provider)
+        MOCK_CON(SIG_Provider)
 
         inline bool has(UINT32 pos) const
         {
@@ -27,12 +27,12 @@ namespace test
             expect("has").PARAM(pos).AND_RETURN_BOOL(ret);
         }
 
-        inline I_TSW& at(UINT32 pos)
+        inline I_SIG& at(UINT32 pos)
         {
-            return M_TSW::instance();
+            return M_SIG::instance();
         }
 
-        inline bool load(const ProjTSW* data, UINT32 num)
+        inline bool load(const ProjSIG* data, UINT32 num)
         {
             return call("load").PARAM(num).RETURN_DEF_BOOL(true);
         }

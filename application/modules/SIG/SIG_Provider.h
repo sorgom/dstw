@@ -11,7 +11,7 @@
 #include <baselib/StackArray.h>
 #include <ifs/I_SIG_Provider.h>
 #include <setup/capacities.h>
-#include <SIG/SIG.h>
+#include <SIG/SIG_X.h>
 
 class SIG_Provider : public I_SIG_Provider
 {
@@ -33,8 +33,8 @@ public:
 private:
     // union MaxSize
     // {
-    //     BYTE b1[sizeof(SIG_Main)];
-    //     BYTE b2[sizeof(SIG_Supp)];
+    //     BYTE b1[sizeof(SIG_H)];
+    //     BYTE b2[sizeof(SIG_N)];
     // };
     SimpleStackArray<SIG, CAPACITY_SIG> mSIGs;
 };

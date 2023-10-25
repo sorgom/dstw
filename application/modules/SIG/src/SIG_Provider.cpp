@@ -27,11 +27,14 @@ bool SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
             {
                 switch (proj.type)
                 {
-                    case SIG_TYPE_MAIN:
-                        new (mSIGs.addPtr()) SIG_Main(id);
+                    case SIG_TYPE_H:
+                        new (mSIGs.addPtr()) SIG_H(id);
                         break;
-                    case SIG_TYPE_SUPP:
-                        new (mSIGs.addPtr()) SIG_Supp(id);
+                    case SIG_TYPE_N:
+                        new (mSIGs.addPtr()) SIG_N(id);
+                        break;
+                    case SIG_TYPE_H_N:
+                        new (mSIGs.addPtr()) SIG_H_N(id);
                         break;
                     default:
                         ok = false;

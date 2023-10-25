@@ -11,20 +11,35 @@
 
 enum E_SigType
 {
-    SIG_TYPE_MAIN = 100,
-    SIG_TYPE_SUPP,
-    SIG_TYPE_MAIN_SUPP,
-    SIG_TYPE_SHUNT
+    SIG_TYPE_H = 100,
+    SIG_TYPE_N,
+    SIG_TYPE_H_N,
+    SIG_TYPE_S
+};
+
+enum E_SigState
+{
+    SIG_STATE_H0 = 101,
+    SIG_STATE_H1,
+    SIG_STATE_N0,
+    SIG_STATE_N1,
+    SIG_STATE_H0_N0,
+    SIG_STATE_H0_N1,
+    SIG_STATE_H1_N0,
+    SIG_STATE_H1_N1,
+    SIG_STATE_UNDEF,
+    SIG_STATE_DEFECT,
+    SIG_STATE_WAIT
 };
 
 class I_SIG
 {
 public:
 //  commands from GUI
-    virtual void fromGui(INT32 cmd1, INT32 cmd2, INT32 cmd3) = 0;
+    virtual void fromGui(INT32 state, INT32 speed) = 0;
 
 //  infos from field element
-    virtual void fromFld(INT32 state1, INT32 state2, INT32 state3) = 0;
+    virtual void fromFld(INT32 state, INT32 speed) = 0;
 
 //  type info
     virtual INT32 type() const = 0;    

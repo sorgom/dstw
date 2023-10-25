@@ -1,10 +1,10 @@
 ## directory content
 
-**SIG.h**
+**SIG_X.h**
 ```
 class SIG_X implements I_SIG
-- SIG_Main  main signal
-- SIG_Supp  support signal with speed indicator
+- SIG_H  main signal
+- SIG_N  support signal with speed indicator
 ```
 
 **SIG_Provider.h**

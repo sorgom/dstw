@@ -10,6 +10,7 @@
 #define DDI_H
 
 //## INCLUDES
+#include <SIG/SIG_Hub.h>
 #include <SIG/SIG_Provider.h>
 #include <TSW/TSW_Hub.h>
 #include <TSW/TSW_Provider.h>
@@ -26,6 +27,7 @@ namespace ddi
     //# DDI_INLINE
     DDI_INLINE(Dispatcher)
     DDI_INLINE(Loader)
+    DDI_INLINE(SIG_Hub)
     DDI_INLINE(SIG_Provider)
     DDI_INLINE(TSW_Hub)
     DDI_INLINE(TSW_Provider)

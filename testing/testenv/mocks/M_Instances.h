@@ -16,6 +16,9 @@
 #include "M_Dispatcher.h"
 #include "M_FldCom.h"
 #include "M_GuiCom.h"
+#include "M_SIG.h"
+#include "M_SIG_Hub.h"
+#include "M_SIG_Provider.h"
 #include "M_TSW.h"
 #include "M_TSW_Hub.h"
 #include "M_TSW_Provider.h"
@@ -31,6 +34,9 @@ namespace test
     MOCK_DEC(Dispatcher)
     MOCK_DEC(FldCom)
     MOCK_DEC(GuiCom)
+    MOCK_DEC(SIG)
+    MOCK_DEC(SIG_Hub)
+    MOCK_DEC(SIG_Provider)
     MOCK_DEC(TSW)
     MOCK_DEC(TSW_Hub)
     MOCK_DEC(TSW_Provider)

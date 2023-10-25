@@ -14,7 +14,6 @@ OSTREAM_DEF(CmdFld)
         << DOUT(name)
         << DOUT(cmd1)
         << DOUT(cmd2)
-        << DOUT(cmd3)
     ;
 }
 
@@ -24,7 +23,6 @@ OSTREAM_DEF(FldState)
         << DOUT(name)
         << DOUT(state1)
         << DOUT(state2)
-        << DOUT(state3)
     ;
 }
 
@@ -34,7 +32,6 @@ OSTREAM_DEF(GuiCmd)
         << DOUT(name)
         << DOUT(cmd1)
         << DOUT(cmd2)
-        << DOUT(cmd3)
     ;
 }
 
@@ -44,7 +41,6 @@ OSTREAM_DEF(StateGui)
         << DOUT(name)
         << DOUT(state1)
         << DOUT(state2)
-        << DOUT(state3)
     ;
 }
 

@@ -40,6 +40,8 @@ namespace ddi
         DDI_MEMB(FldCom)
         DDI_MEMB(GuiCom)
         DDI_MEMB(Loader)
+        DDI_MEMB(SIG)
+        DDI_MEMB(SIG_Hub)
         DDI_MEMB(SIG_Provider)
         DDI_MEMB(TSW)
         DDI_MEMB(TSW_Hub)
@@ -54,6 +56,7 @@ namespace ddi
         //# DDI_CON : APP
         DDI_CON(Dispatcher)
         DDI_CON(Loader)
+        DDI_CON(SIG_Hub)
         DDI_CON(SIG_Provider)
         DDI_CON(TSW_Hub)
         DDI_CON(TSW_Provider)
@@ -61,6 +64,7 @@ namespace ddi
         //# DDI_CON_MOCK : MOCK
         DDI_CON_MOCK(FldCom)
         DDI_CON_MOCK(GuiCom)
+        DDI_CON_MOCK(SIG)
         DDI_CON_MOCK(TSW)
         //# END
         mTerm(0)
@@ -73,6 +77,8 @@ namespace ddi
         DDI_RESET(FldCom)
         DDI_RESET(GuiCom)
         DDI_RESET(Loader)
+        DDI_RESET(SIG)
+        DDI_RESET(SIG_Hub)
         DDI_RESET(SIG_Provider)
         DDI_RESET(TSW)
         DDI_RESET(TSW_Hub)
@@ -85,6 +91,8 @@ namespace ddi
     DDI_DEF(FldCom)
     DDI_DEF(GuiCom)
     DDI_DEF(Loader)
+    DDI_DEF(SIG)
+    DDI_DEF(SIG_Hub)
     DDI_DEF(SIG_Provider)
     DDI_DEF(TSW)
     DDI_DEF(TSW_Hub)

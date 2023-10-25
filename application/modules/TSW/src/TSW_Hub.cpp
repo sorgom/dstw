@@ -1,7 +1,5 @@
 #include <TSW/TSW_Hub.h>
 
-#include <baselib/InstanceMacros.h>
-#include <baselib/coding.h>
 #include <baselib/Mem.h>
 #include <ddi/ddi.h>
 
@@ -31,12 +29,12 @@ void TSW_Hub::fromGui(const GuiCmd& tele, const UINT32 pos)
 
 void TSW_Hub::toFld(const UINT32 id, const INT32 cmd) const
 {
-    static CmdFld cmdFld;
-    Mem::zero(cmdFld);
-    if (ddi::getDispatcher().label(cmdFld.name, id))
+    static CmdFld tele;
+    Mem::zero(tele);
+    if (ddi::getDispatcher().label(tele.name, id))
     {
-        cmdFld.cmd1 = cmd;
-        ddi::getFldCom().send(cmdFld);
+        tele.cmd1 = cmd;
+        ddi::getFldCom().send(tele);
     }
     else
     {pass();}
@@ -44,12 +42,12 @@ void TSW_Hub::toFld(const UINT32 id, const INT32 cmd) const
 
 void TSW_Hub::toGui(const UINT32 id, const INT32 state) const
 {
-    static StateGui stateGui;
-    Mem::zero(stateGui);
-    if (ddi::getDispatcher().label(stateGui.name, id))
+    static StateGui tele;
+    Mem::zero(tele);
+    if (ddi::getDispatcher().label(tele.name, id))
     {
-        stateGui.state1 = state;
-        ddi::getGuiCom().send(stateGui);
+        tele.state1 = state;
+        ddi::getGuiCom().send(tele);
     }
     else
     {pass();}

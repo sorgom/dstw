@@ -31,6 +31,7 @@ namespace test
     C_STR_DEC(ProjSIG)
     C_STR_DEC(ProjTSW)
     C_STR_DEC(SIG)
+    C_STR_DEC(SIG_Hub)
     C_STR_DEC(SIG_Provider)
     C_STR_DEC(StateGui)
     C_STR_DEC(TSW)
