@@ -5,6 +5,21 @@
 base class for mocks
 ```
 
+**M_Dispatcher.h**
+```
+mock for interface Dispatcher
+```
+
+**M_FldCom.h**
+```
+mock for interface I_FldCom
+```
+
+**M_GuiCom.h**
+```
+mock for interface I_CuiCom
+```
+
 **M_Instances.h**
 ```
 mock instances (for ddi)
@@ -13,17 +28,32 @@ for interface I_<NAME>
 - function mock_<NAME>() plugs mock instance into ddi
 ```
 
-**M_RastaPort.h**
+**M_SIG.h**
 ```
-mock for interface I_RastaPort
-```
-
-**M_SignalPort.h**
-```
-mock for interface I_SignalPort
+mock for interface SIG
 ```
 
-**M_TrackSwitchPort.h**
+**M_SIG_Hub.h**
 ```
-mock for interface I_TrackSwitchPort
+mock for interface I_SIG_Hub
+```
+
+**M_SIG_Provider.h**
+```
+mock for interface SIG_Provider
+```
+
+**M_TSW.h**
+```
+mock for interface TSW
+```
+
+**M_TSW_Hub.h**
+```
+mock for interface I_TSW_Hub
+```
+
+**M_TSW_Provider.h**
+```
+mock for interface TSW_Provider
 ```

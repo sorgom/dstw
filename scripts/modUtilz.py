@@ -4,8 +4,10 @@
 #   created by Manfred Sorgo
 
 import re
-from os.path import basename
+from os.path import basename, exists
 from subprocess import Popen, DEVNULL, PIPE
+from os import name as oname
+from sys import exit
 
 rxSpl = re.compile(r'[/\\]')
 rxHdr = re.compile(r'\.h$')
@@ -52,10 +54,35 @@ def repoDir():
     return procOut('git rev-parse --show-toplevel')
 
 def repoFiles():
-    return procOutList('git ls-tree --full-tree --name-only -r HEAD')
+    return procOutList('git ls-files')
 
 def mdCode(cont:str):
     return '\n'.join(['```', cont, '```'])
+
+def checkLinux():
+    if oname != 'posix':
+        print('linux required')
+        exit(-1)
+
+def commonLen(lines:list):
+    if len(lines) < 1: return 0
+    res = len(lines[0])
+    for n in range(1, len(lines)):
+        lin1 = lines[n - 1]
+        lin2 = lines[n]
+        ln = min(res, len(lin2))
+        res = 0
+        for p in range(0, ln):
+            if lin1[p] == lin2[p]: res += 1
+            else: break
+    return res
+
+def mdTxt(mdf, ttl):
+    if exists(mdf):
+        rxTtl = re.compile(r'\s*' + ttl + r'.*', re.M | re.S)
+        return rxTtl.sub('', fileTxt(mdf))
+    return ''
+
 
 if __name__ == '__main__':
     from projectDirs import *
@@ -66,3 +93,5 @@ if __name__ == '__main__':
     print(f'## REPO: "{repoDir()}"')
     for f in repoFiles():
         print(f)
+    
+    print(commonLen(['wumpel', 'wumpi', 'wummi']))

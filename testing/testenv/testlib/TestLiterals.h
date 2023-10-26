@@ -14,13 +14,29 @@
 
 namespace test
 {
+    C_STR_DEC(ELEM)
+
     //# C_STR_DEC
-    C_STR_DEC(RastaPort)
-    C_STR_DEC(RastaTelegram)
-    C_STR_DEC(Signal)
-    C_STR_DEC(SignalPort)
-    C_STR_DEC(TrackSwitch)
-    C_STR_DEC(TrackSwitchPort)
+    C_STR_DEC(CmdFld)
+    C_STR_DEC(Dispatcher)
+    C_STR_DEC(ElementName)
+    C_STR_DEC(FldCom)
+    C_STR_DEC(FldState)
+    C_STR_DEC(GuiCmd)
+    C_STR_DEC(GuiCom)
+    C_STR_DEC(Loader)
+    C_STR_DEC(ProjData)
+    C_STR_DEC(ProjLCR)
+    C_STR_DEC(ProjSEG)
+    C_STR_DEC(ProjSIG)
+    C_STR_DEC(ProjTSW)
+    C_STR_DEC(SIG)
+    C_STR_DEC(SIG_Hub)
+    C_STR_DEC(SIG_Provider)
+    C_STR_DEC(StateGui)
+    C_STR_DEC(TSW)
+    C_STR_DEC(TSW_Hub)
+    C_STR_DEC(TSW_Provider)
     //# END
 } // namespace
 

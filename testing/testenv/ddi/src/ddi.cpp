@@ -36,9 +36,16 @@ namespace ddi
         void reset();
 
         //# DDI_MEMB
-        DDI_MEMB(RastaPort)
-        DDI_MEMB(SignalPort)
-        DDI_MEMB(TrackSwitchPort)
+        DDI_MEMB(Dispatcher)
+        DDI_MEMB(FldCom)
+        DDI_MEMB(GuiCom)
+        DDI_MEMB(Loader)
+        DDI_MEMB(SIG)
+        DDI_MEMB(SIG_Hub)
+        DDI_MEMB(SIG_Provider)
+        DDI_MEMB(TSW)
+        DDI_MEMB(TSW_Hub)
+        DDI_MEMB(TSW_Provider)
         //# END
         int mTerm;
     };
@@ -47,11 +54,18 @@ namespace ddi
     
     DDI::DDI():
         //# DDI_CON : APP
-        DDI_CON(TrackSwitchPort)
+        DDI_CON(Dispatcher)
+        DDI_CON(Loader)
+        DDI_CON(SIG_Hub)
+        DDI_CON(SIG_Provider)
+        DDI_CON(TSW_Hub)
+        DDI_CON(TSW_Provider)
         //# END
         //# DDI_CON_MOCK : MOCK
-        DDI_CON_MOCK(RastaPort)
-        DDI_CON_MOCK(SignalPort)
+        DDI_CON_MOCK(FldCom)
+        DDI_CON_MOCK(GuiCom)
+        DDI_CON_MOCK(SIG)
+        DDI_CON_MOCK(TSW)
         //# END
         mTerm(0)
     {}
@@ -59,16 +73,30 @@ namespace ddi
     void DDI::reset()
     {
         //# DDI_RESET
-        DDI_RESET(RastaPort)
-        DDI_RESET(SignalPort)
-        DDI_RESET(TrackSwitchPort)
+        DDI_RESET(Dispatcher)
+        DDI_RESET(FldCom)
+        DDI_RESET(GuiCom)
+        DDI_RESET(Loader)
+        DDI_RESET(SIG)
+        DDI_RESET(SIG_Hub)
+        DDI_RESET(SIG_Provider)
+        DDI_RESET(TSW)
+        DDI_RESET(TSW_Hub)
+        DDI_RESET(TSW_Provider)
         //# END
     }
 
     //# DDI_DEF
-    DDI_DEF(RastaPort)
-    DDI_DEF(SignalPort)
-    DDI_DEF(TrackSwitchPort)
+    DDI_DEF(Dispatcher)
+    DDI_DEF(FldCom)
+    DDI_DEF(GuiCom)
+    DDI_DEF(Loader)
+    DDI_DEF(SIG)
+    DDI_DEF(SIG_Hub)
+    DDI_DEF(SIG_Provider)
+    DDI_DEF(TSW)
+    DDI_DEF(TSW_Hub)
+    DDI_DEF(TSW_Provider)
     //# END
 
     void reset()

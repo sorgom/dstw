@@ -9,6 +9,7 @@
 
 #include <testlib/CppUTest.h>
 #include <BaseLib/BaseTypes.h>
+#include <BaseLib/InstanceMacros.h>
 #include <sstream>
 
 //  standard mock class begin
@@ -21,7 +22,8 @@
 #define MOCK_CON(NAME) \
     inline M_ ## NAME(): \
         M_Base(c__ ## NAME) \
-    {}
+    {} \
+    static M_ ## NAME& instance();
 
 namespace test
 {

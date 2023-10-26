@@ -11,7 +11,9 @@ srcDir = topDir + '/scripts'
 tsgDir = topDir + '/testing'
 envDir = tsgDir + '/testenv'
 mocDir = envDir + '/mocks'
-ifsDir = topDir + '/application/ifs'
+spcDir = topDir + '/specification'
+diaDir = spcDir + '/diagrams'
+ifsDir = spcDir + '/ifs'
 
 if __name__ == '__main__':
     print(modDir)

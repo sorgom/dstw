@@ -19,6 +19,11 @@ installation of all comparators to plugin
 to be done at begin of test main
 ```
 
+**ostreamHelpers.h**
+```
+utilities complex ostream operators
+```
+
 **ostreams.h**
 ```
 ostream operators for complex data types

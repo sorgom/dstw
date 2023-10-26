@@ -1,25 +1,52 @@
 #include <comparators/ostreams.h>
 
-#include <iomanip>
-
 using std::ostream;
 using std::endl;
 
+OSTREAM_DEF(ElementName)
+{
+    return os << fixC(d.chars);
+}
 
-#define OSTREAM_DEF(NAME) \
-    ostream& operator << (ostream& os, const NAME& d)
-
-#define DL(NAME) \
-    std::setw(16) << std::setfill('.') << std::left << #NAME << ':' << ' ' << d.NAME << endl 
-
-OSTREAM_DEF(RastaTelegram)
+OSTREAM_DEF(CmdFld)
 {
     return os 
-        << DL(type)
-        << DL(id)
-        << DL(state1)
-        << DL(state2)
-        << DL(state3)
-        << DL(md4)
+        << DOUT(name)
+        << DOUT(cmd1)
+        << DOUT(cmd2)
+    ;
+}
+
+OSTREAM_DEF(FldState)
+{
+    return os 
+        << DOUT(name)
+        << DOUT(state1)
+        << DOUT(state2)
+    ;
+}
+
+OSTREAM_DEF(GuiCmd)
+{
+    return os 
+        << DOUT(name)
+        << DOUT(cmd1)
+        << DOUT(cmd2)
+    ;
+}
+
+OSTREAM_DEF(StateGui)
+{
+    return os 
+        << DOUT(name)
+        << DOUT(state1)
+        << DOUT(state2)
+    ;
+}
+
+OSTREAM_DEF(ProjTSW)
+{
+    return os 
+        << DOUT(name)
     ;
 }

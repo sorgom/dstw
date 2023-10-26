@@ -9,25 +9,39 @@ workspace 'Testing'
     objdir      'obj/%{prj.name}'
 
     includedirs {
-        'testenv/',
+        'testenv',
+        '../specification',
         '../application',
         '../application/modules',
+        '../devel'
     }
-    
--- module tests release   
-project 'moduletests'
-    kind        'ConsoleApp'
-    targetdir   'bin'
 
+    buildoptions { '-std=c++98 -pedantic-errors' }
+
+-- application library (build check for app sources)
+project 'application_lib'
+    kind        'StaticLib'
+    targetdir   'lib'
+    
     files { 
-        '../application/modules/*/src/*.cpp',
-        'testenv/*/src/*.cpp',
-        'tests/**.cpp',
+        '../application/**.cpp',
     }
 
     defines { 'NDEBUG' }
     optimize 'On'
+    
+-- tests release   
+project 'tests'
+    kind        'ConsoleApp'
+    targetdir   'bin'
 
+    files { 
+        '../application/**.cpp',
+        '**.cpp'
+    }
+
+    defines { 'NDEBUG' }
+    optimize 'On'
     links { 'CppUTest', 'CppUTestExt' }
 
 -- coverage instrumented application library
@@ -36,7 +50,7 @@ project 'application_coverage'
     targetdir   'lib'
     
     files { 
-        '../application/modules/*/src/*.cpp',
+        '../application/**.cpp',
     }
 
     defines { 'DEBUG' }
@@ -44,13 +58,13 @@ project 'application_coverage'
     buildoptions {'-fprofile-arcs -ftest-coverage'}
 
 -- test runtime using instrumented application library
-project 'moduletests_coverage'
+project 'tests_coverage'
     kind        'ConsoleApp'
     targetdir   'bin'
 
     files { 
-        'testenv/*/src/*.cpp',
-        'tests/**.cpp',
+        'testenv/**.cpp',
+        'moduletests/**.cpp'
     }
 
     defines { 'DEBUG' }

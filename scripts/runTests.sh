@@ -6,4 +6,4 @@
 #   created by Manfred Sorgo
 
 mydir=$(dirname $0)
-$mydir/../testing/bin/moduletests
+$mydir/../testing/bin/tests $@

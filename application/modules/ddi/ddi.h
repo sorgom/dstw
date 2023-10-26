@@ -10,7 +10,12 @@
 #define DDI_H
 
 //## INCLUDES
-#include <TrackSwitch/TrackSwitchPort.h>
+#include <SIG/SIG_Hub.h>
+#include <SIG/SIG_Provider.h>
+#include <TSW/TSW_Hub.h>
+#include <TSW/TSW_Provider.h>
+#include <system/Dispatcher.h>
+#include <system/Loader.h>
 //## END
 
 //  I_NAME& getNAME() { return NAME::instance(); }
@@ -20,7 +25,12 @@
 namespace ddi
 {
     //# DDI_INLINE
-    DDI_INLINE(TrackSwitchPort)
+    DDI_INLINE(Dispatcher)
+    DDI_INLINE(Loader)
+    DDI_INLINE(SIG_Hub)
+    DDI_INLINE(SIG_Provider)
+    DDI_INLINE(TSW_Hub)
+    DDI_INLINE(TSW_Provider)
     //# END
 }
 

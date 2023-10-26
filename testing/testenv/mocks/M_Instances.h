@@ -13,24 +13,37 @@
 #include <ddi/ddi.h>
 
 //## INCLUDES_LOCAL
-#include "M_RastaPort.h"
-#include "M_SignalPort.h"
-#include "M_TrackSwitchPort.h"
+#include "M_Dispatcher.h"
+#include "M_FldCom.h"
+#include "M_GuiCom.h"
+#include "M_SIG.h"
+#include "M_SIG_Hub.h"
+#include "M_SIG_Provider.h"
+#include "M_TSW.h"
+#include "M_TSW_Hub.h"
+#include "M_TSW_Provider.h"
 //## END
 
 #define MOCK_DEC(NAME) \
-    M_ ## NAME& m_ ## NAME(); \
+    inline M_ ## NAME& m_ ## NAME() { return M_ ## NAME::instance(); } \
     inline void mock_ ## NAME() { ddi::set ## NAME(m_ ## NAME()); }
 
 namespace test
 {
     //# MOCK_DEC
-    MOCK_DEC(RastaPort)
-    MOCK_DEC(SignalPort)
-    MOCK_DEC(TrackSwitchPort)
+    MOCK_DEC(Dispatcher)
+    MOCK_DEC(FldCom)
+    MOCK_DEC(GuiCom)
+    MOCK_DEC(SIG)
+    MOCK_DEC(SIG_Hub)
+    MOCK_DEC(SIG_Provider)
+    MOCK_DEC(TSW)
+    MOCK_DEC(TSW_Hub)
+    MOCK_DEC(TSW_Provider)
     //# END
 
     inline void unmock() { ddi::reset(); }
+    void mockAll();
 }
 
 #endif // _H

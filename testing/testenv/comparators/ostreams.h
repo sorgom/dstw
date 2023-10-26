@@ -11,14 +11,22 @@
 
 //## INCLUDES
 #include <ifs/DataTypes.h>
+#include <ifs/ProjData.h>
 //## END
 #include <ostream>
-
-#define OSTREAM_DEC(NAME) \
-    std::ostream& operator << (std::ostream& os, const NAME& d);
+#include <comparators/ostreamHelpers.h>
 
 //# OSTREAM_DEC
-OSTREAM_DEC(RastaTelegram)
+OSTREAM_DEC(CmdFld)
+OSTREAM_DEC(ElementName)
+OSTREAM_DEC(FldState)
+OSTREAM_DEC(GuiCmd)
+OSTREAM_DEC(ProjData)
+OSTREAM_DEC(ProjLCR)
+OSTREAM_DEC(ProjSEG)
+OSTREAM_DEC(ProjSIG)
+OSTREAM_DEC(ProjTSW)
+OSTREAM_DEC(StateGui)
 //# END
 
 #endif // H_
