@@ -10,11 +10,12 @@ bool Loader::load(const ProjData& data) const
 
     bool ok = true;
     ok = ok and ddi::getTSW_Provider().load(data.pTSW, data.numTSW);
-    // TODO: SIG, LCR, SEG
+    ok = ok and ddi::getSIG_Provider().load(data.pSIG, data.numSIG);
+    // TODO: LCR, SEG
 
     if (ok)
     {
-        disp.index();   
+        disp.index();  
     }
     else
     {

@@ -24,11 +24,14 @@ use:
 **GenProjData.h**
 ```
 ProjData generator
-pesets all proj data
-with element names in reversed alphanumerical order
-from capacity down to 1
-e.g. TSW, capacity 100:
-"*TSW 100 *******" .. "*TSW 001 *******"
+    presets all proj data
+    with element names in reversed alphanumerical order
+    from capacity down to 1
+    e.g. TSW, capacity 100:
+        "*TSW 100 *******" .. "*TSW 001 *******"
+
+    additional features
+    -   set signal type for signal data
 ```
 
 **TestGroupBase.h**

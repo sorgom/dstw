@@ -49,6 +49,9 @@
 #define PARAM(NAME) \
     withParameter(#NAME, NAME)
 
+#define PPARAM(NAME) \
+    withPointerParameter(#NAME, (PTR) NAME)
+
 #define RETURN_DEF_INT(VAL) \
     returnIntValueOrDefault(VAL)
 

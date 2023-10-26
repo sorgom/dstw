@@ -21,18 +21,31 @@ namespace test
         bool ok = false;
 
         STEP(1)
-        //  TSW_Hub loads
+        //  TSW_Provider loads
+        //  SIG_Provider loads
         m_Dispatcher().expectReset();
-        m_TSW_Provider().expectLoad(projData.numTSW, true);
+        m_TSW_Provider().expectLoad(projData.pTSW, projData.numTSW, true);
+        m_SIG_Provider().expectLoad(projData.pSIG, projData.numSIG, true);
         m_Dispatcher().expectIndex();
         ok = mSUT.load(projData);
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ok)
 
         STEP(2)
-        //  TSW_Hub fails
+        //  TSW_Provider fails
         m_Dispatcher().expectReset();
-        m_TSW_Provider().expectLoad(projData.numTSW, false);
+        m_TSW_Provider().expectLoad(projData.pTSW, projData.numTSW, false);
+        m_Dispatcher().expectReset();
+        ok = mSUT.load(projData);
+        CHECK_N_CLEAR()
+        L_CHECK_FALSE(ok)
+
+        STEP(3)
+        //  TSW_Provider loads
+        //  SIG_Provider fails
+        m_Dispatcher().expectReset();
+        m_TSW_Provider().expectLoad(projData.pTSW, projData.numTSW, true);
+        m_SIG_Provider().expectLoad(projData.pSIG, projData.numSIG, false);
         m_Dispatcher().expectReset();
         ok = mSUT.load(projData);
         CHECK_N_CLEAR()

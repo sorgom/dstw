@@ -34,11 +34,11 @@ namespace test
 
         inline bool load(const ProjSIG* data, UINT32 num)
         {
-            return call("load").PARAM(num).RETURN_DEF_BOOL(true);
+            return call("load").PPARAM(data).PARAM(num).RETURN_DEF_BOOL(true);
         }
-        inline void expectLoad(UINT32 num, bool ret = true) const
+        inline void expectLoad(const ProjSIG* data, UINT32 num, bool ret = true) const
         {
-            expect("load").PARAM(num).AND_RETURN_BOOL(ret);
+            expect("load").PPARAM(data).PARAM(num).AND_RETURN_BOOL(ret);
         }
    };
 }

@@ -1,10 +1,13 @@
 //  ============================================================
 //  ProjData generator
-//  pesets all proj data 
-//  with element names in reversed alphanumerical order
-//  from capacity down to 1
-//  e.g. TSW, capacity 100:
-//  "*TSW 100 *******" .. "*TSW 001 *******"
+//      presets all proj data 
+//      with element names in reversed alphanumerical order
+//      from capacity down to 1
+//      e.g. TSW, capacity 100:
+//          "*TSW 100 *******" .. "*TSW 001 *******"
+//  
+//      additional features
+//      -   set signal type for signal data
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -39,11 +42,21 @@ namespace test
             preset(mSIG, "SIG");
             preset(mLCR, "LCR");
             preset(mSEG, "SEG");
+
+            setSigType(SIG_TYPE_H);
         }
     
         inline void setSigType(UINT32 pos, INT32 type)
         {
             mSIG.at(pos).type = type;
+        }
+
+        void setSigType(INT32 type)
+        {
+            for (UINT32 p = 0; p < NSIG; ++p)
+            {
+                setSigType(p, type);
+            }
         }
 
     private:
@@ -63,6 +76,6 @@ namespace test
             }
         }
     };
-} // namespace
 
+} // namespace
 #endif // H_

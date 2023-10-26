@@ -1,5 +1,5 @@
 //  ============================================================
-//  system tests vol. 1
+//  system tests vol. 1: TSW
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -36,7 +36,7 @@ namespace test
 
         STEP(1)
         //  stimulation: send TSW field states LEFT to dispatcher
-        //  expectation: GUI stats LEFT to GuiCom
+        //  expectation: GUI states LEFT to GuiCom
         SUBSTEPS()
         for (UINT32 n = 0; n < CAPACITY_TSW; ++n)
         {
