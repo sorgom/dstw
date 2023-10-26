@@ -143,14 +143,14 @@ public:
 };
 
 template <class T, UINT32 CAP>
-class StackArrayIndex : public StackArray<Ref<T>, CAP>
+class StackArrayIndex : public StackArray<CRef<T>, CAP>
 {
 public:
     inline StackArrayIndex(const StackArray<T, CAP>& a):
         mArray(a)
     {}
 
-    inline bool isGreater(const Ref<T>& a, const Ref<T>& b) const
+    inline bool isGreater(const CRef<T>& a, const CRef<T>& b) const
     {
         return mArray.isGreater(a.ref(), b.ref());
     }
@@ -160,14 +160,14 @@ public:
         this->reset();
         for (UINT32 p = 0; p < mArray.size(); ++p)
         {
-            new (this->addPtr()) Ref<T>(mArray[p]);
+            new (this->addPtr()) CRef<T>(mArray[p]);
         }
         this->sort();
     }
 
     inline INT32 findRef(const T& obj) const
     {
-        return this->find(Ref<T>(obj));
+        return this->find(CRef<T>(obj));
     }
 
     inline const T& getRef(UINT32 pos) const

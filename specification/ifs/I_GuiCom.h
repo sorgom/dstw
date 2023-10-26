@@ -1,6 +1,6 @@
 //  ============================================================
 //  Interface GuiCom
-//  - field communication device
+//  - GUI communication device
 //  ============================================================
 //  created by Manfred Sorgo 
 

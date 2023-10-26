@@ -2,6 +2,7 @@
 //  test of module SIG_Hub
 //  ============================================================
 //  created by Manfred Sorgo
+
 #include <testlib/TestGroupBase.h>
 #include <SIG/SIG_Hub.h>
 

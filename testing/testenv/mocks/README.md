@@ -28,6 +28,21 @@ for interface I_<NAME>
 - function mock_<NAME>() plugs mock instance into ddi
 ```
 
+**M_SIG.h**
+```
+mock for interface SIG
+```
+
+**M_SIG_Hub.h**
+```
+mock for interface I_SIG_Hub
+```
+
+**M_SIG_Provider.h**
+```
+mock for interface SIG_Provider
+```
+
 **M_TSW.h**
 ```
 mock for interface TSW

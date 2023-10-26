@@ -31,12 +31,7 @@ public:
     DDI_INSTANCE_DEC(SIG_Provider)
 
 private:
-    // union MaxSize
-    // {
-    //     BYTE b1[sizeof(SIG_H)];
-    //     BYTE b2[sizeof(SIG_N)];
-    // };
-    SimpleStackArray<SIG, CAPACITY_SIG> mSIGs;
+    SimpleStackArray<SIG_X, CAPACITY_SIG> mSIGs;
 };
 
 

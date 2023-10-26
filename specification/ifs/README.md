@@ -36,7 +36,7 @@ Interface FldCom
 **I_GuiCom.h**
 ```
 Interface GuiCom
-- field communication device
+- GUI communication device
 ```
 
 **I_Loader.h**
@@ -52,7 +52,12 @@ the Loader is called at sytem start and shall:
 
 **I_SIG.h**
 ```
-interface SIG
+interface SIG (signal)
+```
+
+**I_SIG_Hub.h**
+```
+interface SIG_Hub
 ```
 
 **I_SIG_Provider.h**
@@ -62,7 +67,7 @@ interface SIG_Provider
 
 **I_TSW.h**
 ```
-interface TSW
+interface TSW (track switch)
 ```
 
 **I_TSW_Hub.h**

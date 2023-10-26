@@ -1,7 +1,5 @@
 //  ============================================================
-//  class SIG_X implements I_SIG
-//  - SIG_H  main signal
-//  - SIG_N  support signal with speed indicator
+//  classes SIG_(X) implement I_SIG
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -12,73 +10,91 @@
 #include <ifs/I_SIG.h>
 #include <baselib/coding.h>
 
-class SIG : public I_SIG
+class SIG_X : public I_SIG
 {
 public:
-    inline SIG(UINT32 id):
+    inline SIG_X(UINT32 id):
         mId(id),
-        mStateGui(SIG_STATE_UNDEF),
-        mSpeedGui(0)
+        mStateToFld(SIG_STATE_UNDEF),
+        mSpeedToFld(0),
+        mStateToGui(SIG_STATE_UNDEF),
+        mSpeedToGui(0)
     {}
 
 protected:
     const UINT32 mId;
-    INT32 mStateGui;
-    INT32 mSpeedGui;
+    INT32 mStateToFld;
+    INT32 mSpeedToFld;
+    INT32 mStateToGui;
+    INT32 mSpeedToGui;
 
-    void toGui() const;
-    void toFld(INT32 state, INT32 speed) const;
+    void procFromFld(INT32 state, INT32 speed);
+    void procFromGui(INT32 state, INT32 speed);
 
-    NOCOPY(SIG)
-    SIG();
+    NOCOPY(SIG_X)
+    SIG_X();
 };
 
-class SIG_H : public SIG
+//  ============================================================
+//  SIG_H  main signal without speed indicator
+//  handles:
+//  - H0
+//  - H1
+//  ============================================================
+class SIG_H : public SIG_X
 {
 public:
-    inline SIG_H(UINT32 id): SIG(id) {}
+    inline SIG_H(UINT32 id): SIG_X(id) {}
 
     void fromFld(INT32 state, INT32 speed);
     void fromGui(INT32 state, INT32 speed);
 
-    inline INT32 type() const
-    {
-        return SIG_TYPE_H;
-    }
+    inline INT32 type() const { return SIG_TYPE_H; }
+
 private:
     NOCOPY(SIG_H)
     SIG_H();
 };
 
-class SIG_N : public SIG
+//  ============================================================
+//  SIG_N  support signal with speed indicator
+//  handles:
+//  - N0
+//  - N1
+//  - speed
+//  ============================================================
+class SIG_N : public SIG_X
 {
 public:
-    inline SIG_N(UINT32 id): SIG(id) {}
+    inline SIG_N(UINT32 id): SIG_X(id) {}
 
     void fromFld(INT32 state, INT32 speed);
     void fromGui(INT32 state, INT32 speed);
 
-    inline INT32 type() const
-    {
-        return SIG_TYPE_N;
-    }
+    inline INT32 type() const { return SIG_TYPE_N; }
 
     NOCOPY(SIG_N)
     SIG_N();
 };
 
-class SIG_H_N : public SIG
+//  ============================================================
+//  SIG_H_N  main signal and support signal with speed indicator
+//  handles:
+//  - H0N0
+//  - H0N1
+//  - H1N0
+//  - H1N1
+//  - speed
+//  ============================================================
+class SIG_H_N : public SIG_X
 {
 public:
-    inline SIG_H_N(UINT32 id): SIG(id) {}
+    inline SIG_H_N(UINT32 id): SIG_X(id) {}
 
     void fromFld(INT32 state, INT32 speed);
     void fromGui(INT32 state, INT32 speed);
 
-    inline INT32 type() const
-    {
-        return SIG_TYPE_H_N;
-    }
+    inline INT32 type() const { return SIG_TYPE_H_N; }
 
     NOCOPY(SIG_H_N)
     SIG_H_N();

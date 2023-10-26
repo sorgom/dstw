@@ -32,9 +32,9 @@ namespace test
     TEST(SIG_03, T01)
     {
         STEP(1)
-        L_CHECK_EQUAL_SIZE(SIG, SIG_H)
-        L_CHECK_EQUAL_SIZE(SIG, SIG_N)
-        L_CHECK_EQUAL_SIZE(SIG, SIG_H_N)
+        L_CHECK_EQUAL_SIZE(SIG_X, SIG_H)
+        L_CHECK_EQUAL_SIZE(SIG_X, SIG_N)
+        L_CHECK_EQUAL_SIZE(SIG_X, SIG_H_N)
     }
 
     //  test type: equivalence class test

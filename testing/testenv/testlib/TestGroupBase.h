@@ -14,8 +14,8 @@
 #include <ddi/ddi.h>
 #include <mocks/M_Instances.h>
 #include <setup/capacities.h>
-#include <testlib/genElementName.h>
 #include <testlib/GenProjData.h>
+#include <testlib/TestLib.h>
 #include <testlib/TestLiterals.h>
 
 namespace test

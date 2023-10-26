@@ -9,10 +9,10 @@
 void swapBytes(PTR pA, PTR pB, PTR pS, UINT32 size);
 
 template <class T>
-class Ref
+class CRef
 {
 public:
-    inline Ref(const T& obj):
+    inline CRef(const T& obj):
         mPtr(&obj)
     {}
     inline const T& ref() const
@@ -22,8 +22,8 @@ public:
 private:
     const T* mPtr;
 
-NOCOPY(Ref)
-Ref();
+    NOCOPY(CRef)
+    CRef();
 };
 
 

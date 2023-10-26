@@ -14,7 +14,7 @@
 
 #include <ifs/ProjData.h>
 #include <baselib/StackArray.h>
-#include <testlib/genElementName.h>
+#include <testlib/TestLib.h>
 #include <setup/capacities.h>
 
 namespace test

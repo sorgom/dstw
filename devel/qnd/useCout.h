@@ -17,4 +17,6 @@ using std::setfill;
 
 #include <cstdio>
 
+#define TRACEVAR(VAR) cout << #VAR << ": " << VAR << endl;
+
 #endif // H_

@@ -19,11 +19,11 @@ def isMd(fn):
     return rxMd.search(fn)
 
 def genMd(tabs=4):
-    # split into path : [files] 
+    rDir = repoDir()
+    chdir(rDir)
     pfs = {}
     for p, f in [ (dirname(fp), basename(fp)) for fp in repoFiles()]:
         if not isMd(f): pfs.setdefault(p, []).append(f)
-    rDir = repoDir()
     # scan files in directories    
     for p, fs in pfs.items():
         chdir(f'{rDir}/{p}')
@@ -36,7 +36,8 @@ def genMd(tabs=4):
                     rx = re.compile(r'^' + pre.replace(' ', ' ?'), re.M)
                     inf = rx.sub('', inf)
                     if inf: cont.append(inf)
-                if cont: res.append('\n'.join([f'**{f}**', mdCode('\n\n'.join(cont))]))
+                if cont:
+                    res.append('\n'.join([f'**{f}**', mdCode('\n\n'.join(cont))]))
             except:
                 pass
         if not res: continue
