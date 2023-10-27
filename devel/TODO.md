@@ -16,7 +16,6 @@ A collection of things to do that are not big enough to create an issue.
 |paul|mike|11111|
 |total||30075|
 
-**2023-10-25**
--   SIG -> SIG_X 
--   processGui
--   processFld
+**2023-10-27**
+-   correct svg links in mds
+
