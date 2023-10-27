@@ -6,7 +6,8 @@ INSTANCE_DEF(TSW_Provider)
 bool TSW_Provider::load(const ProjTSW* const data, const UINT32 num)
 {
     I_Dispatcher& disp = ddi::getDispatcher();
-
+    mTSWs.reset();
+    
     bool ok = true;
     if (num > mTSWs.capacity())
     { 

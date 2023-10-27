@@ -90,18 +90,21 @@ namespace test
 
         STEP(2)
         genElementName(fldState.name, 2, "SIG");
+        m_SIG_Hub().expectFromFld(fldState, 2);
         ok = mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ok);
 
         STEP(3)
         genElementName(fldState.name, 3, "LCR");
+        //  LCR not part of current implementation
         ok = mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ok);
 
         STEP(4)
         genElementName(fldState.name, 4, "SEG");
+        //  SEG not part of current implementation
         ok = mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ok);
@@ -122,18 +125,21 @@ namespace test
 
         STEP(7)
         genElementName(guiCmd.name, 2, "SIG");
+        m_SIG_Hub().expectFromGui(guiCmd, 2);
         ok = mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ok);
 
         STEP(8)
         genElementName(guiCmd.name, 3, "LCR");
+        //  LCR not part of current implementation
         ok = mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ok);
 
         STEP(9)
         genElementName(guiCmd.name, 4, "SEG");
+        //  SEG not part of current implementation
         ok = mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ok);
