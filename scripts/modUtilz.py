@@ -53,8 +53,8 @@ def procOutList(call):
 def repoDir():
     return procOut('git rev-parse --show-toplevel')
 
-def repoFiles():
-    return procOutList('git ls-files')
+def repoFiles(dir:str = ''):
+    return procOutList(f'git ls-files {dir}')
 
 def mdCode(cont:str):
     return '\n'.join(['```', cont, '```'])
