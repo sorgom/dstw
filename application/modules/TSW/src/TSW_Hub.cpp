@@ -5,7 +5,7 @@
 
 INSTANCE_DEF(TSW_Hub)
 
-void TSW_Hub::fromFld(const FldState& tele, const UINT32 pos)
+void TSW_Hub::fromDsp(const UINT32 pos, const FldState& tele) const
 {
     I_TSW_Provider& prov = ddi::getTSW_Provider();
     if (prov.has(pos))
@@ -16,7 +16,7 @@ void TSW_Hub::fromFld(const FldState& tele, const UINT32 pos)
     {pass();}
 }
 
-void TSW_Hub::fromGui(const GuiCmd& tele, const UINT32 pos)
+void TSW_Hub::fromDsp(const UINT32 pos, const GuiCmd& tele) const
 {
     I_TSW_Provider& prov = ddi::getTSW_Provider();
     if (prov.has(pos))
@@ -31,26 +31,16 @@ void TSW_Hub::toFld(const UINT32 id, const INT32 cmd) const
 {
     static CmdFld tele;
     Mem::zero(tele);
-    if (ddi::getDispatcher().label(tele.name, id))
-    {
-        tele.cmd1 = cmd;
-        ddi::getFldCom().send(tele);
-    }
-    else
-    {pass();}
+    tele.cmd1 = cmd;
+    ddi::getDispatcher().dispatch(id, tele);
 }
 
 void TSW_Hub::toGui(const UINT32 id, const INT32 state) const
 {
     static StateGui tele;
     Mem::zero(tele);
-    if (ddi::getDispatcher().label(tele.name, id))
-    {
-        tele.state1 = state;
-        ddi::getGuiCom().send(tele);
-    }
-    else
-    {pass();}
+    tele.state1 = state;
+    ddi::getDispatcher().dispatch(id, tele);
 }
 
 

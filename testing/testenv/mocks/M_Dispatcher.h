@@ -43,56 +43,46 @@ namespace test
         {
             expect("assign").TPARAM(ElementName, name).PARAM(subs).PARAM(pos).AND_RETURN(ret);
         }
-        inline void expectNumAssign(E_Subsys subs, UINT32 num, INT32 offset = 0) const
-        {
-            for (INT32 pos = 0; pos < num; ++pos)
-            {
-                expect("assign").PARAM(subs).PARAM(pos).IGNORE().AND_RETURN(pos + offset);
-            }
-        }
         inline void expectAssign(E_Subsys subs, UINT32 pos, INT32 ret = 0) const
         {
             expect("assign").PARAM(subs).PARAM(pos).IGNORE().AND_RETURN(ret);
         }
 
-        inline bool label(ElementName& name, UINT32 id) const
+        inline void dispatch(const FldState& tele) const
         {
-            Mem::copy(name, mLabel);
-            return call("label").PARAM(id).RETURN_DEF_BOOL(true);
+            call("dispatch").TPARAM(FldState, tele);
         }
-        inline void setLabel(const ElementName& name)
+        inline void expectDispatch(const FldState& tele) const
         {
-            Mem::copy(mLabel, name);
-        }
-        inline void expectLabel(UINT32 id, bool ret = true) const
-        {
-            expect("label").PARAM(id).AND_RETURN_BOOL(ret);
+            expect("dispatch").TPARAM(FldState, tele);
         }
 
-        inline bool dispatch(const FldState& tele) const
+        inline void dispatch(const GuiCmd& tele) const
         {
-            return call("dispatch").TPARAM(FldState, tele).RETURN_DEF_BOOL(true);
+            call("dispatch").TPARAM(GuiCmd, tele);
         }
-        inline void expectDispatch(const FldState& tele, bool ret = true) const
+        inline void expectDispatch(const GuiCmd& tele) const
         {
-            expect("dispatch").TPARAM(FldState, tele).AND_RETURN_BOOL(ret);
-        }
-
-        inline bool dispatch(const GuiCmd& tele) const
-        {
-            return call("dispatch").TPARAM(GuiCmd, tele).RETURN_DEF_BOOL(true);
-        }
-        inline void expectDispatch(const GuiCmd& tele, bool ret = true) const
-        {
-            expect("dispatch").TPARAM(GuiCmd, tele).AND_RETURN_BOOL(ret);
+            expect("dispatch").TPARAM(GuiCmd, tele);
         }
 
-        inline void expectDispatch(bool ret = true, UINT32 num = 1) const
+        inline void dispatch(UINT32 id, const CmdFld& tele) const
         {
-            expect(num, "dispatch").IGNORE().AND_RETURN_BOOL(ret);
+            call("dispatch").PARAM(id).TPARAM(CmdFld, tele);
         }
-    private:
-        ElementName mLabel;
+        inline void expectDispatch(UINT32 id, const CmdFld& tele) const
+        {
+            expect("dispatch").PARAM(id).TPARAM(CmdFld, tele);
+        }
+
+        inline void dispatch(UINT32 id, const StateGui& tele) const
+        {
+            call("dispatch").PARAM(id).TPARAM(StateGui, tele);
+        }
+        inline void expectDispatch(UINT32 id, const StateGui& tele) const
+        {
+            expect("dispatch").PARAM(id).TPARAM(StateGui, tele);
+        }
     };
 } 
 

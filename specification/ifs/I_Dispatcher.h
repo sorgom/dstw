@@ -28,22 +28,24 @@ public:
     virtual INT32 assign(const ElementName& name, E_Subsys subs, UINT32 pos) = 0;
 
     //  ============================================================
-    //  when sending telegrams
-    //  subsytems shall retieve the assigned name with:
-    //  - dispatcher id returned at assignement
-    //  ============================================================
-    virtual bool label(ElementName& name, UINT32 id) const = 0;
-
-    //  ============================================================
     //  field states shall be dispatched to subsystems
     //  ============================================================
-    virtual bool dispatch(const FldState& tele) const = 0;
+    virtual void dispatch(const FldState& tele) const = 0;
 
     //  ============================================================
     //  GUI commands shall be dispatched to subsystems
     //  ============================================================
-    virtual bool dispatch(const GuiCmd&   tele) const = 0;
+    virtual void dispatch(const GuiCmd& tele) const = 0;
 
+    //  ============================================================
+    //  commands from subsystems shall be dispatched to field
+    //  ============================================================
+    virtual void dispatch(UINT32 id, const CmdFld& tele) const = 0;
+
+    //  ============================================================
+    //  states from subsystems shall be dispatched to GUI
+    //  ============================================================
+    virtual void dispatch(UINT32 id, const StateGui& tele) const = 0;
 };
 
 #endif // H_

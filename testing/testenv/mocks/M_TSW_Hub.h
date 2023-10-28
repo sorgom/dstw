@@ -35,31 +35,31 @@ namespace test
             expect("toGui").PARAM(id).PARAM(state);
         }
 
-        inline void fromFld(const FldState& tele, UINT32 pos)
+        inline void fromDsp(UINT32 pos, const FldState& tele) const
         {
-            call("fromFld").TPARAM(FldState, tele).PARAM(pos);
+            call("fromDsp").PARAM(pos).TPARAM(FldState, tele);
         }
-        inline void expectFromFld(const FldState& tele, UINT32 pos) const
+        inline void expectFromDsp(UINT32 pos, const FldState& tele) const
         {
-            expect("fromFld").TPARAM(FldState, tele).PARAM(pos);
+            expect("fromDsp").PARAM(pos).TPARAM(FldState, tele);
         }
-        inline void expectFromFld(UINT32 pos) const
-        {
-            expect("fromFld").IGNORE().PARAM(pos);
-        }
+        // inline void expectFromDsp(UINT32 pos) const
+        // {
+        //     expect("fromDsp").IGNORE().PARAM(pos);
+        // }
 
-        inline void fromGui(const GuiCmd& tele, UINT32 pos)
+        inline void fromDsp(UINT32 pos, const GuiCmd& tele) const
         {
-            call("fromGui").TPARAM(GuiCmd, tele).PARAM(pos);
+            call("fromDsp").PARAM(pos).TPARAM(GuiCmd, tele);
         }
-        inline void expectFromGui(const GuiCmd& tele, UINT32 pos) const
+        inline void expectFromDsp(UINT32 pos, const GuiCmd& tele) const
         {
-            expect("fromGui").TPARAM(GuiCmd, tele).PARAM(pos);
+            expect("fromDsp").PARAM(pos).TPARAM(GuiCmd, tele);
         }
-        inline void expectFromGui(UINT32 pos) const
-        {
-            expect("fromGui").IGNORE().PARAM(pos);
-        }
+        // inline void expectFromDsp(UINT32 pos) const
+        // {
+        //     expect("fromDsp").IGNORE().PARAM(pos);
+        // }
 
     };
 }

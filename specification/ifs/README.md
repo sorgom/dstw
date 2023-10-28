@@ -18,13 +18,13 @@ subsytems assign themselfs with:
 and shall recieve:
 - dispatcher id
 
-when sending telegrams
-subsytems shall retieve the assigned name with:
-- dispatcher id returned at assignement
-
 field states shall be dispatched to subsystems
 
 GUI commands shall be dispatched to subsystems
+
+commands from subsystems shall be dispatched to field
+
+states from subsystems shall be dispatched to GUI
 ```
 
 **I_FldCom.h**

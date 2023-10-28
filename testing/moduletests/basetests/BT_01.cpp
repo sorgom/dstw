@@ -13,10 +13,7 @@
 namespace test
 {
 
-    TEST_GROUP_BASE(BT_01, TestGroupBase)
-    {
-        
-    };
+    TEST_GROUP_BASE(BT_01, TestGroupBase) {};
 
 #define S_CHECK(SIZE, TYPE) \
     L_CHECK_EQUAL(SIZE, sizeof(TYPE))    
@@ -72,5 +69,6 @@ namespace test
     {
         STEP(1)
         S_CHECK(13, ProjSIG)
+        S_CHECK( 9, ProjTSW)
     }
 }
