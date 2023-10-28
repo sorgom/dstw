@@ -6,7 +6,7 @@
 
 namespace test
 {
-    C_STR_DEF(ELEM)
+    C_STR_DEF(ELM)
 
     //# C_STR_DEF
     C_STR_DEF(CmdFld)

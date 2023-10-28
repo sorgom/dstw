@@ -24,7 +24,7 @@ project 'application_lib'
     targetdir   'lib'
     
     files { 
-        '../application/**.cpp',
+        '../application/modules/**.cpp'
     }
 
     defines { 'NDEBUG' }
@@ -36,8 +36,10 @@ project 'tests'
     targetdir   'bin'
 
     files { 
-        '../application/**.cpp',
-        '**.cpp'
+        '../application/modules/**.cpp',
+        'testenv/**.cpp',
+        'moduletests/**.cpp',
+        'systemtests/**.cpp'
     }
 
     defines { 'NDEBUG' }
@@ -73,3 +75,18 @@ project 'tests_coverage'
     libdirs { 'lib' }
     links { 'application_coverage', 'CppUTest', 'CppUTestExt', 'gcov' }
     linkoptions { '--coverage' }
+
+-- failure tests
+project 'fail_tests'
+    kind        'ConsoleApp'
+    targetdir   'bin'
+
+    files { 
+        'testenv/**.cpp',
+        'failtests/**.cpp',
+    }
+
+    defines { 'NDEBUG' }
+    optimize 'On'
+    links { 'CppUTest', 'CppUTestExt' }
+
