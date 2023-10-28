@@ -14,8 +14,8 @@
 namespace test
 {
     //  preset an ElmentName for testing
-    const ElementName& genElementName(UINT32 num, CONST_C_STRING name = c__ELEM);
-    void genElementName(ElementName& eName, UINT32 num, CONST_C_STRING name = c__ELEM);
+    const ElementName& genElementName(UINT32 num, CONST_C_STRING name = c__ELM);
+    void genElementName(ElementName& eName, UINT32 num, CONST_C_STRING name = c__ELM);
 
     template <class T>
     class Ref

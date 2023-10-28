@@ -6,7 +6,8 @@ INSTANCE_DEF(SIG_Provider)
 bool SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
 {
     I_Dispatcher& disp = ddi::getDispatcher();
-
+    mSIGs.reset();
+    
     bool ok = true;
     if (num > mSIGs.capacity())
     { 

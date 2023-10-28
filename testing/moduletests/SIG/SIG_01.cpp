@@ -238,6 +238,7 @@ namespace test
         STEP(17)
         fromFldToGui(SIG_STATE_H0, 10);
     }
+
     //  test type: equivalence class test
     //  SIG_H_N from GUI
     TEST(SIG_01, T06)

@@ -60,6 +60,7 @@ bool Dispatcher::dispatch(const FldState& tele) const
             ddi::getTSW_Hub().fromFld(tele, ntp.pos);
             break;
         case SUBSYS_SIG:
+            ddi::getSIG_Hub().fromFld(tele, ntp.pos);
             break;
         case SUBSYS_SEG:
             break;
@@ -92,6 +93,7 @@ bool Dispatcher::dispatch(const GuiCmd& tele) const
             ddi::getTSW_Hub().fromGui(tele, ntp.pos);
             break;
         case SUBSYS_SIG:
+            ddi::getSIG_Hub().fromGui(tele, ntp.pos);
             break;
         case SUBSYS_SEG:
             break;

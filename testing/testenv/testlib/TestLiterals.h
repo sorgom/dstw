@@ -14,7 +14,7 @@
 
 namespace test
 {
-    C_STR_DEC(ELEM)
+    C_STR_DEC(ELM)
 
     //# C_STR_DEC
     C_STR_DEC(CmdFld)

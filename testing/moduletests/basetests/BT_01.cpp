@@ -2,7 +2,7 @@
 //  test of basic functionality
 //  - sizes of base types
 //  - pack headers
-//  - output of fixed size strings
+//  - some proj data sizes
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -61,28 +61,16 @@ namespace test
     TEST(BT_01, T02)
     {
         STEP(1)
-        CHECK_EQUAL(8, sizeof(Unpacked));
+        S_CHECK(8, Unpacked)
 
         STEP(2)
-        CHECK_EQUAL(5, sizeof(Packed));
+        S_CHECK(5, Packed)
     }
 
-    //  ostreams
+    //  proja data sizes
     TEST(BT_01, T03)
     {
         STEP(1)
-        ElementName fn = {{ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '1', '2', '3', '4', '5' }};
-
-        std::ostringstream os;
-        os << fixC(fn.chars);
-        STRCMP_EQUAL("0123456789012345", os.str().c_str());
-
-        STEP(2)
-        fn.chars[ 4]  = 0;
-        fn.chars[10] = 127;
-        os.str("");
-        os << fixC(fn.chars);
-        STRCMP_EQUAL("0123*56789*12345", os.str().c_str());
+        S_CHECK(13, ProjSIG)
     }
-
 }

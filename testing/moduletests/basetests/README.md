@@ -9,7 +9,7 @@
 test of basic functionality
 - sizes of base types
 - pack headers
-- output of fixed size strings
+- some proj data sizes
 ```
 
 **BT_02.cpp**
@@ -25,4 +25,10 @@ test of GenProjData
 **BT_04.cpp**
 ```
 test of NtpArray / NtpIndex
+```
+
+**TT_01.cpp**
+```
+test of test features
+- output of fixed size strings
 ```

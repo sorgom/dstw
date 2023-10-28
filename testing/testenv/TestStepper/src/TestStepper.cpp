@@ -1,5 +1,6 @@
 
 #include <TestStepper/TestStepper.h>
+#include <CppUTest/Utest.h>
 #include <cstdio>
 #include <cstring>
 
@@ -7,15 +8,18 @@ using std::printf;
 using std::memset;
 
 bool TestStepper::mDone = false;
-UINT8 TestStepper::mLevel = 0;
-UINT8 TestStepper::mShow = 0;
+unsigned char TestStepper::mLevel = 0;
+unsigned char TestStepper::mShow = 0;
 
-const CONST_C_STRING TestStepper::c__step = "STEP(";
-const CONST_C_STRING TestStepper::c__ErrTestStepper = "TestStepper error";
-const CONST_C_STRING TestStepper::c__precondition = "PRE";
-const CONST_C_STRING TestStepper::c__printFile = "file: %s\n";
-const CONST_C_STRING TestStepper::c__printFunc = "func: %s\n";
-const CONST_C_STRING TestStepper::c__printLine = "line: %d\n";
+const char* const TestStepper::c__step = "STEP(";
+const char* const TestStepper::c__precondition = "PRE";
+const char* const TestStepper::c__printFile = "file: %s\n";
+const char* const TestStepper::c__printFunc = "func: %s\n";
+const char* const TestStepper::c__printLine = "line: %d\n";
+const char* const TestStepper::c__ErrTestStepper = "TestStepper error";
+const char* const TestStepper::c__ErrStep = "TestStepper: STEP(n) n must be greater 0.";
+const char* const TestStepper::c__ErrSubSteps = "TestStepper: SUBSTEPS error. Did you forget ENDSTEPS?";
+const char* const TestStepper::c__ErrEndSteps = "TestStepper: ENDSTEPS error. Did you forget SUBSTEPS?";
 
 TestStepper::Trace TestStepper::mTrace[cNmuLevels] = {0};
 
@@ -25,7 +29,7 @@ void TestStepper::clear()
     enterLevel(0, 0, 0, 0);
 }
 
-void TestStepper::show(const UINT8 trcLevel)
+void TestStepper::show(const unsigned char trcLevel)
 {
     mShow = trcLevel;
     if (isShowing())
@@ -34,9 +38,9 @@ void TestStepper::show(const UINT8 trcLevel)
     }
 }
 
-void TestStepper::clearLevel(const UINT8 level)
+void TestStepper::clearLevel(const unsigned char level)
 {
-    for (UINT8 l = level; l < cNmuLevels; ++l)
+    for (unsigned char l = level; l < cNmuLevels; ++l)
     {
         memset(&mTrace[l], 0, sizeof(Trace));
     }
@@ -47,13 +51,13 @@ void TestStepper::clearLevel(const UINT8 level)
 }
 
 void TestStepper::enterLevel(
-    const UINT8 level,
-    const CONST_C_STRING file,
-    const UINT16 line,
-    const CONST_C_STRING func
+    const unsigned char level,
+    const char* const file,
+    const unsigned short line,
+    const char* const func
 )
 {
-    chk(level < cNmuLevels);
+    chk(level < cNmuLevels, c__ErrSubSteps);
     clearLevel(level);
     Trace& trc = mTrace[level];
     trc.file = file;
@@ -64,12 +68,13 @@ void TestStepper::enterLevel(
 }
 
 void TestStepper::step(
-    const step_t step,
-    const CONST_C_STRING file,
-    const UINT16 line,
-    const CONST_C_STRING func
+    const unsigned short step,
+    const char* const file,
+    const unsigned short line,
+    const char* const func
 )
 {
+    chk(step > 0, c__ErrStep);
     Trace& trc = mTrace[mLevel];
     trc.step = step;
     trc.file = file;
@@ -80,22 +85,21 @@ void TestStepper::step(
         mTrace[mLevel + 1].step = 0;
     }
     mDone = true;
-    chk(step > 0);
     if (mShow > mLevel)
     {
         out();
     }
 }
 
-void TestStepper::setLine(const UINT16 line)
+void TestStepper::setLine(const unsigned short line)
 {
     mTrace[mLevel].line = line;
 }
 
-void TestStepper::beginSteps(
-    const CONST_C_STRING file,
-    const UINT16 line,
-    const CONST_C_STRING func
+void TestStepper::subSteps(
+    const char* const file,
+    const unsigned short line,
+    const char* const func
 )
 {
     enterLevel(mLevel + 1, file, line, func);
@@ -103,7 +107,7 @@ void TestStepper::beginSteps(
 
 void TestStepper::endSteps()
 {
-    chk(mLevel > 0);
+    chk(mLevel > 0, c__ErrEndSteps);
     clearLevel(mLevel);
     --mLevel;
 }
@@ -116,7 +120,7 @@ bool TestStepper::subStepsDone()
 void TestStepper::out()
 {
     printf(c__step);
-    for (UINT8 l = 0; l < cNmuLevels; ++l)
+    for (unsigned char l = 0; l < cNmuLevels; ++l)
     {
         const Trace& trc = mTrace[l];
         if (trc.step > 0)
@@ -138,7 +142,7 @@ void TestStepper::trace(const bool insertLine)
         printf("\n");
     }
 
-    for (UINT8 l = 0; l < cNmuLevels; ++l)
+    for (unsigned char l = 0; l < cNmuLevels; ++l)
     {
         const Trace& trc = mTrace[l];
         if (trc.step > 0)
@@ -180,16 +184,16 @@ void TestStepper::fail()
     clear();
 }
 
-void TestStepper::chk(const bool ok)
+void TestStepper::chk(const bool ok, const char* const msg)
 {
     if (not ok)
     {
         clear();
-// TODO:            FAIL(c__ErrTestStepper);
+        FAIL(msg);
     }
 }
 
-void TestStepper::stepOut(const step_t step)
+void TestStepper::stepOut(const unsigned short step)
 {
     if (step == cStepPre)
     {

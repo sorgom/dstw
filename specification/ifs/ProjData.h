@@ -13,7 +13,7 @@
 
 struct ElementName
 {
-    CHAR chars[16];
+    CHAR chars[9];
 };
 
 struct ProjTSW

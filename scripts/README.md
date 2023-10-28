@@ -10,6 +10,11 @@ all build steps
     - coverage
 ```
 
+**ci.py**
+```
+run code checker if available
+```
+
 **cleanMdj.py**
 ```
 put line breaks into mdj files
