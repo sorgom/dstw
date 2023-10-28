@@ -76,17 +76,4 @@ project 'tests_coverage'
     links { 'application_coverage', 'CppUTest', 'CppUTestExt', 'gcov' }
     linkoptions { '--coverage' }
 
--- failure tests
-project 'fail_tests'
-    kind        'ConsoleApp'
-    targetdir   'bin'
-
-    files { 
-        'testenv/**.cpp',
-        'failtests/**.cpp',
-    }
-
-    defines { 'NDEBUG' }
-    optimize 'On'
-    links { 'CppUTest', 'CppUTestExt' }
 
