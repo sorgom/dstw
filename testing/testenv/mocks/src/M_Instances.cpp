@@ -14,6 +14,7 @@ namespace test
     //# MOCK_DEF
     MOCK_DEF(Com)
     MOCK_DEF(Dispatcher)
+    MOCK_DEF(Logger)
     MOCK_DEF(SIG)
     MOCK_DEF(SIG_Hub)
     MOCK_DEF(SIG_Provider)
@@ -27,6 +28,7 @@ namespace test
         //# MOCK_ACT
         MOCK_ACT(Com)
         MOCK_ACT(Dispatcher)
+        MOCK_ACT(Logger)
         MOCK_ACT(SIG)
         MOCK_ACT(SIG_Hub)
         MOCK_ACT(SIG_Provider)

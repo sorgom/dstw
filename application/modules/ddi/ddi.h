@@ -17,6 +17,7 @@
 #include <system/Com.h>
 #include <system/Dispatcher.h>
 #include <system/Loader.h>
+#include <system/Logger.h>
 //## END
 
 //  I_NAME& getNAME() { return NAME::instance(); }
@@ -29,6 +30,7 @@ namespace ddi
     DDI_INLINE(Com)
     DDI_INLINE(Dispatcher)
     DDI_INLINE(Loader)
+    DDI_INLINE(Logger)
     DDI_INLINE(SIG_Hub)
     DDI_INLINE(SIG_Provider)
     DDI_INLINE(TSW_Hub)

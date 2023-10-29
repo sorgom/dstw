@@ -15,7 +15,7 @@ public:
     inline Loader()
     {}
 
-    bool load(const ProjData& data) const;
+    void load(const ProjData& data) const;
 
     DDI_INSTANCE_DEC(Loader)
 

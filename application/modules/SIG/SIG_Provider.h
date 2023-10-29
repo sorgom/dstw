@@ -26,7 +26,7 @@ public:
         return mSIGs.at(pos);
     }
 
-    bool load(const ProjSIG* data, UINT32 num);
+    void load(const ProjSIG* data, UINT32 num);
 
     DDI_INSTANCE_DEC(SIG_Provider)
 

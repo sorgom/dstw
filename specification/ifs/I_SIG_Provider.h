@@ -16,7 +16,7 @@ public:
     virtual bool has(UINT32 pos) const = 0;
     virtual I_SIG& at(UINT32 pos) = 0;
 
-    virtual bool load(const ProjSIG* data, UINT32 num) = 0;
+    virtual void load(const ProjSIG* data, UINT32 num) = 0;
 };
 
 #endif // H_

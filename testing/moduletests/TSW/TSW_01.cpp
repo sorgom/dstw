@@ -108,10 +108,12 @@ namespace test
         CHECK_N_CLEAR()
 
         STEP(19)
+        m_Logger().expectLog(COMP_TSW, ERR_MATCH);
         SUT.fromFld(-1);
         CHECK_N_CLEAR()
 
         STEP(20)
+        m_Logger().expectLog(COMP_TSW, ERR_MATCH);
         SUT.fromGui(-1);
         CHECK_N_CLEAR()
    }

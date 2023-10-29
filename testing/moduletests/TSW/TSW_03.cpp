@@ -28,9 +28,8 @@ namespace test
         STEP(1)
         m_Dispatcher().expectAssign(mData.tswName(0), SUBSYS_TSW, 0, 0);
         m_Dispatcher().expectAssign(mData.tswName(1), SUBSYS_TSW, 1, 1);
-        const bool ret = mSUT.load(mData.pTSW, mData.numTSW);
+        mSUT.load(mData.pTSW, mData.numTSW);
         CHECK_N_CLEAR()
-        L_CHECK_TRUE(ret)
         L_CHECK_TRUE(mSUT.has(1))
         L_CHECK_FALSE(mSUT.has(2))
     }
@@ -40,9 +39,9 @@ namespace test
     TEST(TSW_03, T02)
     {
         STEP(1)
-        const bool ret = mSUT.load(mData.pTSW, CAPACITY_TSW + 1);
+        m_Logger().expectLog(COMP_TSW_PROVIDER, ERR_STARTUP);
+        mSUT.load(mData.pTSW, CAPACITY_TSW + 1);
         CHECK_N_CLEAR()
-        L_CHECK_FALSE(ret)
         L_CHECK_FALSE(mSUT.has(0))
     }
 
@@ -53,9 +52,9 @@ namespace test
         STEP(1)
         m_Dispatcher().expectAssign(mData.tswName(0), SUBSYS_TSW, 0, 0);
         m_Dispatcher().expectAssign(mData.tswName(1), SUBSYS_TSW, 1, -1);
-        const bool ret = mSUT.load(mData.pTSW, mData.numTSW);
+        m_Logger().expectLog(COMP_TSW_PROVIDER, ERR_STARTUP);
+        mSUT.load(mData.pTSW, mData.numTSW);
         CHECK_N_CLEAR()
-        L_CHECK_FALSE(ret)
         L_CHECK_FALSE(mSUT.has(0))
     }
     //  test type: coverage

@@ -41,9 +41,8 @@ namespace test
         m_Dispatcher().expectAssign(mData.sigName(0), SUBSYS_SIG, 0, 0);
         m_Dispatcher().expectAssign(mData.sigName(1), SUBSYS_SIG, 1, 1);
         m_Dispatcher().expectAssign(mData.sigName(2), SUBSYS_SIG, 2, 2);
-        const bool ret = mSUT.load(mData.pSIG, mData.numSIG);
+        mSUT.load(mData.pSIG, mData.numSIG);
         CHECK_N_CLEAR()
-        L_CHECK_TRUE(ret)
         L_CHECK_TRUE(mSUT.has(2))
         L_CHECK_FALSE(mSUT.has(3))
         L_CHECK_EQUAL(SIG_TYPE_H,   mSUT.at(0).type())
@@ -62,9 +61,9 @@ namespace test
         m_Dispatcher().expectAssign(mData.sigName(0), SUBSYS_SIG, 0, 0);
         m_Dispatcher().expectAssign(mData.sigName(1), SUBSYS_SIG, 1, 1);
         m_Dispatcher().expectAssign(mData.sigName(2), SUBSYS_SIG, 2, 2);
-        const bool ret = mSUT.load(mData.pSIG, mData.numSIG);
+        m_Logger().expectLog(COMP_SIG_PROVIDER, ERR_STARTUP);
+        mSUT.load(mData.pSIG, mData.numSIG);
         CHECK_N_CLEAR()
-        L_CHECK_FALSE(ret)
         L_CHECK_FALSE(mSUT.has(0))
     }
 
@@ -73,9 +72,9 @@ namespace test
     TEST(SIG_03, T04)
     {
         STEP(1)
-        const bool ret = mSUT.load(mData.pSIG, CAPACITY_SIG + 1);
+        m_Logger().expectLog(COMP_SIG_PROVIDER, ERR_STARTUP);
+        mSUT.load(mData.pSIG, CAPACITY_SIG + 1);
         CHECK_N_CLEAR()
-        L_CHECK_FALSE(ret)
         L_CHECK_FALSE(mSUT.has(0))
     }
 
@@ -87,9 +86,9 @@ namespace test
         m_Dispatcher().expectAssign(mData.sigName(0), SUBSYS_SIG, 0, 0);
         m_Dispatcher().expectAssign(mData.sigName(1), SUBSYS_SIG, 1, 1);
         m_Dispatcher().expectAssign(mData.sigName(2), SUBSYS_SIG, 2, -1);
-        const bool ret = mSUT.load(mData.pSIG, mData.numSIG);
+        m_Logger().expectLog(COMP_SIG_PROVIDER, ERR_STARTUP);
+        mSUT.load(mData.pSIG, mData.numSIG);
         CHECK_N_CLEAR()
-        L_CHECK_FALSE(ret)
         L_CHECK_FALSE(mSUT.has(0))
     }
     

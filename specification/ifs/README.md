@@ -40,8 +40,6 @@ the Loader is called at sytem start and shall:
 -   reset I_Dispatcher
 -   distribute load to subsytems
 -   call indexing of I_Dispatcher
--   in case of any subsystem load failure
-    -   reset I_Dispatcher
 ```
 
 **I_SIG.h**

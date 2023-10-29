@@ -4,8 +4,6 @@
 //  -   reset I_Dispatcher
 //  -   distribute load to subsytems
 //  -   call indexing of I_Dispatcher
-//  -   in case of any subsystem load failure
-//      -   reset I_Dispatcher
 //  ============================================================
 //  created by Manfred Sorgo
 #pragma once
@@ -17,7 +15,7 @@
 class I_Loader
 {
 public:
-    virtual bool load(const ProjData& data) const = 0;
+    virtual void load(const ProjData& data) const = 0;
 };
 
 #endif // H_

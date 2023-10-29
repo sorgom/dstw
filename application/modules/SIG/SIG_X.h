@@ -31,6 +31,8 @@ protected:
     void procFromFld(INT32 state, INT32 speed);
     void procFromGui(INT32 state, INT32 speed);
 
+    static void logMissmatch();
+
     NOCOPY(SIG_X)
     SIG_X();
 };

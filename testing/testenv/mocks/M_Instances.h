@@ -15,6 +15,7 @@
 //## INCLUDES_LOCAL
 #include "M_Com.h"
 #include "M_Dispatcher.h"
+#include "M_Logger.h"
 #include "M_SIG.h"
 #include "M_SIG_Hub.h"
 #include "M_SIG_Provider.h"
@@ -32,6 +33,7 @@ namespace test
     //# MOCK_DEC
     MOCK_DEC(Com)
     MOCK_DEC(Dispatcher)
+    MOCK_DEC(Logger)
     MOCK_DEC(SIG)
     MOCK_DEC(SIG_Hub)
     MOCK_DEC(SIG_Provider)

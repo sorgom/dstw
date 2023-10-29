@@ -18,8 +18,10 @@
 #include <system/Com.h>
 #include <system/Dispatcher.h>
 #include <system/Loader.h>
+#include <system/Logger.h>
 #include <mocks/M_Com.h>
 #include <mocks/M_Dispatcher.h>
+#include <mocks/M_Logger.h>
 #include <mocks/M_SIG.h>
 #include <mocks/M_SIG_Hub.h>
 #include <mocks/M_SIG_Provider.h>
@@ -40,6 +42,7 @@ namespace ddi
     DDI_DEC(Com)
     DDI_DEC(Dispatcher)
     DDI_DEC(Loader)
+    DDI_DEC(Logger)
     DDI_DEC(SIG)
     DDI_DEC(SIG_Hub)
     DDI_DEC(SIG_Provider)

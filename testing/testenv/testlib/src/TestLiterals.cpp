@@ -16,6 +16,7 @@ namespace test
     C_STR_DEF(FldState)
     C_STR_DEF(GuiCmd)
     C_STR_DEF(Loader)
+    C_STR_DEF(Logger)
     C_STR_DEF(ProjData)
     C_STR_DEF(ProjLCR)
     C_STR_DEF(ProjSEG)

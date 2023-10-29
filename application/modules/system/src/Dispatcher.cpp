@@ -35,7 +35,9 @@ void Dispatcher::dispatch(const FldState& tele) const
 {
     const INT32 fnd = mIndx.findNtp(tele.name);
     if (fnd < 0)
-    { pass();}
+    { 
+        ddi::getLogger().log(COMP_DISPATCHER, ERR_MATCH);
+    }
     else
     {
         const Ntp& ntp = mIndx.getRef(fnd);
@@ -64,7 +66,9 @@ void Dispatcher::dispatch(const GuiCmd& tele) const
 {
     const INT32 fnd = mIndx.findNtp(tele.name);
     if (fnd < 0)
-    { pass();}
+    { 
+        ddi::getLogger().log(COMP_DISPATCHER, ERR_MATCH);
+    }
     else
     {
         const Ntp& ntp = mIndx.getRef(fnd);
