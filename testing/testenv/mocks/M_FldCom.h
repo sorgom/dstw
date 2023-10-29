@@ -17,24 +17,14 @@ namespace test
     public:
         MOCK_CON(FldCom)
 
-        inline bool send(const CmdFld& tele) const
+        inline void send(const CmdFld& tele) const
         {
-            return call("send").TPARAM(CmdFld, tele).RETURN_DEF_BOOL(true);
+            call("send").TPARAM(CmdFld, tele);
         }
-        inline void expectSend(const CmdFld& tele, bool ret = true) const
+        inline void expectSend(const CmdFld& tele) const
         {
-            expect("send").TPARAM(CmdFld, tele).AND_RETURN_BOOL(ret);
+            expect("send").TPARAM(CmdFld, tele);
         }
-        
-        // inline void expectSend(bool ret = true) const
-        // {
-        //     expect("send").IGNORE().AND_RETURN_BOOL(ret);
-        // }
-
-        // inline void expectNumSend(bool ret = true, UINT32 num = 1) const
-        // {
-        //     expect(num, "send").IGNORE().AND_RETURN_BOOL(ret);
-        // }
     };
 } // namespace
 

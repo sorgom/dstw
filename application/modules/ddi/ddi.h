@@ -15,6 +15,8 @@
 #include <TSW/TSW_Hub.h>
 #include <TSW/TSW_Provider.h>
 #include <system/Dispatcher.h>
+#include <system/FldCom.h>
+#include <system/GuiCom.h>
 #include <system/Loader.h>
 //## END
 
@@ -26,6 +28,8 @@ namespace ddi
 {
     //# DDI_INLINE
     DDI_INLINE(Dispatcher)
+    DDI_INLINE(FldCom)
+    DDI_INLINE(GuiCom)
     DDI_INLINE(Loader)
     DDI_INLINE(SIG_Hub)
     DDI_INLINE(SIG_Provider)

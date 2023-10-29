@@ -13,7 +13,7 @@
 class I_GuiCom
 {
 public:
-    virtual bool send(const StateGui& tele) const = 0;
+    virtual void send(const StateGui& tele) const = 0;
 };
 
 #endif // H_

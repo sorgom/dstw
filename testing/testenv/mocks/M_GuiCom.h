@@ -17,24 +17,14 @@ namespace test
     public:
         MOCK_CON(GuiCom)
 
-        inline bool send(const StateGui& tele) const
+        inline void send(const StateGui& tele) const
         {
-            return call("send").TPARAM(StateGui, tele).RETURN_DEF_BOOL(true);
+            call("send").TPARAM(StateGui, tele);
         }
-        inline void expectSend(const StateGui& tele, bool ret = true) const
+        inline void expectSend(const StateGui& tele) const
         {
-            expect("send").TPARAM(StateGui, tele).AND_RETURN_BOOL(ret);
+            expect("send").TPARAM(StateGui, tele);
         }
-
-        // inline void expectSend(bool ret = true) const
-        // {
-        //     expect("send").IGNORE().AND_RETURN_BOOL(ret);
-        // }
-
-        // inline void expectNumSend(bool ret = true, UINT32 num = 1) const
-        // {
-        //     expect(num, "send").IGNORE().AND_RETURN_BOOL(ret);
-        // }
     };
 } // namespace
 

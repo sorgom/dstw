@@ -16,6 +16,8 @@
 #include <TSW/TSW_Hub.h>
 #include <TSW/TSW_Provider.h>
 #include <system/Dispatcher.h>
+#include <system/FldCom.h>
+#include <system/GuiCom.h>
 #include <system/Loader.h>
 #include <mocks/M_Dispatcher.h>
 #include <mocks/M_FldCom.h>

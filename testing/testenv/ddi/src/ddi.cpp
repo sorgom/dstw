@@ -55,6 +55,8 @@ namespace ddi
     DDI::DDI():
         //# DDI_CON : APP
         DDI_CON(Dispatcher)
+        DDI_CON(FldCom)
+        DDI_CON(GuiCom)
         DDI_CON(Loader)
         DDI_CON(SIG_Hub)
         DDI_CON(SIG_Provider)
@@ -62,8 +64,6 @@ namespace ddi
         DDI_CON(TSW_Provider)
         //# END
         //# DDI_CON_MOCK : MOCK
-        DDI_CON_MOCK(FldCom)
-        DDI_CON_MOCK(GuiCom)
         DDI_CON_MOCK(SIG)
         DDI_CON_MOCK(TSW)
         //# END
