@@ -1,3 +1,4 @@
+#include <mocks/M_Base.h>
 #include <mocks/M_Instances.h>
 
 #define MOCK_DEF(NAME) \
@@ -8,6 +9,8 @@
 
 namespace test
 {
+    std::ostringstream M_Base::mStream;
+
     //# MOCK_DEF
     MOCK_DEF(Dispatcher)
     MOCK_DEF(FldCom)

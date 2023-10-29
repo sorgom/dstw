@@ -15,6 +15,8 @@
 class GuiCom : public I_GuiCom
 {
 public:
+    inline GuiCom() {}
+
     inline void send(const StateGui& tele) const {}
 
     DDI_INSTANCE_DEC(GuiCom)

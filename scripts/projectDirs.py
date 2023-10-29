@@ -14,6 +14,7 @@ mocDir = envDir + '/mocks'
 spcDir = topDir + '/specification'
 diaDir = spcDir + '/diagrams'
 ifsDir = spcDir + '/ifs'
+appDir = topDir + '/application/main'
 
 if __name__ == '__main__':
     print(modDir)

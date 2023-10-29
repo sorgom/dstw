@@ -11,17 +11,13 @@ namespace test
     {
     protected:
         SIG_Provider mSUT;
-        GenProjData<1, 3> mProjData;
+        GenProjData<1, 3> mData;
         inline TestGroupSIP()
         {
             mockAll();
-            mProjData.setSigType(0, SIG_TYPE_H);
-            mProjData.setSigType(1, SIG_TYPE_N); 
-            mProjData.setSigType(2, SIG_TYPE_H_N); 
-        }
-        const ElementName& sigName(UINT32 pos)
-        {
-            return mProjData.pSIG[pos].name;
+            mData.setSigType(0, SIG_TYPE_H);
+            mData.setSigType(1, SIG_TYPE_N); 
+            mData.setSigType(2, SIG_TYPE_H_N); 
         }
     };
 
@@ -42,10 +38,10 @@ namespace test
     TEST(SIG_03, T02)
     {
         STEP(1)
-        m_Dispatcher().expectAssign(sigName(0), SUBSYS_SIG, 0, 0);
-        m_Dispatcher().expectAssign(sigName(1), SUBSYS_SIG, 1, 1);
-        m_Dispatcher().expectAssign(sigName(2), SUBSYS_SIG, 2, 2);
-        const bool ret = mSUT.load(mProjData.pSIG, mProjData.numSIG);
+        m_Dispatcher().expectAssign(mData.sigName(0), SUBSYS_SIG, 0, 0);
+        m_Dispatcher().expectAssign(mData.sigName(1), SUBSYS_SIG, 1, 1);
+        m_Dispatcher().expectAssign(mData.sigName(2), SUBSYS_SIG, 2, 2);
+        const bool ret = mSUT.load(mData.pSIG, mData.numSIG);
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ret)
         L_CHECK_TRUE(mSUT.has(2))
@@ -60,13 +56,13 @@ namespace test
     TEST(SIG_03, T03)
     {
         SETUP()
-        mProjData.setSigType(2, SIG_TYPE_H + 100); 
+        mData.setSigType(2, SIG_TYPE_H + 100); 
         
         STEP(1)
-        m_Dispatcher().expectAssign(sigName(0), SUBSYS_SIG, 0, 0);
-        m_Dispatcher().expectAssign(sigName(1), SUBSYS_SIG, 1, 1);
-        m_Dispatcher().expectAssign(sigName(2), SUBSYS_SIG, 2, 2);
-        const bool ret = mSUT.load(mProjData.pSIG, mProjData.numSIG);
+        m_Dispatcher().expectAssign(mData.sigName(0), SUBSYS_SIG, 0, 0);
+        m_Dispatcher().expectAssign(mData.sigName(1), SUBSYS_SIG, 1, 1);
+        m_Dispatcher().expectAssign(mData.sigName(2), SUBSYS_SIG, 2, 2);
+        const bool ret = mSUT.load(mData.pSIG, mData.numSIG);
         CHECK_N_CLEAR()
         L_CHECK_FALSE(ret)
         L_CHECK_FALSE(mSUT.has(0))
@@ -77,7 +73,7 @@ namespace test
     TEST(SIG_03, T04)
     {
         STEP(1)
-        const bool ret = mSUT.load(mProjData.pSIG, CAPACITY_SIG + 1);
+        const bool ret = mSUT.load(mData.pSIG, CAPACITY_SIG + 1);
         CHECK_N_CLEAR()
         L_CHECK_FALSE(ret)
         L_CHECK_FALSE(mSUT.has(0))
@@ -88,14 +84,15 @@ namespace test
     TEST(SIG_03, T05)
     {
         STEP(1)
-        m_Dispatcher().expectAssign(sigName(0), SUBSYS_SIG, 0, 0);
-        m_Dispatcher().expectAssign(sigName(1), SUBSYS_SIG, 1, 1);
-        m_Dispatcher().expectAssign(sigName(2), SUBSYS_SIG, 2, -1);
-        const bool ret = mSUT.load(mProjData.pSIG, mProjData.numSIG);
+        m_Dispatcher().expectAssign(mData.sigName(0), SUBSYS_SIG, 0, 0);
+        m_Dispatcher().expectAssign(mData.sigName(1), SUBSYS_SIG, 1, 1);
+        m_Dispatcher().expectAssign(mData.sigName(2), SUBSYS_SIG, 2, -1);
+        const bool ret = mSUT.load(mData.pSIG, mData.numSIG);
         CHECK_N_CLEAR()
         L_CHECK_FALSE(ret)
         L_CHECK_FALSE(mSUT.has(0))
     }
+    
     //  test type: coverage
     //  retrieve instance
     TEST(SIG_03, T06)

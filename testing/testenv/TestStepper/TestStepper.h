@@ -113,8 +113,8 @@ private:
     {
         const char* file;
         const char* func;
-        unsigned short line;
-        unsigned short step;
+        unsigned line;
+        unsigned step;
     };
 
     static const unsigned char cNmuLevels = 20;

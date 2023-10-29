@@ -11,14 +11,10 @@ namespace test
     {
     protected:
         TSW_Provider mSUT;
-        GenProjData<2> mProjData;
+        GenProjData<2> mData;
         inline TestGroupTSP()
         {
             mockAll();
-        }
-        const ElementName& sigName(UINT32 pos)
-        {
-            return mProjData.pTSW[pos].name;
         }
     };
 
@@ -30,9 +26,9 @@ namespace test
     TEST(TSW_03, T01)
     {
         STEP(1)
-        m_Dispatcher().expectAssign(sigName(0), SUBSYS_TSW, 0, 0);
-        m_Dispatcher().expectAssign(sigName(1), SUBSYS_TSW, 1, 1);
-        const bool ret = mSUT.load(mProjData.pTSW, mProjData.numTSW);
+        m_Dispatcher().expectAssign(mData.tswName(0), SUBSYS_TSW, 0, 0);
+        m_Dispatcher().expectAssign(mData.tswName(1), SUBSYS_TSW, 1, 1);
+        const bool ret = mSUT.load(mData.pTSW, mData.numTSW);
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ret)
         L_CHECK_TRUE(mSUT.has(1))
@@ -44,7 +40,7 @@ namespace test
     TEST(TSW_03, T02)
     {
         STEP(1)
-        const bool ret = mSUT.load(mProjData.pTSW, CAPACITY_TSW + 1);
+        const bool ret = mSUT.load(mData.pTSW, CAPACITY_TSW + 1);
         CHECK_N_CLEAR()
         L_CHECK_FALSE(ret)
         L_CHECK_FALSE(mSUT.has(0))
@@ -55,9 +51,9 @@ namespace test
     TEST(TSW_03, T03)
     {
         STEP(1)
-        m_Dispatcher().expectAssign(sigName(0), SUBSYS_TSW, 0, 0);
-        m_Dispatcher().expectAssign(sigName(1), SUBSYS_TSW, 1, -1);
-        const bool ret = mSUT.load(mProjData.pTSW, mProjData.numTSW);
+        m_Dispatcher().expectAssign(mData.tswName(0), SUBSYS_TSW, 0, 0);
+        m_Dispatcher().expectAssign(mData.tswName(1), SUBSYS_TSW, 1, -1);
+        const bool ret = mSUT.load(mData.pTSW, mData.numTSW);
         CHECK_N_CLEAR()
         L_CHECK_FALSE(ret)
         L_CHECK_FALSE(mSUT.has(0))

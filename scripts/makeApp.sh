@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 #   ============================================================
-#   build application library from Makefile
+#   build application from Makefile
 #   ============================================================
 #   created by Manfred Sorgo
 
 mydir=$(dirname $0)
 
 cd $mydir/../testing
-make verbose=$1 application_lib
+make -f Application.make $@

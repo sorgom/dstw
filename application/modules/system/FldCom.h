@@ -15,6 +15,8 @@
 class FldCom : public I_FldCom
 {
 public:
+    inline FldCom() {}
+
     inline void send(const CmdFld& tele) const {}
 
     DDI_INSTANCE_DEC(FldCom)

@@ -46,6 +46,16 @@ namespace test
             setSigType(SIG_TYPE_H);
         }
     
+        inline const ProjTSW& tsw(UINT32 pos) const { return mTSW.at(pos); }
+        inline const ProjSIG& sig(UINT32 pos) const { return mSIG.at(pos); }
+        inline const ProjLCR& lcr(UINT32 pos) const { return mLCR.at(pos); }
+        inline const ProjSEG& seg(UINT32 pos) const { return mSEG.at(pos); }
+
+        inline const ElementName& tswName(UINT32 pos) const { return tsw(pos).name; }
+        inline const ElementName& sigName(UINT32 pos) const { return sig(pos).name; }
+        inline const ElementName& lcrName(UINT32 pos) const { return tsw(pos).name; }
+        inline const ElementName& segName(UINT32 pos) const { return seg(pos).name; }
+
         inline void setSigType(UINT32 pos, INT32 type)
         {
             mSIG.at(pos).type = type;

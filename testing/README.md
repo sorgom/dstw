@@ -2,7 +2,15 @@
 
 **premake5.lua**
 ```
-Makefile build rules for premake5
-- module tests with target compiler settings
-- module tests with coverage instrumented application code
+Makefile build rules for premake5:
+
+> Tests.make
+module tests and system tests at once runtime
+
+> Coverage.make
+-   coverage instrumented application (static lib)
+-   module tests only runtime
+
+> Application.make
+application runtime
 ```

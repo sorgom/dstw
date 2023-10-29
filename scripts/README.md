@@ -40,7 +40,7 @@ code automatization of this project
 
 **makeApp.sh**
 ```
-build application library from Makefile
+build application from Makefile
 ```
 
 **makeGcov.sh**
