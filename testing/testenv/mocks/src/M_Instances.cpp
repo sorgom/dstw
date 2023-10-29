@@ -12,9 +12,8 @@ namespace test
     std::ostringstream M_Base::mStream;
 
     //# MOCK_DEF
+    MOCK_DEF(Com)
     MOCK_DEF(Dispatcher)
-    MOCK_DEF(FldCom)
-    MOCK_DEF(GuiCom)
     MOCK_DEF(SIG)
     MOCK_DEF(SIG_Hub)
     MOCK_DEF(SIG_Provider)
@@ -26,9 +25,8 @@ namespace test
     void mockAll()
     {
         //# MOCK_ACT
+        MOCK_ACT(Com)
         MOCK_ACT(Dispatcher)
-        MOCK_ACT(FldCom)
-        MOCK_ACT(GuiCom)
         MOCK_ACT(SIG)
         MOCK_ACT(SIG_Hub)
         MOCK_ACT(SIG_Provider)

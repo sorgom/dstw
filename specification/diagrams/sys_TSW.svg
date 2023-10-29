@@ -111,7 +111,7 @@ TSW Provider</text>
             <g>
                 <g transform="matrix(1,0,0,1,338.5,383.5)">
                     <text x="-25.276px" y="0px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:13px;">
-GuiCom</text>
+Com</text>
                 </g>
                 <path d="M363.776,390L313.224,390" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:1px;"/>
             </g>
@@ -135,7 +135,7 @@ GuiCom</text>
             <g>
                 <g transform="matrix(1,0,0,1,522.5,383.5)">
                     <text x="-24.191px" y="0px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:13px;">
-FldCom</text>
+Com</text>
                 </g>
                 <path d="M546.691,390L498.309,390" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:1px;"/>
             </g>

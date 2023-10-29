@@ -18,8 +18,8 @@ namespace test
     {
         SETUP()
         GenProjData<1, CAPACITY_SIG> projData;
-        mock_FldCom();
-        mock_GuiCom();
+        mock_Com();
+        mock_Com();
         ddi::getLoader().load(projData);
 
         L_CHECK_TRUE(ddi::getSIG_Provider().has(CAPACITY_SIG - 1))
@@ -37,7 +37,7 @@ namespace test
         STEP(1)
         //  signal type SIG_H (default)
         //  stimulation: send SIG field states H0 to dispatcher
-        //  expectation: GUI states H0 to GuiCom
+        //  expectation: GUI states H0 to Com
         SUBSTEPS()
         for (UINT32 n = 0; n < CAPACITY_SIG; ++n)
         {
@@ -48,7 +48,7 @@ namespace test
             Mem::copy(stateGui.name, fldState.name);
             stateGui.state1 = SIG_STATE_H0;
 
-            m_GuiCom().expectSend(stateGui);
+            m_Com().expectSend(stateGui);
             ddi::getDispatcher().dispatch(fldState);
 
             CHECK_N_CLEAR()
@@ -58,8 +58,8 @@ namespace test
         STEP(2)
         //  stimulation: send GUI commands SIG_STATE_H1 to dispatcher
         //  expectation: 
-        //  -   commands SIG_STATE_H1 to FldCom
-        //  -   GUI states SIG_STATE_WAIT to GuiCom
+        //  -   commands SIG_STATE_H1 to Com
+        //  -   GUI states SIG_STATE_WAIT to Com
         SUBSTEPS()
         for (UINT32 n = 0; n < CAPACITY_SIG; ++n)
         {
@@ -73,8 +73,8 @@ namespace test
             Mem::copy(stateGui.name, guiCmd.name);
             stateGui.state1 = SIG_STATE_WAIT;
 
-            m_FldCom().expectSend(cmdFld);
-            m_GuiCom().expectSend(stateGui);
+            m_Com().expectSend(cmdFld);
+            m_Com().expectSend(stateGui);
             ddi::getDispatcher().dispatch(guiCmd);
 
             CHECK_N_CLEAR()

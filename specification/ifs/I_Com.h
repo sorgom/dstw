@@ -1,19 +1,20 @@
 //  ============================================================
-//  Interface FldCom
-//  - field communication device
+//  Interface Com
+//  - field and GUI communication device
 //  ============================================================
 //  created by Manfred Sorgo 
 
 #pragma once
-#ifndef I_FLDCOM_H
-#define I_FLDCOM_H
+#ifndef I_COM_H
+#define I_COM_H
 
 #include <ifs/DataTypes.h>
 
-class I_FldCom
+class I_Com
 {
 public:
-    virtual void send(const CmdFld& tele) const = 0;
+    virtual void send(const CmdFld&   tele) const = 0;
+    virtual void send(const StateGui& tele) const = 0;
 };
 
 #endif // H_

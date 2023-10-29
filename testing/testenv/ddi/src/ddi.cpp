@@ -36,9 +36,8 @@ namespace ddi
         void reset();
 
         //# DDI_MEMB
+        DDI_MEMB(Com)
         DDI_MEMB(Dispatcher)
-        DDI_MEMB(FldCom)
-        DDI_MEMB(GuiCom)
         DDI_MEMB(Loader)
         DDI_MEMB(SIG)
         DDI_MEMB(SIG_Hub)
@@ -54,9 +53,8 @@ namespace ddi
     
     DDI::DDI():
         //# DDI_CON : APP
+        DDI_CON(Com)
         DDI_CON(Dispatcher)
-        DDI_CON(FldCom)
-        DDI_CON(GuiCom)
         DDI_CON(Loader)
         DDI_CON(SIG_Hub)
         DDI_CON(SIG_Provider)
@@ -73,9 +71,8 @@ namespace ddi
     void DDI::reset()
     {
         //# DDI_RESET
+        DDI_RESET(Com)
         DDI_RESET(Dispatcher)
-        DDI_RESET(FldCom)
-        DDI_RESET(GuiCom)
         DDI_RESET(Loader)
         DDI_RESET(SIG)
         DDI_RESET(SIG_Hub)
@@ -87,9 +84,8 @@ namespace ddi
     }
 
     //# DDI_DEF
+    DDI_DEF(Com)
     DDI_DEF(Dispatcher)
-    DDI_DEF(FldCom)
-    DDI_DEF(GuiCom)
     DDI_DEF(Loader)
     DDI_DEF(SIG)
     DDI_DEF(SIG_Hub)

@@ -6,6 +6,12 @@ definiton of complex data types
 - mainly communication telegrams
 ```
 
+**I_Com.h**
+```
+Interface Com
+- field and GUI communication device
+```
+
 **I_Dispatcher.h**
 ```
 interface Dispatcher
@@ -25,18 +31,6 @@ GUI commands shall be dispatched to subsystems
 commands from subsystems shall be dispatched to field
 
 states from subsystems shall be dispatched to GUI
-```
-
-**I_FldCom.h**
-```
-Interface FldCom
-- field communication device
-```
-
-**I_GuiCom.h**
-```
-Interface GuiCom
-- GUI communication device
 ```
 
 **I_Loader.h**

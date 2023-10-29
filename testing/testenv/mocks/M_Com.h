@@ -1,21 +1,30 @@
 //  ============================================================
-//  mock for interface I_CuiCom
+//  mock for interface I_Com
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef M_GUICOM_H
-#define M_GUICOM_H
+#ifndef M_COM_H
+#define M_COM_H
 
-#include <ifs/I_GuiCom.h>
+#include <ifs/I_Com.h>
 #include "M_Base.h"
 
 namespace test
 {
-    MOCK_CLASS(GuiCom)
+    MOCK_CLASS(Com)
     {
     public:
-        MOCK_CON(GuiCom)
+        MOCK_CON(Com)
+
+        inline void send(const CmdFld& tele) const
+        {
+            call("send").TPARAM(CmdFld, tele);
+        }
+        inline void expectSend(const CmdFld& tele) const
+        {
+            expect("send").TPARAM(CmdFld, tele);
+        }
 
         inline void send(const StateGui& tele) const
         {
@@ -25,6 +34,7 @@ namespace test
         {
             expect("send").TPARAM(StateGui, tele);
         }
+
     };
 } // namespace
 

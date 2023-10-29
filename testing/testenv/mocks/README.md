@@ -5,19 +5,14 @@
 base class for mocks
 ```
 
+**M_Com.h**
+```
+mock for interface I_Com
+```
+
 **M_Dispatcher.h**
 ```
 mock for interface Dispatcher
-```
-
-**M_FldCom.h**
-```
-mock for interface I_FldCom
-```
-
-**M_GuiCom.h**
-```
-mock for interface I_CuiCom
 ```
 
 **M_Instances.h**

@@ -96,7 +96,7 @@ void Dispatcher::dispatch(const UINT32 id, const CmdFld& tele) const
         static CmdFld cmd;
         Mem::copy(cmd, tele);
         Mem::copy(cmd.name, mData[id].name);
-        ddi::getFldCom().send(cmd);
+        ddi::getCom().send(cmd);
     }
     else
     { pass();}
@@ -109,7 +109,7 @@ void Dispatcher::dispatch(const UINT32 id, const StateGui& tele) const
         static StateGui state;
         Mem::copy(state, tele);
         Mem::copy(state.name, mData[id].name);
-        ddi::getGuiCom().send(state);
+        ddi::getCom().send(state);
     }
     else
     { pass();}

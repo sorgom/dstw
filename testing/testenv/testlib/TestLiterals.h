@@ -18,12 +18,11 @@ namespace test
 
     //# C_STR_DEC
     C_STR_DEC(CmdFld)
+    C_STR_DEC(Com)
     C_STR_DEC(Dispatcher)
     C_STR_DEC(ElementName)
-    C_STR_DEC(FldCom)
     C_STR_DEC(FldState)
     C_STR_DEC(GuiCmd)
-    C_STR_DEC(GuiCom)
     C_STR_DEC(Loader)
     C_STR_DEC(ProjData)
     C_STR_DEC(ProjLCR)

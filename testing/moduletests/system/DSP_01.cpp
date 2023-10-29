@@ -115,25 +115,25 @@ namespace test
 
         STEP(1)
         genElementName(cmdExp.name, 1, "TSW");
-        m_FldCom().expectSend(cmdExp);
+        m_Com().expectSend(cmdExp);
         mSUT.dispatch(0, cmdIn);
         CHECK_N_CLEAR()
 
         STEP(2)
         genElementName(cmdExp.name, 2, "SIG");
-        m_FldCom().expectSend(cmdExp);
+        m_Com().expectSend(cmdExp);
         mSUT.dispatch(1, cmdIn);
         CHECK_N_CLEAR()
 
         STEP(3)
         genElementName(cmdExp.name, 3, "LCR");
-        m_FldCom().expectSend(cmdExp);
+        m_Com().expectSend(cmdExp);
         mSUT.dispatch(2, cmdIn);
         CHECK_N_CLEAR()
 
         STEP(4)
         genElementName(cmdExp.name, 4, "SEG");
-        m_FldCom().expectSend(cmdExp);
+        m_Com().expectSend(cmdExp);
         mSUT.dispatch(3, cmdIn);
         CHECK_N_CLEAR()
 
@@ -155,25 +155,25 @@ namespace test
 
         STEP(1)
         genElementName(stateExp.name, 1, "TSW");
-        m_GuiCom().expectSend(stateExp);
+        m_Com().expectSend(stateExp);
         mSUT.dispatch(0, stateIn);
         CHECK_N_CLEAR()
 
         STEP(2)
         genElementName(stateExp.name, 2, "SIG");
-        m_GuiCom().expectSend(stateExp);
+        m_Com().expectSend(stateExp);
         mSUT.dispatch(1, stateIn);
         CHECK_N_CLEAR()
 
         STEP(3)
         genElementName(stateExp.name, 3, "LCR");
-        m_GuiCom().expectSend(stateExp);
+        m_Com().expectSend(stateExp);
         mSUT.dispatch(2, stateIn);
         CHECK_N_CLEAR()
 
         STEP(4)
         genElementName(stateExp.name, 4, "SEG");
-        m_GuiCom().expectSend(stateExp);
+        m_Com().expectSend(stateExp);
         mSUT.dispatch(3, stateIn);
         CHECK_N_CLEAR()
 

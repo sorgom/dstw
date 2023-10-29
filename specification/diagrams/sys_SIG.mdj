@@ -684,7 +684,7 @@
 "_type":"LabelView","_id":"AAAAAAGLTJhzlYWN9tQ=","_parent":{
 "$ref":"AAAAAAGLTJhzlYWLdSM="
 }
-,"fillColor":"#FFC1AD","font":"Arial;13;1","left":389,"top":447,"width":135,"height":13,"underline":true,"text":"GuiCom"
+,"fillColor":"#FFC1AD","font":"Arial;13;1","left":389,"top":447,"width":135,"height":13,"underline":true,"text":"Com"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLTJhzlYWOc9E=","_parent":{
@@ -753,7 +753,7 @@
 "_type":"LabelView","_id":"AAAAAAGLTJkSHoxldok=","_parent":{
 "$ref":"AAAAAAGLTJkSHoxjvhQ="
 }
-,"fillColor":"#FFC1AD","font":"Arial;13;1","left":573,"top":447,"width":135,"height":13,"underline":true,"text":"FldCom"
+,"fillColor":"#FFC1AD","font":"Arial;13;1","left":573,"top":447,"width":135,"height":13,"underline":true,"text":"Com"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLTJkSHoxmKMQ=","_parent":{
@@ -4032,13 +4032,13 @@
 "_type":"UMLObject","_id":"AAAAAAGLTJhzlYWI1II=","_parent":{
 "$ref":"AAAAAAFF+qBWK6M3Z8Y="
 }
-,"name":"GuiCom"
+,"name":"Com"
 }
 ,{
 "_type":"UMLObject","_id":"AAAAAAGLTJkSHoxgeOI=","_parent":{
 "$ref":"AAAAAAFF+qBWK6M3Z8Y="
 }
-,"name":"FldCom"
+,"name":"Com"
 }
 ,{
 "_type":"UMLObject","_id":"AAAAAAGLTJ+A4QCUZzg=","_parent":{
