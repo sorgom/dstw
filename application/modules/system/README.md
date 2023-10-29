@@ -15,3 +15,9 @@ Dispatcher implements I_Dispatcher
 ```
 class Loader implements I_Loader
 ```
+
+**Logger.h**
+```
+class Logger implements I_Logger
+- currently without functionality
+```
