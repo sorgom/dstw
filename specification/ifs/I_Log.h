@@ -1,5 +1,5 @@
 //  ============================================================
-//  interface Logger
+//  interface Log
 //  - runtime error logging
 //  ============================================================
 //  created by Manfred Sorgo
@@ -10,7 +10,7 @@
 
 #include "SystemEnums.h"
 
-class I_Logger
+class I_Log
 {
 public:
     virtual void log(E_Comp comp, E_Err err) = 0;

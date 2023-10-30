@@ -42,9 +42,9 @@ the Loader is called at sytem start and shall:
 -   call indexing of I_Dispatcher
 ```
 
-**I_Logger.h**
+**I_Log.h**
 ```
-interface Logger
+interface Log
 - runtime error logging
 ```
 

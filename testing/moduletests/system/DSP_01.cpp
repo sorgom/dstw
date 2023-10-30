@@ -60,7 +60,7 @@ namespace test
 
         STEP(5)
         //  not assigned
-        m_Logger().expectLog(COMP_DISPATCHER, ERR_MATCH);
+        m_Log().expectLog(COMP_DISPATCHER, ERR_MATCH);
         genElementName(fldState.name, 2, "TSW");
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
@@ -99,7 +99,7 @@ namespace test
 
         STEP(5)
         //  not assigned
-        m_Logger().expectLog(COMP_DISPATCHER, ERR_MATCH);
+        m_Log().expectLog(COMP_DISPATCHER, ERR_MATCH);
         genElementName(guiCmd.name, 2, "TSW");
         mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()

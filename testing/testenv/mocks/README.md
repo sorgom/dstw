@@ -23,9 +23,9 @@ for interface I_<NAME>
 - function mock_<NAME>() plugs mock instance into ddi
 ```
 
-**M_Logger.h**
+**M_Log.h**
 ```
-mock for interface Logger
+mock for interface Log
 ```
 
 **M_SIG.h**

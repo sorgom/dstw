@@ -54,7 +54,7 @@ GENERATED += $(OBJDIR)/BaseLib.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/Dispatcher.o
 GENERATED += $(OBJDIR)/Loader.o
-GENERATED += $(OBJDIR)/Logger.o
+GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/NtpArray.o
 GENERATED += $(OBJDIR)/SIG_Hub.o
 GENERATED += $(OBJDIR)/SIG_Provider.o
@@ -66,7 +66,7 @@ OBJECTS += $(OBJDIR)/BaseLib.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
 OBJECTS += $(OBJDIR)/Loader.o
-OBJECTS += $(OBJDIR)/Logger.o
+OBJECTS += $(OBJDIR)/Log.o
 OBJECTS += $(OBJDIR)/NtpArray.o
 OBJECTS += $(OBJDIR)/SIG_Hub.o
 OBJECTS += $(OBJDIR)/SIG_Provider.o
@@ -170,7 +170,7 @@ $(OBJDIR)/Dispatcher.o: ../application/modules/system/src/Dispatcher.cpp
 $(OBJDIR)/Loader.o: ../application/modules/system/src/Loader.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Logger.o: ../application/modules/system/src/Logger.cpp
+$(OBJDIR)/Log.o: ../application/modules/system/src/Log.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

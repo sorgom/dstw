@@ -65,7 +65,7 @@ void SIG_X::procFromGui(const INT32 state, const INT32 speed)
 
 void SIG_X::logMissmatch()
 {
-    ddi::getLogger().log(COMP_SIG, ERR_MATCH);
+    ddi::getLog().log(COMP_SIG, ERR_MATCH);
 }
 
 void SIG_H::fromFld(const INT32 state, const INT32 speed)

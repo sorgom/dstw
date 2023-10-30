@@ -9,7 +9,7 @@ SIG/src/SIG_X.cpp            203         --       --
 system/src/Com.cpp             2         --       --
 system/src/Dispatcher.cpp    106         --       --
 system/src/Loader.cpp         10         --       --
-system/src/Logger.cpp          2         --       --
+system/src/Log.cpp             2         --       --
 TSW/src/TSW.cpp               89         --       --
 TSW/src/TSW_Hub.cpp           38         --       --
 TSW/src/TSW_Provider.cpp      35         --       --

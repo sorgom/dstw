@@ -1,27 +1,27 @@
 //  ============================================================
-//  class Logger implements I_Logger
+//  class Log implements I_Log
 //  - currently without functionality
 //  ============================================================
 //  created by Manfred Sorgo 
 
 #pragma once
-#ifndef LOGGER_H
-#define LOGGER_H
+#ifndef LOG_H
+#define LOG_H
 
-#include <ifs/I_Logger.h>
+#include <ifs/I_Log.h>
 #include <baselib/InstanceMacros.h>
 #include <baselib/coding.h>
 
-class Logger : public I_Logger
+class Log : public I_Log
 {
 public:
-    inline Logger() {}
+    inline Log() {}
 
     inline void log(E_Comp comp, E_Err err) {}
 
-    DDI_INSTANCE_DEC(Logger)
+    DDI_INSTANCE_DEC(Log)
 
-    NOCOPY(Logger)
+    NOCOPY(Log)
 };
 
 #endif // H_

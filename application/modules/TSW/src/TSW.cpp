@@ -15,7 +15,7 @@ void TSW::fromGui(const INT32 cmd)
         swRight();
         break;
     default:
-        ddi::getLogger().log(COMP_TSW, ERR_MATCH);
+        ddi::getLog().log(COMP_TSW, ERR_MATCH);
         break;
     };
 }
@@ -76,7 +76,7 @@ void TSW::fromFld(const INT32 state)
         chgState(state);
         break;
     default:
-        ddi::getLogger().log(COMP_TSW, ERR_MATCH);
+        ddi::getLog().log(COMP_TSW, ERR_MATCH);
         break;
     }
 }
