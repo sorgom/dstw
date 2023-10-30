@@ -23,7 +23,7 @@ TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests
 OBJDIR = obj/tests
 DEFINES += -DNDEBUG
-INCLUDES += -Itestenv -Itestenv/TestStepper/include -I../specification -I../application -I../application/modules -I../devel
+INCLUDES += -Itestenv -Itestenv/CppUTestStepper/TestStepper/include -I../specification -I../application -I../application/modules -I../devel
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++98 -pedantic-errors
@@ -272,10 +272,10 @@ $(OBJDIR)/SYS_SIG_01.o: systemtests/SYS_SIG_01.cpp
 $(OBJDIR)/SYS_TSW_01.o: systemtests/SYS_TSW_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestStepper.o: testenv/TestStepper/src/TestStepper.cpp
+$(OBJDIR)/TestStepper.o: testenv/CppUTestStepper/TestStepper/src/TestStepper.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestStepperPlugin.o: testenv/TestStepper/src/TestStepperPlugin.cpp
+$(OBJDIR)/TestStepperPlugin.o: testenv/CppUTestStepper/TestStepper/src/TestStepperPlugin.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/CompOstream.o: testenv/comparators/src/CompOstream.cpp

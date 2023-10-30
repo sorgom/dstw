@@ -14,7 +14,7 @@ workspace 'tests'
 
     includedirs {
         'testenv',
-        'testenv/TestStepper/include',
+        'testenv/CppUTestStepper/TestStepper/include',
         '../specification',
         '../application',
         '../application/modules',
@@ -29,7 +29,7 @@ workspace 'tests'
 
         files { 
             '../application/modules/**.cpp',
-            'testenv/*/src/*.cpp',
+            'testenv/**/src/*.cpp',
             'moduletests/**.cpp',
             'systemtests/**.cpp'
         }
@@ -51,7 +51,7 @@ workspace 'coverage'
 
     includedirs {
         'testenv',
-        'testenv/TestStepper/include',
+        'testenv/CppUTestStepper/TestStepper/include',
         '../specification',
         '../application',
         '../application/modules',
@@ -77,7 +77,7 @@ workspace 'coverage'
         targetdir   'bin'
 
         files { 
-            'testenv/*/src/*.cpp',
+            'testenv/**/src/*.cpp',
             'moduletests/**.cpp'
         }
 

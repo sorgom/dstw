@@ -4,13 +4,16 @@
 ```
 Makefile build rules for premake5:
 
-> Tests.make
+> tests.make
 module tests and system tests at once runtime
+->  bin/tests
 
-> Coverage.make
+> coverage.make
 -   coverage instrumented application (static lib)
 -   module tests only runtime
+->  bin/coverage_tests
 
-> Application.make
+> dstw.make
 application runtime
+->  bin/dstw
 ```

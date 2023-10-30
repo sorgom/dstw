@@ -23,7 +23,7 @@ TARGETDIR = lib
 TARGET = $(TARGETDIR)/libcoverage_app.a
 OBJDIR = obj/coverage_app
 DEFINES += -DDEBUG
-INCLUDES += -Itestenv -Itestenv/TestStepper/include -I../specification -I../application -I../application/modules -I../devel
+INCLUDES += -Itestenv -Itestenv/CppUTestStepper/TestStepper/include -I../specification -I../application -I../application/modules -I../devel
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++98 -pedantic-errors -fprofile-arcs -ftest-coverage
