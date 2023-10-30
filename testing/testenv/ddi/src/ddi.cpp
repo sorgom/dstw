@@ -36,10 +36,10 @@ namespace ddi
         void reset();
 
         //# DDI_MEMB
+        DDI_MEMB(Com)
         DDI_MEMB(Dispatcher)
-        DDI_MEMB(FldCom)
-        DDI_MEMB(GuiCom)
         DDI_MEMB(Loader)
+        DDI_MEMB(Log)
         DDI_MEMB(SIG)
         DDI_MEMB(SIG_Hub)
         DDI_MEMB(SIG_Provider)
@@ -54,16 +54,16 @@ namespace ddi
     
     DDI::DDI():
         //# DDI_CON : APP
+        DDI_CON(Com)
         DDI_CON(Dispatcher)
         DDI_CON(Loader)
+        DDI_CON(Log)
         DDI_CON(SIG_Hub)
         DDI_CON(SIG_Provider)
         DDI_CON(TSW_Hub)
         DDI_CON(TSW_Provider)
         //# END
         //# DDI_CON_MOCK : MOCK
-        DDI_CON_MOCK(FldCom)
-        DDI_CON_MOCK(GuiCom)
         DDI_CON_MOCK(SIG)
         DDI_CON_MOCK(TSW)
         //# END
@@ -73,10 +73,10 @@ namespace ddi
     void DDI::reset()
     {
         //# DDI_RESET
+        DDI_RESET(Com)
         DDI_RESET(Dispatcher)
-        DDI_RESET(FldCom)
-        DDI_RESET(GuiCom)
         DDI_RESET(Loader)
+        DDI_RESET(Log)
         DDI_RESET(SIG)
         DDI_RESET(SIG_Hub)
         DDI_RESET(SIG_Provider)
@@ -87,10 +87,10 @@ namespace ddi
     }
 
     //# DDI_DEF
+    DDI_DEF(Com)
     DDI_DEF(Dispatcher)
-    DDI_DEF(FldCom)
-    DDI_DEF(GuiCom)
     DDI_DEF(Loader)
+    DDI_DEF(Log)
     DDI_DEF(SIG)
     DDI_DEF(SIG_Hub)
     DDI_DEF(SIG_Provider)

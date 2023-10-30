@@ -10,10 +10,12 @@ from modGenCode import genCode
 from projectDirs import *
 
 # application ddi
+# application main
 appIncludes, appNames = scanDdi(glob(modDir + '/*/*.h'))
 genCode(
     targets = [
-        modDir + '/ddi/ddi.h'
+        modDir + '/ddi/ddi.h',
+        appDir + '/AppMain.cpp'
     ],
     names = appNames,
     includes = appIncludes,

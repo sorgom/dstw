@@ -15,11 +15,13 @@
 #include <SIG/SIG_Provider.h>
 #include <TSW/TSW_Hub.h>
 #include <TSW/TSW_Provider.h>
+#include <system/Com.h>
 #include <system/Dispatcher.h>
 #include <system/Loader.h>
+#include <system/Log.h>
+#include <mocks/M_Com.h>
 #include <mocks/M_Dispatcher.h>
-#include <mocks/M_FldCom.h>
-#include <mocks/M_GuiCom.h>
+#include <mocks/M_Log.h>
 #include <mocks/M_SIG.h>
 #include <mocks/M_SIG_Hub.h>
 #include <mocks/M_SIG_Provider.h>
@@ -37,10 +39,10 @@
 namespace ddi
 {
     //# DDI_DEC
+    DDI_DEC(Com)
     DDI_DEC(Dispatcher)
-    DDI_DEC(FldCom)
-    DDI_DEC(GuiCom)
     DDI_DEC(Loader)
+    DDI_DEC(Log)
     DDI_DEC(SIG)
     DDI_DEC(SIG_Hub)
     DDI_DEC(SIG_Provider)

@@ -1,19 +1,20 @@
 //  ============================================================
-//  Interface GuiCom
-//  - GUI communication device
+//  Interface Com
+//  - field and GUI communication device
 //  ============================================================
 //  created by Manfred Sorgo 
 
 #pragma once
-#ifndef I_GUICOM_H
-#define I_GUICOM_H
+#ifndef I_COM_H
+#define I_COM_H
 
 #include <ifs/DataTypes.h>
 
-class I_GuiCom
+class I_Com
 {
 public:
-    virtual bool send(const StateGui& tele) const = 0;
+    virtual void send(const CmdFld&   tele) const = 0;
+    virtual void send(const StateGui& tele) const = 0;
 };
 
 #endif // H_

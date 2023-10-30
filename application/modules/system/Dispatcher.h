@@ -22,10 +22,12 @@ public:
     void index();
 
     INT32 assign(const ElementName& name, E_Subsys subs, UINT32 pos);
-    bool label(ElementName& name, UINT32 id) const;
     
-    bool dispatch(const FldState& tele) const;
-    bool dispatch(const GuiCmd&   tele) const;
+    void dispatch(const FldState& tele) const;
+    void dispatch(const GuiCmd&   tele) const;
+
+    void dispatch(UINT32 id, const CmdFld&   tele) const;
+    void dispatch(UINT32 id, const StateGui& tele) const;
 
     DDI_INSTANCE_DEC(Dispatcher)
 

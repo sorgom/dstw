@@ -1,0 +1,3 @@
+[submodule "testing/testenv/CppUTestStepper"]
+	path = testing/testenv/CppUTestStepper
+	url = git@github.com:sorgom/CppUTestStepper.git

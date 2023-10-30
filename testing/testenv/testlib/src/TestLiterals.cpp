@@ -10,13 +10,13 @@ namespace test
 
     //# C_STR_DEF
     C_STR_DEF(CmdFld)
+    C_STR_DEF(Com)
     C_STR_DEF(Dispatcher)
     C_STR_DEF(ElementName)
-    C_STR_DEF(FldCom)
     C_STR_DEF(FldState)
     C_STR_DEF(GuiCmd)
-    C_STR_DEF(GuiCom)
     C_STR_DEF(Loader)
+    C_STR_DEF(Log)
     C_STR_DEF(ProjData)
     C_STR_DEF(ProjLCR)
     C_STR_DEF(ProjSEG)

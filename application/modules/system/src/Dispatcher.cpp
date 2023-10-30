@@ -31,81 +31,90 @@ INT32 Dispatcher::assign(
     return res;
 }
 
-bool Dispatcher::label(ElementName& name, const UINT32 id) const
+void Dispatcher::dispatch(const FldState& tele) const
 {
-    bool res = false;
+    const INT32 fnd = mIndx.findNtp(tele.name);
+    if (fnd < 0)
+    { 
+        ddi::getLog().log(COMP_DISPATCHER, ERR_MATCH);
+    }
+    else
+    {
+        const Ntp& ntp = mIndx.getRef(fnd);
+        switch (ntp.type)
+        {
+        case SUBSYS_TSW:
+            ddi::getTSW_Hub().fromDsp(ntp.pos, tele);
+            break;
+        case SUBSYS_SIG:
+            ddi::getSIG_Hub().fromDsp(ntp.pos, tele);
+            break;
+        case SUBSYS_SEG:
+            break;
+        case SUBSYS_LCR:
+            break;
+// NO_COV >>
+// assignment limited by enum            
+        default:
+            break;
+// << NO_COV
+        }
+    }
+}
+
+void Dispatcher::dispatch(const GuiCmd& tele) const
+{
+    const INT32 fnd = mIndx.findNtp(tele.name);
+    if (fnd < 0)
+    { 
+        ddi::getLog().log(COMP_DISPATCHER, ERR_MATCH);
+    }
+    else
+    {
+        const Ntp& ntp = mIndx.getRef(fnd);
+        switch (ntp.type)
+        {
+        case SUBSYS_TSW:
+            ddi::getTSW_Hub().fromDsp(ntp.pos, tele);
+            break;
+        case SUBSYS_SIG:
+            ddi::getSIG_Hub().fromDsp(ntp.pos, tele);
+            break;
+        case SUBSYS_SEG:
+            break;
+        case SUBSYS_LCR:
+            break;
+// NO_COV >>
+// assignment limited by enum            
+        default:
+            break;
+// << NO_COV
+        }
+    }
+}
+
+void Dispatcher::dispatch(const UINT32 id, const CmdFld& tele) const
+{
     if (id < mData.size())
     {
-        Mem::copy(name, mData[id].name);
-        res = true;
+        static CmdFld cmd;
+        Mem::copy(cmd, tele);
+        Mem::copy(cmd.name, mData[id].name);
+        ddi::getCom().send(cmd);
     }
     else
     { pass();}
-    return res;
 }
 
-bool Dispatcher::dispatch(const FldState& tele) const
+void Dispatcher::dispatch(const UINT32 id, const StateGui& tele) const
 {
-    bool res = false;
-    const INT32 fnd = mIndx.findNtp(tele.name);
-    if (fnd < 0)
-    { pass();}
-    else
+    if (id < mData.size())
     {
-        res = true;
-        const Ntp& ntp = mIndx.getRef(fnd);
-        switch (ntp.type)
-        {
-        case SUBSYS_TSW:
-            ddi::getTSW_Hub().fromFld(tele, ntp.pos);
-            break;
-        case SUBSYS_SIG:
-            ddi::getSIG_Hub().fromFld(tele, ntp.pos);
-            break;
-        case SUBSYS_SEG:
-            break;
-        case SUBSYS_LCR:
-            break;
-// NO_COV >>
-// assignment limited by enum            
-        default:
-            res = false;
-            break;
-// << NO_COV
-        }
+        static StateGui state;
+        Mem::copy(state, tele);
+        Mem::copy(state.name, mData[id].name);
+        ddi::getCom().send(state);
     }
-    return res;
-}
-
-bool Dispatcher::dispatch(const GuiCmd& tele) const
-{
-    bool res = false;
-    const INT32 fnd = mIndx.findNtp(tele.name);
-    if (fnd < 0)
-    { pass();}
     else
-    {
-        res = true;
-        const Ntp& ntp = mIndx.getRef(fnd);
-        switch (ntp.type)
-        {
-        case SUBSYS_TSW:
-            ddi::getTSW_Hub().fromGui(tele, ntp.pos);
-            break;
-        case SUBSYS_SIG:
-            ddi::getSIG_Hub().fromGui(tele, ntp.pos);
-            break;
-        case SUBSYS_SEG:
-            break;
-        case SUBSYS_LCR:
-            break;
-// NO_COV >>
-// assignment limited by enum            
-        default:
-            res = false;
-            break;
-// << NO_COV
-        }
-    }
-    return res;
+    { pass();}
 }

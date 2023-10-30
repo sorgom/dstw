@@ -18,8 +18,8 @@ namespace test
     {
         SETUP()
         GenProjData<CAPACITY_TSW> projData;
-        mock_FldCom();
-        mock_GuiCom();
+        mock_Com();
+        mock_Com();
         ddi::getLoader().load(projData);
 
         L_CHECK_TRUE(ddi::getTSW_Provider().has(CAPACITY_TSW - 1))
@@ -36,7 +36,7 @@ namespace test
 
         STEP(1)
         //  stimulation: send TSW field states LEFT to dispatcher
-        //  expectation: GUI states LEFT to GuiCom
+        //  expectation: GUI states LEFT to Com
         SUBSTEPS()
         for (UINT32 n = 0; n < CAPACITY_TSW; ++n)
         {
@@ -47,7 +47,7 @@ namespace test
             Mem::copy(stateGui.name, fldState.name);
             stateGui.state1 = TSW_STATE_LEFT;
 
-            m_GuiCom().expectSend(stateGui);
+            m_Com().expectSend(stateGui);
             ddi::getDispatcher().dispatch(fldState);
 
             CHECK_N_CLEAR()
@@ -57,8 +57,8 @@ namespace test
         STEP(2)
         //  stimulation: send GUI commands WU to dispatcher
         //  expectation: 
-        //  -   commands RIGHT to FldCom
-        //  -   GUI states WAIT_RIGHT to GuiCom
+        //  -   commands RIGHT to Com
+        //  -   GUI states WAIT_RIGHT to Com
         SUBSTEPS()
         for (UINT32 n = 0; n < CAPACITY_TSW; ++n)
         {
@@ -72,8 +72,8 @@ namespace test
             Mem::copy(stateGui.name, guiCmd.name);
             stateGui.state1 = TSW_STATE_WAIT_RIGHT;
 
-            m_FldCom().expectSend(cmdFld);
-            m_GuiCom().expectSend(stateGui);
+            m_Com().expectSend(cmdFld);
+            m_Com().expectSend(stateGui);
             ddi::getDispatcher().dispatch(guiCmd);
 
             CHECK_N_CLEAR()

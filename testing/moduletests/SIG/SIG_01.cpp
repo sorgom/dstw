@@ -1,6 +1,6 @@
 //  ============================================================
 //  test of modules SIG_(X)
-//  according to test plan tests_SIG_X
+//  according to test plan tests_SIG_X.csv
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -97,6 +97,7 @@ namespace test
         fromFldToGui(SIG_STATE_DEFECT, 20);
 
         STEP(9)
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         fromFldToGui(SIG_STATE_N0, 10);
     }
 
@@ -115,10 +116,13 @@ namespace test
         fromGuiToFldToGui(SIG_STATE_H1, 20);
 
         STEP(5)
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_UNDEF, 10);
         STEP(6)
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_DEFECT, 20);
         STEP(7)
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_N0, 10);
     }
 
@@ -155,6 +159,7 @@ namespace test
         fromFldToGui(SIG_STATE_DEFECT, 20);
 
         STEP(11)
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         fromFldToGui(SIG_STATE_H0, 10);
     }
 
@@ -182,10 +187,13 @@ namespace test
         fromGuiToFldToGui(SIG_STATE_N1, 20);
 
         STEP(7)
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_UNDEF, 10);
         STEP(8)
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_DEFECT, 20);
         STEP(9)
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_H1, 10);
     }
 
@@ -236,6 +244,7 @@ namespace test
         fromFldToGui(SIG_STATE_DEFECT, 20);
 
         STEP(17)
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         fromFldToGui(SIG_STATE_H0, 10);
     }
 
@@ -277,10 +286,13 @@ namespace test
         fromGuiToFldToGui(SIG_STATE_H1_N1, 20);
 
         STEP(13)
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_UNDEF, 10);
         STEP(14)
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_DEFECT, 20);
         STEP(15)
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_N0, 10);
     }
 }

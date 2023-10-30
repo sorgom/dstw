@@ -14,4 +14,6 @@ $mydir/cleanTests.sh
 
 cd $mydir/../testing
 premake5 gmake2
-make verbose=$1
+make -f coverage.make $@
+make -f dstw.make $@
+make -f tests.make $@

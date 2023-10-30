@@ -20,8 +20,8 @@ public:
     void toFld(UINT32 id, INT32 cmd) const;
     void toGui(UINT32 id, INT32 state) const;
 
-    void fromFld(const FldState& tele, UINT32 pos);
-    void fromGui(const GuiCmd&   tele, UINT32 pos);
+    void fromDsp(UINT32 pos, const FldState& tele) const;
+    void fromDsp(UINT32 pos, const GuiCmd&   tele) const;
 
     DDI_INSTANCE_DEC(TSW_Hub)
 

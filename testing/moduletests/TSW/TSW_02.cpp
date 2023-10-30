@@ -20,7 +20,7 @@ namespace test
     TEST_GROUP_BASE(TSW_02, TestGroupTSH) {};
 
     //  test type: equivalence class test
-    //  fromFld
+    //  fromDsp FldState
     TEST(TSW_02, T01)
     {
         SETUP()
@@ -32,18 +32,18 @@ namespace test
         //  good case
         m_TSW_Provider().expectHas(11, true);
         m_TSW().expectFromFld(101);
-        mSUT.fromFld(tele, 11);
+        mSUT.fromDsp(11, tele);
         CHECK_N_CLEAR()
 
         STEP(2)
         //  fail case
         m_TSW_Provider().expectHas(11, false);
-        mSUT.fromFld(tele, 11);
+        mSUT.fromDsp(11, tele);
         CHECK_N_CLEAR()
     }
 
     //  test type: equivalence class test
-    //  fromGui
+    //  fromDsp GuiCmd
     TEST(TSW_02, T02)
     {
         SETUP()
@@ -55,13 +55,13 @@ namespace test
         //  good case
         m_TSW_Provider().expectHas(22, true);
         m_TSW().expectFromGui(202);
-        mSUT.fromGui(tele, 22);
+        mSUT.fromDsp(22, tele);
         CHECK_N_CLEAR()
 
         STEP(2)
         //  fail case
         m_TSW_Provider().expectHas(22, false);
-        mSUT.fromGui(tele, 22);
+        mSUT.fromDsp(22, tele);
         CHECK_N_CLEAR()
     }
 
@@ -73,19 +73,9 @@ namespace test
         CmdFld tele;
         Mem::zero(tele);
         tele.cmd1 = 303;
-        genElementName(tele.name, 33);
-        m_Dispatcher().setLabel(tele.name);
         
         STEP(1)
-        //  good case
-        m_Dispatcher().expectLabel(3, true);
-        m_FldCom().expectSend(tele);
-        mSUT.toFld(3, 303);
-        CHECK_N_CLEAR()
-
-        STEP(2)
-        //  fail case
-        m_Dispatcher().expectLabel(3, false);
+        m_Dispatcher().expectDispatch(3, tele);
         mSUT.toFld(3, 303);
         CHECK_N_CLEAR()
     }
@@ -98,19 +88,9 @@ namespace test
         StateGui tele;
         Mem::zero(tele);
         tele.state1 = 404;
-        genElementName(tele.name, 44);
-        m_Dispatcher().setLabel(tele.name);
         
         STEP(1)
-        //  good case
-        m_Dispatcher().expectLabel(4, true);
-        m_GuiCom().expectSend(tele);
-        mSUT.toGui(4, 404);
-        CHECK_N_CLEAR()
-
-        STEP(2)
-        //  fail case
-        m_Dispatcher().expectLabel(4, false);
+        m_Dispatcher().expectDispatch(4, tele);
         mSUT.toGui(4, 404);
         CHECK_N_CLEAR()
     }

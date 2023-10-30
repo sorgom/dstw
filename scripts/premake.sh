@@ -7,4 +7,5 @@
 mydir=$(dirname $0)
 
 cd $mydir/../testing
+rm -f *.make
 premake5 gmake2

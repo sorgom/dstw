@@ -26,7 +26,7 @@ public:
         return mTSWs.at(pos);
     }
 
-    bool load(const ProjTSW* data, UINT32 num);
+    void load(const ProjTSW* data, UINT32 num);
 
     DDI_INSTANCE_DEC(TSW_Provider)
 

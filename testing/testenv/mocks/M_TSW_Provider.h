@@ -32,13 +32,13 @@ namespace test
             return M_TSW::instance();
         }
 
-        inline bool load(const ProjTSW* data, UINT32 num)
+        inline void load(const ProjTSW* data, UINT32 num)
         {
-            return call("load").PPARAM(data).PARAM(num).RETURN_DEF_BOOL(true);
+            call("load").PPARAM(data).PARAM(num);
         }
-        inline void expectLoad(const ProjTSW* data, UINT32 num, bool ret = true) const
+        inline void expectLoad(const ProjTSW* data, UINT32 num) const
         {
-            expect("load").PPARAM(data).PARAM(num).AND_RETURN_BOOL(ret);
+            expect("load").PPARAM(data).PARAM(num);
         }
    };
 }

@@ -3,11 +3,10 @@
 
 INSTANCE_DEF(TSW_Provider)
 
-bool TSW_Provider::load(const ProjTSW* const data, const UINT32 num)
+void TSW_Provider::load(const ProjTSW* const data, const UINT32 num)
 {
     I_Dispatcher& disp = ddi::getDispatcher();
     mTSWs.reset();
-    
     bool ok = true;
     if (num > mTSWs.capacity())
     { 
@@ -21,7 +20,6 @@ bool TSW_Provider::load(const ProjTSW* const data, const UINT32 num)
             if (id < 0)
             {
                 ok = false;
-                mTSWs.reset();
             }
             else
             { 
@@ -29,5 +27,11 @@ bool TSW_Provider::load(const ProjTSW* const data, const UINT32 num)
             }
         }
     }
-    return ok;
+    if (ok)
+    { pass(); }
+    else
+    {
+        mTSWs.reset();
+        ddi::getLog().log(COMP_TSW_PROVIDER, ERR_STARTUP);
+    }
 }

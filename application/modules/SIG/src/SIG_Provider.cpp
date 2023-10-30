@@ -3,12 +3,12 @@
 
 INSTANCE_DEF(SIG_Provider)
 
-bool SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
+void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
 {
     I_Dispatcher& disp = ddi::getDispatcher();
     mSIGs.reset();
-    
     bool ok = true;
+
     if (num > mSIGs.capacity())
     { 
         ok = false;
@@ -22,7 +22,6 @@ bool SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
             if (id < 0)
             {
                 ok = false;
-                mSIGs.reset();
             }
             else
             {
@@ -39,11 +38,16 @@ bool SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
                         break;
                     default:
                         ok = false;
-                        mSIGs.reset();
                         break;
                 } 
             }
         }
     }
-    return ok;
+    if (ok)
+    { pass(); }
+    else
+    {
+        mSIGs.reset();
+        ddi::getLog().log(COMP_SIG_PROVIDER, ERR_STARTUP);
+    }
 }

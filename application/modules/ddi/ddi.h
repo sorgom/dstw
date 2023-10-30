@@ -14,8 +14,10 @@
 #include <SIG/SIG_Provider.h>
 #include <TSW/TSW_Hub.h>
 #include <TSW/TSW_Provider.h>
+#include <system/Com.h>
 #include <system/Dispatcher.h>
 #include <system/Loader.h>
+#include <system/Log.h>
 //## END
 
 //  I_NAME& getNAME() { return NAME::instance(); }
@@ -25,8 +27,10 @@
 namespace ddi
 {
     //# DDI_INLINE
+    DDI_INLINE(Com)
     DDI_INLINE(Dispatcher)
     DDI_INLINE(Loader)
+    DDI_INLINE(Log)
     DDI_INLINE(SIG_Hub)
     DDI_INLINE(SIG_Provider)
     DDI_INLINE(TSW_Hub)
