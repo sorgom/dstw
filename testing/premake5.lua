@@ -3,10 +3,11 @@
 --  ============================================================
 
 --  ============================================================
---  > Tests.make
+--  > tests.make
 --  module tests and system tests at once runtime
+--  ->  bin/tests
 --  ============================================================
-workspace 'Tests'
+workspace 'tests'
     configurations { 'ci' }
     language    'C++'
     objdir      'obj/%{prj.name}'
@@ -38,11 +39,12 @@ workspace 'Tests'
         links { 'CppUTest', 'CppUTestExt' }
 
 --  ============================================================
---  > Coverage.make
+--  > coverage.make
 --  -   coverage instrumented application (static lib)
 --  -   module tests only runtime
+--  ->  bin/coverage_tests
 --  ============================================================
-workspace 'Coverage'
+workspace 'coverage'
     configurations { 'ci' }
     language    'C++'
     objdir      'obj/%{prj.name}'
@@ -58,7 +60,7 @@ workspace 'Coverage'
 
     buildoptions { '-std=c++98 -pedantic-errors' }
 
-    project 'application_coverage'
+    project 'coverage_app'
         kind        'StaticLib'
         targetdir   'lib'
         
@@ -70,7 +72,7 @@ workspace 'Coverage'
         symbols 'On'
         buildoptions {'-fprofile-arcs -ftest-coverage'}
 
-    project 'tests_coverage'
+    project 'coverage_tests'
         kind        'ConsoleApp'
         targetdir   'bin'
 
@@ -83,14 +85,15 @@ workspace 'Coverage'
         symbols 'On'
 
         libdirs { 'lib' }
-        links { 'application_coverage', 'CppUTest', 'CppUTestExt', 'gcov' }
+        links { 'coverage_app', 'CppUTest', 'CppUTestExt', 'gcov' }
         linkoptions { '--coverage' }
 
 --  ============================================================
---  > Application.make
+--  > dstw.make
 --  application runtime
+--  ->  bin/dstw
 --  ============================================================
-workspace 'Application'
+workspace 'dstw'
     configurations { 'ci' }
     language    'C++'
     objdir      'obj/%{prj.name}'
@@ -103,7 +106,7 @@ workspace 'Application'
 
     buildoptions { '-std=c++98 -pedantic-errors' }
 
-    project 'dstw_app'
+    project 'dstw'
         kind        'ConsoleApp'
         targetdir   'bin'
         

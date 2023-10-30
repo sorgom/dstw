@@ -57,6 +57,7 @@ namespace test
         CHECK_N_CLEAR()
         L_CHECK_FALSE(mSUT.has(0))
     }
+
     //  test type: coverage
     //  retrieve instance
     TEST(TSW_03, T04)

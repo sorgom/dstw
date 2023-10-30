@@ -7,4 +7,4 @@
 mydir=$(dirname $0)
 
 cd $mydir/../testing
-make -f Application.make $@
+make -f dstw.make $@

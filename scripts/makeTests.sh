@@ -8,4 +8,4 @@
 mydir=$(dirname $0)
 
 cd $mydir/../testing
-make -f Tests.make $@
+make -f tests.make $@

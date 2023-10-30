@@ -1,6 +1,6 @@
 //  ============================================================
 //  test of modules SIG_(X)
-//  according to test plan tests_SIG_X
+//  according to test plan tests_SIG_X.csv
 //  ============================================================
 //  created by Manfred Sorgo
 
