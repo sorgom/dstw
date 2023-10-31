@@ -6,8 +6,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef DDI_H
-#define DDI_H
+#ifndef IL_H
+#define IL_H
 
 //## INCLUDES
 #include <SIG/SIG_Hub.h>

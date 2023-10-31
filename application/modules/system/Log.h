@@ -19,7 +19,7 @@ public:
 
     inline void log(E_Comp comp, E_Err err) {}
 
-    DDI_INSTANCE_DEC(Log)
+    IL_INSTANCE_DEC(Log)
 
     NOCOPY(Log)
 };

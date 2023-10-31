@@ -29,7 +29,7 @@ public:
     void dispatch(UINT32 id, const CmdFld&   tele) const;
     void dispatch(UINT32 id, const StateGui& tele) const;
 
-    DDI_INSTANCE_DEC(Dispatcher)
+    IL_INSTANCE_DEC(Dispatcher)
 
 private:
     NtpArray<CAPACITY_ELEMENTS> mData;

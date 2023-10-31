@@ -12,7 +12,7 @@ from os.path import normpath
 import re
 from modUtilz import isHaeder
 
-rxDdi = re.compile(r'^[ \t]*DDI_INSTANCE_DEC[ \t]*\([ \t]*(\w+)[ \t]*\)', re.M) 
+rxDdi = re.compile(r'^[ \t]*IL_INSTANCE_DEC[ \t]*\([ \t]*(\w+)[ \t]*\)', re.M) 
 rxMoc = re.compile(r'^[ \t]*MOCK_CLASS\([ \t]*(\w+)[ \t]*\)', re.M)
 rxDat = re.compile(r'^[ \t]*struct[ \t]+(\w+)', re.M)
 rxInt = re.compile(r'^[ \t]*class[ \t]+I_(\w+)', re.M)

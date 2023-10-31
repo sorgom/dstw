@@ -28,7 +28,7 @@ public:
 
     void load(const ProjTSW* data, UINT32 num);
 
-    DDI_INSTANCE_DEC(TSW_Provider)
+    IL_INSTANCE_DEC(TSW_Provider)
 
 private:
     SimpleStackArray<TSW, CAPACITY_TSW> mTSWs;

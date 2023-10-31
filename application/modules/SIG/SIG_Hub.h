@@ -23,7 +23,7 @@ public:
     void fromDsp(UINT32 pos, const FldState& tele) const;
     void fromDsp(UINT32 pos, const GuiCmd&   tele) const;
 
-    DDI_INSTANCE_DEC(SIG_Hub)
+    IL_INSTANCE_DEC(SIG_Hub)
 
     NOCOPY(SIG_Hub)
 };

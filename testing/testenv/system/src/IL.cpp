@@ -59,7 +59,6 @@ namespace test
     class ILPLugs
     {
     public:
-        // ILPLugs();    
         INSTANCE_DEC(ILPLugs)
 
         void reset();
@@ -96,7 +95,7 @@ namespace test
         IL_CON(TSW_Hub)
         IL_CON(TSW_Provider)
         //# END
-        
+
         //# IL_CON_MOCK : MOCK
         IL_CON_MOCK(SIG)
         IL_CON_MOCK(TSW)
