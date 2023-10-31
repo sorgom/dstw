@@ -20,18 +20,18 @@ endif
 
 RESCOMP = windres
 TARGETDIR = bin
-TARGET = $(TARGETDIR)/tests
-OBJDIR = obj/tests
-DEFINES += -DNDEBUG
-INCLUDES += -Itestenv -Itestenv/CppUTestStepper/TestStepper/include -I../specification -I../application -I../application/modules -I../devel
+TARGET = $(TARGETDIR)/coverage_tests
+OBJDIR = obj/coverage_tests
+DEFINES += -DDEBUG
+INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/modules -I../devel
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++98 -pedantic-errors
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++98 -pedantic-errors
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++98 -pedantic-errors
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++98 -pedantic-errors
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-LIBS += -lCppUTest -lCppUTestExt
-LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS) -s
+LIBS += lib/libcoverage_app.a -lCppUTest -lCppUTestExt -lgcov
+LDDEPS += lib/libcoverage_app.a
+ALL_LDFLAGS += $(LDFLAGS) -Llib --coverage
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -54,30 +54,16 @@ GENERATED += $(OBJDIR)/BT_01.o
 GENERATED += $(OBJDIR)/BT_02.o
 GENERATED += $(OBJDIR)/BT_03.o
 GENERATED += $(OBJDIR)/BT_04.o
-GENERATED += $(OBJDIR)/BaseLib.o
-GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/CompOstream.o
 GENERATED += $(OBJDIR)/DSP_01.o
-GENERATED += $(OBJDIR)/Dispatcher.o
 GENERATED += $(OBJDIR)/LDR_01.o
-GENERATED += $(OBJDIR)/Loader.o
-GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/M_Instances.o
-GENERATED += $(OBJDIR)/NtpArray.o
 GENERATED += $(OBJDIR)/SIG_01.o
 GENERATED += $(OBJDIR)/SIG_02.o
 GENERATED += $(OBJDIR)/SIG_03.o
-GENERATED += $(OBJDIR)/SIG_Hub.o
-GENERATED += $(OBJDIR)/SIG_Provider.o
-GENERATED += $(OBJDIR)/SIG_X.o
-GENERATED += $(OBJDIR)/SYS_SIG_01.o
-GENERATED += $(OBJDIR)/SYS_TSW_01.o
-GENERATED += $(OBJDIR)/TSW.o
 GENERATED += $(OBJDIR)/TSW_01.o
 GENERATED += $(OBJDIR)/TSW_02.o
 GENERATED += $(OBJDIR)/TSW_03.o
-GENERATED += $(OBJDIR)/TSW_Hub.o
-GENERATED += $(OBJDIR)/TSW_Provider.o
 GENERATED += $(OBJDIR)/TT_01.o
 GENERATED += $(OBJDIR)/TestGroupBase.o
 GENERATED += $(OBJDIR)/TestLib.o
@@ -93,30 +79,16 @@ OBJECTS += $(OBJDIR)/BT_01.o
 OBJECTS += $(OBJDIR)/BT_02.o
 OBJECTS += $(OBJDIR)/BT_03.o
 OBJECTS += $(OBJDIR)/BT_04.o
-OBJECTS += $(OBJDIR)/BaseLib.o
-OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/CompOstream.o
 OBJECTS += $(OBJDIR)/DSP_01.o
-OBJECTS += $(OBJDIR)/Dispatcher.o
 OBJECTS += $(OBJDIR)/LDR_01.o
-OBJECTS += $(OBJDIR)/Loader.o
-OBJECTS += $(OBJDIR)/Log.o
 OBJECTS += $(OBJDIR)/M_Instances.o
-OBJECTS += $(OBJDIR)/NtpArray.o
 OBJECTS += $(OBJDIR)/SIG_01.o
 OBJECTS += $(OBJDIR)/SIG_02.o
 OBJECTS += $(OBJDIR)/SIG_03.o
-OBJECTS += $(OBJDIR)/SIG_Hub.o
-OBJECTS += $(OBJDIR)/SIG_Provider.o
-OBJECTS += $(OBJDIR)/SIG_X.o
-OBJECTS += $(OBJDIR)/SYS_SIG_01.o
-OBJECTS += $(OBJDIR)/SYS_TSW_01.o
-OBJECTS += $(OBJDIR)/TSW.o
 OBJECTS += $(OBJDIR)/TSW_01.o
 OBJECTS += $(OBJDIR)/TSW_02.o
 OBJECTS += $(OBJDIR)/TSW_03.o
-OBJECTS += $(OBJDIR)/TSW_Hub.o
-OBJECTS += $(OBJDIR)/TSW_Provider.o
 OBJECTS += $(OBJDIR)/TT_01.o
 OBJECTS += $(OBJDIR)/TestGroupBase.o
 OBJECTS += $(OBJDIR)/TestLib.o
@@ -137,7 +109,7 @@ all: $(TARGET)
 
 $(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking tests
+	@echo Linking coverage_tests
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -158,7 +130,7 @@ else
 endif
 
 clean:
-	@echo Cleaning tests
+	@echo Cleaning coverage_tests
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(GENERATED)
@@ -191,121 +163,79 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/SIG_Hub.o: ../application/modules/SIG/src/SIG_Hub.cpp
+$(OBJDIR)/TestStepper.o: ../testing/testenv/TestStepper/src/TestStepper.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SIG_Provider.o: ../application/modules/SIG/src/SIG_Provider.cpp
+$(OBJDIR)/TestStepperPlugin.o: ../testing/testenv/TestStepper/src/TestStepperPlugin.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SIG_X.o: ../application/modules/SIG/src/SIG_X.cpp
+$(OBJDIR)/CompOstream.o: ../testing/testenv/comparators/src/CompOstream.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TSW.o: ../application/modules/TSW/src/TSW.cpp
+$(OBJDIR)/installComparators.o: ../testing/testenv/comparators/src/installComparators.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TSW_Hub.o: ../application/modules/TSW/src/TSW_Hub.cpp
+$(OBJDIR)/ostreamHelpers.o: ../testing/testenv/comparators/src/ostreamHelpers.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TSW_Provider.o: ../application/modules/TSW/src/TSW_Provider.cpp
+$(OBJDIR)/ostreams.o: ../testing/testenv/comparators/src/ostreams.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/BaseLib.o: ../application/modules/baselib/src/BaseLib.cpp
+$(OBJDIR)/ddi.o: ../testing/testenv/ddi/src/ddi.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/NtpArray.o: ../application/modules/baselib/src/NtpArray.cpp
+$(OBJDIR)/M_Instances.o: ../testing/testenv/mocks/src/M_Instances.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Com.o: ../application/modules/system/src/Com.cpp
+$(OBJDIR)/TestGroupBase.o: ../testing/testenv/testlib/src/TestGroupBase.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Dispatcher.o: ../application/modules/system/src/Dispatcher.cpp
+$(OBJDIR)/TestLib.o: ../testing/testenv/testlib/src/TestLib.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Loader.o: ../application/modules/system/src/Loader.cpp
+$(OBJDIR)/TestLiterals.o: ../testing/testenv/testlib/src/TestLiterals.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Log.o: ../application/modules/system/src/Log.cpp
+$(OBJDIR)/TestMain.o: ../testing/testenv/testlib/src/TestMain.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SIG_01.o: moduletests/SIG/SIG_01.cpp
+$(OBJDIR)/SIG_01.o: ../testing/tests/moduletests/SIG/SIG_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SIG_02.o: moduletests/SIG/SIG_02.cpp
+$(OBJDIR)/SIG_02.o: ../testing/tests/moduletests/SIG/SIG_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SIG_03.o: moduletests/SIG/SIG_03.cpp
+$(OBJDIR)/SIG_03.o: ../testing/tests/moduletests/SIG/SIG_03.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TSW_01.o: moduletests/TSW/TSW_01.cpp
+$(OBJDIR)/TSW_01.o: ../testing/tests/moduletests/TSW/TSW_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TSW_02.o: moduletests/TSW/TSW_02.cpp
+$(OBJDIR)/TSW_02.o: ../testing/tests/moduletests/TSW/TSW_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TSW_03.o: moduletests/TSW/TSW_03.cpp
+$(OBJDIR)/TSW_03.o: ../testing/tests/moduletests/TSW/TSW_03.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/BT_01.o: moduletests/basetests/BT_01.cpp
+$(OBJDIR)/BT_01.o: ../testing/tests/moduletests/basetests/BT_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/BT_02.o: moduletests/basetests/BT_02.cpp
+$(OBJDIR)/BT_02.o: ../testing/tests/moduletests/basetests/BT_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/BT_03.o: moduletests/basetests/BT_03.cpp
+$(OBJDIR)/BT_03.o: ../testing/tests/moduletests/basetests/BT_03.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/BT_04.o: moduletests/basetests/BT_04.cpp
+$(OBJDIR)/BT_04.o: ../testing/tests/moduletests/basetests/BT_04.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TT_01.o: moduletests/basetests/TT_01.cpp
+$(OBJDIR)/TT_01.o: ../testing/tests/moduletests/basetests/TT_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/DSP_01.o: moduletests/system/DSP_01.cpp
+$(OBJDIR)/DSP_01.o: ../testing/tests/moduletests/system/DSP_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/LDR_01.o: moduletests/system/LDR_01.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SYS_SIG_01.o: systemtests/SYS_SIG_01.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SYS_TSW_01.o: systemtests/SYS_TSW_01.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestStepper.o: testenv/CppUTestStepper/TestStepper/src/TestStepper.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestStepperPlugin.o: testenv/CppUTestStepper/TestStepper/src/TestStepperPlugin.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/CompOstream.o: testenv/comparators/src/CompOstream.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/installComparators.o: testenv/comparators/src/installComparators.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/ostreamHelpers.o: testenv/comparators/src/ostreamHelpers.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/ostreams.o: testenv/comparators/src/ostreams.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/ddi.o: testenv/ddi/src/ddi.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/M_Instances.o: testenv/mocks/src/M_Instances.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestGroupBase.o: testenv/testlib/src/TestGroupBase.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestLib.o: testenv/testlib/src/TestLib.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestLiterals.o: testenv/testlib/src/TestLiterals.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestMain.o: testenv/testlib/src/TestMain.cpp
+$(OBJDIR)/LDR_01.o: ../testing/tests/moduletests/system/LDR_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

@@ -45,7 +45,7 @@ code automatization of this project
 
 **makeApp.sh**
 ```
-build application from Makefile
+build dstw application from Makefile
 ```
 
 **makeGcov.sh**

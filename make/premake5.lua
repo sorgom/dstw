@@ -13,8 +13,7 @@ workspace 'tests'
     objdir      'obj/%{prj.name}'
 
     includedirs {
-        'testenv',
-        'testenv/CppUTestStepper/TestStepper/include',
+        '../testing/testenv',
         '../specification',
         '../application',
         '../application/modules',
@@ -29,9 +28,8 @@ workspace 'tests'
 
         files { 
             '../application/modules/**.cpp',
-            'testenv/**/src/*.cpp',
-            'moduletests/**.cpp',
-            'systemtests/**.cpp'
+            '../testing/testenv/**.cpp',
+            '../testing/tests/**.cpp'
         }
 
         defines { 'NDEBUG' }
@@ -50,8 +48,7 @@ workspace 'coverage'
     objdir      'obj/%{prj.name}'
 
     includedirs {
-        'testenv',
-        'testenv/CppUTestStepper/TestStepper/include',
+        '../testing/testenv',
         '../specification',
         '../application',
         '../application/modules',
@@ -77,8 +74,8 @@ workspace 'coverage'
         targetdir   'bin'
 
         files { 
-            'testenv/**/src/*.cpp',
-            'moduletests/**.cpp'
+            '../testing/testenv/**.cpp',
+            '../testing/tests/moduletests/**.cpp'
         }
 
         defines { 'DEBUG' }

@@ -5,7 +5,7 @@
 #   ============================================================
 #   created by Manfred Sorgo
 
-mydir=$(dirname $0)
-
-cd $mydir/../testing
+cd $(dirname $0)
+. dirs.rc
+cd $makeDir
 make -f tests.make $@

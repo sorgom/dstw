@@ -28,7 +28,7 @@ ProjData generator
     with element names in reversed alphanumerical order
     from capacity down to 1
     e.g. TSW, capacity 100:
-        "*TSW 100 *******" .. "*TSW 001 *******"
+        "TSW 100 *" .. "TSW 001 *"
 
     additional features
     -   set signal type for signal data
