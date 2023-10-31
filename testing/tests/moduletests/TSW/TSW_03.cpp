@@ -63,6 +63,6 @@ namespace test
     TEST(TSW_03, T04)
     {
         unmock();
-        I_TSW_Provider& inst = ddi::getTSW_Provider();
+        I_TSW_Provider& inst = IL::getTSW_Provider();
     }
 }

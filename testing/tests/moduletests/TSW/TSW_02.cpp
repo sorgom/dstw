@@ -100,6 +100,6 @@ namespace test
     TEST(TSW_02, T05)
     {
         unmock();
-        I_TSW_Hub& inst = ddi::getTSW_Hub();
+        I_TSW_Hub& inst = IL::getTSW_Hub();
     }
 }

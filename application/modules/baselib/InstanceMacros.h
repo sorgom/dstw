@@ -14,7 +14,7 @@
 #define INSTANCE_DEC_CONST(cName) \
     static const cName& instance();
 
-//  use this one to provide instance for ddi
+//  use this one to provide instance for IL
 #define DDI_INSTANCE_DEC(cName) INSTANCE_DEC(cName)
 
 //  CLASS SOURCE FILE MACROS

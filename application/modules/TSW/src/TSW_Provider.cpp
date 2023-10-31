@@ -1,11 +1,11 @@
 #include <TSW/TSW_Provider.h>
-#include <ddi/ddi.h>
+#include <system/IL.h>
 
 INSTANCE_DEF(TSW_Provider)
 
 void TSW_Provider::load(const ProjTSW* const data, const UINT32 num)
 {
-    I_Dispatcher& disp = ddi::getDispatcher();
+    I_Dispatcher& disp = IL::getDispatcher();
     mTSWs.reset();
     bool ok = true;
     if (num > mTSWs.capacity())
@@ -32,6 +32,6 @@ void TSW_Provider::load(const ProjTSW* const data, const UINT32 num)
     else
     {
         mTSWs.reset();
-        ddi::getLog().log(COMP_TSW_PROVIDER, ERR_STARTUP);
+        IL::getLog().log(COMP_TSW_PROVIDER, ERR_STARTUP);
     }
 }

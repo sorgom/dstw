@@ -105,6 +105,6 @@ namespace test
     TEST(SIG_02, T05)
     {
         unmock();
-        I_SIG_Hub& inst = ddi::getSIG_Hub();
+        I_SIG_Hub& inst = IL::getSIG_Hub();
     }
 }

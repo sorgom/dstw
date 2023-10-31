@@ -11,7 +11,7 @@
 
 #include <baselib/Mem.h>
 #include <comparators/ostreams.h>
-#include <ddi/ddi.h>
+#include <system/IL.h>
 #include <mocks/M_Instances.h>
 #include <setup/capacities.h>
 #include <testlib/GenProjData.h>

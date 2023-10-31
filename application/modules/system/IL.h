@@ -1,5 +1,5 @@
 //  ============================================================
-//  service locator pattern
+//  Interface Locator IL
 //  - production application version
 //  - no exchange of providers 
 //  ============================================================
@@ -20,22 +20,28 @@
 #include <system/Log.h>
 //## END
 
-//  I_NAME& getNAME() { return NAME::instance(); }
-#define DDI_INLINE(NAME) \
-    inline I_ ## NAME& get ## NAME() { return NAME::instance(); }
+#include <baselib/coding.h>
 
-namespace ddi
+//  I_NAME& getNAME() { return NAME::instance(); }
+#define IL_INLINE(NAME) \
+    inline static I_ ## NAME& get ## NAME() { return NAME::instance(); }
+
+class IL
 {
-    //# DDI_INLINE
-    DDI_INLINE(Com)
-    DDI_INLINE(Dispatcher)
-    DDI_INLINE(Loader)
-    DDI_INLINE(Log)
-    DDI_INLINE(SIG_Hub)
-    DDI_INLINE(SIG_Provider)
-    DDI_INLINE(TSW_Hub)
-    DDI_INLINE(TSW_Provider)
+public:
+    //# IL_INLINE
+    IL_INLINE(Com)
+    IL_INLINE(Dispatcher)
+    IL_INLINE(Loader)
+    IL_INLINE(Log)
+    IL_INLINE(SIG_Hub)
+    IL_INLINE(SIG_Provider)
+    IL_INLINE(TSW_Hub)
+    IL_INLINE(TSW_Provider)
     //# END
-}
+
+    NOCOPY(IL)
+    IL();
+};
 
 #endif // _H

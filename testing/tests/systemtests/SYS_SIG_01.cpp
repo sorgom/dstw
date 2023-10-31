@@ -20,9 +20,9 @@ namespace test
         GenProjData<1, CAPACITY_SIG> projData;
         mock_Com();
         mock_Com();
-        ddi::getLoader().load(projData);
+        IL::getLoader().load(projData);
 
-        L_CHECK_TRUE(ddi::getSIG_Provider().has(CAPACITY_SIG - 1))
+        L_CHECK_TRUE(IL::getSIG_Provider().has(CAPACITY_SIG - 1))
 
         FldState fldState;
         StateGui stateGui;
@@ -49,7 +49,7 @@ namespace test
             stateGui.state1 = SIG_STATE_H0;
 
             m_Com().expectSend(stateGui);
-            ddi::getDispatcher().dispatch(fldState);
+            IL::getDispatcher().dispatch(fldState);
 
             CHECK_N_CLEAR()
         }
@@ -75,7 +75,7 @@ namespace test
 
             m_Com().expectSend(cmdFld);
             m_Com().expectSend(stateGui);
-            ddi::getDispatcher().dispatch(guiCmd);
+            IL::getDispatcher().dispatch(guiCmd);
 
             CHECK_N_CLEAR()
         }

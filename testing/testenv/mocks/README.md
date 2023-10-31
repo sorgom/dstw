@@ -17,10 +17,10 @@ mock for interface Dispatcher
 
 **M_Instances.h**
 ```
-mock instances (for ddi)
+mock instances (for IL)
 for interface I_<NAME>
 - function m_<NAME>() returns mock instance
-- function mock_<NAME>() plugs mock instance into ddi
+- function mock_<NAME>() plugs mock instance into IL
 ```
 
 **M_Log.h**

@@ -20,9 +20,9 @@ namespace test
         GenProjData<CAPACITY_TSW> projData;
         mock_Com();
         mock_Com();
-        ddi::getLoader().load(projData);
+        IL::getLoader().load(projData);
 
-        L_CHECK_TRUE(ddi::getTSW_Provider().has(CAPACITY_TSW - 1))
+        L_CHECK_TRUE(IL::getTSW_Provider().has(CAPACITY_TSW - 1))
 
         FldState fldState;
         StateGui stateGui;
@@ -48,7 +48,7 @@ namespace test
             stateGui.state1 = TSW_STATE_LEFT;
 
             m_Com().expectSend(stateGui);
-            ddi::getDispatcher().dispatch(fldState);
+            IL::getDispatcher().dispatch(fldState);
 
             CHECK_N_CLEAR()
         }
@@ -74,7 +74,7 @@ namespace test
 
             m_Com().expectSend(cmdFld);
             m_Com().expectSend(stateGui);
-            ddi::getDispatcher().dispatch(guiCmd);
+            IL::getDispatcher().dispatch(guiCmd);
 
             CHECK_N_CLEAR()
         }

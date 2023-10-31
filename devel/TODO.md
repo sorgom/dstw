@@ -7,7 +7,7 @@ A collection of things to do that are not big enough to create an issue.
 -   safe casts
 -   capacity check for containers
 -   DATASIZE
--   rename ddi
+-   rename IL
 - make use of md tables like:
 
 |hello|world|wumpel| 

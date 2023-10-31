@@ -209,6 +209,6 @@ namespace test
     TEST(DSP_01, T06)
     {
         unmock();
-        I_Dispatcher& inst = ddi::getDispatcher();
+        I_Dispatcher& inst = IL::getDispatcher();
     }
 }

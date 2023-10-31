@@ -9,12 +9,12 @@ from modScanCode import *
 from modGenCode import genCode
 from projectDirs import *
 
-# application ddi
+# application IL
 # application main
 appIncludes, appNames = scanDdi(glob(modDir + '/*/*.h'))
 genCode(
     targets = [
-        modDir + '/ddi/ddi.h',
+        modDir + '/system/IL.h',
         appDir + '/AppMain.cpp'
     ],
     names = appNames,
@@ -34,11 +34,11 @@ genCode(
     nsub = 1
 )
 
-# test env ddi
+# test env IL
 genCode(
     targets = [
-        envDir + '/ddi/ddi.h',
-        envDir + '/ddi/src/ddi.cpp'
+        envDir + '/system/IL.h',
+        envDir + '/IL/src/IL.cpp'
     ],
     names = {
         None  : mocNames.union(appNames),

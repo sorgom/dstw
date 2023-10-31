@@ -7,8 +7,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef DDI_H
-#define DDI_H
+#ifndef IL_H
+#define IL_H
 
 //## INCLUDES
 #include <SIG/SIG_Hub.h>
@@ -30,28 +30,34 @@
 #include <mocks/M_TSW_Provider.h>
 //## END
 
-//  I_NAME& getNAME();
-//  void setNAME(I_NAME& ref);
-#define DDI_DEC(NAME) \
-    I_ ## NAME& get ## NAME(); \
-    void set ## NAME(I_ ## NAME& ref);
+#include <baselib/coding.h>
 
-namespace ddi
+//  static I_NAME& getNAME();
+//  static void setNAME(I_NAME& ref);
+#define IL_DEC(NAME) \
+    static I_ ## NAME& get ## NAME(); \
+    static void set ## NAME(I_ ## NAME& ref);
+
+class IL
 {
-    //# DDI_DEC
-    DDI_DEC(Com)
-    DDI_DEC(Dispatcher)
-    DDI_DEC(Loader)
-    DDI_DEC(Log)
-    DDI_DEC(SIG)
-    DDI_DEC(SIG_Hub)
-    DDI_DEC(SIG_Provider)
-    DDI_DEC(TSW)
-    DDI_DEC(TSW_Hub)
-    DDI_DEC(TSW_Provider)
+public:
+    //# IL_DEC
+    IL_DEC(Com)
+    IL_DEC(Dispatcher)
+    IL_DEC(Loader)
+    IL_DEC(Log)
+    IL_DEC(SIG)
+    IL_DEC(SIG_Hub)
+    IL_DEC(SIG_Provider)
+    IL_DEC(TSW)
+    IL_DEC(TSW_Hub)
+    IL_DEC(TSW_Provider)
     //# END
 
-    void reset();
-}
+    static void reset();
+
+    NOCOPY(IL)
+    IL();    
+};
 
 #endif // _H

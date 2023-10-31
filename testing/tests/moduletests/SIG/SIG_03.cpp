@@ -97,6 +97,6 @@ namespace test
     TEST(SIG_03, T06)
     {
         unmock();
-        I_SIG_Provider& inst = ddi::getSIG_Provider();
+        I_SIG_Provider& inst = IL::getSIG_Provider();
     }
 }

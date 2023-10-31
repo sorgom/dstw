@@ -32,6 +32,6 @@ namespace test
     TEST(LDR_01, T03)
     {
         unmock();
-        I_Loader& inst = ddi::getLoader();
+        I_Loader& inst = IL::getLoader();
     }
 }

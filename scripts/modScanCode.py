@@ -1,6 +1,6 @@
 #   ============================================================
 #   simple code scanner for code generator features
-#   - application instance declarations for ddi
+#   - application instance declarations for IL
 #   - mocks
 #   - data structs
 #   - interface declarations
