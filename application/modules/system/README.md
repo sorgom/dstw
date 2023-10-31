@@ -11,6 +11,13 @@ class Com implements I_Com
 Dispatcher implements I_Dispatcher
 ```
 
+**IL.h**
+```
+Interface Locator IL
+- production application version
+- no exchange of providers
+```
+
 **Loader.h**
 ```
 class Loader implements I_Loader

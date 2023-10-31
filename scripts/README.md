@@ -38,6 +38,11 @@ to create smaller git diffs
 clean all build artifacts
 ```
 
+**dirs.rc**
+```
+directory listing
+```
+
 **genCode.py**
 ```
 code automatization of this project

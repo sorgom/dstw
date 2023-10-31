@@ -92,13 +92,13 @@ TSW Provider</text>
 <rect fill="#C0C0C0" stroke="none" x="583" y="839" width="224" height="96" transform="matrix(1 0 0 1 -262 -102)" fill-opacity="0.2"/>
 </g>
 <g>
-<rect fill="#FFC1AD" stroke="none" x="576" y="832" width="224" height="96" transform="matrix(1 0 0 1 -262 -102)"/>
+<rect fill="#E2E2E2" stroke="none" x="576" y="832" width="224" height="96" transform="matrix(1 0 0 1 -262 -102)"/>
 </g>
 <g>
 <path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 314 730 L 538 730 L 538 826 L 314 826 L 314 730 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFC1AD" stroke="none" x="576" y="832" width="224" height="96" transform="matrix(1 0 0 1 -262 -102)"/>
+<rect fill="#E2E2E2" stroke="none" x="576" y="832" width="224" height="96" transform="matrix(1 0 0 1 -262 -102)"/>
 </g>
 <g>
 <path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 314 730 L 538 730 L 538 826 L 314 826 L 314 730 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
@@ -106,9 +106,9 @@ TSW Provider</text>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="845.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -262 -102)">
+<text fill="#FF3F00" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="845.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -262 -102)">
 Com</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 440.944091796875 750 L 412.055908203125 750" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#FF3F00" paint-order="fill stroke markers" d=" M 440.944091796875 750 L 412.055908203125 750" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
@@ -300,23 +300,23 @@ Storage</text>
 <path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 821.7904822439841 591.8373251423759 L 826 602 L 830.2095177560159 591.8373251423759" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFC1AD" stroke="none" x="1120" y="832" width="128" height="96" transform="matrix(1 0 0 1 -262 -102)"/>
+<rect fill="#FFFFFF00" stroke="none" x="1120" y="832" width="128" height="96" transform="matrix(1 0 0 1 -262 -102)"/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 858 730 L 986 730 L 986 826 L 858 826 L 858 730 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#FF2B2B" paint-order="fill stroke markers" d=" M 858 730 L 986 730 L 986 826 L 858 826 L 858 730 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFC1AD" stroke="none" x="1120" y="832" width="128" height="96" transform="matrix(1 0 0 1 -262 -102)"/>
+<rect fill="#FFFFFF00" stroke="none" x="1120" y="832" width="128" height="96" transform="matrix(1 0 0 1 -262 -102)"/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 858 730 L 986 730 L 986 826 L 858 826 L 858 730 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#FF2B2B" paint-order="fill stroke markers" d=" M 858 730 L 986 730 L 986 826 L 858 826 L 858 730 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="1184.5" y="845.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -262 -102)">
+<text fill="#FF3F00" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="1184.5" y="845.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -262 -102)">
 Reader</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 944.5390625 750 L 900.4609375 750" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#FF3F00" paint-order="fill stroke markers" d=" M 944.5390625 750 L 900.4609375 750" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
@@ -407,13 +407,13 @@ system</text>
 <rect fill="#C0C0C0" stroke="none" x="327" y="1031" width="144" height="32" transform="matrix(1 0 0 1 -262 -102)" fill-opacity="0.2"/>
 </g>
 <g>
-<rect fill="#FFC1AD" stroke="none" x="320" y="1024" width="144" height="32" transform="matrix(1 0 0 1 -262 -102)"/>
+<rect fill="#E2E2E2" stroke="none" x="320" y="1024" width="144" height="32" transform="matrix(1 0 0 1 -262 -102)"/>
 </g>
 <g>
 <path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 58 922 L 202 922 L 202 954 L 58 954 L 58 922 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFC1AD" stroke="none" x="320" y="1024" width="144" height="32" transform="matrix(1 0 0 1 -262 -102)"/>
+<rect fill="#E2E2E2" stroke="none" x="320" y="1024" width="144" height="32" transform="matrix(1 0 0 1 -262 -102)"/>
 </g>
 <g>
 <path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 58 922 L 202 922 L 202 954 L 58 954 L 58 922 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
@@ -421,9 +421,9 @@ system</text>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="392.5" y="1037.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -262 -102)">
-mocked</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 155.0654296875 942 L 105.9345703125 942" stroke-miterlimit="10" stroke-dasharray=""/>
+<text fill="#FF3F00" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="392.5" y="1037.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -262 -102)">
+no function impl</text>
+<path fill="none" stroke="#FF3F00" paint-order="fill stroke markers" d=" M 181.04638671875 942 L 79.95361328125 942" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>

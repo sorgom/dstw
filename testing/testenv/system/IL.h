@@ -1,7 +1,7 @@
 //  ============================================================
-//  service locator pattern
+//  Interface Locator IL
 //  - module test version
-//  - providers can be exchanged by mocks
+//  - all providers can be exchanged by mocks
 //  - if no provider implemented in application: mock only
 //  ============================================================
 //  created by Manfred Sorgo
