@@ -23,7 +23,7 @@ TARGETDIR = bin
 TARGET = $(TARGETDIR)/coverage_tests
 OBJDIR = obj/coverage_tests
 DEFINES += -DDEBUG
-INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/modules -I../devel
+INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/modules -I../devel -I../BuildCppUTest/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++98 -pedantic-errors

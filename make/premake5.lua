@@ -17,7 +17,8 @@ workspace 'tests'
         '../specification',
         '../application',
         '../application/modules',
-        '../devel'
+        '../devel',
+        '../BuildCppUTest/include'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
@@ -53,7 +54,8 @@ workspace 'coverage'
         '../specification',
         '../application',
         '../application/modules',
-        '../devel'
+        '../devel',
+        '../BuildCppUTest/include'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }

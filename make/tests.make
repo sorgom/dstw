@@ -23,7 +23,7 @@ TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests
 OBJDIR = obj/tests
 DEFINES += -DNDEBUG
-INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/modules -I../devel
+INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/modules -I../devel -I../BuildCppUTest/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++98 -pedantic-errors
