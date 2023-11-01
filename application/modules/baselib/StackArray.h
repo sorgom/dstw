@@ -3,7 +3,7 @@
 #define STACKARRAY_H
 
 #include <baselib/I_Searchable.h>
-#include <baselib/Baselib.h>
+#include <baselib/BaseLib.h>
 #include <baselib/coding.h>
 #include <baselib/Mem.h>
 
