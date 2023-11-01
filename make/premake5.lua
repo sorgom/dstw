@@ -21,7 +21,7 @@ workspace 'tests'
         '../BuildCppUTest/include'
     }
 
-    buildoptions { '-pedantic-errors' }
+    buildoptions { '-std=c++98 -pedantic-errors' }
 
     project 'tests'
         kind        'ConsoleApp'
@@ -33,7 +33,7 @@ workspace 'tests'
             '../testing/tests/**.cpp'
         }
 
-        defines { 'NDEBUG' }
+        defines { 'NDEBUG', 'CPPUTEST_USE_LONG_LONG=0' }
         optimize 'On'
         libdirs { '../BuildCppUTest/lib' }
         links { 'CppUTest', 'CppUTestExt' }
@@ -58,7 +58,7 @@ workspace 'coverage'
         '../BuildCppUTest/include'
     }
 
-    buildoptions { '-pedantic-errors' }
+    buildoptions { '-std=c++98 -pedantic-errors' }
 
     project 'coverage_app'
         kind        'StaticLib'
@@ -68,7 +68,7 @@ workspace 'coverage'
             '../application/modules/**.cpp',
         }
 
-        defines { 'DEBUG' }
+        defines { 'DEBUG', 'CPPUTEST_USE_LONG_LONG=0' }
         symbols 'On'
         buildoptions {'-fprofile-arcs -ftest-coverage'}
 
