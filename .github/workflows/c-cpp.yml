@@ -9,7 +9,7 @@ on:
 jobs:
   buildAndRunTests:
 
-    runs-on: cpputest-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: "Checkout repository"
@@ -23,7 +23,7 @@ jobs:
 
   buildAndRunApp:
 
-    runs-on: cpputest-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: "Checkout repository"
