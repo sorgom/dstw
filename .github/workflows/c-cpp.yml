@@ -17,9 +17,8 @@ jobs:
       with:
          submodules: 'true'
     - name: "build CppuTest"
-      run: cd BuildCppUTest; pwd; ls -al
+      run: cd BuildCppUTest; make
     - name: "build tests"
-      run: cd make; ls
-    # run: cd make; make -f tests.make
-    # - name: run
-    #   run: make/bin/tests
+      run: cd make; make -f tests.make
+    - name: run
+      run: make/bin/tests
