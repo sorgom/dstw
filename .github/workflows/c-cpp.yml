@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: "build CppuTest"
-      run: cd BuildCppUTest; git status; ls
+      run: cd BuildCppUTest; pwd
     - name: "build tests"
       run: cd make; ls
     # run: cd make; make -f tests.make
