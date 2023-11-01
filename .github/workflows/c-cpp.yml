@@ -16,8 +16,8 @@ jobs:
       uses: actions/checkout@v3
       with:
          submodules: 'true'
-    - name: "build CppuTest"
-      run: cd BuildCppUTest; make
+    # - name: "build CppuTest"
+    #   run: cd BuildCppUTest; make
     - name: "build tests"
       run: cd make; make -f tests.make
     - name: run
