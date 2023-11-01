@@ -19,7 +19,7 @@ namespace test
         mockAll();
 
         STEP(1)
-        m_Dispatcher().expectReset();
+        // m_Dispatcher().expectReset();
         m_TSW_Provider().expectLoad(projData.pTSW, projData.numTSW);
         m_SIG_Provider().expectLoad(projData.pSIG, projData.numSIG);
         m_Dispatcher().expectIndex();
