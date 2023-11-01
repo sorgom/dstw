@@ -31,7 +31,7 @@ ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++98 -pedantic-errors
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS += -lCppUTest -lCppUTestExt
 LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS) -s
+ALL_LDFLAGS += $(LDFLAGS) -L../BuildCppUTest/lib -s
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef

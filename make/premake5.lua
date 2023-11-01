@@ -34,6 +34,7 @@ workspace 'tests'
 
         defines { 'NDEBUG' }
         optimize 'On'
+        libdirs { '../BuildCppUTest/lib' }
         links { 'CppUTest', 'CppUTestExt' }
 
 --  ============================================================
@@ -81,7 +82,7 @@ workspace 'coverage'
         defines { 'DEBUG' }
         symbols 'On'
 
-        libdirs { 'lib' }
+        libdirs { 'lib', '../BuildCppUTest/lib' }
         links { 'coverage_app', 'CppUTest', 'CppUTestExt', 'gcov' }
         linkoptions { '--coverage' }
 
