@@ -22,12 +22,12 @@ RESCOMP = windres
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests
 OBJDIR = obj/tests
-DEFINES += -DNDEBUG
+DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
 INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/modules -I../devel -I../BuildCppUTest/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -pedantic-errors
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -pedantic-errors
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++98 -pedantic-errors
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++98 -pedantic-errors
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS += -lCppUTest -lCppUTestExt
 LDDEPS +=
