@@ -4,6 +4,6 @@
 #   created by Manfred Sorgo
 
 from modRunTests import runTests
-from projectDirs import tsgDir
+from projectDirs import makDir
 
-runTests(tsgDir, './bin/moduletests')
+runTests(makDir, './bin/tests')

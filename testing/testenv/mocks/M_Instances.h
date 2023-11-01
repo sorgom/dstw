@@ -1,8 +1,8 @@
 //  ============================================================
-//  mock instances (for ddi)
+//  mock instances (for IL)
 //  for interface I_<NAME>
 //  - function m_<NAME>() returns mock instance 
-//  - function mock_<NAME>() plugs mock instance into ddi
+//  - function mock_<NAME>() plugs mock instance into IL
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -10,7 +10,7 @@
 #ifndef M_INSTANCES_H
 #define M_INSTANCES_H
 
-#include <ddi/ddi.h>
+#include <system/IL.h>
 
 //## INCLUDES_LOCAL
 #include "M_Com.h"
@@ -26,7 +26,7 @@
 
 #define MOCK_DEC(NAME) \
     inline M_ ## NAME& m_ ## NAME() { return M_ ## NAME::instance(); } \
-    inline void mock_ ## NAME() { ddi::set ## NAME(m_ ## NAME()); }
+    inline void mock_ ## NAME() { IL::set ## NAME(m_ ## NAME()); }
 
 namespace test
 {
@@ -42,7 +42,7 @@ namespace test
     MOCK_DEC(TSW_Provider)
     //# END
 
-    inline void unmock() { ddi::reset(); }
+    inline void unmock() { IL::reset(); }
     void mockAll();
 }
 

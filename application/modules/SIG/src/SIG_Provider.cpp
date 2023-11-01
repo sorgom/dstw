@@ -1,11 +1,11 @@
 #include <SIG/SIG_Provider.h>
-#include <ddi/ddi.h>
+#include <system/IL.h>
 
 INSTANCE_DEF(SIG_Provider)
 
 void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
 {
-    I_Dispatcher& disp = ddi::getDispatcher();
+    I_Dispatcher& disp = IL::getDispatcher();
     mSIGs.reset();
     bool ok = true;
 
@@ -48,6 +48,6 @@ void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
     else
     {
         mSIGs.reset();
-        ddi::getLog().log(COMP_SIG_PROVIDER, ERR_STARTUP);
+        IL::getLog().log(COMP_SIG_PROVIDER, ERR_STARTUP);
     }
 }

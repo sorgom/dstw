@@ -38,6 +38,11 @@ to create smaller git diffs
 clean all build artifacts
 ```
 
+**dirs.rc**
+```
+directory listing
+```
+
 **genCode.py**
 ```
 code automatization of this project
@@ -45,7 +50,7 @@ code automatization of this project
 
 **makeApp.sh**
 ```
-build application from Makefile
+build dstw application from Makefile
 ```
 
 **makeGcov.sh**
@@ -95,7 +100,7 @@ run CppUTest tests
 **modScanCode.py**
 ```
 simple code scanner for code generator features
-- application instance declarations for ddi
+- application instance declarations for IL
 - mocks
 - data structs
 - interface declarations

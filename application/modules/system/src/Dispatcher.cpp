@@ -1,7 +1,7 @@
 #include <system/Dispatcher.h>
 #include <baselib/Mem.h>
 #include <baselib/coding.h>
-#include <ddi/ddi.h>
+#include <system/IL.h>
 
 INSTANCE_DEF(Dispatcher)
 
@@ -36,7 +36,7 @@ void Dispatcher::dispatch(const FldState& tele) const
     const INT32 fnd = mIndx.findNtp(tele.name);
     if (fnd < 0)
     { 
-        ddi::getLog().log(COMP_DISPATCHER, ERR_MATCH);
+        IL::getLog().log(COMP_DISPATCHER, ERR_MATCH);
     }
     else
     {
@@ -44,10 +44,10 @@ void Dispatcher::dispatch(const FldState& tele) const
         switch (ntp.type)
         {
         case SUBSYS_TSW:
-            ddi::getTSW_Hub().fromDsp(ntp.pos, tele);
+            IL::getTSW_Hub().fromDsp(ntp.pos, tele);
             break;
         case SUBSYS_SIG:
-            ddi::getSIG_Hub().fromDsp(ntp.pos, tele);
+            IL::getSIG_Hub().fromDsp(ntp.pos, tele);
             break;
         case SUBSYS_SEG:
             break;
@@ -67,7 +67,7 @@ void Dispatcher::dispatch(const GuiCmd& tele) const
     const INT32 fnd = mIndx.findNtp(tele.name);
     if (fnd < 0)
     { 
-        ddi::getLog().log(COMP_DISPATCHER, ERR_MATCH);
+        IL::getLog().log(COMP_DISPATCHER, ERR_MATCH);
     }
     else
     {
@@ -75,10 +75,10 @@ void Dispatcher::dispatch(const GuiCmd& tele) const
         switch (ntp.type)
         {
         case SUBSYS_TSW:
-            ddi::getTSW_Hub().fromDsp(ntp.pos, tele);
+            IL::getTSW_Hub().fromDsp(ntp.pos, tele);
             break;
         case SUBSYS_SIG:
-            ddi::getSIG_Hub().fromDsp(ntp.pos, tele);
+            IL::getSIG_Hub().fromDsp(ntp.pos, tele);
             break;
         case SUBSYS_SEG:
             break;
@@ -100,7 +100,7 @@ void Dispatcher::dispatch(const UINT32 id, const CmdFld& tele) const
         static CmdFld cmd;
         Mem::copy(cmd, tele);
         Mem::copy(cmd.name, mData[id].name);
-        ddi::getCom().send(cmd);
+        IL::getCom().send(cmd);
     }
     else
     { pass();}
@@ -113,7 +113,7 @@ void Dispatcher::dispatch(const UINT32 id, const StateGui& tele) const
         static StateGui state;
         Mem::copy(state, tele);
         Mem::copy(state.name, mData[id].name);
-        ddi::getCom().send(state);
+        IL::getCom().send(state);
     }
     else
     { pass();}

@@ -1,6 +1,6 @@
-#include <ddi/ddi.h>
+#include <system/IL.h>
 
-#define GET_DDI(NAME) ddi::get ## NAME();
+#define GET_DDI(NAME) IL::get ## NAME();
 
 int main(const INT32 argc, const CONST_C_STRING* const argv)
 {

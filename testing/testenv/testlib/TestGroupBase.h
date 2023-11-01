@@ -11,12 +11,13 @@
 
 #include <baselib/Mem.h>
 #include <comparators/ostreams.h>
-#include <ddi/ddi.h>
+#include <system/IL.h>
 #include <mocks/M_Instances.h>
 #include <setup/capacities.h>
 #include <testlib/GenProjData.h>
 #include <testlib/TestLib.h>
 #include <testlib/TestLiterals.h>
+#include <TestStepper/TestStepper.h>
 
 namespace test
 {

@@ -1,0 +1,83 @@
+//  ============================================================
+//  system tests TSW vol. 1
+//  ============================================================
+//  created by Manfred Sorgo
+
+#include <testlib/TestGroupBase.h>
+
+#include <qnd/useCout.h>
+
+namespace test
+{
+
+    TEST_GROUP_BASE(SYS_TSW_01, TestGroupBase) {};
+
+    //  test type: blackbox test
+    //  
+    TEST(SYS_TSW_01, T01)
+    {
+        SETUP()
+        GenProjData<CAPACITY_TSW> projData;
+        mock_Com();
+        mock_Com();
+        IL::getLoader().load(projData);
+
+        L_CHECK_TRUE(IL::getTSW_Provider().has(CAPACITY_TSW - 1))
+
+        FldState fldState;
+        StateGui stateGui;
+        GuiCmd   guiCmd;
+        CmdFld   cmdFld;
+
+        Mem::zero(fldState);
+        Mem::zero(stateGui);
+        Mem::zero(guiCmd);
+        Mem::zero(cmdFld);
+
+        STEP(1)
+        //  stimulation: send TSW field states LEFT to dispatcher
+        //  expectation: GUI states LEFT to Com
+        SUBSTEPS()
+        for (UINT32 n = 0; n < CAPACITY_TSW; ++n)
+        {
+            LSTEP(n)
+            genElementName(fldState.name, CAPACITY_TSW - n, "TSW");
+            fldState.state1 = TSW_STATE_LEFT;
+
+            Mem::copy(stateGui.name, fldState.name);
+            stateGui.state1 = TSW_STATE_LEFT;
+
+            m_Com().expectSend(stateGui);
+            IL::getDispatcher().dispatch(fldState);
+
+            CHECK_N_CLEAR()
+        }
+        ENDSTEPS()
+
+        STEP(2)
+        //  stimulation: send GUI commands WU to dispatcher
+        //  expectation: 
+        //  -   commands RIGHT to Com
+        //  -   GUI states WAIT_RIGHT to Com
+        SUBSTEPS()
+        for (UINT32 n = 0; n < CAPACITY_TSW; ++n)
+        {
+            LSTEP(n)
+            genElementName(guiCmd.name, CAPACITY_TSW - n, "TSW");
+            guiCmd.cmd1 = TSW_GUI_GMD_WU;
+
+            Mem::copy(cmdFld.name, guiCmd.name);
+            cmdFld.cmd1 = TSW_STATE_RIGHT;
+
+            Mem::copy(stateGui.name, guiCmd.name);
+            stateGui.state1 = TSW_STATE_WAIT_RIGHT;
+
+            m_Com().expectSend(cmdFld);
+            m_Com().expectSend(stateGui);
+            IL::getDispatcher().dispatch(guiCmd);
+
+            CHECK_N_CLEAR()
+        }
+        ENDSTEPS()
+    }
+}

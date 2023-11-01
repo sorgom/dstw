@@ -17,7 +17,7 @@ public:
 
     void load(const ProjData& data) const;
 
-    DDI_INSTANCE_DEC(Loader)
+    IL_INSTANCE_DEC(Loader)
 
     NOCOPY(Loader)
 };

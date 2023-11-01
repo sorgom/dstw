@@ -4,14 +4,14 @@
 #   created by Manfred Sorgo
 
 from modGcov import Gcov
-from projectDirs import tsgDir
+from projectDirs import makDir, tsgDir
 from modUtilz import mdTxt, mdCode, writeFile
 
 ttl = '## current source code coverage'
 
 def runGcov(verbose=True):
     return Gcov().run(
-        tsgDir,
+        makDir,
         './bin/coverage_tests',
         'obj/coverage_app',
         '../application/modules/*/src/*.cpp',

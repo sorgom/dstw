@@ -28,7 +28,7 @@ public:
 
     void load(const ProjSIG* data, UINT32 num);
 
-    DDI_INSTANCE_DEC(SIG_Provider)
+    IL_INSTANCE_DEC(SIG_Provider)
 
 private:
     SimpleStackArray<SIG_X, CAPACITY_SIG> mSIGs;

@@ -15,6 +15,7 @@ spcDir = topDir + '/specification'
 diaDir = spcDir + '/diagrams'
 ifsDir = spcDir + '/ifs'
 appDir = topDir + '/application/main'
+makDir = topDir + '/make'
 
 if __name__ == '__main__':
     print(modDir)

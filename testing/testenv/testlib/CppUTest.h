@@ -10,15 +10,11 @@
 #ifndef CPPUTEST_H
 #define CPPUTEST_H
 
-// #undef eq
+//  otherwise no placement new:
 #define CPPUTEST_MEM_LEAK_DETECTION_DISABLED
 
-#include <TestStepper/TestStepper.h>
-
 #include <CppUTest/TestHarness.h>
-#include <CppUTest/CommandLineTestRunner.h>
 #include <CppUTestExt/MockSupport.h>
-#include <testlib/TestLiterals.h>
 
 //! standard check 'n' clear
 #ifndef CHECK_N_CLEAR

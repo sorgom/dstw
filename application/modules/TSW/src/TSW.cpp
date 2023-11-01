@@ -1,5 +1,5 @@
 #include <TSW/TSW.h>
-#include <ddi/ddi.h>
+#include <system/IL.h>
 
 void TSW::fromGui(const INT32 cmd)
 {
@@ -15,7 +15,7 @@ void TSW::fromGui(const INT32 cmd)
         swRight();
         break;
     default:
-        ddi::getLog().log(COMP_TSW, ERR_MATCH);
+        IL::getLog().log(COMP_TSW, ERR_MATCH);
         break;
     };
 }
@@ -76,7 +76,7 @@ void TSW::fromFld(const INT32 state)
         chgState(state);
         break;
     default:
-        ddi::getLog().log(COMP_TSW, ERR_MATCH);
+        IL::getLog().log(COMP_TSW, ERR_MATCH);
         break;
     }
 }
@@ -86,11 +86,11 @@ void TSW::chgState(INT32 state)
     if (state != mState)
     {
         mState = state;
-        ddi::getTSW_Hub().toGui(mId, mState);
+        IL::getTSW_Hub().toGui(mId, mState);
     }
 }
 
 void TSW::toFld(INT32 state) const
 {
-    ddi::getTSW_Hub().toFld(mId, state);
+    IL::getTSW_Hub().toFld(mId, state);
 } 

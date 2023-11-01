@@ -79,11 +79,11 @@ if __name__ == '__main__':
     incs = None
     tragets = None
     incs = [
-        modDir + '/ddi/ddi.h',
+        modDir + '/system/IL.h',
         envDir + '/mocks/M_Instances.h'
     ]
     targets = [
-        envDir + '/ddi/src/ddi.cpp'
+        envDir + '/IL/src/IL.cpp'
     ]
     genCode(
         targets=targets, 

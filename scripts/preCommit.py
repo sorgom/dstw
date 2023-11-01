@@ -27,6 +27,6 @@ genMd()
 # linux only
 checkLinux()
 print("* genCloc")
-genCloc(['application', 'testing/testenv', 'testing/moduletests', 'testing/systemtests', 'specification'])
+genCloc(['application', 'testing/testenv', 'testing/tests/moduletests', 'testing/tests/systemtests', 'specification'])
 print("* gcovToMd")
 gcovToMd()

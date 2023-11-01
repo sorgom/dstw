@@ -1,13 +1,13 @@
 #include <system/Loader.h>
-#include <ddi/ddi.h>
+#include <system/IL.h>
 
 INSTANCE_DEF(Loader)
 
 void Loader::load(const ProjData& data) const
 {
-    ddi::getDispatcher().reset();
-    ddi::getTSW_Provider().load(data.pTSW, data.numTSW);
-    ddi::getSIG_Provider().load(data.pSIG, data.numSIG);
+    IL::getDispatcher().reset();
+    IL::getTSW_Provider().load(data.pTSW, data.numTSW);
+    IL::getSIG_Provider().load(data.pSIG, data.numSIG);
     // TODO: LCR, SEG
-    ddi::getDispatcher().index();
+    IL::getDispatcher().index();
 }

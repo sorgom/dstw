@@ -5,5 +5,6 @@
 #   ============================================================
 #   created by Manfred Sorgo
 
-mydir=$(dirname $0)
-$mydir/../testing/bin/tests $@
+cd $(dirname $0)
+. dirs.rc
+$makeDir/bin/tests -b $@

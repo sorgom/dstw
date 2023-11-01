@@ -1,5 +1,5 @@
 #include <SIG/SIG_X.h>
-#include <ddi/ddi.h>
+#include <system/IL.h>
 
 
 void SIG_X::procFromFld(const INT32 state, INT32 speed)
@@ -27,7 +27,7 @@ void SIG_X::procFromFld(const INT32 state, INT32 speed)
     {
         mStateToGui = state;
         mSpeedToGui = speed;
-        ddi::getSIG_Hub().toGui(mId, mStateToGui, mSpeedToGui);
+        IL::getSIG_Hub().toGui(mId, mStateToGui, mSpeedToGui);
     }
     else
     {pass();}
@@ -58,14 +58,14 @@ void SIG_X::procFromGui(const INT32 state, const INT32 speed)
         mStateToFld = state;
         mSpeedToFld = speed;
         mStateToGui = SIG_STATE_WAIT;
-        ddi::getSIG_Hub().toFld(mId, mStateToFld, mSpeedToFld);
-        ddi::getSIG_Hub().toGui(mId, mStateToGui, mSpeedToGui);
+        IL::getSIG_Hub().toFld(mId, mStateToFld, mSpeedToFld);
+        IL::getSIG_Hub().toGui(mId, mStateToGui, mSpeedToGui);
     }
 }
 
 void SIG_X::logMissmatch()
 {
-    ddi::getLog().log(COMP_SIG, ERR_MATCH);
+    IL::getLog().log(COMP_SIG, ERR_MATCH);
 }
 
 void SIG_H::fromFld(const INT32 state, const INT32 speed)

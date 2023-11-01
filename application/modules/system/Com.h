@@ -20,7 +20,7 @@ public:
     inline void send(const CmdFld&   tele) const {}
     inline void send(const StateGui& tele) const {}
 
-    DDI_INSTANCE_DEC(Com)
+    IL_INSTANCE_DEC(Com)
 
     NOCOPY(Com)
 };
