@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: submodules
+      run: git submodule update
     - name: "build CppuTest"
       run: cd BuildCppUTest; pwd; ls -al
     - name: "build tests"
