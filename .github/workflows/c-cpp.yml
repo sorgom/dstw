@@ -9,7 +9,12 @@ on:
 jobs:
   buildAndRunTests:
 
+
     runs-on: ubuntu-latest
+
+    artifacts:
+      paths:
+        - testreport.txt
 
     steps:
     - name: "Checkout repository"
@@ -19,7 +24,7 @@ jobs:
     - name: "build tests"
       run: cd make; make -f tests.make
     - name: "run tests"
-      run: make/bin/tests
+      run: make/bin/tests -b -v > testreport.txt
 
   buildAndRunApp:
 
