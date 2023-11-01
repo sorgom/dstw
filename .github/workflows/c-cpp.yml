@@ -14,7 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: "build CppuTest"
-      run: cd BuildCppUTest; make
+      run: cd BuildCppUTest
+      run: make
     - name: "build tests"
       run: cd make; make -f tests.make
     - name: run
