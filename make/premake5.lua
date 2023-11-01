@@ -21,7 +21,7 @@ workspace 'tests'
         '../BuildCppUTest/include'
     }
 
-    buildoptions { '-std=c++98 -pedantic-errors' }
+    buildoptions { '-pedantic-errors' }
 
     project 'tests'
         kind        'ConsoleApp'
@@ -58,7 +58,7 @@ workspace 'coverage'
         '../BuildCppUTest/include'
     }
 
-    buildoptions { '-std=c++98 -pedantic-errors' }
+    buildoptions { '-pedantic-errors' }
 
     project 'coverage_app'
         kind        'StaticLib'
