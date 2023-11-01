@@ -12,9 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: submodules
-      run: git submodule update
+    - name: "Checkout repository"
+      uses: actions/checkout@v3
+      with:
+         submodules: 'true'
     - name: "build CppuTest"
       run: cd BuildCppUTest; pwd; ls -al
     - name: "build tests"
