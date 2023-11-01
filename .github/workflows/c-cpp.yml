@@ -7,10 +7,6 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  artifacts:
-    paths:
-      - testreport.txt
-
   buildAndRunTests:
 
     runs-on: ubuntu-latest
@@ -23,7 +19,7 @@ jobs:
     - name: "build tests"
       run: cd make; make -f tests.make
     - name: "run tests"
-      run: make/bin/tests -b -v > testreport.txt
+      run: make/bin/tests -b -v
 
   buildAndRunApp:
 
