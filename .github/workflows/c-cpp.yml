@@ -7,14 +7,13 @@ on:
     branches: [ "dev" ]
 
 jobs:
+  artifacts:
+    paths:
+      - testreport.txt
+
   buildAndRunTests:
 
-
     runs-on: ubuntu-latest
-
-    artifacts:
-      paths:
-        - testreport.txt
 
     steps:
     - name: "Checkout repository"
