@@ -31,7 +31,7 @@ namespace test
         for (INT32 i = 0; i < tSize; ++i)
         {
             LSTEP(i)
-            genElementName(tNtp.name, tOffs - i);
+            nameElement(tNtp, tOffs - i);
             tNtp.type = 100 + i;
             tNtp.pos  = i;
             data.add(tNtp);

@@ -1,8 +1,6 @@
 #include <SIG/SIG_Provider.h>
 #include <SYS/IL.h>
 
-#include <new>
-
 INSTANCE_DEF(SIG_Provider)
 
 void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
@@ -30,13 +28,13 @@ void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
                 switch (proj.type)
                 {
                     case SIG_TYPE_H:
-                        new (mSIGs.addPtr()) SIG_H(id);
+                        mSIGs.add(SIG_H(id));
                         break;
                     case SIG_TYPE_N:
-                        new (mSIGs.addPtr()) SIG_N(id);
+                        mSIGs.add(SIG_N(id));
                         break;
                     case SIG_TYPE_H_N:
-                        new (mSIGs.addPtr()) SIG_H_N(id);
+                        mSIGs.add(SIG_H_N(id));
                         break;
                     default:
                         ok = false;

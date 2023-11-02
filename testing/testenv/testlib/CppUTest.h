@@ -10,7 +10,7 @@
 #ifndef CPPUTEST_H
 #define CPPUTEST_H
 
-//  otherwise no placement new:
+//  no new malloc in application
 #define CPPUTEST_MEM_LEAK_DETECTION_DISABLED
 
 #include <CppUTest/TestHarness.h>

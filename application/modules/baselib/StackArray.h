@@ -47,24 +47,9 @@ public:
         return mSize++;
     }
 
-    inline const T* getData() const
+    inline const T* data() const
     {
         return mData;
-    }
-
-    inline PTR getPtr(UINT32 pos)
-    {
-        return mBytes + sizeof(T) * pos;
-    }
-
-    inline CPTR getPtr(UINT32 pos) const
-    {
-        return mBytes + sizeof(T) * pos;
-    }
-
-    inline PTR addPtr() 
-    {
-        return getPtr(mSize++);
     }
 
     inline const T& at(UINT32 pos) const
@@ -75,6 +60,12 @@ public:
     inline T& at(UINT32 pos)
     {
         return mData[pos];
+    }
+
+protected:
+    inline PTR getPtr(UINT32 pos)
+    {
+        return mBytes + sizeof(T) * pos;
     }
 
 private:

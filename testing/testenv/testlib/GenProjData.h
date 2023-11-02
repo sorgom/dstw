@@ -28,10 +28,10 @@ namespace test
     public:
         GenProjData()
         {
-            pTSW = mTSW.getData();
-            pSIG = mSIG.getData();
-            pLCR = mLCR.getData();
-            pSEG = mSEG.getData();
+            pTSW = mTSW.data();
+            pSIG = mSIG.data();
+            pLCR = mLCR.data();
+            pSEG = mSEG.data();
 
             numTSW = NTSW;
             numSIG = NSIG;

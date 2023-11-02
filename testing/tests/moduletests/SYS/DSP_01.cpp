@@ -35,33 +35,33 @@ namespace test
 
         // FldState
         STEP(1)
-        genElementName(fldState.name, 1, "TSW");
+        nameElement(fldState, 1, "TSW");
         m_TSW_Hub().expectFromDsp(1, fldState);
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
 
         STEP(2)
-        genElementName(fldState.name, 2, "SIG");
+        nameElement(fldState, 2, "SIG");
         m_SIG_Hub().expectFromDsp(2, fldState);
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
 
         STEP(3)
         //  LCR not part of current implementation
-        genElementName(fldState.name, 3, "LCR");
+        nameElement(fldState, 3, "LCR");
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
 
         STEP(4)
         //  SEG not part of current implementation
-        genElementName(fldState.name, 4, "SEG");
+        nameElement(fldState, 4, "SEG");
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
         m_Log().expectLog(COMP_DISPATCHER, ERR_MATCH);
-        genElementName(fldState.name, 2, "TSW");
+        nameElement(fldState, 2, "TSW");
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
     }
@@ -74,33 +74,33 @@ namespace test
         Mem::zero(guiCmd);
 
         STEP(1)
-        genElementName(guiCmd.name, 1, "TSW");
+        nameElement(guiCmd, 1, "TSW");
         m_TSW_Hub().expectFromDsp(1, guiCmd);
         mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()
 
         STEP(2)
-        genElementName(guiCmd.name, 2, "SIG");
+        nameElement(guiCmd, 2, "SIG");
         m_SIG_Hub().expectFromDsp(2, guiCmd);
         mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()
 
         STEP(3)
         //  LCR not part of current implementation
-        genElementName(guiCmd.name, 3, "LCR");
+        nameElement(guiCmd, 3, "LCR");
         mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()
 
         STEP(4)
         //  SEG not part of current implementation
-        genElementName(guiCmd.name, 4, "SEG");
+        nameElement(guiCmd, 4, "SEG");
         mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
         m_Log().expectLog(COMP_DISPATCHER, ERR_MATCH);
-        genElementName(guiCmd.name, 2, "TSW");
+        nameElement(guiCmd, 2, "TSW");
         mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()
     }
@@ -116,25 +116,25 @@ namespace test
         Mem::zero(cmdExp);
 
         STEP(1)
-        genElementName(cmdExp.name, 1, "TSW");
+        nameElement(cmdExp, 1, "TSW");
         m_Com().expectSend(cmdExp);
         mSUT.dispatch(0, cmdIn);
         CHECK_N_CLEAR()
 
         STEP(2)
-        genElementName(cmdExp.name, 2, "SIG");
+        nameElement(cmdExp, 2, "SIG");
         m_Com().expectSend(cmdExp);
         mSUT.dispatch(1, cmdIn);
         CHECK_N_CLEAR()
 
         STEP(3)
-        genElementName(cmdExp.name, 3, "LCR");
+        nameElement(cmdExp, 3, "LCR");
         m_Com().expectSend(cmdExp);
         mSUT.dispatch(2, cmdIn);
         CHECK_N_CLEAR()
 
         STEP(4)
-        genElementName(cmdExp.name, 4, "SEG");
+        nameElement(cmdExp, 4, "SEG");
         m_Com().expectSend(cmdExp);
         mSUT.dispatch(3, cmdIn);
         CHECK_N_CLEAR()
@@ -156,25 +156,25 @@ namespace test
         Mem::zero(stateExp);
 
         STEP(1)
-        genElementName(stateExp.name, 1, "TSW");
+        nameElement(stateExp, 1, "TSW");
         m_Com().expectSend(stateExp);
         mSUT.dispatch(0, stateIn);
         CHECK_N_CLEAR()
 
         STEP(2)
-        genElementName(stateExp.name, 2, "SIG");
+        nameElement(stateExp, 2, "SIG");
         m_Com().expectSend(stateExp);
         mSUT.dispatch(1, stateIn);
         CHECK_N_CLEAR()
 
         STEP(3)
-        genElementName(stateExp.name, 3, "LCR");
+        nameElement(stateExp, 3, "LCR");
         m_Com().expectSend(stateExp);
         mSUT.dispatch(2, stateIn);
         CHECK_N_CLEAR()
 
         STEP(4)
-        genElementName(stateExp.name, 4, "SEG");
+        nameElement(stateExp, 4, "SEG");
         m_Com().expectSend(stateExp);
         mSUT.dispatch(3, stateIn);
         CHECK_N_CLEAR()

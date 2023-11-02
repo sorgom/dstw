@@ -5,7 +5,6 @@
 
 #include <testlib/TestGroupBase.h>
 #include <baselib/StackArray.h>
-#include <new>
 
 namespace test
 {
@@ -49,7 +48,7 @@ namespace test
     };
 
     //  test type: equivalence class test
-    //  test of StackArray: with ad()
+    //  test of StackArray
     TEST(BT_02, T01)
     {
         STEP(1)
@@ -110,36 +109,8 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  test of StackArray: with placement new
-    TEST(BT_02, T02)
-    {
-        STEP(1)
-        IdataArray a;
-
-        for (INT32 i = 0; i < a.capacity(); ++i)
-        {
-            L_CHECK_TRUE(a.hasSpace())
-            new (a.addPtr()) Idata(-i, i);
-        }
-        L_CHECK_EQUAL(a.capacity(), a.size())
-        L_CHECK_FALSE(a.hasSpace())
-
-        STEP(2)
-        //  test unsorted data as loaded
-        SUBSTEPS()
-        for (INT32 i = 0; i < a.size(); ++i)
-        {
-            LSTEP(i)
-            const Idata& d = a.at(i);
-            L_CHECK_EQUAL(-i, d.m1)
-            L_CHECK_EQUAL( i, d.m2)
-        }
-        ENDSTEPS()
-    }
-
-    //  test type: equivalence class test
     //  test of StackArrayIndex
-    TEST(BT_02, T03)
+    TEST(BT_02, T02)
     {
         STEP(1)
         //  create array

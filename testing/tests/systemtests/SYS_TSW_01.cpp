@@ -41,7 +41,7 @@ namespace test
         for (UINT32 n = 0; n < CAPACITY_TSW; ++n)
         {
             LSTEP(n)
-            genElementName(fldState.name, CAPACITY_TSW - n, "TSW");
+            nameElement(fldState, CAPACITY_TSW - n, "TSW");
             fldState.state1 = TSW_STATE_LEFT;
 
             Mem::cpy(stateGui.name, fldState.name);
@@ -63,7 +63,7 @@ namespace test
         for (UINT32 n = 0; n < CAPACITY_TSW; ++n)
         {
             LSTEP(n)
-            genElementName(guiCmd.name, CAPACITY_TSW - n, "TSW");
+            nameElement(guiCmd, CAPACITY_TSW - n, "TSW");
             guiCmd.cmd1 = TSW_GUI_GMD_WU;
 
             Mem::cpy(cmdFld.name, guiCmd.name);

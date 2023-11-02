@@ -13,9 +13,18 @@
 
 namespace test
 {
+
+
     //  preset an ElmentName for testing
     const ElementName& genElementName(UINT32 num, CONST_C_STRING name = c__ELM);
     void genElementName(ElementName& eName, UINT32 num, CONST_C_STRING name = c__ELM);
+
+    template <class T>
+    void nameElement(T& elem, UINT32 num, CONST_C_STRING name = c__ELM)
+    {
+        genElementName(elem.name, num, name);
+    }
+
 
     //  exchangeable unconst reference
     template <class T>
