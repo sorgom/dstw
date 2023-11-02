@@ -16,7 +16,7 @@ workspace 'tests'
         '../testing/testenv',
         '../specification',
         '../application',
-        '../application/modules',
+        '../application/components',
         '../devel',
         '../BuildCppUTest/include'
     }
@@ -28,7 +28,7 @@ workspace 'tests'
         targetdir   'bin'
 
         files { 
-            '../application/modules/**.cpp',
+            '../application/components/**.cpp',
             '../testing/testenv/**.cpp',
             '../testing/tests/**.cpp'
         }
@@ -53,7 +53,7 @@ workspace 'coverage'
         '../testing/testenv',
         '../specification',
         '../application',
-        '../application/modules',
+        '../application/components',
         '../devel',
         '../BuildCppUTest/include'
     }
@@ -67,7 +67,7 @@ workspace 'coverage'
         targetdir   'lib'
         
         files { 
-            '../application/modules/**.cpp',
+            '../application/components/**.cpp',
         }
 
         buildoptions {'-fprofile-arcs -ftest-coverage'}
@@ -98,7 +98,7 @@ workspace 'dstw'
     includedirs {
         '../specification',
         '../application',
-        '../application/modules',
+        '../application/components',
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }

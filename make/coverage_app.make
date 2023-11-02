@@ -23,7 +23,7 @@ TARGETDIR = lib
 TARGET = $(TARGETDIR)/libcoverage_app.a
 OBJDIR = obj/coverage_app
 DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
-INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/modules -I../devel -I../BuildCppUTest/include
+INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/components -I../devel -I../BuildCppUTest/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++98 -pedantic-errors -fprofile-arcs -ftest-coverage
@@ -137,40 +137,40 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/SIG_Hub.o: ../application/modules/SIG/src/SIG_Hub.cpp
+$(OBJDIR)/SIG_Hub.o: ../application/components/SIG/src/SIG_Hub.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SIG_Provider.o: ../application/modules/SIG/src/SIG_Provider.cpp
+$(OBJDIR)/SIG_Provider.o: ../application/components/SIG/src/SIG_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SIG_X.o: ../application/modules/SIG/src/SIG_X.cpp
+$(OBJDIR)/SIG_X.o: ../application/components/SIG/src/SIG_X.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Com.o: ../application/modules/SYS/src/Com.cpp
+$(OBJDIR)/Com.o: ../application/components/SYS/src/Com.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Dispatcher.o: ../application/modules/SYS/src/Dispatcher.cpp
+$(OBJDIR)/Dispatcher.o: ../application/components/SYS/src/Dispatcher.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Loader.o: ../application/modules/SYS/src/Loader.cpp
+$(OBJDIR)/Loader.o: ../application/components/SYS/src/Loader.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Log.o: ../application/modules/SYS/src/Log.cpp
+$(OBJDIR)/Log.o: ../application/components/SYS/src/Log.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TSW.o: ../application/modules/TSW/src/TSW.cpp
+$(OBJDIR)/TSW.o: ../application/components/TSW/src/TSW.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TSW_Hub.o: ../application/modules/TSW/src/TSW_Hub.cpp
+$(OBJDIR)/TSW_Hub.o: ../application/components/TSW/src/TSW_Hub.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TSW_Provider.o: ../application/modules/TSW/src/TSW_Provider.cpp
+$(OBJDIR)/TSW_Provider.o: ../application/components/TSW/src/TSW_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/NtpArray.o: ../application/modules/baselib/src/NtpArray.cpp
+$(OBJDIR)/NtpArray.o: ../application/components/baselib/src/NtpArray.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/StackArray.o: ../application/modules/baselib/src/StackArray.cpp
+$(OBJDIR)/StackArray.o: ../application/components/baselib/src/StackArray.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
