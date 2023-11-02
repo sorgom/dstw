@@ -14,11 +14,24 @@ Further error handling / reactions / statistics will be implemented here.
 </div>
 
 
-## test setup
+## testing
+### module tests
 Due to the Interface Locator (IL) any application component instance can be replaced by a mock instance.
 Sample: test setup for Dispatcher component 
 <div style="background-color:#F8F8F8;">
 <img src="specification/diagrams/test_dispatcher.svg" alt="test of Dispatcher">
+</div>
+
+### system tests
+System tests (currently) have two stimulation points
+-   project data
+-   telegrams from field and GUI
+
+Expectation takes place at the Com interface
+-   telegrams to field and GUI
+
+<div style="background-color:#F8F8F8;">
+<img src="specification/diagrams/sys_tests.svg" alt="test of Dispatcher">
 </div>
 
 ## code coverage
