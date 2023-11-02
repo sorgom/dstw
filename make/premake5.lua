@@ -16,7 +16,7 @@ workspace 'tests'
         '../testing/testenv',
         '../specification',
         '../application',
-        '../application/modules',
+        '../application/components',
         '../devel',
         '../BuildCppUTest/include'
     }
@@ -28,7 +28,7 @@ workspace 'tests'
         targetdir   'bin'
 
         files { 
-            '../application/modules/**.cpp',
+            '../application/components/**.cpp',
             '../testing/testenv/**.cpp',
             '../testing/tests/**.cpp'
         }
@@ -53,23 +53,23 @@ workspace 'coverage'
         '../testing/testenv',
         '../specification',
         '../application',
-        '../application/modules',
+        '../application/components',
         '../devel',
         '../BuildCppUTest/include'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
+    defines { 'DEBUG', 'CPPUTEST_USE_LONG_LONG=0' }
+    symbols 'On'
 
     project 'coverage_app'
         kind        'StaticLib'
         targetdir   'lib'
         
         files { 
-            '../application/modules/**.cpp',
+            '../application/components/**.cpp',
         }
 
-        defines { 'DEBUG', 'CPPUTEST_USE_LONG_LONG=0' }
-        symbols 'On'
         buildoptions {'-fprofile-arcs -ftest-coverage'}
 
     project 'coverage_tests'
@@ -80,9 +80,6 @@ workspace 'coverage'
             '../testing/testenv/**.cpp',
             '../testing/tests/moduletests/**.cpp'
         }
-
-        defines { 'DEBUG' }
-        symbols 'On'
 
         libdirs { 'lib', '../BuildCppUTest/lib' }
         links { 'coverage_app', 'CppUTest', 'CppUTestExt', 'gcov' }
@@ -101,7 +98,7 @@ workspace 'dstw'
     includedirs {
         '../specification',
         '../application',
-        '../application/modules',
+        '../application/components',
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }

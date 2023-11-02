@@ -14,17 +14,21 @@ namespace test
     protected:
         const UINT32 mId;
         SIG_H mSIG_H;
-        Ref<I_SIG> mSUT;
+        Ref<I_SIG> rSUT;
         inline TestGroupSIG():
             mId(123),
             mSIG_H(mId),
-            mSUT(mSIG_H)
+            rSUT(mSIG_H)
         {
             mockAll();
         }
         inline void setSUT(I_SIG& sig)
         {
-            mSUT = sig;
+            rSUT.set(sig);
+        }
+        inline I_SIG& mSUT()
+        {
+            return rSUT.ref();
         }
 
         void fromFldToGui(

@@ -42,10 +42,10 @@ namespace test
         for (UINT32 n = 0; n < CAPACITY_SIG; ++n)
         {
             LSTEP(n)
-            genElementName(fldState.name, CAPACITY_SIG - n, "SIG");
+            nameElement(fldState, CAPACITY_SIG - n, "SIG");
             fldState.state1 = SIG_STATE_H0;
 
-            Mem::copy(stateGui.name, fldState.name);
+            Mem::cpy(stateGui.name, fldState.name);
             stateGui.state1 = SIG_STATE_H0;
 
             m_Com().expectSend(stateGui);
@@ -64,13 +64,13 @@ namespace test
         for (UINT32 n = 0; n < CAPACITY_SIG; ++n)
         {
             LSTEP(n)
-            genElementName(guiCmd.name, CAPACITY_SIG - n, "SIG");
+            nameElement(guiCmd, CAPACITY_SIG - n, "SIG");
             guiCmd.cmd1 = SIG_STATE_H1;
 
-            Mem::copy(cmdFld.name, guiCmd.name);
+            Mem::cpy(cmdFld.name, guiCmd.name);
             cmdFld.cmd1 = SIG_STATE_H1;
 
-            Mem::copy(stateGui.name, guiCmd.name);
+            Mem::cpy(stateGui.name, guiCmd.name);
             stateGui.state1 = SIG_STATE_WAIT;
 
             m_Com().expectSend(cmdFld);
