@@ -54,7 +54,6 @@ GENERATED += $(OBJDIR)/BT_01.o
 GENERATED += $(OBJDIR)/BT_02.o
 GENERATED += $(OBJDIR)/BT_03.o
 GENERATED += $(OBJDIR)/BT_04.o
-GENERATED += $(OBJDIR)/BaseLib.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/CompOstream.o
 GENERATED += $(OBJDIR)/DSP_01.o
@@ -73,6 +72,7 @@ GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
 GENERATED += $(OBJDIR)/SYS_SIG_01.o
 GENERATED += $(OBJDIR)/SYS_TSW_01.o
+GENERATED += $(OBJDIR)/StackArray.o
 GENERATED += $(OBJDIR)/TSW.o
 GENERATED += $(OBJDIR)/TSW_01.o
 GENERATED += $(OBJDIR)/TSW_02.o
@@ -93,7 +93,6 @@ OBJECTS += $(OBJDIR)/BT_01.o
 OBJECTS += $(OBJDIR)/BT_02.o
 OBJECTS += $(OBJDIR)/BT_03.o
 OBJECTS += $(OBJDIR)/BT_04.o
-OBJECTS += $(OBJDIR)/BaseLib.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/CompOstream.o
 OBJECTS += $(OBJDIR)/DSP_01.o
@@ -112,6 +111,7 @@ OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
 OBJECTS += $(OBJDIR)/SYS_SIG_01.o
 OBJECTS += $(OBJDIR)/SYS_TSW_01.o
+OBJECTS += $(OBJDIR)/StackArray.o
 OBJECTS += $(OBJDIR)/TSW.o
 OBJECTS += $(OBJDIR)/TSW_01.o
 OBJECTS += $(OBJDIR)/TSW_02.o
@@ -221,10 +221,10 @@ $(OBJDIR)/TSW_Hub.o: ../application/modules/TSW/src/TSW_Hub.cpp
 $(OBJDIR)/TSW_Provider.o: ../application/modules/TSW/src/TSW_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/BaseLib.o: ../application/modules/baselib/src/BaseLib.cpp
+$(OBJDIR)/NtpArray.o: ../application/modules/baselib/src/NtpArray.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/NtpArray.o: ../application/modules/baselib/src/NtpArray.cpp
+$(OBJDIR)/StackArray.o: ../application/modules/baselib/src/StackArray.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/IL.o: ../testing/testenv/SYS/src/IL.cpp

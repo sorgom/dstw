@@ -29,11 +29,7 @@ namespace test
         {
             return *mPtr;
         }
-        inline T& operator()() const
-        {
-            return ref();
-        }
-        inline void operator =(T& ref)
+        inline void set(T& ref)
         {
             mPtr = &ref;
         }

@@ -20,8 +20,8 @@
 //  I_NAME& IL::getNAME() { return ILPLugs::instance().mNAME(); }
 //  void IL::setNAME(I_NAME& ref) { ILPLugs::instance().mNAME = ref; } 
 #define IL_DEF(NAME) \
-    I_ ## NAME& IL::get ## NAME() { return test::ILPLugs::instance().m ## NAME(); } \
-    void IL::set ## NAME(I_ ## NAME& ref) { test::ILPLugs::instance().m ## NAME = ref; } 
+    I_ ## NAME& IL::get ## NAME() { return test::ILPLugs::instance().m ## NAME.ref(); } \
+    void IL::set ## NAME(I_ ## NAME& ref) { test::ILPLugs::instance().m ## NAME.set(ref); } 
 
 namespace test
 {
@@ -34,7 +34,7 @@ namespace test
             mPointer(&ref)
         {}
 
-        inline void operator =(T& ref)
+        inline void set(T& ref)
         {
             mPointer = &ref;
         }
@@ -44,7 +44,7 @@ namespace test
             mPointer = &mDefault;
         }
 
-        inline T& operator()() const
+        inline T& ref() const
         {
             return *mPointer;
         }

@@ -25,14 +25,9 @@ const Ntp& genNtp(
     );
 
 template <UINT32 CAP>
-class NtpArray : public StackArray<Ntp, CAP>
+class NtpArray : public SimpleStackArray<Ntp, CAP>
 {
 public:
-    inline bool isGreater(const Ntp& a, const Ntp& b) const
-    {
-        return Mem::cmp(a.name, b.name) > 0;
-    }
-    
     inline UINT32 addNtp(const ElementName& name, INT32 type, UINT32 pos)
     {
         return this->add(genNtp(name, type, pos));
@@ -46,6 +41,11 @@ public:
     inline NtpIndex(const NtpArray<CAP>& a):
         StackArrayIndex<Ntp, CAP>(a)
     {}
+
+    inline bool isGreater(const CRef<Ntp>& a, const CRef<Ntp>& b) const
+    {
+        return Mem::cmp(a.ref().name, b.ref().name) > 0;
+    }
 
     inline INT32 findNtp(const ElementName& name) const
     {

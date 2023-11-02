@@ -1,6 +1,8 @@
 #include <SIG/SIG_Provider.h>
 #include <SYS/IL.h>
 
+#include <new>
+
 INSTANCE_DEF(SIG_Provider)
 
 void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)

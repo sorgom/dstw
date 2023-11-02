@@ -99,7 +99,7 @@ void Dispatcher::dispatch(const UINT32 id, const CmdFld& tele) const
     {
         static CmdFld cmd;
         Mem::cpy(cmd, tele);
-        Mem::cpy(cmd.name, mData[id].name);
+        Mem::cpy(cmd.name, mData.at(id).name);
         IL::getCom().send(cmd);
     }
     else
@@ -112,7 +112,7 @@ void Dispatcher::dispatch(const UINT32 id, const StateGui& tele) const
     {
         static StateGui state;
         Mem::cpy(state, tele);
-        Mem::cpy(state.name, mData[id].name);
+        Mem::cpy(state.name, mData.at(id).name);
         IL::getCom().send(state);
     }
     else

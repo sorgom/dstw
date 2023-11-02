@@ -1,13 +1,12 @@
 # The DSTW Project
 
-## modules
+## components
 <img src="specification/diagrams/modules.svg" alt="modules" style="width:400px;"> 
 
 ## state of implementaion
 <div style="background-color:#F8F8F8;">
 <img src="specification/diagrams/overview.svg" alt="component overview">
 </div>
-
 
 ### implemented and tested:
 -   load project data
@@ -23,7 +22,6 @@ Further error handling / reactions / statistics will be implemented here.
 <div style="background-color:#F8F8F8;">
 <img src="specification/diagrams/log.svg" alt="central logging">
 </div>
-
 
 ## testing
 ### module tests
@@ -47,4 +45,3 @@ Expectation takes place at the Com interface
 
 ## code coverage
 for current current code coverage see [coverage.md](testing/coverage.md)
-

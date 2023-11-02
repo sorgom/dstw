@@ -5,6 +5,7 @@
 
 #include <testlib/TestGroupBase.h>
 #include <baselib/StackArray.h>
+#include <new>
 
 namespace test
 {
@@ -32,7 +33,20 @@ namespace test
             return a.m1 > b.m1;
         }
     };
-    typedef StackArrayIndex<Idata, 20> IdataIndex;
+
+    typedef SimpleStackArray<Idata, 20> IdataSimpleArray;
+
+    class IdataIndex : public StackArrayIndex<Idata, 20>
+    {
+    public:
+        inline IdataIndex(const IdataSimpleArray& a):
+            StackArrayIndex<Idata, 20>(a)
+        {}
+        inline bool isGreater(const CRef<Idata>& a, const CRef<Idata>& b) const
+        {
+            return a.ref().m1 > b.ref().m1;
+        }
+    };
 
     //  test type: equivalence class test
     //  test of StackArray: with ad()
@@ -48,13 +62,12 @@ namespace test
 
         for (INT32 i = 0; i < a.capacity(); ++i)
         {
-            L_CHECK_FALSE(a.isFull())
+            L_CHECK_TRUE(a.hasSpace())
             const UINT32 p = a.add(Idata(-i, i));
             L_CHECK_EQUAL(i, p);
         }
         L_CHECK_EQUAL(a.capacity(), a.size())
-        L_CHECK_TRUE(a.isFull())
-
+        L_CHECK_FALSE(a.hasSpace())
 
         STEP(2)
         //  test unsorted data as loaded
@@ -62,7 +75,7 @@ namespace test
         for (INT32 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
-            const Idata& d = a[i];
+            const Idata& d = a.at(i);
             L_CHECK_EQUAL(-i, d.m1)
             L_CHECK_EQUAL( i, d.m2)
         }
@@ -77,7 +90,7 @@ namespace test
         for (INT32 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
-            const Idata& d = a[i];
+            const Idata& d = a.at(i);
             L_CHECK_EQUAL(-of + i, d.m1)
             L_CHECK_EQUAL( of - i, d.m2)
         }
@@ -90,7 +103,7 @@ namespace test
         for (INT32 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
-            const INT32 p = c.find(c[i]);
+            const INT32 p = c.find(c.at(i));
             L_CHECK_EQUAL(i, p)
         }
         ENDSTEPS()
@@ -105,11 +118,11 @@ namespace test
 
         for (INT32 i = 0; i < a.capacity(); ++i)
         {
-            L_CHECK_FALSE(a.isFull())
+            L_CHECK_TRUE(a.hasSpace())
             new (a.addPtr()) Idata(-i, i);
         }
         L_CHECK_EQUAL(a.capacity(), a.size())
-        L_CHECK_TRUE(a.isFull())
+        L_CHECK_FALSE(a.hasSpace())
 
         STEP(2)
         //  test unsorted data as loaded
@@ -117,7 +130,7 @@ namespace test
         for (INT32 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
-            const Idata& d = a[i];
+            const Idata& d = a.at(i);
             L_CHECK_EQUAL(-i, d.m1)
             L_CHECK_EQUAL( i, d.m2)
         }
@@ -131,7 +144,7 @@ namespace test
         STEP(1)
         //  create array
         //  load data
-        IdataArray a;
+        IdataSimpleArray a;
         IdataIndex ix(a);
         L_CHECK_EQUAL(a.capacity(), ix.capacity())
 
@@ -139,29 +152,23 @@ namespace test
         {
             a.add(Idata(-i, i));
         }
-        L_CHECK_TRUE(a.isFull())
+        L_CHECK_FALSE(a.hasSpace())
 
         STEP(2)
         //  adapt index
         //  find all data in index
         ix.adapt();
-        L_CHECK_TRUE(ix.isFull())
+        L_CHECK_FALSE(ix.hasSpace())
         SUBSTEPS()
         for (INT32 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
-            const Idata& d = a[i];
+            const Idata& d = a.at(i);
             const INT32  f = ix.findRef(d);
             const Idata& r = ix.getRef(f);
             L_CHECK_EQUAL(d.m1, r.m1)
             L_CHECK_EQUAL(d.m2, r.m2)
         }
         ENDSTEPS()
-    }
-    //  test type: equivalence class test
-    //  test of NtpArray / NtpIndex
-    TEST(BT_02, T04)
-    {
-
     }
 } // namespace
