@@ -954,27 +954,27 @@
 "_type":"LabelView","_id":"AAAAAAGLTJhzlYWMhWg=","_parent":{
 "$ref":"AAAAAAGLTJhzlYWLdSM="
 }
-,"visible":false,"fillColor":"#FF8282","font":"Arial;13;0","left":1088,"top":1088,"height":13
+,"visible":false,"fillColor":"#FF8282","font":"Arial;13;0","left":1024,"top":1088,"height":13
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLTJhzlYWN9tQ=","_parent":{
 "$ref":"AAAAAAGLTJhzlYWLdSM="
 }
-,"fillColor":"#FF8282","font":"Arial;13;1","left":613,"top":839,"width":215,"height":13,"underline":true,"text":"Com"
+,"fillColor":"#FF8282","font":"Arial;13;1","left":581,"top":839,"width":215,"height":13,"underline":true,"text":"Com"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLTJhzlYWOc9E=","_parent":{
 "$ref":"AAAAAAGLTJhzlYWLdSM="
 }
-,"visible":false,"fillColor":"#FF8282","font":"Arial;13;0","left":1088,"top":1088,"width":73.67724609375,"height":13,"text":"(from Model)"
+,"visible":false,"fillColor":"#FF8282","font":"Arial;13;0","left":1024,"top":1088,"width":73.67724609375,"height":13,"text":"(from Model)"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLTJhzlYWPpk0=","_parent":{
 "$ref":"AAAAAAGLTJhzlYWLdSM="
 }
-,"visible":false,"fillColor":"#FF8282","font":"Arial;13;0","left":1088,"top":1088,"height":13,"horizontalAlignment":1
+,"visible":false,"fillColor":"#FF8282","font":"Arial;13;0","left":1024,"top":1088,"height":13,"horizontalAlignment":1
 }
-],"fillColor":"#FF8282","font":"Arial;13;0","left":608,"top":832,"width":225,"height":25,"stereotypeLabel":{
+],"fillColor":"#FF8282","font":"Arial;13;0","left":576,"top":832,"width":225,"height":25,"stereotypeLabel":{
 "$ref":"AAAAAAGLTJhzlYWMhWg="
 }
 ,"nameLabel":{
@@ -994,9 +994,9 @@
 ,"model":{
 "$ref":"AAAAAAGLTJhzlYWI1II="
 }
-,"visible":false,"fillColor":"#FF8282","font":"Arial;13;0","left":544,"top":536,"width":10,"height":10
+,"visible":false,"fillColor":"#FF8282","font":"Arial;13;0","left":512,"top":536,"width":10,"height":10
 }
-],"fillColor":"#FF8282","font":"Arial;13;0","containerChangeable":true,"left":608,"top":832,"width":224,"height":96,"nameCompartment":{
+],"fillColor":"#FF8282","font":"Arial;13;0","containerChangeable":true,"left":576,"top":832,"width":224,"height":96,"nameCompartment":{
 "$ref":"AAAAAAGLTJhzlYWLdSM="
 }
 ,"slotCompartment":{
@@ -1018,7 +1018,7 @@
 ,"model":{
 "$ref":"AAAAAAGLTIwDpVCIbmo="
 }
-,"visible":false,"font":"Arial;13;0","left":496,"top":715,"height":13,"alpha":1.5707963267948966,"distance":15,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":961,"top":825,"height":13,"alpha":1.5707963267948966,"distance":15,"hostEdge":{
 "$ref":"AAAAAAGLTJxtcrwlp9A="
 }
 ,"edgePosition":1
@@ -1030,7 +1030,7 @@
 ,"model":{
 "$ref":"AAAAAAGLTIwDpVCIbmo="
 }
-,"visible":null,"font":"Arial;13;0","left":496,"top":700,"height":13,"alpha":1.5707963267948966,"distance":30,"hostEdge":{
+,"visible":null,"font":"Arial;13;0","left":946,"top":825,"height":13,"alpha":1.5707963267948966,"distance":30,"hostEdge":{
 "$ref":"AAAAAAGLTJxtcrwlp9A="
 }
 ,"edgePosition":1
@@ -1042,7 +1042,7 @@
 ,"model":{
 "$ref":"AAAAAAGLTIwDpVCIbmo="
 }
-,"visible":false,"font":"Arial;13;0","left":496,"top":745,"height":13,"alpha":-1.5707963267948966,"distance":15,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":990,"top":826,"height":13,"alpha":-1.5707963267948966,"distance":15,"hostEdge":{
 "$ref":"AAAAAAGLTJxtcrwlp9A="
 }
 ,"edgePosition":1
@@ -1054,7 +1054,7 @@
 ,"model":{
 "$ref":"AAAAAAGLTIwDpVCJ3KA="
 }
-,"visible":false,"font":"Arial;13;0","left":481,"top":800,"height":13,"alpha":0.5235987755982988,"distance":30,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":961,"top":832,"height":13,"alpha":0.5235987755982988,"distance":30,"hostEdge":{
 "$ref":"AAAAAAGLTJxtcrwlp9A="
 }
 ,"edgePosition":2
@@ -1066,7 +1066,7 @@
 ,"model":{
 "$ref":"AAAAAAGLTIwDpVCJ3KA="
 }
-,"visible":false,"font":"Arial;13;0","left":467,"top":797,"height":13,"alpha":0.7853981633974483,"distance":40,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":947,"top":829,"height":13,"alpha":0.7853981633974483,"distance":40,"hostEdge":{
 "$ref":"AAAAAAGLTJxtcrwlp9A="
 }
 ,"edgePosition":2
@@ -1078,7 +1078,7 @@
 ,"model":{
 "$ref":"AAAAAAGLTIwDpVCJ3KA="
 }
-,"visible":false,"font":"Arial;13;0","left":508,"top":804,"height":13,"alpha":-0.5235987755982988,"distance":25,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":988,"top":836,"height":13,"alpha":-0.5235987755982988,"distance":25,"hostEdge":{
 "$ref":"AAAAAAGLTJxtcrwlp9A="
 }
 ,"edgePosition":2
@@ -1090,7 +1090,7 @@
 ,"model":{
 "$ref":"AAAAAAGLTIwDpVCKjK8="
 }
-,"visible":false,"font":"Arial;13;0","left":806,"top":715,"height":13,"alpha":-0.5235987755982988,"distance":30,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":961,"top":819,"height":13,"alpha":-0.5235987755982988,"distance":30,"hostEdge":{
 "$ref":"AAAAAAGLTJxtcrwlp9A="
 }
 }
@@ -1101,7 +1101,7 @@
 ,"model":{
 "$ref":"AAAAAAGLTIwDpVCKjK8="
 }
-,"visible":false,"font":"Arial;13;0","left":803,"top":701,"height":13,"alpha":-0.7853981633974483,"distance":40,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":947,"top":822,"height":13,"alpha":-0.7853981633974483,"distance":40,"hostEdge":{
 "$ref":"AAAAAAGLTJxtcrwlp9A="
 }
 }
@@ -1112,7 +1112,7 @@
 ,"model":{
 "$ref":"AAAAAAGLTIwDpVCKjK8="
 }
-,"visible":false,"font":"Arial;13;0","left":810,"top":742,"height":13,"alpha":0.5235987755982988,"distance":25,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":988,"top":815,"height":13,"alpha":0.5235987755982988,"distance":25,"hostEdge":{
 "$ref":"AAAAAAGLTJxtcrwlp9A="
 }
 }
@@ -1122,7 +1122,7 @@
 ,"tail":{
 "$ref":"AAAAAAGLj49UdM092As="
 }
-,"points":"496:832;496:736;832:736","showVisibility":true,"nameLabel":{
+,"points":"976:864;976:800","showVisibility":true,"nameLabel":{
 "$ref":"AAAAAAGLTJxtcrwmuIg="
 }
 ,"stereotypeLabel":{
@@ -3541,7 +3541,7 @@
 ,"model":{
 "$ref":"AAAAAAGLdm47fb8Eo9c="
 }
-,"visible":false,"font":"Arial;13;0","left":734,"top":761,"height":13,"alpha":1.5707963267948966,"distance":15,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":702,"top":761,"height":13,"alpha":1.5707963267948966,"distance":15,"hostEdge":{
 "$ref":"AAAAAAGLdm47fb8I9C4="
 }
 ,"edgePosition":1
@@ -3553,7 +3553,7 @@
 ,"model":{
 "$ref":"AAAAAAGLdm47fb8Eo9c="
 }
-,"visible":null,"font":"Arial;13;0","left":749,"top":761,"height":13,"alpha":1.5707963267948966,"distance":30,"hostEdge":{
+,"visible":null,"font":"Arial;13;0","left":717,"top":761,"height":13,"alpha":1.5707963267948966,"distance":30,"hostEdge":{
 "$ref":"AAAAAAGLdm47fb8I9C4="
 }
 ,"edgePosition":1
@@ -3565,7 +3565,7 @@
 ,"model":{
 "$ref":"AAAAAAGLdm47fb8Eo9c="
 }
-,"visible":false,"font":"Arial;13;0","left":705,"top":762,"height":13,"alpha":-1.5707963267948966,"distance":15,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":673,"top":762,"height":13,"alpha":-1.5707963267948966,"distance":15,"hostEdge":{
 "$ref":"AAAAAAGLdm47fb8I9C4="
 }
 ,"edgePosition":1
@@ -3613,7 +3613,7 @@
 ,"model":{
 "$ref":"AAAAAAGLdm47fb8GJKo="
 }
-,"visible":false,"font":"Arial;13;0","left":735,"top":800,"height":13,"alpha":-0.5235987755982988,"distance":30,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":703,"top":800,"height":13,"alpha":-0.5235987755982988,"distance":30,"hostEdge":{
 "$ref":"AAAAAAGLdm47fb8I9C4="
 }
 }
@@ -3624,7 +3624,7 @@
 ,"model":{
 "$ref":"AAAAAAGLdm47fb8GJKo="
 }
-,"visible":false,"font":"Arial;13;0","left":748,"top":797,"height":13,"alpha":-0.7853981633974483,"distance":40,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":716,"top":797,"height":13,"alpha":-0.7853981633974483,"distance":40,"hostEdge":{
 "$ref":"AAAAAAGLdm47fb8I9C4="
 }
 }
@@ -3635,7 +3635,7 @@
 ,"model":{
 "$ref":"AAAAAAGLdm47fb8GJKo="
 }
-,"visible":false,"font":"Arial;13;0","left":707,"top":804,"height":13,"alpha":0.5235987755982988,"distance":25,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":675,"top":804,"height":13,"alpha":0.5235987755982988,"distance":25,"hostEdge":{
 "$ref":"AAAAAAGLdm47fb8I9C4="
 }
 }
@@ -3645,7 +3645,7 @@
 ,"tail":{
 "$ref":"AAAAAAGLTIj7N0ZZqaI="
 }
-,"points":"832:768;720:768;720:832","showVisibility":true,"nameLabel":{
+,"points":"832:768;688:768;688:832","showVisibility":true,"nameLabel":{
 "$ref":"AAAAAAGLdm47fb8JbXk="
 }
 ,"stereotypeLabel":{
@@ -3831,27 +3831,27 @@
 "_type":"LabelView","_id":"AAAAAAGLj49UdM0/Yms=","_parent":{
 "$ref":"AAAAAAGLj49UdM0+iGw="
 }
-,"visible":false,"font":"Arial;13;0","left":-256,"top":240,"height":13
+,"visible":false,"font":"Arial;13;0","left":704,"top":304,"height":13
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLj49Udc1ALyk=","_parent":{
 "$ref":"AAAAAAGLj49UdM0+iGw="
 }
-,"font":"Arial;13;1","left":405,"top":839,"width":183,"height":13,"underline":true,"text":"telegrams from field and GUI"
+,"font":"Arial;13;1","left":837,"top":871,"width":279,"height":13,"underline":true,"text":"telegrams from field and GUI"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLj49Udc1B30E=","_parent":{
 "$ref":"AAAAAAGLj49UdM0+iGw="
 }
-,"visible":false,"font":"Arial;13;0","left":-256,"top":240,"width":73.67724609375,"height":13,"text":"(from Model)"
+,"visible":false,"font":"Arial;13;0","left":704,"top":304,"width":73.67724609375,"height":13,"text":"(from Model)"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLj49Udc1CTJA=","_parent":{
 "$ref":"AAAAAAGLj49UdM0+iGw="
 }
-,"visible":false,"font":"Arial;13;0","left":-256,"top":240,"height":13,"horizontalAlignment":1
+,"visible":false,"font":"Arial;13;0","left":704,"top":304,"height":13,"horizontalAlignment":1
 }
-],"font":"Arial;13;0","left":400,"top":832,"width":193,"height":25,"stereotypeLabel":{
+],"font":"Arial;13;0","left":832,"top":864,"width":289,"height":25,"stereotypeLabel":{
 "$ref":"AAAAAAGLj49UdM0/Yms="
 }
 ,"nameLabel":{
@@ -3871,9 +3871,9 @@
 ,"model":{
 "$ref":"AAAAAAGLj49UdM070jo="
 }
-,"visible":false,"font":"Arial;13;0","left":-128,"top":120,"width":10,"height":10
+,"visible":false,"font":"Arial;13;0","left":352,"top":152,"width":10,"height":10
 }
-],"font":"Arial;13;0","containerChangeable":true,"left":400,"top":832,"width":192,"height":32,"nameCompartment":{
+],"font":"Arial;13;0","containerChangeable":true,"left":832,"top":864,"width":288,"height":32,"nameCompartment":{
 "$ref":"AAAAAAGLj49UdM0+iGw="
 }
 ,"slotCompartment":{

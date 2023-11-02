@@ -181,33 +181,33 @@ Dispatcher</text>
 <path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 597.790482243984 591.8373251423759 L 602 602 L 606.209517756016 591.8373251423759" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#C0C0C0" stroke="none" x="615" y="839" width="224" height="96" transform="matrix(1 0 0 1 -262 -102)" fill-opacity="0.2"/>
+<rect fill="#C0C0C0" stroke="none" x="583" y="839" width="224" height="96" transform="matrix(1 0 0 1 -262 -102)" fill-opacity="0.2"/>
 </g>
 <g>
-<rect fill="#FF8282" stroke="none" x="608" y="832" width="224" height="96" transform="matrix(1 0 0 1 -262 -102)"/>
+<rect fill="#FF8282" stroke="none" x="576" y="832" width="224" height="96" transform="matrix(1 0 0 1 -262 -102)"/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 346 730 L 570 730 L 570 826 L 346 826 L 346 730 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 314 730 L 538 730 L 538 826 L 314 826 L 314 730 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FF8282" stroke="none" x="608" y="832" width="224" height="96" transform="matrix(1 0 0 1 -262 -102)"/>
+<rect fill="#FF8282" stroke="none" x="576" y="832" width="224" height="96" transform="matrix(1 0 0 1 -262 -102)"/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 346 730 L 570 730 L 570 826 L 346 826 L 346 730 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 314 730 L 538 730 L 538 826 L 314 826 L 314 730 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="720.5" y="845.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -262 -102)">
+<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="845.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -262 -102)">
 Com</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 472.944091796875 750 L 444.055908203125 750" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 440.944091796875 750 L 412.055908203125 750" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 234 730 L 234 634 L 570 634" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 714 762 L 714 698" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 559.8373251423759 638.209517756016 L 570 634 L 559.8373251423758 629.790482243984" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 718.209517756016 708.1626748576241 L 714 698 L 709.790482243984 708.1626748576241" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <rect fill="#C0C0C0" stroke="none" x="343" y="551" width="112" height="32" transform="matrix(1 0 0 1 -262 -102)" fill-opacity="0.2"/>
@@ -529,10 +529,10 @@ SIG Hub</text>
 <path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 287.8373251423759 222.209517756016 L 298 218 L 287.8373251423758 213.790482243984" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 570 666 L 458 666 L 458 730" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 570 666 L 426 666 L 426 730" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 453.790482243984 719.8373251423759 L 458 730 L 462.209517756016 719.8373251423759" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 421.790482243984 719.8373251423759 L 426 730 L 430.209517756016 719.8373251423759" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <rect fill="#C0C0C0" stroke="none" x="343" y="343" width="112" height="32" transform="matrix(1 0 0 1 -262 -102)" fill-opacity="0.2"/>
@@ -581,26 +581,26 @@ TSW</text>
 </g>
 </g>
 <g>
-<rect fill="#C0C0C0" stroke="none" x="407" y="839" width="192" height="32" transform="matrix(1 0 0 1 -262 -102)" fill-opacity="0.2"/>
+<rect fill="#C0C0C0" stroke="none" x="839" y="871" width="288" height="32" transform="matrix(1 0 0 1 -262 -102)" fill-opacity="0.2"/>
 </g>
 <g>
-<rect fill="#ffffff" stroke="none" x="400" y="832" width="192" height="32" transform="matrix(1 0 0 1 -262 -102)"/>
+<rect fill="#ffffff" stroke="none" x="832" y="864" width="288" height="32" transform="matrix(1 0 0 1 -262 -102)"/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 138 730 L 330 730 L 330 762 L 138 762 L 138 730 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 570 762 L 858 762 L 858 794 L 570 794 L 570 762 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#ffffff" stroke="none" x="400" y="832" width="192" height="32" transform="matrix(1 0 0 1 -262 -102)"/>
+<rect fill="#ffffff" stroke="none" x="832" y="864" width="288" height="32" transform="matrix(1 0 0 1 -262 -102)"/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 138 730 L 330 730 L 330 762 L 138 762 L 138 730 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 570 762 L 858 762 L 858 794 L 570 794 L 570 762 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="496.5" y="845.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -262 -102)">
+<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="976.5" y="877.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -262 -102)">
 telegrams from field and GUI</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 323.351318359375 750 L 145.648681640625 750" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 803.351318359375 782 L 625.648681640625 782" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
