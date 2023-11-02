@@ -1,7 +1,7 @@
-#include <system/Dispatcher.h>
+#include <SYS/Dispatcher.h>
 #include <baselib/Mem.h>
 #include <baselib/coding.h>
-#include <system/IL.h>
+#include <SYS/IL.h>
 
 INSTANCE_DEF(Dispatcher)
 
@@ -98,8 +98,8 @@ void Dispatcher::dispatch(const UINT32 id, const CmdFld& tele) const
     if (id < mData.size())
     {
         static CmdFld cmd;
-        Mem::copy(cmd, tele);
-        Mem::copy(cmd.name, mData[id].name);
+        Mem::cpy(cmd, tele);
+        Mem::cpy(cmd.name, mData[id].name);
         IL::getCom().send(cmd);
     }
     else
@@ -111,8 +111,8 @@ void Dispatcher::dispatch(const UINT32 id, const StateGui& tele) const
     if (id < mData.size())
     {
         static StateGui state;
-        Mem::copy(state, tele);
-        Mem::copy(state.name, mData[id].name);
+        Mem::cpy(state, tele);
+        Mem::cpy(state.name, mData[id].name);
         IL::getCom().send(state);
     }
     else

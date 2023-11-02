@@ -29,7 +29,7 @@ public:
 
     //! copy bytes from source data object to target data object
     template <class T>
-    inline static void copy(T& ref, const T& src)
+    inline static void cpy(T& ref, const T& src)
     {
         std::memcpy(&ref, &src, sizeof(T));
     }

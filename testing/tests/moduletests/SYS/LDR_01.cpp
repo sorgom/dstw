@@ -3,7 +3,7 @@
 //  ============================================================
 //  created by Manfred Sorgo
 #include <testlib/TestGroupBase.h>
-#include <system/Loader.h>
+#include <SYS/Loader.h>
 
 namespace test
 {

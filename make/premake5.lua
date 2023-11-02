@@ -59,6 +59,8 @@ workspace 'coverage'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
+    defines { 'DEBUG', 'CPPUTEST_USE_LONG_LONG=0' }
+    symbols 'On'
 
     project 'coverage_app'
         kind        'StaticLib'
@@ -68,8 +70,6 @@ workspace 'coverage'
             '../application/modules/**.cpp',
         }
 
-        defines { 'DEBUG', 'CPPUTEST_USE_LONG_LONG=0' }
-        symbols 'On'
         buildoptions {'-fprofile-arcs -ftest-coverage'}
 
     project 'coverage_tests'
@@ -80,9 +80,6 @@ workspace 'coverage'
             '../testing/testenv/**.cpp',
             '../testing/tests/moduletests/**.cpp'
         }
-
-        defines { 'DEBUG' }
-        symbols 'On'
 
         libdirs { 'lib', '../BuildCppUTest/lib' }
         links { 'coverage_app', 'CppUTest', 'CppUTestExt', 'gcov' }

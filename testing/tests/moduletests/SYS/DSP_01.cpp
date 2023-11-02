@@ -3,7 +3,7 @@
 //  ============================================================
 //  created by Manfred Sorgo
 #include <testlib/TestGroupBase.h>
-#include <system/Dispatcher.h>
+#include <SYS/Dispatcher.h>
 
 namespace test
 {

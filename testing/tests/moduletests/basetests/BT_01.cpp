@@ -25,13 +25,11 @@ namespace test
         S_CHECK(1, UINT8)
         S_CHECK(2, UINT16)
         S_CHECK(4, UINT32)
-        S_CHECK(8, UINT64)
 
         STEP(2)
         S_CHECK(1, INT8)
         S_CHECK(2, INT16)
         S_CHECK(4, INT32)
-        S_CHECK(8, INT64)
 
         STEP(3)
         S_CHECK(1, BYTE)

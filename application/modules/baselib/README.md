@@ -2,7 +2,7 @@
 
 **BaseTypes.h**
 ```
-basic integral types
+basic integral types and limits
 ```
 
 **I_Searchable.h**

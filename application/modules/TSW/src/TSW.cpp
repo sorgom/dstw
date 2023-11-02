@@ -1,5 +1,5 @@
 #include <TSW/TSW.h>
-#include <system/IL.h>
+#include <SYS/IL.h>
 
 void TSW::fromGui(const INT32 cmd)
 {

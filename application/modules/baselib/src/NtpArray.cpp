@@ -7,7 +7,7 @@ const Ntp& genNtp(
 )
 {
     static Ntp n;
-    Mem::copy(n.name, name);
+    Mem::cpy(n.name, name);
     n.type = type;
     n.pos  = pos;
     return n;

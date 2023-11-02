@@ -15,10 +15,10 @@
 #include <SIG/SIG_Provider.h>
 #include <TSW/TSW_Hub.h>
 #include <TSW/TSW_Provider.h>
-#include <system/Com.h>
-#include <system/Dispatcher.h>
-#include <system/Loader.h>
-#include <system/Log.h>
+#include <SYS/Com.h>
+#include <SYS/Dispatcher.h>
+#include <SYS/Loader.h>
+#include <SYS/Log.h>
 #include <mocks/M_Com.h>
 #include <mocks/M_Dispatcher.h>
 #include <mocks/M_Log.h>

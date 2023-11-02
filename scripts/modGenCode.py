@@ -79,7 +79,7 @@ if __name__ == '__main__':
     incs = None
     tragets = None
     incs = [
-        modDir + '/system/IL.h',
+        modDir + '/SYS/IL.h',
         envDir + '/mocks/M_Instances.h'
     ]
     targets = [

@@ -5,19 +5,10 @@
 simple test steps re-numbering script
 ```
 
-**buildAll.sh**
-```
-all build steps
-- clean everything
-- generate Makefile
-- build all versions:
-    - module tests
-    - coverage
-```
-
 **ci.py**
 ```
 run code checker if available
+* experimental *
 ```
 
 **cleanMdj.py**
@@ -33,36 +24,9 @@ also put line breaks behind tags
 to create smaller git diffs
 ```
 
-**cleanTests.sh**
-```
-clean all build artifacts
-```
-
-**dirs.rc**
-```
-directory listing
-```
-
 **genCode.py**
 ```
 code automatization of this project
-```
-
-**makeApp.sh**
-```
-build dstw application from Makefile
-```
-
-**makeGcov.sh**
-```
-build coverage tests from Makefile
-- see also projectGcov.py
-```
-
-**makeTests.sh**
-```
-build module tests from Makefile
-- see also runTests.sh
 ```
 
 **modGcov.py**
@@ -117,11 +81,6 @@ some commonly used features
 all pre-commit script calls in one
 ```
 
-**premake.sh**
-```
-re-build Makefiles
-```
-
 **projectDirs.py**
 ```
 directories of this project in git
@@ -135,10 +94,4 @@ code coverage of this project
 **runTests.py**
 ```
 module test analyzis of this project
-```
-
-**runTests.sh**
-```
-run module tests of this project
-- see makeTests.sh
 ```

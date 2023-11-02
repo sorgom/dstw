@@ -11,9 +11,6 @@
 #define INSTANCE_DEC(cName) \
     static cName& instance();
 
-#define INSTANCE_DEC_CONST(cName) \
-    static const cName& instance();
-
 //  use this one to provide instance for IL
 #define IL_INSTANCE_DEC(cName) INSTANCE_DEC(cName)
 
@@ -22,13 +19,6 @@
     cName& cName::instance() \
     { \
         static cName instance; \
-        return instance; \
-    }
-
-#define INSTANCE_DEF_CONST(cName) \
-    const cName& cName::instance() \
-    { \
-        static const cName instance; \
         return instance; \
     }
 

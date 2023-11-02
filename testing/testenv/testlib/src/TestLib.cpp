@@ -16,7 +16,7 @@ namespace test
     }
     void genElementName(ElementName& eName, const UINT32 num, const CONST_C_STRING name)
     {
-        Mem::copy(eName, genElementName(num, name));
+        Mem::cpy(eName, genElementName(num, name));
     }
 
     

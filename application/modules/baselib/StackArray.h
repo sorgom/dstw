@@ -50,7 +50,7 @@ public:
 
     inline UINT32 add(const T& obj)
     {
-        Mem::copy(at(mSize), obj);
+        Mem::cpy(at(mSize), obj);
         return mSize++;
     }
 
