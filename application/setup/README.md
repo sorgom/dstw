@@ -9,6 +9,6 @@ capacities of element containers
 - level crossings
 
 pre-defined here
-defineable at compile time
+definable at compile time
 e.g.: -DCAPACITY_SIG=500
 ```

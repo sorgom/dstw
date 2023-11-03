@@ -9,8 +9,8 @@
 
 #include <testlib/CppUTest.h>
 
-#include <baselib/BaseTypes.h>
-#include <baselib/InstanceMacros.h>
+#include <BAS/BaseTypes.h>
+#include <BAS/InstanceMacros.h>
 #include <testlib/TestLiterals.h>
 
 #include <sstream>

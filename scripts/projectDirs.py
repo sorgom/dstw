@@ -6,7 +6,7 @@
 from modUtilz import repoDir
 
 topDir = repoDir()
-modDir = topDir + '/application/modules'
+modDir = topDir + '/application/components'
 srcDir = topDir + '/scripts'
 tsgDir = topDir + '/testing'
 envDir = tsgDir + '/testenv'

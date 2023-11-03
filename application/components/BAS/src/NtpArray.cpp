@@ -1,4 +1,4 @@
-#include <baselib/NtpArray.h>
+#include <BAS/NtpArray.h>
 
 const Ntp& genNtp(
     const ElementName& name,

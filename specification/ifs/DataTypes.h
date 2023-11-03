@@ -8,10 +8,10 @@
 #ifndef DATATYPES_H
 #define DATATYPES_H
 
-#include <baselib/BaseTypes.h>
+#include <BAS/BaseTypes.h>
 #include <ifs/ProjData.h>
 
-#include <baselib/packBegin.h>
+#include <BAS/packBegin.h>
 
 //  command to field
 struct CmdFld
@@ -45,6 +45,6 @@ struct StateGui
     INT32 state2;
 };
 
-#include <baselib/packEnd.h>
+#include <BAS/packEnd.h>
 
 #endif // H_

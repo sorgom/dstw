@@ -6,8 +6,8 @@
 #define LOADER_H
 
 #include <ifs/I_Loader.h>
-#include <baselib/coding.h>
-#include <baselib/InstanceMacros.h>
+#include <BAS/coding.h>
+#include <BAS/InstanceMacros.h>
 
 class Loader : public I_Loader
 {

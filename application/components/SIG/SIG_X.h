@@ -8,7 +8,7 @@
 #define SIG_X_H
 
 #include <ifs/I_SIG.h>
-#include <baselib/coding.h>
+#include <BAS/coding.h>
 
 class SIG_X : public I_SIG
 {

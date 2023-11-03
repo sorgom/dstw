@@ -8,8 +8,8 @@
 #define NTPARRAY_H
 
 #include <ifs/DataTypes.h>
-#include <baselib/StackArray.h>
-#include <baselib/Mem.h>
+#include <BAS/StackArray.h>
+#include <BAS/Mem.h>
 
 struct Ntp
 {
@@ -42,9 +42,9 @@ public:
         StackArrayIndex<Ntp, CAP>(a)
     {}
 
-    inline bool isGreater(const CRef<Ntp>& a, const CRef<Ntp>& b) const
+    inline bool isGreater(const Ntp& a, const Ntp& b) const
     {
-        return Mem::cmp(a.ref().name, b.ref().name) > 0;
+        return Mem::cmp(a.name, b.name) > 0;
     }
 
     inline INT32 findNtp(const ElementName& name) const

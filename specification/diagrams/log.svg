@@ -235,13 +235,13 @@ SIG Hub</text>
 <rect fill="#C0C0C0" stroke="none" x="871" y="375" width="160" height="96" transform="matrix(1 0 0 1 -310 -166)" fill-opacity="0.2"/>
 </g>
 <g>
-<rect fill="#E2E2E2" stroke="none" x="864" y="368" width="160" height="96" transform="matrix(1 0 0 1 -310 -166)"/>
+<rect fill="#6DCEFF" stroke="none" x="864" y="368" width="160" height="96" transform="matrix(1 0 0 1 -310 -166)"/>
 </g>
 <g>
 <path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 554 202 L 714 202 L 714 298 L 554 298 L 554 202 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#E2E2E2" stroke="none" x="864" y="368" width="160" height="96" transform="matrix(1 0 0 1 -310 -166)"/>
+<rect fill="#6DCEFF" stroke="none" x="864" y="368" width="160" height="96" transform="matrix(1 0 0 1 -310 -166)"/>
 </g>
 <g>
 <path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 554 202 L 714 202 L 714 298 L 554 298 L 554 202 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>

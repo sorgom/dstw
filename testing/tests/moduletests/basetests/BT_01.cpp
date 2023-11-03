@@ -42,7 +42,7 @@ namespace test
         UINT32 m2;
     };
 
-    #include <baselib/packBegin.h>
+    #include <BAS/packBegin.h>
 
     struct Packed
     {
@@ -50,7 +50,7 @@ namespace test
         UINT32 m2;
     };
 
-    #include <baselib/packEnd.h>
+    #include <BAS/packEnd.h>
 
     //  Test of pack 
     TEST(BT_01, T02)

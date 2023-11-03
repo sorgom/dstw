@@ -1,12 +1,12 @@
 //  ============================================================
-//  utilities complex ostream operators
+//  utilities for complex ostream operators
 //  ============================================================
 //  created by Manfred Sorgo
 #pragma once
 #ifndef OSTREAMHELPERS_H
 #define OSTREAMHELPERS_H
 
-#include <baselib/BaseTypes.h>
+#include <BAS/BaseTypes.h>
 #include <ostream>
 #include <iomanip>
 

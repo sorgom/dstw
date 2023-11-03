@@ -1,5 +1,5 @@
 //  ============================================================
-//  instance declaration & definion macros
+//  instance declaration & definiton macros
 //  ============================================================
 //  created by Manfred Sorgo
 

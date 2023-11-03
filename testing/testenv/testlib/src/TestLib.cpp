@@ -1,7 +1,7 @@
 #include <testlib/TestLib.h>
 
 #include <cstdio>
-#include <baselib/Mem.h>
+#include <BAS/Mem.h>
 
 namespace test
 {

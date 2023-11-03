@@ -4,7 +4,7 @@
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <baselib/NtpArray.h>
+#include <BAS/NtpArray.h>
 
 namespace test
 {
@@ -17,10 +17,10 @@ namespace test
         // cout << endl;
         // TestStepper::show(1);
         SETUP()
-        NtpArray<CAPACITY_ELEMENTS> data;
-        NtpIndex<CAPACITY_ELEMENTS> indx(data);
-        L_CHECK_EQUAL(CAPACITY_ELEMENTS, data.capacity())
-        L_CHECK_EQUAL(CAPACITY_ELEMENTS, indx.capacity())
+        NtpArray<CAPACITY_DSP> data;
+        NtpIndex<CAPACITY_DSP> indx(data);
+        L_CHECK_EQUAL(CAPACITY_DSP, data.capacity())
+        L_CHECK_EQUAL(CAPACITY_DSP, indx.capacity())
         
         Ntp tNtp;
         const UINT32 tSize = 10;
@@ -39,7 +39,7 @@ namespace test
         ENDSTEPS()
 
         STEP(2)
-        indx.adapt();
+        indx.index();
         SUBSTEPS()
         for (INT32 i = 0; i < tSize; ++i)
         {

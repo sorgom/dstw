@@ -8,8 +8,8 @@
 
 #include <ifs/I_Dispatcher.h>
 #include <setup/capacities.h>
-#include <baselib/NtpArray.h>
-#include <baselib/InstanceMacros.h>
+#include <BAS/NtpArray.h>
+#include <BAS/InstanceMacros.h>
 
 class Dispatcher : public I_Dispatcher
 {
@@ -32,8 +32,8 @@ public:
     IL_INSTANCE_DEC(Dispatcher)
 
 private:
-    NtpArray<CAPACITY_ELEMENTS> mData;
-    NtpIndex<CAPACITY_ELEMENTS> mIndx;
+    NtpArray<CAPACITY_DSP> mData;
+    NtpIndex<CAPACITY_DSP> mIndx;
 };
 
 #endif // H_

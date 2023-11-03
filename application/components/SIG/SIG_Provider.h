@@ -7,8 +7,8 @@
 #ifndef SIG_PROVIDER_H
 #define SIG_PROVIDER_H
 
-#include <baselib/InstanceMacros.h>
-#include <baselib/StackArray.h>
+#include <BAS/InstanceMacros.h>
+#include <BAS/StackArray.h>
 #include <ifs/I_SIG_Provider.h>
 #include <setup/capacities.h>
 #include <SIG/SIG_X.h>

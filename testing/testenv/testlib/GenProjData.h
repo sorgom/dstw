@@ -16,7 +16,7 @@
 #define GENPROJDATA_H
 
 #include <ifs/ProjData.h>
-#include <baselib/StackArray.h>
+#include <BAS/StackArray.h>
 #include <testlib/TestLib.h>
 #include <setup/capacities.h>
 

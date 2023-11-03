@@ -10,7 +10,7 @@
 #ifndef BASECOMPERATOR_H
 #define BASECOMPERATOR_H
 
-#include <baselib/BaseTypes.h>
+#include <BAS/BaseTypes.h>
 #include <iostream>
 #include <cstring>
 

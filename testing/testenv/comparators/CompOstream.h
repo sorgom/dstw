@@ -7,7 +7,7 @@
 #ifndef COMPOSTREAM_H
 #define COMPOSTREAM_H
 
-#include <baselib/InstanceMacros.h>
+#include <BAS/InstanceMacros.h>
 #include <sstream>
 
 namespace test

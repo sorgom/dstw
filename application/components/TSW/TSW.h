@@ -11,7 +11,7 @@
 #define TSW_H
 
 #include <ifs/I_TSW.h>
-#include <baselib/coding.h>
+#include <BAS/coding.h>
 
 class TSW : public I_TSW
 {

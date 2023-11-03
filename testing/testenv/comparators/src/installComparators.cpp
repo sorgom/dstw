@@ -18,7 +18,6 @@ namespace test
         ADD_COMP(ElementName)
         ADD_COMP(FldState)
         ADD_COMP(GuiCmd)
-        ADD_COMP(ProjTSW)
         ADD_COMP(StateGui)
         //# END
     }

@@ -720,27 +720,27 @@
 "_type":"LabelView","_id":"AAAAAAGLhi3yqDMfnlE=","_parent":{
 "$ref":"AAAAAAGLhi3yqDMetjY="
 }
-,"visible":false,"fillColor":"#E2E2E2","fontColor":"#FF5656","font":"Arial;13;0","left":16,"height":13
+,"visible":false,"fillColor":"#6DCEFF","fontColor":"#FF5656","font":"Arial;13;0","left":16,"height":13
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLhi3yqDMg7NM=","_parent":{
 "$ref":"AAAAAAGLhi3yqDMetjY="
 }
-,"fillColor":"#E2E2E2","fontColor":"#FF5656","font":"Arial;13;1","left":869,"top":375,"width":151,"height":13,"underline":true,"text":"Log"
+,"fillColor":"#6DCEFF","fontColor":"#FF5656","font":"Arial;13;1","left":869,"top":375,"width":151,"height":13,"underline":true,"text":"Log"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLhi3yqDMhs8w=","_parent":{
 "$ref":"AAAAAAGLhi3yqDMetjY="
 }
-,"visible":false,"fillColor":"#E2E2E2","fontColor":"#FF5656","font":"Arial;13;0","left":16,"width":73.67724609375,"height":13,"text":"(from Model)"
+,"visible":false,"fillColor":"#6DCEFF","fontColor":"#FF5656","font":"Arial;13;0","left":16,"width":73.67724609375,"height":13,"text":"(from Model)"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLhi3yqDMilY8=","_parent":{
 "$ref":"AAAAAAGLhi3yqDMetjY="
 }
-,"visible":false,"fillColor":"#E2E2E2","fontColor":"#FF5656","font":"Arial;13;0","left":16,"height":13,"horizontalAlignment":1
+,"visible":false,"fillColor":"#6DCEFF","fontColor":"#FF5656","font":"Arial;13;0","left":16,"height":13,"horizontalAlignment":1
 }
-],"fillColor":"#E2E2E2","fontColor":"#FF5656","font":"Arial;13;0","left":864,"top":368,"width":161,"height":25,"stereotypeLabel":{
+],"fillColor":"#6DCEFF","fontColor":"#FF5656","font":"Arial;13;0","left":864,"top":368,"width":161,"height":25,"stereotypeLabel":{
 "$ref":"AAAAAAGLhi3yqDMfnlE="
 }
 ,"nameLabel":{
@@ -760,9 +760,9 @@
 ,"model":{
 "$ref":"AAAAAAGLhi3ypzMbCLI="
 }
-,"visible":false,"fillColor":"#E2E2E2","fontColor":"#FF5656","font":"Arial;13;0","left":8,"width":10,"height":10
+,"visible":false,"fillColor":"#6DCEFF","fontColor":"#FF5656","font":"Arial;13;0","left":8,"width":10,"height":10
 }
-],"fillColor":"#E2E2E2","fontColor":"#FF5656","font":"Arial;13;0","containerChangeable":true,"left":864,"top":368,"width":160,"height":96,"nameCompartment":{
+],"fillColor":"#6DCEFF","fontColor":"#FF5656","font":"Arial;13;0","containerChangeable":true,"left":864,"top":368,"width":160,"height":96,"nameCompartment":{
 "$ref":"AAAAAAGLhi3yqDMetjY="
 }
 ,"slotCompartment":{
