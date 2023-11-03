@@ -37,7 +37,7 @@ StackArrays
 -   do not provide any overflow protection
 
 SimpleStackArray
-keeps objects in the same order as the where added.
+keeps objects in the same order as they were added.
 
 StackArray
 -   can be sorted

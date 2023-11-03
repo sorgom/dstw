@@ -87,7 +87,7 @@ private:
 
 //  ============================================================
 //  SimpleStackArray
-//  keeps objects in the same order as the where added.
+//  keeps objects in the same order as they were added.
 //  ============================================================
 template <class T, UINT32 CAP>
 class SimpleStackArray : public BaseStackArray<T, CAP>
