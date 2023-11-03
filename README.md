@@ -1,9 +1,10 @@
-# The DSTW Project
+# the #DSTW project
 
 ## components
 <img src="specification/diagrams/components.svg" alt="modules" style="width:400px;"> 
 
-## state of implementaion
+## state of implementation
+implementation according to [release 2023-11 _Maggie_](releases/release_2023-11.md)
 <div style="background-color:#F8F8F8;">
 <img src="specification/diagrams/overview.svg" alt="component overview">
 </div>

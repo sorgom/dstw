@@ -9,7 +9,8 @@
 -   SYS
     -   Dispatcher
     -   Loader (for site specific data, _Projektierung_)
-    -   Log
+    -   Log (without functionality)
+    -   Com (without functionality)
 -   TSW (track switches)
     -   TSW
     -   TSW Provider
@@ -79,8 +80,4 @@ test all modules with full source code coverage
 ### system tests
 test from incoming to outgoing telegrams
 ### coverage
-measure code coverage of module tests
-
-
-
-
+measure application code coverage of module tests
