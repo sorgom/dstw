@@ -32,8 +32,8 @@ public:
     IL_INSTANCE_DEC(Dispatcher)
 
 private:
-    NtpArray<CAPACITY_ELEMENTS> mData;
-    NtpIndex<CAPACITY_ELEMENTS> mIndx;
+    NtpArray<CAPACITY_DSP> mData;
+    NtpIndex<CAPACITY_DSP> mIndx;
 };
 
 #endif // H_

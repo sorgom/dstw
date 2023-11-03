@@ -6,7 +6,7 @@
 //  - level crossings
 //
 //  pre-defined here
-//  defineable at compile time
+//  definable at compile time
 //  e.g.: -DCAPACITY_SIG=500 
 //  ============================================================
 //  created by Manfred Sorgo
@@ -27,11 +27,11 @@
 #define CAPACITY_SEG 100
 #endif 
 
-#ifndef CAPACITY_LRC
+#ifndef CAPACITY_LCR
 #define CAPACITY_LCR 100
 #endif 
 
-#define CAPACITY_ELEMENTS \
+#define CAPACITY_DSP \
     CAPACITY_TSW + \
     CAPACITY_SIG + \
     CAPACITY_SEG + \

@@ -25,7 +25,7 @@ srcs = [ f'{rpDir}/{f}' for f in repoFiles('application/**.cpp')]
 print(srcs)
 
 
-locIncs = [ f'{rpDir}/{d}' for d in  ['specification', 'application', 'application/modules']]
+locIncs = [ f'{rpDir}/{d}' for d in  ['specification', 'application', 'application/components']]
 print(locIncs)
 
 cadIncs = [caInc, caInc + '/std', caInc + '/iostl']

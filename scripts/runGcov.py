@@ -14,7 +14,7 @@ def runGcov(verbose=True):
         makDir,
         './bin/coverage_tests',
         'obj/coverage_app',
-        '../application/modules/*/src/*.cpp',
+        '../application/components/*/src/*.cpp',
         verbose=verbose
     )
 

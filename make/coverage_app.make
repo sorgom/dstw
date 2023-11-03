@@ -22,7 +22,7 @@ RESCOMP = windres
 TARGETDIR = lib
 TARGET = $(TARGETDIR)/libcoverage_app.a
 OBJDIR = obj/coverage_app
-DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
+DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCAPACITY_TSW=10 -DCAPACITY_SIG=10 -DCAPACITY_LCR=10 -DCAPACITY_SEG=10
 INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/components -I../devel -I../BuildCppUTest/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)

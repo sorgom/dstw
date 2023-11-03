@@ -95,7 +95,7 @@ if __name__ == '__main__':
         tsgDir,
         './bin/moduletests_coverage',
         'obj/application_coverage',
-        '../application/modules/*/src/*.cpp ../application/modules/*/*.h'
+        '../application/components/*/src/*.cpp ../application/components/*/*.h'
     )
     exit(ret)
 

@@ -15,7 +15,7 @@ defintion of interface I_Searchable to apply:
 
 **InstanceMacros.h**
 ```
-instance declaration & definion macros
+instance declaration & definiton macros
 ```
 
 **Mem.h**
