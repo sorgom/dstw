@@ -12,12 +12,12 @@
 //## INCLUDES
 #include <SIG/SIG_Hub.h>
 #include <SIG/SIG_Provider.h>
-#include <TSW/TSW_Hub.h>
-#include <TSW/TSW_Provider.h>
 #include <SYS/Com.h>
 #include <SYS/Dispatcher.h>
 #include <SYS/Loader.h>
 #include <SYS/Log.h>
+#include <TSW/TSW_Hub.h>
+#include <TSW/TSW_Provider.h>
 //## END
 
 #include <BAS/coding.h>

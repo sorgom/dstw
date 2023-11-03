@@ -1,5 +1,5 @@
 //  ============================================================
-//  utilities complex ostream operators
+//  utilities for complex ostream operators
 //  ============================================================
 //  created by Manfred Sorgo
 #pragma once

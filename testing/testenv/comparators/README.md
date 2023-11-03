@@ -21,7 +21,7 @@ to be done at begin of test main
 
 **ostreamHelpers.h**
 ```
-utilities complex ostream operators
+utilities for complex ostream operators
 ```
 
 **ostreams.h**

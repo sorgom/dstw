@@ -35,10 +35,10 @@ workspace 'tests'
 
         defines { 
             'NDEBUG', 'CPPUTEST_USE_LONG_LONG=0', 
-            'CAPACITY_TSW=10', 
+            'CAPACITY_TSW=11', 
             'CAPACITY_SIG=10', 
-            'CAPACITY_LCR=10', 
-            'CAPACITY_SEG=10' 
+            'CAPACITY_LCR=9', 
+            'CAPACITY_SEG=22' 
         }
         optimize 'On'
         libdirs { '../BuildCppUTest/lib' }
@@ -67,10 +67,10 @@ workspace 'coverage'
     buildoptions { '-std=c++98 -pedantic-errors' }
     defines { 
         'DEBUG', 'CPPUTEST_USE_LONG_LONG=0', 
-        'CAPACITY_TSW=10', 
+        'CAPACITY_TSW=11', 
         'CAPACITY_SIG=10', 
-        'CAPACITY_LCR=10', 
-        'CAPACITY_SEG=10' 
+        'CAPACITY_LCR=9', 
+        'CAPACITY_SEG=22' 
     }
     symbols 'On'
 

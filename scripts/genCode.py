@@ -38,7 +38,7 @@ genCode(
 genCode(
     targets = [
         envDir + '/SYS/IL.h',
-        envDir + '/IL/src/IL.cpp'
+        envDir + '/SYS/src/IL.cpp'
     ],
     names = {
         None  : mocNames.union(appNames),

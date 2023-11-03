@@ -76,14 +76,12 @@ def genTarget(file:str):
 
 if __name__ == '__main__':
     from projectDirs import modDir, envDir
-    incs = None
-    tragets = None
     incs = [
         modDir + '/SYS/IL.h',
         envDir + '/mocks/M_Instances.h'
     ]
     targets = [
-        envDir + '/IL/src/IL.cpp'
+        envDir + '/SYS/src/IL.cpp'
     ]
     genCode(
         targets=targets, 

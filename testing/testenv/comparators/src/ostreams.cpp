@@ -43,10 +43,3 @@ OSTREAM_DEF(StateGui)
         << DOUT(state2)
     ;
 }
-
-OSTREAM_DEF(ProjTSW)
-{
-    return os 
-        << DOUT(name)
-    ;
-}
