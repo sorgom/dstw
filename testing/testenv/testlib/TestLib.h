@@ -9,7 +9,7 @@
 
 #include <ifs/DataTypes.h>
 #include <testlib/TestLiterals.h>
-#include <baselib/coding.h>
+#include <BAS/coding.h>
 
 namespace test
 {

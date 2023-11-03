@@ -7,7 +7,7 @@
 #ifndef MEM_H
 #define MEM_H
 
-#include <baselib/BaseTypes.h>
+#include <BAS/BaseTypes.h>
 #include <cstring>
 
 class Mem

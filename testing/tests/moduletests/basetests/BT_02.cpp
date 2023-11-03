@@ -4,7 +4,7 @@
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <baselib/StackArray.h>
+#include <BAS/StackArray.h>
 
 namespace test
 {
@@ -41,9 +41,9 @@ namespace test
         inline IdataIndex(const IdataSimpleArray& a):
             StackArrayIndex<Idata, 20>(a)
         {}
-        inline bool isGreater(const CRef<Idata>& a, const CRef<Idata>& b) const
+        inline bool isGreater(const Idata& a, const Idata& b) const
         {
-            return a.ref().m1 > b.ref().m1;
+            return a.m1 > b.m1;
         }
     };
 
@@ -126,9 +126,9 @@ namespace test
         L_CHECK_FALSE(a.hasSpace())
 
         STEP(2)
-        //  adapt index
+        //  index index
         //  find all data in index
-        ix.adapt();
+        ix.index();
         L_CHECK_FALSE(ix.hasSpace())
         SUBSTEPS()
         for (INT32 i = 0; i < a.size(); ++i)

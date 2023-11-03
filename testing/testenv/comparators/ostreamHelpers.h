@@ -6,7 +6,7 @@
 #ifndef OSTREAMHELPERS_H
 #define OSTREAMHELPERS_H
 
-#include <baselib/BaseTypes.h>
+#include <BAS/BaseTypes.h>
 #include <ostream>
 #include <iomanip>
 

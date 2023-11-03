@@ -7,8 +7,8 @@
 #ifndef TSW_HUB_H
 #define TSW_HUB_H
 
-#include <baselib/coding.h>
-#include <baselib/InstanceMacros.h>
+#include <BAS/coding.h>
+#include <BAS/InstanceMacros.h>
 #include <ifs/I_TSW_Hub.h>
 
 class TSW_Hub : public I_TSW_Hub

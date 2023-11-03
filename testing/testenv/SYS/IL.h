@@ -30,7 +30,7 @@
 #include <mocks/M_TSW_Provider.h>
 //## END
 
-#include <baselib/coding.h>
+#include <BAS/coding.h>
 
 //  static I_NAME& getNAME();
 //  static void setNAME(I_NAME& ref);

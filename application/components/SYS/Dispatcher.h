@@ -8,8 +8,8 @@
 
 #include <ifs/I_Dispatcher.h>
 #include <setup/capacities.h>
-#include <baselib/NtpArray.h>
-#include <baselib/InstanceMacros.h>
+#include <BAS/NtpArray.h>
+#include <BAS/InstanceMacros.h>
 
 class Dispatcher : public I_Dispatcher
 {

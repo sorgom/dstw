@@ -6,10 +6,10 @@
 #ifndef PROJDATA_H
 #define PROJDATA_H
 
-#include <baselib/BaseTypes.h>
+#include <BAS/BaseTypes.h>
 
 
-#include <baselib/packBegin.h>
+#include <BAS/packBegin.h>
 
 struct ElementName
 {
@@ -49,7 +49,7 @@ struct ProjData
     const ProjSEG* pSEG;
 };
 
-#include <baselib/packEnd.h>
+#include <BAS/packEnd.h>
 
 
 

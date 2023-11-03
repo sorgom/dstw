@@ -7,8 +7,8 @@
 #ifndef TSW_PROVIDER_H
 #define TSW_PROVIDER_H
 
-#include <baselib/InstanceMacros.h>
-#include <baselib/StackArray.h>
+#include <BAS/InstanceMacros.h>
+#include <BAS/StackArray.h>
 #include <ifs/I_TSW_Provider.h>
 #include <setup/capacities.h>
 #include <TSW/TSW.h>

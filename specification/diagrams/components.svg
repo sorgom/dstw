@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 296 217" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+<g>
+<rect x="0" y="0" width="295.5" height="36.056" style="fill:#d1ffa3;"/>
+<text x="34.114px" y="25.191px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;fill:#231f20;">
+SIG</text>
+<text x="102.68px" y="25.191px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;fill:#231f20;">
+signals</text>
+</g>
+<g>
+<rect x="0" y="36.056" width="295.5" height="36.056" style="fill:#ffeaad;"/>
+<text x="29.123px" y="61.247px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;fill:#231f20;">
+TSW</text>
+<text x="102.68px" y="61.247px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;fill:#231f20;">
+track switches</text>
+</g>
+<g>
+<rect x="0" y="72.111" width="295.5" height="36.056" style="fill:#d8fff8;"/>
+<text x="31.335px" y="97.302px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;fill:#231f20;">
+LCR</text>
+<text x="102.68px" y="97.302px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;fill:#231f20;">
+level crossings</text>
+</g>
+<g>
+<rect x="0" y="108.167" width="295.5" height="36.056" style="fill:#d8e5ff;"/>
+<text x="30.222px" y="133.358px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;fill:#231f20;">
+SEG</text>
+<text x="102.68px" y="133.358px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;fill:#231f20;">
+segments</text>
+</g>
+<g>
+<rect x="0" y="144.223" width="295.5" height="36.056" style="fill:#6dceff;"/>
+<text x="31.33px" y="169.414px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;fill:#231f20;">
+SYS</text>
+<text x="102.68px" y="169.414px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;fill:#231f20;">
+system</text>
+</g>
+<g>
+<rect x="0" y="180.278" width="295.5" height="36.056" style="fill:#ccc;"/>
+<text x="31.33px" y="205.469px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;fill:#231f20;">
+BAS</text>
+<text x="102.68px" y="205.469px" style="font-family:'ArialMT', 'Arial', sans-serif;font-size:20px;fill:#231f20;">
+base features</text>
+</g>
+</svg>

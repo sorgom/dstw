@@ -1,7 +1,7 @@
 # The DSTW Project
 
 ## components
-<img src="specification/diagrams/modules.svg" alt="modules" style="width:400px;"> 
+<img src="specification/diagrams/components.svg" alt="modules" style="width:400px;"> 
 
 ## state of implementaion
 <div style="background-color:#F8F8F8;">

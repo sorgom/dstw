@@ -1,6 +1,6 @@
 #include <SYS/Dispatcher.h>
-#include <baselib/Mem.h>
-#include <baselib/coding.h>
+#include <BAS/Mem.h>
+#include <BAS/coding.h>
 #include <SYS/IL.h>
 
 INSTANCE_DEF(Dispatcher)
@@ -13,7 +13,7 @@ void Dispatcher::reset()
 
 void Dispatcher::index()
 {
-    mIndx.adapt();
+    mIndx.index();
 }
 
 INT32 Dispatcher::assign(

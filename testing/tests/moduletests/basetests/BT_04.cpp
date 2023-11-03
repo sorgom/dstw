@@ -4,7 +4,7 @@
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <baselib/NtpArray.h>
+#include <BAS/NtpArray.h>
 
 namespace test
 {
@@ -39,7 +39,7 @@ namespace test
         ENDSTEPS()
 
         STEP(2)
-        indx.adapt();
+        indx.index();
         SUBSTEPS()
         for (INT32 i = 0; i < tSize; ++i)
         {

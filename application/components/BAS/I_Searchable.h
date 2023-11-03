@@ -1,5 +1,5 @@
 //  ============================================================
-//  defintion of iterface I_Searchable to apply:
+//  defintion of interface I_Searchable to apply:
 //  - bubble sort
 //  - b-tree search
 //  - uniqueness check / duplicates count
@@ -8,15 +8,20 @@
 #ifndef I_SEARCHABLE_H
 #define I_SEARCHABLE_H
 
-#include <baselib/BaseTypes.h>
+#include <BAS/BaseTypes.h>
+#include <BAS/coding.h>
 
 template <class T>
 class I_Searchable
 {
 public:
+    //  current number of objects
     virtual UINT32 size() const = 0;
+    //  object access by position
     virtual const T& at(UINT32 pos) const = 0;
+    //  definition object a is greater than object b
     virtual bool isGreater(const T& a, const T& b) const = 0;
+    //  swap content of position a and b
     virtual void swap(UINT32 posA, UINT32 posB) = 0;
 };
 
