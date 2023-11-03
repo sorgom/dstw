@@ -74,7 +74,7 @@ public:
 protected:
     inline PTR getPtr(UINT32 pos)
     {
-        return mBytes + sizeof(T) * pos;
+        return mData + pos;
     }
 
 private:
@@ -112,7 +112,6 @@ class SwapBytes
 protected:
     static void swapBytes(PTR pA, PTR pB, PTR pS, UINT32 size);
 };
-
 
 //  ============================================================
 //  StackArray
