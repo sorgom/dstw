@@ -170,4 +170,45 @@ workspace 'devtests'
         libdirs { '../BuildCppUTest/lib' }
         links { 'CppUTest', 'CppUTestExt' }
 
+--  ============================================================
+--  > bullseye.make
+--  module tests for bullseye coverage
+--  ->  bin/bullseye
+--  ============================================================
+workspace 'bullseye'
+    configurations { 'ci' }
+    language    'C++'
+    objdir      'obj/%{prj.name}'
+
+    includedirs {
+        '../testing/testenv',
+        '../specification',
+        '../application',
+        '../application/components',
+        '../devel',
+        '../BuildCppUTest/include'
+    }
+
+    buildoptions { '-std=c++98 -pedantic-errors' }
+
+    project 'bullseye'
+        kind        'ConsoleApp'
+        targetdir   'bin'
+
+        files { 
+            '../application/components/**.cpp',
+            '../testing/testenv/**.cpp',
+            '../testing/tests/moduletests/**.cpp'
+        }
+
+        defines { 
+            'NDEBUG', 'CPPUTEST_USE_LONG_LONG=0', 
+            'CAPACITY_TSW=11', 
+            'CAPACITY_SIG=10', 
+            'CAPACITY_LCR=9', 
+            'CAPACITY_SEG=22' 
+        }
+        optimize 'On'
+        libdirs { '../BuildCppUTest/lib' }
+        links { 'CppUTest', 'CppUTestExt' }
 

@@ -36,6 +36,7 @@ Makefile
 build
 bin
 obj
+lib
 # *.make
 
 # gcov
@@ -65,3 +66,8 @@ tempCodeRunnerFile.py
 **/TestSteps/README.md
 devtests.*
 devel/tests/README.md
+
+# bullseye
+html
+*.cov
+bullseye.make
