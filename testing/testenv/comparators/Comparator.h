@@ -7,17 +7,17 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef BASECOMPERATOR_H
-#define BASECOMPERATOR_H
+#ifndef COMPERATOR_H
+#define COMPERATOR_H
 
 #include <BAS/BaseTypes.h>
-#include <iostream>
-#include <cstring>
+#include <comparators/CompOstream.h>
 
 #include <CppUTest/SimpleString.h>
 #include <CppUTestExt/MockNamedValue.h>
 
-#include <comparators/CompOstream.h>
+#include <iostream>
+#include <cstring>
 
 namespace test
 {
