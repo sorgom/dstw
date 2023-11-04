@@ -1,6 +1,6 @@
 ## directory content
 
-**TestStepper.py**
+**TestSteps.py**
 ```
 simple test steps re-numbering script
 ```

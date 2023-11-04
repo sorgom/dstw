@@ -13,11 +13,6 @@ defintion of interface I_Searchable to apply:
 - uniqueness check / duplicates count
 ```
 
-**InstanceMacros.h**
-```
-instance declaration & definiton macros
-```
-
 **Mem.h**
 ```
 type safe memset & memcpy

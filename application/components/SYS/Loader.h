@@ -7,13 +7,11 @@
 
 #include <ifs/I_Loader.h>
 #include <BAS/coding.h>
-#include <BAS/InstanceMacros.h>
 
 class Loader : public I_Loader
 {
 public:
-    inline Loader()
-    {}
+    inline Loader() {}
 
     void load(const ProjData& data) const;
 

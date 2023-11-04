@@ -1,7 +1,7 @@
 //  ============================================================
 //  frequently used includes of CppUTest
 //  but also
-//  - the TestStepper
+//  - the TestSteps
 //  - some useful macros
 //  ============================================================
 //  created by Manfred Sorgo

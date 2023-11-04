@@ -34,7 +34,6 @@ namespace test
         {
             expect("send").TPARAM(StateGui, tele);
         }
-
     };
 } // namespace
 

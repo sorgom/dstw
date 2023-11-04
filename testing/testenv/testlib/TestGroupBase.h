@@ -17,7 +17,7 @@
 #include <testlib/GenProjData.h>
 #include <testlib/TestLib.h>
 #include <testlib/TestLiterals.h>
-#include <TestStepper/TestStepper.h>
+#include <TestSteps/TestSteps.h>
 
 namespace test
 {

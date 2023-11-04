@@ -10,52 +10,51 @@
 //  you will have a hard time to figure out
 //  where exactly the mismatch happens
 //
-//  using TestStepper's STEP() macro
+//  using TestSteps's STEP() macro
 //  will provide you with line of the last STEP() macro placed
 //  
 //  the STEP() macro also helps
 //  to give your tests a more readable structure
 //
-//  see TestStepper documentation on github for more details
+//  see TestSteps documentation on github for more details
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef TESTSTEPPER_H
-#define TESTSTEPPER_H
+#ifndef TESTSTEPS_H
+#define TESTSTEPS_H
 
 #include <CppUTest/UtestMacros.h>
 
 //  assign precondition / setup
-#define PRECONDITION() TestStepper::precondition(__FILE__, __LINE__, __STEPPER_FUNCTION__);
+#define PRECONDITION() TestSteps::precondition(__FILE__, __LINE__, __STEPPER_FUNCTION__);
 #define SETUP() PRECONDITION()
 
 //  place a step
-#define STEP(n) TestStepper::step(n, __FILE__, __LINE__, __STEPPER_FUNCTION__);
+#define STEP(n) TestSteps::step(n, __FILE__, __LINE__, __STEPPER_FUNCTION__);
 
 //  begin set of steps including precondition
-#define SUBSTEPS() TestStepper::subSteps(__FILE__, __LINE__, __STEPPER_FUNCTION__);
+#define SUBSTEPS() TestSteps::subSteps(__FILE__, __LINE__, __STEPPER_FUNCTION__);
 
 //  leave set of steps
-#define ENDSTEPS() TestStepper::endSteps();
+#define ENDSTEPS() TestSteps::endSteps();
 
 //  use loop counter 0 .. for steps
 #define LSTEP(n) STEP(n + 1)
 
 //  Utest check macros extensions: show line in case of failure
-#define L_CHECK_EQUAL(expected, actual) TestStepper::setLine(__LINE__); CHECK_EQUAL(expected, actual);
+#define L_CHECK_EQUAL(expected, actual) TestSteps::setLine(__LINE__); CHECK_EQUAL(expected, actual);
 #define L_CHECK_TRUE(actual) L_CHECK_EQUAL(true, actual)
 #define L_CHECK_FALSE(actual) L_CHECK_EQUAL(false, actual)
 //  equal size of two types / structs / classes
 #define L_CHECK_EQUAL_SIZE(T1, T2) L_CHECK_EQUAL(sizeof(T1), sizeof(T2))
 
 //  steps / substeps output during test
-#define TS_SHOW(level) TestStepper::show(level);
-#define TS_SHOW_ALL() TestStepper::showAll();
-#define TS_HIDE() TestStepper::hide();
+#define TS_SHOW(level) TestSteps::show(level);
+#define TS_SHOW_ALL() TestSteps::showAll();
+#define TS_HIDE() TestSteps::hide();
 
-//  test stepper
-class TestStepper
+class TestSteps
 {
 public:
     //  clear test steps
@@ -129,7 +128,7 @@ private:
     static const char* const c__printFile;
     static const char* const c__printFunc;
     static const char* const c__printLine;
-    static const char* const c__ErrTestStepper;
+    static const char* const c__ErrTestSteps;
     static const char* const c__ErrStep;
     static const char* const c__ErrSubSteps;
     static const char* const c__ErrEndSteps;
@@ -158,15 +157,15 @@ private:
 
     //  apply internal check
     //  (without CppUTest check counter)
-    static void chk(bool ok, const char* msg = c__ErrTestStepper);
+    static void chk(bool ok, const char* msg = c__ErrTestSteps);
 
     //  step or precondition output
     static void stepOut(unsigned short step);
 
     //  Standard 8.1.1
-    TestStepper();
-    TestStepper(const TestStepper& o);
-    TestStepper& operator =(const TestStepper& o);
+    TestSteps();
+    TestSteps(const TestSteps& o);
+    TestSteps& operator =(const TestSteps& o);
 };
 
 //  compiler specifica

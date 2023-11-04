@@ -1,7 +1,7 @@
 #include <SYS/IL.h>
 
 #include <mocks/M_Instances.h>
-#include <BAS/InstanceMacros.h>
+#include <BAS/coding.h>
 
 #define IL_MEMB(NAME) \
     ILPLug<I_ ## NAME> m ## NAME;

@@ -84,8 +84,8 @@ GENERATED += $(OBJDIR)/TestGroupBase.o
 GENERATED += $(OBJDIR)/TestLib.o
 GENERATED += $(OBJDIR)/TestLiterals.o
 GENERATED += $(OBJDIR)/TestMain.o
-GENERATED += $(OBJDIR)/TestStepper.o
-GENERATED += $(OBJDIR)/TestStepperPlugin.o
+GENERATED += $(OBJDIR)/TestSteps.o
+GENERATED += $(OBJDIR)/TestStepsPlugin.o
 GENERATED += $(OBJDIR)/installComparators.o
 GENERATED += $(OBJDIR)/ostreamHelpers.o
 GENERATED += $(OBJDIR)/ostreams.o
@@ -123,8 +123,8 @@ OBJECTS += $(OBJDIR)/TestGroupBase.o
 OBJECTS += $(OBJDIR)/TestLib.o
 OBJECTS += $(OBJDIR)/TestLiterals.o
 OBJECTS += $(OBJDIR)/TestMain.o
-OBJECTS += $(OBJDIR)/TestStepper.o
-OBJECTS += $(OBJDIR)/TestStepperPlugin.o
+OBJECTS += $(OBJDIR)/TestSteps.o
+OBJECTS += $(OBJDIR)/TestStepsPlugin.o
 OBJECTS += $(OBJDIR)/installComparators.o
 OBJECTS += $(OBJDIR)/ostreamHelpers.o
 OBJECTS += $(OBJDIR)/ostreams.o
@@ -230,10 +230,10 @@ $(OBJDIR)/TSW_Provider.o: ../application/components/TSW/src/TSW_Provider.cpp
 $(OBJDIR)/IL.o: ../testing/testenv/SYS/src/IL.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestStepper.o: ../testing/testenv/TestStepper/src/TestStepper.cpp
+$(OBJDIR)/TestSteps.o: ../testing/testenv/TestSteps/src/TestSteps.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestStepperPlugin.o: ../testing/testenv/TestStepper/src/TestStepperPlugin.cpp
+$(OBJDIR)/TestStepsPlugin.o: ../testing/testenv/TestSteps/src/TestStepsPlugin.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/CompOstream.o: ../testing/testenv/comparators/src/CompOstream.cpp

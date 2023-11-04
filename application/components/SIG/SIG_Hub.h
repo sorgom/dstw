@@ -8,7 +8,6 @@
 #define SIG_HUB_H
 
 #include <BAS/coding.h>
-#include <BAS/InstanceMacros.h>
 #include <ifs/I_SIG_Hub.h>
 
 class SIG_Hub : public I_SIG_Hub

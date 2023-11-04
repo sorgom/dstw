@@ -7,7 +7,7 @@
 #ifndef SIG_PROVIDER_H
 #define SIG_PROVIDER_H
 
-#include <BAS/InstanceMacros.h>
+#include <BAS/coding.h>
 #include <BAS/StackArray.h>
 #include <ifs/I_SIG_Provider.h>
 #include <setup/capacities.h>
@@ -16,6 +16,8 @@
 class SIG_Provider : public I_SIG_Provider
 {
 public:
+    inline SIG_Provider() {}
+
     inline bool has(UINT32 pos) const
     {
         return mSIGs.has(pos);
@@ -32,6 +34,8 @@ public:
 
 private:
     SimpleStackArray<SIG_X, CAPACITY_SIG> mSIGs;
+
+    NOCOPY(SIG_Provider)
 };
 
 

@@ -29,7 +29,7 @@ class Test(object):
     def txt(self):
         return self.head + self.body
 
-class TestStepper(object):
+class TestSteps(object):
     def __init__(self, fp):
         self.tests = list()
 
@@ -60,4 +60,4 @@ def usage(args):
 if __name__ == '__main__':
     usage(argv)
     for fp in argv[1:]:
-        TestStepper(fp)
+        TestSteps(fp)

@@ -15,7 +15,7 @@ namespace test
     TEST(BT_04, T01)
     {
         // cout << endl;
-        // TestStepper::show(1);
+        // TestSteps::show(1);
         SETUP()
         NtpArray<CAPACITY_DSP> data;
         NtpIndex<CAPACITY_DSP> indx(data);

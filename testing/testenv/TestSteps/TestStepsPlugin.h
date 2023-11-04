@@ -1,5 +1,5 @@
 //  ============================================================
-//  CppUTest plugin to invoke TestStepper
+//  CppUTest plugin to invoke TestSteps
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -10,14 +10,14 @@
 #include <CppUTestExt/MockSupportPlugin.h>
 
 //! the test stepper plugin
-class TestStepperPlugin: public MockSupportPlugin
+class TestStepsPlugin: public MockSupportPlugin
 {
 public:
     //! type of function pointer for post action
     typedef void (*PostActionFunc)();
 
     //! - standard preTestAction
-    //! - clear TestStepper
+    //! - clear TestSteps
     void preTestAction(UtestShell&, TestResult&);
 
     //! set a function for post processing in case of failure
@@ -28,7 +28,7 @@ public:
     }
 
     //! post test processing
-    //! - evaluate TestStepper in case of a failed test
+    //! - evaluate TestSteps in case of a failed test
     //! - call assigned post test function in case of failure
     //! - clear CppUTest mocking
     //! - remove all temporary CppUTest style comparators
@@ -39,8 +39,8 @@ public:
     //! register the plugin
     static void setup();
 
-    //! TestStepperPlugin::instance()
-    static TestStepperPlugin& instance();
+    //! TestStepsPlugin::instance()
+    static TestStepsPlugin& instance();
 
 private:
 
@@ -52,13 +52,13 @@ private:
     PostActionFunc mPostAction;
 
     //! default constructor
-    inline TestStepperPlugin() :
+    inline TestStepsPlugin() :
         MockSupportPlugin(cName),
         mPostAction(0)
     {}
 
-    TestStepperPlugin(const TestStepperPlugin& o);
-    TestStepperPlugin& operator = (const TestStepperPlugin& o);
+    TestStepsPlugin(const TestStepsPlugin& o);
+    TestStepsPlugin& operator = (const TestStepsPlugin& o);
 };
 
 #endif // _H

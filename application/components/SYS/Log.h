@@ -9,7 +9,6 @@
 #define LOG_H
 
 #include <ifs/I_Log.h>
-#include <BAS/InstanceMacros.h>
 #include <BAS/coding.h>
 
 class Log : public I_Log

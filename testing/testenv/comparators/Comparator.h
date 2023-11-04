@@ -25,6 +25,8 @@ namespace test
     class Comparator : public MockNamedValueComparator
     {
     public:
+        inline Comparator() {}
+
         SimpleString valueToString(CPTR ptr)
         {
             begin() << std::endl << *reinterpret_cast<const T*>(ptr);
@@ -35,6 +37,7 @@ namespace test
             return std::memcmp(ptr1, ptr2, sizeof(T)) == 0;
         }
     protected:
+
         inline static std::ostream& begin()
         {
             return CompOstream::instance().begin();
@@ -44,6 +47,7 @@ namespace test
             return CompOstream::instance().get();
         }
 
+        NOCOPY(Comparator)
     }; 
 
 }

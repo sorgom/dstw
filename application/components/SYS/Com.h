@@ -9,7 +9,6 @@
 #define COM_H
 
 #include <ifs/I_Com.h>
-#include <BAS/InstanceMacros.h>
 #include <BAS/coding.h>
 
 class Com : public I_Com
