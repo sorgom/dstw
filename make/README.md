@@ -16,4 +16,8 @@ module tests and system tests at once runtime
 > dstw.make
 application runtime
 ->  bin/dstw
+
+> devtests.make
+development only tests
+->  bin/devtests
 ```
