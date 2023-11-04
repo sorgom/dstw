@@ -8,8 +8,6 @@
 
 #include <testlib/TestGroupBase.h>
 
-#include <sstream>
-
 namespace test
 {
 

@@ -132,4 +132,42 @@ workspace 'dstw'
         }
         optimize 'On'
     
+--  ============================================================
+--  > devtests.make
+--  development only tests
+--  ->  bin/devtests
+--  ============================================================
+workspace 'devtests'
+    configurations { 'ci' }
+    language    'C++'
+    objdir      'obj/%{prj.name}'
+
+    includedirs {
+        '../testing/testenv',
+        '../specification',
+        '../application',
+        '../application/components',
+        '../devel',
+        '../BuildCppUTest/include'
+    }
+
+    buildoptions { '-std=c++98 -pedantic-errors' }
+
+    project 'devtests'
+        kind        'ConsoleApp'
+        targetdir   'bin'
+
+        files { 
+            '../application/components/**.cpp',
+            '../testing/testenv/**.cpp',
+            '../devel/tests/*.cpp'
+        }
+
+        defines { 
+            'NDEBUG', 'CPPUTEST_USE_LONG_LONG=0'
+        }
+        optimize 'On'
+        libdirs { '../BuildCppUTest/lib' }
+        links { 'CppUTest', 'CppUTestExt' }
+
 
