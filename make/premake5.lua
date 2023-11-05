@@ -31,7 +31,8 @@ workspace 'tests'
         files { 
             '../application/components/**.cpp',
             '../testing/testenv/**.cpp',
-            '../testing/tests/**.cpp'
+            '../testing/tests/**.cpp',
+            '../CppUTestSteps/TestSteps/src/*.cpp'
         }
 
         defines { 
@@ -92,7 +93,8 @@ workspace 'coverage'
 
         files { 
             '../testing/testenv/**.cpp',
-            '../testing/tests/moduletests/**.cpp'
+            '../testing/tests/moduletests/**.cpp',
+            '../CppUTestSteps/TestSteps/src/*.cpp'
         }
 
         libdirs { 'lib', '../BuildCppUTest/lib' }
@@ -163,7 +165,8 @@ workspace 'devtests'
         files { 
             '../application/components/**.cpp',
             '../testing/testenv/**.cpp',
-            '../devel/tests/*.cpp'
+            '../devel/tests/*.cpp',
+            '../CppUTestSteps/TestSteps/src/*.cpp'
         }
 
         defines { 
@@ -201,7 +204,8 @@ workspace 'bullseye'
         files { 
             '../application/components/**.cpp',
             '../testing/testenv/**.cpp',
-            '../testing/tests/moduletests/**.cpp'
+            '../testing/tests/moduletests/**.cpp',
+            '../CppUTestSteps/TestSteps/src/*.cpp'
         }
 
         defines { 

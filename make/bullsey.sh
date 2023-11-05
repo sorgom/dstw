@@ -5,5 +5,7 @@
 covselect -d
 covselect -a '../application/**/*.*'
 covselect -a '!../testing/**/*.*'
-covselect -a '!../BuildCpp*/**/*.*'
+covselect -a '!../BuildCppUTest/**/*.*'
+covselect -a '!../CppUTestSteps/**/*.*'
 covselect -lq
+CppUTestSteps
