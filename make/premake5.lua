@@ -192,7 +192,8 @@ workspace 'bullseye'
         '../application',
         '../application/components',
         '../devel',
-        '../BuildCppUTest/include'
+        '../BuildCppUTest/include',
+        '../CppUTestSteps/TestSteps/include'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }

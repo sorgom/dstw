@@ -11,10 +11,10 @@
 namespace test
 {
 
-    TEST_GROUP_BASE(TT_01, TestGroupBase) {};
+    TEST_GROUP_BASE(BAS_05, TestGroupBase) {};
 
     //  ostreams
-    TEST(TT_01, T01)
+    TEST(BAS_05, T01)
     {
         STEP(1)
         ElementName fn = {{ '0', '1', '2', '3', '4', '5', '6', '7', '8' }};

@@ -1,6 +1,6 @@
 ## directory content
 
-**bullsey.sh**
+**bullseye.sh**
 ```
 selectors for bullseye coverage
 ```

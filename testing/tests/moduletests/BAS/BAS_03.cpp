@@ -13,10 +13,10 @@
 namespace test
 {
 
-    TEST_GROUP_BASE(BT_03, TestGroupBase) {};
+    TEST_GROUP_BASE(BAS_03, TestGroupBase) {};
 
     //  test type: equivalence class test
-    TEST(BT_03, T01)
+    TEST(BAS_03, T01)
     {
         SETUP()
         GenProjData<CAPTSW, CAPSIG, CAPLCR, CAPSEG> projData;

@@ -1,14 +1,16 @@
 ## coverage using bullseye coverage
 ```
-BullseyeCoverage Source Report 9.5.12 Linux-x64 License 119004
+BullseyeCoverage Source Report 9.5.12 Linux-x64
 Copyright (c) Bullseye Testing Technology
 Source            Function Coverage      C/D Coverage
 ----------------  -----------------  ----------------
+Com.h                 3 /  3 = 100%    0 /   0
 Dispatcher.cpp        7 /  7 = 100%   20 /  20 = 100%
 Dispatcher.h          1 /  1 = 100%    0 /   0
 I_Searchable.h        3 /  3 = 100%   18 /  18 = 100%
 Loader.cpp            1 /  1 = 100%    0 /   0
 Loader.h              1 /  1 = 100%    0 /   0
+Log.h                 2 /  2 = 100%    0 /   0
 Mem.h                 4 /  4 = 100%    0 /   0
 NtpArray.cpp          1 /  1 = 100%    0 /   0
 NtpArray.h            4 /  4 = 100%    0 /   0
@@ -28,7 +30,7 @@ TSW_Provider.cpp      1 /  1 = 100%   12 /  12 = 100%
 TSW_Provider.h        3 /  3 = 100%    0 /   0
 coding.h              1 /  1 = 100%    0 /   0
 ----------------  -----------------  ----------------
-Total                92 / 92 = 100%  159 / 159 = 100%
+Total                97 / 97 = 100%  159 / 159 = 100%
 ```
 For details see
 <a href="http://dstw.sorgo.de/bullseye/" target="_blank">bullseye html report</a>

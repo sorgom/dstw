@@ -9,10 +9,10 @@
 namespace test
 {
 
-    TEST_GROUP_BASE(BT_04, TestGroupBase) {};
+    TEST_GROUP_BASE(BAS_04, TestGroupBase) {};
 
     //  test type: equivalence class test
-    TEST(BT_04, T01)
+    TEST(BAS_04, T01)
     {
         // cout << endl;
         // TestSteps::show(1);
