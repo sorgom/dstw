@@ -30,6 +30,8 @@ coding.h              1 /  1 = 100%    0 /   0
 ----------------  -----------------  ----------------
 Total                92 / 92 = 100%  159 / 159 = 100%
 ```
+For details see
+<a href="http://dstw.sorgo.de/bullseye/" target="_blank">bullseye html report</a>
 
 ## current source code coverage
 ```
