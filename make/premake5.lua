@@ -18,7 +18,8 @@ workspace 'tests'
         '../application',
         '../application/components',
         '../devel',
-        '../BuildCppUTest/include'
+        '../BuildCppUTest/include',
+        '../CppUTestSteps/TestSteps/include'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
@@ -61,7 +62,8 @@ workspace 'coverage'
         '../application',
         '../application/components',
         '../devel',
-        '../BuildCppUTest/include'
+        '../BuildCppUTest/include',
+        '../CppUTestSteps/TestSteps/include'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
@@ -148,7 +150,8 @@ workspace 'devtests'
         '../application',
         '../application/components',
         '../devel',
-        '../BuildCppUTest/include'
+        '../BuildCppUTest/include',
+        '../CppUTestSteps/TestSteps/include'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }

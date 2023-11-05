@@ -1,5 +1,5 @@
 //  ============================================================
-//  test of StackArry, StackArrayIndex
+//  test of StackArray, StackArrayIndex
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -9,10 +9,7 @@
 namespace test
 {
 
-    TEST_GROUP_BASE(BT_02, TestGroupBase)
-    {
-        
-    };
+    TEST_GROUP_BASE(BT_02, TestGroupBase) {};
 
     struct Idata
     {
@@ -59,6 +56,7 @@ namespace test
         L_CHECK_EQUAL(20, a.capacity())
         L_CHECK_EQUAL( 0, a.size())
 
+        STEP(2)
         for (INT32 i = 0; i < a.capacity(); ++i)
         {
             L_CHECK_TRUE(a.hasSpace())
@@ -68,7 +66,7 @@ namespace test
         L_CHECK_EQUAL(a.capacity(), a.size())
         L_CHECK_FALSE(a.hasSpace())
 
-        STEP(2)
+        STEP(3)
         //  test unsorted data as loaded
         SUBSTEPS()
         for (INT32 i = 0; i < a.size(); ++i)
@@ -80,7 +78,7 @@ namespace test
         }
         ENDSTEPS()
         
-        STEP(3)
+        STEP(4)
         //  apply sort()
         //  test sorted data
         a.sort();
@@ -95,11 +93,11 @@ namespace test
         }
         ENDSTEPS()
 
-        STEP(4)
+        STEP(5)
         //  apply find() to const object
         const IdataArray& c = a;
         SUBSTEPS()
-        for (INT32 i = 0; i < a.size(); ++i)
+        for (INT32 i = 0; i < c.size(); ++i)
         {
             LSTEP(i)
             const INT32 p = c.find(c.at(i));
@@ -109,8 +107,26 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  test of StackArrayIndex
+    //  test of StackArray dupCnt
     TEST(BT_02, T02)
+    {
+        SETUP()
+        IdataArray a;
+        a.add(Idata(1, 2));
+        a.add(Idata(2, 2));
+        a.add(Idata(1, 2));
+        a.add(Idata(2, 2));
+        a.sort();
+        const IdataArray& c = a;
+
+        STEP(1)
+        const UINT32 cnt = c.dupCnt();
+        L_CHECK_EQUAL(2, cnt)
+    }
+
+    //  test type: equivalence class test
+    //  test of StackArrayIndex
+    TEST(BT_02, T03)
     {
         STEP(1)
         //  create array
@@ -141,5 +157,14 @@ namespace test
             L_CHECK_EQUAL(d.m2, r.m2)
         }
         ENDSTEPS()
+    }
+    //  test type: coverage
+    //  SimpleStackArray isGreater / swap
+    TEST(BT_02, T04)
+    {
+        IdataSimpleArray a;
+        const bool res = a.isGreater(Idata(2, 2), Idata(1, 2));
+        L_CHECK_FALSE(res)
+        a.swap(0, 1);
     }
 } // namespace

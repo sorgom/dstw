@@ -5,6 +5,8 @@
 #include <testlib/TestGroupBase.h>
 #include <SYS/Dispatcher.h>
 
+#include <qnd/useCout.h>
+
 namespace test
 {
     class TestGroupDSP : public TestGroupBase
@@ -13,7 +15,6 @@ namespace test
         Dispatcher mSUT;
         inline TestGroupDSP()
         {
-            mockAll();
             mSUT.reset();
             mSUT.assign(genElementName(1, "TSW"), SUBSYS_TSW, 1);
             mSUT.assign(genElementName(2, "SIG"), SUBSYS_SIG, 2);
@@ -60,7 +61,7 @@ namespace test
 
         STEP(5)
         //  not assigned
-        m_Log().expectLog(COMP_DISPATCHER, ERR_MATCH);
+        m_Log().expectLog(MOD_DISPATCHER, ERR_MATCH);
         nameElement(fldState, 2, "TSW");
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
@@ -99,7 +100,7 @@ namespace test
 
         STEP(5)
         //  not assigned
-        m_Log().expectLog(COMP_DISPATCHER, ERR_MATCH);
+        m_Log().expectLog(MOD_DISPATCHER, ERR_MATCH);
         nameElement(guiCmd, 2, "TSW");
         mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()
@@ -208,7 +209,30 @@ namespace test
     //  retrieve instance
     TEST(DSP_01, T06)
     {
-        unmock();
-        I_Dispatcher& inst = IL::getDispatcher();
+        I_Dispatcher& inst = Dispatcher::instance();
+    }
+
+    //  test type: coverage
+    //  unmatchable subsytem identifier
+    TEST(DSP_01, T07)
+    {
+        SETUP()
+        mSUT.reset();
+        E_Subsys subs = (E_Subsys) 1000;
+        mSUT.assign(genElementName(1, "TSW"), subs, 1);
+        mSUT.index();
+        
+        STEP(1)
+        FldState fldState = {0};
+        nameElement(fldState, 1, "TSW");
+        mSUT.dispatch(fldState);
+        CHECK_N_CLEAR()    
+
+        STEP(2)
+        GuiCmd guiCmd;
+        nameElement(guiCmd, 1, "TSW");
+        mSUT.dispatch(guiCmd);
+        CHECK_N_CLEAR()    
+
     }
 }

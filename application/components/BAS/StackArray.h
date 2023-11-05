@@ -142,7 +142,7 @@ public:
 
     inline UINT32 dupCnt() const
     {
-        return dupCnt(*this);
+        return ::dupCnt(*this);
     }
 
     inline void swap(UINT32 posA, UINT32 posB)

@@ -26,7 +26,7 @@ namespace test
     protected:
         inline TestGroupBase()
         {
-            unmock();
+            mockAll();
         }
 
         inline void teardown()

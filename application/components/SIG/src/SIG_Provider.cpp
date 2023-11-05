@@ -48,6 +48,6 @@ void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
     else
     {
         mSIGs.reset();
-        IL::getLog().log(COMP_SIG_PROVIDER, ERR_STARTUP);
+        IL::getLog().log(MOD_SIG_PROVIDER, ERR_STARTUP);
     }
 }

@@ -31,7 +31,6 @@ namespace test
     //  retrieve instance
     TEST(LDR_01, T03)
     {
-        unmock();
-        I_Loader& inst = IL::getLoader();
+        I_Loader& inst = Loader::instance();
     }
 }

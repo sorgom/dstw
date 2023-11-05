@@ -23,7 +23,7 @@ TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests
 OBJDIR = obj/tests
 DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCAPACITY_TSW=11 -DCAPACITY_SIG=10 -DCAPACITY_LCR=9 -DCAPACITY_SEG=22
-INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/components -I../devel -I../BuildCppUTest/include
+INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/components -I../devel -I../BuildCppUTest/include -I../CppUTestSteps/TestSteps/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++98 -pedantic-errors

@@ -14,7 +14,7 @@ test of basic functionality
 
 **BT_02.cpp**
 ```
-test of StackArry, StackArrayIndex
+test of StackArray, StackArrayIndex
 ```
 
 **BT_03.cpp**

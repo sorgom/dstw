@@ -1,3 +1,6 @@
 [submodule "BuildCppUTest"]
 	path = BuildCppUTest
 	url = git@github.com:sorgom/BuildCppUTest.git
+[submodule "CppUTestSteps"]
+	path = CppUTestSteps
+	url = git@github.com:sorgom/CppUTestSteps.git

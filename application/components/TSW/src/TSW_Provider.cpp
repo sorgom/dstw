@@ -32,6 +32,6 @@ void TSW_Provider::load(const ProjTSW* const data, const UINT32 num)
     else
     {
         mTSWs.reset();
-        IL::getLog().log(COMP_TSW_PROVIDER, ERR_STARTUP);
+        IL::getLog().log(MOD_TSW_PROVIDER, ERR_STARTUP);
     }
 }

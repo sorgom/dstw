@@ -11,10 +11,6 @@ namespace test
     {
     protected:
         TSW_Hub mSUT;
-        inline TestGroupTSH()
-        {
-            mockAll();
-        }
     };
 
     TEST_GROUP_BASE(TSW_02, TestGroupTSH) {};
@@ -99,7 +95,6 @@ namespace test
     //  retrieve instance
     TEST(TSW_02, T05)
     {
-        unmock();
-        I_TSW_Hub& inst = IL::getTSW_Hub();
+        I_TSW_Hub& inst = TSW_Hub::instance();
     }
 }

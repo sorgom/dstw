@@ -1,10 +1,5 @@
 ## directory content
 
-**TestSteps.py**
-```
-simple test steps re-numbering script
-```
-
 **ci.py**
 ```
 run code checker if available
