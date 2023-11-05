@@ -1,5 +1,5 @@
 //  ============================================================
-//  system tests TSW vol. 1
+//  system tests TSW
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -10,11 +10,11 @@
 namespace test
 {
 
-    TEST_GROUP_BASE(SYS_TSW_01, TestGroupBase) {};
+    TEST_GROUP_BASE(SYST_02, TestGroupBase) {};
 
     //  test type: blackbox test
     //  
-    TEST(SYS_TSW_01, T01)
+    TEST(SYST_02, T01)
     {
         SETUP()
         GenProjData<CAPACITY_TSW> projData;

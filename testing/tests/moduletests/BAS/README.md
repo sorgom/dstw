@@ -4,7 +4,7 @@
 
 ## directory content
 
-**BT_01.cpp**
+**BAS_01.cpp**
 ```
 test of basic functionality
 - sizes of base types
@@ -12,22 +12,22 @@ test of basic functionality
 - some proj data sizes
 ```
 
-**BT_02.cpp**
+**BAS_02.cpp**
 ```
 test of StackArray, StackArrayIndex
 ```
 
-**BT_03.cpp**
+**BAS_03.cpp**
 ```
 test of GenProjData
 ```
 
-**BT_04.cpp**
+**BAS_04.cpp**
 ```
 test of NtpArray / NtpIndex
 ```
 
-**TT_01.cpp**
+**BAS_05.cpp**
 ```
 test of test features
 - output of fixed size strings

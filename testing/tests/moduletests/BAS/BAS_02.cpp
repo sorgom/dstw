@@ -9,7 +9,7 @@
 namespace test
 {
 
-    TEST_GROUP_BASE(BT_02, TestGroupBase) {};
+    TEST_GROUP_BASE(BAS_02, TestGroupBase) {};
 
     struct Idata
     {
@@ -46,7 +46,7 @@ namespace test
 
     //  test type: equivalence class test
     //  test of StackArray
-    TEST(BT_02, T01)
+    TEST(BAS_02, T01)
     {
         STEP(1)
         //  create array
@@ -108,7 +108,7 @@ namespace test
 
     //  test type: equivalence class test
     //  test of StackArray dupCnt
-    TEST(BT_02, T02)
+    TEST(BAS_02, T02)
     {
         SETUP()
         IdataArray a;
@@ -126,7 +126,7 @@ namespace test
 
     //  test type: equivalence class test
     //  test of StackArrayIndex
-    TEST(BT_02, T03)
+    TEST(BAS_02, T03)
     {
         STEP(1)
         //  create array
@@ -160,7 +160,7 @@ namespace test
     }
     //  test type: coverage
     //  SimpleStackArray isGreater / swap
-    TEST(BT_02, T04)
+    TEST(BAS_02, T04)
     {
         IdataSimpleArray a;
         const bool res = a.isGreater(Idata(2, 2), Idata(1, 2));

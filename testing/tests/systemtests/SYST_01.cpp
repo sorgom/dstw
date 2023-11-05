@@ -1,20 +1,18 @@
 //  ============================================================
-//  system tests SIG vol. 1
+//  system tests SIG
 //  ============================================================
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
 
-#include <qnd/useCout.h>
-
 namespace test
 {
 
-    TEST_GROUP_BASE(SYS_SIG_01, TestGroupBase) {};
+    TEST_GROUP_BASE(SYST_01, TestGroupBase) {};
 
     //  test type: blackbox test
     //  
-    TEST(SYS_SIG_01, T01)
+    TEST(SYST_01, T01)
     {
         SETUP()
         GenProjData<1, CAPACITY_SIG> projData;

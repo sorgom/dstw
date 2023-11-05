@@ -7,16 +7,15 @@
 
 namespace test
 {
-    TEST_GROUP_BASE(LDR_01, TestGroupBase) {};
+    TEST_GROUP_BASE(SYS_01, TestGroupBase) {};
 
     //  test type: equivalence class test
     //  load data 
-    TEST(LDR_01, T01)
+    TEST(SYS_01, T01)
     {
         SETUP()
         Loader mSUT;
         GenProjData<> projData;
-        mockAll();
 
         STEP(1)
         m_Dispatcher().expectReset();
@@ -29,7 +28,7 @@ namespace test
 
     //  test type: coverage
     //  retrieve instance
-    TEST(LDR_01, T03)
+    TEST(SYS_01, T03)
     {
         I_Loader& inst = Loader::instance();
     }

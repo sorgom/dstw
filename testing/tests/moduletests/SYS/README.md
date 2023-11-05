@@ -1,11 +1,16 @@
 ## directory content
 
-**DSP_01.cpp**
+**SYS_01.cpp**
+```
+test of module Loader
+```
+
+**SYS_02.cpp**
 ```
 test of module Dispatcher
 ```
 
-**LDR_01.cpp**
+**SYS_03.cpp**
 ```
-test of module Loader
+test of modules Com, Log (coverage)
 ```

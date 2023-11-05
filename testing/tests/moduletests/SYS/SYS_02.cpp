@@ -5,8 +5,6 @@
 #include <testlib/TestGroupBase.h>
 #include <SYS/Dispatcher.h>
 
-#include <qnd/useCout.h>
-
 namespace test
 {
     class TestGroupDSP : public TestGroupBase
@@ -24,11 +22,11 @@ namespace test
         }
     };
 
-    TEST_GROUP_BASE(DSP_01, TestGroupDSP) {};
+    TEST_GROUP_BASE(SYS_02, TestGroupDSP) {};
 
     //  test type: equivalence class test
     //  Dispatcher dispatch state telegrams from field
-    TEST(DSP_01, T01)
+    TEST(SYS_02, T01)
     {
         SETUP()
         FldState fldState;
@@ -68,7 +66,7 @@ namespace test
     }
     //  test type: equivalence class test
     //  Dispatcher dispatch cmd telegrams from GUI
-    TEST(DSP_01, T02)
+    TEST(SYS_02, T02)
     {
         SETUP()
         GuiCmd guiCmd;
@@ -108,7 +106,7 @@ namespace test
 
     //  test type: equivalence class test
     //  Dispatcher dispatch cmds to field
-    TEST(DSP_01, T03)
+    TEST(SYS_02, T03)
     {
         SETUP()
         CmdFld cmdIn;
@@ -148,7 +146,7 @@ namespace test
 
     //  test type: equivalence class test
     //  Dispatcher dispatch states to GUI
-    TEST(DSP_01, T04)
+    TEST(SYS_02, T04)
     {
         SETUP()
         StateGui stateIn;
@@ -188,7 +186,7 @@ namespace test
 
     //  test type: boundary
     //  assignment out of range
-    TEST(DSP_01, T05)
+    TEST(SYS_02, T05)
     {
         mSUT.reset();
         STEP(1)
@@ -207,14 +205,14 @@ namespace test
 
     //  test type: coverage
     //  retrieve instance
-    TEST(DSP_01, T06)
+    TEST(SYS_02, T06)
     {
         I_Dispatcher& inst = Dispatcher::instance();
     }
 
     //  test type: coverage
     //  unmatchable subsytem identifier
-    TEST(DSP_01, T07)
+    TEST(SYS_02, T07)
     {
         SETUP()
         mSUT.reset();

@@ -1,11 +1,11 @@
 ## directory content
 
-**SYS_SIG_01.cpp**
+**SYST_01.cpp**
 ```
-system tests SIG vol. 1
+system tests SIG
 ```
 
-**SYS_TSW_01.cpp**
+**SYST_02.cpp**
 ```
-system tests TSW vol. 1
+system tests TSW
 ```

@@ -50,16 +50,15 @@ endef
 GENERATED :=
 OBJECTS :=
 
-GENERATED += $(OBJDIR)/BT_01.o
-GENERATED += $(OBJDIR)/BT_02.o
-GENERATED += $(OBJDIR)/BT_03.o
-GENERATED += $(OBJDIR)/BT_04.o
+GENERATED += $(OBJDIR)/BAS_01.o
+GENERATED += $(OBJDIR)/BAS_02.o
+GENERATED += $(OBJDIR)/BAS_03.o
+GENERATED += $(OBJDIR)/BAS_04.o
+GENERATED += $(OBJDIR)/BAS_05.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/CompOstream.o
-GENERATED += $(OBJDIR)/DSP_01.o
 GENERATED += $(OBJDIR)/Dispatcher.o
 GENERATED += $(OBJDIR)/IL.o
-GENERATED += $(OBJDIR)/LDR_01.o
 GENERATED += $(OBJDIR)/Loader.o
 GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/M_Instances.o
@@ -70,8 +69,11 @@ GENERATED += $(OBJDIR)/SIG_03.o
 GENERATED += $(OBJDIR)/SIG_Hub.o
 GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
-GENERATED += $(OBJDIR)/SYS_SIG_01.o
-GENERATED += $(OBJDIR)/SYS_TSW_01.o
+GENERATED += $(OBJDIR)/SYST_01.o
+GENERATED += $(OBJDIR)/SYST_02.o
+GENERATED += $(OBJDIR)/SYS_01.o
+GENERATED += $(OBJDIR)/SYS_02.o
+GENERATED += $(OBJDIR)/SYS_03.o
 GENERATED += $(OBJDIR)/StackArray.o
 GENERATED += $(OBJDIR)/TSW.o
 GENERATED += $(OBJDIR)/TSW_01.o
@@ -79,7 +81,6 @@ GENERATED += $(OBJDIR)/TSW_02.o
 GENERATED += $(OBJDIR)/TSW_03.o
 GENERATED += $(OBJDIR)/TSW_Hub.o
 GENERATED += $(OBJDIR)/TSW_Provider.o
-GENERATED += $(OBJDIR)/TT_01.o
 GENERATED += $(OBJDIR)/TestGroupBase.o
 GENERATED += $(OBJDIR)/TestLib.o
 GENERATED += $(OBJDIR)/TestLiterals.o
@@ -89,16 +90,15 @@ GENERATED += $(OBJDIR)/TestStepsPlugin.o
 GENERATED += $(OBJDIR)/installComparators.o
 GENERATED += $(OBJDIR)/ostreamHelpers.o
 GENERATED += $(OBJDIR)/ostreams.o
-OBJECTS += $(OBJDIR)/BT_01.o
-OBJECTS += $(OBJDIR)/BT_02.o
-OBJECTS += $(OBJDIR)/BT_03.o
-OBJECTS += $(OBJDIR)/BT_04.o
+OBJECTS += $(OBJDIR)/BAS_01.o
+OBJECTS += $(OBJDIR)/BAS_02.o
+OBJECTS += $(OBJDIR)/BAS_03.o
+OBJECTS += $(OBJDIR)/BAS_04.o
+OBJECTS += $(OBJDIR)/BAS_05.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/CompOstream.o
-OBJECTS += $(OBJDIR)/DSP_01.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
 OBJECTS += $(OBJDIR)/IL.o
-OBJECTS += $(OBJDIR)/LDR_01.o
 OBJECTS += $(OBJDIR)/Loader.o
 OBJECTS += $(OBJDIR)/Log.o
 OBJECTS += $(OBJDIR)/M_Instances.o
@@ -109,8 +109,11 @@ OBJECTS += $(OBJDIR)/SIG_03.o
 OBJECTS += $(OBJDIR)/SIG_Hub.o
 OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
-OBJECTS += $(OBJDIR)/SYS_SIG_01.o
-OBJECTS += $(OBJDIR)/SYS_TSW_01.o
+OBJECTS += $(OBJDIR)/SYST_01.o
+OBJECTS += $(OBJDIR)/SYST_02.o
+OBJECTS += $(OBJDIR)/SYS_01.o
+OBJECTS += $(OBJDIR)/SYS_02.o
+OBJECTS += $(OBJDIR)/SYS_03.o
 OBJECTS += $(OBJDIR)/StackArray.o
 OBJECTS += $(OBJDIR)/TSW.o
 OBJECTS += $(OBJDIR)/TSW_01.o
@@ -118,7 +121,6 @@ OBJECTS += $(OBJDIR)/TSW_02.o
 OBJECTS += $(OBJDIR)/TSW_03.o
 OBJECTS += $(OBJDIR)/TSW_Hub.o
 OBJECTS += $(OBJDIR)/TSW_Provider.o
-OBJECTS += $(OBJDIR)/TT_01.o
 OBJECTS += $(OBJDIR)/TestGroupBase.o
 OBJECTS += $(OBJDIR)/TestLib.o
 OBJECTS += $(OBJDIR)/TestLiterals.o
@@ -263,6 +265,21 @@ $(OBJDIR)/TestLiterals.o: ../testing/testenv/testlib/src/TestLiterals.cpp
 $(OBJDIR)/TestMain.o: ../testing/testenv/testlib/src/TestMain.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/BAS_01.o: ../testing/tests/moduletests/BAS/BAS_01.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/BAS_02.o: ../testing/tests/moduletests/BAS/BAS_02.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/BAS_03.o: ../testing/tests/moduletests/BAS/BAS_03.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/BAS_04.o: ../testing/tests/moduletests/BAS/BAS_04.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/BAS_05.o: ../testing/tests/moduletests/BAS/BAS_05.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/SIG_01.o: ../testing/tests/moduletests/SIG/SIG_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -272,10 +289,13 @@ $(OBJDIR)/SIG_02.o: ../testing/tests/moduletests/SIG/SIG_02.cpp
 $(OBJDIR)/SIG_03.o: ../testing/tests/moduletests/SIG/SIG_03.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/DSP_01.o: ../testing/tests/moduletests/SYS/DSP_01.cpp
+$(OBJDIR)/SYS_01.o: ../testing/tests/moduletests/SYS/SYS_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/LDR_01.o: ../testing/tests/moduletests/SYS/LDR_01.cpp
+$(OBJDIR)/SYS_02.o: ../testing/tests/moduletests/SYS/SYS_02.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/SYS_03.o: ../testing/tests/moduletests/SYS/SYS_03.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW_01.o: ../testing/tests/moduletests/TSW/TSW_01.cpp
@@ -287,25 +307,10 @@ $(OBJDIR)/TSW_02.o: ../testing/tests/moduletests/TSW/TSW_02.cpp
 $(OBJDIR)/TSW_03.o: ../testing/tests/moduletests/TSW/TSW_03.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/BT_01.o: ../testing/tests/moduletests/basetests/BT_01.cpp
+$(OBJDIR)/SYST_01.o: ../testing/tests/systemtests/SYST_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/BT_02.o: ../testing/tests/moduletests/basetests/BT_02.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/BT_03.o: ../testing/tests/moduletests/basetests/BT_03.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/BT_04.o: ../testing/tests/moduletests/basetests/BT_04.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TT_01.o: ../testing/tests/moduletests/basetests/TT_01.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SYS_SIG_01.o: ../testing/tests/systemtests/SYS_SIG_01.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SYS_TSW_01.o: ../testing/tests/systemtests/SYS_TSW_01.cpp
+$(OBJDIR)/SYST_02.o: ../testing/tests/systemtests/SYST_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
