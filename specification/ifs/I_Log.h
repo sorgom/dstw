@@ -13,7 +13,7 @@
 class I_Log
 {
 public:
-    virtual void log(E_Comp comp, E_Err err) = 0;
+    virtual void log(E_Mod mod, E_Err err) = 0;
 };
 
 #endif // H_

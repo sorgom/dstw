@@ -16,13 +16,13 @@ namespace test
     public:
         MOCK_CON(Log)
 
-        inline void log(E_Comp comp, E_Err err)
+        inline void log(E_Mod mod, E_Err err)
         {
-            call("log").PARAM(comp).PARAM(err);
+            call("log").PARAM(mod).PARAM(err);
         }
-        inline void expectLog(E_Comp comp, E_Err err) const
+        inline void expectLog(E_Mod mod, E_Err err) const
         {
-            expect("log").PARAM(comp).PARAM(err);
+            expect("log").PARAM(mod).PARAM(err);
         }
     };
 } 

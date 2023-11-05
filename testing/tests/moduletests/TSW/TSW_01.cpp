@@ -18,7 +18,6 @@ namespace test
     TEST(TSW_01, T01)
     {
         SETUP()
-        mockAll();
         const M_TSW_Hub& hub = m_TSW_Hub();
         const UINT32 id = 123;
         TSW SUT(id);
@@ -55,66 +54,74 @@ namespace test
         CHECK_N_CLEAR()
 
         STEP(8)
-        SUT.fromFld(TSW_STATE_LEFT);
+        SUT.fromGui(TSW_GUI_GMD_LEFT);
         CHECK_N_CLEAR()
 
         STEP(9)
-        hub.expectToFld(id, TSW_STATE_RIGHT);
-        hub.expectToGui(id, TSW_STATE_WAIT_RIGHT);
-        SUT.fromGui(TSW_GUI_GMD_WU);
+        SUT.fromFld(TSW_STATE_LEFT);
         CHECK_N_CLEAR()
 
         STEP(10)
+        hub.expectToFld(id, TSW_STATE_RIGHT);
+        hub.expectToGui(id, TSW_STATE_WAIT_RIGHT);
         SUT.fromGui(TSW_GUI_GMD_WU);
         CHECK_N_CLEAR()
 
         STEP(11)
+        SUT.fromGui(TSW_GUI_GMD_WU);
+        CHECK_N_CLEAR()
+
+        STEP(12)
         hub.expectToGui(id, TSW_STATE_RIGHT);
         SUT.fromFld(TSW_STATE_RIGHT);
         CHECK_N_CLEAR()
 
-        STEP(12)
+        STEP(13)
+        SUT.fromGui(TSW_GUI_GMD_RIGHT);
+        CHECK_N_CLEAR()
+
+        STEP(14)
         SUT.fromFld(TSW_STATE_RIGHT);
         CHECK_N_CLEAR()
 
-        STEP(13)
+        STEP(15)
         hub.expectToFld(id, TSW_STATE_LEFT);
         hub.expectToGui(id, TSW_STATE_WAIT_LEFT);
         SUT.fromGui(TSW_GUI_GMD_WU);
         CHECK_N_CLEAR()
 
-        STEP(14)
+        STEP(16)
         SUT.fromGui(TSW_GUI_GMD_WU);
         CHECK_N_CLEAR()
 
-        STEP(15)
+        STEP(17)
         hub.expectToFld(id, TSW_STATE_RIGHT);
         hub.expectToGui(id, TSW_STATE_WAIT_RIGHT);
         SUT.fromGui(TSW_GUI_GMD_RIGHT);
         CHECK_N_CLEAR()
 
-        STEP(16)
+        STEP(18)
         SUT.fromGui(TSW_GUI_GMD_RIGHT);
         CHECK_N_CLEAR()
 
-        STEP(17)
+        STEP(19)
         hub.expectToFld(id, TSW_STATE_LEFT);
         hub.expectToGui(id, TSW_STATE_WAIT_LEFT);
         SUT.fromGui(TSW_GUI_GMD_LEFT);
         CHECK_N_CLEAR()
 
-        STEP(18)
+        STEP(20)
         SUT.fromGui(TSW_GUI_GMD_LEFT);
         CHECK_N_CLEAR()
 
-        STEP(19)
-        m_Log().expectLog(COMP_TSW, ERR_MATCH);
+        STEP(21)
+        m_Log().expectLog(MOD_TSW, ERR_MATCH);
         SUT.fromFld(-1);
         CHECK_N_CLEAR()
 
-        STEP(20)
-        m_Log().expectLog(COMP_TSW, ERR_MATCH);
+        STEP(22)
+        m_Log().expectLog(MOD_TSW, ERR_MATCH);
         SUT.fromGui(-1);
         CHECK_N_CLEAR()
-   }
+    }
 }

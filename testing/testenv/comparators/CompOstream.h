@@ -7,7 +7,7 @@
 #ifndef COMPOSTREAM_H
 #define COMPOSTREAM_H
 
-#include <BAS/InstanceMacros.h>
+#include <BAS/coding.h>
 #include <sstream>
 
 namespace test
@@ -25,6 +25,9 @@ namespace test
 
     private:
         std::ostringstream mStream;
+
+        NOCOPY(CompOstream)
+        inline CompOstream() {}
     };
 
 }

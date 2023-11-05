@@ -9,14 +9,13 @@
 #define COM_H
 
 #include <ifs/I_Com.h>
-#include <BAS/InstanceMacros.h>
 #include <BAS/coding.h>
 
 class Com : public I_Com
 {
 public:
+#pragma BullseyeCoverage ignore: 3
     inline Com() {}
-
     inline void send(const CmdFld&   tele) const {}
     inline void send(const StateGui& tele) const {}
 

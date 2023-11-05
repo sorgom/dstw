@@ -23,7 +23,7 @@ TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests
 OBJDIR = obj/tests
 DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCAPACITY_TSW=11 -DCAPACITY_SIG=10 -DCAPACITY_LCR=9 -DCAPACITY_SEG=22
-INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/components -I../devel -I../BuildCppUTest/include
+INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/components -I../devel -I../BuildCppUTest/include -I../CppUTestSteps/TestSteps/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++98 -pedantic-errors
@@ -84,8 +84,8 @@ GENERATED += $(OBJDIR)/TestGroupBase.o
 GENERATED += $(OBJDIR)/TestLib.o
 GENERATED += $(OBJDIR)/TestLiterals.o
 GENERATED += $(OBJDIR)/TestMain.o
-GENERATED += $(OBJDIR)/TestStepper.o
-GENERATED += $(OBJDIR)/TestStepperPlugin.o
+GENERATED += $(OBJDIR)/TestSteps.o
+GENERATED += $(OBJDIR)/TestStepsPlugin.o
 GENERATED += $(OBJDIR)/installComparators.o
 GENERATED += $(OBJDIR)/ostreamHelpers.o
 GENERATED += $(OBJDIR)/ostreams.o
@@ -123,8 +123,8 @@ OBJECTS += $(OBJDIR)/TestGroupBase.o
 OBJECTS += $(OBJDIR)/TestLib.o
 OBJECTS += $(OBJDIR)/TestLiterals.o
 OBJECTS += $(OBJDIR)/TestMain.o
-OBJECTS += $(OBJDIR)/TestStepper.o
-OBJECTS += $(OBJDIR)/TestStepperPlugin.o
+OBJECTS += $(OBJDIR)/TestSteps.o
+OBJECTS += $(OBJDIR)/TestStepsPlugin.o
 OBJECTS += $(OBJDIR)/installComparators.o
 OBJECTS += $(OBJDIR)/ostreamHelpers.o
 OBJECTS += $(OBJDIR)/ostreams.o
@@ -191,6 +191,12 @@ endif
 # File Rules
 # #############################################
 
+$(OBJDIR)/TestSteps.o: ../CppUTestSteps/TestSteps/src/TestSteps.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/TestStepsPlugin.o: ../CppUTestSteps/TestSteps/src/TestStepsPlugin.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/NtpArray.o: ../application/components/BAS/src/NtpArray.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -228,12 +234,6 @@ $(OBJDIR)/TSW_Provider.o: ../application/components/TSW/src/TSW_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/IL.o: ../testing/testenv/SYS/src/IL.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestStepper.o: ../testing/testenv/TestStepper/src/TestStepper.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestStepperPlugin.o: ../testing/testenv/TestStepper/src/TestStepperPlugin.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/CompOstream.o: ../testing/testenv/comparators/src/CompOstream.cpp

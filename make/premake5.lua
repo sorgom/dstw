@@ -18,7 +18,8 @@ workspace 'tests'
         '../application',
         '../application/components',
         '../devel',
-        '../BuildCppUTest/include'
+        '../BuildCppUTest/include',
+        '../CppUTestSteps/TestSteps/include'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
@@ -30,7 +31,8 @@ workspace 'tests'
         files { 
             '../application/components/**.cpp',
             '../testing/testenv/**.cpp',
-            '../testing/tests/**.cpp'
+            '../testing/tests/**.cpp',
+            '../CppUTestSteps/TestSteps/src/*.cpp'
         }
 
         defines { 
@@ -61,7 +63,8 @@ workspace 'coverage'
         '../application',
         '../application/components',
         '../devel',
-        '../BuildCppUTest/include'
+        '../BuildCppUTest/include',
+        '../CppUTestSteps/TestSteps/include'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
@@ -90,7 +93,8 @@ workspace 'coverage'
 
         files { 
             '../testing/testenv/**.cpp',
-            '../testing/tests/moduletests/**.cpp'
+            '../testing/tests/moduletests/**.cpp',
+            '../CppUTestSteps/TestSteps/src/*.cpp'
         }
 
         libdirs { 'lib', '../BuildCppUTest/lib' }
@@ -132,4 +136,86 @@ workspace 'dstw'
         }
         optimize 'On'
     
+--  ============================================================
+--  > devtests.make
+--  development only tests
+--  ->  bin/devtests
+--  ============================================================
+workspace 'devtests'
+    configurations { 'ci' }
+    language    'C++'
+    objdir      'obj/%{prj.name}'
+
+    includedirs {
+        '../testing/testenv',
+        '../specification',
+        '../application',
+        '../application/components',
+        '../devel',
+        '../BuildCppUTest/include',
+        '../CppUTestSteps/TestSteps/include'
+    }
+
+    buildoptions { '-std=c++98 -pedantic-errors' }
+
+    project 'devtests'
+        kind        'ConsoleApp'
+        targetdir   'bin'
+
+        files { 
+            '../application/components/**.cpp',
+            '../testing/testenv/**.cpp',
+            '../devel/tests/*.cpp',
+            '../CppUTestSteps/TestSteps/src/*.cpp'
+        }
+
+        defines { 
+            'NDEBUG', 'CPPUTEST_USE_LONG_LONG=0'
+        }
+        optimize 'On'
+        libdirs { '../BuildCppUTest/lib' }
+        links { 'CppUTest', 'CppUTestExt' }
+
+--  ============================================================
+--  > bullseye.make
+--  module tests for bullseye coverage
+--  ->  bin/bullseye
+--  ============================================================
+workspace 'bullseye'
+    configurations { 'ci' }
+    language    'C++'
+    objdir      'obj/%{prj.name}'
+
+    includedirs {
+        '../testing/testenv',
+        '../specification',
+        '../application',
+        '../application/components',
+        '../devel',
+        '../BuildCppUTest/include'
+    }
+
+    buildoptions { '-std=c++98 -pedantic-errors' }
+
+    project 'bullseye'
+        kind        'ConsoleApp'
+        targetdir   'bin'
+
+        files { 
+            '../application/components/**.cpp',
+            '../testing/testenv/**.cpp',
+            '../testing/tests/moduletests/**.cpp',
+            '../CppUTestSteps/TestSteps/src/*.cpp'
+        }
+
+        defines { 
+            'NDEBUG', 'CPPUTEST_USE_LONG_LONG=0', 
+            'CAPACITY_TSW=11', 
+            'CAPACITY_SIG=10', 
+            'CAPACITY_LCR=9', 
+            'CAPACITY_SEG=22' 
+        }
+        optimize 'On'
+        libdirs { '../BuildCppUTest/lib' }
+        links { 'CppUTest', 'CppUTestExt' }
 

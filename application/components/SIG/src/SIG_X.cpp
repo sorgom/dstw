@@ -36,21 +36,19 @@ void SIG_X::procFromFld(const INT32 state, INT32 speed)
 void SIG_X::procFromGui(const INT32 state, const INT32 speed)
 {
     //  ============================================================
-    //  GUI values are not forwarded to field if
-    //  alraedy sent to field
-    //  and
-    //      GUI state and speed equal
-    //      or
-    //      GUI state is WAIT
+    //  GUI values are NOT forwarded to field if
+    //  already reported to GUI 
+    //  OR
+    //  already sent to field
     //  ============================================================
     if (
-        ((mStateToFld == state) and (mSpeedToFld == speed))
-        and
-        (
-            ((mStateToGui == state) and (mSpeedToGui == speed))
-            or
-            (mStateToGui == SIG_STATE_WAIT)
-        )
+        (mStateToGui == state) and 
+        (mSpeedToGui == speed)
+    )
+    {pass();}
+    else if (
+        (mStateToFld == state) and 
+        (mSpeedToFld == speed)
     )
     {pass();}
     else
@@ -65,7 +63,7 @@ void SIG_X::procFromGui(const INT32 state, const INT32 speed)
 
 void SIG_X::logMissmatch()
 {
-    IL::getLog().log(COMP_SIG, ERR_MATCH);
+    IL::getLog().log(MOD_SIG, ERR_MATCH);
 }
 
 void SIG_H::fromFld(const INT32 state, const INT32 speed)

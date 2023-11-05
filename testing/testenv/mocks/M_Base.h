@@ -10,7 +10,7 @@
 #include <testlib/CppUTest.h>
 
 #include <BAS/BaseTypes.h>
-#include <BAS/InstanceMacros.h>
+#include <BAS/coding.h>
 #include <testlib/TestLiterals.h>
 
 #include <sstream>
@@ -84,6 +84,8 @@ namespace test
         {
             return mock().expectNCalls(numCalls, mStream.str().c_str());
         }
+
+        NOCOPY(M_Base)
     };
 } // namespace
 #endif // _H

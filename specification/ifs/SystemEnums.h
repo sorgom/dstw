@@ -1,6 +1,8 @@
 //  ============================================================
 //  system wide enumerations
-//  -   E_Subsys subsytems 
+//  -   E_Subsys subsystems
+//  -   E_mod    modules
+//  -   E_Err    errors
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -16,17 +18,17 @@ enum E_Subsys
     SUBSYS_LCR
 };
 
-enum E_Comp
+enum E_Mod
 {
-    COMP_COM,
-    COMP_DISPATCHER,
-    COMP_LOADER,
-    COMP_SIG,
-    COMP_SIG_HUB,
-    COMP_SIG_PROVIDER,
-    COMP_TSW,
-    COMP_TSW_HUB,
-    COMP_TSW_PROVIDER
+    MOD_COM,
+    MOD_DISPATCHER,
+    MOD_LOADER,
+    MOD_SIG,
+    MOD_SIG_HUB,
+    MOD_SIG_PROVIDER,
+    MOD_TSW,
+    MOD_TSW_HUB,
+    MOD_TSW_PROVIDER
 };
 
 enum E_Err

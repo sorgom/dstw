@@ -1,5 +1,10 @@
 ## directory content
 
+**bullsey.sh**
+```
+selectors for bullseye coverage
+```
+
 **premake5.lua**
 ```
 Makefile build rules for premake5:
@@ -16,4 +21,12 @@ module tests and system tests at once runtime
 > dstw.make
 application runtime
 ->  bin/dstw
+
+> devtests.make
+development only tests
+->  bin/devtests
+
+> bullseye.make
+module tests for bullseye coverage
+->  bin/bullseye
 ```

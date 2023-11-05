@@ -9,15 +9,14 @@
 #define LOG_H
 
 #include <ifs/I_Log.h>
-#include <BAS/InstanceMacros.h>
 #include <BAS/coding.h>
 
 class Log : public I_Log
 {
 public:
+#pragma BullseyeCoverage ignore: 2
     inline Log() {}
-
-    inline void log(E_Comp comp, E_Err err) {}
+    inline void log(E_Mod mod, E_Err err) {}
 
     IL_INSTANCE_DEC(Log)
 

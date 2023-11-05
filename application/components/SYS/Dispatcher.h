@@ -6,10 +6,10 @@
 #ifndef DISPATCHER_H
 #define DISPATCHER_H
 
+#include <BAS/coding.h>
+#include <BAS/NtpArray.h>
 #include <ifs/I_Dispatcher.h>
 #include <setup/capacities.h>
-#include <BAS/NtpArray.h>
-#include <BAS/InstanceMacros.h>
 
 class Dispatcher : public I_Dispatcher
 {
@@ -34,6 +34,8 @@ public:
 private:
     NtpArray<CAPACITY_DSP> mData;
     NtpIndex<CAPACITY_DSP> mIndx;
+
+    NOCOPY(Dispatcher)
 };
 
 #endif // H_

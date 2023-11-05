@@ -28,7 +28,7 @@ public:
 template <class T>
 void bSort(I_Searchable<T>& src)
 {
-    for (UINT32 n = src.size(); n > 0; --n)
+    for (UINT32 n = src.size(); n > 1; --n)
     {
         bool swapped = false;
         for (UINT32 p = 0; p < n - 1; ++p)
@@ -77,7 +77,7 @@ INT32 bSearch(const I_Searchable<T>& src, const T& obj)
 //  apply duplicates count to I_Searchable
 //  precondition: bSort applied before
 template <class T>
-UINT32 dupCnt(I_Searchable<T>& src)
+UINT32 dupCnt(const I_Searchable<T>& src)
 {
     UINT32 ndups = 0;
     for (UINT32 p = 0; p < src.size() - 1; ++p)

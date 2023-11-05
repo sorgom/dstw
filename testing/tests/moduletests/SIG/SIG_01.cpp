@@ -101,7 +101,7 @@ namespace test
         fromFldToGui(SIG_STATE_DEFECT, 20);
 
         STEP(9)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(MOD_SIG, ERR_MATCH);
         fromFldToGui(SIG_STATE_N0, 10);
     }
 
@@ -120,13 +120,13 @@ namespace test
         fromGuiToFldToGui(SIG_STATE_H1, 20);
 
         STEP(5)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(MOD_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_UNDEF, 10);
         STEP(6)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(MOD_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_DEFECT, 20);
         STEP(7)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(MOD_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_N0, 10);
     }
 
@@ -163,7 +163,7 @@ namespace test
         fromFldToGui(SIG_STATE_DEFECT, 20);
 
         STEP(11)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(MOD_SIG, ERR_MATCH);
         fromFldToGui(SIG_STATE_H0, 10);
     }
 
@@ -191,14 +191,24 @@ namespace test
         fromGuiToFldToGui(SIG_STATE_N1, 20);
 
         STEP(7)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(MOD_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_UNDEF, 10);
         STEP(8)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(MOD_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_DEFECT, 20);
         STEP(9)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(MOD_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_H1, 10);
+
+        STEP(10)
+        fromFldToGui(SIG_STATE_N0, 20, SIG_STATE_N0, 20);
+
+        STEP(11)
+        fromGuiToFldToGui(SIG_STATE_N0, 20);
+
+        STEP(12)
+        fromGuiToFldToGui(SIG_STATE_N0, 10, SIG_STATE_N0, 10, SIG_STATE_WAIT, 20);
+
     }
 
     //  test type: equivalence class test
@@ -248,7 +258,7 @@ namespace test
         fromFldToGui(SIG_STATE_DEFECT, 20);
 
         STEP(17)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(MOD_SIG, ERR_MATCH);
         fromFldToGui(SIG_STATE_H0, 10);
     }
 
@@ -290,13 +300,13 @@ namespace test
         fromGuiToFldToGui(SIG_STATE_H1_N1, 20);
 
         STEP(13)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(MOD_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_UNDEF, 10);
         STEP(14)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(MOD_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_DEFECT, 20);
         STEP(15)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(MOD_SIG, ERR_MATCH);
         fromGuiToFldToGui(SIG_STATE_N0, 10);
     }
 }

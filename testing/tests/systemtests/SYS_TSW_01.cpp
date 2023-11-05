@@ -18,7 +18,7 @@ namespace test
     {
         SETUP()
         GenProjData<CAPACITY_TSW> projData;
-        mock_Com();
+        unmock();
         mock_Com();
         IL::getLoader().load(projData);
 

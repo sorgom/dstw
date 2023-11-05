@@ -61,7 +61,7 @@ namespace test
         m_Dispatcher().expectAssign(mData.sigName(0), SUBSYS_SIG, 0, 0);
         m_Dispatcher().expectAssign(mData.sigName(1), SUBSYS_SIG, 1, 1);
         m_Dispatcher().expectAssign(mData.sigName(2), SUBSYS_SIG, 2, 2);
-        m_Log().expectLog(COMP_SIG_PROVIDER, ERR_STARTUP);
+        m_Log().expectLog(MOD_SIG_PROVIDER, ERR_STARTUP);
         mSUT.load(mData.pSIG, mData.numSIG);
         CHECK_N_CLEAR()
         L_CHECK_FALSE(mSUT.has(0))
@@ -72,7 +72,7 @@ namespace test
     TEST(SIG_03, T04)
     {
         STEP(1)
-        m_Log().expectLog(COMP_SIG_PROVIDER, ERR_STARTUP);
+        m_Log().expectLog(MOD_SIG_PROVIDER, ERR_STARTUP);
         mSUT.load(mData.pSIG, CAPACITY_SIG + 1);
         CHECK_N_CLEAR()
         L_CHECK_FALSE(mSUT.has(0))
@@ -86,7 +86,7 @@ namespace test
         m_Dispatcher().expectAssign(mData.sigName(0), SUBSYS_SIG, 0, 0);
         m_Dispatcher().expectAssign(mData.sigName(1), SUBSYS_SIG, 1, 1);
         m_Dispatcher().expectAssign(mData.sigName(2), SUBSYS_SIG, 2, -1);
-        m_Log().expectLog(COMP_SIG_PROVIDER, ERR_STARTUP);
+        m_Log().expectLog(MOD_SIG_PROVIDER, ERR_STARTUP);
         mSUT.load(mData.pSIG, mData.numSIG);
         CHECK_N_CLEAR()
         L_CHECK_FALSE(mSUT.has(0))

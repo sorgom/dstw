@@ -36,7 +36,7 @@ void Dispatcher::dispatch(const FldState& tele) const
     const INT32 fnd = mIndx.findNtp(tele.name);
     if (fnd < 0)
     { 
-        IL::getLog().log(COMP_DISPATCHER, ERR_MATCH);
+        IL::getLog().log(MOD_DISPATCHER, ERR_MATCH);
     }
     else
     {
@@ -53,11 +53,8 @@ void Dispatcher::dispatch(const FldState& tele) const
             break;
         case SUBSYS_LCR:
             break;
-// NO_COV >>
-// assignment limited by enum            
         default:
             break;
-// << NO_COV
         }
     }
 }
@@ -67,7 +64,7 @@ void Dispatcher::dispatch(const GuiCmd& tele) const
     const INT32 fnd = mIndx.findNtp(tele.name);
     if (fnd < 0)
     { 
-        IL::getLog().log(COMP_DISPATCHER, ERR_MATCH);
+        IL::getLog().log(MOD_DISPATCHER, ERR_MATCH);
     }
     else
     {
@@ -84,11 +81,8 @@ void Dispatcher::dispatch(const GuiCmd& tele) const
             break;
         case SUBSYS_LCR:
             break;
-// NO_COV >>
-// assignment limited by enum            
         default:
             break;
-// << NO_COV
         }
     }
 }
