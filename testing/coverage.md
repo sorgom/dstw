@@ -1,21 +1,3 @@
-## current source code coverage
-```
-file                      lines  uncovered  percent
-BAS/src/NtpArray.cpp         13         --       --
-BAS/src/StackArray.cpp        8         --       --
-SIG/src/SIG_Hub.cpp          40         --       --
-SIG/src/SIG_Provider.cpp     50         --       --
-SIG/src/SIG_X.cpp           203         --       --
-SYS/src/Com.cpp               2         --       --
-SYS/src/Dispatcher.cpp      106         --       --
-SYS/src/Loader.cpp           10         --       --
-SYS/src/Log.cpp               2         --       --
-TSW/src/TSW.cpp              89         --       --
-TSW/src/TSW_Hub.cpp          38         --       --
-TSW/src/TSW_Provider.cpp     35         --       --
-total                       596         --       --
-```
-
 ## coverage using bullseye coverage
 ```
 BullseyeCoverage Source Report 9.5.12 Linux-x64 License 119004
@@ -47,4 +29,22 @@ TSW_Provider.h        3 /  3 = 100%    0 /   0
 coding.h              1 /  1 = 100%    0 /   0
 ----------------  -----------------  ----------------
 Total                92 / 92 = 100%  159 / 159 = 100%
+```
+
+## current source code coverage
+```
+file                      lines  uncovered  percent
+BAS/src/NtpArray.cpp         13         --       --
+BAS/src/StackArray.cpp        8         --       --
+SIG/src/SIG_Hub.cpp          40         --       --
+SIG/src/SIG_Provider.cpp     50         --       --
+SIG/src/SIG_X.cpp           203         --       --
+SYS/src/Com.cpp               2         --       --
+SYS/src/Dispatcher.cpp      106         --       --
+SYS/src/Loader.cpp           10         --       --
+SYS/src/Log.cpp               2         --       --
+TSW/src/TSW.cpp              89         --       --
+TSW/src/TSW_Hub.cpp          38         --       --
+TSW/src/TSW_Provider.cpp     35         --       --
+total                       596         --       --
 ```
