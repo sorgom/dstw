@@ -31,7 +31,8 @@ workspace 'tests'
         files { 
             '../application/components/**.cpp',
             '../testing/testenv/**.cpp',
-            '../testing/tests/**.cpp',
+            '../testing/tests/moduletests/**.cpp',
+            '../testing/tests/systemtests/**.cpp',
             '../CppUTestSteps/TestSteps/src/*.cpp'
         }
 
@@ -43,6 +44,7 @@ workspace 'tests'
             'CAPACITY_SEG=22' 
         }
         optimize 'On'
+        stl 'none'
         libdirs { '../BuildCppUTest/lib' }
         links { 'CppUTest', 'CppUTestExt' }
 
@@ -68,6 +70,7 @@ workspace 'coverage'
     }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
+
     defines { 
         'DEBUG', 'CPPUTEST_USE_LONG_LONG=0', 
         'CAPACITY_TSW=11', 
@@ -76,6 +79,7 @@ workspace 'coverage'
         'CAPACITY_SEG=22' 
     }
     symbols 'On'
+    stl 'none'
 
     project 'coverage_app'
         kind        'StaticLib'
@@ -135,6 +139,7 @@ workspace 'dstw'
             'CAPACITY_SEG=2000' 
         }
         optimize 'On'
+        stl 'none'
     
 --  ============================================================
 --  > devtests.make
@@ -165,7 +170,7 @@ workspace 'devtests'
         files { 
             '../application/components/**.cpp',
             '../testing/testenv/**.cpp',
-            '../devel/tests/*.cpp',
+            '../testing/tests/devtests/*.cpp',
             '../CppUTestSteps/TestSteps/src/*.cpp'
         }
 
@@ -217,6 +222,10 @@ workspace 'bullseye'
             'CAPACITY_SEG=22' 
         }
         optimize 'On'
+        stl 'none'
+
         libdirs { '../BuildCppUTest/lib' }
         links { 'CppUTest', 'CppUTestExt' }
 
+        prebuildcommands { 'cov01 -1 --no-banner' }
+        postbuildcommands { './bullseye.sh' }

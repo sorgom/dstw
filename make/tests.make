@@ -53,10 +53,8 @@ OBJECTS :=
 GENERATED += $(OBJDIR)/BAS_01.o
 GENERATED += $(OBJDIR)/BAS_02.o
 GENERATED += $(OBJDIR)/BAS_03.o
-GENERATED += $(OBJDIR)/BAS_04.o
-GENERATED += $(OBJDIR)/BAS_05.o
 GENERATED += $(OBJDIR)/Com.o
-GENERATED += $(OBJDIR)/CompOstream.o
+GENERATED += $(OBJDIR)/Comparator.o
 GENERATED += $(OBJDIR)/Dispatcher.o
 GENERATED += $(OBJDIR)/IL.o
 GENERATED += $(OBJDIR)/Loader.o
@@ -93,10 +91,8 @@ GENERATED += $(OBJDIR)/ostreams.o
 OBJECTS += $(OBJDIR)/BAS_01.o
 OBJECTS += $(OBJDIR)/BAS_02.o
 OBJECTS += $(OBJDIR)/BAS_03.o
-OBJECTS += $(OBJDIR)/BAS_04.o
-OBJECTS += $(OBJDIR)/BAS_05.o
 OBJECTS += $(OBJDIR)/Com.o
-OBJECTS += $(OBJDIR)/CompOstream.o
+OBJECTS += $(OBJDIR)/Comparator.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
 OBJECTS += $(OBJDIR)/IL.o
 OBJECTS += $(OBJDIR)/Loader.o
@@ -238,7 +234,7 @@ $(OBJDIR)/TSW_Provider.o: ../application/components/TSW/src/TSW_Provider.cpp
 $(OBJDIR)/IL.o: ../testing/testenv/SYS/src/IL.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/CompOstream.o: ../testing/testenv/comparators/src/CompOstream.cpp
+$(OBJDIR)/Comparator.o: ../testing/testenv/comparators/src/Comparator.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/installComparators.o: ../testing/testenv/comparators/src/installComparators.cpp
@@ -272,12 +268,6 @@ $(OBJDIR)/BAS_02.o: ../testing/tests/moduletests/BAS/BAS_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/BAS_03.o: ../testing/tests/moduletests/BAS/BAS_03.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/BAS_04.o: ../testing/tests/moduletests/BAS/BAS_04.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/BAS_05.o: ../testing/tests/moduletests/BAS/BAS_05.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/SIG_01.o: ../testing/tests/moduletests/SIG/SIG_01.cpp

@@ -22,7 +22,7 @@
 
 #include <BAS/coding.h>
 
-//  I_NAME& getNAME() { return NAME::instance(); }
+//  inline static I_NAME& getNAME() { return NAME::instance(); }
 #define IL_INLINE(NAME) \
     inline static I_ ## NAME& get ## NAME() { return NAME::instance(); }
 

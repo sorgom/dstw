@@ -1,11 +1,13 @@
 #!/bin/bash
 #   ============================================================
-#   selectors for bullseye coverage
+#   bullseye coverage output
 #   ============================================================
+cov01 -0 --no-banner
+bin/bullseye
 covselect -d --no-banner
 covselect -a --no-banner '../application/**/*.*'
 covselect -a --no-banner '../specification/ifs/*.*'
 covselect -a --no-banner '!../testing/**/*.*'
 covselect -a --no-banner '!../BuildCppUTest/**/*.*'
 covselect -a --no-banner '!../CppUTestSteps/**/*.*'
-covselect -lq --no-banner 
+covsrc -bm --no-banner

@@ -76,8 +76,10 @@
 ### test environment
 test environment based on CppUTest for module tests and system tests
 ### module tests
-test all modules with full source code coverage
+test all modules, achieve full source code coverage
 ### system tests
 test from incoming to outgoing telegrams
 ### coverage
 measure application code coverage of module tests
+-   use gcc built in gcov tool
+-   evaluate bullseye coverage
