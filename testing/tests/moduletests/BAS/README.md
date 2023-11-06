@@ -1,6 +1,5 @@
 # base tests
 -   tests of application base classes
--   test of test environment
 
 ## directory content
 
@@ -19,16 +18,5 @@ test of StackArray, StackArrayIndex
 
 **BAS_03.cpp**
 ```
-test of GenProjData
-```
-
-**BAS_04.cpp**
-```
 test of NtpArray / NtpIndex
-```
-
-**BAS_05.cpp**
-```
-test of test features
-- output of fixed size strings
 ```

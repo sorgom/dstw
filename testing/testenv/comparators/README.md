@@ -1,10 +1,5 @@
 ## directory content
 
-**CompOstream.h**
-```
-string collector for comparator output
-```
-
 **Comparator.h**
 ```
 CppUTest style comparator

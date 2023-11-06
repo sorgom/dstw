@@ -1,5 +1,5 @@
 //  ============================================================
-//  development tests
+//  output of maximum capacities
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -19,16 +19,16 @@ namespace test
     {
         static UINT32 ar[4];
         UINT32 v = d.val;
-        UINT8 p = 10;
+        UINT8 p = 4;
         do {
             --p;
             ar[p] = v % 1000;
             v /= 1000;
-        } while (v > 0);
+        } while (v > 0 and p > 0);
 
         std::ostringstream str;
         str << ar[p++];
-        for (; p < 10; ++p)
+        for (; p < 4; ++p)
         {
             str << '\'' << setw(3) << setfill('0') << ar[p];
         }

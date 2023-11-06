@@ -1,14 +1,10 @@
 //  ============================================================
-//  test of GenProjData
+//  test of NtpArray / NtpIndex
 //  ============================================================
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-
-#define CAPTSW 40
-#define CAPSIG 30
-#define CAPLCR 20
-#define CAPSEG 10
+#include <BAS/NtpArray.h>
 
 namespace test
 {
@@ -18,55 +14,41 @@ namespace test
     //  test type: equivalence class test
     TEST(BAS_03, T01)
     {
+        // cout << endl;
+        // TestSteps::show(1);
         SETUP()
-        GenProjData<CAPTSW, CAPSIG, CAPLCR, CAPSEG> projData;
-        // projData.preset();
+        NtpArray<CAPACITY_DSP> data;
+        NtpIndex<CAPACITY_DSP> indx(data);
+        L_CHECK_EQUAL(CAPACITY_DSP, data.capacity())
+        L_CHECK_EQUAL(CAPACITY_DSP, indx.capacity())
+        
+        Ntp tNtp;
+        const UINT32 tSize = 10;
+        const UINT32 tOffs = tSize - 1;
 
         STEP(1)
-        //  check content TSW
-        L_CHECK_EQUAL(CAPTSW, projData.numTSW)
         SUBSTEPS()
-        for (UINT32 n = 0; n < CAPTSW; ++n)
+        for (INT32 i = 0; i < tSize; ++i)
         {
-            LSTEP(n)
-            const ElementName& name = genElementName(CAPTSW - n, "TSW");
-            L_CHECK_ELEMENT_NAME(name, projData.pTSW[n].name)
+            LSTEP(i)
+            nameElement(tNtp, tOffs - i);
+            tNtp.type = 100 + i;
+            tNtp.pos  = i;
+            data.add(tNtp);
         }
         ENDSTEPS()
 
         STEP(2)
-        //  check content SIG
-        L_CHECK_EQUAL(CAPSIG, projData.numSIG)
+        indx.index();
         SUBSTEPS()
-        for (UINT32 n = 0; n < CAPSIG; ++n)
+        for (INT32 i = 0; i < tSize; ++i)
         {
-            LSTEP(n)
-            const ElementName& name = genElementName(CAPSIG - n, "SIG");
-            L_CHECK_ELEMENT_NAME(name, projData.pSIG[n].name)
-        }
-        ENDSTEPS()
-
-        STEP(3)
-        //  check content LCR
-        L_CHECK_EQUAL(CAPLCR, projData.numLCR)
-        SUBSTEPS()
-        for (UINT32 n = 0; n < CAPLCR; ++n)
-        {
-            LSTEP(n)
-            const ElementName& name = genElementName(CAPLCR - n, "LCR");
-            L_CHECK_ELEMENT_NAME(name, projData.pLCR[n].name)
-        }
-        ENDSTEPS()
-
-        STEP(4)
-        //  check content SEG
-        SUBSTEPS()
-        L_CHECK_EQUAL(CAPSEG, projData.numSEG)
-        for (UINT32 n = 0; n < CAPSEG; ++n)
-        {
-            LSTEP(n)
-            const ElementName& name = genElementName(CAPSEG - n, "SEG");
-            L_CHECK_ELEMENT_NAME(name, projData.pSEG[n].name)
+            LSTEP(i)
+            const ElementName& en = genElementName(tOffs - i);
+            const INT32 f = indx.findNtp(en);
+            L_CHECK_EQUAL(tOffs -i, f)
+            const INT32 cmp = Mem::cmp(en, indx.getRef(f).name);
+            L_CHECK_EQUAL(0, cmp)
         }
         ENDSTEPS()
     }

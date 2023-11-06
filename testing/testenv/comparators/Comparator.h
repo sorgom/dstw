@@ -11,18 +11,32 @@
 #define COMPERATOR_H
 
 #include <BAS/BaseTypes.h>
-#include <comparators/CompOstream.h>
+#include <BAS/coding.h>
 
 #include <CppUTest/SimpleString.h>
 #include <CppUTestExt/MockNamedValue.h>
 
 #include <iostream>
 #include <cstring>
+#include <sstream>
 
 namespace test
 {
+    class ComparatorBase
+    {
+    protected:
+        inline ComparatorBase() {}
+
+        static std::ostream& begin();
+        static std::ostringstream mStream;
+
+        NOCOPY(ComparatorBase)
+    };
+
     template <class T>
-    class Comparator : public MockNamedValueComparator
+    class Comparator : 
+        public MockNamedValueComparator,
+        private ComparatorBase
     {
     public:
         inline Comparator() {}
@@ -30,26 +44,16 @@ namespace test
         SimpleString valueToString(CPTR ptr)
         {
             begin() << std::endl << *reinterpret_cast<const T*>(ptr);
-            return get().str().c_str();
+            //  content is copied by CppUTest
+            //  cppcheck-suppress returnDanglingLifetime
+            return mStream.str().c_str();
         }
         inline bool isEqual(CPTR ptr1, CPTR ptr2)
         {
             return std::memcmp(ptr1, ptr2, sizeof(T)) == 0;
         }
-    protected:
-
-        inline static std::ostream& begin()
-        {
-            return CompOstream::instance().begin();
-        }
-        inline static const std::ostringstream& get()
-        {
-            return CompOstream::instance().get();
-        }
-
         NOCOPY(Comparator)
-    }; 
-
+    };
 }
 
 #endif // H_

@@ -2,7 +2,7 @@
 
 **bullseye.sh**
 ```
-selectors for bullseye coverage
+bullseye coverage output
 ```
 
 **premake5.lua**

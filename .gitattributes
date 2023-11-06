@@ -8,3 +8,4 @@
 *.lua   text eol=lf
 *.txt   text eol=lf
 *.svg   text eol=lf
+*.mdj   text eol=lf
