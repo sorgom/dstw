@@ -1,13 +1,18 @@
 #!/bin/bash
-#   ============================================================
-#   static code analysis using cppcheck
-#   check always:
-#   -   application
-#   check optionally:
-#   -   test env
-#   -   tests
-#   ============================================================
 #   created by Manfred Sorgo
+
+help()
+{
+    echo "===================================="
+    echo "static code analysis using cppcheck"
+    echo "check:"
+    echo "-a  application"
+    echo "-e  test env"
+    echo "-t  tests"
+    echo "-v  version of cppcheck"
+    echo "===================================="
+    exit
+}
 
 APP_INCS="-I../specification
     -I../application/components
@@ -22,25 +27,61 @@ TEST_INCS="-I../testing/testenv
 APP_CALL="cppcheck -q --language=c++ --check-level=exhaustive"
 TST_CALL="cppcheck -q --language=c++ --check-level=exhaustive --force --inline-suppr"
 
-cppcheck --version
-echo - application
-$APP_CALL \
-    $APP_INCS \
-    ../application/components/*/src/*.cpp \
-    ../application/components/*/*.h
+done=
 
-if test $# -eq 0; then exit; fi
+version()
+{
+    if test -z $done; then cppcheck --version; fi
+}
 
-echo - testenv
-$TST_CALL \
-    $TEST_INCS \
-    ../testing/testenv/*/src/*.cpp \
-    ../testing/testenv/*/*.h
+check_app()
+{
+    version
+    echo - application
+    $APP_CALL \
+        $APP_INCS \
+        ../application/components/*/src/*.cpp \
+        ../application/components/*/*.h
+    done=1
+}
 
-if test $# -eq 1; then exit; fi
+check_testenv()
+{
+    version
+    echo - testenv
+    $TST_CALL \
+        $TEST_INCS \
+        ../testing/testenv/*/src/*.cpp \
+        ../testing/testenv/*/*.h
+    done=1
+}
 
-echo - tests
-$TST_CALL \
-    $TEST_INCS \
-    ../testing/tests/*/*/*.cpp \
-    ../testing/tests/*/*.cpp
+check_tests()
+{
+    version
+    echo - tests
+    $TST_CALL \
+        $TEST_INCS \
+        ../testing/tests/*/*/*.cpp \
+        ../testing/tests/*/*.cpp
+    done=1
+}
+
+ca=
+ce=
+ct=
+
+while getopts aethv option; do
+    case $option in
+      (h)  help;;
+      (v)  version; exit;;
+      (a)  ca=1;;
+      (e)  ce=1;;
+      (t)  ct=1;;
+    esac
+done
+
+if test ! -z $ca; then check_app; fi
+if test ! -z $ce; then check_testenv; fi
+if test ! -z $ct; then check_tests; fi
+if test -z $done; then check_app; fi

@@ -2,7 +2,6 @@
 -   tests of test environment
 -   test of limitations
 
-
 ## directory content
 
 **DT_01.cpp**

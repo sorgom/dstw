@@ -13,7 +13,7 @@ ttl = '## directory content'
 
 rxMd  = re.compile(r'\.md$')
 #   pre, char, inf
-rxInf = re.compile(r'^(([^\n]*?)([*=-])\3{19,})\n(.*?)\n\1', re.M | re.S)
+rxInf = re.compile(r'^(([^\n]*?)([*=-])\3{19,})"?\n(.*?)\n\1', re.M | re.S)
 
 def isMd(fn):
     return rxMd.search(fn)
