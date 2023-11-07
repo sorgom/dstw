@@ -9,3 +9,5 @@
 *.txt   text eol=lf
 *.svg   text eol=lf
 *.mdj   text eol=lf
+*.md    text eol=lf
+
