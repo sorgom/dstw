@@ -10,4 +10,5 @@
 *.svg   text eol=lf
 *.mdj   text eol=lf
 *.md    text eol=lf
+*.make  text eol=lf
 
