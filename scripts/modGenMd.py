@@ -12,8 +12,9 @@ mdf = 'README.md'
 ttl = '## directory content'
 
 rxMd  = re.compile(r'\.md$')
-#   pre, char, inf
-rxInf = re.compile(r'^(([^\n]*?)([*=-])\3{19,})"?\n(.*?)\n\1', re.M | re.S)
+#   deco, pre, char, quo, inf
+rxInf = re.compile(r'^(([^\n]*?)([*=-])\3{19,})(")?\n(.*?)\n\1', re.M | re.S)
+rxQuo = re.compile(r'"$', re.M)
 
 def isMd(fn):
     return rxMd.search(fn)
@@ -32,9 +33,10 @@ def genMd(tabs=4):
             try:
                 txt = cleanFileTxt(f)
                 cont = []
-                for x, pre, y, inf in rxInf.findall(txt):
+                for x, pre, y, q, inf in rxInf.findall(txt):
                     rx = re.compile(r'^' + pre.replace(' ', ' ?'), re.M)
                     inf = rx.sub('', inf)
+                    if q: inf = rxQuo.sub('', inf)
                     if inf: cont.append(inf)
                 if cont:
                     res.append('\n'.join([f'**{f}**', mdCode('\n\n'.join(cont))]))
