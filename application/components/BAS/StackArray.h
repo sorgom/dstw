@@ -165,14 +165,14 @@ class CRef
 {
 public:
     inline CRef(const T& obj):
-        mPtr(&obj)
+        mRef(obj)
     {}
     inline const T& ref() const
     {
-        return *mPtr;
+        return mRef;
     }
 private:
-    const T* mPtr;
+    const T& mRef;
 
     NOCOPY(CRef)
     CRef();

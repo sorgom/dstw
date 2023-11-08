@@ -25,10 +25,6 @@ namespace test
         {
             expect("fromFld").PARAM(state);
         }
-        inline void expectNumFromFld(UINT32 num = 0)
-        {
-            expect(num, "fromFld").IGNORE();
-        }
 
         inline void fromGui(INT32 cmd)
         {
@@ -37,10 +33,6 @@ namespace test
         inline void expectFromGui(INT32 cmd)
         {
             expect("fromGui").PARAM(cmd);
-        }
-        inline void expectNumFromGui(UINT32 num = 0)
-        {
-            expect(num, "fromGui").IGNORE();
         }
     };
 }

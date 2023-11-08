@@ -25,10 +25,6 @@ namespace test
         {
             expect("fromFld").PARAM(state).PARAM(speed);
         }
-        inline void expectNumFromFld(UINT32 num = 0)
-        {
-            expect(num, "fromFld").IGNORE();
-        }
 
         inline void fromGui(INT32 state, INT32 speed)
         {
@@ -37,10 +33,6 @@ namespace test
         inline void expectFromGui(INT32 state, INT32 speed = 0)
         {
             expect("fromGui").PARAM(state).PARAM(speed);
-        }
-        inline void expectNumFromGui(UINT32 num = 0)
-        {
-            expect(num, "fromGui").IGNORE();
         }
 
         inline INT32 type() const

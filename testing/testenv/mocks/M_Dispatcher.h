@@ -37,14 +37,9 @@ namespace test
         {
             return call("assign").TPARAM(ElementName, name).PARAM(subs).PARAM(pos).RETURN_DEF_INT(0);
         }
-
         inline void expectAssign(const ElementName& name, E_Subsys subs, UINT32 pos, INT32 ret = 0) const
         {
             expect("assign").TPARAM(ElementName, name).PARAM(subs).PARAM(pos).AND_RETURN(ret);
-        }
-        inline void expectAssign(E_Subsys subs, UINT32 pos, INT32 ret = 0) const
-        {
-            expect("assign").PARAM(subs).PARAM(pos).IGNORE().AND_RETURN(ret);
         }
 
         inline void dispatch(const FldState& tele) const
