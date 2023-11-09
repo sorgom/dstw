@@ -10,7 +10,9 @@ jobs:
   buildAndRunTests:
 
     runs-on: ubuntu-latest
-
+    variables:
+      GIT_SUBMODULE_STRATEGY: recursive
+      
     steps:
     - name: "Checkout repository"
       uses: actions/checkout@v3
