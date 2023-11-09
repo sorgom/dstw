@@ -1,6 +1,5 @@
 # Static Code Analysis
 
-
 ## directory content
 
 **cppcheck.sh**
