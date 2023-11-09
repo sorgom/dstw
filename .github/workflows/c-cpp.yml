@@ -17,7 +17,7 @@ jobs:
       with:
          submodules: 'true'
     - name: "check subs"
-      run: ls -l BuildCppUTest/CppUTest/include/CppUTest
+      run: ls -l BuildCppUTest/CppUTest
     - name: "build tests"
       run: cd make; make -f tests.make
     - name: "run tests"
