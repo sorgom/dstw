@@ -10,14 +10,13 @@ jobs:
   buildAndRunTests:
 
     runs-on: ubuntu-latest
-    variables:
-      GIT_SUBMODULE_STRATEGY: recursive
-      
+
     steps:
     - name: "Checkout repository"
       uses: actions/checkout@v3
       with:
          submodules: 'true'
+         GIT_SUBMODULE_STRATEGY: recursive
     - name: "check subs"
       run: ls -l BuildCppUTest/CppUTest
     - name: "build tests"
