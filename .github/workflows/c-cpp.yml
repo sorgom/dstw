@@ -16,6 +16,8 @@ jobs:
       uses: actions/checkout@v3
       with:
          submodules: 'true'
+    - name: "check subs"
+      run: ls -l BuildCppUTest/CppUTest/include/CppUTest
     - name: "build tests"
       run: cd make; make -f tests.make
     - name: "run tests"
