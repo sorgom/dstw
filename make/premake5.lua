@@ -2,6 +2,39 @@
 --  Makefile build rules for premake5:
 --  ============================================================
 
+appIncludes = {
+    '../specification',
+    '../application',
+    '../application/components'
+}
+
+testIncludes = {
+    '../testing/testenv',
+    '../devel',
+    '../BuildCppUTest/CppUTest/include',
+    '../CppUTestSteps/TestSteps/include',
+    appIncludes
+}
+
+appSrcs = {
+    '../application/components/**.cpp'
+}
+
+testEnvSrcs = {
+    '../testing/testenv/**.cpp',
+    '../CppUTestSteps/TestSteps/src/*.cpp'
+}
+
+testDefines = {
+    'CPPUTEST_USE_LONG_LONG=0', 
+    'CAPACITY_TSW=11', 
+    'CAPACITY_SIG=10', 
+    'CAPACITY_LCR=9', 
+    'CAPACITY_SEG=22' 
+}
+
+testLinks = { 'CppUTest', 'CppUTestExt' }
+
 --  ============================================================
 --  > tests.make
 --  module tests and system tests at once runtime
@@ -12,15 +45,7 @@ workspace 'tests'
     language    'C++'
     objdir      'obj/%{prj.name}'
 
-    includedirs {
-        '../testing/testenv',
-        '../specification',
-        '../application',
-        '../application/components',
-        '../devel',
-        '../BuildCppUTest/include',
-        '../CppUTestSteps/TestSteps/include'
-    }
+    includedirs { testIncludes }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
 
@@ -29,24 +54,17 @@ workspace 'tests'
         targetdir   'bin'
 
         files { 
-            '../application/components/**.cpp',
-            '../testing/testenv/**.cpp',
+            testEnvSrcs,
+            appSrcs,
             '../testing/tests/moduletests/**.cpp',
             '../testing/tests/systemtests/**.cpp',
-            '../CppUTestSteps/TestSteps/src/*.cpp'
         }
 
-        defines { 
-            'NDEBUG', 'CPPUTEST_USE_LONG_LONG=0', 
-            'CAPACITY_TSW=11', 
-            'CAPACITY_SIG=10', 
-            'CAPACITY_LCR=9', 
-            'CAPACITY_SEG=22' 
-        }
+        defines { 'NDEBUG', testDefines }
         optimize 'On'
         stl 'none'
         libdirs { '../BuildCppUTest/lib' }
-        links { 'CppUTest', 'CppUTestExt' }
+        links { testLinks }
 
 --  ============================================================
 --  > coverage.make
@@ -59,25 +77,11 @@ workspace 'coverage'
     language    'C++'
     objdir      'obj/%{prj.name}'
 
-    includedirs {
-        '../testing/testenv',
-        '../specification',
-        '../application',
-        '../application/components',
-        '../devel',
-        '../BuildCppUTest/include',
-        '../CppUTestSteps/TestSteps/include'
-    }
+    includedirs { testIncludes }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
 
-    defines { 
-        'DEBUG', 'CPPUTEST_USE_LONG_LONG=0', 
-        'CAPACITY_TSW=11', 
-        'CAPACITY_SIG=10', 
-        'CAPACITY_LCR=9', 
-        'CAPACITY_SEG=22' 
-    }
+    defines { 'DEBUG', testDefines }
     symbols 'On'
     stl 'none'
 
@@ -85,10 +89,7 @@ workspace 'coverage'
         kind        'StaticLib'
         targetdir   'lib'
         
-        files { 
-            '../application/components/**.cpp',
-        }
-
+        files { appSrcs }
         buildoptions {'-fprofile-arcs -ftest-coverage'}
 
     project 'coverage_tests'
@@ -96,13 +97,12 @@ workspace 'coverage'
         targetdir   'bin'
 
         files { 
-            '../testing/testenv/**.cpp',
-            '../testing/tests/moduletests/**.cpp',
-            '../CppUTestSteps/TestSteps/src/*.cpp'
+            testEnvSrcs,
+            '../testing/tests/moduletests/**.cpp'
         }
 
         libdirs { 'lib', '../BuildCppUTest/lib' }
-        links { 'coverage_app', 'CppUTest', 'CppUTestExt', 'gcov' }
+        links { 'coverage_app', 'gcov', testLinks }
         linkoptions { '--coverage' }
 
 --  ============================================================
@@ -115,11 +115,7 @@ workspace 'dstw'
     language    'C++'
     objdir      'obj/%{prj.name}'
 
-    includedirs {
-        '../specification',
-        '../application',
-        '../application/components',
-    }
+    includedirs { appIncludes }
 
     buildoptions { '-std=c++98 -pedantic-errors' }
 
@@ -151,16 +147,7 @@ workspace 'devtests'
     language    'C++'
     objdir      'obj/%{prj.name}'
 
-    includedirs {
-        '../testing/testenv',
-        '../specification',
-        '../application',
-        '../application/components',
-        '../devel',
-        '../BuildCppUTest/include',
-        '../CppUTestSteps/TestSteps/include'
-    }
-
+    includedirs { testIncludes }
     buildoptions { '-std=c++98 -pedantic-errors' }
 
     project 'devtests'
@@ -168,18 +155,15 @@ workspace 'devtests'
         targetdir   'bin'
 
         files { 
-            '../application/components/**.cpp',
-            '../testing/testenv/**.cpp',
+            appSrcs,
+            testEnvSrcs,
             '../testing/tests/devtests/*.cpp',
-            '../CppUTestSteps/TestSteps/src/*.cpp'
         }
 
-        defines { 
-            'NDEBUG', 'CPPUTEST_USE_LONG_LONG=0'
-        }
+        defines { 'NDEBUG', testDefines }
         optimize 'On'
         libdirs { '../BuildCppUTest/lib' }
-        links { 'CppUTest', 'CppUTestExt' }
+        links { testLinks }
 
 --  ============================================================
 --  > bullseye.make
@@ -191,16 +175,7 @@ workspace 'bullseye'
     language    'C++'
     objdir      'obj/%{prj.name}'
 
-    includedirs {
-        '../testing/testenv',
-        '../specification',
-        '../application',
-        '../application/components',
-        '../devel',
-        '../BuildCppUTest/include',
-        '../CppUTestSteps/TestSteps/include'
-    }
-
+    includedirs { testIncludes }
     buildoptions { '-std=c++98 -pedantic-errors' }
 
     project 'bullseye'
@@ -208,24 +183,17 @@ workspace 'bullseye'
         targetdir   'bin'
 
         files { 
-            '../application/components/**.cpp',
-            '../testing/testenv/**.cpp',
+            appSrcs,
+            testEnvSrcs,
             '../testing/tests/moduletests/**.cpp',
-            '../CppUTestSteps/TestSteps/src/*.cpp'
         }
 
-        defines { 
-            'NDEBUG', 'CPPUTEST_USE_LONG_LONG=0', 
-            'CAPACITY_TSW=11', 
-            'CAPACITY_SIG=10', 
-            'CAPACITY_LCR=9', 
-            'CAPACITY_SEG=22' 
-        }
+        defines { 'NDEBUG', testDefines }
         optimize 'On'
         stl 'none'
 
         libdirs { '../BuildCppUTest/lib' }
-        links { 'CppUTest', 'CppUTestExt' }
+        links { testLinks }
 
         prebuildcommands { 'cov01 -1 --no-banner' }
         postbuildcommands { './bullseye.sh' }

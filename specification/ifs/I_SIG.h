@@ -4,8 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef I_SIG_TYPE_H
-#define I_SIG_TYPE_H
+#ifndef I_SIG_H
+#define I_SIG_H
 
 #include <BAS/BaseTypes.h>
 

@@ -23,13 +23,13 @@ TARGETDIR = bin
 TARGET = $(TARGETDIR)/coverage_tests
 OBJDIR = obj/coverage_tests
 DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCAPACITY_TSW=11 -DCAPACITY_SIG=10 -DCAPACITY_LCR=9 -DCAPACITY_SEG=22
-INCLUDES += -I../testing/testenv -I../specification -I../application -I../application/components -I../devel -I../BuildCppUTest/include -I../CppUTestSteps/TestSteps/include
+INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++98 -pedantic-errors
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++98 -pedantic-errors
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-LIBS += lib/libcoverage_app.a -lCppUTest -lCppUTestExt -lgcov
+LIBS += lib/libcoverage_app.a -lgcov -lCppUTest -lCppUTestExt
 LDDEPS += lib/libcoverage_app.a
 ALL_LDFLAGS += $(LDFLAGS) -Llib -L../BuildCppUTest/lib --coverage
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)

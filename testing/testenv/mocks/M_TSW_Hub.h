@@ -43,10 +43,6 @@ namespace test
         {
             expect("fromDsp").PARAM(pos).TPARAM(FldState, tele);
         }
-        // inline void expectFromDsp(UINT32 pos) const
-        // {
-        //     expect("fromDsp").IGNORE().PARAM(pos);
-        // }
 
         inline void fromDsp(UINT32 pos, const GuiCmd& tele) const
         {
@@ -56,11 +52,6 @@ namespace test
         {
             expect("fromDsp").PARAM(pos).TPARAM(GuiCmd, tele);
         }
-        // inline void expectFromDsp(UINT32 pos) const
-        // {
-        //     expect("fromDsp").IGNORE().PARAM(pos);
-        // }
-
     };
 }
 
