@@ -17,7 +17,7 @@ jobs:
       with:
          submodules: 'true'
     - name: "build tests"
-      run: cd make; make -f tests.make
+      run: cd make; make -j -f tests.make
     - name: "run tests"
       run: make/bin/tests -b -v
 
@@ -29,6 +29,6 @@ jobs:
     - name: "Checkout repository"
       uses: actions/checkout@v3
     - name: "build dstw app"
-      run: cd make; make -f dstw.make
+      run: cd make; make -j -f dstw.make
     - name: "run dstw app"
       run: make/bin/dstw

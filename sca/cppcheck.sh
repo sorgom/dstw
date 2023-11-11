@@ -3,6 +3,7 @@
 
 help()
 {
+    version
     echo "===================================="
     echo "static code analysis using cppcheck"
     echo "check:"
@@ -19,9 +20,9 @@ APP_INCS="-I../specification
     -I../application"
 
 TEST_INCS="-I../testing/testenv
-    "$APP_INCS" 
+    $APP_INCS 
     -I../devel
-    -I../BuildCppUTest/include
+    -I../BuildCppUTest/CppUTest/include
     -I../CppUTestSteps/TestSteps/include"
 
 APP_CALL="cppcheck -q --language=c++ --check-level=exhaustive"
