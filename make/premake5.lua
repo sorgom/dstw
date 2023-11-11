@@ -138,11 +138,11 @@ workspace 'dstw'
         stl 'none'
     
 --  ============================================================
---  > devtests.make
+--  > _devtests.make
 --  development only tests
---  ->  bin/devtests
+--  ->  bin/_devtests
 --  ============================================================
-workspace 'devtests'
+workspace '_devtests'
     configurations { 'ci' }
     language    'C++'
     objdir      'obj/%{prj.name}'
@@ -150,7 +150,7 @@ workspace 'devtests'
     includedirs { testIncludes }
     buildoptions { '-std=c++98 -pedantic-errors' }
 
-    project 'devtests'
+    project '_devtests'
         kind        'ConsoleApp'
         targetdir   'bin'
 
@@ -166,11 +166,11 @@ workspace 'devtests'
         links { testLinks }
 
 --  ============================================================
---  > bullseye.make
+--  > _bullseye.make
 --  module tests for bullseye coverage
---  ->  bin/bullseye
+--  ->  bin/_bullseye
 --  ============================================================
-workspace 'bullseye'
+workspace '_bullseye'
     configurations { 'ci' }
     language    'C++'
     objdir      'obj/%{prj.name}'
@@ -178,7 +178,7 @@ workspace 'bullseye'
     includedirs { testIncludes }
     buildoptions { '-std=c++98 -pedantic-errors' }
 
-    project 'bullseye'
+    project '_bullseye'
         kind        'ConsoleApp'
         targetdir   'bin'
 
