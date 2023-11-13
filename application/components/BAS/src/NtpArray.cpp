@@ -1,12 +1,12 @@
 #include <BAS/NtpArray.h>
 
-const Ntp& genNtp(
+const Ntp& GenNtp::genNtp(
     const ElementName& name,
     const INT32 type,
     const UINT32 pos
 )
 {
-    static Ntp n;
+    static Ntp n = {};
     Mem::cpy(n.name, name);
     n.type = type;
     n.pos  = pos;

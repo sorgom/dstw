@@ -18,14 +18,20 @@ struct Ntp
     UINT32 pos;
 };
 
-const Ntp& genNtp(
+class GenNtp
+{
+protected:
+    static const Ntp& genNtp(
         const ElementName& name,
         INT32 type = 0,
         UINT32 pos = 0
     );
+};
 
 template <UINT32 CAP>
-class NtpArray : public SimpleStackArray<Ntp, CAP>
+class NtpArray : 
+    public SimpleStackArray<Ntp, CAP>,
+    private GenNtp
 {
 public:
     inline UINT32 addNtp(const ElementName& name, INT32 type, UINT32 pos)
@@ -35,7 +41,9 @@ public:
 };
 
 template <UINT32 CAP>
-class NtpIndex : public StackArrayIndex<Ntp, CAP>
+class NtpIndex : 
+    public StackArrayIndex<Ntp, CAP>,
+    private GenNtp
 {
 public:
     inline NtpIndex(const NtpArray<CAP>& a):

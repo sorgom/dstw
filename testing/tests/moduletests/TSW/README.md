@@ -3,7 +3,7 @@
 **TSW_01.cpp**
 ```
 test of module TSW
-according to test plan tests_TSW.csv
+according to test plan TSW_states.md
 ```
 
 **TSW_02.cpp**

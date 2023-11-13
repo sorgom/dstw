@@ -21,7 +21,7 @@ enum E_TswState
 
 enum E_TswGuiCmd
 {
-    TSW_GUI_GMD_WU,
+    TSW_GUI_GMD_WU = 201,
     TSW_GUI_GMD_LEFT,
     TSW_GUI_GMD_RIGHT
 };
