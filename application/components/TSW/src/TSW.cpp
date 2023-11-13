@@ -26,6 +26,7 @@ void TSW::swLeft()
     {
     case TSW_STATE_LEFT:
     case TSW_STATE_WAIT_LEFT:
+    case TSW_STATE_DEFECT:
         break;
     default:
         toFld(TSW_STATE_LEFT);
@@ -40,6 +41,7 @@ void TSW::swRight()
     {
     case TSW_STATE_RIGHT:
     case TSW_STATE_WAIT_RIGHT:
+    case TSW_STATE_DEFECT:
         break;
     default:
         toFld(TSW_STATE_RIGHT);

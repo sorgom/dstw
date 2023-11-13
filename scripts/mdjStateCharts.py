@@ -1,37 +1,41 @@
+#   ============================================================
+#   extract state transitions from StarUML state charts
+#   end generate test steps
+#   ============================================================
+#   created by Manfred Sorgo
+
 import json, re
-from os.path import abspath, basename, dirname, exists, realpath, join, isdir, getmtime, relpath
-
-baseDir = abspath(dirname(__file__) + '/..')
-print(baseDir)
-mdj=baseDir + '/specification/diagrams/TSW.mdj'
-
-# UMLStateMachine
-# <-  UMLStatechartDiagram
-# <-	UMLRegion
-# 	<-	UMLTransition
-# 		source -> UMLState
-# 		target -> UMLState
-# 		triggers [
-# 			- name
-# 			- name
-# 		]
-# 	<-	UMLState
-# 		- name
-
-
+from sys import argv
 
 class StateCharts(object):
-    def __init__(self, data, double=True, sep='\t'):
-        self.double = double
-        self.sep = sep
+    def __init__(self, mdj):
+        data = dict()
+        with open(mdj, 'r') as fh:
+            data =  json.load(fh)
+            fh.close()
         self.transitions = dict()
         self.states = dict()
+        self.sms = dict()
+        self.scnames = dict()
+        self.regnames = dict()
         self.heading = ['STEP', 'FROM', 'TO', 'EVENT', 'GLUE']
         self.headline = [':---' for h in self.heading ]
+        self.headline[0] = '---:'
         self.traverse(data)
-        for k, transitions in self.transitions.items():
-            states = self.states.get(k)
-            self.fuse(transitions, states)
+        self.regNames()
+        out = list()
+        for reg, transitions in self.transitions.items():
+            states = self.states.get(reg)
+            out.append(self.fuse(self.regnames.get(reg, 'NN'), transitions, states))
+
+        if out:
+            md = re.sub(r'\.\w+$', '_states.md', mdj)
+            with open(md, 'w') as fh:
+                fh.write('\n\n'.join([*out,'']))
+
+    def regNames(self):
+        for reg, sm in self.sms.items():
+            self.regnames[reg] = self.scnames.get(sm, 'NN')
 
     def event(self, trg, trn):
         a = re.split(r' +', trn, 1)
@@ -42,8 +46,6 @@ class StateCharts(object):
         return ['', '', evt]
     
     def glue(self, src, trg, transitions:list):
-        fromSrc = None
-        toTrg = None
         for src1, trg1, trn1 in transitions:
             for src2, trg2, trn2 in transitions:
                 if src1 == src and trg2 == trg:
@@ -52,10 +54,11 @@ class StateCharts(object):
                         [src2, trg2, trn2, '*']
                     ]
 
-    def outLine(self, data:list):
-        return '|' + '|'.join(data) + '|'
+    def outLine(self, *args):
+        return '|' + '|'.join(args) + '|'
 
-    def fuse(self, transitions:list, states:dict):
+    def fuse(self, name, transitions:list, states:dict):
+        print('FUSE', name, len(transitions), len(states.keys()))
         if states is None: return
         transitions = [
             [src, trg, self.event(trg, trn) ] 
@@ -72,11 +75,10 @@ class StateCharts(object):
             fromEvt.setdefault(src, dict())[evt] = trg
         
         noTrans = dict()
-        for src in states:
-            for evt in events:
+        for src in sorted(states):
+            for evt in sorted(events):
                 if fromEvt.get(src, dict()).get(evt) is None:
                     noTrans.setdefault(src, list()).append(evt)
-
 
         next = dict()
         for n, tr in enumerate(transitions):
@@ -114,7 +116,7 @@ class StateCharts(object):
                 trg = res[n + 1][0][0]
                 con = next.get(src, dict()).get(trg)
                 if con:
-                    res[n].append(transitions[con])
+                    res[n].append([*transitions[con], '*'])
                 else:
                     con = self.glue(src, trg, transitions)
                     if con:
@@ -126,7 +128,6 @@ class StateCharts(object):
         res = [i for l in res for i in l]
 
         tbl = list()
-
         for tr in res:
             tbl.append(tr)
             trg = tr[1]
@@ -136,10 +137,15 @@ class StateCharts(object):
                     tbl.append(self.noTrans(evt))
                 del noTrans[trg]
 
-        print(self.outLine(self.heading))
-        print(self.outLine(self.headline))
-        for p, tr in enumerate(tbl):
-            print(self.outLine(tr))
+        out = [
+            f'## {name}',
+            self.outLine(*self.heading),
+            self.outLine(*self.headline)
+        ]
+        out.extend(
+            [self.outLine(str(p + 1), *tr) for  p, tr in enumerate(tbl) ]
+        )
+        return '\n'.join(out)
 
     def getRef(self, data, key):
         ref = data.get(key)
@@ -150,6 +156,8 @@ class StateCharts(object):
         if type(data) == dict:
             tp = data.get('_type', '')
             pr = self.getRef(data, '_parent')
+            id = data.get('_id', '')
+            nm = data.get('name', 'NN')
             if tp == 'UMLTransition':
                 if pr:
                     src = self.getRef(data, 'source')
@@ -160,14 +168,17 @@ class StateCharts(object):
                             self.transitions.setdefault(pr, list()).append([src, trg, tr.get('name')])
 
             elif tp == 'UMLState':
-                if pr: self.states.setdefault(pr, dict())[data['_id']] = data['name']
+                if pr: self.states.setdefault(pr, dict())[id] = nm
+            elif tp == 'UMLStatechartDiagram':
+                self.scnames[pr] = nm
             else:
+                if tp == 'UMLRegion': self.sms[id] = pr
                 for v in data.values():
                     self.traverse(v)
         elif type(data) == list:
             for v in data:
                 self.traverse(v)
 
-with open(mdj, 'r') as fh:
-    data =  json.load(fh)
-    StateCharts(data)
+if __name__ == '__main__':
+    for fp in argv[1:]:
+        StateCharts(fp)

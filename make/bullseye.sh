@@ -3,7 +3,7 @@
 #   bullseye coverage output
 #   ============================================================
 cov01 -0 --no-banner
-bin/bullseye
+bin/_bullseye
 covselect -d --no-banner
 covselect -a --no-banner '../application/**/*.*'
 covselect -a --no-banner '../specification/ifs/*.*'
