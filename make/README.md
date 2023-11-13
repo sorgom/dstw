@@ -1,5 +1,14 @@
 ## directory content
 
+**buildAll.sh**
+```
+build all major makes parallelly
+options:
+-r  remove all artifacts before
+-x  execute all binaries
+-h  this help
+```
+
 **bullseye.sh**
 ```
 bullseye coverage output
@@ -22,11 +31,11 @@ module tests and system tests at once runtime
 application runtime
 ->  bin/dstw
 
-> devtests.make
+> _devtests.make
 development only tests
-->  bin/devtests
+->  bin/_devtests
 
-> bullseye.make
+> _bullseye.make
 module tests for bullseye coverage
-->  bin/bullseye
+->  bin/_bullseye
 ```

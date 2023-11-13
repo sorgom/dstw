@@ -65,4 +65,4 @@ tempCodeRunnerFile.py
 # bullseye
 html
 *.cov
-_*.make
+_*.*

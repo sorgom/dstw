@@ -1,7 +1,5 @@
 ## coverage using bullseye coverage
 ```
-BullseyeCoverage Source Report 9.5.12 Linux-x64
-Copyright (c) Bullseye Testing Technology
 Source            Function Coverage      C/D Coverage
 ----------------  -----------------  ----------------
 Com.h                 3 /  3 = 100%    0 /   0
@@ -22,7 +20,7 @@ SIG_X.cpp             9 /  9 = 100%   63 /  63 = 100%
 SIG_X.h               7 /  7 = 100%    0 /   0
 StackArray.cpp        1 /  1 = 100%    0 /   0
 StackArray.h         26 / 26 = 100%    2 /   2 = 100%
-TSW.cpp               7 /  7 = 100%   20 /  20 = 100%
+TSW.cpp               7 /  7 = 100%   22 /  22 = 100%
 TSW.h                 1 /  1 = 100%    0 /   0
 TSW_Hub.cpp           4 /  4 = 100%    4 /   4 = 100%
 TSW_Hub.h             1 /  1 = 100%    0 /   0
@@ -30,7 +28,7 @@ TSW_Provider.cpp      1 /  1 = 100%   12 /  12 = 100%
 TSW_Provider.h        3 /  3 = 100%    0 /   0
 coding.h              1 /  1 = 100%    0 /   0
 ----------------  -----------------  ----------------
-Total                97 / 97 = 100%  159 / 159 = 100%
+Total                97 / 97 = 100%  161 / 161 = 100%
 ```
 For details see
 <a href="http://dstw.sorgo.de/bullseye/" target="_blank">bullseye html report</a>
@@ -47,8 +45,8 @@ SYS/src/Com.cpp               2         --       --
 SYS/src/Dispatcher.cpp      106         --       --
 SYS/src/Loader.cpp           10         --       --
 SYS/src/Log.cpp               2         --       --
-TSW/src/TSW.cpp              89         --       --
+TSW/src/TSW.cpp              91         --       --
 TSW/src/TSW_Hub.cpp          38         --       --
 TSW/src/TSW_Provider.cpp     35         --       --
-total                       596         --       --
+total                       598         --       --
 ```
