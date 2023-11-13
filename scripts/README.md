@@ -27,7 +27,7 @@ code automatization of this project
 **mdjStateCharts.py**
 ```
 extract state transitions from StarUML state charts
-end generate test steps
+and generate test steps
 ```
 
 **modGcov.py**
