@@ -54,6 +54,13 @@ simple code generator features
 simple md generator
 ```
 
+**modMdTable.py**
+```
+simple md table generator
+- numeric align right
+- alpha   align left
+```
+
 **modRunTests.py**
 ```
 run CppUTest tests
