@@ -29,7 +29,8 @@ protected:
     INT32 mSpeedToGui;
 
     void procFromFld(INT32 state, INT32 speed);
-    void procFromGui(INT32 state, INT32 speed);
+    void procFromGui(INT32 stateFld, INT32 stateGui, INT32 speed);
+    void speedToFld(INT32 speed);
 
     static void logMissmatch();
 
@@ -54,6 +55,9 @@ public:
     inline INT32 type() const { return SIG_TYPE_H; }
 
 private:
+    void procH0();
+    void procH1();
+
     NOCOPY(SIG_H)
     SIG_H();
 };
@@ -74,6 +78,10 @@ public:
     void fromGui(INT32 state, INT32 speed);
 
     inline INT32 type() const { return SIG_TYPE_N; }
+
+private:
+    void procN0(INT32 speed);
+    void procN1(INT32 speed);
 
     NOCOPY(SIG_N)
     SIG_N();
@@ -97,6 +105,12 @@ public:
     void fromGui(INT32 state, INT32 speed);
 
     inline INT32 type() const { return SIG_TYPE_H_N; }
+
+private:
+    void procH0N0(INT32 speed);
+    void procH0N1(INT32 speed);
+    void procH1N0(INT32 speed);
+    void procH1N1(INT32 speed);
 
     NOCOPY(SIG_H_N)
     SIG_H_N();
