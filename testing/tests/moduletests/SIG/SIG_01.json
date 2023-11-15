@@ -11,13 +11,13 @@
 
     "cfgs": [
         {
-            "csv": "specification/diagrams/transitions_SIG_H.csv"
+            "csv": "specification/doc/transitions_SIG_H.csv"
         },
         {
-            "csv": "specification/diagrams/transitions_SIG_N.csv"
+            "csv": "specification/doc/transitions_SIG_N.csv"
         },
         {
-            "csv": "specification/diagrams/transitions_SIG_H_N.csv"
+            "csv": "specification/doc/transitions_SIG_H_N.csv"
         }
     ]
 }

@@ -1,11 +1,11 @@
 # release 2023-11 _Maggie_
 
 ## components
-<img src="../specification/diagrams/components.svg" alt="modules" style="width:400px;"> 
+<img src="../specification/doc/components.svg" alt="modules" style="width:400px;"> 
 
 ## modules
 <div style="background-color:#F8F8F8;">
-<img src="../specification/diagrams/overview.svg" alt="component overview">
+<img src="../specification/doc/overview.svg" alt="component overview">
 </div>
 
 ## central error logging
@@ -13,7 +13,7 @@ There is no error handling in the individual components.
 All errors are reported to the central error log.
 Further error handling / reactions / statistics will be implemented here.
 <div style="background-color:#F8F8F8;">
-<img src="../specification/diagrams/log.svg" alt="central logging">
+<img src="../specification/doc/log.svg" alt="central logging">
 </div>
 
 ## framing

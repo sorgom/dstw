@@ -8,5 +8,5 @@
     "cmd0": "CMD(_CMD_);",
     "fld1": "FLD(_VAL_, _VAL_);",
     "fld0": "FLD(_VAL_);",
-    "csv": "specification/diagrams/transitions_TSW.csv"
+    "csv": "specification/doc/transitions_TSW.csv"
 }

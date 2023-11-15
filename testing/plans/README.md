@@ -2,7 +2,7 @@
 
 ## state chart TSW
 <div style="background-color:#F8F8F8;">
-<img src="../../specification/diagrams/SC_TSW.svg" alt="state chart">
+<img src="../../specification/doc/SC_TSW.svg" alt="state chart">
 </div>
 
 ## generated test steps
