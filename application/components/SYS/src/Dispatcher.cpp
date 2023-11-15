@@ -49,9 +49,10 @@ void Dispatcher::dispatch(const FldState& tele) const
         case SUBSYS_SIG:
             IL::getSIG_Hub().fromDsp(ntp.pos, tele);
             break;
-        case SUBSYS_SEG:
-            break;
         case SUBSYS_LCR:
+            IL::getLCR_Hub().fromDsp(ntp.pos, tele);
+            break;
+        case SUBSYS_SEG:
             break;
         default:
             break;
@@ -77,9 +78,10 @@ void Dispatcher::dispatch(const GuiCmd& tele) const
         case SUBSYS_SIG:
             IL::getSIG_Hub().fromDsp(ntp.pos, tele);
             break;
-        case SUBSYS_SEG:
-            break;
         case SUBSYS_LCR:
+            IL::getLCR_Hub().fromDsp(ntp.pos, tele);
+            break;
+        case SUBSYS_SEG:
             break;
         default:
             break;

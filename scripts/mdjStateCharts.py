@@ -7,10 +7,48 @@
 from modTransTable import TransTable
 import json, re
 from sys import argv
+from getopt import getopt
 
 class StateCharts(object):
-    def __init__(self, mdj):
+    def __init__(self):
         self.transTable = TransTable()
+        # data = dict()
+        # with open(mdj, 'r') as fh:
+        #     data =  json.load(fh)
+        #     fh.close()
+        # self.transitions = dict()
+        # self.stateNames = dict()
+        # self.stateMachines = dict()
+        # self.stateChartNames = dict()
+        # self.regionNames = dict()
+        # self.traverse(data)
+        # self.regNames()
+
+    def genInfo(self, mdj):
+        self.scanMdj(mdj)
+        for region in self.transitions.keys():
+            print(self.regionNames.get(region, 'NN'))
+            transitions = self.fuse(region)
+            print('transitions:', len(transitions))
+            print('test steps :', len(self.transTable.genTable(transitions)))
+
+    def genMd(self, mdj):
+        self.scanMdj(mdj)
+        out = list()
+        for region in self.transitions.keys():
+            out.append(
+                self.transTable.genMd(
+                    self.fuse(region),
+                    self.regionNames.get(region, 'NN')
+                )
+            )
+
+        if out:
+            md = re.sub(r'\.\w+$', '_states.md', mdj)
+            with open(md, 'w') as fh:
+                fh.write('\n\n'.join([*out,'']))
+
+    def scanMdj(self, mdj):
         data = dict()
         with open(mdj, 'r') as fh:
             data =  json.load(fh)
@@ -22,15 +60,6 @@ class StateCharts(object):
         self.regionNames = dict()
         self.traverse(data)
         self.regNames()
-        out = list()
-        for reg, transitions in self.transitions.items():
-            stateNames = self.stateNames.get(reg)
-            out.append(self.fuse(self.regionNames.get(reg, 'NN'), transitions, stateNames))
-
-        if out:
-            md = re.sub(r'\.\w+$', '_states.md', mdj)
-            with open(md, 'w') as fh:
-                fh.write('\n\n'.join([*out,'']))
 
     def regNames(self):
         for reg, sm in self.stateMachines.items():
@@ -41,14 +70,16 @@ class StateCharts(object):
         a.append(trg)
         return ' '.join(a[0:2])
 
-    def fuse(self, name, transitions:list, stateNames:dict):
+    def fuse(self, region):
+        transitions = self.transitions.get(region)
+        stateNames  = self.stateNames.get(region)
         if stateNames is None: return
         transitions = [
             [src, trg, self.event(trg, evt) ] 
                 for src, trg, evt in [[stateNames.get(src), stateNames.get(trg), evt] 
                     for src, trg, evt in transitions]
         ]
-        return self.transTable.genMd(transitions, name)
+        return transitions
     
     def getRef(self, data, key):
         ref = data.get(key)
@@ -81,7 +112,16 @@ class StateCharts(object):
         elif type(data) == list:
             for v in data:
                 self.traverse(v)
+    
+    def main(self):
+        opts, args = getopt(argv[1:], 'i')
+        call = self.genMd
+        for o, v in opts:
+            if (o == '-i'): call = self.genInfo
+                
+        for mdj in args:
+            call(mdj)        
 
 if __name__ == '__main__':
-    for fp in argv[1:]:
-        StateCharts(fp)
+    sc = StateCharts()
+    sc.main()

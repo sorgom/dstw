@@ -53,6 +53,9 @@ OBJECTS :=
 GENERATED += $(OBJDIR)/AppMain.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/Dispatcher.o
+GENERATED += $(OBJDIR)/LCR_Hub.o
+GENERATED += $(OBJDIR)/LCR_Provider.o
+GENERATED += $(OBJDIR)/LCR_X.o
 GENERATED += $(OBJDIR)/Loader.o
 GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/NtpArray.o
@@ -66,6 +69,9 @@ GENERATED += $(OBJDIR)/TSW_Provider.o
 OBJECTS += $(OBJDIR)/AppMain.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
+OBJECTS += $(OBJDIR)/LCR_Hub.o
+OBJECTS += $(OBJDIR)/LCR_Provider.o
+OBJECTS += $(OBJDIR)/LCR_X.o
 OBJECTS += $(OBJDIR)/Loader.o
 OBJECTS += $(OBJDIR)/Log.o
 OBJECTS += $(OBJDIR)/NtpArray.o
@@ -143,6 +149,15 @@ $(OBJDIR)/NtpArray.o: ../application/components/BAS/src/NtpArray.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/StackArray.o: ../application/components/BAS/src/StackArray.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/LCR_Hub.o: ../application/components/LCR/src/LCR_Hub.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/LCR_Provider.o: ../application/components/LCR/src/LCR_Provider.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/LCR_X.o: ../application/components/LCR/src/LCR_X.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/SIG_Hub.o: ../application/components/SIG/src/SIG_Hub.cpp

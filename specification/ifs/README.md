@@ -33,6 +33,21 @@ commands from subsystems shall be dispatched to field
 states from subsystems shall be dispatched to GUI
 ```
 
+**I_LCR.h**
+```
+interface LCR (level crossing)
+```
+
+**I_LCR_Hub.h**
+```
+interface LCR_Hub
+```
+
+**I_LCR_Provider.h**
+```
+interface LCR_Provider
+```
+
 **I_Loader.h**
 ```
 interface Loader

@@ -55,6 +55,9 @@ GENERATED += $(OBJDIR)/BAS_02.o
 GENERATED += $(OBJDIR)/BAS_03.o
 GENERATED += $(OBJDIR)/Comparator.o
 GENERATED += $(OBJDIR)/IL.o
+GENERATED += $(OBJDIR)/LCR_01.o
+GENERATED += $(OBJDIR)/LCR_02.o
+GENERATED += $(OBJDIR)/LCR_03.o
 GENERATED += $(OBJDIR)/M_Instances.o
 GENERATED += $(OBJDIR)/SIG_01.o
 GENERATED += $(OBJDIR)/SIG_02.o
@@ -79,6 +82,9 @@ OBJECTS += $(OBJDIR)/BAS_02.o
 OBJECTS += $(OBJDIR)/BAS_03.o
 OBJECTS += $(OBJDIR)/Comparator.o
 OBJECTS += $(OBJDIR)/IL.o
+OBJECTS += $(OBJDIR)/LCR_01.o
+OBJECTS += $(OBJDIR)/LCR_02.o
+OBJECTS += $(OBJDIR)/LCR_03.o
 OBJECTS += $(OBJDIR)/M_Instances.o
 OBJECTS += $(OBJDIR)/SIG_01.o
 OBJECTS += $(OBJDIR)/SIG_02.o
@@ -204,6 +210,15 @@ $(OBJDIR)/BAS_02.o: ../testing/tests/moduletests/BAS/BAS_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/BAS_03.o: ../testing/tests/moduletests/BAS/BAS_03.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/LCR_01.o: ../testing/tests/moduletests/LCR/LCR_01.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/LCR_02.o: ../testing/tests/moduletests/LCR/LCR_02.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/LCR_03.o: ../testing/tests/moduletests/LCR/LCR_03.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/SIG_01.o: ../testing/tests/moduletests/SIG/SIG_01.cpp

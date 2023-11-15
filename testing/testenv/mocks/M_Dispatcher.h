@@ -24,6 +24,7 @@ namespace test
         {
             expect("reset");
         }
+
         inline void index()
         {
             call("index");

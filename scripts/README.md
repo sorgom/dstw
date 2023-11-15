@@ -61,15 +61,6 @@ simple md table generator
 - alpha   align left
 ```
 
-**modRunTests.py**
-```
-run CppUTest tests
-- run test binary
-- output to report text
-- count failures reported
-* deprecated *
-```
-
 **modScanCode.py**
 ```
 simple code scanner for code generator features
@@ -114,8 +105,7 @@ directories of this project in git
 code gcov coverage of this project
 ```
 
-**runTests.py**
+**srcNums.py**
 ```
-* deprecated *
-module test analysis of this project
+simple line numbering for source sample markups
 ```

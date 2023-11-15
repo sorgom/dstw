@@ -21,6 +21,7 @@ namespace test
         m_Dispatcher().expectReset();
         m_TSW_Provider().expectLoad(projData.pTSW, projData.numTSW);
         m_SIG_Provider().expectLoad(projData.pSIG, projData.numSIG);
+        m_LCR_Provider().expectLoad(projData.pLCR, projData.numLCR);
         m_Dispatcher().expectIndex();
         mSUT.load(projData);
         CHECK_N_CLEAR()

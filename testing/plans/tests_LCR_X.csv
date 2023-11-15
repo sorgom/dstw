@@ -1,0 +1,36 @@
+T01;LCR;;;;;;
+;From Field;;From GUI;To Field;To GUI;;
+STEP;state;ubk;state;state;state;ubk;
+1;DEFECT;OCCUPIED;;;DEFECT;UNDEF;UBK remains UNDEF
+2;;;OPEN;;;;command ignored if DEFECT
+3;;;CLOSED;;;;command ignored if DEFECT
+4;DEFECT;FREE;;;;;repetion of DEFECT
+5;UNDEF;DEFECT;;;UNDEF;UNDEF;
+6;;;OPEN;OPEN;WAIT_OPEN;UNDEF;
+7;;;OPEN;;;;ignored because WAIT_OPEN
+8;OPEN;UNDEF;;;OPEN;UNDEF;
+9;;;OPEN;;;;already OPEN
+10;;;CLOSED;CLOSED;WAIT_CLOSED;UNDEF;
+11;;;CLOSED;;;;ignored because WAIT_CLOSED
+12;CLOSED;UNDEF;;;CLOSED;UNDEF;
+13;;;CLOSED;;;;already CLOSED
+14;;;UNDEF;;;;invalid
+15;;;DEFECT;;;;invalid
+16;;;WAIT_OPEN;;;;invalid
+17;;;WAIT_CLOSED;;;;invalid
+18;WAIT_OPEN;;;;;;invalid
+19;WAIT_CLOSED;;;;;;invalid
+;;;;;;;
+T02;LCR_UBK;;;;;;
+;From Field;;From GUI;To Field;To GUI;;
+STEP;state;ubk;state;state;state;ubk;
+1;DEFECT;OCCUPIED;;;DEFECT;OCCUPIED;
+2;;;OPEN;;;;command ignored if DEFECT
+3;;;CLOSED;;;;command ignored if DEFECT
+4;DEFECT;FREE;;;DEFECT;FREE;
+5;DEFECT;OCCUPIED;;;DEFECT;OCCUPIED;
+6;DEFECT;UNDEF;;;DEFECT;UNDEF;
+7;DEFECT;DEFECT;;;DEFECT;DEFECT;
+8;DEFECT;DEFECT;;;;;repetition
+9;WAIT_OPEN;FREE;;;;;invalid state
+10;OPEN;1000;;;;;invalid UBK

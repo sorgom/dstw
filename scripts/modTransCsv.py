@@ -19,6 +19,8 @@ class TransCsv(object):
         self.transTable = TransTable()
         self.mdData = ''
         self.statePrefix = ''
+        self.delimiter = ';'
+        self.info = False
         self.rxInd = re.compile(r'^', re.M)
         self.rxCsv = re.compile(r'\.csv$', re.I)
         self.rxJsn = re.compile(r'\.json$', re.I)
@@ -34,11 +36,11 @@ class TransCsv(object):
         evt = ' '.join([*a, trg][0:2])
         return [src, trg, evt]
 
-    def genTransitions(self, srcCsv, delimiter = ';'):
+    def genTransitions(self, srcCsv):
         data = list()
 
         with open(srcCsv, 'r') as fh:
-            rdr = csv.reader(fh, delimiter = delimiter)
+            rdr = csv.reader(fh, delimiter = self.delimiter)
             data = [row for row in rdr]
             fh.close()
 
@@ -56,8 +58,8 @@ class TransCsv(object):
                     if trg != src: transitions.append(self.transition(src, trg, evt))
         return transitions
 
-    def genMd(self, srcCsv, delimiter = ';'):
-        transitions = self.genTransitions(srcCsv, delimiter)
+    def genMd(self, srcCsv):
+        transitions = self.genTransitions(srcCsv)
         trgMd = re.sub(r'\.\w+$', '.md', srcCsv)
         ttl   = re.sub(r'\.\w+$', '', basename(srcCsv)).replace('_', ' ')
 
@@ -70,10 +72,28 @@ class TransCsv(object):
                 self.transTable.genMd(transitions)
             ]))
 
+    def statOut(self, num, desc):
+        print("%4d %s" % (num, desc))
+
+    def genInfo(self, srcCsv):
+        print(basename(srcCsv))
+        transitions = self.genTransitions(srcCsv)
+        table = self.transTable.genTable(transitions)
+        nGlue = 0
+        nNoTrans = 0
+        for tr in table:
+            if len(tr) > 3: nGlue += 1
+            elif not tr[0]: nNoTrans += 1
+
+        self.statOut(len(transitions), 'transitions')
+        self.statOut(len(table), 'test steps total')
+        self.statOut(nNoTrans, 'test steps without transition')
+        self.statOut(nGlue, 'test steps as glue')
+
     def cppName(self, prefix:str, state:str):
         return "%s_%s" % (prefix, state.replace(' ', '_'))
  
-    def genJsonCpp(self, file, delimiter=';'):
+    def genJsonCpp(self, file):
         with open (file, 'r') as fh:
             res = []
             data = jload(fh)
@@ -92,8 +112,7 @@ class TransCsv(object):
                         cmd1 = setup['cmd1'],
                         cmd0 = setup['cmd0'],
                         fld1 = setup['fld1'],
-                        fld0 = setup['fld0'],
-                        delimiter = delimiter
+                        fld0 = setup['fld0']
                     )
                 )
             print('\n\n'.join(res))
@@ -104,11 +123,10 @@ class TransCsv(object):
                cmd1 = 'CMD(_VAL_, 0, _VAL_, 0, _TRG_, 0);',
                cmd0 = 'CMD(_VAL_, 0);',
                fld1 = 'FLD(_VAL_, 0, _VAL_, 0);',
-               fld0 = 'FLD(_VAL_, 0);',
-               delimiter = ';'
+               fld0 = 'FLD(_VAL_, 0);'
             
         ):
-        transitions = self.genTransitions(srcCsv, delimiter)
+        transitions = self.genTransitions(srcCsv)
         tbl = self.transTable.genTable(transitions)
         step = 0
         res = list()
@@ -133,20 +151,22 @@ class TransCsv(object):
                 res.append(templ)
         return self.rxInd.sub('        ', '\n'.join(res))
 
-    def fromFile(self, fp, delimiter=';'):
+    def fromFile(self, fp):
         if self.rxCsv.search(fp):
-            self.genMd(fp, delimiter)
+            if self.info: self.genInfo(fp)
+            else: self.genMd(fp)
         elif self.rxJsn.search(fp):
-            self.genJsonCpp(fp, delimiter)
+            self.genJsonCpp(fp)
 
     def main(self):
-        opts, args = getopt(argv[1:], 'd:h')
-        delimiter = ';'
+        opts, args = getopt(argv[1:], 'd:ih')
         for o, v in opts:
             if (o == '-d'):
-                delimiter = v
+                self.delimiter = v
+            if (o == '-i'):
+                self.info = True
         for src in args:
-            self.fromFile(src, delimiter = delimiter)        
+            self.fromFile(src)        
 
 if __name__ == '__main__':
     trc = TransCsv()

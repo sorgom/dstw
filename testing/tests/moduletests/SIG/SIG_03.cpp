@@ -11,10 +11,9 @@ namespace test
     {
     protected:
         SIG_Provider mSUT;
-        GenProjData<1, 3> mData;
+        GenProjData<1, 3, 1, 1> mData;
         inline TestGroupSIP()
         {
-            mockAll();
             mData.setSigType(0, SIG_TYPE_H);
             mData.setSigType(1, SIG_TYPE_N); 
             mData.setSigType(2, SIG_TYPE_H_N); 

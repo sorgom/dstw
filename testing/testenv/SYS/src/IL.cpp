@@ -66,6 +66,9 @@ namespace test
         //# IL_MEMB
         IL_MEMB(Com)
         IL_MEMB(Dispatcher)
+        IL_MEMB(LCR)
+        IL_MEMB(LCR_Hub)
+        IL_MEMB(LCR_Provider)
         IL_MEMB(Loader)
         IL_MEMB(Log)
         IL_MEMB(SIG)
@@ -88,6 +91,8 @@ namespace test
         //# IL_CON : APP
         IL_CON(Com)
         IL_CON(Dispatcher)
+        IL_CON(LCR_Hub)
+        IL_CON(LCR_Provider)
         IL_CON(Loader)
         IL_CON(Log)
         IL_CON(SIG_Hub)
@@ -97,6 +102,7 @@ namespace test
         //# END
 
         //# IL_CON_MOCK : MOCK
+        IL_CON_MOCK(LCR)
         IL_CON_MOCK(SIG)
         IL_CON_MOCK(TSW)
         //# END
@@ -108,6 +114,9 @@ namespace test
         //# IL_RESET
         IL_RESET(Com)
         IL_RESET(Dispatcher)
+        IL_RESET(LCR)
+        IL_RESET(LCR_Hub)
+        IL_RESET(LCR_Provider)
         IL_RESET(Loader)
         IL_RESET(Log)
         IL_RESET(SIG)
@@ -123,6 +132,9 @@ namespace test
 //# IL_DEF
 IL_DEF(Com)
 IL_DEF(Dispatcher)
+IL_DEF(LCR)
+IL_DEF(LCR_Hub)
+IL_DEF(LCR_Provider)
 IL_DEF(Loader)
 IL_DEF(Log)
 IL_DEF(SIG)

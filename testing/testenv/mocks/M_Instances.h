@@ -15,6 +15,9 @@
 //## INCLUDES_LOCAL
 #include "M_Com.h"
 #include "M_Dispatcher.h"
+#include "M_LCR.h"
+#include "M_LCR_Hub.h"
+#include "M_LCR_Provider.h"
 #include "M_Log.h"
 #include "M_SIG.h"
 #include "M_SIG_Hub.h"
@@ -33,6 +36,9 @@ namespace test
     //# MOCK_DEC
     MOCK_DEC(Com)
     MOCK_DEC(Dispatcher)
+    MOCK_DEC(LCR)
+    MOCK_DEC(LCR_Hub)
+    MOCK_DEC(LCR_Provider)
     MOCK_DEC(Log)
     MOCK_DEC(SIG)
     MOCK_DEC(SIG_Hub)

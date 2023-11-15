@@ -37,6 +37,11 @@ build
 bin
 obj
 lib
+.vs
+*.vcxproj.*
+*.vcxproj
+*.sln
+
 # *.make
 
 # gcov

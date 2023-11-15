@@ -28,7 +28,10 @@ enum E_Mod
     MOD_SIG_PROVIDER,
     MOD_TSW,
     MOD_TSW_HUB,
-    MOD_TSW_PROVIDER
+    MOD_TSW_PROVIDER,
+    MOD_LCR,
+    MOD_LCR_HUB,
+    MOD_LCR_PROVIDER
 };
 
 enum E_Err
