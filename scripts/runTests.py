@@ -1,5 +1,6 @@
 #   ============================================================
-#   module test analyzis of this project
+#   * deprecated * 
+#   module test analysis of this project
 #   ============================================================
 #   created by Manfred Sorgo
 

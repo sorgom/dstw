@@ -1,5 +1,5 @@
 #   ============================================================
-#   code coverage of this project
+#   code gcov coverage of this project
 #   ============================================================
 #   created by Manfred Sorgo
 

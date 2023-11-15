@@ -1,3 +1,10 @@
+#   ============================================================
+#   generate transition tables from transition lists
+#   -   for other generators
+#   -   as md output
+#   ============================================================
+#   created by Manfred Sorgo
+
 import re
 from modMdTable import mdTable
 

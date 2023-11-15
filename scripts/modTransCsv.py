@@ -1,3 +1,10 @@
+#   ============================================================
+#   process csv transition tables
+#   -   generate md tables
+#   -   generate test code
+#   ============================================================
+#   created by Manfred Sorgo
+
 from modTransTable import TransTable
 from modMdTable import mdTable
 from modUtilz import repoDir
@@ -5,6 +12,7 @@ import re, csv
 from json import load as jload
 from os.path import basename
 from sys import argv
+from getopt import getopt
 
 class TransCsv(object):
     def __init__(self):
@@ -69,17 +77,22 @@ class TransCsv(object):
         with open (file, 'r') as fh:
             res = []
             data = jload(fh)
-            for csv in data['input']:
+            cfgs = data.get('cfgs', [{}])
+            for cfg in cfgs:
+                setup = data.copy()
+                for k, v in cfg.items():
+                    setup[k] = v
+                csv = setup['csv']
                 res.append(f'//  {basename(csv)}')
                 res.append(
                     self.genCpp(
                         f'{repoDir()}/{csv}',
-                        prefixState = data['prefixState'],
-                        prefixCmd = data['prefixCmd'],
-                        cmd1 = data['cmd1'],
-                        cmd0 = data['cmd0'],
-                        fld1 = data['fld1'],
-                        fld0 = data['fld0'],
+                        prefixState = setup['prefixState'],
+                        prefixCmd = setup['prefixCmd'],
+                        cmd1 = setup['cmd1'],
+                        cmd0 = setup['cmd0'],
+                        fld1 = setup['fld1'],
+                        fld0 = setup['fld0'],
                         delimiter = delimiter
                     )
                 )
@@ -126,7 +139,15 @@ class TransCsv(object):
         elif self.rxJsn.search(fp):
             self.genJsonCpp(fp, delimiter)
 
+    def main(self):
+        opts, args = getopt(argv[1:], 'd:h')
+        delimiter = ';'
+        for o, v in opts:
+            if (o == '-d'):
+                delimiter = v
+        for src in args:
+            self.fromFile(src, delimiter = delimiter)        
+
 if __name__ == '__main__':
     trc = TransCsv()
-    for src in argv[1:]:
-        trc.fromFile(src)
+    trc.main()

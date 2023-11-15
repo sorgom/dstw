@@ -27,7 +27,7 @@ code automatization of this project
 **mdjStateCharts.py**
 ```
 extract state transitions from StarUML state charts
-and generate test steps
+and generate md test steps
 ```
 
 **modGcov.py**
@@ -67,6 +67,7 @@ run CppUTest tests
 - run test binary
 - output to report text
 - count failures reported
+* deprecated *
 ```
 
 **modScanCode.py**
@@ -77,6 +78,20 @@ simple code scanner for code generator features
 - data structs
 - interface declarations
 - ostream specializations
+```
+
+**modTransCsv.py**
+```
+process csv transition tables
+-   generate md tables
+-   generate test code
+```
+
+**modTransTable.py**
+```
+generate transition tables from transition lists
+-   for other generators
+-   as md output
 ```
 
 **modUtilz.py**
@@ -96,10 +111,11 @@ directories of this project in git
 
 **runGcov.py**
 ```
-code coverage of this project
+code gcov coverage of this project
 ```
 
 **runTests.py**
 ```
-module test analyzis of this project
+* deprecated *
+module test analysis of this project
 ```

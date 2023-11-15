@@ -3,6 +3,7 @@
 #   - run test binary
 #   - output to report text
 #   - count failures reported
+#   * deprecated * 
 #   ============================================================
 #   created by Manfred Sorgo
 

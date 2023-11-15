@@ -9,9 +9,15 @@
     "fld1": "FLD(_VAL_, 0, _VAL_, 0);",
     "fld0": "FLD(_VAL_, 0);",
 
-    "input": [
-        "specification/diagrams/transitions_SIG_H.csv",
-        "specification/diagrams/transitions_SIG_N.csv",
-        "specification/diagrams/transitions_SIG_H_N.csv"
+    "cfgs": [
+        {
+            "csv": "specification/diagrams/transitions_SIG_H.csv"
+        },
+        {
+            "csv": "specification/diagrams/transitions_SIG_N.csv"
+        },
+        {
+            "csv": "specification/diagrams/transitions_SIG_H_N.csv"
+        }
     ]
 }
