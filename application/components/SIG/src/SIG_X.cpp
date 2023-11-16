@@ -1,21 +1,15 @@
 #include <SIG/SIG_X.h>
 #include <SYS/IL.h>
 
-#include <qnd/useCout.h>
-
 void SIG_X::procFromFld(const INT32 state, INT32 speed)
 {
-    //  ============================================================
     //  field values are only forwarded to GUI
     //  if GUI state or GUI speed differs
-    //  ============================================================
     bool ok = (mStateToGui != state);
 
     switch (state)
     {
         case SIG_STATE_UNDEF:
-            speed = 0;
-            break;
         case SIG_STATE_DEFECT:
             speed = 0;
             break;
