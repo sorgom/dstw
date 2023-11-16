@@ -4,7 +4,7 @@
 <img src="../specification/doc/components.svg" alt="modules" style="width:200px;"> 
 
 ## modules
-<div style="background-color:#F8F8F8;">
+<div style="background-color:#FFF;">
 <img src="../specification/doc/rel-2023-12_overview.svg" alt="component overview">
 </div>
 

@@ -1,265 +1,247 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="725" height="452">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="565" height="516">
 <defs/>
 <g>
 <g>
-<rect fill="#C0C0C0" stroke="none" x="1143" y="871" width="144" height="32" transform="matrix(1 0 0 1 -566 -486)" fill-opacity="0.2"/>
+<rect fill="#FFFFFF00" stroke="none" x="576" y="624" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#6DCEFF" stroke="none" x="1136" y="864" width="144" height="32" transform="matrix(1 0 0 1 -566 -486)"/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 26 202 L 154 202 L 154 298 L 26 298 L 26 202 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 570 378 L 714 378 L 714 410 L 570 410 L 570 378 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<rect fill="#FFFFFF00" stroke="none" x="576" y="624" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#6DCEFF" stroke="none" x="1136" y="864" width="144" height="32" transform="matrix(1 0 0 1 -566 -486)"/>
-</g>
-<g>
-<path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 570 378 L 714 378 L 714 410 L 570 410 L 570 378 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 26 202 L 154 202 L 154 298 L 26 298 L 26 202 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="1208.5" y="877.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -566 -486)">
-SUT</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 655.5 398 L 629.5 398" stroke-miterlimit="10" stroke-dasharray=""/>
+<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="640.5" y="637.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+mock TSW Hub</text>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 138.167724609375 222 L 42.832275390625 222" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<rect fill="#C0C0C0" stroke="none" x="583" y="631" width="128" height="96" transform="matrix(1 0 0 1 -566 -486)" fill-opacity="0.2"/>
+<rect fill="#FFFFFF00" stroke="none" x="736" y="704" width="192" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#FF8282" stroke="none" x="576" y="624" width="128" height="96" transform="matrix(1 0 0 1 -566 -486)"/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 186 282 L 378 282 L 378 378 L 186 378 L 186 282 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 10 138 L 138 138 L 138 234 L 10 234 L 10 138 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<rect fill="#FFFFFF00" stroke="none" x="736" y="704" width="192" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#FF8282" stroke="none" x="576" y="624" width="128" height="96" transform="matrix(1 0 0 1 -566 -486)"/>
-</g>
-<g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 10 138 L 138 138 L 138 234 L 10 234 L 10 138 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 186 282 L 378 282 L 378 378 L 186 378 L 186 282 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="640.5" y="637.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -566 -486)">
-TSW Hub</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 103.3818359375 158 L 45.6181640625 158" stroke-miterlimit="10" stroke-dasharray=""/>
+<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="832.5" y="717.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+SUT Dispatcher</text>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 330.90087890625 302 L 234.09912109375 302" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<rect fill="#C0C0C0" stroke="none" x="839" y="711" width="288" height="96" transform="matrix(1 0 0 1 -566 -486)" fill-opacity="0.2"/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 218 282 L 218 250 L 154 250" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#6DCEFF" stroke="none" x="832" y="704" width="288" height="96" transform="matrix(1 0 0 1 -566 -486)"/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 164.1626748576241 245.790482243984 L 154 250 L 164.1626748576241 254.209517756016" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 266 218 L 554 218 L 554 314 L 266 314 L 266 218 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<rect fill="#FFFFFF00" stroke="none" x="960" y="800" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#6DCEFF" stroke="none" x="832" y="704" width="288" height="96" transform="matrix(1 0 0 1 -566 -486)"/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 410 378 L 538 378 L 538 474 L 410 474 L 410 378 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 266 218 L 554 218 L 554 314 L 266 314 L 266 218 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<rect fill="#FFFFFF00" stroke="none" x="960" y="800" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<g>
-<path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="976.5" y="717.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -566 -486)">
-Dispatcher</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 444.094970703125 238 L 376.905029296875 238" stroke-miterlimit="10" stroke-dasharray=""/>
-</g>
-</g>
-<g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 330 218 L 330 186 L 138 186" stroke-miterlimit="10" stroke-dasharray=""/>
-</g>
-<g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 148.1626748576241 181.790482243984 L 138 186 L 148.1626748576241 190.209517756016" stroke-miterlimit="10" stroke-dasharray=""/>
-</g>
-<g>
-<rect fill="#C0C0C0" stroke="none" x="583" y="839" width="224" height="96" transform="matrix(1 0 0 1 -566 -486)" fill-opacity="0.2"/>
-</g>
-<g>
-<rect fill="#FF8282" stroke="none" x="576" y="832" width="224" height="96" transform="matrix(1 0 0 1 -566 -486)"/>
-</g>
-<g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 10 346 L 234 346 L 234 442 L 10 442 L 10 346 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
-</g>
-<g>
-<rect fill="#FF8282" stroke="none" x="576" y="832" width="224" height="96" transform="matrix(1 0 0 1 -566 -486)"/>
-</g>
-<g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 10 346 L 234 346 L 234 442 L 10 442 L 10 346 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 410 378 L 538 378 L 538 474 L 410 474 L 410 378 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="845.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -566 -486)">
-Com</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 136.944091796875 366 L 108.055908203125 366" stroke-miterlimit="10" stroke-dasharray=""/>
+<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="1024.5" y="813.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+mock Com</text>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 507.72998046875 398 L 441.27001953125 398" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 410 346 L 410 314" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 138 410 L 138 330 L 186 330" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 414.209517756016 324.1626748576241 L 410 314 L 405.790482243984 324.1626748576241" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 175.8373251423759 334.209517756016 L 186 330 L 175.8373251423758 325.790482243984" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#C0C0C0" stroke="none" x="583" y="503" width="128" height="96" transform="matrix(1 0 0 1 -566 -486)" fill-opacity="0.2"/>
+<rect fill="#FFFFFF00" stroke="none" x="608" y="512" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#FF8282" stroke="none" x="576" y="496" width="128" height="96" transform="matrix(1 0 0 1 -566 -486)"/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 58 90 L 186 90 L 186 186 L 58 186 L 58 90 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 10 10 L 138 10 L 138 106 L 10 106 L 10 10 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<rect fill="#FFFFFF00" stroke="none" x="608" y="512" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#FF8282" stroke="none" x="576" y="496" width="128" height="96" transform="matrix(1 0 0 1 -566 -486)"/>
-</g>
-<g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 10 10 L 138 10 L 138 106 L 10 106 L 10 10 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 58 90 L 186 90 L 186 186 L 58 186 L 58 90 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="640.5" y="509.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -566 -486)">
-SIG Hub</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100.13818359375 30 L 48.86181640625 30" stroke-miterlimit="10" stroke-dasharray=""/>
+<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="672.5" y="525.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+mock SIG Hub</text>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 166.924072265625 110 L 78.075927734375 110" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 362 218 L 362 58 L 138 58" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 250 282 L 250 138 L 186 138" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 148.1626748576241 53.790482243984 L 138 58 L 148.1626748576241 62.209517756016" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 196.1626748576241 133.790482243984 L 186 138 L 196.1626748576241 142.209517756016" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 266 266 L 122 266 L 122 346" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 378 330 L 474 330 L 474 378" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 117.790482243984 335.8373251423759 L 122 346 L 126.209517756016 335.8373251423759" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 469.790482243984 367.8373251423759 L 474 378 L 478.2095177560159 367.8373251423759" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#C0C0C0" stroke="none" x="1143" y="903" width="144" height="32" transform="matrix(1 0 0 1 -566 -486)" fill-opacity="0.2"/>
+<rect fill="#FFFFFF00" stroke="none" x="560" y="832" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#FF8282" stroke="none" x="1136" y="896" width="144" height="32" transform="matrix(1 0 0 1 -566 -486)"/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 10 410 L 266 410 L 266 442 L 10 442 L 10 410 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 570 410 L 714 410 L 714 442 L 570 442 L 570 410 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<rect fill="#FFFFFF00" stroke="none" x="560" y="832" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#FF8282" stroke="none" x="1136" y="896" width="144" height="32" transform="matrix(1 0 0 1 -566 -486)"/>
-</g>
-<g>
-<path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 570 410 L 714 410 L 714 442 L 570 442 L 570 410 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 10 410 L 266 410 L 266 442 L 10 442 L 10 410 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="1208.5" y="909.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -566 -486)">
-mocks involved</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 691.26904296875 430 L 593.73095703125 430" stroke-miterlimit="10" stroke-dasharray=""/>
+<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="845.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+call SUT interface methods</text>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 221.93994140625 430 L 55.06005859375 430" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<rect fill="#C0C0C0" stroke="none" x="855" y="839" width="256" height="32" transform="matrix(1 0 0 1 -566 -486)" fill-opacity="0.2"/>
+<rect fill="#FFFFFF00" stroke="none" x="768" y="432" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#ffffff" stroke="none" x="848" y="832" width="256" height="32" transform="matrix(1 0 0 1 -566 -486)"/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 218 10 L 346 10 L 346 106 L 218 106 L 218 10 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 282 346 L 538 346 L 538 378 L 282 378 L 282 346 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<rect fill="#FFFFFF00" stroke="none" x="768" y="432" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#ffffff" stroke="none" x="848" y="832" width="256" height="32" transform="matrix(1 0 0 1 -566 -486)"/>
-</g>
-<g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 282 346 L 538 346 L 538 378 L 282 378 L 282 346 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 218 10 L 346 10 L 346 106 L 218 106 L 218 10 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="976.5" y="845.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -566 -486)">
-call of SUT interface methods</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 501.880859375 366 L 319.119140625 366" stroke-miterlimit="10" stroke-dasharray=""/>
+<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="832.5" y="445.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+mock Log</text>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 313.197265625 30 L 251.802734375 30" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<rect fill="#C0C0C0" stroke="none" x="999" y="503" width="128" height="96" transform="matrix(1 0 0 1 -566 -486)" fill-opacity="0.2"/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 282 282 L 282 106" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FF8282" stroke="none" x="992" y="496" width="128" height="96" transform="matrix(1 0 0 1 -566 -486)"/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 286.209517756016 116.1626748576241 L 282 106 L 277.790482243984 116.1626748576241" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 426 10 L 554 10 L 554 106 L 426 106 L 426 10 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<rect fill="#FFFFFF00" stroke="none" x="560" y="864" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#FF8282" stroke="none" x="992" y="496" width="128" height="96" transform="matrix(1 0 0 1 -566 -486)"/>
+<path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 10 442 L 266 442 L 266 474 L 10 474 L 10 442 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 426 10 L 554 10 L 554 106 L 426 106 L 426 10 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<rect fill="#FFFFFF00" stroke="none" x="560" y="864" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<g>
-<path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="1056.5" y="509.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -566 -486)">
-Log</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 502.411376953125 30 L 478.588623046875 30" stroke-miterlimit="10" stroke-dasharray=""/>
-</g>
-</g>
-<g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 490 218 L 490 106" stroke-miterlimit="10" stroke-dasharray=""/>
-</g>
-<g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 494.2095177560159 116.1626748576241 L 490 106 L 485.7904822439841 116.1626748576241" stroke-miterlimit="10" stroke-dasharray=""/>
-</g>
-<g>
-<rect fill="#C0C0C0" stroke="none" x="855" y="871" width="256" height="32" transform="matrix(1 0 0 1 -566 -486)" fill-opacity="0.2"/>
-</g>
-<g>
-<rect fill="#E2E2E2" stroke="none" x="848" y="864" width="256" height="32" transform="matrix(1 0 0 1 -566 -486)"/>
-</g>
-<g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 282 378 L 538 378 L 538 410 L 282 410 L 282 378 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
-</g>
-<g>
-<rect fill="#E2E2E2" stroke="none" x="848" y="864" width="256" height="32" transform="matrix(1 0 0 1 -566 -486)"/>
-</g>
-<g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 282 378 L 538 378 L 538 410 L 282 410 L 282 378 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 10 442 L 266 442 L 266 474 L 10 474 L 10 442 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="976.5" y="877.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -566 -486)">
-telegrams from Com to subsystems</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 521.03173828125 398 L 299.96826171875 398" stroke-miterlimit="10" stroke-dasharray=""/>
+<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="877.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+telegrams from Com</text>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 201.7099609375 462 L 75.2900390625 462" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<rect fill="#C0C0C0" stroke="none" x="855" y="903" width="256" height="32" transform="matrix(1 0 0 1 -566 -486)" fill-opacity="0.2"/>
+<rect fill="#FFFFFF00" stroke="none" x="560" y="896" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#E2E2E2" stroke="none" x="848" y="896" width="256" height="32" transform="matrix(1 0 0 1 -566 -486)"/>
+<path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 10 474 L 266 474 L 266 506 L 10 506 L 10 474 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 282 410 L 538 410 L 538 442 L 282 442 L 282 410 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<rect fill="#FFFFFF00" stroke="none" x="560" y="896" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<rect fill="#E2E2E2" stroke="none" x="848" y="896" width="256" height="32" transform="matrix(1 0 0 1 -566 -486)"/>
-</g>
-<g>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 282 410 L 538 410 L 538 442 L 282 442 L 282 410 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 10 474 L 266 474 L 266 506 L 10 506 L 10 474 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="976.5" y="909.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -566 -486)">
-telegrams from subsystems to Com</text>
-<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 521.03173828125 430 L 299.96826171875 430" stroke-miterlimit="10" stroke-dasharray=""/>
+<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="909.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+telegrams from subsystems</text>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 224.8408203125 494 L 52.1591796875 494" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
+</g>
+<g>
+<rect fill="#FFFFFF00" stroke="none" x="976" y="624" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+</g>
+<g>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 426 202 L 554 202 L 554 298 L 426 298 L 426 202 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+</g>
+<g>
+<rect fill="#FFFFFF00" stroke="none" x="976" y="624" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+</g>
+<g>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 426 202 L 554 202 L 554 298 L 426 298 L 426 202 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+</g>
+<g>
+<g>
+<path fill="none" stroke="none"/>
+<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="1040.5" y="637.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+mock LCR Hub</text>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 537.08544921875 222 L 443.91455078125 222" stroke-miterlimit="10" stroke-dasharray=""/>
+</g>
+</g>
+<g>
+<rect fill="#FFFFFF00" stroke="none" x="928" y="512" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+</g>
+<g>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 378 90 L 506 90 L 506 186 L 378 186 L 378 90 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+</g>
+<g>
+<rect fill="#FFFFFF00" stroke="none" x="928" y="512" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+</g>
+<g>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 378 90 L 506 90 L 506 186 L 378 186 L 378 90 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+</g>
+<g>
+<g>
+<path fill="none" stroke="none"/>
+<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="992.5" y="525.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+mock SEG Hub</text>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 489.45361328125 110 L 395.54638671875 110" stroke-miterlimit="10" stroke-dasharray=""/>
+</g>
+</g>
+<g>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 346 282 L 346 250 L 426 250" stroke-miterlimit="10" stroke-dasharray=""/>
+</g>
+<g>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 415.8373251423759 254.209517756016 L 426 250 L 415.8373251423758 245.790482243984" stroke-miterlimit="10" stroke-dasharray=""/>
+</g>
+<g>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 314 282 L 314 138 L 378 138" stroke-miterlimit="10" stroke-dasharray=""/>
+</g>
+<g>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 367.8373251423759 142.209517756016 L 378 138 L 367.8373251423758 133.790482243984" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 </svg>

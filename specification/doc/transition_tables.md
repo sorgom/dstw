@@ -1,7 +1,7 @@
 # transition tables
 
 ## sample: transitions TSW
-<div style="background-color:#F8F8F8;">
+<div style="background-color:#FFF;">
 <img src="SC_TSW.svg" alt="SC TSW">
 </div>
 
