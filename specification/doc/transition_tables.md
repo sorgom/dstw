@@ -30,11 +30,11 @@ This requires 28 test steps.
 
 ## events causing no transition
 
-But we do not only want to _test all events that cause transition_.
+But we do not only want to test all events that cause transition.
 
-We also want to _test all events that cause no transition_.
+In order to complete application code coverage we also want to test all events that cause no transition.
 
-And also we want to have _as few test steps as possible_.
+And also we want to have as few test steps as possible.
 
 That means to generate sequences of test steps using the result state of the preceding steps.
 
@@ -128,6 +128,15 @@ Sample: test steps for TSW
 
 The * GLUE field indicates that we have repeated transitions that are necessary to provide the entry state for the next test steps.
 
+In numbers:
+```
+    28 test steps for transitions
++   14 test steps without transition
+=   42 relevant test steps
++    7 test steps as glue
+=   49 test steps total
+```
+
 ## test code
 
 From here it's a last step to generate the test code using a template.
@@ -136,9 +145,9 @@ Sample: test template json file for TSW
 
 ```json
 {
-    "//" : "=================================",
-    "//" : "transitions test code for TSW",
-    "//" : "=================================",
+    "//" : "===================================",
+    "//" : "transitions test code setup for TSW",
+    "//" : "===================================",
     "prefixState": "TSW_STATE",
     "prefixCmd": "TSW_GUI_GMD",
     "cmd1": "CMD(_CMD_, _FLD_, _GUI_);",
@@ -171,64 +180,7 @@ Sample: generated test code for TSW
         FLD(TSW_STATE_RIGHT);
         STEP(10)
         FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
-        STEP(11)
-        FLD(TSW_STATE_DEFECT, TSW_STATE_DEFECT);
-        STEP(12)
-        CMD(TSW_GUI_GMD_LEFT);
-        STEP(13)
-        CMD(TSW_GUI_GMD_RIGHT);
-        STEP(14)
-        CMD(TSW_GUI_GMD_WU);
-        STEP(15)
-        FLD(TSW_STATE_DEFECT);
-        STEP(16)
-        FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
-        STEP(17)
-        CMD(TSW_GUI_GMD_LEFT, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
-        STEP(18)
-        CMD(TSW_GUI_GMD_LEFT);
-        STEP(19)
-        CMD(TSW_GUI_GMD_WU);
-        STEP(20)
-        FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
-        STEP(21)
-        CMD(TSW_GUI_GMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
-        STEP(22)
-        CMD(TSW_GUI_GMD_RIGHT);
-        STEP(23)
-        CMD(TSW_GUI_GMD_WU);
-        STEP(24)
-        FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
-        STEP(25)
-        FLD(TSW_STATE_DEFECT, TSW_STATE_DEFECT);
-        STEP(26)
-        FLD(TSW_STATE_LEFT, TSW_STATE_LEFT);
-        STEP(27)
-        FLD(TSW_STATE_RIGHT, TSW_STATE_RIGHT);
-        STEP(28)
-        FLD(TSW_STATE_LEFT, TSW_STATE_LEFT);
-        STEP(29)
-        FLD(TSW_STATE_DEFECT, TSW_STATE_DEFECT);
-        STEP(30)
-        FLD(TSW_STATE_RIGHT, TSW_STATE_RIGHT);
-        STEP(31)
-        FLD(TSW_STATE_DEFECT, TSW_STATE_DEFECT);
-        STEP(32)
-        FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
-        STEP(33)
-        CMD(TSW_GUI_GMD_LEFT, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
-        STEP(34)
-        FLD(TSW_STATE_LEFT, TSW_STATE_LEFT);
-        STEP(35)
-        CMD(TSW_GUI_GMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
-        STEP(36)
-        FLD(TSW_STATE_LEFT, TSW_STATE_LEFT);
-        STEP(37)
-        CMD(TSW_GUI_GMD_WU, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
-        STEP(38)
-        FLD(TSW_STATE_RIGHT, TSW_STATE_RIGHT);
-        STEP(39)
-        CMD(TSW_GUI_GMD_LEFT, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
+        // ...
         STEP(40)
         FLD(TSW_STATE_RIGHT, TSW_STATE_RIGHT);
         STEP(41)
@@ -270,8 +222,9 @@ Sample: generated test code for TSW
 ### transitions & test steps
 
 ```
-  82 transitions
- 121 test steps total
-  18 test steps without transition
-  21 test steps as glue
+    82 test steps for transitions   
++   18 test steps without transition
+=  100 relevant test steps
++   21 test steps as glue
+=  121 test steps total
 ```

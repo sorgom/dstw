@@ -5,7 +5,7 @@
 
 ## modules
 <div style="background-color:#F8F8F8;">
-<img src="../specification/doc/overview.svg" alt="component overview">
+<img src="../specification/doc/rel-2023-11_overview.svg" alt="component overview">
 </div>
 
 ## central error logging
@@ -13,7 +13,7 @@ There is no error handling in the individual components.
 All errors are reported to the central error log.
 Further error handling / reactions / statistics will be implemented here.
 <div style="background-color:#F8F8F8;">
-<img src="../specification/doc/log.svg" alt="central logging">
+<img src="../specification/doc/rel-2023-11_log.svg" alt="central logging">
 </div>
 
 ## framing

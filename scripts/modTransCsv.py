@@ -72,8 +72,8 @@ class TransCsv(object):
                 self.transTable.genMd(transitions)
             ]))
 
-    def statOut(self, num, desc):
-        print("%4d %s" % (num, desc))
+    def statOut(self, pref, num, desc):
+        print("%1s %4d %s" % (pref, num, desc))
 
     def genInfo(self, srcCsv):
         print(basename(srcCsv))
@@ -81,14 +81,16 @@ class TransCsv(object):
         table = self.transTable.genTable(transitions)
         nGlue = 0
         nNoTrans = 0
+        nTrans = len(transitions)
         for tr in table:
             if len(tr) > 3: nGlue += 1
             elif not tr[0]: nNoTrans += 1
 
-        self.statOut(len(transitions), 'transitions')
-        self.statOut(len(table), 'test steps total')
-        self.statOut(nNoTrans, 'test steps without transition')
-        self.statOut(nGlue, 'test steps as glue')
+        self.statOut('', nTrans, 'test steps for transitions')
+        self.statOut('+', nNoTrans, 'test steps without transition')
+        self.statOut('=', nTrans +  nNoTrans, 'relevant test steps')
+        self.statOut('+', nGlue, 'test steps as glue')
+        self.statOut('=', len(table), 'test steps total')
 
     def cppName(self, prefix:str, state:str):
         return "%s_%s" % (prefix, state.replace(' ', '_'))
