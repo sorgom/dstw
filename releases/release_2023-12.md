@@ -4,10 +4,7 @@
 <img src="../specification/doc/components.svg" alt="modules" style="width:200px;"> 
 
 ## modules
-<div style="background-color:#FFF;">
-<img src="../specification/doc/rel-2023-12_overview.svg" alt="component overview">
-</div>
-
+![overview](../specification/doc/rel-2023-12_overview.svg)
 
 ## delta to [release 2023-11](release_2023-11.md)
 

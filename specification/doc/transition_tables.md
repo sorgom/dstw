@@ -1,9 +1,7 @@
 # transition tables
 
 ## sample: transitions TSW
-<div style="background-color:#FFF;">
-<img src="SC_TSW.svg" alt="SC TSW">
-</div>
+![SC TSW](SC_TSW.svg)
 
 ## valid transitions
 
