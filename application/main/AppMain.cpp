@@ -14,6 +14,8 @@ int main(const INT32 argc, const CONST_C_STRING* const argv)
     //# GET_DDI
     GET_DDI(Com)
     GET_DDI(Dispatcher)
+    GET_DDI(LCR_Hub)
+    GET_DDI(LCR_Provider)
     GET_DDI(Loader)
     GET_DDI(Log)
     GET_DDI(SIG_Hub)

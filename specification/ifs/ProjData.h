@@ -30,6 +30,7 @@ struct ProjSIG
 struct ProjLCR
 {
     ElementName name;
+    INT32 type;
 };
 
 struct ProjSEG

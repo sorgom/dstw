@@ -1,0 +1,27 @@
+{
+    "//" : "===================================",
+    "//" : "transitions test code setup for LCR",
+    "//" : "===================================",
+    "prefixState": "",
+    "prefixCmd": "",
+    "cmd1": "",
+    "cmd0": "",
+
+    "cfgs": [
+        {
+            "csv": "specification/doc/transitions_LCR.csv",
+            "prefixState": "LCR_STATE",
+            "prefixCmd": "LCR_STATE",
+            "cmd1": "CMD(_CMD_, _FLD_, _GUI_, LCR_UBK_STATE_UNDEF);",
+            "cmd0": "CMD(_CMD_);",
+            "fld1": "FLD(_VAL_, LCR_UBK_STATE_UNDEF, _VAL_, LCR_UBK_STATE_UNDEF);",
+            "fld0": "FLD(_VAL_, LCR_UBK_STATE_UNDEF);"
+        },
+        {
+            "csv": "specification/doc/transitions_LCR_UBK.csv",
+            "prefixState": "LCR_UBK_STATE",
+            "fld1": "FLD(LCR_STATE_UNDEF, _VAL_, LCR_STATE_UNDEF, _VAL_);",
+            "fld0": "FLD(LCR_STATE_UNDEF, _VAL_);"
+        }
+    ]
+}

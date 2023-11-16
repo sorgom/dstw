@@ -27,9 +27,9 @@ handles:
 
 SIG_H_N  main signal and support signal with speed indicator
 handles:
-- H0N0
-- H0N1
-- H1N0
-- H1N1
+- H0 N0
+- H0 N1
+- H1 N0
+- H1 N1
 - speed
 ```

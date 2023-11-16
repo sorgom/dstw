@@ -13,8 +13,8 @@ ttl = '## directory content'
 
 rxMd  = re.compile(r'\.md$')
 #   deco, pre, char, quo, inf
-rxInf = re.compile(r'^(([^\n]*?)([*=-])\3{19,})(")?\n(.*?)\n\1', re.M | re.S)
-rxQuo = re.compile(r'"$', re.M)
+rxInf = re.compile(r'^(([^\n]*?)([*=-])\3{19,})(",?)?\n(.*?)\n\1', re.M | re.S)
+rxQuo = re.compile(r'",?$', re.M)
 
 def isMd(fn):
     return rxMd.search(fn)

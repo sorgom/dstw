@@ -1,152 +1,86 @@
 #   ============================================================
 #   extract state transitions from StarUML state charts
-#   and generate test steps
+#   and generate md test steps
 #   ============================================================
 #   created by Manfred Sorgo
 
+from modTransTable import TransTable
 import json, re
 from sys import argv
+from getopt import getopt
 
 class StateCharts(object):
-    def __init__(self, mdj):
-        data = dict()
-        with open(mdj, 'r') as fh:
-            data =  json.load(fh)
-            fh.close()
-        self.transitions = dict()
-        self.states = dict()
-        self.sms = dict()
-        self.scnames = dict()
-        self.regnames = dict()
-        self.heading = ['STEP', 'FROM', 'TO', 'EVENT', 'GLUE']
-        self.headline = [':---' for h in self.heading ]
-        self.headline[0] = '---:'
-        self.traverse(data)
-        self.regNames()
+    def __init__(self):
+        self.transTable = TransTable()
+        # data = dict()
+        # with open(mdj, 'r') as fh:
+        #     data =  json.load(fh)
+        #     fh.close()
+        # self.transitions = dict()
+        # self.stateNames = dict()
+        # self.stateMachines = dict()
+        # self.stateChartNames = dict()
+        # self.regionNames = dict()
+        # self.traverse(data)
+        # self.regNames()
+
+    def genInfo(self, mdj):
+        self.scanMdj(mdj)
+        for region in self.transitions.keys():
+            print(self.regionNames.get(region, 'NN'))
+            transitions = self.fuse(region)
+            print('transitions:', len(transitions))
+            print('test steps :', len(self.transTable.genTable(transitions)))
+
+    def genMd(self, mdj):
+        self.scanMdj(mdj)
         out = list()
-        for reg, transitions in self.transitions.items():
-            states = self.states.get(reg)
-            out.append(self.fuse(self.regnames.get(reg, 'NN'), transitions, states))
+        for region in self.transitions.keys():
+            out.append(
+                self.transTable.genMd(
+                    self.fuse(region),
+                    self.regionNames.get(region, 'NN')
+                )
+            )
 
         if out:
             md = re.sub(r'\.\w+$', '_states.md', mdj)
             with open(md, 'w') as fh:
                 fh.write('\n\n'.join([*out,'']))
 
-    def regNames(self):
-        for reg, sm in self.sms.items():
-            self.regnames[reg] = self.scnames.get(sm, 'NN')
+    def scanMdj(self, mdj):
+        data = dict()
+        with open(mdj, 'r') as fh:
+            data =  json.load(fh)
+            fh.close()
+        self.transitions = dict()
+        self.stateNames = dict()
+        self.stateMachines = dict()
+        self.stateChartNames = dict()
+        self.regionNames = dict()
+        self.traverse(data)
+        self.regNames()
 
-    def event(self, trg, trn):
-        a = re.split(r' +', trn, 1)
+    def regNames(self):
+        for reg, sm in self.stateMachines.items():
+            self.regionNames[reg] = self.stateChartNames.get(sm, 'NN')
+
+    def event(self, trg, evt):
+        a = re.split(r' +', evt, 1)
         a.append(trg)
         return ' '.join(a[0:2])
 
-    def noTrans(self, evt):
-        return ['', '', evt]
-    
-    def glue(self, src, trg, transitions:list):
-        for src1, trg1, trn1 in transitions:
-            for src2, trg2, trn2 in transitions:
-                if src1 == src and trg2 == trg:
-                    return [
-                        [src1, trg1, trn1, '*'],
-                        [src2, trg2, trn2, '*']
-                    ]
-
-    def outLine(self, *args):
-        return '|' + '|'.join(args) + '|'
-
-    def fuse(self, name, transitions:list, states:dict):
-        print('FUSE', name, len(transitions), len(states.keys()))
-        if states is None: return
+    def fuse(self, region):
+        transitions = self.transitions.get(region)
+        stateNames  = self.stateNames.get(region)
+        if stateNames is None: return
         transitions = [
-            [src, trg, self.event(trg, trn) ] 
-                for src, trg, trn in [[states.get(src), states.get(trg), trn] 
-                    for src, trg, trn in transitions]
+            [src, trg, self.event(trg, evt) ] 
+                for src, trg, evt in [[stateNames.get(src), stateNames.get(trg), evt] 
+                    for src, trg, evt in transitions]
         ]
-        events = set()
-        states = set()
-        fromEvt = dict()
-        for src, trg, evt in transitions:
-            events.add(evt)
-            states.add(src)
-            states.add(trg)
-            fromEvt.setdefault(src, dict())[evt] = trg
-        
-        noTrans = dict()
-        for src in sorted(states):
-            for evt in sorted(events):
-                if fromEvt.get(src, dict()).get(evt) is None:
-                    noTrans.setdefault(src, list()).append(evt)
-
-        next = dict()
-        for n, tr in enumerate(transitions):
-            next.setdefault(tr[0], list()).append(n)
-
-        #   build sequences using every transition once
-        ln = len(transitions)
-        todo = set(range(ln))
-        res = []
-
-        while todo:
-            n = todo.pop()
-            seq = [transitions[n]]
-            found = True
-            while found:
-                found = False
-                nxs = next.get(transitions[n][1])
-                if nxs:
-                    for nx in nxs:
-                        if nx in todo:
-                            seq.append(transitions[nx])
-                            todo.remove(nx)
-                            found = True
-                            n = nx
-                            break
-            res.append(seq)
-
-        #   try to connect sequences with transitions
-        if len(res) > 1:
-            next = dict()
-            for n, tr in enumerate(transitions):
-                next.setdefault(tr[0], dict())[tr[1]] = n
-            for n in range(len(res) - 1):
-                src = res[n][-1][1]
-                trg = res[n + 1][0][0]
-                con = next.get(src, dict()).get(trg)
-                if con:
-                    res[n].append([*transitions[con], '*'])
-                else:
-                    con = self.glue(src, trg, transitions)
-                    if con:
-                        res[n].extend(con)
-                    else:
-                        res[n].append(self.noTrans('NO TRANSITION')) 
-        
-        #   flatten
-        res = [i for l in res for i in l]
-
-        tbl = list()
-        for tr in res:
-            tbl.append(tr)
-            trg = tr[1]
-            ntr = noTrans.get(trg)
-            if ntr:
-                for evt in ntr:
-                    tbl.append(self.noTrans(evt))
-                del noTrans[trg]
-
-        out = [
-            f'## {name}',
-            self.outLine(*self.heading),
-            self.outLine(*self.headline)
-        ]
-        out.extend(
-            [self.outLine(str(p + 1), *tr) for  p, tr in enumerate(tbl) ]
-        )
-        return '\n'.join(out)
-
+        return transitions
+    
     def getRef(self, data, key):
         ref = data.get(key)
         if ref is None: return None
@@ -168,17 +102,26 @@ class StateCharts(object):
                             self.transitions.setdefault(pr, list()).append([src, trg, tr.get('name')])
 
             elif tp == 'UMLState':
-                if pr: self.states.setdefault(pr, dict())[id] = nm
+                if pr: self.stateNames.setdefault(pr, dict())[id] = nm
             elif tp == 'UMLStatechartDiagram':
-                self.scnames[pr] = nm
+                self.stateChartNames[pr] = nm
             else:
-                if tp == 'UMLRegion': self.sms[id] = pr
+                if tp == 'UMLRegion': self.stateMachines[id] = pr
                 for v in data.values():
                     self.traverse(v)
         elif type(data) == list:
             for v in data:
                 self.traverse(v)
+    
+    def main(self):
+        opts, args = getopt(argv[1:], 'i')
+        call = self.genMd
+        for o, v in opts:
+            if (o == '-i'): call = self.genInfo
+                
+        for mdj in args:
+            call(mdj)        
 
 if __name__ == '__main__':
-    for fp in argv[1:]:
-        StateCharts(fp)
+    sc = StateCharts()
+    sc.main()

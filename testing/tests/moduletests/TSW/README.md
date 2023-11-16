@@ -3,7 +3,11 @@
 **TSW_01.cpp**
 ```
 test of module TSW
-according to test plan TSW_states.md
+```
+
+**TSW_01.json**
+```
+transitions test code setup for TSW
 ```
 
 **TSW_02.cpp**

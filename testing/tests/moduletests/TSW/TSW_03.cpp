@@ -11,7 +11,7 @@ namespace test
     {
     protected:
         TSW_Provider mSUT;
-        GenProjData<2> mData;
+        GenProjData<2, 1, 1, 1> mData;
     };
 
     TEST_GROUP_BASE(TSW_03, TestGroupTSP) {};

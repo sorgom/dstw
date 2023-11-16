@@ -12,10 +12,6 @@ namespace test
     {
     protected:
         SIG_Hub mSUT;
-        inline TestGroupSIH()
-        {
-            mockAll();
-        }
     };
 
     TEST_GROUP_BASE(SIG_02, TestGroupSIH) {};

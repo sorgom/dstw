@@ -69,7 +69,7 @@ namespace test
             cmdFld.cmd1 = SIG_STATE_H1;
 
             Mem::cpy(stateGui.name, guiCmd.name);
-            stateGui.state1 = SIG_STATE_WAIT;
+            stateGui.state1 = SIG_STATE_WAIT_H1;
 
             m_Com().expectSend(cmdFld);
             m_Com().expectSend(stateGui);

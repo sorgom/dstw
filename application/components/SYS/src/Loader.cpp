@@ -6,8 +6,10 @@ INSTANCE_DEF(Loader)
 void Loader::load(const ProjData& data) const
 {
     IL::getDispatcher().reset();
+    
     IL::getTSW_Provider().load(data.pTSW, data.numTSW);
     IL::getSIG_Provider().load(data.pSIG, data.numSIG);
-    // TODO: LCR, SEG
+    IL::getLCR_Provider().load(data.pLCR, data.numLCR);
+    // TODO: SEG
     IL::getDispatcher().index();
 }

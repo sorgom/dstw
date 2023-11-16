@@ -20,7 +20,7 @@ This concept has been SIL4 validated already.
 ## module tests
 Sample: test setup for _Dispatcher_ module 
 <div style="background-color:#F8F8F8;">
-<img src="../specification/diagrams/test_dispatcher.svg" alt="test of Dispatcher">
+<img src="../specification/doc/test_dispatcher.svg" alt="test of Dispatcher">
 </div>
 
 ## system tests
@@ -32,7 +32,7 @@ exit points (Com):
 -   telegrams to field and GUI
 
 <div style="background-color:#F8F8F8;">
-<img src="../specification/diagrams/sys_tests.svg" alt="test of Dispatcher">
+<img src="../specification/doc/sys_tests.svg" alt="test of Dispatcher">
 </div>
 
 ## code coverage

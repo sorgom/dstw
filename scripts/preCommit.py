@@ -15,9 +15,9 @@ from glob import glob
 from sys import argv, exit
 
 print("* cleanMdj")
-cleanMdj(glob(f'{diaDir}/*.mdj'))
+cleanMdj(glob(f'{docDir}/*.mdj'))
 print("* cleanSvg")
-cleanSvg(glob(f'{diaDir}/*.svg'))
+cleanSvg(glob(f'{docDir}/*.svg'))
 
 if len(argv) > 1: exit()
 

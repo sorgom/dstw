@@ -22,58 +22,71 @@
 
 namespace test
 {
-    template <UINT32 NTSW = 1, UINT32 NSIG = 1, UINT32 NLCR = 1, UINT32 NSEG = 1>
+    template <
+        UINT32 NTSW = CAPACITY_TSW, 
+        UINT32 NSIG = CAPACITY_SIG, 
+        UINT32 NLCR = CAPACITY_LCR, 
+        UINT32 NSEG = CAPACITY_SEG
+    >
     class GenProjData : public ProjData
     {
     public:
         GenProjData()
         {
-            pTSW = mTSW.data();
-            pSIG = mSIG.data();
-            pLCR = mLCR.data();
-            pSEG = mSEG.data();
+            pTSW = mTSWs.data();
+            pSIG = mSIGs.data();
+            pLCR = mLCRs.data();
+            pSEG = mSEGs.data();
 
             numTSW = NTSW;
             numSIG = NSIG;
             numLCR = NLCR;
             numSEG = NSEG;
 
-            preset(mTSW, "TSW");
-            preset(mSIG, "SIG");
-            preset(mLCR, "LCR");
-            preset(mSEG, "SEG");
+            preset(mTSWs, "TSW");
+            preset(mSIGs, "SIG");
+            preset(mLCRs, "LCR");
+            preset(mSEGs, "SEG");
 
             setSigType(SIG_TYPE_H);
+            setLcrType(LCR_TYPE_LCR);
         }
     
-        inline const ProjTSW& tsw(UINT32 pos) const { return mTSW.at(pos); }
-        inline const ProjSIG& sig(UINT32 pos) const { return mSIG.at(pos); }
-        inline const ProjLCR& lcr(UINT32 pos) const { return mLCR.at(pos); }
-        inline const ProjSEG& seg(UINT32 pos) const { return mSEG.at(pos); }
+        inline const ProjTSW& tsw(UINT32 pos) const { return mTSWs.at(pos); }
+        inline const ProjSIG& sig(UINT32 pos) const { return mSIGs.at(pos); }
+        inline const ProjLCR& lcr(UINT32 pos) const { return mLCRs.at(pos); }
+        inline const ProjSEG& seg(UINT32 pos) const { return mSEGs.at(pos); }
 
         inline const ElementName& tswName(UINT32 pos) const { return tsw(pos).name; }
         inline const ElementName& sigName(UINT32 pos) const { return sig(pos).name; }
-        inline const ElementName& lcrName(UINT32 pos) const { return tsw(pos).name; }
+        inline const ElementName& lcrName(UINT32 pos) const { return lcr(pos).name; }
         inline const ElementName& segName(UINT32 pos) const { return seg(pos).name; }
 
-        inline void setSigType(UINT32 pos, INT32 type)
+        void setSigType(UINT32 pos, INT32 type)
         {
-            mSIG.at(pos).type = type;
+            setType(mSIGs, pos, type);
         }
 
         void setSigType(INT32 type)
         {
-            for (UINT32 p = 0; p < NSIG; ++p)
-            {
-                setSigType(p, type);
-            }
+            setType(mSIGs, type);
+        }
+
+        void setLcrType(UINT32 pos, INT32 type)
+        {
+            setType(mLCRs, pos, type);
+        }
+
+        void setLcrType(INT32 type)
+        {
+            setType(mLCRs, type);
         }
 
     private:
-        SimpleStackArray<ProjTSW, NTSW> mTSW;
-        SimpleStackArray<ProjSIG, NSIG> mSIG;
-        SimpleStackArray<ProjLCR, NLCR> mLCR;
-        SimpleStackArray<ProjSEG, NSEG> mSEG;
+        SimpleStackArray<ProjTSW, NTSW> mTSWs;
+        SimpleStackArray<ProjSIG, NSIG> mSIGs;
+        SimpleStackArray<ProjLCR, NLCR> mLCRs;
+        SimpleStackArray<ProjSEG, NSEG> mSEGs;
 
         template <class T, UINT32 CAP>
         void preset(SimpleStackArray<T, CAP>& array, CONST_C_STRING what)
@@ -83,6 +96,21 @@ namespace test
                 T elem = {0};
                 genElementName(elem.name, CAP - n, what);
                 array.add(elem);
+            }
+        }
+
+        template <class T, UINT32 CAP>
+        void setType(SimpleStackArray<T, CAP>& array, UINT32 pos, INT32 type)
+        {
+            array.at(pos).type = type;
+        }
+
+        template <class T, UINT32 CAP>
+        void setType(SimpleStackArray<T, CAP>& array, INT32 type)
+        {
+            for (UINT32 p = 0; p < CAP; ++p)
+            {
+                setType(array, p, type);
             }
         }
     };

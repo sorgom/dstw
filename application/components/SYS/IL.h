@@ -10,6 +10,8 @@
 #define IL_H
 
 //## INCLUDES
+#include <LCR/LCR_Hub.h>
+#include <LCR/LCR_Provider.h>
 #include <SIG/SIG_Hub.h>
 #include <SIG/SIG_Provider.h>
 #include <SYS/Com.h>
@@ -32,6 +34,8 @@ public:
     //# IL_INLINE
     IL_INLINE(Com)
     IL_INLINE(Dispatcher)
+    IL_INLINE(LCR_Hub)
+    IL_INLINE(LCR_Provider)
     IL_INLINE(Loader)
     IL_INLINE(Log)
     IL_INLINE(SIG_Hub)

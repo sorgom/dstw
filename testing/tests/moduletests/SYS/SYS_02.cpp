@@ -46,8 +46,8 @@ namespace test
         CHECK_N_CLEAR()
 
         STEP(3)
-        //  LCR not part of current implementation
         nameElement(fldState, 3, "LCR");
+        m_LCR_Hub().expectFromDsp(3, fldState);
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
 
@@ -87,6 +87,7 @@ namespace test
         STEP(3)
         //  LCR not part of current implementation
         nameElement(guiCmd, 3, "LCR");
+        m_LCR_Hub().expectFromDsp(3, guiCmd);
         mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()
 

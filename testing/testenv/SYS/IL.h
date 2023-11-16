@@ -11,6 +11,8 @@
 #define IL_H
 
 //## INCLUDES
+#include <LCR/LCR_Hub.h>
+#include <LCR/LCR_Provider.h>
 #include <SIG/SIG_Hub.h>
 #include <SIG/SIG_Provider.h>
 #include <SYS/Com.h>
@@ -21,6 +23,9 @@
 #include <TSW/TSW_Provider.h>
 #include <mocks/M_Com.h>
 #include <mocks/M_Dispatcher.h>
+#include <mocks/M_LCR.h>
+#include <mocks/M_LCR_Hub.h>
+#include <mocks/M_LCR_Provider.h>
 #include <mocks/M_Log.h>
 #include <mocks/M_SIG.h>
 #include <mocks/M_SIG_Hub.h>
@@ -44,6 +49,9 @@ public:
     //# IL_DEC
     IL_DEC(Com)
     IL_DEC(Dispatcher)
+    IL_DEC(LCR)
+    IL_DEC(LCR_Hub)
+    IL_DEC(LCR_Provider)
     IL_DEC(Loader)
     IL_DEC(Log)
     IL_DEC(SIG)

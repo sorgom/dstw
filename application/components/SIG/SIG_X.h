@@ -29,9 +29,12 @@ protected:
     INT32 mSpeedToGui;
 
     void procFromFld(INT32 state, INT32 speed);
-    void procFromGui(INT32 state, INT32 speed);
+    void procFromGui(INT32 stateFld, INT32 stateGui, INT32 speed);
+    void speedToFld(INT32 speed);
 
     static void logMissmatch();
+
+    inline virtual bool speedUsed() const { return true; }
 
     NOCOPY(SIG_X)
     SIG_X();
@@ -53,7 +56,13 @@ public:
 
     inline INT32 type() const { return SIG_TYPE_H; }
 
+protected:
+    inline bool speedUsed() const { return false; }
+
 private:
+    void proc_H0();
+    void proc_H1();
+
     NOCOPY(SIG_H)
     SIG_H();
 };
@@ -75,6 +84,10 @@ public:
 
     inline INT32 type() const { return SIG_TYPE_N; }
 
+private:
+    void proc_N0(INT32 speed);
+    void proc_N1(INT32 speed);
+
     NOCOPY(SIG_N)
     SIG_N();
 };
@@ -82,10 +95,10 @@ public:
 //  ============================================================
 //  SIG_H_N  main signal and support signal with speed indicator
 //  handles:
-//  - H0N0
-//  - H0N1
-//  - H1N0
-//  - H1N1
+//  - H0 N0
+//  - H0 N1
+//  - H1 N0
+//  - H1 N1
 //  - speed
 //  ============================================================
 class SIG_H_N : public SIG_X
@@ -97,6 +110,12 @@ public:
     void fromGui(INT32 state, INT32 speed);
 
     inline INT32 type() const { return SIG_TYPE_H_N; }
+
+private:
+    void proc_H0_N0(INT32 speed);
+    void proc_H0_N1(INT32 speed);
+    void proc_H1_N0(INT32 speed);
+    void proc_H1_N1(INT32 speed);
 
     NOCOPY(SIG_H_N)
     SIG_H_N();
