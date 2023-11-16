@@ -1,6 +1,5 @@
 //  ============================================================
 //  test of modules SIG_(X)
-//  according to test plan tests_SIG_X.csv
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -84,19 +83,16 @@ namespace test
         CMD(SIG_STATE_H0, 0);
         STEP(3)
         FLD(SIG_STATE_H0, 0);
-
         STEP(4)
         FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
         STEP(5)
         FLD(SIG_STATE_UNDEF, 0);
-
         STEP(6)
         FLD(SIG_STATE_H1, 0, SIG_STATE_H1, 0);
         STEP(7)
         CMD(SIG_STATE_H1, 0);
         STEP(8)
         FLD(SIG_STATE_H1, 0);
-
         STEP(9)
         FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
         STEP(10)
@@ -107,27 +103,22 @@ namespace test
         CMD(SIG_STATE_H1, 0);
         STEP(13)
         FLD(SIG_STATE_DEFECT, 0);
-
         STEP(14)
         FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
-
         STEP(15)
-        CMD(SIG_STATE_H1, 0, SIG_STATE_H1, 0, SIG_STATE_WAIT_H1, 0);
+        CMD(SIG_STATE_H0, 0, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
         STEP(16)
-        CMD(SIG_STATE_H1, 0);
-
+        CMD(SIG_STATE_H0, 0);
         STEP(17)
         FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
         STEP(18)
-        CMD(SIG_STATE_H0, 0, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
+        CMD(SIG_STATE_H1, 0, SIG_STATE_H1, 0, SIG_STATE_WAIT_H1, 0);
         STEP(19)
-        CMD(SIG_STATE_H0, 0);
-
+        CMD(SIG_STATE_H1, 0);
         STEP(20)
         FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
         STEP(21)
         FLD(SIG_STATE_DEFECT, 0, SIG_STATE_DEFECT, 0);
-
         STEP(22)
         FLD(SIG_STATE_H0, 0, SIG_STATE_H0, 0);
         STEP(23)
@@ -175,11 +166,11 @@ namespace test
         STEP(44)
         FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
         STEP(45)
-        CMD(SIG_STATE_H0, 0, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
-        STEP(46)
         CMD(SIG_STATE_H1, 0, SIG_STATE_H1, 0, SIG_STATE_WAIT_H1, 0);
-        STEP(47)
+        STEP(46)
         CMD(SIG_STATE_H0, 0, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
+        STEP(47)
+        CMD(SIG_STATE_H1, 0, SIG_STATE_H1, 0, SIG_STATE_WAIT_H1, 0);
     }
 
     //  test type: equivalence class test
@@ -188,16 +179,23 @@ namespace test
     {
         STEP(1)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        CMD(SIG_STATE_WAIT_H0, 0);
+        CMD(10000, 0);
 
         STEP(2)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        FLD(SIG_STATE_WAIT_H0, 0);
+        FLD(10000, 0);
 
         STEP(3)
-        CMD(SIG_STATE_H0, 0, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
-        CMD(SIG_STATE_H0, 10);
+        CMD(SIG_STATE_H0, 10, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
 
+        STEP(4)
+        FLD(SIG_STATE_H0, 20, SIG_STATE_H0, 0);
+
+        STEP(5)
+        CMD(SIG_STATE_H0, 30);
+
+        STEP(6)
+        FLD(SIG_STATE_H0, 40);
     }
 
     //  test type: equivalence class test
@@ -214,19 +212,16 @@ namespace test
         CMD(SIG_STATE_N0, 0);
         STEP(3)
         FLD(SIG_STATE_N0, 0);
-
         STEP(4)
         FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
         STEP(5)
         FLD(SIG_STATE_UNDEF, 0);
-
         STEP(6)
         FLD(SIG_STATE_N1, 0, SIG_STATE_N1, 0);
         STEP(7)
         CMD(SIG_STATE_N1, 0);
         STEP(8)
         FLD(SIG_STATE_N1, 0);
-
         STEP(9)
         FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
         STEP(10)
@@ -237,27 +232,22 @@ namespace test
         CMD(SIG_STATE_N1, 0);
         STEP(13)
         FLD(SIG_STATE_DEFECT, 0);
-
         STEP(14)
         FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
-
         STEP(15)
         CMD(SIG_STATE_N1, 0, SIG_STATE_N1, 0, SIG_STATE_WAIT_N1, 0);
         STEP(16)
         CMD(SIG_STATE_N1, 0);
-
         STEP(17)
         FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
         STEP(18)
         CMD(SIG_STATE_N0, 0, SIG_STATE_N0, 0, SIG_STATE_WAIT_N0, 0);
         STEP(19)
         CMD(SIG_STATE_N0, 0);
-
         STEP(20)
         FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
         STEP(21)
         FLD(SIG_STATE_DEFECT, 0, SIG_STATE_DEFECT, 0);
-
         STEP(22)
         FLD(SIG_STATE_N0, 0, SIG_STATE_N0, 0);
         STEP(23)
@@ -322,21 +312,30 @@ namespace test
 
         STEP(1)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        CMD(SIG_STATE_WAIT_N0, 0);
+        CMD(10000, 0);
 
         STEP(2)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        FLD(SIG_STATE_WAIT_N0, 0);
+        FLD(10000, 0);
 
         STEP(3)
-        CMD(SIG_STATE_N0, 0, SIG_STATE_N0, 0, SIG_STATE_WAIT_N0, 0);
+        CMD(SIG_STATE_N0, 10, SIG_STATE_N0, 10, SIG_STATE_WAIT_N0, 0);
 
         STEP(4)
-        m_SIG_Hub().expectToFld(mId, SIG_STATE_N0, 10);
-        CMD(SIG_STATE_N0, 10);
+        FLD(SIG_STATE_N0, 10, SIG_STATE_N0, 10);
 
         STEP(5)
-        CMD(SIG_STATE_N0, 10);
+        m_SIG_Hub().expectToFld(mId, SIG_STATE_N0, 20);
+        CMD(SIG_STATE_N0, 20);
+
+        STEP(6)
+        FLD(SIG_STATE_N0, 20, SIG_STATE_N0, 20);
+
+        STEP(7)
+        CMD(SIG_STATE_N0, 20);
+    
+        STEP(8)
+        FLD(SIG_STATE_N0, 20);
     }
 
     //  test type: equivalence class test
@@ -601,11 +600,11 @@ namespace test
 
         STEP(1)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        CMD(SIG_STATE_WAIT_H0_N0, 0);
+        CMD(10000, 0);
 
         STEP(2)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        FLD(SIG_STATE_WAIT_H0_N0, 0);
+        FLD(10000, 0);
 
         STEP(3)
         CMD(SIG_STATE_H1_N0, 0, SIG_STATE_H1_N0, 0, SIG_STATE_WAIT_H1_N0, 0);
@@ -615,7 +614,13 @@ namespace test
         CMD(SIG_STATE_H1_N0, 10);
 
         STEP(5)
-        CMD(SIG_STATE_H1_N0, 10);
-    }
+        m_SIG_Hub().expectToGui(mId, SIG_STATE_H1_N0, 10);
+        FLD(SIG_STATE_H1_N0, 10);
 
+        STEP(6)
+        CMD(SIG_STATE_H1_N0, 10);
+
+        STEP(7)
+        FLD(SIG_STATE_H1_N0, 10);
+    }
 }

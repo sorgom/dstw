@@ -7,7 +7,7 @@ test of modules LCR_(X)
 
 **LCR_01.json**
 ```
-transitions test code for LCR
+transitions test code setup for LCR
 ```
 
 **LCR_02.cpp**

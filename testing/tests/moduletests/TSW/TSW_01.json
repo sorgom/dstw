@@ -1,7 +1,7 @@
 {
-    "//" : "=================================",
-    "//" : "transitions test code for TSW",
-    "//" : "=================================",
+    "//" : "===================================",
+    "//" : "transitions test code setup for TSW",
+    "//" : "===================================",
     "prefixState": "TSW_STATE",
     "prefixCmd": "TSW_GUI_GMD",
     "cmd1": "CMD(_CMD_, _FLD_, _GUI_);",

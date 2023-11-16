@@ -34,6 +34,8 @@ protected:
 
     static void logMissmatch();
 
+    inline virtual bool speedUsed() const { return true; }
+
     NOCOPY(SIG_X)
     SIG_X();
 };
@@ -54,9 +56,12 @@ public:
 
     inline INT32 type() const { return SIG_TYPE_H; }
 
+protected:
+    inline bool speedUsed() const { return false; }
+
 private:
-    void procH0();
-    void procH1();
+    void proc_H0();
+    void proc_H1();
 
     NOCOPY(SIG_H)
     SIG_H();
@@ -80,8 +85,8 @@ public:
     inline INT32 type() const { return SIG_TYPE_N; }
 
 private:
-    void procN0(INT32 speed);
-    void procN1(INT32 speed);
+    void proc_N0(INT32 speed);
+    void proc_N1(INT32 speed);
 
     NOCOPY(SIG_N)
     SIG_N();
@@ -107,10 +112,10 @@ public:
     inline INT32 type() const { return SIG_TYPE_H_N; }
 
 private:
-    void procH0N0(INT32 speed);
-    void procH0N1(INT32 speed);
-    void procH1N0(INT32 speed);
-    void procH1N1(INT32 speed);
+    void proc_H0_N0(INT32 speed);
+    void proc_H0_N1(INT32 speed);
+    void proc_H1_N0(INT32 speed);
+    void proc_H1_N1(INT32 speed);
 
     NOCOPY(SIG_H_N)
     SIG_H_N();

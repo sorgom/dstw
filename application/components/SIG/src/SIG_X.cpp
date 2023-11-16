@@ -14,7 +14,10 @@ void SIG_X::procFromFld(const INT32 state, INT32 speed)
             speed = 0;
             break;
         default:
-            ok = ok or (mSpeedToGui != speed);
+            ok = ok or (
+                speedUsed() and
+                (mSpeedToGui != speed)
+            );
             break;
     }
 
@@ -79,10 +82,10 @@ void SIG_H::fromGui(const INT32 state, const INT32 speed)
     switch (state)
     {
     case SIG_STATE_H0:
-        procH0();
+        proc_H0();
         break;    
     case SIG_STATE_H1:
-        procH1();
+        proc_H1();
         break;    
     default:
         logMissmatch();
@@ -90,7 +93,7 @@ void SIG_H::fromGui(const INT32 state, const INT32 speed)
     };
 }
 
-void SIG_H::procH0()
+void SIG_H::proc_H0()
 {
     switch (mStateToGui)
     {
@@ -104,7 +107,7 @@ void SIG_H::procH0()
     }
 }
 
-void SIG_H::procH1()
+void SIG_H::proc_H1()
 {
     switch (mStateToGui)
     {
@@ -139,10 +142,10 @@ void SIG_N::fromGui(const INT32 state, const INT32 speed)
     switch (state)
     {
     case SIG_STATE_N0:
-        procN0(speed);
+        proc_N0(speed);
         break;    
     case SIG_STATE_N1:
-        procN1(speed);
+        proc_N1(speed);
         break;    
     default:
         logMissmatch();
@@ -150,7 +153,7 @@ void SIG_N::fromGui(const INT32 state, const INT32 speed)
     };
 }
 
-void SIG_N::procN0(const INT32 speed)
+void SIG_N::proc_N0(const INT32 speed)
 {
     switch (mStateToGui)
     {
@@ -165,7 +168,7 @@ void SIG_N::procN0(const INT32 speed)
     }
 }
 
-void SIG_N::procN1(const INT32 speed)
+void SIG_N::proc_N1(const INT32 speed)
 {
     switch (mStateToGui)
     {
@@ -204,16 +207,16 @@ void SIG_H_N::fromGui(const INT32 state, const INT32 speed)
     switch (state)
     {
     case SIG_STATE_H0_N0:
-        procH0N0(speed);
+        proc_H0_N0(speed);
         break;    
     case SIG_STATE_H0_N1:
-        procH0N1(speed);
+        proc_H0_N1(speed);
         break;    
     case SIG_STATE_H1_N0:
-        procH1N0(speed);
+        proc_H1_N0(speed);
         break;    
     case SIG_STATE_H1_N1:
-        procH1N1(speed);
+        proc_H1_N1(speed);
         break;    
     default:
         logMissmatch();
@@ -221,7 +224,7 @@ void SIG_H_N::fromGui(const INT32 state, const INT32 speed)
     };
 }
 
-void SIG_H_N::procH0N0(const INT32 speed)
+void SIG_H_N::proc_H0_N0(const INT32 speed)
 {
     switch (mStateToGui)
     {
@@ -242,7 +245,7 @@ void SIG_H_N::procH0N0(const INT32 speed)
     }
 
 }
-void SIG_H_N::procH0N1(const INT32 speed)
+void SIG_H_N::proc_H0_N1(const INT32 speed)
 {
     switch (mStateToGui)
     {
@@ -263,7 +266,7 @@ void SIG_H_N::procH0N1(const INT32 speed)
     }
     
 }
-void SIG_H_N::procH1N0(const INT32 speed)
+void SIG_H_N::proc_H1_N0(const INT32 speed)
 {
     switch (mStateToGui)
     {
@@ -284,7 +287,7 @@ void SIG_H_N::procH1N0(const INT32 speed)
     }
     
 }
-void SIG_H_N::procH1N1(const INT32 speed)
+void SIG_H_N::proc_H1_N1(const INT32 speed)
 {
     switch (mStateToGui)
     {

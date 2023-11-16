@@ -1,6 +1,5 @@
 //  ============================================================
 //  test of module TSW
-//  according to test plan TSW_states.md
 //  ============================================================
 //  created by Manfred Sorgo
 
