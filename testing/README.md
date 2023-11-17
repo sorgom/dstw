@@ -18,8 +18,10 @@ The software compiled for production does not provide any substitution of the mo
 This concept has been SIL4 validated already.
 
 ## module tests
-Sample: test setup for _Dispatcher_ module
+
 ![test Dispatcher](../specification/doc/test_dispatcher.svg) 
+
+Sample: test setup for _Dispatcher_ module
 
 ## system tests
 entry points:
