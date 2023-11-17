@@ -2,13 +2,13 @@
 <defs/>
 <g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="576" y="624" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FF8282" stroke="none" x="576" y="624" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 26 202 L 154 202 L 154 298 L 26 298 L 26 202 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="576" y="624" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FF8282" stroke="none" x="576" y="624" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 26 202 L 154 202 L 154 298 L 26 298 L 26 202 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
@@ -16,19 +16,19 @@
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="640.5" y="637.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="640.5" y="637.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
 mock TSW Hub</text>
-<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 138.167724609375 222 L 42.832275390625 222" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 138.167724609375 222 L 42.832275390625 222" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="736" y="704" width="192" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#6DCEFF" stroke="none" x="736" y="704" width="192" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 186 282 L 378 282 L 378 378 L 186 378 L 186 282 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="736" y="704" width="192" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#6DCEFF" stroke="none" x="736" y="704" width="192" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 186 282 L 378 282 L 378 378 L 186 378 L 186 282 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
@@ -36,9 +36,9 @@ mock TSW Hub</text>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="832.5" y="717.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="832.5" y="717.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
 SUT Dispatcher</text>
-<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 330.90087890625 302 L 234.09912109375 302" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 330.90087890625 302 L 234.09912109375 302" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
@@ -48,13 +48,13 @@ SUT Dispatcher</text>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 164.1626748576241 245.790482243984 L 154 250 L 164.1626748576241 254.209517756016" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="960" y="800" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FF8282" stroke="none" x="960" y="800" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 410 378 L 538 378 L 538 474 L 410 474 L 410 378 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="960" y="800" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FF8282" stroke="none" x="960" y="800" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 410 378 L 538 378 L 538 474 L 410 474 L 410 378 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
@@ -62,9 +62,9 @@ SUT Dispatcher</text>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="1024.5" y="813.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="1024.5" y="813.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
 mock Com</text>
-<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 507.72998046875 398 L 441.27001953125 398" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 507.72998046875 398 L 441.27001953125 398" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
@@ -74,13 +74,13 @@ mock Com</text>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 175.8373251423759 334.209517756016 L 186 330 L 175.8373251423758 325.790482243984" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="608" y="512" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FF8282" stroke="none" x="608" y="512" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 58 90 L 186 90 L 186 186 L 58 186 L 58 90 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="608" y="512" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FF8282" stroke="none" x="608" y="512" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 58 90 L 186 90 L 186 186 L 58 186 L 58 90 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
@@ -88,9 +88,9 @@ mock Com</text>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="672.5" y="525.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="672.5" y="525.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
 mock SIG Hub</text>
-<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 166.924072265625 110 L 78.075927734375 110" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 166.924072265625 110 L 78.075927734375 110" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
@@ -106,13 +106,13 @@ mock SIG Hub</text>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 469.790482243984 367.8373251423759 L 474 378 L 478.2095177560159 367.8373251423759" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="560" y="832" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FFFFFF" stroke="none" x="560" y="832" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 10 410 L 266 410 L 266 442 L 10 442 L 10 410 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="560" y="832" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FFFFFF" stroke="none" x="560" y="832" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 10 410 L 266 410 L 266 442 L 10 442 L 10 410 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
@@ -120,19 +120,19 @@ mock SIG Hub</text>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="845.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="845.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
 call SUT interface methods</text>
-<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 221.93994140625 430 L 55.06005859375 430" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 221.93994140625 430 L 55.06005859375 430" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="768" y="432" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FF8282" stroke="none" x="768" y="432" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 218 10 L 346 10 L 346 106 L 218 106 L 218 10 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="768" y="432" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FF8282" stroke="none" x="768" y="432" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 218 10 L 346 10 L 346 106 L 218 106 L 218 10 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
@@ -140,9 +140,9 @@ call SUT interface methods</text>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="832.5" y="445.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="832.5" y="445.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
 mock Log</text>
-<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 313.197265625 30 L 251.802734375 30" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 313.197265625 30 L 251.802734375 30" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
@@ -152,53 +152,53 @@ mock Log</text>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 286.209517756016 116.1626748576241 L 282 106 L 277.790482243984 116.1626748576241" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="560" y="864" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#E2E2E2" stroke="none" x="560" y="864" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 10 442 L 266 442 L 266 474 L 10 474 L 10 442 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 10 442 L 266 442 L 266 474 L 10 474 L 10 442 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="560" y="864" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#E2E2E2" stroke="none" x="560" y="864" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 10 442 L 266 442 L 266 474 L 10 474 L 10 442 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 10 442 L 266 442 L 266 474 L 10 474 L 10 442 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="877.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="877.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
 telegrams from Com</text>
-<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 201.7099609375 462 L 75.2900390625 462" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 201.7099609375 462 L 75.2900390625 462" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="560" y="896" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#E2E2E2" stroke="none" x="560" y="896" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 10 474 L 266 474 L 266 506 L 10 506 L 10 474 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 10 474 L 266 474 L 266 506 L 10 506 L 10 474 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="560" y="896" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#E2E2E2" stroke="none" x="560" y="896" width="256" height="32" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
-<path fill="none" stroke="#FFFFFF00" paint-order="fill stroke markers" d=" M 10 474 L 266 474 L 266 506 L 10 506 L 10 474 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 10 474 L 266 474 L 266 506 L 10 506 L 10 474 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="909.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="688.5" y="909.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
 telegrams from subsystems</text>
-<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 224.8408203125 494 L 52.1591796875 494" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 224.8408203125 494 L 52.1591796875 494" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="976" y="624" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FF8282" stroke="none" x="976" y="624" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 426 202 L 554 202 L 554 298 L 426 298 L 426 202 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="976" y="624" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FF8282" stroke="none" x="976" y="624" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 426 202 L 554 202 L 554 298 L 426 298 L 426 202 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
@@ -206,19 +206,19 @@ telegrams from subsystems</text>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="1040.5" y="637.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="1040.5" y="637.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
 mock LCR Hub</text>
-<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 537.08544921875 222 L 443.91455078125 222" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 537.08544921875 222 L 443.91455078125 222" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="928" y="512" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FF8282" stroke="none" x="928" y="512" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 378 90 L 506 90 L 506 186 L 378 186 L 378 90 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 <g>
-<rect fill="#FFFFFF00" stroke="none" x="928" y="512" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
+<rect fill="#FF8282" stroke="none" x="928" y="512" width="128" height="96" transform="matrix(1 0 0 1 -550 -422)"/>
 </g>
 <g>
 <path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 378 90 L 506 90 L 506 186 L 378 186 L 378 90 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
@@ -226,9 +226,9 @@ mock LCR Hub</text>
 <g>
 <g>
 <path fill="none" stroke="none"/>
-<text fill="#707070" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="992.5" y="525.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
+<text fill="#000000" stroke="none" font-family="Arial" font-size="13px" font-style="normal" font-weight="bold" text-decoration="undefined" x="992.5" y="525.5" text-anchor="middle" dominant-baseline="central" transform="matrix(1 0 0 1 -550 -422)">
 mock SEG Hub</text>
-<path fill="none" stroke="#707070" paint-order="fill stroke markers" d=" M 489.45361328125 110 L 395.54638671875 110" stroke-miterlimit="10" stroke-dasharray=""/>
+<path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 489.45361328125 110 L 395.54638671875 110" stroke-miterlimit="10" stroke-dasharray=""/>
 </g>
 </g>
 <g>
