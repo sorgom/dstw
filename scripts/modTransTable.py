@@ -10,7 +10,7 @@ from modMdTable import mdTable
 
 class TransTable(object):
     def __init__(self):
-        self.heading = ['STEP', 'FROM', 'TO', 'EVENT', 'GLUE']
+        self.heading = ['STEP', 'EVENT', 'FROM', 'TO', 'GLUE']
         self.rxWild = re.compile(r'\*')
     def noTrans(self, evt):
         return ['', '', evt]
@@ -103,13 +103,19 @@ class TransTable(object):
                 del noTrans[trg]
         return tbl
 
+    def mdStep(self, n, trIn:list):
+        trOut = trIn.copy()
+        trOut[0] = trIn[2]
+        trOut[1] = trIn[0]
+        trOut[2] = trIn[1]
+        return [n + 1, *trOut]
 
     def genMd(self, transitions:list, name = 'test steps'):
         tbl = self.genTable(transitions)
         data = [
             self.heading,
             *[
-                [p + 1, *tr] for  p, tr in enumerate(tbl)
+                self.mdStep(n, tr) for  n, tr in enumerate(tbl)
             ]
         ]
 

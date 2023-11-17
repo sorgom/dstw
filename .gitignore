@@ -71,3 +71,7 @@ tempCodeRunnerFile.py
 html
 *.cov
 _*.*
+
+# depracated gen
+transitions_*.mod
+*_states.md

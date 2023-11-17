@@ -1,9 +1,7 @@
 # transition tables
 
 ## sample: transitions TSW
-<div style="background-color:#F8F8F8;">
-<img src="SC_TSW.svg" alt="SC TSW">
-</div>
+![SC TSW](SC_TSW.svg)
 
 ## valid transitions
 
@@ -30,11 +28,11 @@ This requires 28 test steps.
 
 ## events causing no transition
 
-But we do not only want to _test all events that cause transition_.
+But we do not only want to test all events that cause transition.
 
-We also want to _test all events that cause no transition_.
+In order to complete application code coverage we also want to test all events that cause no transition.
 
-And also we want to have _as few test steps as possible_.
+And also we want to have as few test steps as possible.
 
 That means to generate sequences of test steps using the result state of the preceding steps.
 
@@ -74,59 +72,68 @@ It's a little script effort to generate all required test steps from the transit
 
 Sample: test steps for TSW
 
-|STEP|FROM|TO|EVENT|GLUE|
+|STEP|EVENT|FROM|TO|GLUE|
 |---:|:---|:---|:---|:---|
-|1|UNDEF|LEFT|FLD LEFT|
-|2|||CMD LEFT|
-|3|||FLD LEFT|
-|4|LEFT|UNDEF|FLD UNDEF|
-|5|||CMD WU|
-|6|||FLD UNDEF|
-|7|UNDEF|RIGHT|FLD RIGHT|
-|8|||CMD RIGHT|
-|9|||FLD RIGHT|
-|10|RIGHT|UNDEF|FLD UNDEF|
-|11|UNDEF|DEFECT|FLD DEFECT|
-|12|||CMD LEFT|
-|13|||CMD RIGHT|
-|14|||CMD WU|
-|15|||FLD DEFECT|
-|16|DEFECT|UNDEF|FLD UNDEF|
-|17|UNDEF|WAIT LEFT|CMD LEFT|
-|18|||CMD LEFT|
-|19|||CMD WU|
-|20|WAIT LEFT|UNDEF|FLD UNDEF|
-|21|UNDEF|WAIT RIGHT|CMD RIGHT|
-|22|||CMD RIGHT|
-|23|||CMD WU|
-|24|WAIT RIGHT|UNDEF|FLD UNDEF|
-|25|UNDEF|DEFECT|FLD DEFECT|*|
-|26|DEFECT|LEFT|FLD LEFT|
-|27|LEFT|RIGHT|FLD RIGHT|
-|28|RIGHT|LEFT|FLD LEFT|
-|29|LEFT|DEFECT|FLD DEFECT|
-|30|DEFECT|RIGHT|FLD RIGHT|
-|31|RIGHT|DEFECT|FLD DEFECT|
-|32|DEFECT|UNDEF|FLD UNDEF|*|
-|33|UNDEF|WAIT LEFT|CMD LEFT|*|
-|34|WAIT LEFT|LEFT|FLD LEFT|
-|35|LEFT|WAIT RIGHT|CMD RIGHT|
-|36|WAIT RIGHT|LEFT|FLD LEFT|
-|37|LEFT|WAIT RIGHT|CMD WU|
-|38|WAIT RIGHT|RIGHT|FLD RIGHT|
-|39|RIGHT|WAIT LEFT|CMD LEFT|
-|40|WAIT LEFT|RIGHT|FLD RIGHT|
-|41|RIGHT|WAIT LEFT|CMD WU|
-|42|WAIT LEFT|DEFECT|FLD DEFECT|
-|43|DEFECT|UNDEF|FLD UNDEF|*|
-|44|UNDEF|WAIT RIGHT|CMD RIGHT|*|
-|45|WAIT RIGHT|DEFECT|FLD DEFECT|
-|46|DEFECT|UNDEF|FLD UNDEF|*|
-|47|UNDEF|WAIT RIGHT|CMD RIGHT|*|
-|48|WAIT RIGHT|WAIT LEFT|CMD LEFT|
-|49|WAIT LEFT|WAIT RIGHT|CMD RIGHT|
+|1|FLD LEFT|UNDEF|LEFT|
+|2|CMD LEFT|||
+|3|FLD LEFT|||
+|4|FLD UNDEF|LEFT|UNDEF|
+|5|CMD WU|||
+|6|FLD UNDEF|||
+|7|FLD RIGHT|UNDEF|RIGHT|
+|8|CMD RIGHT|||
+|9|FLD RIGHT|||
+|10|FLD UNDEF|RIGHT|UNDEF|
+|11|FLD DEFECT|UNDEF|DEFECT|
+|12|CMD LEFT|||
+|13|CMD RIGHT|||
+|14|CMD WU|||
+|15|FLD DEFECT|||
+|16|FLD UNDEF|DEFECT|UNDEF|
+|17|CMD LEFT|UNDEF|WAIT LEFT|
+|18|CMD LEFT|||
+|19|CMD WU|||
+|20|FLD UNDEF|WAIT LEFT|UNDEF|
+|21|CMD RIGHT|UNDEF|WAIT RIGHT|
+|22|CMD RIGHT|||
+|23|CMD WU|||
+|24|FLD UNDEF|WAIT RIGHT|UNDEF|
+|25|FLD DEFECT|UNDEF|DEFECT|*|
+|26|FLD LEFT|DEFECT|LEFT|
+|27|FLD RIGHT|LEFT|RIGHT|
+|28|FLD LEFT|RIGHT|LEFT|
+|29|FLD DEFECT|LEFT|DEFECT|
+|30|FLD RIGHT|DEFECT|RIGHT|
+|31|FLD DEFECT|RIGHT|DEFECT|
+|32|FLD UNDEF|DEFECT|UNDEF|*|
+|33|CMD LEFT|UNDEF|WAIT LEFT|*|
+|34|FLD LEFT|WAIT LEFT|LEFT|
+|35|CMD RIGHT|LEFT|WAIT RIGHT|
+|36|FLD LEFT|WAIT RIGHT|LEFT|
+|37|CMD WU|LEFT|WAIT RIGHT|
+|38|FLD RIGHT|WAIT RIGHT|RIGHT|
+|39|CMD LEFT|RIGHT|WAIT LEFT|
+|40|FLD RIGHT|WAIT LEFT|RIGHT|
+|41|CMD WU|RIGHT|WAIT LEFT|
+|42|FLD DEFECT|WAIT LEFT|DEFECT|
+|43|FLD UNDEF|DEFECT|UNDEF|*|
+|44|CMD RIGHT|UNDEF|WAIT RIGHT|*|
+|45|FLD DEFECT|WAIT RIGHT|DEFECT|
+|46|FLD UNDEF|DEFECT|UNDEF|*|
+|47|CMD RIGHT|UNDEF|WAIT RIGHT|*|
+|48|CMD LEFT|WAIT RIGHT|WAIT LEFT|
+|49|CMD RIGHT|WAIT LEFT|WAIT RIGHT|
 
 The * GLUE field indicates that we have repeated transitions that are necessary to provide the entry state for the next test steps.
+
+In numbers:
+```
+    28 test steps for transitions
++   14 test steps without transition
+=   42 relevant test steps
++    7 test steps as glue
+=   49 test steps total
+```
 
 ## test code
 
@@ -136,9 +143,9 @@ Sample: test template json file for TSW
 
 ```json
 {
-    "//" : "=================================",
-    "//" : "transitions test code for TSW",
-    "//" : "=================================",
+    "//" : "===================================",
+    "//" : "transitions test code setup for TSW",
+    "//" : "===================================",
     "prefixState": "TSW_STATE",
     "prefixCmd": "TSW_GUI_GMD",
     "cmd1": "CMD(_CMD_, _FLD_, _GUI_);",
@@ -171,64 +178,7 @@ Sample: generated test code for TSW
         FLD(TSW_STATE_RIGHT);
         STEP(10)
         FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
-        STEP(11)
-        FLD(TSW_STATE_DEFECT, TSW_STATE_DEFECT);
-        STEP(12)
-        CMD(TSW_GUI_GMD_LEFT);
-        STEP(13)
-        CMD(TSW_GUI_GMD_RIGHT);
-        STEP(14)
-        CMD(TSW_GUI_GMD_WU);
-        STEP(15)
-        FLD(TSW_STATE_DEFECT);
-        STEP(16)
-        FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
-        STEP(17)
-        CMD(TSW_GUI_GMD_LEFT, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
-        STEP(18)
-        CMD(TSW_GUI_GMD_LEFT);
-        STEP(19)
-        CMD(TSW_GUI_GMD_WU);
-        STEP(20)
-        FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
-        STEP(21)
-        CMD(TSW_GUI_GMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
-        STEP(22)
-        CMD(TSW_GUI_GMD_RIGHT);
-        STEP(23)
-        CMD(TSW_GUI_GMD_WU);
-        STEP(24)
-        FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
-        STEP(25)
-        FLD(TSW_STATE_DEFECT, TSW_STATE_DEFECT);
-        STEP(26)
-        FLD(TSW_STATE_LEFT, TSW_STATE_LEFT);
-        STEP(27)
-        FLD(TSW_STATE_RIGHT, TSW_STATE_RIGHT);
-        STEP(28)
-        FLD(TSW_STATE_LEFT, TSW_STATE_LEFT);
-        STEP(29)
-        FLD(TSW_STATE_DEFECT, TSW_STATE_DEFECT);
-        STEP(30)
-        FLD(TSW_STATE_RIGHT, TSW_STATE_RIGHT);
-        STEP(31)
-        FLD(TSW_STATE_DEFECT, TSW_STATE_DEFECT);
-        STEP(32)
-        FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
-        STEP(33)
-        CMD(TSW_GUI_GMD_LEFT, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
-        STEP(34)
-        FLD(TSW_STATE_LEFT, TSW_STATE_LEFT);
-        STEP(35)
-        CMD(TSW_GUI_GMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
-        STEP(36)
-        FLD(TSW_STATE_LEFT, TSW_STATE_LEFT);
-        STEP(37)
-        CMD(TSW_GUI_GMD_WU, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
-        STEP(38)
-        FLD(TSW_STATE_RIGHT, TSW_STATE_RIGHT);
-        STEP(39)
-        CMD(TSW_GUI_GMD_LEFT, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
+        // ...
         STEP(40)
         FLD(TSW_STATE_RIGHT, TSW_STATE_RIGHT);
         STEP(41)
@@ -270,8 +220,9 @@ Sample: generated test code for TSW
 ### transitions & test steps
 
 ```
-  82 transitions
- 121 test steps total
-  18 test steps without transition
-  21 test steps as glue
+    82 test steps for transitions   
++   18 test steps without transition
+=  100 relevant test steps
++   21 test steps as glue
+=  121 test steps total
 ```

@@ -1,20 +1,17 @@
 # release 2023-11 _Maggie_
 
 ## components
-<img src="../specification/doc/components.svg" alt="modules" style="width:400px;"> 
+<img src="../specification/doc/components.svg" alt="modules" style="width:200px;"> 
 
 ## modules
-<div style="background-color:#F8F8F8;">
-<img src="../specification/doc/overview.svg" alt="component overview">
-</div>
+![component overview](../specification/doc/rel-2023-11_overview.svg)
 
 ## central error logging
 There is no error handling in the individual components.
 All errors are reported to the central error log.
 Further error handling / reactions / statistics will be implemented here.
-<div style="background-color:#F8F8F8;">
-<img src="../specification/doc/log.svg" alt="central logging">
-</div>
+
+![central logging](../specification/doc/rel-2023-11_log.svg)
 
 ## framing
 -   fictive telegram structures

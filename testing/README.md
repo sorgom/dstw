@@ -18,10 +18,10 @@ The software compiled for production does not provide any substitution of the mo
 This concept has been SIL4 validated already.
 
 ## module tests
-Sample: test setup for _Dispatcher_ module 
-<div style="background-color:#F8F8F8;">
-<img src="../specification/doc/test_dispatcher.svg" alt="test of Dispatcher">
-</div>
+
+![test Dispatcher](../specification/doc/test_dispatcher.svg) 
+
+Sample: test setup for _Dispatcher_ module
 
 ## system tests
 entry points:
@@ -31,9 +31,7 @@ entry points:
 exit points (Com):
 -   telegrams to field and GUI
 
-<div style="background-color:#F8F8F8;">
-<img src="../specification/doc/sys_tests.svg" alt="test of Dispatcher">
-</div>
+![system tests](../specification/doc/sys_tests.svg) 
 
 ## code coverage
 for current current code coverage see [coverage.md](coverage.md)

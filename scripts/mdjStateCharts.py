@@ -12,17 +12,6 @@ from getopt import getopt
 class StateCharts(object):
     def __init__(self):
         self.transTable = TransTable()
-        # data = dict()
-        # with open(mdj, 'r') as fh:
-        #     data =  json.load(fh)
-        #     fh.close()
-        # self.transitions = dict()
-        # self.stateNames = dict()
-        # self.stateMachines = dict()
-        # self.stateChartNames = dict()
-        # self.regionNames = dict()
-        # self.traverse(data)
-        # self.regNames()
 
     def genInfo(self, mdj):
         self.scanMdj(mdj)
