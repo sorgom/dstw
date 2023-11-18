@@ -38,6 +38,7 @@ namespace test
         inline IdataIndex(const IdataArray& a):
             StackArrayIndex<Idata, 20>(a)
         {}
+    protected:        
         inline bool isGreater(const Idata& a, const Idata& b) const
         {
             return a.m1 > b.m1;

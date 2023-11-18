@@ -207,10 +207,11 @@ public:
         return this->at(pos).ref();
     }
 
+protected:
+    virtual bool isGreater(const T& a, const T& b) const = 0;
+
 private:
     const StackArray<T, CAP>& mArray;
-
-    virtual bool isGreater(const T& a, const T& b) const = 0;
 
     NOCOPY(StackArrayIndex)
     StackArrayIndex();

@@ -20,7 +20,11 @@ type safe memset & memcpy
 
 **NtpArray.h**
 ```
-Storage of Name Type Position
+name, type, position
+
+- storage of name, type, position
+
+- index of name, type, position by name
 ```
 
 **StackArray.h**
