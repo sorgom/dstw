@@ -1,32 +1,38 @@
 //  ============================================================
-//  defintion of interface I_Searchable to apply:
+//  defintion of interface I_Array to apply:
 //  - bubble sort
 //  - b-tree search
 //  - uniqueness check / duplicates count
 //  ============================================================
 #pragma once
-#ifndef I_SEARCHABLE_H
-#define I_SEARCHABLE_H
+#ifndef I_ARRAY_H
+#define I_ARRAY_H
 
 #include <BAS/BaseTypes.h>
-#include <BAS/coding.h>
 
 template <class T>
-class I_Searchable
+class I_Array
 {
 public:
     //  current number of objects
     virtual UINT32 size() const = 0;
+    
     //  object access by position
     virtual const T& at(UINT32 pos) const = 0;
+    
     //  definition object a is greater than object b
-    virtual bool isGreater(const T& a, const T& b) const = 0;
+    inline virtual bool isGreater(const T& a, const T& b) const
+    {
+        return false;
+    } 
+    
     //  swap content of position a and b
-    virtual void swap(UINT32 posA, UINT32 posB) = 0;
+    inline virtual void swap(UINT32 posA, UINT32 posB)
+    {}
 };
 
 template <class T>
-void bSort(I_Searchable<T>& src)
+void bSort(I_Array<T>& src)
 {
     for (UINT32 n = src.size(); n > 1; --n)
     {
@@ -47,7 +53,7 @@ void bSort(I_Searchable<T>& src)
 }
 
 template <class T>
-INT32 bSearch(const I_Searchable<T>& src, const T& obj)
+INT32 bSearch(const I_Array<T>& src, const T& obj)
 {
     INT32 pMin = 0;
     INT32 pMax = src.size() - 1;
@@ -74,15 +80,15 @@ INT32 bSearch(const I_Searchable<T>& src, const T& obj)
     return res;
 }
 
-//  apply duplicates count to I_Searchable
+//  apply duplicates count to I_Array
 //  precondition: bSort applied before
 template <class T>
-UINT32 dupCnt(const I_Searchable<T>& src)
+UINT32 dupCnt(const I_Array<T>& src)
 {
     UINT32 ndups = 0;
-    for (UINT32 p = 0; p < src.size() - 1; ++p)
+    for (UINT32 p = 1; p < src.size(); ++p)
     {
-        if (not src.isGreater(src.at(p + 1), src.at(p)))
+        if (not src.isGreater(src.at(p), src.at(p - 1)))
         {
             ++ndups;
         }

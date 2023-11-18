@@ -83,13 +83,13 @@ namespace test
         }
 
     private:
-        SimpleStackArray<ProjTSW, NTSW> mTSWs;
-        SimpleStackArray<ProjSIG, NSIG> mSIGs;
-        SimpleStackArray<ProjLCR, NLCR> mLCRs;
-        SimpleStackArray<ProjSEG, NSEG> mSEGs;
+        StackArray<ProjTSW, NTSW> mTSWs;
+        StackArray<ProjSIG, NSIG> mSIGs;
+        StackArray<ProjLCR, NLCR> mLCRs;
+        StackArray<ProjSEG, NSEG> mSEGs;
 
         template <class T, UINT32 CAP>
-        void preset(SimpleStackArray<T, CAP>& array, CONST_C_STRING what)
+        void preset(StackArray<T, CAP>& array, CONST_C_STRING what)
         {
             for (UINT32 n = 0; n < CAP; ++n)
             {
@@ -100,13 +100,13 @@ namespace test
         }
 
         template <class T, UINT32 CAP>
-        void setType(SimpleStackArray<T, CAP>& array, UINT32 pos, INT32 type)
+        void setType(StackArray<T, CAP>& array, UINT32 pos, INT32 type)
         {
             array.at(pos).type = type;
         }
 
         template <class T, UINT32 CAP>
-        void setType(SimpleStackArray<T, CAP>& array, INT32 type)
+        void setType(StackArray<T, CAP>& array, INT32 type)
         {
             for (UINT32 p = 0; p < CAP; ++p)
             {

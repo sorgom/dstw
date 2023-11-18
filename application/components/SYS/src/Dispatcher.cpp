@@ -13,7 +13,12 @@ void Dispatcher::reset()
 
 void Dispatcher::index()
 {
-    mIndx.index();
+    if (mIndx.index())
+    { pass();}
+    else
+    {
+        IL::getLog().log(MOD_DISPATCHER, ERR_STARTUP);
+    }
 }
 
 INT32 Dispatcher::assign(

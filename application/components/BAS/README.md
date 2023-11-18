@@ -5,9 +5,9 @@
 basic integral types and limits
 ```
 
-**I_Searchable.h**
+**I_Array.h**
 ```
-defintion of interface I_Searchable to apply:
+defintion of interface I_Array to apply:
 - bubble sort
 - b-tree search
 - uniqueness check / duplicates count
@@ -31,24 +31,24 @@ StackArrays
 -   can be filled with objects at runtime
 -   do not provide any overflow protection
 
-SimpleStackArray
+StackArray
 keeps objects in the same order as they were added.
 
-StackArray
+SortableStackArray
 -   can be sorted
 -   can search for elements
 Derived classes have to provide
 the isGreater method for objects of their type
-See interface I_Searchable
+See interface I_Array
 
 class CRef
 enables to store references as objects
 
 StackArrayIndex
-provides search for unsorted SimpleStackArray.
+provides search for unsorted StackArray.
 Derived classes have to provide
 the isGreater method for objects of their type
-See interface I_Searchable
+See interface I_Array
 ```
 
 **coding.h**

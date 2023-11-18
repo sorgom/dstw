@@ -30,7 +30,7 @@ protected:
 
 template <UINT32 CAP>
 class NtpArray : 
-    public SimpleStackArray<Ntp, CAP>,
+    public StackArray<Ntp, CAP>,
     private GenNtp
 {
 public:

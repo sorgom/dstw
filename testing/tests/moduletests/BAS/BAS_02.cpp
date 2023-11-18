@@ -1,5 +1,5 @@
 //  ============================================================
-//  test of StackArray, StackArrayIndex
+//  test of SortableStackArray, StackArrayIndex
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -21,7 +21,7 @@ namespace test
         {}
     };
 
-    class IdataArray : public StackArray<Idata, 20>
+    class IdataSortableArray : public SortableStackArray<Idata, 20>
     {
     public:
         inline bool isGreater(const Idata& a, const Idata& b) const
@@ -30,12 +30,12 @@ namespace test
         }
     };
 
-    typedef SimpleStackArray<Idata, 20> IdataSimpleArray;
+    typedef StackArray<Idata, 20> IdataArray;
 
     class IdataIndex : public StackArrayIndex<Idata, 20>
     {
     public:
-        inline IdataIndex(const IdataSimpleArray& a):
+        inline IdataIndex(const IdataArray& a):
             StackArrayIndex<Idata, 20>(a)
         {}
         inline bool isGreater(const Idata& a, const Idata& b) const
@@ -45,13 +45,13 @@ namespace test
     };
 
     //  test type: equivalence class test
-    //  test of StackArray
+    //  test of SortableStackArray
     TEST(BAS_02, T01)
     {
         STEP(1)
         //  create array
         //  load data
-        IdataArray a;
+        IdataSortableArray a;
 
         L_CHECK_EQUAL(20, a.capacity())
         L_CHECK_EQUAL( 0, a.size())
@@ -95,7 +95,7 @@ namespace test
 
         STEP(5)
         //  apply find() to const object
-        const IdataArray& c = a;
+        const IdataSortableArray& c = a;
         SUBSTEPS()
         for (INT32 i = 0; i < c.size(); ++i)
         {
@@ -107,17 +107,17 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  test of StackArray dupCnt
+    //  test of SortableStackArray dupCnt
     TEST(BAS_02, T02)
     {
         SETUP()
-        IdataArray a;
+        IdataSortableArray a;
         a.add(Idata(1, 2));
         a.add(Idata(2, 2));
         a.add(Idata(1, 2));
         a.add(Idata(2, 2));
         a.sort();
-        const IdataArray& c = a;
+        const IdataSortableArray& c = a;
 
         STEP(1)
         const UINT32 cnt = c.dupCnt();
@@ -128,41 +128,63 @@ namespace test
     //  test of StackArrayIndex
     TEST(BAS_02, T03)
     {
-        STEP(1)
+        SETUP()
         //  create array
-        //  load data
-        IdataSimpleArray a;
+        IdataArray a;
         IdataIndex ix(a);
-        L_CHECK_EQUAL(a.capacity(), ix.capacity())
+        bool ok = false;
 
+        STEP(1)
+        //  index of empty array
+        {
+            ok = ix.index();
+            L_CHECK_TRUE(ok)
+            const Idata d(1, 2);
+            const INT32 f = ix.findRef(d);
+            L_CHECK_EQUAL(-1, f)
+        }
+
+        STEP(2)
+        //  load data
         for (INT32 i = 0; i < a.capacity(); ++i)
         {
             a.add(Idata(-i, i));
         }
         L_CHECK_FALSE(a.hasSpace())
 
-        STEP(2)
-        //  index index
+        STEP(3)
+        //  index
         //  find all data in index
-        ix.index();
-        L_CHECK_FALSE(ix.hasSpace())
+        ok = ix.index();
+        L_CHECK_TRUE(ok)
+
         SUBSTEPS()
         for (INT32 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
             const Idata& d = a.at(i);
             const INT32  f = ix.findRef(d);
+            L_CHECK_FALSE(f < 0)
             const Idata& r = ix.getRef(f);
             L_CHECK_EQUAL(d.m1, r.m1)
             L_CHECK_EQUAL(d.m2, r.m2)
         }
         ENDSTEPS()
+
+        STEP(4)
+        //  duplicates
+        a.reset();
+        a.add(Idata(1, 1));
+        a.add(Idata(1, 2));
+        ok = ix.index();
+        L_CHECK_FALSE(ok)
     }
+
     //  test type: coverage
-    //  SimpleStackArray isGreater / swap
+    //  StackArray isGreater / swap
     TEST(BAS_02, T04)
     {
-        IdataSimpleArray a;
+        IdataArray a;
         const bool res = a.isGreater(Idata(2, 2), Idata(1, 2));
         L_CHECK_FALSE(res)
         a.swap(0, 1);

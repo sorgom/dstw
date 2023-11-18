@@ -13,7 +13,7 @@ test of basic functionality
 
 **BAS_02.cpp**
 ```
-test of StackArray, StackArrayIndex
+test of SortableStackArray, StackArrayIndex
 ```
 
 **BAS_03.cpp**

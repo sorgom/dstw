@@ -33,7 +33,7 @@ public:
     IL_INSTANCE_DEC(SIG_Provider)
 
 private:
-    SimpleStackArray<SIG_X, CAPACITY_SIG> mSIGs;
+    StackArray<SIG_X, CAPACITY_SIG> mSIGs;
 
     NOCOPY(SIG_Provider)
 };

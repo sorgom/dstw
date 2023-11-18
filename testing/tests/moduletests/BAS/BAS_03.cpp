@@ -20,7 +20,6 @@ namespace test
         NtpArray<CAPACITY_DSP> data;
         NtpIndex<CAPACITY_DSP> indx(data);
         L_CHECK_EQUAL(CAPACITY_DSP, data.capacity())
-        L_CHECK_EQUAL(CAPACITY_DSP, indx.capacity())
         
         Ntp tNtp;
         const UINT32 tSize = 10;
