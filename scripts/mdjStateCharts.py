@@ -4,7 +4,7 @@
 #   ============================================================
 #   created by Manfred Sorgo
 
-from modTransTable import TransTable
+from modTransTable import TransTable, TransEvent
 import json, re
 from sys import argv
 from getopt import getopt
@@ -63,12 +63,12 @@ class StateCharts(object):
         transitions = self.transitions.get(region)
         stateNames  = self.stateNames.get(region)
         if stateNames is None: return
-        transitions = [
-            [src, trg, self.event(trg, evt) ] 
-                for src, trg, evt in [[stateNames.get(src), stateNames.get(trg), evt] 
-                    for src, trg, evt in transitions]
+        transEvents = [
+            TransEvent(self.event(trg, evt), src, trg)
+                for evt, src, trg in [[evt, stateNames.get(src), stateNames.get(trg)] 
+                    for evt, src, trg in transitions]
         ]
-        return transitions
+        return transEvents
     
     def getRef(self, data, key):
         ref = data.get(key)
@@ -85,10 +85,10 @@ class StateCharts(object):
                 if pr:
                     src = self.getRef(data, 'source')
                     trg = self.getRef(data, 'target')
-                    trs = data.get('triggers', [])
-                    for tr in trs:
-                        if tr.get('_type', '') == 'UMLEvent':
-                            self.transitions.setdefault(pr, list()).append([src, trg, tr.get('name')])
+                    evs = data.get('triggers', [])
+                    for evt in evs:
+                        if evt.get('_type', '') == 'UMLEvent':
+                            self.transitions.setdefault(pr, list()).append([evt.get('name'), src, trg])
 
             elif tp == 'UMLState':
                 if pr: self.stateNames.setdefault(pr, dict())[id] = nm
