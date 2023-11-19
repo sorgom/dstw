@@ -9,6 +9,7 @@
 #define I_ARRAY_H
 
 #include <BAS/BaseTypes.h>
+#include <BAS/coding.h>
 
 template <class T>
 class I_Array
