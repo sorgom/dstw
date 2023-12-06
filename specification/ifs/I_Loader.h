@@ -1,8 +1,8 @@
 //  ============================================================
 //  interface Loader
-//  the Loader is called at sytem start and shall:
+//  the Loader is called at system start and shall:
 //  -   reset I_Dispatcher
-//  -   distribute load to subsytems
+//  -   distribute load to subsystems
 //  -   call indexing of I_Dispatcher
 //  ============================================================
 //  created by Manfred Sorgo
