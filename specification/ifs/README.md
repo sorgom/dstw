@@ -17,11 +17,11 @@ Interface Com
 interface Dispatcher
 
 when loading project data
-subsytems assign themselfs with:
+subsystems assign themselves with:
 - element name
 - subsystem id
 - own processing element position
-and shall recieve:
+and shall receive:
 - dispatcher id
 
 field states shall be dispatched to subsystems
@@ -51,9 +51,9 @@ interface LCR_Provider
 **I_Loader.h**
 ```
 interface Loader
-the Loader is called at sytem start and shall:
+the Loader is called at system start and shall:
 -   reset I_Dispatcher
--   distribute load to subsytems
+-   distribute load to subsystems
 -   call indexing of I_Dispatcher
 ```
 
