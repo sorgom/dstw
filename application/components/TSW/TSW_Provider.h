@@ -33,7 +33,7 @@ public:
     IL_INSTANCE_DEC(TSW_Provider)
 
 private:
-    SimpleStackArray<TSW, CAPACITY_TSW> mTSWs;
+    StackArray<TSW, CAPACITY_TSW> mTSWs;
 
     NOCOPY(TSW_Provider)
 };

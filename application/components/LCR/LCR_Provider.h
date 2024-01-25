@@ -33,7 +33,7 @@ public:
     IL_INSTANCE_DEC(LCR_Provider)
 
 private:
-    SimpleStackArray<LCR_X, CAPACITY_LCR> mLCRs;
+    StackArray<LCR_X, CAPACITY_LCR> mLCRs;
 
     NOCOPY(LCR_Provider)
 };

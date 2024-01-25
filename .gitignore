@@ -73,5 +73,5 @@ html
 _*.*
 
 # depracated gen
-transitions_*.mod
+transitions_*.md
 *_states.md

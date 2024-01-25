@@ -11,16 +11,19 @@
 #ifndef STACKARRAY_H
 #define STACKARRAY_H
 
-#include <BAS/I_Searchable.h>
+#include <BAS/I_Array.h>
 #include <BAS/coding.h>
 #include <BAS/Mem.h>
 
-//  base class for StackArray classes
+//  ============================================================
+//  StackArray
+//  keeps objects in the same order as they were added.
+//  ============================================================
 template <class T, UINT32 CAP>
-class BaseStackArray : public I_Searchable<T>
+class StackArray : public I_Array<T>
 {
 public:
-    inline BaseStackArray():
+    inline StackArray():
         mData(reinterpret_cast<T*>(mBytes)),
         mSize(0)
     {}
@@ -82,28 +85,7 @@ private:
     T* mData;
     UINT32 mSize;
 
-    NOCOPY(BaseStackArray)
-};
-
-//  ============================================================
-//  SimpleStackArray
-//  keeps objects in the same order as they were added.
-//  ============================================================
-template <class T, UINT32 CAP>
-class SimpleStackArray : public BaseStackArray<T, CAP>
-{
-public:
-    inline SimpleStackArray()
-    {}
-    
-    inline bool isGreater(const T& a, const T& b) const
-    {
-        return false;
-    }
-
-    inline void swap(UINT32 posA, UINT32 posB) {}
-
-    NOCOPY(SimpleStackArray)
+    NOCOPY(StackArray)
 };
 
 //  provides static byte swapping for template based classes
@@ -114,20 +96,20 @@ protected:
 };
 
 //  ============================================================
-//  StackArray
+//  SortableStackArray
 //  -   can be sorted
 //  -   can search for elements
 //  Derived classes have to provide
 //  the isGreater method for objects of their type
-//  See interface I_Searchable
+//  See interface I_Array
 //  ============================================================
 template <class T, UINT32 CAP>
-class StackArray : 
-    public BaseStackArray<T, CAP>,
+class SortableStackArray : 
+    public StackArray<T, CAP>,
     private SwapBytes
 {
 public:
-    inline StackArray()
+    inline SortableStackArray()
     {}
 
     inline void sort()
@@ -153,7 +135,7 @@ public:
 private:
     BYTE mSwap[sizeof(T)];
 
-    NOCOPY(StackArray)
+    NOCOPY(SortableStackArray)
 };
 
 //  ============================================================
@@ -180,20 +162,26 @@ private:
 
 //  ============================================================
 //  StackArrayIndex
-//  provides search for unsorted SimpleStackArray.
+//  provides search for unsorted StackArray.
 //  Derived classes have to provide
 //  the isGreater method for objects of their type
-//  See interface I_Searchable
+//  See interface I_Array
 //  ============================================================
+
 template <class T, UINT32 CAP>
-class StackArrayIndex : public StackArray<CRef<T>, CAP>
+class StackArrayIndex : private SortableStackArray<CRef<T>, CAP>
 {
 public:
-    inline StackArrayIndex(const SimpleStackArray<T, CAP>& a):
+    inline StackArrayIndex(const StackArray<T, CAP>& a):
         mArray(a)
     {}
 
-    void index()
+    inline void reset()
+    {
+        SortableStackArray<CRef<T>, CAP>::reset();
+    }
+
+    bool index()
     {
         this->reset();
         for (UINT32 p = 0; p < mArray.size(); ++p)
@@ -201,10 +189,9 @@ public:
             this->add(CRef<T>(mArray.at(p)));
         }
         this->sort();
+        return this->dupCnt() == 0;
     }
     
-    virtual bool isGreater(const T& a, const T& b) const = 0;
-
     inline bool isGreater(const CRef<T>& a, const CRef<T>& b) const
     {
         return isGreater(a.ref(), b.ref());
@@ -220,8 +207,11 @@ public:
         return this->at(pos).ref();
     }
 
+protected:
+    virtual bool isGreater(const T& a, const T& b) const = 0;
+
 private:
-    const SimpleStackArray<T, CAP>& mArray;
+    const StackArray<T, CAP>& mArray;
 
     NOCOPY(StackArrayIndex)
     StackArrayIndex();

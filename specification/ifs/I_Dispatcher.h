@@ -18,11 +18,11 @@ public:
 
     //  ============================================================
     //  when loading project data
-    //  subsytems assign themselfs with:
+    //  subsystems assign themselves with:
     //  - element name
     //  - subsystem id
     //  - own processing element position
-    //  and shall recieve:
+    //  and shall receive:
     //  - dispatcher id
     //  ============================================================
     virtual INT32 assign(const ElementName& name, E_Subsys subs, UINT32 pos) = 0;
