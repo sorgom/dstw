@@ -64,7 +64,8 @@ public:
         return BaseT::find(Ntp(name));
     }
     NOCOPY(NtpIndex)
-    NtpIndex() = delete;
+    NODEF(NtpIndex)
+
 protected:
     inline bool isGreater(const Ntp& a, const Ntp& b) const
     {
