@@ -34,6 +34,12 @@ public:
         std::memcpy(&ref, &src, sizeof(T));
     }
 
+    template <class T>
+    inline static void cpy(PTR p, const T& src)
+    {
+        std::memcpy(p, &src, sizeof(T));
+    }
+
     //  mem compare two objects
     template <class T>
     inline static INT32 cmp(const T& r1, const T& r2)

@@ -35,6 +35,9 @@ testDefines = {
 
 testLinks = { 'CppUTest', 'CppUTestExt' }
 
+-- buildOpts = { '-std=c++2a -pedantic-errors' }
+buildOpts = { '-std=c++17 -pedantic-errors' }
+
 --  ============================================================
 --  > tests.make
 --  module tests and system tests at once runtime
@@ -46,8 +49,7 @@ workspace 'tests'
     objdir      'obj/%{prj.name}'
 
     includedirs { testIncludes }
-
-    buildoptions { '-std=c++98 -pedantic-errors' }
+    buildoptions { buildOpts }
 
     project 'tests'
         kind        'ConsoleApp'
@@ -79,7 +81,7 @@ workspace 'coverage'
 
     includedirs { testIncludes }
 
-    buildoptions { '-std=c++98 -pedantic-errors' }
+    buildoptions { buildOpts }
 
     defines { 'DEBUG', testDefines }
     symbols 'On'
@@ -117,7 +119,7 @@ workspace 'dstw'
 
     includedirs { appIncludes }
 
-    buildoptions { '-std=c++98 -pedantic-errors' }
+    buildoptions { buildOpts }
 
     project 'dstw'
         kind        'ConsoleApp'
@@ -148,7 +150,7 @@ workspace '_devtests'
     objdir      'obj/%{prj.name}'
 
     includedirs { testIncludes }
-    buildoptions { '-std=c++98 -pedantic-errors' }
+    buildoptions { buildOpts }
 
     project '_devtests'
         kind        'ConsoleApp'
@@ -176,7 +178,7 @@ workspace '_bullseye'
     objdir      'obj/%{prj.name}'
 
     includedirs { testIncludes }
-    buildoptions { '-std=c++98 -pedantic-errors' }
+    buildoptions { buildOpts }
 
     project '_bullseye'
         kind        'ConsoleApp'

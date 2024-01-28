@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <iomanip>
+using std::ostream;
 using std::cout;
 using std::endl;
 using std::setw;

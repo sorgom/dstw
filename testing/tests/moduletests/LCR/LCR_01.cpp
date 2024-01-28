@@ -11,7 +11,7 @@ namespace test
     class TestGroupLCR : public TestGroupBase
     {
     protected:
-        const UINT32 mId;
+        const size_t mId;
         LCR mLCR;
         Ref<I_LCR> rSUT;
         inline TestGroupLCR():

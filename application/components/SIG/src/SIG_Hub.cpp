@@ -5,7 +5,7 @@
 
 INSTANCE_DEF(SIG_Hub)
 
-void SIG_Hub::fromDsp(const UINT32 pos, const FldState& tele) const
+void SIG_Hub::fromDsp(const size_t pos, const FldState& tele) const
 {
     I_SIG_Provider& prov = IL::getSIG_Provider();
     if (prov.has(pos))
@@ -16,7 +16,7 @@ void SIG_Hub::fromDsp(const UINT32 pos, const FldState& tele) const
     {pass();}
 }
 
-void SIG_Hub::fromDsp(const UINT32 pos, const GuiCmd&   tele) const
+void SIG_Hub::fromDsp(const size_t pos, const GuiCmd&   tele) const
 {
     I_SIG_Provider& prov = IL::getSIG_Provider();
     if (prov.has(pos))
@@ -27,7 +27,7 @@ void SIG_Hub::fromDsp(const UINT32 pos, const GuiCmd&   tele) const
     {pass();}
 }
 
-void SIG_Hub::toFld(const UINT32 id, const INT32 state, const INT32 speed) const
+void SIG_Hub::toFld(const size_t id, const INT32 state, const INT32 speed) const
 {
     static CmdFld tele;
     Mem::zero(tele);
@@ -36,7 +36,7 @@ void SIG_Hub::toFld(const UINT32 id, const INT32 state, const INT32 speed) const
     IL::getDispatcher().dispatch(id, tele);
 }
 
-void SIG_Hub::toGui(const UINT32 id, const INT32 state, const INT32 speed) const
+void SIG_Hub::toGui(const size_t id, const INT32 state, const INT32 speed) const
 {
     static StateGui tele;
     Mem::zero(tele);

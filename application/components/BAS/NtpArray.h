@@ -9,7 +9,7 @@
 
 #include <BAS/coding.h>
 #include <BAS/Mem.h>
-#include <BAS/StackArray.h>
+#include <BAS/StaticArray.h>
 #include <ifs/DataTypes.h>
 
 //  name, type, position
@@ -17,38 +17,29 @@ struct Ntp
 {
     ElementName name;
     INT32 type;
-    UINT32 pos;
-};
-
-//  generates Ntp struct from name [, type, position]
-class GenNtp
-{
-protected:
-    static const Ntp& genNtp(
+    size_t pos;
+    Ntp() = default;
+    Ntp(
         const ElementName& name,
         INT32 type = 0,
-        UINT32 pos = 0
+        size_t pos = 0
     );
-
-    inline GenNtp() {}
-
-    NOCOPY(GenNtp)
+    NOCOPY(Ntp)
 };
 
 //  ============================================================
 //  - storage of name, type, position
 //  ============================================================
-template <UINT32 CAP>
+template <size_t CAP>
 class NtpArray : 
-    public StackArray<Ntp, CAP>,
-    private GenNtp
+    public StaticArray<Ntp, CAP>
 {
 public:
-    inline NtpArray() {}
+    inline NtpArray() = default;
 
-    inline UINT32 addNtp(const ElementName& name, INT32 type, UINT32 pos)
+    inline auto add(const ElementName& name, INT32 type, size_t pos)
     {
-        return this->add(genNtp(name, type, pos));
+        return StaticArray<Ntp, CAP>::newC(name, type, pos);
     }
 
     NOCOPY(NtpArray)
@@ -57,28 +48,28 @@ public:
 //  ============================================================
 //  - index of name, type, position by name
 //  ============================================================
-template <UINT32 CAP>
+template <size_t CAP>
 class NtpIndex : 
-    public StackArrayIndex<Ntp, CAP>,
-    private GenNtp
+    public StaticIndex<Ntp, CAP>
 {
+private:
+    using BaseT = StaticIndex<Ntp, CAP>;
 public:
     inline NtpIndex(const NtpArray<CAP>& a):
-        StackArrayIndex<Ntp, CAP>(a)
+        BaseT(a)
     {}
 
-    inline INT32 findNtp(const ElementName& name) const
+    inline auto find(const ElementName& name) const
     {
-        return this->findRef(genNtp(name));
+        return BaseT::find(Ntp(name));
     }
+    NOCOPY(NtpIndex)
+    NtpIndex() = delete;
 protected:
     inline bool isGreater(const Ntp& a, const Ntp& b) const
     {
         return Mem::cmp(a.name, b.name) > 0;
     }
-
-    NOCOPY(NtpIndex)
-    NtpIndex();
 };
 
 #endif // H_

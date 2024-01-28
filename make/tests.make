@@ -26,8 +26,8 @@ DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCAPACITY_TSW=11 -DCAPACITY_SIG=
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++98 -pedantic-errors
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++98 -pedantic-errors
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS += -lCppUTest -lCppUTestExt
 LDDEPS +=
@@ -78,7 +78,6 @@ GENERATED += $(OBJDIR)/SYST_02.o
 GENERATED += $(OBJDIR)/SYS_01.o
 GENERATED += $(OBJDIR)/SYS_02.o
 GENERATED += $(OBJDIR)/SYS_03.o
-GENERATED += $(OBJDIR)/StackArray.o
 GENERATED += $(OBJDIR)/TSW.o
 GENERATED += $(OBJDIR)/TSW_01.o
 GENERATED += $(OBJDIR)/TSW_02.o
@@ -122,7 +121,6 @@ OBJECTS += $(OBJDIR)/SYST_02.o
 OBJECTS += $(OBJDIR)/SYS_01.o
 OBJECTS += $(OBJDIR)/SYS_02.o
 OBJECTS += $(OBJDIR)/SYS_03.o
-OBJECTS += $(OBJDIR)/StackArray.o
 OBJECTS += $(OBJDIR)/TSW.o
 OBJECTS += $(OBJDIR)/TSW_01.o
 OBJECTS += $(OBJDIR)/TSW_02.o
@@ -208,9 +206,6 @@ $(OBJDIR)/TestStepsPlugin.o: ../CppUTestSteps/TestSteps/src/TestStepsPlugin.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/NtpArray.o: ../application/components/BAS/src/NtpArray.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/StackArray.o: ../application/components/BAS/src/StackArray.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_Hub.o: ../application/components/LCR/src/LCR_Hub.cpp

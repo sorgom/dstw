@@ -13,18 +13,15 @@
 class LCR_X : public I_LCR
 {
 public:
-    inline LCR_X(UINT32 id):
+    inline LCR_X(size_t id):
         mId(id),
-        mStateToGui(LCR_STATE_UNDEF),
-        mUbkToGui(LCR_UBK_STATE_UNDEF)
+        mStateToGui(LCR_STATE_UNDEF)
     {}
-
     void fromGui(INT32 state);
 
 protected:
-    const UINT32 mId;
+    const size_t mId;
     INT32 mStateToGui;
-    INT32 mUbkToGui;
 
     void open();
     void close();
@@ -38,7 +35,7 @@ protected:
     static bool validUbk(INT32 ubk);
 
     NOCOPY(LCR_X)
-    LCR_X();
+    NODEF(LCR_X)
 };
 
 //  ============================================================
@@ -47,7 +44,7 @@ protected:
 class LCR : public LCR_X
 {
 public:
-    inline LCR(UINT32 id): LCR_X(id) {}
+    inline LCR(size_t id): LCR_X(id) {}
 
     void fromFld(INT32 state, INT32 ubk);
 
@@ -56,9 +53,8 @@ public:
 protected:
     inline INT32 getUbkToGui() const { return LCR_UBK_STATE_UNDEF; }
 
-private:
     NOCOPY(LCR)
-    LCR();
+    NODEF(LCR)
 };
 
 //  ============================================================
@@ -67,7 +63,10 @@ private:
 class LCR_UBK : public LCR_X
 {
 public:
-    inline LCR_UBK(UINT32 id): LCR_X(id) {}
+    inline LCR_UBK(size_t id): 
+        LCR_X(id),
+        mUbkToGui(LCR_UBK_STATE_UNDEF)
+    {}
 
     void fromFld(INT32 state, INT32 ubk);
 
@@ -77,8 +76,9 @@ protected:
     inline INT32 getUbkToGui() const { return mUbkToGui; }
 
 private:
+    INT32 mUbkToGui;
     NOCOPY(LCR_UBK)
-    LCR_UBK();
+    NODEF(LCR_UBK)
 };
 
 #endif // _H

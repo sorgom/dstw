@@ -9,6 +9,7 @@
 
 #include <ifs/SystemEnums.h>
 #include <ifs/DataTypes.h>
+#include <ifs/PosRes.h>
 
 class I_Dispatcher
 {
@@ -25,7 +26,7 @@ public:
     //  and shall receive:
     //  - dispatcher id
     //  ============================================================
-    virtual INT32 assign(const ElementName& name, E_Subsys subs, UINT32 pos) = 0;
+    virtual size_t assign(const ElementName& name, E_Subsys subs, size_t pos) = 0;
 
     //  ============================================================
     //  field states shall be dispatched to subsystems
@@ -40,12 +41,12 @@ public:
     //  ============================================================
     //  commands from subsystems shall be dispatched to field
     //  ============================================================
-    virtual void dispatch(UINT32 id, const CmdFld& tele) const = 0;
+    virtual void dispatch(size_t id, const CmdFld& tele) const = 0;
 
     //  ============================================================
     //  states from subsystems shall be dispatched to GUI
     //  ============================================================
-    virtual void dispatch(UINT32 id, const StateGui& tele) const = 0;
+    virtual void dispatch(size_t id, const StateGui& tele) const = 0;
 };
 
 #endif // H_

@@ -8,7 +8,7 @@
 #define LCR_PROVIDER_H
 
 #include <BAS/coding.h>
-#include <BAS/StackArray.h>
+#include <BAS/StaticArray.h>
 #include <ifs/I_LCR_Provider.h>
 #include <setup/capacities.h>
 #include <LCR/LCR_X.h>
@@ -18,12 +18,12 @@ class LCR_Provider : public I_LCR_Provider
 public:
     inline LCR_Provider() {}
 
-    inline bool has(UINT32 pos) const
+    inline bool has(size_t pos) const
     {
         return mLCRs.has(pos);
     }
 
-    inline I_LCR& at(UINT32 pos)
+    inline I_LCR& at(size_t pos)
     {
         return mLCRs.at(pos);
     }
@@ -33,7 +33,7 @@ public:
     IL_INSTANCE_DEC(LCR_Provider)
 
 private:
-    StackArray<LCR_X, CAPACITY_LCR> mLCRs;
+    StaticArray<I_LCR, CAPACITY_LCR, LCR, LCR_UBK> mLCRs;
 
     NOCOPY(LCR_Provider)
 };
