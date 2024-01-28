@@ -13,31 +13,45 @@
 class SIG_X : public I_SIG
 {
 public:
-    inline SIG_X(UINT32 id):
+    inline SIG_X(size_t id):
         mId(id),
         mStateToFld(SIG_STATE_UNDEF),
+        mStateToGui(SIG_STATE_UNDEF)
+    {}
+
+protected:
+    const size_t mId;
+    INT32 mStateToFld;
+    INT32 mStateToGui;
+
+    void procFromFld(INT32 state);
+    void procFromGui(INT32 stateFld, INT32 stateGui);
+
+    static void logMismatch();
+
+    NOCOPY(SIG_X)
+    NODEF(SIG_X)
+};
+
+class SIG_XS : public SIG_X
+{
+public:
+    inline SIG_XS(size_t id):
+        SIG_X(id),
         mSpeedToFld(0),
-        mStateToGui(SIG_STATE_UNDEF),
         mSpeedToGui(0)
     {}
 
 protected:
-    const UINT32 mId;
-    INT32 mStateToFld;
     INT32 mSpeedToFld;
-    INT32 mStateToGui;
     INT32 mSpeedToGui;
 
     void procFromFld(INT32 state, INT32 speed);
     void procFromGui(INT32 stateFld, INT32 stateGui, INT32 speed);
     void speedToFld(INT32 speed);
 
-    static void logMissmatch();
-
-    inline virtual bool speedUsed() const { return true; }
-
-    NOCOPY(SIG_X)
-    SIG_X();
+    NOCOPY(SIG_XS)
+    NODEF(SIG_XS)
 };
 
 //  ============================================================
@@ -49,22 +63,19 @@ protected:
 class SIG_H : public SIG_X
 {
 public:
-    inline SIG_H(UINT32 id): SIG_X(id) {}
+    inline SIG_H(size_t id): SIG_X(id) {}
 
     void fromFld(INT32 state, INT32 speed);
     void fromGui(INT32 state, INT32 speed);
 
     inline INT32 type() const { return SIG_TYPE_H; }
 
-protected:
-    inline bool speedUsed() const { return false; }
-
 private:
     void proc_H0();
     void proc_H1();
 
     NOCOPY(SIG_H)
-    SIG_H();
+    NODEF(SIG_H)
 };
 
 //  ============================================================
@@ -74,10 +85,10 @@ private:
 //  - N1
 //  - speed
 //  ============================================================
-class SIG_N : public SIG_X
+class SIG_N : public SIG_XS
 {
 public:
-    inline SIG_N(UINT32 id): SIG_X(id) {}
+    inline SIG_N(size_t id): SIG_XS(id) {}
 
     void fromFld(INT32 state, INT32 speed);
     void fromGui(INT32 state, INT32 speed);
@@ -89,7 +100,7 @@ private:
     void proc_N1(INT32 speed);
 
     NOCOPY(SIG_N)
-    SIG_N();
+    NODEF(SIG_N)
 };
 
 //  ============================================================
@@ -101,10 +112,10 @@ private:
 //  - H1 N1
 //  - speed
 //  ============================================================
-class SIG_H_N : public SIG_X
+class SIG_H_N : public SIG_XS
 {
 public:
-    inline SIG_H_N(UINT32 id): SIG_X(id) {}
+    inline SIG_H_N(size_t id): SIG_XS(id) {}
 
     void fromFld(INT32 state, INT32 speed);
     void fromGui(INT32 state, INT32 speed);
@@ -118,6 +129,6 @@ private:
     void proc_H1_N1(INT32 speed);
 
     NOCOPY(SIG_H_N)
-    SIG_H_N();
+    NODEF(SIG_H_N)
 };
 #endif // _H

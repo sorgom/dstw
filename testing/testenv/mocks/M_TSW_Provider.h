@@ -18,16 +18,16 @@ namespace test
     public:
         MOCK_CON(TSW_Provider)
 
-        inline bool has(UINT32 pos) const
+        inline bool has(size_t pos) const
         {
             return call("has").PARAM(pos).RETURN_DEF_BOOL(true);
         }
-        inline void expectHas(UINT32 pos, bool ret = true) const
+        inline void expectHas(size_t pos, bool ret = true) const
         {
             expect("has").PARAM(pos).AND_RETURN_BOOL(ret);
         }
 
-        inline I_TSW& at(UINT32 pos)
+        inline I_TSW& at(size_t pos)
         {
             return M_TSW::instance();
         }

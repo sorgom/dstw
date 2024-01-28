@@ -21,32 +21,30 @@ namespace test
         NtpIndex<CAPACITY_DSP> indx(data);
         L_CHECK_EQUAL(CAPACITY_DSP, data.capacity())
         
-        Ntp tNtp;
-        const UINT32 tSize = 10;
-        const UINT32 tOffs = tSize - 1;
+        const size_t tSize = 10;
+        const size_t tOffs = tSize - 1;
 
         STEP(1)
         SUBSTEPS()
         for (INT32 i = 0; i < tSize; ++i)
         {
             LSTEP(i)
-            nameElement(tNtp, tOffs - i);
-            tNtp.type = 100 + i;
-            tNtp.pos  = i;
-            data.add(tNtp);
+            data.add(genElementName(tOffs - i), 100 + i, i);
         }
         ENDSTEPS()
 
         STEP(2)
         indx.index();
+        STEP(3)
         SUBSTEPS()
         for (INT32 i = 0; i < tSize; ++i)
         {
             LSTEP(i)
             const ElementName& en = genElementName(tOffs - i);
-            const INT32 f = indx.findNtp(en);
-            L_CHECK_EQUAL(tOffs -i, f)
-            const INT32 cmp = Mem::cmp(en, indx.getRef(f).name);
+            const PosRes f = indx.find(en);
+            L_CHECK_TRUE(f.valid)
+            L_CHECK_EQUAL(tOffs -i, f.pos)
+            const INT32 cmp = Mem::cmp(en, indx.get(f).name);
             L_CHECK_EQUAL(0, cmp)
         }
         ENDSTEPS()

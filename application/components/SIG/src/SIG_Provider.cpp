@@ -18,8 +18,8 @@ void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
         for (UINT32 n = 0; ok and (n < num); ++n)
         {
             const ProjSIG& proj = data[n];
-            const INT32 id = disp.assign(proj.name, SUBSYS_SIG, n);
-            if (id < 0)
+            const size_t id = disp.assign(proj.name, SUBSYS_SIG, n);
+            if (id == Dispatcher::invalidPos)
             {
                 ok = false;
             }
@@ -28,13 +28,13 @@ void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
                 switch (proj.type)
                 {
                     case SIG_TYPE_H:
-                        mSIGs.add(SIG_H(id));
+                        mSIGs.newT<SIG_H>(id);
                         break;
                     case SIG_TYPE_N:
-                        mSIGs.add(SIG_N(id));
+                        mSIGs.newT<SIG_N>(id);
                         break;
                     case SIG_TYPE_H_N:
-                        mSIGs.add(SIG_H_N(id));
+                        mSIGs.newT<SIG_H_N>(id);
                         break;
                     default:
                         ok = false;

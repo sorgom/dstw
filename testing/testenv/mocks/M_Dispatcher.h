@@ -34,11 +34,11 @@ namespace test
             expect("index");
         }
 
-        inline INT32 assign(const ElementName& name, E_Subsys subs, UINT32 pos)
+        inline size_t assign(const ElementName& name, E_Subsys subs, size_t pos)
         {
-            return call("assign").TPARAM(ElementName, name).PARAM(subs).PARAM(pos).RETURN_DEF_INT(0);
+            return static_cast<size_t>(call("assign").TPARAM(ElementName, name).PARAM(subs).PARAM(pos).RETURN_DEF_INT(0));
         }
-        inline void expectAssign(const ElementName& name, E_Subsys subs, UINT32 pos, INT32 ret = 0) const
+        inline void expectAssign(const ElementName& name, E_Subsys subs, size_t pos, INT32 ret = 0) const
         {
             expect("assign").TPARAM(ElementName, name).PARAM(subs).PARAM(pos).AND_RETURN(ret);
         }
@@ -61,20 +61,20 @@ namespace test
             expect("dispatch").TPARAM(GuiCmd, tele);
         }
 
-        inline void dispatch(UINT32 id, const CmdFld& tele) const
+        inline void dispatch(size_t id, const CmdFld& tele) const
         {
             call("dispatch").PARAM(id).TPARAM(CmdFld, tele);
         }
-        inline void expectDispatch(UINT32 id, const CmdFld& tele) const
+        inline void expectDispatch(size_t id, const CmdFld& tele) const
         {
             expect("dispatch").PARAM(id).TPARAM(CmdFld, tele);
         }
 
-        inline void dispatch(UINT32 id, const StateGui& tele) const
+        inline void dispatch(size_t id, const StateGui& tele) const
         {
             call("dispatch").PARAM(id).TPARAM(StateGui, tele);
         }
-        inline void expectDispatch(UINT32 id, const StateGui& tele) const
+        inline void expectDispatch(size_t id, const StateGui& tele) const
         {
             expect("dispatch").PARAM(id).TPARAM(StateGui, tele);
         }

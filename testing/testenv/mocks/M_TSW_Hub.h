@@ -17,38 +17,38 @@ namespace test
     public:
         MOCK_CON(TSW_Hub)
 
-        inline void toFld(UINT32 id, INT32 cmd) const
+        inline void toFld(size_t id, INT32 cmd) const
         {
             call("toFld").PARAM(id).PARAM(cmd);
         }
-        inline void expectToFld(UINT32 id, INT32 cmd) const
+        inline void expectToFld(size_t id, INT32 cmd) const
         {
             expect("toFld").PARAM(id).PARAM(cmd);
         }
 
-        inline void toGui(UINT32 id, INT32 state) const
+        inline void toGui(size_t id, INT32 state) const
         {
             call("toGui").PARAM(id).PARAM(state);
         }
-        inline void expectToGui(UINT32 id, INT32 state) const
+        inline void expectToGui(size_t id, INT32 state) const
         {
             expect("toGui").PARAM(id).PARAM(state);
         }
 
-        inline void fromDsp(UINT32 pos, const FldState& tele) const
+        inline void fromDsp(size_t pos, const FldState& tele) const
         {
             call("fromDsp").PARAM(pos).TPARAM(FldState, tele);
         }
-        inline void expectFromDsp(UINT32 pos, const FldState& tele) const
+        inline void expectFromDsp(size_t pos, const FldState& tele) const
         {
             expect("fromDsp").PARAM(pos).TPARAM(FldState, tele);
         }
 
-        inline void fromDsp(UINT32 pos, const GuiCmd& tele) const
+        inline void fromDsp(size_t pos, const GuiCmd& tele) const
         {
             call("fromDsp").PARAM(pos).TPARAM(GuiCmd, tele);
         }
-        inline void expectFromDsp(UINT32 pos, const GuiCmd& tele) const
+        inline void expectFromDsp(size_t pos, const GuiCmd& tele) const
         {
             expect("fromDsp").PARAM(pos).TPARAM(GuiCmd, tele);
         }

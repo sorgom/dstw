@@ -93,6 +93,11 @@ interface TSW_Hub
 interface TSW_Provider
 ```
 
+**PosRes.h**
+```
+defintion of position result
+```
+
 **ProjData.h**
 ```
 projectation data types

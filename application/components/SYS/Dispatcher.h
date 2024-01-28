@@ -18,24 +18,28 @@ public:
         mIndx(mData)
     {}
 
+    static const size_t invalidPos = -1;
+
     void reset();
     void index();
 
-    INT32 assign(const ElementName& name, E_Subsys subs, UINT32 pos);
+    size_t assign(const ElementName& name, E_Subsys subs, size_t pos);
     
     void dispatch(const FldState& tele) const;
     void dispatch(const GuiCmd&   tele) const;
 
-    void dispatch(UINT32 id, const CmdFld&   tele) const;
-    void dispatch(UINT32 id, const StateGui& tele) const;
+    void dispatch(size_t id, const CmdFld&   tele) const;
+    void dispatch(size_t id, const StateGui& tele) const;
 
     IL_INSTANCE_DEC(Dispatcher)
+
+    NOCOPY(Dispatcher)
 
 private:
     NtpArray<CAPACITY_DSP> mData;
     NtpIndex<CAPACITY_DSP> mIndx;
 
-    NOCOPY(Dispatcher)
+
 };
 
 #endif // H_

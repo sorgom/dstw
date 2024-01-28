@@ -1,5 +1,5 @@
 //  ============================================================
-//  basic integral types and limits
+//  basic integral types
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -7,60 +7,26 @@
 #ifndef BASETYPES_H
 #define BASETYPES_H
 
-typedef unsigned char   UINT8;
-typedef UINT8           BYTE;
-typedef unsigned short  UINT16;
-typedef unsigned int    UINT32;
+#include <cstdint>
 
-typedef signed char     INT8;
-typedef signed short    INT16;
-typedef signed int      INT32;
+using UINT8 = uint8_t;
+using BYTE = UINT8;
+using UINT16 = uint16_t;
+using UINT32 = uint32_t;
+using UINT64 = uint64_t;
 
-typedef char            CHAR;
+using INT8 = int8_t;
+using INT16 = int16_t;
+using INT32 = int32_t;
+using INT64 = int64_t;
 
-typedef void*           PTR;
-typedef const void*     CPTR;
+using CHAR = char;
+using PTR = void*;
+using CPTR = const void*;
+using C_STRING = CHAR*;
+using CONST_C_STRING = const CHAR*;
+using BOOL = bool;
 
-typedef CHAR*           C_STRING;
-typedef const CHAR*     CONST_C_STRING;
-
-typedef bool            BOOL;
-
-#ifndef UINT8_MAX
-#define UINT8_MAX 0xFF
-#endif
-
-#ifndef UINT16_MAX
-#define UINT16_MAX 0xFFFF
-#endif
-
-#ifndef UINT32_MAX
-#define UINT32_MAX 0xFFFFFFFF
-#endif
-
-#ifndef INT8_MIN 
-#define INT8_MIN -0x7F
-#endif
-
-#ifndef INT8_MAX
-#define INT8_MAX 0x7F
-#endif
-
-#ifndef INT16_MIN
-#define INT16_MIN -0x7FFF
-#endif
-
-#ifndef INT16_MAX
-#define INT16_MAX 0x7FFF
-#endif
-
-#ifndef INT32_MIN
-#define INT32_MIN -0x7FFFFFFF
-#endif
-
-#ifndef INT32_MAX
-#define INT32_MAX 0x7FFFFFFF
-#endif
-
+using std::size_t;
 
 #endif // _H

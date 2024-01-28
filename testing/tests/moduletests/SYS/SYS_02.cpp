@@ -192,7 +192,7 @@ namespace test
         mSUT.reset();
         STEP(1)
         SUBSTEPS()
-        for (UINT32 n = 0; n < CAPACITY_DSP; ++n)
+        for (size_t n = 0; n < CAPACITY_DSP; ++n)
         {
             LSTEP(n)
             const INT32 ret = mSUT.assign(genElementName(n, "TSW"), SUBSYS_TSW, n);

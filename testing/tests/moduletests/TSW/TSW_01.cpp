@@ -12,7 +12,7 @@ namespace test
     class TestGroupTSW : public TestGroupBase
     {
     protected:
-        const UINT32 mId;
+        const size_t mId;
         TSW mSUT;
 
         inline TestGroupTSW():

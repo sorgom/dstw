@@ -11,7 +11,7 @@ namespace test
     class TestGroupSIG : public TestGroupBase
     {
     protected:
-        const UINT32 mId;
+        const size_t mId;
         SIG_H mSIG_H;
         Ref<I_SIG> rSUT;
         inline TestGroupSIG():

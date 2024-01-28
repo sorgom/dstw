@@ -6,6 +6,8 @@
 #ifndef CODING_H
 #define CODING_H
 
+#include <BAS/BaseTypes.h>
+
 //  enable usage of "and", "or" 
 #include <ciso646>
 
@@ -14,9 +16,11 @@ inline void pass() {}
 
 //  disable copy constructor and copy operator
 #define NOCOPY(CLASS) \
-private: \
-CLASS(const CLASS& o); \
-CLASS& operator = (const CLASS& o);
+CLASS(const CLASS& o) = delete; \
+CLASS& operator = (const CLASS& o) = delete;
+
+#define NODEF(CLASS) \
+CLASS() = delete;
 
 //  unified instance declaration
 #define INSTANCE_DEC(NAME) \

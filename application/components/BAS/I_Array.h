@@ -4,97 +4,112 @@
 //  - b-tree search
 //  - uniqueness check / duplicates count
 //  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef I_ARRAY_H
 #define I_ARRAY_H
 
-#include <BAS/BaseTypes.h>
 #include <BAS/coding.h>
+#include <ifs/PosRes.h>
 
-template <class T>
+template <class T, size_t CAP>
 class I_Array
 {
 public:
+    constexpr inline static size_t capacity()
+    {
+        return CAP;
+    } 
+
     //  current number of objects
-    virtual UINT32 size() const = 0;
+    virtual size_t size() const = 0;
     
     //  object access by position
-    virtual const T& at(UINT32 pos) const = 0;
+    virtual const T& at(size_t pos) const = 0;
     
+    //  object pointer access by position
+    virtual const T* ptr(size_t pos) const = 0;
+
     //  definition object a is greater than object b
     inline virtual bool isGreater(const T& a, const T& b) const
     {
         return false;
     } 
-    
-    //  swap content of position a and b
-    inline virtual void swap(UINT32 posA, UINT32 posB)
-    {}
-};
 
-template <class T>
-void bSort(I_Array<T>& src)
-{
-    for (UINT32 n = src.size(); n > 1; --n)
+    void sort()
     {
-        bool swapped = false;
-        for (UINT32 p = 0; p < n - 1; ++p)
+        bool swapped = true;
+        for (size_t n = size(); swapped and n > 1; --n)
         {
-            if (src.isGreater(src.at(p), src.at(p + 1)))
+            swapped = false;
+            for (size_t p = 0; p < n - 1; ++p)
             {
-                src.swap(p, p + 1);
-                swapped = true;
+                if (isGreater(at(p), at(p + 1)))
+                {
+                    swap(p, p + 1);
+                    swapped = true;
+                }
             }
         }
-        if (not swapped)
-        {
-            break;
-        }
     }
-}
 
-template <class T>
-INT32 bSearch(const I_Array<T>& src, const T& obj)
-{
-    INT32 pMin = 0;
-    INT32 pMax = src.size() - 1;
-    INT32 res = -1;
-
-    while (pMax >= pMin)
+    PosRes find(const T& obj) const
     {
-        const INT32 pCur = (pMin + pMax + 1) / 2;
+        PosRes res = { 0, false };
+        
+        if (size() > 0)
+        {
+            size_t pMin = 0;
+            size_t pMax = size() - 1;
 
-        if (src.isGreater(obj, src.at(pCur)))
-        {
-            pMin = pCur + 1;
+            while (pMax >= pMin)
+            {
+                const size_t pCur = (pMin + pMax + 1) / 2;
+
+                if (isGreater(obj, at(pCur)))
+                {
+                    pMin = pCur + 1;
+                }
+                else if (isGreater(at(pCur), obj))
+                {
+                    if (pCur > 0)
+                    {
+                        pMax = pCur - 1;
+                    } 
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    res.pos = pCur;
+                    res.valid = true;
+                    break;
+                }
+            }
         }
-        else if (src.isGreater(src.at(pCur), obj))
-        {
-            pMax = pCur - 1;
-        }
-        else
-        {
-            res = pCur;
-            break;
-        }
+        return res;
     }
-    return res;
-}
 
-//  apply duplicates count to I_Array
-//  precondition: bSort applied before
-template <class T>
-UINT32 dupCnt(const I_Array<T>& src)
-{
-    UINT32 ndups = 0;
-    for (UINT32 p = 1; p < src.size(); ++p)
+    size_t dupCnt() const
     {
-        if (not src.isGreater(src.at(p), src.at(p - 1)))
+        size_t nd = 0;
+        for (size_t p = 1; p < size(); ++p)
         {
-            ++ndups;
+            if (not isGreater(at(p), at(p - 1)))
+            {
+                ++nd;
+            }
         }
+        return nd;
     }
-    return ndups;
-}
+
+protected:
+    //  swap content of position a and b
+    inline virtual void swap(size_t posA, size_t posB)
+    {}
+};
 
 #endif // H_

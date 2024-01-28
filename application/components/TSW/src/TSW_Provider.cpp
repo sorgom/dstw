@@ -16,14 +16,14 @@ void TSW_Provider::load(const ProjTSW* const data, const UINT32 num)
     {
         for (UINT32 n = 0; ok and (n < num); ++n)
         {
-            const INT32 id = disp.assign(data[n].name, SUBSYS_TSW, n);
-            if (id < 0)
+            const size_t id = disp.assign(data[n].name, SUBSYS_TSW, n);
+            if (id == Dispatcher::invalidPos)
             {
                 ok = false;
             }
             else
             { 
-                mTSWs.add(TSW(id));
+                mTSWs.newT<TSW>(id);
             }
         }
     }

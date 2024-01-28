@@ -2,7 +2,7 @@
 
 **BaseTypes.h**
 ```
-basic integral types and limits
+basic integral types
 ```
 
 **I_Array.h**
@@ -27,29 +27,24 @@ name, type, position
 - index of name, type, position by name
 ```
 
-**StackArray.h**
+**StaticArray.h**
 ```
 the core of static memory allocation
-StackArrays
+StaticArrays
 -   act like arrays of pre-defined size
 -   can be filled with objects at runtime
+-   can store objects of different size classes
+    for the same interface
 -   do not provide any overflow protection
 
-StackArray
+StaticArray
 keeps objects in the same order as they were added.
-
-SortableStackArray
--   can be sorted
--   can search for elements
-Derived classes have to provide
-the isGreater method for objects of their type
-See interface I_Array
 
 class CRef
 enables to store references as objects
 
-StackArrayIndex
-provides search for unsorted StackArray.
+StaticIndex
+provides search for unsorted StaticArray.
 Derived classes have to provide
 the isGreater method for objects of their type
 See interface I_Array

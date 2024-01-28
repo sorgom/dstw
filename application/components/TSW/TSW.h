@@ -16,7 +16,7 @@
 class TSW : public I_TSW
 {
 public:
-    inline TSW(UINT32 id):
+    inline TSW(size_t id):
         mId(id),
         mState(TSW_STATE_UNDEF)
     {}
@@ -25,7 +25,7 @@ public:
     void fromFld(INT32 state);
 
 private:
-    const UINT32 mId;
+    const size_t mId;
     INT32 mState;
 
     void wu();
@@ -35,7 +35,7 @@ private:
     void toFld(INT32 state) const;
 
     NOCOPY(TSW)
-    TSW();
+    NODEF(TSW)
 };
 
 
