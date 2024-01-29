@@ -1,5 +1,6 @@
 //  ============================================================
-//  defintion of interface I_Array to apply:
+//  defintion of interface I_Array:
+//  enables:
 //  - bubble sort
 //  - b-tree search
 //  - uniqueness check / duplicates count
@@ -27,10 +28,8 @@ public:
     
     //  object access by position
     virtual const T& at(size_t pos) const = 0;
+    virtual const T& at(const PosRes& res) const = 0;
     
-    //  object pointer access by position
-    virtual const T* ptr(size_t pos) const = 0;
-
     //  definition object a is greater than object b
     inline virtual bool isGreater(const T& a, const T& b) const
     {

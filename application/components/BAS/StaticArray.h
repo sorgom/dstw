@@ -41,7 +41,7 @@ public:
         mSize = 0;
     }
 
-    inline size_t size() const
+    inline size_t size() const final
     {
         return mSize;
     }
@@ -49,6 +49,11 @@ public:
     inline bool hasSpace() const
     {
         return mSize < CAP;
+    }
+
+    inline size_t spaceLeft() const
+    {
+        return mSize >= CAP ? 0 : CAP - mSize;
     }
 
     inline bool has(size_t pos) const
@@ -71,33 +76,32 @@ public:
         return mSize++;
     }
 
-    template <class T>
-    size_t addT(const T& obj)
-    {
-        static_assert(sizeof(T) <= DIM);
-        Mem::cpy(mData[mSize], obj);
-        return mSize++;
-    }
+    // template <class T>
+    // size_t addT(const T& obj)
+    // {
+    //     static_assert(sizeof(T) <= DIM);
+    //     Mem::cpy(mData[mSize], obj);
+    //     return mSize++;
+    // }
 
-    size_t add(const C& obj)
-    {
-        Mem::cpy(mData[mSize], obj);
-        return mSize++;
-    }
+    // size_t add(const C& obj)
+    // {
+    //     Mem::cpy(mData[mSize], obj);
+    //     return mSize++;
+    // }
 
     inline C& at(size_t pos)
     {
         return *reinterpret_cast<C*>(mData[pos]);
     }
 
-    inline const C& at(size_t pos) const
+    inline const C& at(size_t pos) const final
     {
         return *reinterpret_cast<const C*>(mData[pos]);
     }
-
-    inline const C* ptr(size_t pos) const
+    inline const C& at(const PosRes& res) const
     {
-        return reinterpret_cast<const C*>(mData[pos]);
+        return at(res.pos);
     }
 
     inline const C* data() const
@@ -146,9 +150,6 @@ private:
 //  ============================================================
 //  StaticIndex
 //  provides search for unsorted StaticArray.
-//  Derived classes have to provide
-//  the isGreater method for objects of their type
-//  See interface I_Array
 //  ============================================================
 
 template <class T, size_t CAP>
@@ -182,19 +183,14 @@ public:
         return isGreater(a.ref(), b.ref());
     }
 
-    inline auto find(const T& obj) const
+    inline PosRes find(const T& obj) const
     {
         return BaseT::find(CRef<T>(obj));
     }
 
-    inline const T& get(size_t pos) const
-    {
-        return BaseT::at(pos).ref();
-    }
-
     inline const T& get(const PosRes& res) const
     {
-        return get(res.pos);
+        return BaseT::at(res).ref();
     }
 
     NOCOPY(StaticIndex)

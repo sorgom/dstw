@@ -21,15 +21,15 @@ void Dispatcher::index()
     }
 }
 
-size_t Dispatcher::assign(
+PosRes Dispatcher::assign(
     const ElementName& name, 
     const E_Subsys subs, 
     const size_t pos)
 {
-    size_t res = invalidPos;
-    if (mData.hasSpace())
+    PosRes res {0, mData.hasSpace()};
+    if (res.valid)
     {
-        res = mData.add(name, subs, pos);
+        res.pos = mData.add(name, subs, pos);
     }
     else
     { pass();}
@@ -42,7 +42,7 @@ void Dispatcher::dispatch(const FldState& tele) const
 
     if (res.valid)
     {
-        const Ntp& ntp = mIndx.get(res.pos);
+        const Ntp& ntp = mIndx.get(res);
         switch (ntp.type)
         {
         case SUBSYS_TSW:
@@ -72,7 +72,7 @@ void Dispatcher::dispatch(const GuiCmd& tele) const
 
     if (res.valid)
     {
-        const Ntp& ntp = mIndx.get(res.pos);
+        const Ntp& ntp = mIndx.get(res);
         switch (ntp.type)
         {
         case SUBSYS_TSW:

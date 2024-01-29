@@ -93,9 +93,8 @@ namespace test
         {
             for (size_t n = 0; n < CAP; ++n)
             {
-                T elem = {0};
-                genElementName(elem.name, CAP - n, what);
-                array.add(elem);
+                array.newC();
+                nameElement(array.at(n), CAP - n, what);
             }
         }
 

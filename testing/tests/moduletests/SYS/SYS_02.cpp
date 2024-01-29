@@ -195,13 +195,13 @@ namespace test
         for (size_t n = 0; n < CAPACITY_DSP; ++n)
         {
             LSTEP(n)
-            const INT32 ret = mSUT.assign(genElementName(n, "TSW"), SUBSYS_TSW, n);
-            L_CHECK_EQUAL(n, ret)
-
+            const PosRes res = mSUT.assign(genElementName(n, "TSW"), SUBSYS_TSW, n);
+            L_CHECK_EQUAL(n, res.pos)
+            L_CHECK_TRUE(res.valid)
         }
         ENDSTEPS()
-        const INT32 ret = mSUT.assign(genElementName(1, "TSW"), SUBSYS_TSW, 1);
-        L_CHECK_TRUE(ret < 0)
+        const PosRes res = mSUT.assign(genElementName(1, "TSW"), SUBSYS_TSW, 1);
+        L_CHECK_FALSE(res.valid)
     }
 
     //  test type: coverage

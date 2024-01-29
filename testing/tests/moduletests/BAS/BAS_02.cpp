@@ -11,38 +11,48 @@ namespace test
 
     TEST_GROUP_BASE(BAS_02, TestGroupBase) {};
 
-    class Idata
+    class IData
     {
     public:
-        const INT32 m1;
-        const INT32 m2;
-        inline Idata(INT32 i1, INT32 i2 = 0):
+        virtual INT32 get1() const = 0;
+        virtual INT32 get2() const = 0;
+    };
+
+    class CData : public IData
+    {
+    public:
+        inline INT32 get1() const { return m1; }
+        inline INT32 get2() const { return m2; };
+        inline CData(INT32 i1, INT32 i2 = 0):
             m1(i1),
             m2(i2)
         {}
-        NOCOPY(Idata)
-        NODEF(Idata)
+        NOCOPY(CData)
+        NODEF(CData)
+    private:    
+        const INT32 m1;
+        const INT32 m2;
     };
 
-    class IdataArray : public StaticArray<Idata, 20>
+    class IDataArray : public StaticArray<IData, 20, CData>
     {
     public:
-        inline bool isGreater(const Idata& a, const Idata& b) const
+        inline bool isGreater(const IData& a, const IData& b) const
         {
-            return a.m1 > b.m1;
+            return a.get1() > b.get1();
         }
     };
 
-    class IdataIndex : public StaticIndex<Idata, 20>
+    class IDataIndex : public StaticIndex<IData, 20>
     {
     public:
-        inline IdataIndex(const IdataArray& a):
-            StaticIndex<Idata, 20>(a)
+        inline IDataIndex(const IDataArray& a):
+            StaticIndex<IData, 20>(a)
         {}
     protected:        
-        inline bool isGreater(const Idata& a, const Idata& b) const
+        inline bool isGreater(const IData& a, const IData& b) const
         {
-            return a.m1 < b.m1;
+            return a.get1() < b.get1();
         }
     };
 
@@ -53,7 +63,7 @@ namespace test
         STEP(1)
         //  create array
         //  load data
-        IdataArray a;
+        IDataArray a;
 
         L_CHECK_EQUAL(20, a.capacity())
         L_CHECK_EQUAL( 0, a.size())
@@ -62,7 +72,7 @@ namespace test
         for (INT32 i = 0; i < a.capacity(); ++i)
         {
             L_CHECK_TRUE(a.hasSpace())
-            const size_t p = a.add(Idata(-i, i));
+            const size_t p = a.newT<CData>(-i, i);
             L_CHECK_EQUAL(i, p);
         }
         L_CHECK_EQUAL(a.capacity(), a.size())
@@ -74,9 +84,9 @@ namespace test
         for (INT32 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
-            const Idata& d = a.at(i);
-            L_CHECK_EQUAL(-i, d.m1)
-            L_CHECK_EQUAL( i, d.m2)
+            const IData& d = a.at(i);
+            L_CHECK_EQUAL(-i, d.get1())
+            L_CHECK_EQUAL( i, d.get2())
         }
         ENDSTEPS()
         
@@ -89,15 +99,15 @@ namespace test
         for (INT32 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
-            const Idata& d = a.at(i);
-            L_CHECK_EQUAL(-of + i, d.m1)
-            L_CHECK_EQUAL( of - i, d.m2)
+            const IData& d = a.at(i);
+            L_CHECK_EQUAL(-of + i, d.get1())
+            L_CHECK_EQUAL( of - i, d.get2())
         }
         ENDSTEPS()
 
         STEP(5)
         //  apply find() to const object
-        const IdataArray& c = a;
+        const IDataArray& c = a;
         SUBSTEPS()
         for (INT32 i = 0; i < c.size(); ++i)
         {
@@ -113,13 +123,13 @@ namespace test
     TEST(BAS_02, T02)
     {
         SETUP()
-        IdataArray a;
-        a.add(Idata(1, 2));
-        a.add(Idata(2, 2));
-        a.add(Idata(1, 2));
-        a.add(Idata(2, 2));
+        IDataArray a;
+        a.newT<CData>(1, 2);
+        a.newT<CData>(2, 2);
+        a.newT<CData>(1, 2);
+        a.newT<CData>(2, 2);
         a.sort();
-        const IdataArray& c = a;
+        const IDataArray& c = a;
 
         STEP(1)
         const size_t cnt = c.dupCnt();
@@ -132,8 +142,8 @@ namespace test
     {
         SETUP()
         //  create array
-        IdataArray a;
-        IdataIndex ix(a);
+        IDataArray a;
+        IDataIndex ix(a);
         bool ok = false;
 
         STEP(1)
@@ -141,7 +151,7 @@ namespace test
         {
             ok = ix.index();
             L_CHECK_TRUE(ok)
-            const Idata d(1, 2);
+            const CData d(1, 2);
             const PosRes f = ix.find(d);
             L_CHECK_FALSE(f.valid)
         }
@@ -150,7 +160,7 @@ namespace test
         //  load data
         for (INT32 i = 0; i < a.capacity(); ++i)
         {
-            a.add(Idata(-i, i));
+            a.newT<CData>(-i, i);
         }
         L_CHECK_FALSE(a.hasSpace())
 
@@ -164,30 +174,30 @@ namespace test
         for (INT32 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
-            const Idata& d = a.at(i);
-            const PosRes  f = ix.find(d);
+            const IData& d = a.at(i);
+            const PosRes f = ix.find(d);
             L_CHECK_TRUE(f.valid)
-            const Idata& r = ix.get(f);
-            L_CHECK_EQUAL(d.m1, r.m1)
-            L_CHECK_EQUAL(d.m2, r.m2)
+            const IData& r = ix.get(f);
+            L_CHECK_EQUAL(d.get1(), r.get1())
+            L_CHECK_EQUAL(d.get2(), r.get2())
         }
         ENDSTEPS()
 
         STEP(4)
         //  duplicates
         a.reset();
-        a.add(Idata(1, 1));
-        a.add(Idata(1, 2));
+        a.newT<CData>(1, 1);
+        a.newT<CData>(1, 2);
         ok = ix.index();
         L_CHECK_FALSE(ok)
     }
 
     //  test type: coverage
-    //   isGreater / swap
+    //  isGreater / swap
     TEST(BAS_02, T04)
     {
-        IdataArray a;
-        const bool res = a.isGreater(Idata(1, 2), Idata(2, 2));
+        IDataArray a;
+        const bool res = a.isGreater(CData(1, 2), CData(2, 2));
         L_CHECK_FALSE(res)
     }
 } // namespace

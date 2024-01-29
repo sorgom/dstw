@@ -7,6 +7,7 @@
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
+#include <ifs/PosRes.h>
 
 namespace test
 {
@@ -60,11 +61,28 @@ namespace test
         S_CHECK(5, Packed)
     }
 
-    //  proja data sizes
+    //  proj data sizes
     TEST(BAS_01, T03)
     {
         STEP(1)
         S_CHECK(13, ProjSIG)
         S_CHECK( 9, ProjTSW)
     }
+
+    PosRes getPosRes(INT32 i)
+    {
+        return i < 0 ? PosRes {0, false} : PosRes {static_cast<size_t>(i), true};
+    }
+
+    TEST(BAS_01, T04)
+    {
+        STEP(1)
+        const auto r1 = getPosRes(100);
+        L_CHECK_EQUAL(100, r1.pos);
+        L_CHECK_TRUE(r1.valid)
+        const auto r2 = getPosRes(-1);
+        L_CHECK_EQUAL(0, r2.pos);
+        L_CHECK_FALSE(r2.valid)
+    }
+
 }

@@ -18,12 +18,10 @@ public:
         mIndx(mData)
     {}
 
-    static const size_t invalidPos = -1;
-
     void reset();
     void index();
 
-    size_t assign(const ElementName& name, E_Subsys subs, size_t pos);
+    PosRes assign(const ElementName& name, E_Subsys subs, size_t pos);
     
     void dispatch(const FldState& tele) const;
     void dispatch(const GuiCmd&   tele) const;
