@@ -70,7 +70,7 @@ public:
     }
 
     template <typename ... ARGS>
-    size_t newC(const ARGS& ... args)
+    size_t add(const ARGS& ... args)
     {
         new (mData[mSize]) C(args...);
         return mSize++;
@@ -85,7 +85,8 @@ public:
     {
         return *reinterpret_cast<const C*>(mData[pos]);
     }
-    inline const C& at(const PosRes& res) const
+
+    inline const C& at(const PosRes& res) const final
     {
         return at(res.pos);
     }
@@ -158,7 +159,7 @@ public:
         BaseT::reset();
         for (size_t p = 0; p < mSrc.size(); ++p)
         {
-            BaseT::newC(mSrc.at(p));
+            BaseT::add(mSrc.at(p));
         }
         BaseT::sort();
         return BaseT::dupCnt() == 0;

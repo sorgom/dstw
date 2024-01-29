@@ -93,7 +93,7 @@ namespace test
         {
             for (size_t n = 0; n < CAP; ++n)
             {
-                array.newC();
+                array.add();
                 nameElement(array.at(n), CAP - n, what);
             }
         }

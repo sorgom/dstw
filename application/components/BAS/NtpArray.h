@@ -39,7 +39,7 @@ public:
 
     inline auto add(const ElementName& name, INT32 type, size_t pos)
     {
-        return StaticArray<Ntp, CAP>::newC(name, type, pos);
+        return StaticArray<Ntp, CAP>::add(name, type, pos);
     }
     NOCOPY(NtpArray)
 };
