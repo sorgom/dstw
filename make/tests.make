@@ -65,7 +65,6 @@ GENERATED += $(OBJDIR)/LCR_X.o
 GENERATED += $(OBJDIR)/Loader.o
 GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/M_Instances.o
-GENERATED += $(OBJDIR)/NtpArray.o
 GENERATED += $(OBJDIR)/SIG_01.o
 GENERATED += $(OBJDIR)/SIG_02.o
 GENERATED += $(OBJDIR)/SIG_03.o
@@ -108,7 +107,6 @@ OBJECTS += $(OBJDIR)/LCR_X.o
 OBJECTS += $(OBJDIR)/Loader.o
 OBJECTS += $(OBJDIR)/Log.o
 OBJECTS += $(OBJDIR)/M_Instances.o
-OBJECTS += $(OBJDIR)/NtpArray.o
 OBJECTS += $(OBJDIR)/SIG_01.o
 OBJECTS += $(OBJDIR)/SIG_02.o
 OBJECTS += $(OBJDIR)/SIG_03.o
@@ -203,9 +201,6 @@ $(OBJDIR)/TestSteps.o: ../CppUTestSteps/TestSteps/src/TestSteps.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TestStepsPlugin.o: ../CppUTestSteps/TestSteps/src/TestStepsPlugin.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/NtpArray.o: ../application/components/BAS/src/NtpArray.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/SwapBytes.o: ../application/components/BAS/src/SwapBytes.cpp

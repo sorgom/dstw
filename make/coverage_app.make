@@ -57,7 +57,6 @@ GENERATED += $(OBJDIR)/LCR_Provider.o
 GENERATED += $(OBJDIR)/LCR_X.o
 GENERATED += $(OBJDIR)/Loader.o
 GENERATED += $(OBJDIR)/Log.o
-GENERATED += $(OBJDIR)/NtpArray.o
 GENERATED += $(OBJDIR)/SIG_Hub.o
 GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
@@ -72,7 +71,6 @@ OBJECTS += $(OBJDIR)/LCR_Provider.o
 OBJECTS += $(OBJDIR)/LCR_X.o
 OBJECTS += $(OBJDIR)/Loader.o
 OBJECTS += $(OBJDIR)/Log.o
-OBJECTS += $(OBJDIR)/NtpArray.o
 OBJECTS += $(OBJDIR)/SIG_Hub.o
 OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
@@ -143,9 +141,6 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/NtpArray.o: ../application/components/BAS/src/NtpArray.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/SwapBytes.o: ../application/components/BAS/src/SwapBytes.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
