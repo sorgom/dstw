@@ -15,6 +15,7 @@
 
 #include <BAS/I_Array.h>
 #include <BAS/Mem.h>
+#include <BAS/SwapBytes.h>
 #include <algorithm>
 #include <new>
 
@@ -26,7 +27,9 @@ template <class ... Ts>
 constexpr auto max_sizeof = std::max({sizeof(Ts)...});
 
 template <class C, size_t CAP, class ... SCS>
-class StaticArray : public I_Array<C, CAP>
+class StaticArray : 
+    public I_Array<C, CAP>,
+    private SwapBytes
 {
 public:
     inline StaticArray():
@@ -54,7 +57,7 @@ public:
     }
 
     template <class T, typename ... ARGS>
-    size_t newT(ARGS ... args)
+    size_t newT(const ARGS& ... args)
     {
         static_assert(sizeof(T) <= DIM);
         new (mData[mSize]) T(args...);
@@ -62,7 +65,7 @@ public:
     }
 
     template <typename ... ARGS>
-    size_t newC(ARGS ... args)
+    size_t newC(const ARGS& ... args)
     {
         new (mData[mSize]) C(args...);
         return mSize++;
@@ -105,15 +108,16 @@ public:
     NOCOPY(StaticArray)
 
 protected:
-    inline void swap(size_t posA, size_t posB)
+    inline void swap(size_t posA, size_t posB) final
     {
-        std::swap(mData[posA], mData[posB]);
+        swapBytes(mData[posA], mData[posB], mSwap, DIM);
     }
 
 private:
     constexpr static size_t DIM = max_sizeof<C, SCS...>;
     using Segment = BYTE[DIM];
     Segment mData[CAP];
+    Segment mSwap;
     size_t mSize;
 };
 
@@ -127,9 +131,6 @@ class CRef
 public:
     inline CRef(const T& obj):
         mPtr(&obj)
-    {}
-    inline CRef(const T* ptr):
-        mPtr(ptr)
     {}
     inline const T& ref() const
     {
@@ -170,7 +171,7 @@ public:
         BaseT::reset();
         for (size_t p = 0; p < mSrc.size(); ++p)
         {
-            BaseT::newC(mSrc.ptr(p));
+            BaseT::newC(mSrc.at(p));
         }
         BaseT::sort();
         return BaseT::dupCnt() == 0;

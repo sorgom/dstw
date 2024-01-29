@@ -11,14 +11,17 @@ namespace test
 
     TEST_GROUP_BASE(BAS_02, TestGroupBase) {};
 
-    struct Idata
+    class Idata
     {
-        INT32 m1;
-        INT32 m2;
+    public:
+        const INT32 m1;
+        const INT32 m2;
         inline Idata(INT32 i1, INT32 i2 = 0):
             m1(i1),
             m2(i2)
         {}
+        NOCOPY(Idata)
+        NODEF(Idata)
     };
 
     class IdataArray : public StaticArray<Idata, 20>

@@ -18,13 +18,13 @@ struct Ntp
     ElementName name;
     INT32 type;
     size_t pos;
-    Ntp() = default;
     Ntp(
         const ElementName& name,
         INT32 type = 0,
         size_t pos = 0
     );
     NOCOPY(Ntp)
+    NODEF(Ntp)
 };
 
 //  ============================================================
@@ -41,7 +41,6 @@ public:
     {
         return StaticArray<Ntp, CAP>::newC(name, type, pos);
     }
-
     NOCOPY(NtpArray)
 };
 
