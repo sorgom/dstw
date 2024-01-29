@@ -222,7 +222,7 @@ namespace test
         mSUT.index();
         
         STEP(1)
-        FldState fldState = {0};
+        FldState fldState;
         nameElement(fldState, 1, "TSW");
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()    

@@ -42,7 +42,6 @@ For details see
 ## current source code coverage
 ```
 file                      lines  uncovered  percent
-BAS/src/NtpArray.cpp         11         --       --
 BAS/src/SwapBytes.cpp         8         --       --
 LCR/src/LCR_Hub.cpp          39         --       --
 LCR/src/LCR_Provider.cpp     47         --       --
@@ -57,5 +56,5 @@ SYS/src/Log.cpp               2         --       --
 TSW/src/TSW.cpp              91         --       --
 TSW/src/TSW_Hub.cpp          38         --       --
 TSW/src/TSW_Provider.cpp     35         --       --
-total                       900         --       --
+total                       889         --       --
 ```

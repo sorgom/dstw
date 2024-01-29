@@ -15,14 +15,18 @@
 //  name, type, position
 struct Ntp
 {
-    ElementName name;
-    INT32 type;
-    size_t pos;
-    Ntp(
+    const ElementName name;
+    const INT32 type;
+    const size_t pos;
+    inline Ntp(
         const ElementName& name,
         INT32 type = 0,
         size_t pos = 0
-    );
+    ):
+        name(name),
+        type(type),
+        pos(pos)
+    {}
     NOCOPY(Ntp)
     NODEF(Ntp)
 };

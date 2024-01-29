@@ -20,6 +20,7 @@ struct CmdFld
     INT32 cmd1;
     INT32 cmd2;
 };
+static_assert(17 == sizeof(CmdFld));
 
 //  state from field
 struct FldState
@@ -28,6 +29,7 @@ struct FldState
     INT32 state1;
     INT32 state2;
 };
+static_assert(17 == sizeof(FldState));
 
 //  command from GUI
 struct GuiCmd
@@ -36,6 +38,7 @@ struct GuiCmd
     INT32 cmd1;
     INT32 cmd2;
 };
+static_assert(17 == sizeof(GuiCmd));
 
 //  state to GUI
 struct StateGui
@@ -44,6 +47,7 @@ struct StateGui
     INT32 state1;
     INT32 state2;
 };
+static_assert(17 == sizeof(StateGui));
 
 #include <BAS/packEnd.h>
 
