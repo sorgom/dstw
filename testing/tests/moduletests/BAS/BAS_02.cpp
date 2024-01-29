@@ -72,7 +72,7 @@ namespace test
         for (INT32 i = 0; i < a.capacity(); ++i)
         {
             L_CHECK_TRUE(a.hasSpace())
-            const size_t p = a.newT<CData>(-i, i);
+            const size_t p = a.addT<CData>(-i, i);
             L_CHECK_EQUAL(i, p);
         }
         L_CHECK_EQUAL(a.capacity(), a.size())
@@ -124,10 +124,10 @@ namespace test
     {
         SETUP()
         IDataArray a;
-        a.newT<CData>(1, 2);
-        a.newT<CData>(2, 2);
-        a.newT<CData>(1, 2);
-        a.newT<CData>(2, 2);
+        a.addT<CData>(1, 2);
+        a.addT<CData>(2, 2);
+        a.addT<CData>(1, 2);
+        a.addT<CData>(2, 2);
         a.sort();
         const IDataArray& c = a;
 
@@ -160,7 +160,7 @@ namespace test
         //  load data
         for (INT32 i = 0; i < a.capacity(); ++i)
         {
-            a.newT<CData>(-i, i);
+            a.addT<CData>(-i, i);
         }
         L_CHECK_FALSE(a.hasSpace())
 
@@ -186,8 +186,8 @@ namespace test
         STEP(4)
         //  duplicates
         a.reset();
-        a.newT<CData>(1, 1);
-        a.newT<CData>(1, 2);
+        a.addT<CData>(1, 1);
+        a.addT<CData>(1, 2);
         ok = ix.index();
         L_CHECK_FALSE(ok)
     }

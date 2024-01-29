@@ -24,13 +24,13 @@ void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
                 switch (proj.type)
                 {
                     case SIG_TYPE_H:
-                        mSIGs.newT<SIG_H>(res.pos);
+                        mSIGs.addT<SIG_H>(res.pos);
                         break;
                     case SIG_TYPE_N:
-                        mSIGs.newT<SIG_N>(res.pos);
+                        mSIGs.addT<SIG_N>(res.pos);
                         break;
                     case SIG_TYPE_H_N:
-                        mSIGs.newT<SIG_H_N>(res.pos);
+                        mSIGs.addT<SIG_H_N>(res.pos);
                         break;
                     default:
                         ok = false;

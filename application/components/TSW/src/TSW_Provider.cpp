@@ -19,7 +19,7 @@ void TSW_Provider::load(const ProjTSW* const data, const UINT32 num)
             const PosRes res = disp.assign(data[n].name, SUBSYS_TSW, n);
             if (res.valid)
             { 
-                mTSWs.newT<TSW>(res.pos);
+                mTSWs.addT<TSW>(res.pos);
             }
             else
             {

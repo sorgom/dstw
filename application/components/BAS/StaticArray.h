@@ -62,7 +62,7 @@ public:
     }
 
     template <class T, typename ... ARGS>
-    size_t newT(const ARGS& ... args)
+    size_t addT(const ARGS& ... args)
     {
         static_assert(sizeof(T) <= DIM);
         new (mData[mSize]) T(args...);
@@ -75,20 +75,6 @@ public:
         new (mData[mSize]) C(args...);
         return mSize++;
     }
-
-    // template <class T>
-    // size_t addT(const T& obj)
-    // {
-    //     static_assert(sizeof(T) <= DIM);
-    //     Mem::cpy(mData[mSize], obj);
-    //     return mSize++;
-    // }
-
-    // size_t add(const C& obj)
-    // {
-    //     Mem::cpy(mData[mSize], obj);
-    //     return mSize++;
-    // }
 
     inline C& at(size_t pos)
     {
