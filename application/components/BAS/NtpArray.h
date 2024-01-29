@@ -15,16 +15,20 @@
 //  name, type, position
 struct Ntp
 {
-    ElementName name;
-    INT32 type;
-    size_t pos;
-    Ntp() = default;
-    Ntp(
+    const ElementName name;
+    const INT32 type;
+    const size_t pos;
+    inline Ntp(
         const ElementName& name,
         INT32 type = 0,
         size_t pos = 0
-    );
+    ):
+        name(name),
+        type(type),
+        pos(pos)
+    {}
     NOCOPY(Ntp)
+    NODEF(Ntp)
 };
 
 //  ============================================================
@@ -39,9 +43,8 @@ public:
 
     inline auto add(const ElementName& name, INT32 type, size_t pos)
     {
-        return StaticArray<Ntp, CAP>::newC(name, type, pos);
+        return StaticArray<Ntp, CAP>::add(name, type, pos);
     }
-
     NOCOPY(NtpArray)
 };
 

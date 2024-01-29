@@ -7,7 +7,8 @@ basic integral types
 
 **I_Array.h**
 ```
-defintion of interface I_Array to apply:
+defintion of interface I_Array:
+enables:
 - bubble sort
 - b-tree search
 - uniqueness check / duplicates count
@@ -45,9 +46,12 @@ enables to store references as objects
 
 StaticIndex
 provides search for unsorted StaticArray.
-Derived classes have to provide
-the isGreater method for objects of their type
-See interface I_Array
+```
+
+**SwapBytes.h**
+```
+class SwapBytes enables static byte swapping
+(no memory reallocation)
 ```
 
 **coding.h**

@@ -63,6 +63,7 @@ class Gcov(object):
         tloc = 0
         tuncov = 0
         for n, (src, loc) in enumerate(self.locs):
+            if not loc: continue
             uncov  = self.uncov.get(src, 0)
             tloc += loc
             tuncov += uncov

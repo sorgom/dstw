@@ -18,25 +18,25 @@ void LCR_Provider::load(const ProjLCR* const data, const UINT32 num)
         for (UINT32 n = 0; ok and (n < num); ++n)
         {
             const ProjLCR& proj = data[n];
-            const size_t id = disp.assign(proj.name, SUBSYS_LCR, n);
-            if (id == Dispatcher::invalidPos)
-            {
-                ok = false;
-            }
-            else
+            const PosRes res = disp.assign(proj.name, SUBSYS_LCR, n);
+            if (res.valid)
             {
                 switch (proj.type)
                 {
                     case LCR_TYPE_LCR:
-                        mLCRs.newT<LCR>(id);
+                        mLCRs.addT<LCR>(res.pos);
                         break;
                     case LCR_TYPE_LCR_UBK:
-                        mLCRs.newT<LCR_UBK>(id);
+                        mLCRs.addT<LCR_UBK>(res.pos);
                         break;
                     default:
                         ok = false;
                         break;
                 } 
+            }
+            else
+            {
+                ok = false;
             }
         }
     }
