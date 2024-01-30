@@ -10,12 +10,16 @@ namespace test
         if (ok)
         {
             write(os, data.numTSW);
+            write(os, data.numSIG);
+            write(os, data.numLCR);
+            write(os, data.numSEG);
+            write(os, data.pTSW, data.numTSW);
+            write(os, data.pSIG, data.numSIG);
+            write(os, data.pLCR, data.numLCR);
+            write(os, data.pSEG, data.numSEG);
         }
+        os.close();
         return ok;
     }
 } // namespace    
 
-// UINT32 numTSW;
-//     UINT32 numSIG;
-//     UINT32 numLCR;
-//     UINT32 numSEG;
