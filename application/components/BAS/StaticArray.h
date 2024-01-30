@@ -18,6 +18,7 @@
 #include <BAS/SwapBytes.h>
 #include <algorithm>
 #include <new>
+#include <istream>
 
 //  ============================================================
 //  StaticArray
@@ -44,6 +45,11 @@ public:
     inline size_t size() const final
     {
         return mSize;
+    }
+
+    inline size_t bytes() const
+    {
+        return mSize * DIM;
     }
 
     inline bool hasSpace() const
@@ -95,7 +101,15 @@ public:
     {
         static_assert(sizeof(C) == DIM);
         return reinterpret_cast<const C*>(mData);
-    }  
+    } 
+
+    void read(std::basic_istream<CHAR>& is, size_t size)
+    {
+        static_assert(sizeof(C) == DIM);
+        mSize = std::min(size, CAP);
+        is.read(reinterpret_cast<CHAR*>(mData), mSize * DIM);
+    }
+
     NOCOPY(StaticArray)
 
 protected:

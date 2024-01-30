@@ -16,19 +16,40 @@
 #define GENPROJDATA_H
 
 #include <ifs/ProjData.h>
+#include <ifs/I_SIG.h>
+#include <ifs/I_LCR.h>
 #include <BAS/StaticArray.h>
 #include <testlib/TestLib.h>
 #include <setup/capacities.h>
+#include <fstream>
 
 namespace test
 {
+    class DumpProjData
+    {
+    protected:
+        static bool dump(const ProjData& data, CONST_C_STRING filename);
+    private:
+        inline static void write(std::ostream& os, const UINT32& n)
+        {
+            os.write((const char*) &n, sizeof(UINT32));
+        }
+        template <class T>
+        static void write(std::ostream& os, const T* data, UINT32 num)
+        {
+            os.write((const char*) data, sizeof(T) * num);
+        }    
+    };
+
     template <
         size_t NTSW = CAPACITY_TSW, 
         size_t NSIG = CAPACITY_SIG, 
         size_t NLCR = CAPACITY_LCR, 
         size_t NSEG = CAPACITY_SEG
     >
-    class GenProjData : public ProjData
+    class GenProjData : 
+        public ProjData,
+        private DumpProjData
     {
     public:
         GenProjData()
@@ -82,6 +103,11 @@ namespace test
             setType(mLCRs, type);
         }
 
+        inline bool dump(CONST_C_STRING filename) const
+        {
+            return DumpProjData::dump(*this, filename);
+        }
+
     private:
         StaticArray<ProjTSW, NTSW> mTSWs;
         StaticArray<ProjSIG, NSIG> mSIGs;
@@ -113,6 +139,7 @@ namespace test
             }
         }
     };
+
 
 } // namespace
 #endif // H_

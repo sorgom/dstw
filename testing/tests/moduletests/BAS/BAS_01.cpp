@@ -5,6 +5,7 @@
 
 #include <testlib/TestGroupBase.h>
 #include <BAS/StaticArray.h>
+#include <fstream>
 
 namespace test
 {
@@ -27,6 +28,10 @@ namespace test
             m1(i1),
             m2(i2)
         {}
+        inline bool operator==(const CData& o) const
+        {
+            return m1 == o.get1() and m2 == o.get2();
+        }
         NOCOPY(CData)
         NODEF(CData)
     private:    
@@ -199,5 +204,36 @@ namespace test
         IDataArray a;
         const bool res = a.isGreater(CData(1, 2), CData(2, 2));
         L_CHECK_FALSE(res)
+    }
+
+    using CDataArray = StaticArray<CData, 20>;
+
+    //  test type: equivalence class test
+    //  file io
+    TEST(BAS_01, T05)
+    {
+        CDataArray a;
+        STEP(1)
+        for (INT32 i = 0; i < a.capacity(); ++i)
+        {
+            a.add(-i, i);
+        }
+        STEP(2)
+        const CONST_C_STRING filename = "tmp.dat";
+        std::ofstream os(filename, std::ios::binary);
+        os.write((const CHAR*) a.data(), a.bytes());
+        os.close();
+
+        STEP(3)
+        CDataArray b;
+        std::ifstream is(filename, std::ios::binary);
+        b.read(is, a.size());
+
+        STEP(4)
+        L_CHECK_EQUAL(a.size(), b.size())
+        for (size_t p = 0; p < a.size(); ++p)
+        {
+            L_CHECK_TRUE(a.at(p) == b.at(p))
+        }        
     }
 } // namespace
