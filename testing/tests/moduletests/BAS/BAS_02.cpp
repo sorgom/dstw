@@ -26,7 +26,7 @@ namespace test
 
         STEP(1)
         SUBSTEPS()
-        for (INT32 i = 0; i < tSize; ++i)
+        for (UINT16 i = 0; i < tSize; ++i)
         {
             LSTEP(i)
             data.add(genElementName(tOffs - i), 100 + i, i);
@@ -37,7 +37,7 @@ namespace test
         indx.index();
         STEP(3)
         SUBSTEPS()
-        for (INT32 i = 0; i < tSize; ++i)
+        for (UINT16 i = 0; i < tSize; ++i)
         {
             LSTEP(i)
             const ElementName& en = genElementName(tOffs - i);

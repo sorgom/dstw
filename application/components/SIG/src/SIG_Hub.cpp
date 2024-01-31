@@ -30,7 +30,6 @@ void SIG_Hub::fromDsp(const size_t pos, const GuiCmd&   tele) const
 void SIG_Hub::toFld(const size_t id, const INT32 state, const INT32 speed) const
 {
     static CmdFld tele;
-    Mem::zero(tele);
     tele.cmd1 = state;
     tele.cmd2 = speed;
     IL::getDispatcher().dispatch(id, tele);
@@ -39,7 +38,6 @@ void SIG_Hub::toFld(const size_t id, const INT32 state, const INT32 speed) const
 void SIG_Hub::toGui(const size_t id, const INT32 state, const INT32 speed) const
 {
     static StateGui tele;
-    Mem::zero(tele);
     tele.state1 = state;
     tele.state2 = speed;
     IL::getDispatcher().dispatch(id, tele);

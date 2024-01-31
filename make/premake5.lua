@@ -36,7 +36,7 @@ testDefines = {
 testLinks = { 'CppUTest', 'CppUTestExt' }
 
 -- buildOpts = { '-std=c++2a -pedantic-errors' }
-buildOpts = { '-std=c++17 -pedantic-errors' }
+buildOpts = { '-std=c++17 -pedantic-errors -Werror -Wall' }
 
 --  ============================================================
 --  > tests.make
