@@ -13,6 +13,7 @@ output of maximum capacities
 ```
 test of test features
 - output of fixed size strings
+- MemStream
 ```
 
 **DT_03.cpp**

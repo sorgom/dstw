@@ -18,7 +18,6 @@ namespace test
     C_STR_DEF(LCR)
     C_STR_DEF(LCR_Hub)
     C_STR_DEF(LCR_Provider)
-    C_STR_DEF(Loader)
     C_STR_DEF(Log)
     C_STR_DEF(PosRes)
     C_STR_DEF(ProjData)

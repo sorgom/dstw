@@ -16,7 +16,6 @@
 #include <SIG/SIG_Provider.h>
 #include <SYS/Com.h>
 #include <SYS/Dispatcher.h>
-#include <SYS/Loader.h>
 #include <SYS/Log.h>
 #include <SYS/Reader.h>
 #include <TSW/TSW_Hub.h>
@@ -37,7 +36,6 @@ public:
     IL_INLINE(Dispatcher)
     IL_INLINE(LCR_Hub)
     IL_INLINE(LCR_Provider)
-    IL_INLINE(Loader)
     IL_INLINE(Log)
     IL_INLINE(Reader)
     IL_INLINE(SIG_Hub)

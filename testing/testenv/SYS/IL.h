@@ -17,7 +17,6 @@
 #include <SIG/SIG_Provider.h>
 #include <SYS/Com.h>
 #include <SYS/Dispatcher.h>
-#include <SYS/Loader.h>
 #include <SYS/Log.h>
 #include <SYS/Reader.h>
 #include <TSW/TSW_Hub.h>
@@ -53,7 +52,6 @@ public:
     IL_DEC(LCR)
     IL_DEC(LCR_Hub)
     IL_DEC(LCR_Provider)
-    IL_DEC(Loader)
     IL_DEC(Log)
     IL_DEC(Reader)
     IL_DEC(SIG)

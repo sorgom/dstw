@@ -18,13 +18,13 @@ Interface Locator IL
 - no exchange of providers
 ```
 
-**Loader.h**
-```
-class Loader implements I_Loader
-```
-
 **Log.h**
 ```
 class Log implements I_Log
 - currently without functionality
+```
+
+**Reader.h**
+```
+class Reader implements I_Reader
 ```
