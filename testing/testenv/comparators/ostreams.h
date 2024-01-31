@@ -11,6 +11,7 @@
 
 //## INCLUDES
 #include <ifs/DataTypes.h>
+#include <ifs/PosRes.h>
 #include <ifs/ProjData.h>
 //## END
 #include <ostream>
@@ -21,6 +22,7 @@ OSTREAM_DEC(CmdFld)
 OSTREAM_DEC(ElementName)
 OSTREAM_DEC(FldState)
 OSTREAM_DEC(GuiCmd)
+OSTREAM_DEC(PosRes)
 OSTREAM_DEC(ProjData)
 OSTREAM_DEC(ProjLCR)
 OSTREAM_DEC(ProjSEG)

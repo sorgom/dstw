@@ -28,6 +28,11 @@ public:
         return mSIGs.at(pos);
     }
 
+    inline void reset()
+    {
+        mSIGs.reset();
+    }
+
     void load(const ProjSIG* data, UINT32 num);
 
     IL_INSTANCE_DEC(SIG_Provider)

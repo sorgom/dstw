@@ -28,6 +28,11 @@ public:
         return mLCRs.at(pos);
     }
 
+    inline void reset()
+    {
+        mLCRs.reset();
+    }
+
     void load(const ProjLCR* data, UINT32 num);
 
     IL_INSTANCE_DEC(LCR_Provider)

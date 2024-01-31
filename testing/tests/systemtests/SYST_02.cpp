@@ -17,10 +17,14 @@ namespace test
     TEST(SYST_02, T01)
     {
         SETUP()
-        GenProjData<CAPACITY_TSW> projData;
         unmock();
         mock_Com();
-        IL::getLoader().load(projData);
+        const CONST_C_STRING fname = "tmp.dat";
+        {
+            GenProjData<CAPACITY_TSW> projData;
+            projData.dump(fname);
+        }
+        IL::getReader().read(fname);
 
         L_CHECK_TRUE(IL::getTSW_Provider().has(CAPACITY_TSW - 1))
 

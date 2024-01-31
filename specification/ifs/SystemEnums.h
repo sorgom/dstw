@@ -23,6 +23,7 @@ enum E_Mod
     MOD_COM,
     MOD_DISPATCHER,
     MOD_LOADER,
+    MOD_READER,
     MOD_SIG,
     MOD_SIG_HUB,
     MOD_SIG_PROVIDER,
