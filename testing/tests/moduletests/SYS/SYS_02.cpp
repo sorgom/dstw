@@ -30,7 +30,6 @@ namespace test
     {
         SETUP()
         FldState fldState;
-        Mem::zero(fldState);
 
         // FldState
         STEP(1)
@@ -70,8 +69,7 @@ namespace test
     {
         SETUP()
         GuiCmd guiCmd;
-        Mem::zero(guiCmd);
-
+    
         STEP(1)
         nameElement(guiCmd, 1, "TSW");
         m_TSW_Hub().expectFromDsp(1, guiCmd);
@@ -112,8 +110,6 @@ namespace test
         SETUP()
         CmdFld cmdIn;
         CmdFld cmdExp;
-        Mem::zero(cmdIn);
-        Mem::zero(cmdExp);
 
         STEP(1)
         nameElement(cmdExp, 1, "TSW");
@@ -152,8 +148,6 @@ namespace test
         SETUP()
         StateGui stateIn;
         StateGui stateExp;
-        Mem::zero(stateIn);
-        Mem::zero(stateExp);
 
         STEP(1)
         nameElement(stateExp, 1, "TSW");
@@ -208,7 +202,9 @@ namespace test
     //  retrieve instance
     TEST(SYS_02, T06)
     {
-        I_Dispatcher& inst = Dispatcher::instance();
+        unmock();
+        I_Dispatcher& inst = IL::getDispatcher();
+        play(inst);
     }
 
     //  test type: coverage

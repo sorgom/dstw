@@ -15,8 +15,15 @@
 struct ElementName
 {
     CHAR chars[9];
-    inline ElementName() = default;
+    inline ElementName()
+    {
+        Mem::set(chars);
+    }
     inline ElementName(const ElementName& src)
+    {
+        Mem::cpy(chars, src.chars);
+    }
+    inline void operator=(const ElementName& src)
     {
         Mem::cpy(chars, src.chars);
     }
@@ -49,20 +56,6 @@ struct ProjSEG
 };
 static_assert(9 == sizeof(ProjSEG));
 
-struct ProjData
-{
-    UINT32 numTSW;
-    UINT32 numSIG;
-    UINT32 numLCR;
-    UINT32 numSEG;
-    const ProjTSW* pTSW;
-    const ProjSIG* pSIG;
-    const ProjLCR* pLCR;
-    const ProjSEG* pSEG;
-};
-
 #include <BAS/packEnd.h>
-
-
 
 #endif // H_

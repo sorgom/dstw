@@ -88,23 +88,16 @@ void Reader::read(const CONST_C_STRING filename) const
                     CAPACITY_SEG * sizeof(ProjSEG)
                 });
 
-                union
-                {
-                    CHAR buf[dSize];
-                    ProjTSW TSWs[CAPACITY_TSW];
-                    ProjSIG SIGs[CAPACITY_SIG];
-                    ProjLCR LCRs[CAPACITY_LCR];
-                    ProjSEG SEGs[CAPACITY_SEG];
-                } io;
+                CHAR buf[dSize];
 
-                is.read(io.buf, sTSW);
-                IL::getTSW_Provider().load(io.TSWs, nTSW);
+                is.read(buf, sTSW);
+                IL::getTSW_Provider().load(reinterpret_cast<const ProjTSW*>(buf), nTSW);
 
-                is.read(io.buf, sSIG);
-                IL::getSIG_Provider().load(io.SIGs, nSIG);
+                is.read(buf, sSIG);
+                IL::getSIG_Provider().load(reinterpret_cast<const ProjSIG*>(buf), nSIG);
 
-                is.read(io.buf, sLCR);
-                IL::getLCR_Provider().load(io.LCRs, nLCR);
+                is.read(buf, sLCR);
+                IL::getLCR_Provider().load(reinterpret_cast<const ProjLCR*>(buf), nLCR);
 
                 //  SEG not yet implemented
 

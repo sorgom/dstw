@@ -90,5 +90,6 @@ namespace test
     TEST(LCR_03, T06)
     {
         I_LCR_Provider& inst = LCR_Provider::instance();
+        play(inst);
     }
 }

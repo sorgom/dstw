@@ -28,7 +28,6 @@ namespace test
     C_STR_DEC(LCR_Provider)
     C_STR_DEC(Log)
     C_STR_DEC(PosRes)
-    C_STR_DEC(ProjData)
     C_STR_DEC(ProjLCR)
     C_STR_DEC(ProjSEG)
     C_STR_DEC(ProjSIG)

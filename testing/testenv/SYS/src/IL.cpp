@@ -63,20 +63,22 @@ namespace test
 
         void reset();
 
-        //# IL_MEMB
+        //# IL_MEMB : APP
         IL_MEMB(Com)
         IL_MEMB(Dispatcher)
-        IL_MEMB(LCR)
         IL_MEMB(LCR_Hub)
         IL_MEMB(LCR_Provider)
         IL_MEMB(Log)
         IL_MEMB(Reader)
-        IL_MEMB(SIG)
         IL_MEMB(SIG_Hub)
         IL_MEMB(SIG_Provider)
-        IL_MEMB(TSW)
         IL_MEMB(TSW_Hub)
         IL_MEMB(TSW_Provider)
+        //# END
+        //# IL_MEMB : MOCK
+        IL_MEMB(LCR)
+        IL_MEMB(SIG)
+        IL_MEMB(TSW)
         //# END
         int mTerm;
 

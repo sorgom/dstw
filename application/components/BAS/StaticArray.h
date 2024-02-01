@@ -18,7 +18,7 @@
 #include <BAS/SwapBytes.h>
 #include <algorithm>
 #include <new>
-#include <istream>
+// #include <istream>
 
 //  ============================================================
 //  StaticArray
@@ -103,12 +103,12 @@ public:
         return reinterpret_cast<const C*>(mData);
     } 
 
-    void read(std::basic_istream<CHAR>& is, size_t size)
-    {
-        static_assert(sizeof(C) == DIM);
-        mSize = std::min(size, CAP);
-        is.read(reinterpret_cast<CHAR*>(mData), mSize * DIM);
-    }
+    // void read(std::basic_istream<CHAR>& is, size_t size)
+    // {
+    //     static_assert(sizeof(C) == DIM);
+    //     mSize = std::min(size, CAP);
+    //     is.read(reinterpret_cast<CHAR*>(mData), mSize * DIM);
+    // }
 
     NOCOPY(StaticArray)
 

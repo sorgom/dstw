@@ -157,6 +157,8 @@ namespace test
     //  retrieve instance
     TEST(SYS_01, T06)
     {
-        I_Reader& inst = Reader::instance();
+        unmock();
+        I_Reader& inst = IL::getReader();
+        play(inst);
     }
 }

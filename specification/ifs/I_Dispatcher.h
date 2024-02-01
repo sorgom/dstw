@@ -41,12 +41,12 @@ public:
     //  ============================================================
     //  commands from subsystems shall be dispatched to field
     //  ============================================================
-    virtual void dispatch(size_t id, const CmdFld& tele) const = 0;
+    virtual void dispatch(size_t id, CmdFld& tele) const = 0;
 
     //  ============================================================
     //  states from subsystems shall be dispatched to GUI
     //  ============================================================
-    virtual void dispatch(size_t id, const StateGui& tele) const = 0;
+    virtual void dispatch(size_t id, StateGui& tele) const = 0;
 };
 
 #endif // H_

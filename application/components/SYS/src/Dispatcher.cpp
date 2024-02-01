@@ -96,27 +96,23 @@ void Dispatcher::dispatch(const GuiCmd& tele) const
     }
 }
 
-void Dispatcher::dispatch(const size_t id, const CmdFld& tele) const
+void Dispatcher::dispatch(const size_t id, CmdFld& tele) const
 {
     if (id < mData.size())
     {
-        static CmdFld cmd;
-        Mem::cpy(cmd, tele);
-        Mem::cpy(cmd.name, mData.at(id).name);
-        IL::getCom().send(cmd);
+        tele.name = mData.at(id).name;
+        IL::getCom().send(tele);
     }
     else
     { pass();}
 }
 
-void Dispatcher::dispatch(const size_t id, const StateGui& tele) const
+void Dispatcher::dispatch(const size_t id, StateGui& tele) const
 {
     if (id < mData.size())
     {
-        static StateGui state;
-        Mem::cpy(state, tele);
-        Mem::cpy(state.name, mData.at(id).name);
-        IL::getCom().send(state);
+        tele.name = mData.at(id).name;
+        IL::getCom().send(tele);
     }
     else
     { pass();}

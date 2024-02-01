@@ -20,7 +20,6 @@ namespace test
     {
         SETUP()
         GenProjData<CAPTSW, CAPSIG, CAPLCR, CAPSEG> projData;
-        // projData.preset();
 
         STEP(1)
         //  check content TSW
@@ -30,7 +29,7 @@ namespace test
         {
             LSTEP(n)
             const ElementName& name = genElementName(CAPTSW - n, "TSW");
-            L_CHECK_ELEMENT_NAME(name, projData.pTSW[n].name)
+            L_CHECK_TRUE(name == projData.pTSW[n].name)
         }
         ENDSTEPS()
 
@@ -42,7 +41,7 @@ namespace test
         {
             LSTEP(n)
             const ElementName& name = genElementName(CAPSIG - n, "SIG");
-            L_CHECK_ELEMENT_NAME(name, projData.pSIG[n].name)
+            L_CHECK_TRUE(name == projData.pSIG[n].name)
         }
         ENDSTEPS()
 
@@ -54,7 +53,7 @@ namespace test
         {
             LSTEP(n)
             const ElementName& name = genElementName(CAPLCR - n, "LCR");
-            L_CHECK_ELEMENT_NAME(name, projData.pLCR[n].name)
+            L_CHECK_TRUE(name == projData.pLCR[n].name)
         }
         ENDSTEPS()
 
@@ -66,7 +65,7 @@ namespace test
         {
             LSTEP(n)
             const ElementName& name = genElementName(CAPSEG - n, "SEG");
-            L_CHECK_ELEMENT_NAME(name, projData.pSEG[n].name)
+            L_CHECK_TRUE(name == projData.pSEG[n].name)
         }
         ENDSTEPS()
     }

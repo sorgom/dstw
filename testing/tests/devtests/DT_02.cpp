@@ -21,7 +21,7 @@ namespace test
         STEP(1)
         const CHAR chars[9] = { '0', '1', '2', '3', '4', '5', '6', '7', '8' };
         ElementName fn;
-        memcpy(&fn, chars, 9);
+        Mem::cpy(fn.chars, chars);
 
         std::ostringstream os;
         os << fixC(fn.chars);

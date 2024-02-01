@@ -25,45 +25,41 @@
 
 namespace test
 {
-    class DumpProjData
-    {
-    protected:
-        static bool dump(const ProjData& data, CONST_C_STRING filename);
-    private:
-        inline static void write(std::ostream& os, const UINT32& n)
-        {
-            os.write((const char*) &n, sizeof(UINT32));
-        }
-        template <class T>
-        static void write(std::ostream& os, const T* data, UINT32 num)
-        {
-            os.write((const char*) data, sizeof(T) * num);
-        }    
-    };
-
     template <
         size_t NTSW = CAPACITY_TSW, 
         size_t NSIG = CAPACITY_SIG, 
         size_t NLCR = CAPACITY_LCR, 
         size_t NSEG = CAPACITY_SEG
     >
-    class GenProjData : 
-        public ProjData,
-        private DumpProjData
+    class GenProjData 
     {
+    private:
+        StaticArray<ProjTSW, NTSW> mTSWs;
+        StaticArray<ProjSIG, NSIG> mSIGs;
+        StaticArray<ProjLCR, NLCR> mLCRs;
+        StaticArray<ProjSEG, NSEG> mSEGs;
+
     public:
-        GenProjData()
+        const UINT32 numTSW;
+        const UINT32 numSIG;
+        const UINT32 numLCR;
+        const UINT32 numSEG;
+        const ProjTSW* const pTSW;
+        const ProjSIG* const pSIG;
+        const ProjLCR* const pLCR;
+        const ProjSEG* const pSEG;
+
+        GenProjData():
+            numTSW(NTSW),
+            numSIG(NSIG),
+            numLCR(NLCR),
+            numSEG(NSEG),
+            pTSW(mTSWs.data()),
+            pSIG(mSIGs.data()),
+            pLCR(mLCRs.data()),
+            pSEG(mSEGs.data())
+
         {
-            pTSW = mTSWs.data();
-            pSIG = mSIGs.data();
-            pLCR = mLCRs.data();
-            pSEG = mSEGs.data();
-
-            numTSW = NTSW;
-            numSIG = NSIG;
-            numLCR = NLCR;
-            numSEG = NSEG;
-
             preset(mTSWs, "TSW");
             preset(mSIGs, "SIG");
             preset(mLCRs, "LCR");
@@ -103,16 +99,28 @@ namespace test
             setType(mLCRs, type);
         }
 
-        inline bool dump(CONST_C_STRING filename) const
+        bool dump(CONST_C_STRING filename) const
         {
-            return DumpProjData::dump(*this, filename);
+            std::ofstream os(filename, std::ios::binary);
+            const bool ok = os.good();
+            if (ok)
+            {
+                write(os, numTSW);
+                write(os, numSIG);
+                write(os, numLCR);
+                write(os, numSEG);
+                write(os, pTSW, numTSW);
+                write(os, pSIG, numSIG);
+                write(os, pLCR, numLCR);
+                write(os, pSEG, numSEG);
+            }
+            os.close();
+            return ok;
         }
 
+        NOCOPY(GenProjData)
+
     private:
-        StaticArray<ProjTSW, NTSW> mTSWs;
-        StaticArray<ProjSIG, NSIG> mSIGs;
-        StaticArray<ProjLCR, NLCR> mLCRs;
-        StaticArray<ProjSEG, NSEG> mSEGs;
 
         template <class T, size_t CAP>
         void preset(StaticArray<T, CAP>& array, CONST_C_STRING what)
@@ -138,6 +146,18 @@ namespace test
                 setType(array, p, type);
             }
         }
+
+        inline static void write(std::ostream& os, const UINT32& n)
+        {
+            os.write(reinterpret_cast<const char*>(&n), sizeof(UINT32));
+        }
+
+        template <class T>
+        static void write(std::ostream& os, const T* data, UINT32 num)
+        {
+            os.write(reinterpret_cast<const char*>(data), sizeof(T) * num);
+        }    
+
     };
 
 

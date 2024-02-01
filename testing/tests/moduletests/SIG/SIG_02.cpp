@@ -21,10 +21,7 @@ namespace test
     TEST(SIG_02, T01)
     {
         SETUP()
-        FldState tele;
-        Mem::zero(tele);
-        tele.state1 = 101;
-        tele.state2 = 102;
+        const FldState tele(101, 102);
         
         STEP(1)
         //  good case
@@ -45,10 +42,7 @@ namespace test
     TEST(SIG_02, T02)
     {
         SETUP()
-        GuiCmd tele;
-        Mem::zero(tele);
-        tele.cmd1 = 201;
-        tele.cmd2 = 202;
+        const GuiCmd tele(201, 202);
         
         STEP(1)
         //  good case
@@ -69,10 +63,7 @@ namespace test
     TEST(SIG_02, T03)
     {
         SETUP()
-        CmdFld tele;
-        Mem::zero(tele);
-        tele.cmd1 = 301;
-        tele.cmd2 = 302;
+        CmdFld tele(301, 302);
         
         STEP(1)
         m_Dispatcher().expectDispatch(3, tele);
@@ -85,10 +76,7 @@ namespace test
     TEST(SIG_02, T04)
     {
         SETUP()
-        StateGui tele;
-        Mem::zero(tele);
-        tele.state1 = 401;
-        tele.state2 = 402;
+        StateGui tele(401, 402);
         
         STEP(1)
         m_Dispatcher().expectDispatch(4, tele);
@@ -102,5 +90,6 @@ namespace test
     {
         unmock();
         I_SIG_Hub& inst = IL::getSIG_Hub();
+        play(inst);
     }
 }

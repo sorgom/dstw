@@ -206,29 +206,4 @@ namespace test
         L_CHECK_FALSE(res)
     }
 
-
-    //  test type: equivalence class test
-    //  file io
-    TEST(BAS_01, T05)
-    {
-        using CDataArray = StaticArray<CData, 20>;
-        
-        CDataArray a;
-        STEP(1)
-        for (UINT16 i = 0; i < a.capacity(); ++i)
-        {
-            a.add(-i, i);
-        }
-        STEP(2)
-        CDataArray b;
-        MemStream s(a.data(), a.bytes());
-        b.read(s, a.size());
-
-        STEP(3)
-        L_CHECK_EQUAL(a.size(), b.size())
-        for (size_t p = 0; p < a.size(); ++p)
-        {
-            L_CHECK_TRUE(a.at(p) == b.at(p))
-        }        
-    }
 } // namespace
