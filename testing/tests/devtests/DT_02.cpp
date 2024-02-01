@@ -18,7 +18,7 @@ namespace test
     TEST(DT_02, T01)
     {
         STEP(1)
-        const CHAR chars[9] = { '0', '1', '2', '3', '4', '5', '6', '7', '8' };
+        const CHAR chars[NumElementNameChars] = { '0', '1', '2', '3', '4', '5', '6', '7', '8' };
         ElementName fn;
         Mem::cpy(fn.chars, chars);
 

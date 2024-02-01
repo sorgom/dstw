@@ -12,9 +12,11 @@
 
 #include <BAS/packBegin.h>
 
+constexpr auto NumElementNameChars = 9;
+
 struct ElementName
 {
-    CHAR chars[9];
+    CHAR chars[NumElementNameChars];
     inline ElementName()
     {
         Mem::set(chars);
