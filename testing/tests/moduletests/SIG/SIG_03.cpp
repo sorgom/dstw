@@ -88,5 +88,6 @@ namespace test
     {
         unmock();
         I_SIG_Provider& inst = IL::getSIG_Provider();
+        play(inst);
     }
 }

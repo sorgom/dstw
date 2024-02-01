@@ -63,20 +63,22 @@ namespace test
 
         void reset();
 
-        //# IL_MEMB
+        //# IL_MEMB : APP
         IL_MEMB(Com)
         IL_MEMB(Dispatcher)
-        IL_MEMB(LCR)
         IL_MEMB(LCR_Hub)
         IL_MEMB(LCR_Provider)
-        IL_MEMB(Loader)
         IL_MEMB(Log)
-        IL_MEMB(SIG)
+        IL_MEMB(Reader)
         IL_MEMB(SIG_Hub)
         IL_MEMB(SIG_Provider)
-        IL_MEMB(TSW)
         IL_MEMB(TSW_Hub)
         IL_MEMB(TSW_Provider)
+        //# END
+        //# IL_MEMB : MOCK
+        IL_MEMB(LCR)
+        IL_MEMB(SIG)
+        IL_MEMB(TSW)
         //# END
         int mTerm;
 
@@ -93,8 +95,8 @@ namespace test
         IL_CON(Dispatcher)
         IL_CON(LCR_Hub)
         IL_CON(LCR_Provider)
-        IL_CON(Loader)
         IL_CON(Log)
+        IL_CON(Reader)
         IL_CON(SIG_Hub)
         IL_CON(SIG_Provider)
         IL_CON(TSW_Hub)
@@ -117,8 +119,8 @@ namespace test
         IL_RESET(LCR)
         IL_RESET(LCR_Hub)
         IL_RESET(LCR_Provider)
-        IL_RESET(Loader)
         IL_RESET(Log)
+        IL_RESET(Reader)
         IL_RESET(SIG)
         IL_RESET(SIG_Hub)
         IL_RESET(SIG_Provider)
@@ -135,8 +137,8 @@ IL_DEF(Dispatcher)
 IL_DEF(LCR)
 IL_DEF(LCR_Hub)
 IL_DEF(LCR_Provider)
-IL_DEF(Loader)
 IL_DEF(Log)
+IL_DEF(Reader)
 IL_DEF(SIG)
 IL_DEF(SIG_Hub)
 IL_DEF(SIG_Provider)

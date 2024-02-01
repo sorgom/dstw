@@ -26,8 +26,8 @@ DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCAPACITY_TSW=11 -DCAPACITY_SIG=
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS += -lCppUTest -lCppUTestExt
 LDDEPS +=
@@ -62,9 +62,9 @@ GENERATED += $(OBJDIR)/LCR_03.o
 GENERATED += $(OBJDIR)/LCR_Hub.o
 GENERATED += $(OBJDIR)/LCR_Provider.o
 GENERATED += $(OBJDIR)/LCR_X.o
-GENERATED += $(OBJDIR)/Loader.o
 GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/M_Instances.o
+GENERATED += $(OBJDIR)/Reader.o
 GENERATED += $(OBJDIR)/SIG_01.o
 GENERATED += $(OBJDIR)/SIG_02.o
 GENERATED += $(OBJDIR)/SIG_03.o
@@ -104,9 +104,9 @@ OBJECTS += $(OBJDIR)/LCR_03.o
 OBJECTS += $(OBJDIR)/LCR_Hub.o
 OBJECTS += $(OBJDIR)/LCR_Provider.o
 OBJECTS += $(OBJDIR)/LCR_X.o
-OBJECTS += $(OBJDIR)/Loader.o
 OBJECTS += $(OBJDIR)/Log.o
 OBJECTS += $(OBJDIR)/M_Instances.o
+OBJECTS += $(OBJDIR)/Reader.o
 OBJECTS += $(OBJDIR)/SIG_01.o
 OBJECTS += $(OBJDIR)/SIG_02.o
 OBJECTS += $(OBJDIR)/SIG_03.o
@@ -230,10 +230,10 @@ $(OBJDIR)/Com.o: ../application/components/SYS/src/Com.cpp
 $(OBJDIR)/Dispatcher.o: ../application/components/SYS/src/Dispatcher.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Loader.o: ../application/components/SYS/src/Loader.cpp
+$(OBJDIR)/Log.o: ../application/components/SYS/src/Log.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Log.o: ../application/components/SYS/src/Log.cpp
+$(OBJDIR)/Reader.o: ../application/components/SYS/src/Reader.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW.o: ../application/components/TSW/src/TSW.cpp

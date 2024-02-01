@@ -16,7 +16,7 @@ void LCR_Hub::fromDsp(const size_t pos, const FldState& tele) const
     {pass();}
 }
 
-void LCR_Hub::fromDsp(const size_t pos, const GuiCmd&   tele) const
+void LCR_Hub::fromDsp(const size_t pos, const GuiCmd& tele) const
 {
     I_LCR_Provider& prov = IL::getLCR_Provider();
     if (prov.has(pos))
@@ -29,19 +29,12 @@ void LCR_Hub::fromDsp(const size_t pos, const GuiCmd&   tele) const
 
 void LCR_Hub::toFld(const size_t id, const INT32 state) const
 {
-    static CmdFld tele;
-    Mem::zero(tele);
-    tele.cmd1 = state;
-    IL::getDispatcher().dispatch(id, tele);
+    IL::getDispatcher().dispatch(id, CmdFld(state));
 }
 
 void LCR_Hub::toGui(const size_t id, const INT32 state, const INT32 ubk) const
 {
-    static StateGui tele;
-    Mem::zero(tele);
-    tele.state1 = state;
-    tele.state2 = ubk;
-    IL::getDispatcher().dispatch(id, tele);
+    IL::getDispatcher().dispatch(id, StateGui(state, ubk));
 }
 
 

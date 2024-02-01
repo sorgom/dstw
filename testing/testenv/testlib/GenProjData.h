@@ -16,9 +16,12 @@
 #define GENPROJDATA_H
 
 #include <ifs/ProjData.h>
+#include <ifs/I_SIG.h>
+#include <ifs/I_LCR.h>
 #include <BAS/StaticArray.h>
 #include <testlib/TestLib.h>
 #include <setup/capacities.h>
+#include <fstream>
 
 namespace test
 {
@@ -28,21 +31,35 @@ namespace test
         size_t NLCR = CAPACITY_LCR, 
         size_t NSEG = CAPACITY_SEG
     >
-    class GenProjData : public ProjData
+    class GenProjData 
     {
+    private:
+        StaticArray<ProjTSW, NTSW> mTSWs;
+        StaticArray<ProjSIG, NSIG> mSIGs;
+        StaticArray<ProjLCR, NLCR> mLCRs;
+        StaticArray<ProjSEG, NSEG> mSEGs;
+
     public:
-        GenProjData()
+        const UINT32 numTSW;
+        const UINT32 numSIG;
+        const UINT32 numLCR;
+        const UINT32 numSEG;
+        const ProjTSW* const pTSW;
+        const ProjSIG* const pSIG;
+        const ProjLCR* const pLCR;
+        const ProjSEG* const pSEG;
+
+        GenProjData():
+            numTSW(NTSW),
+            numSIG(NSIG),
+            numLCR(NLCR),
+            numSEG(NSEG),
+            pTSW(mTSWs.data()),
+            pSIG(mSIGs.data()),
+            pLCR(mLCRs.data()),
+            pSEG(mSEGs.data())
+
         {
-            pTSW = mTSWs.data();
-            pSIG = mSIGs.data();
-            pLCR = mLCRs.data();
-            pSEG = mSEGs.data();
-
-            numTSW = NTSW;
-            numSIG = NSIG;
-            numLCR = NLCR;
-            numSEG = NSEG;
-
             preset(mTSWs, "TSW");
             preset(mSIGs, "SIG");
             preset(mLCRs, "LCR");
@@ -82,11 +99,26 @@ namespace test
             setType(mLCRs, type);
         }
 
+        void dump(CONST_C_STRING filename) const
+        {
+            std::ofstream os(filename, std::ios::binary);
+            if (os.good())
+            {
+                write(os, numTSW);
+                write(os, numSIG);
+                write(os, numLCR);
+                write(os, numSEG);
+                write(os, pTSW, numTSW);
+                write(os, pSIG, numSIG);
+                write(os, pLCR, numLCR);
+                write(os, pSEG, numSEG);
+            }
+            os.close();
+        }
+
+        NOCOPY(GenProjData)
+
     private:
-        StaticArray<ProjTSW, NTSW> mTSWs;
-        StaticArray<ProjSIG, NSIG> mSIGs;
-        StaticArray<ProjLCR, NLCR> mLCRs;
-        StaticArray<ProjSEG, NSEG> mSEGs;
 
         template <class T, size_t CAP>
         void preset(StaticArray<T, CAP>& array, CONST_C_STRING what)
@@ -112,7 +144,20 @@ namespace test
                 setType(array, p, type);
             }
         }
+
+        inline static void write(std::ostream& os, const UINT32& n)
+        {
+            os.write(reinterpret_cast<const char*>(&n), sizeof(UINT32));
+        }
+
+        template <class T>
+        static void write(std::ostream& os, const T* data, UINT32 num)
+        {
+            os.write(reinterpret_cast<const char*>(data), sizeof(T) * num);
+        }    
+
     };
+
 
 } // namespace
 #endif // H_

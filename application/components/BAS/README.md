@@ -16,7 +16,7 @@ enables:
 
 **Mem.h**
 ```
-type safe memset & memcpy
+size safe memset, memcpy, memcmp
 ```
 
 **NtpArray.h**

@@ -21,11 +21,8 @@ namespace test
     TEST(LCR_02, T01)
     {
         SETUP()
-        FldState tele;
-        Mem::zero(tele);
-        tele.state1 = 101;
-        tele.state2 = 102;
-        
+        const FldState tele(101, 102);
+
         STEP(1)
         //  good case
         m_LCR_Provider().expectHas(11, true);
@@ -45,9 +42,7 @@ namespace test
     TEST(LCR_02, T02)
     {
         SETUP()
-        GuiCmd tele;
-        Mem::zero(tele);
-        tele.cmd1 = 201;
+        const GuiCmd tele(201);
         
         STEP(1)
         //  good case
@@ -67,13 +62,8 @@ namespace test
     //  toFld
     TEST(LCR_02, T03)
     {
-        SETUP()
-        CmdFld tele;
-        Mem::zero(tele);
-        tele.cmd1 = 301;
-        
         STEP(1)
-        m_Dispatcher().expectDispatch(3, tele);
+        m_Dispatcher().expectDispatch(3, CmdFld(301));
         mSUT.toFld(3, 301);
         CHECK_N_CLEAR()
     }
@@ -82,14 +72,8 @@ namespace test
     //  toGui
     TEST(LCR_02, T04)
     {
-        SETUP()
-        StateGui tele;
-        Mem::zero(tele);
-        tele.state1 = 401;
-        tele.state2 = 402;
-        
         STEP(1)
-        m_Dispatcher().expectDispatch(4, tele);
+        m_Dispatcher().expectDispatch(4, StateGui(401, 402));
         mSUT.toGui(4, 401, 402);
         CHECK_N_CLEAR()
     }
@@ -99,5 +83,6 @@ namespace test
     TEST(LCR_02, T05)
     {
         I_LCR_Hub& inst = LCR_Hub::instance();
+        play(inst);
     }
 }

@@ -27,6 +27,10 @@ namespace test
             m1(i1),
             m2(i2)
         {}
+        inline bool operator==(const CData& o) const
+        {
+            return m1 == o.get1() and m2 == o.get2();
+        }
         NOCOPY(CData)
         NODEF(CData)
     private:    
@@ -69,7 +73,7 @@ namespace test
         L_CHECK_EQUAL( 0, a.size())
 
         STEP(2)
-        for (INT32 i = 0; i < a.capacity(); ++i)
+        for (UINT16 i = 0; i < a.capacity(); ++i)
         {
             L_CHECK_TRUE(a.hasSpace())
             const size_t p = a.addT<CData>(-i, i);
@@ -81,7 +85,7 @@ namespace test
         STEP(3)
         //  test unsorted data as loaded
         SUBSTEPS()
-        for (INT32 i = 0; i < a.size(); ++i)
+        for (UINT16 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
             const IData& d = a.at(i);
@@ -96,7 +100,7 @@ namespace test
         a.sort();
         const INT32 of = a.size() - 1;
         SUBSTEPS()
-        for (INT32 i = 0; i < a.size(); ++i)
+        for (UINT16 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
             const IData& d = a.at(i);
@@ -109,7 +113,7 @@ namespace test
         //  apply find() to const object
         const IDataArray& c = a;
         SUBSTEPS()
-        for (INT32 i = 0; i < c.size(); ++i)
+        for (UINT16 i = 0; i < c.size(); ++i)
         {
             LSTEP(i)
             const PosRes p = c.find(c.at(i));
@@ -158,7 +162,7 @@ namespace test
 
         STEP(2)
         //  load data
-        for (INT32 i = 0; i < a.capacity(); ++i)
+        for (UINT16 i = 0; i < a.capacity(); ++i)
         {
             a.addT<CData>(-i, i);
         }
@@ -171,7 +175,7 @@ namespace test
         L_CHECK_TRUE(ok)
 
         SUBSTEPS()
-        for (INT32 i = 0; i < a.size(); ++i)
+        for (UINT16 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
             const IData& d = a.at(i);
@@ -200,4 +204,5 @@ namespace test
         const bool res = a.isGreater(CData(1, 2), CData(2, 2));
         L_CHECK_FALSE(res)
     }
+
 } // namespace

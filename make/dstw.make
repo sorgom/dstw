@@ -26,8 +26,8 @@ DEFINES += -DNDEBUG -DCAPACITY_TSW=2000 -DCAPACITY_SIG=2000 -DCAPACITY_LCR=2000 
 INCLUDES += -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
@@ -56,8 +56,8 @@ GENERATED += $(OBJDIR)/Dispatcher.o
 GENERATED += $(OBJDIR)/LCR_Hub.o
 GENERATED += $(OBJDIR)/LCR_Provider.o
 GENERATED += $(OBJDIR)/LCR_X.o
-GENERATED += $(OBJDIR)/Loader.o
 GENERATED += $(OBJDIR)/Log.o
+GENERATED += $(OBJDIR)/Reader.o
 GENERATED += $(OBJDIR)/SIG_Hub.o
 GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
@@ -71,8 +71,8 @@ OBJECTS += $(OBJDIR)/Dispatcher.o
 OBJECTS += $(OBJDIR)/LCR_Hub.o
 OBJECTS += $(OBJDIR)/LCR_Provider.o
 OBJECTS += $(OBJDIR)/LCR_X.o
-OBJECTS += $(OBJDIR)/Loader.o
 OBJECTS += $(OBJDIR)/Log.o
+OBJECTS += $(OBJDIR)/Reader.o
 OBJECTS += $(OBJDIR)/SIG_Hub.o
 OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
@@ -170,10 +170,10 @@ $(OBJDIR)/Com.o: ../application/components/SYS/src/Com.cpp
 $(OBJDIR)/Dispatcher.o: ../application/components/SYS/src/Dispatcher.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Loader.o: ../application/components/SYS/src/Loader.cpp
+$(OBJDIR)/Log.o: ../application/components/SYS/src/Log.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Log.o: ../application/components/SYS/src/Log.cpp
+$(OBJDIR)/Reader.o: ../application/components/SYS/src/Reader.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW.o: ../application/components/TSW/src/TSW.cpp

@@ -34,6 +34,11 @@ ProjData generator
     -   set signal type for signal data
 ```
 
+**MemStream.h**
+```
+class MemStream saves file io for testing
+```
+
 **TestGroupBase.h**
 ```
 base CppUTest test group

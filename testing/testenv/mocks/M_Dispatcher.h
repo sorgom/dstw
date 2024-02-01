@@ -62,20 +62,21 @@ namespace test
             expect("dispatch").TPARAM(GuiCmd, tele);
         }
 
-        inline void dispatch(size_t id, const CmdFld& tele) const
+
+        inline void dispatch(size_t id, CmdFld&& tele) const
         {
             call("dispatch").PARAM(id).TPARAM(CmdFld, tele);
         }
-        inline void expectDispatch(size_t id, const CmdFld& tele) const
+        inline void expectDispatch(size_t id, CmdFld&& tele) const
         {
             expect("dispatch").PARAM(id).TPARAM(CmdFld, tele);
         }
 
-        inline void dispatch(size_t id, const StateGui& tele) const
+        inline void dispatch(size_t id, StateGui&& tele) const
         {
             call("dispatch").PARAM(id).TPARAM(StateGui, tele);
         }
-        inline void expectDispatch(size_t id, const StateGui& tele) const
+        inline void expectDispatch(size_t id, StateGui&& tele) const
         {
             expect("dispatch").PARAM(id).TPARAM(StateGui, tele);
         }

@@ -1,21 +1,22 @@
 //  ============================================================
-//  interface Loader
-//  the Loader is called at system start and shall:
+//  interface Reader
+//  the Reader is called at system start and shall:
 //  -   reset I_Dispatcher
+//  -   read proj data from binary file
 //  -   distribute load to subsystems
 //  -   call indexing of I_Dispatcher
 //  ============================================================
 //  created by Manfred Sorgo
 #pragma once
-#ifndef I_LOADER_H
-#define I_LOADER_H
+#ifndef I_READER_H
+#define I_READER_H
 
-#include <ifs/ProjData.h>
+#include <BAS/BaseTypes.h>
 
-class I_Loader
+class I_Reader
 {
 public:
-    virtual void load(const ProjData& data) const = 0;
+    virtual void read(CONST_C_STRING filename) const = 0;
 };
 
 #endif // H_

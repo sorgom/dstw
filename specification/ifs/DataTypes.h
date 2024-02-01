@@ -9,6 +9,7 @@
 #define DATATYPES_H
 
 #include <BAS/BaseTypes.h>
+#include <BAS/coding.h>
 #include <ifs/ProjData.h>
 
 #include <BAS/packBegin.h>
@@ -17,8 +18,13 @@
 struct CmdFld
 {
     ElementName name;
-    INT32 cmd1;
-    INT32 cmd2;
+    const INT32 cmd1;
+    const INT32 cmd2;
+    inline CmdFld(INT32 cmd1 = 0, INT32 cmd2 = 0):
+        cmd1(cmd1),
+        cmd2(cmd2)
+    {}
+    NOCOPY(CmdFld)
 };
 static_assert(17 == sizeof(CmdFld));
 
@@ -26,8 +32,13 @@ static_assert(17 == sizeof(CmdFld));
 struct FldState
 {
     ElementName name;
-    INT32 state1;
-    INT32 state2;
+    const INT32 state1;
+    const INT32 state2;
+    inline FldState(INT32 state1 = 0, INT32 state2 = 0):
+        state1(state1),
+        state2(state2)
+    {}
+    NOCOPY(FldState)
 };
 static_assert(17 == sizeof(FldState));
 
@@ -35,8 +46,13 @@ static_assert(17 == sizeof(FldState));
 struct GuiCmd
 {
     ElementName name;
-    INT32 cmd1;
-    INT32 cmd2;
+    const INT32 cmd1;
+    const INT32 cmd2;
+    inline GuiCmd(INT32 cmd1 = 0, INT32 cmd2 = 0):
+        cmd1(cmd1),
+        cmd2(cmd2)
+    {}
+    NOCOPY(GuiCmd)
 };
 static_assert(17 == sizeof(GuiCmd));
 
@@ -44,8 +60,13 @@ static_assert(17 == sizeof(GuiCmd));
 struct StateGui
 {
     ElementName name;
-    INT32 state1;
-    INT32 state2;
+    const INT32 state1;
+    const INT32 state2;
+    inline StateGui(INT32 state1 = 0, INT32 state2 = 0):
+        state1(state1),
+        state2(state2)
+    {}
+    NOCOPY(StateGui)
 };
 static_assert(17 == sizeof(StateGui));
 

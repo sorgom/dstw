@@ -20,9 +20,7 @@ namespace test
     TEST(TSW_02, T01)
     {
         SETUP()
-        FldState tele;
-        Mem::zero(tele);
-        tele.state1 = 101;
+        const FldState tele(101);
         
         STEP(1)
         //  good case
@@ -43,9 +41,7 @@ namespace test
     TEST(TSW_02, T02)
     {
         SETUP()
-        GuiCmd tele;
-        Mem::zero(tele);
-        tele.cmd1 = 202;
+        const GuiCmd tele(202);
         
         STEP(1)
         //  good case
@@ -65,13 +61,8 @@ namespace test
     //  toFld
     TEST(TSW_02, T03)
     {
-        SETUP()
-        CmdFld tele;
-        Mem::zero(tele);
-        tele.cmd1 = 303;
-        
         STEP(1)
-        m_Dispatcher().expectDispatch(3, tele);
+        m_Dispatcher().expectDispatch(3, CmdFld(303));
         mSUT.toFld(3, 303);
         CHECK_N_CLEAR()
     }
@@ -80,13 +71,8 @@ namespace test
     //  toGui
     TEST(TSW_02, T04)
     {
-        SETUP()
-        StateGui tele;
-        Mem::zero(tele);
-        tele.state1 = 404;
-        
         STEP(1)
-        m_Dispatcher().expectDispatch(4, tele);
+        m_Dispatcher().expectDispatch(4, StateGui(404));
         mSUT.toGui(4, 404);
         CHECK_N_CLEAR()
     }
@@ -95,6 +81,8 @@ namespace test
     //  retrieve instance
     TEST(TSW_02, T05)
     {
-        I_TSW_Hub& inst = TSW_Hub::instance();
+        unmock();
+        I_TSW_Hub& inst = IL::getTSW_Hub();
+        play(inst);
     }
 }

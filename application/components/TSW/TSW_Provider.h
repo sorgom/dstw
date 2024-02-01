@@ -28,6 +28,11 @@ public:
         return mTSWs.at(pos);
     }
 
+    inline void reset()
+    {
+        mTSWs.reset();
+    }
+
     void load(const ProjTSW* data, UINT32 num);
 
     IL_INSTANCE_DEC(TSW_Provider)

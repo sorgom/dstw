@@ -9,6 +9,7 @@
 
 #include <ifs/DataTypes.h>
 #include <testlib/TestLiterals.h>
+#include <BAS/Mem.h>
 #include <BAS/coding.h>
 
 namespace test
@@ -17,11 +18,26 @@ namespace test
     const ElementName& genElementName(UINT32 num, CONST_C_STRING name = c__ELM);
     void genElementName(ElementName& eName, UINT32 num, CONST_C_STRING name = c__ELM);
 
+    inline void genElementName(ElementName& eName, UINT32 num, CONST_C_STRING name)
+    {
+        eName = genElementName(num, name);
+    }
+
     template <class T>
     void nameElement(T& elem, UINT32 num, CONST_C_STRING name = c__ELM)
     {
         genElementName(elem.name, num, name);
     }
+
+    inline bool operator==(const ElementName& n1, const ElementName& n2)
+    {
+        return Mem::cmp(n1.chars, n2.chars) == 0;
+    }
+
+    //  avoid "not used" warning
+    template<typename T>
+    void play(const T&)
+    {}
 
     //  exchangeable non const reference
     template <class T>
@@ -39,11 +55,10 @@ namespace test
         {
             mPtr = &ref;
         }
-
+        NOCOPY(Ref)
+        NODEF(Ref)
     private:
         T* mPtr;
-        NOCOPY(Ref)
-        Ref();
     };
 }
 

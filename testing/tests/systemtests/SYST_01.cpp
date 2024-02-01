@@ -15,22 +15,16 @@ namespace test
     TEST(SYST_01, T01)
     {
         SETUP()
-        GenProjData<1, CAPACITY_SIG> projData;
         unmock();
         mock_Com();
-        IL::getLoader().load(projData);
+        const CONST_C_STRING fname = "tmp.dat";
+        {
+            GenProjData<1, CAPACITY_SIG> projData;
+            projData.dump(fname);
+        }
+        IL::getReader().read(fname);    
 
         L_CHECK_TRUE(IL::getSIG_Provider().has(CAPACITY_SIG - 1))
-
-        FldState fldState;
-        StateGui stateGui;
-        GuiCmd   guiCmd;
-        CmdFld   cmdFld;
-
-        Mem::zero(fldState);
-        Mem::zero(stateGui);
-        Mem::zero(guiCmd);
-        Mem::zero(cmdFld);
 
         STEP(1)
         //  signal type SIG_H (default)
@@ -40,11 +34,11 @@ namespace test
         for (UINT32 n = 0; n < CAPACITY_SIG; ++n)
         {
             LSTEP(n)
+            FldState fldState(SIG_STATE_H0);
             nameElement(fldState, CAPACITY_SIG - n, "SIG");
-            fldState.state1 = SIG_STATE_H0;
 
-            Mem::cpy(stateGui.name, fldState.name);
-            stateGui.state1 = SIG_STATE_H0;
+            StateGui stateGui(SIG_STATE_H0);
+            stateGui.name = fldState.name;
 
             m_Com().expectSend(stateGui);
             IL::getDispatcher().dispatch(fldState);
@@ -62,14 +56,14 @@ namespace test
         for (UINT32 n = 0; n < CAPACITY_SIG; ++n)
         {
             LSTEP(n)
+            GuiCmd guiCmd(SIG_STATE_H1);
             nameElement(guiCmd, CAPACITY_SIG - n, "SIG");
-            guiCmd.cmd1 = SIG_STATE_H1;
 
-            Mem::cpy(cmdFld.name, guiCmd.name);
-            cmdFld.cmd1 = SIG_STATE_H1;
+            CmdFld cmdFld(SIG_STATE_H1);
+            cmdFld.name = guiCmd.name;
 
-            Mem::cpy(stateGui.name, guiCmd.name);
-            stateGui.state1 = SIG_STATE_WAIT_H1;
+            StateGui stateGui(SIG_STATE_WAIT_H1);
+            stateGui.name = guiCmd.name;
 
             m_Com().expectSend(cmdFld);
             m_Com().expectSend(stateGui);

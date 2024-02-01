@@ -48,19 +48,20 @@ interface LCR_Hub
 interface LCR_Provider
 ```
 
-**I_Loader.h**
-```
-interface Loader
-the Loader is called at system start and shall:
--   reset I_Dispatcher
--   distribute load to subsystems
--   call indexing of I_Dispatcher
-```
-
 **I_Log.h**
 ```
 interface Log
 - runtime error logging
+```
+
+**I_Reader.h**
+```
+interface Reader
+the Reader is called at system start and shall:
+-   reset I_Dispatcher
+-   read proj data from binary file
+-   distribute load to subsystems
+-   call indexing of I_Dispatcher
 ```
 
 **I_SIG.h**

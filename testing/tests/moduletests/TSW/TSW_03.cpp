@@ -30,6 +30,7 @@ namespace test
 
         STEP(2)
         I_TSW& tsw = mSUT.at(1);
+        play(tsw);
     }
 
     //  test type: equivalence class test
@@ -60,6 +61,8 @@ namespace test
     //  retrieve instance / at
     TEST(TSW_03, T04)
     {
-        I_TSW_Provider& inst = TSW_Provider::instance();
+        unmock();
+        I_TSW_Provider& inst = IL::getTSW_Provider();
+        play(inst);
     }
 }

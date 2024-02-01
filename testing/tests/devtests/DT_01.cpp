@@ -6,19 +6,20 @@
 #include <testlib/TestGroupBase.h>
 #include <qnd/useCout.h>
 #include <sstream>
+#include <limits>
 
 namespace test
 {
     struct Dotted
     {
-        inline Dotted(const UINT32 val): val(val) {}
-        const UINT32 val;
+        inline Dotted(const size_t val): val(val) {}
+        const size_t val;
     };
 
     std::ostream& operator << (std::ostream& os, const Dotted& d)
     {
-        static UINT32 ar[4];
-        UINT32 v = d.val;
+        static size_t ar[8];
+        size_t v = d.val;
         UINT8 p = 4;
         do {
             --p;
@@ -41,12 +42,13 @@ namespace test
     //  output of element numbers limitations
     TEST(DT_01, T01)
     {
+        const size_t maxval = std::numeric_limits<size_t>::max();
         STEP(1)
         cout 
-            << "MAX: " << setw(16) << Dotted(UINT32_MAX) << endl
-            << "SIG: " << setw(16) << Dotted(UINT32_MAX / sizeof(SIG_X)) << endl
-            << "TSW: " << setw(16) << Dotted(UINT32_MAX / sizeof(TSW)) << endl
-            << "DSP: " << setw(16) << Dotted(UINT32_MAX / sizeof(Ntp)) << endl
+            << "MAX: " << setw(16) << Dotted(maxval) << endl
+            << "SIG: " << setw(16) << Dotted(maxval / sizeof(SIG_X)) << endl
+            << "TSW: " << setw(16) << Dotted(maxval / sizeof(TSW)) << endl
+            << "DSP: " << setw(16) << Dotted(maxval / sizeof(Ntp)) << endl
         ;
     }
 
