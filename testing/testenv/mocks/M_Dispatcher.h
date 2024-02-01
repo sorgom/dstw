@@ -67,7 +67,7 @@ namespace test
         {
             call("dispatch").PARAM(id).TPARAM(CmdFld, tele);
         }
-        inline void expectDispatch(size_t id, CmdFld& tele) const
+        inline void expectDispatch(size_t id, CmdFld&& tele) const
         {
             expect("dispatch").PARAM(id).TPARAM(CmdFld, tele);
         }
@@ -76,7 +76,7 @@ namespace test
         {
             call("dispatch").PARAM(id).TPARAM(StateGui, tele);
         }
-        inline void expectDispatch(size_t id, StateGui& tele) const
+        inline void expectDispatch(size_t id, StateGui&& tele) const
         {
             expect("dispatch").PARAM(id).TPARAM(StateGui, tele);
         }

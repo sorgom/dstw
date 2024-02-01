@@ -4,7 +4,6 @@
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <testlib/MemStream.h>
 #include <BAS/StaticArray.h>
 
 namespace test

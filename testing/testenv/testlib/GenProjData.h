@@ -99,11 +99,10 @@ namespace test
             setType(mLCRs, type);
         }
 
-        bool dump(CONST_C_STRING filename) const
+        void dump(CONST_C_STRING filename) const
         {
             std::ofstream os(filename, std::ios::binary);
-            const bool ok = os.good();
-            if (ok)
+            if (os.good())
             {
                 write(os, numTSW);
                 write(os, numSIG);
@@ -115,7 +114,6 @@ namespace test
                 write(os, pSEG, numSEG);
             }
             os.close();
-            return ok;
         }
 
         NOCOPY(GenProjData)

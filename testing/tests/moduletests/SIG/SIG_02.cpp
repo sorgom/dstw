@@ -62,11 +62,8 @@ namespace test
     //  toFld
     TEST(SIG_02, T03)
     {
-        SETUP()
-        CmdFld tele(301, 302);
-        
         STEP(1)
-        m_Dispatcher().expectDispatch(3, tele);
+        m_Dispatcher().expectDispatch(3, CmdFld(301, 302));
         mSUT.toFld(3, 301, 302);
         CHECK_N_CLEAR()
     }
@@ -75,11 +72,8 @@ namespace test
     //  toGui
     TEST(SIG_02, T04)
     {
-        SETUP()
-        StateGui tele(401, 402);
-        
         STEP(1)
-        m_Dispatcher().expectDispatch(4, tele);
+        m_Dispatcher().expectDispatch(4, StateGui(401, 402));
         mSUT.toGui(4, 401, 402);
         CHECK_N_CLEAR()
     }

@@ -108,7 +108,6 @@ namespace test
     TEST(SYS_02, T03)
     {
         SETUP()
-        CmdFld cmdIn;
         CmdFld cmdExp;
 
         STEP(1)
@@ -146,7 +145,6 @@ namespace test
     TEST(SYS_02, T04)
     {
         SETUP()
-        StateGui stateIn;
         StateGui stateExp;
 
         STEP(1)

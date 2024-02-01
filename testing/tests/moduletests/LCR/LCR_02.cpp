@@ -62,11 +62,8 @@ namespace test
     //  toFld
     TEST(LCR_02, T03)
     {
-        SETUP()
-        CmdFld tele(301);
-
         STEP(1)
-        m_Dispatcher().expectDispatch(3, tele);
+        m_Dispatcher().expectDispatch(3, CmdFld(301));
         mSUT.toFld(3, 301);
         CHECK_N_CLEAR()
     }
@@ -75,11 +72,8 @@ namespace test
     //  toGui
     TEST(LCR_02, T04)
     {
-        SETUP()
-        StateGui tele(401, 402);
-        
         STEP(1)
-        m_Dispatcher().expectDispatch(4, tele);
+        m_Dispatcher().expectDispatch(4, StateGui(401, 402));
         mSUT.toGui(4, 401, 402);
         CHECK_N_CLEAR()
     }

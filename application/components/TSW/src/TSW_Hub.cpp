@@ -29,13 +29,11 @@ void TSW_Hub::fromDsp(const size_t pos, const GuiCmd& tele) const
 
 void TSW_Hub::toFld(const size_t id, const INT32 cmd) const
 {
-    // CmdFld tele(cmd);
     IL::getDispatcher().dispatch(id, CmdFld(cmd));
 }
 
 void TSW_Hub::toGui(const size_t id, const INT32 state) const
 {
-    // StateGui tele(state);
     IL::getDispatcher().dispatch(id, StateGui(state));
 }
 
