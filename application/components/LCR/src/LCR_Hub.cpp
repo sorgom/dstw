@@ -29,14 +29,12 @@ void LCR_Hub::fromDsp(const size_t pos, const GuiCmd& tele) const
 
 void LCR_Hub::toFld(const size_t id, const INT32 state) const
 {
-    CmdFld tele(state);
-    IL::getDispatcher().dispatch(id, tele);
+    IL::getDispatcher().dispatch(id, CmdFld(state));
 }
 
 void LCR_Hub::toGui(const size_t id, const INT32 state, const INT32 ubk) const
 {
-    StateGui tele(state, ubk);
-    IL::getDispatcher().dispatch(id, tele);
+    IL::getDispatcher().dispatch(id, StateGui(state, ubk));
 }
 
 

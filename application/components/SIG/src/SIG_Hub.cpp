@@ -29,14 +29,14 @@ void SIG_Hub::fromDsp(const size_t pos, const GuiCmd&   tele) const
 
 void SIG_Hub::toFld(const size_t id, const INT32 state, const INT32 speed) const
 {
-    CmdFld tele(state, speed);
-    IL::getDispatcher().dispatch(id, tele);
+    // CmdFld tele(state, speed);
+    IL::getDispatcher().dispatch(id, CmdFld(state, speed));
 }
 
 void SIG_Hub::toGui(const size_t id, const INT32 state, const INT32 speed) const
 {
-    StateGui tele(state, speed);
-    IL::getDispatcher().dispatch(id, tele);
+    // StateGui tele(state, speed);
+    IL::getDispatcher().dispatch(id, StateGui(state, speed));
 }
 
 

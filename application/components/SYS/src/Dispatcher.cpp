@@ -96,7 +96,7 @@ void Dispatcher::dispatch(const GuiCmd& tele) const
     }
 }
 
-void Dispatcher::dispatch(const size_t id, CmdFld& tele) const
+void Dispatcher::dispatch(const size_t id, CmdFld&& tele) const
 {
     if (id < mData.size())
     {
@@ -107,7 +107,7 @@ void Dispatcher::dispatch(const size_t id, CmdFld& tele) const
     { pass();}
 }
 
-void Dispatcher::dispatch(const size_t id, StateGui& tele) const
+void Dispatcher::dispatch(const size_t id, StateGui&& tele) const
 {
     if (id < mData.size())
     {

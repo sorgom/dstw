@@ -4,7 +4,7 @@
 //  -   act like arrays of pre-defined size
 //  -   can be filled with objects at runtime
 //  -   can store objects of different size classes
-//      for the same interface
+//      derived from main class
 //  -   do not provide any overflow protection
 //  ============================================================
 //  created by Manfred Sorgo
@@ -18,7 +18,7 @@
 #include <BAS/SwapBytes.h>
 #include <algorithm>
 #include <new>
-// #include <istream>
+#include <type_traits>
 
 //  ============================================================
 //  StaticArray
@@ -71,6 +71,7 @@ public:
     size_t addT(const ARGS& ... args)
     {
         static_assert(sizeof(T) <= DIM);
+        static_assert(std::is_base_of_v<C, T>);
         new (mData[mSize]) T(args...);
         return mSize++;
     }

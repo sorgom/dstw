@@ -114,30 +114,30 @@ namespace test
         STEP(1)
         nameElement(cmdExp, 1, "TSW");
         m_Com().expectSend(cmdExp);
-        mSUT.dispatch(0, cmdIn);
+        mSUT.dispatch(0, CmdFld());
         CHECK_N_CLEAR()
 
         STEP(2)
         nameElement(cmdExp, 2, "SIG");
         m_Com().expectSend(cmdExp);
-        mSUT.dispatch(1, cmdIn);
+        mSUT.dispatch(1, CmdFld());
         CHECK_N_CLEAR()
 
         STEP(3)
         nameElement(cmdExp, 3, "LCR");
         m_Com().expectSend(cmdExp);
-        mSUT.dispatch(2, cmdIn);
+        mSUT.dispatch(2, CmdFld());
         CHECK_N_CLEAR()
 
         STEP(4)
         nameElement(cmdExp, 4, "SEG");
         m_Com().expectSend(cmdExp);
-        mSUT.dispatch(3, cmdIn);
+        mSUT.dispatch(3, CmdFld());
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
-        mSUT.dispatch(4, cmdIn);
+        mSUT.dispatch(4, CmdFld());
         CHECK_N_CLEAR()
     }
 
@@ -152,30 +152,30 @@ namespace test
         STEP(1)
         nameElement(stateExp, 1, "TSW");
         m_Com().expectSend(stateExp);
-        mSUT.dispatch(0, stateIn);
+        mSUT.dispatch(0, StateGui());
         CHECK_N_CLEAR()
 
         STEP(2)
         nameElement(stateExp, 2, "SIG");
         m_Com().expectSend(stateExp);
-        mSUT.dispatch(1, stateIn);
+        mSUT.dispatch(1, StateGui());
         CHECK_N_CLEAR()
 
         STEP(3)
         nameElement(stateExp, 3, "LCR");
         m_Com().expectSend(stateExp);
-        mSUT.dispatch(2, stateIn);
+        mSUT.dispatch(2, StateGui());
         CHECK_N_CLEAR()
 
         STEP(4)
         nameElement(stateExp, 4, "SEG");
         m_Com().expectSend(stateExp);
-        mSUT.dispatch(3, stateIn);
+        mSUT.dispatch(3, StateGui());
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
-        mSUT.dispatch(4, stateIn);
+        mSUT.dispatch(4, StateGui());
         CHECK_N_CLEAR()
     }
 
