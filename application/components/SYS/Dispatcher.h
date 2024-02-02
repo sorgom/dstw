@@ -21,7 +21,7 @@ public:
     void reset();
     void index();
 
-    PosRes assign(const ElementName& name, E_Subsys subs, size_t pos);
+    const PosRes assign(const ComName& name, E_Subsys subs, size_t pos);
     
     void dispatch(const FldState& tele) const;
     void dispatch(const GuiCmd&   tele) const;

@@ -11,7 +11,7 @@
 #ifndef I_READER_H
 #define I_READER_H
 
-#include <BAS/BaseTypes.h>
+#include <codebase/BaseTypes.h>
 
 class I_Reader
 {

@@ -34,14 +34,14 @@ namespace test
             expect("index");
         }
 
-        inline PosRes assign(const ElementName& name, E_Subsys subs, size_t pos)
+        inline const PosRes assign(const ComName& name, E_Subsys subs, size_t pos)
         {
-            const INT32 i = call("assign").TPARAM(ElementName, name).PARAM(subs).PARAM(pos).RETURN_DEF_INT(0);
+            const INT32 i = call("assign").TPARAM(ComName, name).PARAM(subs).PARAM(pos).RETURN_DEF_INT(0);
             return i < 0 ? PosRes {0, false} : PosRes {static_cast<size_t>(i), true};
         }
-        inline void expectAssign(const ElementName& name, E_Subsys subs, size_t pos, INT32 ret = 0) const
+        inline void expectAssign(const ComName& name, E_Subsys subs, size_t pos, INT32 ret = 0) const
         {
-            expect("assign").TPARAM(ElementName, name).PARAM(subs).PARAM(pos).AND_RETURN(ret);
+            expect("assign").TPARAM(ComName, name).PARAM(subs).PARAM(pos).AND_RETURN(ret);
         }
 
         inline void dispatch(const FldState& tele) const

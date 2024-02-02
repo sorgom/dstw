@@ -28,7 +28,7 @@ namespace test
         for (UINT32 n = 0; n < CAPTSW; ++n)
         {
             LSTEP(n)
-            const ElementName& name = genElementName(CAPTSW - n, "TSW");
+            const ComName& name = genComName(CAPTSW - n, "TSW");
             L_CHECK_TRUE(name == projData.pTSW[n].name)
         }
         ENDSTEPS()
@@ -40,7 +40,7 @@ namespace test
         for (UINT32 n = 0; n < CAPSIG; ++n)
         {
             LSTEP(n)
-            const ElementName& name = genElementName(CAPSIG - n, "SIG");
+            const ComName& name = genComName(CAPSIG - n, "SIG");
             L_CHECK_TRUE(name == projData.pSIG[n].name)
         }
         ENDSTEPS()
@@ -52,7 +52,7 @@ namespace test
         for (UINT32 n = 0; n < CAPLCR; ++n)
         {
             LSTEP(n)
-            const ElementName& name = genElementName(CAPLCR - n, "LCR");
+            const ComName& name = genComName(CAPLCR - n, "LCR");
             L_CHECK_TRUE(name == projData.pLCR[n].name)
         }
         ENDSTEPS()
@@ -64,7 +64,7 @@ namespace test
         for (UINT32 n = 0; n < CAPSEG; ++n)
         {
             LSTEP(n)
-            const ElementName& name = genElementName(CAPSEG - n, "SEG");
+            const ComName& name = genComName(CAPSEG - n, "SEG");
             L_CHECK_TRUE(name == projData.pSEG[n].name)
         }
         ENDSTEPS()

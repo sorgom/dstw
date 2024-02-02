@@ -7,29 +7,29 @@
 #ifndef TESTLIB_H
 #define TESTLIB_H
 
-#include <ifs/DataTypes.h>
+#include <ifs/ComTypes.h>
 #include <testlib/TestLiterals.h>
-#include <BAS/Mem.h>
+#include <codebase/Mem.h>
 #include <BAS/coding.h>
 
 namespace test
 {
     //  preset an ElmentName for testing
-    const ElementName& genElementName(UINT32 num, CONST_C_STRING name = c__ELM);
-    void genElementName(ElementName& eName, UINT32 num, CONST_C_STRING name = c__ELM);
+    const ComName& genComName(UINT32 num, CONST_C_STRING name = c__ELM);
+    void genComName(ComName& eName, UINT32 num, CONST_C_STRING name = c__ELM);
 
-    inline void genElementName(ElementName& eName, UINT32 num, CONST_C_STRING name)
+    inline void genComName(ComName& eName, UINT32 num, CONST_C_STRING name)
     {
-        eName = genElementName(num, name);
+        eName = genComName(num, name);
     }
 
     template <class T>
     void nameElement(T& elem, UINT32 num, CONST_C_STRING name = c__ELM)
     {
-        genElementName(elem.name, num, name);
+        genComName(elem.name, num, name);
     }
 
-    inline bool operator==(const ElementName& n1, const ElementName& n2)
+    inline bool operator==(const ComName& n1, const ComName& n2)
     {
         return Mem::cmp(n1.chars, n2.chars) == 0;
     }

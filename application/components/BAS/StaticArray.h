@@ -14,7 +14,7 @@
 #define STATICARRAY_H
 
 #include <BAS/I_Array.h>
-#include <BAS/Mem.h>
+#include <codebase/Mem.h>
 #include <BAS/SwapBytes.h>
 #include <algorithm>
 #include <new>
@@ -104,13 +104,6 @@ public:
         return reinterpret_cast<const C*>(mData);
     } 
 
-    // void read(std::basic_istream<CHAR>& is, size_t size)
-    // {
-    //     static_assert(sizeof(C) == DIM);
-    //     mSize = std::min(size, CAP);
-    //     is.read(reinterpret_cast<CHAR*>(mData), mSize * DIM);
-    // }
-
     NOCOPY(StaticArray)
 
 protected:
@@ -199,11 +192,11 @@ public:
     NODEF(StaticIndex)
 
 protected:
-    const I_Array<T, CAP>& mSrc;
     virtual bool isGreater(const T& a, const T& b) const
     {
         return mSrc.isGreater(a, b);
     }
-
+private:
+    const I_Array<T, CAP>& mSrc;
 };
 #endif // H_

@@ -3,7 +3,7 @@
 using std::ostream;
 using std::endl;
 
-OSTREAM_DEF(ElementName)
+OSTREAM_DEF(ComName)
 {
     return os << fixC(d.chars);
 }

@@ -7,7 +7,7 @@
 #ifndef I_LCR_HUB_H
 #define I_LCR_HUB_H
 
-#include "DataTypes.h"
+#include "ComTypes.h"
 
 class I_LCR_Hub
 {

@@ -1,6 +1,6 @@
 #include <comparators/installComparators.h>
 
-#include <ifs/DataTypes.h>
+#include <ifs/ComTypes.h>
 #include <comparators/Comparator.h>
 #include <comparators/ostreams.h>
 #include <testlib/TestLiterals.h>
@@ -15,7 +15,7 @@ namespace test
     {
         //# ADD_COMP
         ADD_COMP(CmdFld)
-        ADD_COMP(ElementName)
+        ADD_COMP(ComName)
         ADD_COMP(FldState)
         ADD_COMP(GuiCmd)
         ADD_COMP(StateGui)

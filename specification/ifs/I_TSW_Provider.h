@@ -7,8 +7,8 @@
 #ifndef I_TSW_PROVIDER_H
 #define I_TSW_PROVIDER_H
 
-#include <ifs/I_TSW.h>
-#include <ifs/ProjData.h>
+#include "I_TSW.h"
+#include "ProjTypes.h"
 
 class I_TSW_Provider
 {

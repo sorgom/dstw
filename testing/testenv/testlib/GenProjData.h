@@ -15,7 +15,7 @@
 #ifndef GENPROJDATA_H
 #define GENPROJDATA_H
 
-#include <ifs/ProjData.h>
+#include <ifs/ProjTypes.h>
 #include <ifs/I_SIG.h>
 #include <ifs/I_LCR.h>
 #include <BAS/StaticArray.h>
@@ -74,10 +74,10 @@ namespace test
         inline const ProjLCR& lcr(size_t pos) const { return mLCRs.at(pos); }
         inline const ProjSEG& seg(size_t pos) const { return mSEGs.at(pos); }
 
-        inline const ElementName& tswName(size_t pos) const { return tsw(pos).name; }
-        inline const ElementName& sigName(size_t pos) const { return sig(pos).name; }
-        inline const ElementName& lcrName(size_t pos) const { return lcr(pos).name; }
-        inline const ElementName& segName(size_t pos) const { return seg(pos).name; }
+        inline const ComName& tswName(size_t pos) const { return tsw(pos).name; }
+        inline const ComName& sigName(size_t pos) const { return sig(pos).name; }
+        inline const ComName& lcrName(size_t pos) const { return lcr(pos).name; }
+        inline const ComName& segName(size_t pos) const { return seg(pos).name; }
 
         void setSigType(size_t pos, INT32 type)
         {

@@ -8,18 +8,18 @@
 #define NTPARRAY_H
 
 #include <BAS/coding.h>
-#include <BAS/Mem.h>
+#include <codebase/Mem.h>
 #include <BAS/StaticArray.h>
-#include <ifs/DataTypes.h>
+#include <ifs/ComTypes.h>
 
 //  name, type, position
 struct Ntp
 {
-    const ElementName name;
+    const ComName name;
     const INT32 type;
     const size_t pos;
     inline Ntp(
-        const ElementName& name,
+        const ComName& name,
         INT32 type = 0,
         size_t pos = 0
     ):
@@ -41,7 +41,7 @@ class NtpArray :
 public:
     inline NtpArray() = default;
 
-    inline auto add(const ElementName& name, INT32 type, size_t pos)
+    inline auto add(const ComName& name, INT32 type, size_t pos)
     {
         return StaticArray<Ntp, CAP>::add(name, type, pos);
     }
@@ -62,7 +62,7 @@ public:
         BaseT(a)
     {}
 
-    inline auto find(const ElementName& name) const
+    inline auto find(const ComName& name) const
     {
         return BaseT::find(Ntp(name));
     }
@@ -70,7 +70,7 @@ public:
     NODEF(NtpIndex)
 
 protected:
-    inline bool isGreater(const Ntp& a, const Ntp& b) const
+    inline bool isGreater(const Ntp& a, const Ntp& b) const final
     {
         return Mem::cmp(a.name, b.name) > 0;
     }

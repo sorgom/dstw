@@ -14,10 +14,10 @@ namespace test
         inline TestGroupDSP()
         {
             mSUT.reset();
-            mSUT.assign(genElementName(1, "TSW"), SUBSYS_TSW, 1);
-            mSUT.assign(genElementName(2, "SIG"), SUBSYS_SIG, 2);
-            mSUT.assign(genElementName(3, "LCR"), SUBSYS_LCR, 3);
-            mSUT.assign(genElementName(4, "SEG"), SUBSYS_SEG, 4);
+            mSUT.assign(genComName(1, "TSW"), SUBSYS_TSW, 1);
+            mSUT.assign(genComName(2, "SIG"), SUBSYS_SIG, 2);
+            mSUT.assign(genComName(3, "LCR"), SUBSYS_LCR, 3);
+            mSUT.assign(genComName(4, "SEG"), SUBSYS_SEG, 4);
             mSUT.index();
         }
     };
@@ -187,12 +187,12 @@ namespace test
         for (size_t n = 0; n < CAPACITY_DSP; ++n)
         {
             LSTEP(n)
-            const PosRes res = mSUT.assign(genElementName(n, "TSW"), SUBSYS_TSW, n);
+            const PosRes res = mSUT.assign(genComName(n, "TSW"), SUBSYS_TSW, n);
             L_CHECK_EQUAL(n, res.pos)
             L_CHECK_TRUE(res.valid)
         }
         ENDSTEPS()
-        const PosRes res = mSUT.assign(genElementName(1, "TSW"), SUBSYS_TSW, 1);
+        const PosRes res = mSUT.assign(genComName(1, "TSW"), SUBSYS_TSW, 1);
         L_CHECK_FALSE(res.valid)
     }
 
@@ -212,7 +212,7 @@ namespace test
         SETUP()
         mSUT.reset();
         E_Subsys subs = (E_Subsys) 1000;
-        mSUT.assign(genElementName(1, "TSW"), subs, 1);
+        mSUT.assign(genComName(1, "TSW"), subs, 1);
         mSUT.index();
         
         STEP(1)
@@ -234,10 +234,10 @@ namespace test
     TEST(SYS_02, T08)
     {
         mSUT.reset();
-        mSUT.assign(genElementName(1, "TSW"), SUBSYS_TSW, 1);
-        mSUT.assign(genElementName(1, "TSW"), SUBSYS_TSW, 2);
-        mSUT.assign(genElementName(3, "LCR"), SUBSYS_LCR, 3);
-        mSUT.assign(genElementName(4, "SEG"), SUBSYS_SEG, 4);
+        mSUT.assign(genComName(1, "TSW"), SUBSYS_TSW, 1);
+        mSUT.assign(genComName(1, "TSW"), SUBSYS_TSW, 2);
+        mSUT.assign(genComName(3, "LCR"), SUBSYS_LCR, 3);
+        mSUT.assign(genComName(4, "SEG"), SUBSYS_SEG, 4);
         CHECK_N_CLEAR()
 
         m_Log().expectLog(MOD_DISPATCHER, ERR_STARTUP);

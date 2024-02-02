@@ -9,7 +9,7 @@
 
 #include <testlib/CppUTest.h>
 
-#include <BAS/BaseTypes.h>
+#include <codebase/BaseTypes.h>
 #include <BAS/coding.h>
 #include <testlib/TestLiterals.h>
 

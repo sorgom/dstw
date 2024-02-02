@@ -53,10 +53,10 @@ public:
         }
     }
 
-    PosRes find(const T& obj) const
+    const PosRes find(const T& obj) const
     {
-        PosRes res = { 0, false };
-        
+        size_t pos = 0;
+        bool valid = false;
         if (size() > 0)
         {
             size_t pMin = 0;
@@ -83,13 +83,13 @@ public:
                 }
                 else
                 {
-                    res.pos = pCur;
-                    res.valid = true;
+                    pos = pCur;
+                    valid = true;
                     break;
                 }
             }
         }
-        return res;
+        return PosRes{ pos, valid };
     }
 
     size_t dupCnt() const

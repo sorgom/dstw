@@ -1,9 +1,8 @@
 ## directory content
 
-**DataTypes.h**
+**ComTypes.h**
 ```
-definiton of complex data types
-- mainly communication telegrams
+communication telegrams types
 ```
 
 **I_Com.h**
@@ -99,7 +98,7 @@ interface TSW_Provider
 defintion of position result
 ```
 
-**ProjData.h**
+**ProjTypes.h**
 ```
 projectation data types
 ```

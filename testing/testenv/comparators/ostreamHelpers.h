@@ -6,7 +6,8 @@
 #ifndef OSTREAMHELPERS_H
 #define OSTREAMHELPERS_H
 
-#include <BAS/BaseTypes.h>
+#include <codebase/BaseTypes.h>
+#include <BAS/coding.h>
 #include <ostream>
 #include <iomanip>
 
@@ -43,21 +44,24 @@
 //  helper struct for fixed character types
 struct FixChar
 {
-    CONST_C_STRING str;
-    size_t size;
+    const CONST_C_STRING str;
+    const size_t size;
+    inline FixChar(const CONST_C_STRING str, const size_t size):
+        str(str),
+        size(size)
+    {}
+    NOCOPY(FixChar)
+    NODEF(FixChar)
 };
-
-//  helper struct creator 
-const FixChar& getFixC(CONST_C_STRING str, size_t size);
 
 //  the streamable call
 template <size_t N>
-inline FixChar fixC(const CHAR (&str)[N])
+inline const FixChar fixC(const CHAR (&str)[N])
 {
-    return getFixC(str, N);
+    return FixChar(str, N);
 }
 
-OSTREAM_DEC(FixChar)
-
+//  stream FixChar as rvalue
+std::ostream& operator << (std::ostream& os, const FixChar&& d);
 
 #endif // H_

@@ -7,7 +7,7 @@
 #ifndef I_LCR_H
 #define I_LCR_H
 
-#include <BAS/BaseTypes.h>
+#include <codebase/BaseTypes.h>
 
 enum E_LcrType
 {

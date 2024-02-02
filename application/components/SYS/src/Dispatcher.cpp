@@ -1,5 +1,5 @@
 #include <SYS/Dispatcher.h>
-#include <BAS/Mem.h>
+#include <codebase/Mem.h>
 #include <BAS/coding.h>
 #include <SYS/IL.h>
 
@@ -21,19 +21,20 @@ void Dispatcher::index()
     }
 }
 
-PosRes Dispatcher::assign(
-    const ElementName& name, 
+const PosRes Dispatcher::assign(
+    const ComName& name, 
     const E_Subsys subs, 
     const size_t pos)
 {
-    PosRes res {0, mData.hasSpace()};
-    if (res.valid)
+    const bool valid = mData.hasSpace();
+    size_t dpos = 0;
+    if (valid)
     {
-        res.pos = mData.add(name, subs, pos);
+        dpos = mData.add(name, subs, pos);
     }
     else
     { pass();}
-    return res;
+    return PosRes{dpos, valid};
 }
 
 void Dispatcher::dispatch(const FldState& tele) const

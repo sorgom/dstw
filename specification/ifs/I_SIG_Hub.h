@@ -6,7 +6,7 @@
 #ifndef I_SIG_HUB_H
 #define I_SIG_HUB_H
 
-#include "DataTypes.h"
+#include "ComTypes.h"
 
 class I_SIG_Hub
 {

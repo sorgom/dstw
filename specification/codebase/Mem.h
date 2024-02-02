@@ -1,5 +1,5 @@
 //  ============================================================
-//  size safe memset, memcpy, memcmp
+//  apply size safe memset, memcpy, memcmp
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -7,7 +7,7 @@
 #ifndef MEM_H
 #define MEM_H
 
-#include <BAS/BaseTypes.h>
+#include <codebase/BaseTypes.h>
 #include <cstring>
 
 class Mem
