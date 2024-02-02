@@ -29,7 +29,7 @@ namespace test
         for (UINT16 i = 0; i < tSize; ++i)
         {
             LSTEP(i)
-            data.add(genElementName(tOffs - i), 100 + i, i);
+            data.add(genComName(tOffs - i), 100 + i, i);
         }
         ENDSTEPS()
 
@@ -40,7 +40,7 @@ namespace test
         for (UINT16 i = 0; i < tSize; ++i)
         {
             LSTEP(i)
-            const ElementName& en = genElementName(tOffs - i);
+            const ComName& en = genComName(tOffs - i);
             const PosRes f = indx.find(en);
             L_CHECK_TRUE(f.valid)
             L_CHECK_EQUAL(tOffs -i, f.pos)

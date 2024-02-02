@@ -15,7 +15,7 @@ namespace test
     {
         //# ADD_COMP
         ADD_COMP(CmdFld)
-        ADD_COMP(ElementName)
+        ADD_COMP(ComName)
         ADD_COMP(FldState)
         ADD_COMP(GuiCmd)
         ADD_COMP(StateGui)

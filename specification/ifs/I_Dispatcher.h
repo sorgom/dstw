@@ -26,7 +26,7 @@ public:
     //  and shall receive:
     //  - dispatcher id
     //  ============================================================
-    virtual const PosRes assign(const ElementName& name, E_Subsys subs, size_t pos) = 0;
+    virtual const PosRes assign(const ComName& name, E_Subsys subs, size_t pos) = 0;
 
     //  ============================================================
     //  field states shall be dispatched to subsystems

@@ -22,7 +22,7 @@ void Dispatcher::index()
 }
 
 const PosRes Dispatcher::assign(
-    const ElementName& name, 
+    const ComName& name, 
     const E_Subsys subs, 
     const size_t pos)
 {

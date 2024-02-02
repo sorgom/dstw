@@ -18,8 +18,8 @@ namespace test
     TEST(DT_02, T01)
     {
         STEP(1)
-        const CHAR chars[NumElementNameChars] = { '0', '1', '2', '3', '4', '5', '6', '7', '8' };
-        ElementName fn;
+        const CHAR chars[NumComNameChars] = { '0', '1', '2', '3', '4', '5', '6', '7', '8' };
+        ComName fn;
         Mem::cpy(fn.chars, chars);
 
         std::ostringstream os;

@@ -20,7 +20,7 @@ namespace test
     C_STR_DEC(CmdFld)
     C_STR_DEC(Com)
     C_STR_DEC(Dispatcher)
-    C_STR_DEC(ElementName)
+    C_STR_DEC(ComName)
     C_STR_DEC(FldState)
     C_STR_DEC(GuiCmd)
     C_STR_DEC(LCR)

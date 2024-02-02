@@ -3,61 +3,38 @@
 //  ============================================================
 //  created by Manfred Sorgo
 #pragma once
-#ifndef PROJDATA_H
-#define PROJDATA_H
+#ifndef PROJTYPES_H
+#define PROJTYPES_H
 
-#include <BAS/BaseTypes.h>
-#include <BAS/Mem.h>
-
+#include <ifs/DataTypes.h>
 
 #include <BAS/packBegin.h>
 
-constexpr auto NumElementNameChars = 9;
-constexpr auto SI32 = sizeof(INT32);
-
-struct ElementName
-{
-    CHAR chars[NumElementNameChars];
-    inline ElementName()
-    {
-        Mem::set(chars);
-    }
-    inline ElementName(const ElementName& src)
-    {
-        Mem::cpy(chars, src.chars);
-    }
-    inline void operator=(const ElementName& src)
-    {
-        Mem::cpy(chars, src.chars);
-    }
-};
-static_assert(NumElementNameChars == sizeof(ElementName));
-
 struct ProjTSW
 {
-    ElementName name;
+    ComName name;
 };
-static_assert(NumElementNameChars == sizeof(ProjTSW));
+static_assert(NumComNameChars == sizeof(ProjTSW));
 
 struct ProjSIG
 {
-    ElementName name;
+    ComName name;
     INT32 type;
 };
-static_assert(NumElementNameChars + SI32 == sizeof(ProjSIG));
+static_assert(NumComNameChars + SI32 == sizeof(ProjSIG));
 
 struct ProjLCR
 {
-    ElementName name;
+    ComName name;
     INT32 type;
 };
-static_assert(NumElementNameChars + SI32 == sizeof(ProjLCR));
+static_assert(NumComNameChars + SI32 == sizeof(ProjLCR));
 
 struct ProjSEG
 {
-    ElementName name;
+    ComName name;
 };
-static_assert(NumElementNameChars == sizeof(ProjSEG));
+static_assert(NumComNameChars == sizeof(ProjSEG));
 
 #include <BAS/packEnd.h>
 
