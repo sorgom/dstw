@@ -1,5 +1,5 @@
 //  ============================================================
-//  communication telegrams types
+//  communication telegram types
 //  ============================================================
 //  created by Manfred Sorgo 
 
