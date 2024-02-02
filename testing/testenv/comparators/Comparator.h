@@ -25,7 +25,7 @@ namespace test
     class ComparatorBase
     {
     protected:
-        inline ComparatorBase() {}
+        inline ComparatorBase() = default;
 
         static std::ostream& begin();
         static std::ostringstream mStream;
@@ -39,7 +39,7 @@ namespace test
         private ComparatorBase
     {
     public:
-        inline Comparator() {}
+        inline Comparator() = default;
 
         SimpleString valueToString(CPTR ptr)
         {

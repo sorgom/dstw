@@ -34,7 +34,7 @@ namespace test
             expect("index");
         }
 
-        inline PosRes assign(const ElementName& name, E_Subsys subs, size_t pos)
+        inline const PosRes assign(const ElementName& name, E_Subsys subs, size_t pos)
         {
             const INT32 i = call("assign").TPARAM(ElementName, name).PARAM(subs).PARAM(pos).RETURN_DEF_INT(0);
             return i < 0 ? PosRes {0, false} : PosRes {static_cast<size_t>(i), true};

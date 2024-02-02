@@ -13,6 +13,7 @@
 #include <BAS/packBegin.h>
 
 constexpr auto NumElementNameChars = 9;
+constexpr auto SI32 = sizeof(INT32);
 
 struct ElementName
 {
@@ -30,33 +31,33 @@ struct ElementName
         Mem::cpy(chars, src.chars);
     }
 };
-static_assert(9 == sizeof(ElementName));
+static_assert(NumElementNameChars == sizeof(ElementName));
 
 struct ProjTSW
 {
     ElementName name;
 };
-static_assert(9 == sizeof(ProjTSW));
+static_assert(NumElementNameChars == sizeof(ProjTSW));
 
 struct ProjSIG
 {
     ElementName name;
     INT32 type;
 };
-static_assert(13 == sizeof(ProjSIG));
+static_assert(NumElementNameChars + SI32 == sizeof(ProjSIG));
 
 struct ProjLCR
 {
     ElementName name;
     INT32 type;
 };
-static_assert(13 == sizeof(ProjLCR));
+static_assert(NumElementNameChars + SI32 == sizeof(ProjLCR));
 
 struct ProjSEG
 {
     ElementName name;
 };
-static_assert(9 == sizeof(ProjSEG));
+static_assert(NumElementNameChars == sizeof(ProjSEG));
 
 #include <BAS/packEnd.h>
 

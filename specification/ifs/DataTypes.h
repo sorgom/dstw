@@ -14,6 +14,9 @@
 
 #include <BAS/packBegin.h>
 
+//  standard telegram size
+constexpr auto STDTSIZE = NumElementNameChars + 2 * SI32;
+
 //  command to field
 struct CmdFld
 {
@@ -26,7 +29,7 @@ struct CmdFld
     {}
     NOCOPY(CmdFld)
 };
-static_assert(17 == sizeof(CmdFld));
+static_assert(STDTSIZE == sizeof(CmdFld));
 
 //  state from field
 struct FldState
@@ -40,7 +43,7 @@ struct FldState
     {}
     NOCOPY(FldState)
 };
-static_assert(17 == sizeof(FldState));
+static_assert(STDTSIZE == sizeof(FldState));
 
 //  command from GUI
 struct GuiCmd
@@ -54,7 +57,7 @@ struct GuiCmd
     {}
     NOCOPY(GuiCmd)
 };
-static_assert(17 == sizeof(GuiCmd));
+static_assert(STDTSIZE == sizeof(GuiCmd));
 
 //  state to GUI
 struct StateGui
@@ -68,7 +71,7 @@ struct StateGui
     {}
     NOCOPY(StateGui)
 };
-static_assert(17 == sizeof(StateGui));
+static_assert(STDTSIZE == sizeof(StateGui));
 
 #include <BAS/packEnd.h>
 

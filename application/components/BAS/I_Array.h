@@ -53,7 +53,7 @@ public:
         }
     }
 
-    PosRes find(const T& obj) const
+    const PosRes find(const T& obj) const
     {
         PosRes res = { 0, false };
         

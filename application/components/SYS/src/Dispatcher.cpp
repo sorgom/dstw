@@ -21,7 +21,7 @@ void Dispatcher::index()
     }
 }
 
-PosRes Dispatcher::assign(
+const PosRes Dispatcher::assign(
     const ElementName& name, 
     const E_Subsys subs, 
     const size_t pos)
