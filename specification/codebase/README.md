@@ -10,6 +10,11 @@ basic integral types
 apply size safe memset, memcpy, memcmp
 ```
 
+**nocopy.h**
+```
+block any copying
+```
+
 **packBegin.h**
 ```
 begin of packed alignment for data structs
