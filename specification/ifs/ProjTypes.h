@@ -6,9 +6,9 @@
 #ifndef PROJTYPES_H
 #define PROJTYPES_H
 
-#include <ifs/ComTypes.h>
+#include "ComTypes.h"
 
-#include <BAS/packBegin.h>
+#include <codebase/packBegin.h>
 
 struct ProjTSW
 {
@@ -36,6 +36,6 @@ struct ProjSEG
 };
 static_assert(NumComNameChars == sizeof(ProjSEG));
 
-#include <BAS/packEnd.h>
+#include <codebase/packEnd.h>
 
 #endif // H_

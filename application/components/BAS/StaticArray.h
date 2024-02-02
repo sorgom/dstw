@@ -14,7 +14,7 @@
 #define STATICARRAY_H
 
 #include <BAS/I_Array.h>
-#include <BAS/Mem.h>
+#include <codebase/Mem.h>
 #include <BAS/SwapBytes.h>
 #include <algorithm>
 #include <new>

@@ -7,8 +7,8 @@
 #ifndef I_SIG_PROVIDER_H
 #define I_SIG_PROVIDER_H
 
-#include <ifs/I_SIG.h>
-#include <ifs/ProjTypes.h>
+#include "I_SIG.h"
+#include "ProjTypes.h"
 
 class I_SIG_Provider
 {

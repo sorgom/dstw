@@ -3,7 +3,7 @@
 #include <comparators/installComparators.h>
 #include <CppUTest/CommandLineTestRunner.h>
 
-#include <BAS/BaseTypes.h>
+#include <codebase/BaseTypes.h>
 
 int main(const INT32 argc, const CONST_C_STRING* const argv)
 {

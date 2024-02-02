@@ -7,9 +7,9 @@
 #ifndef I_DISPATCHER_H
 #define I_DISPATCHER_H
 
-#include <ifs/SystemEnums.h>
-#include <ifs/ComTypes.h>
-#include <ifs/PosRes.h>
+#include "SystemEnums.h"
+#include "ComTypes.h"
+#include "PosRes.h"
 
 class I_Dispatcher
 {

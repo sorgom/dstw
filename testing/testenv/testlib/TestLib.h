@@ -9,7 +9,7 @@
 
 #include <ifs/ComTypes.h>
 #include <testlib/TestLiterals.h>
-#include <BAS/Mem.h>
+#include <codebase/Mem.h>
 #include <BAS/coding.h>
 
 namespace test

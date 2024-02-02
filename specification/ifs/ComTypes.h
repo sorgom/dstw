@@ -7,11 +7,11 @@
 #ifndef COMTYPES_H
 #define COMTYPES_H
 
-#include <BAS/BaseTypes.h>
-#include <BAS/coding.h>
-#include <BAS/Mem.h>
+#include <codebase/BaseTypes.h>
+#include <codebase/nocopy.h>
+#include <codebase/Mem.h>
 
-#include <BAS/packBegin.h>
+#include <codebase/packBegin.h>
 
 //  Com telegrams element identifier
 constexpr auto NumComNameChars = 9;
@@ -94,6 +94,6 @@ struct StateGui
 };
 static_assert(STDTSIZE == sizeof(StateGui));
 
-#include <BAS/packEnd.h>
+#include <codebase/packEnd.h>
 
 #endif // H_

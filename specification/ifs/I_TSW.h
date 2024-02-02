@@ -7,7 +7,7 @@
 #ifndef I_TSW_H
 #define I_TSW_H
 
-#include <BAS/BaseTypes.h>
+#include <codebase/BaseTypes.h>
 
 enum E_TswState
 {

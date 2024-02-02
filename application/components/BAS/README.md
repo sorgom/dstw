@@ -1,10 +1,5 @@
 ## directory content
 
-**BaseTypes.h**
-```
-basic integral types
-```
-
 **I_Array.h**
 ```
 defintion of interface I_Array:
@@ -12,11 +7,6 @@ enables:
 - bubble sort
 - b-tree search
 - uniqueness check / duplicates count
-```
-
-**Mem.h**
-```
-size safe memset, memcpy, memcmp
 ```
 
 **NtpArray.h**
@@ -57,14 +47,4 @@ class SwapBytes enables static byte swapping
 **coding.h**
 ```
 misc coding enhancers
-```
-
-**packBegin.h**
-```
-begin of packed alignment for data structs
-```
-
-**packEnd.h**
-```
-end of packed alignment for data structs
 ```

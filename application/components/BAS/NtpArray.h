@@ -8,7 +8,7 @@
 #define NTPARRAY_H
 
 #include <BAS/coding.h>
-#include <BAS/Mem.h>
+#include <codebase/Mem.h>
 #include <BAS/StaticArray.h>
 #include <ifs/ComTypes.h>
 
@@ -70,7 +70,7 @@ public:
     NODEF(NtpIndex)
 
 protected:
-    inline bool isGreater(const Ntp& a, const Ntp& b) const
+    inline bool isGreater(const Ntp& a, const Ntp& b) const final
     {
         return Mem::cmp(a.name, b.name) > 0;
     }

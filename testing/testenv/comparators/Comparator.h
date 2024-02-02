@@ -10,7 +10,7 @@
 #ifndef COMPERATOR_H
 #define COMPERATOR_H
 
-#include <BAS/BaseTypes.h>
+#include <codebase/BaseTypes.h>
 #include <BAS/coding.h>
 
 #include <CppUTest/SimpleString.h>

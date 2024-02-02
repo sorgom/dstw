@@ -7,7 +7,8 @@
 #ifndef POSRES_H
 #define POSRES_H
 
-#include <BAS/coding.h>
+#include <codebase/BaseTypes.h>
+#include <codebase/nocopy.h>
 
 struct PosRes
 {

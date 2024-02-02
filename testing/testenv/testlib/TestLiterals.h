@@ -7,7 +7,7 @@
 #ifndef TESTLIB_LITERALS_H
 #define TESTLIB_LITERALS_H
 
-#include <BAS/BaseTypes.h>
+#include <codebase/BaseTypes.h>
 
 #define C_STR_DEC(NAME) \
     extern const CONST_C_STRING c__ ## NAME;
