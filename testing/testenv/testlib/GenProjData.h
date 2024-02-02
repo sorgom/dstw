@@ -15,7 +15,7 @@
 #ifndef GENPROJDATA_H
 #define GENPROJDATA_H
 
-#include <ifs/ProjData.h>
+#include <ifs/ProjTypes.h>
 #include <ifs/I_SIG.h>
 #include <ifs/I_LCR.h>
 #include <BAS/StaticArray.h>

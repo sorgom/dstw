@@ -8,7 +8,7 @@
 #define I_TSW_PROVIDER_H
 
 #include <ifs/I_TSW.h>
-#include <ifs/ProjData.h>
+#include <ifs/ProjTypes.h>
 
 class I_TSW_Provider
 {

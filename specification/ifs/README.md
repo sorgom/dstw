@@ -1,6 +1,6 @@
 ## directory content
 
-**DataTypes.h**
+**ComTypes.h**
 ```
 definiton of complex data types
 - mainly communication telegrams

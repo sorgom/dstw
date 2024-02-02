@@ -10,7 +10,7 @@
 #include <BAS/coding.h>
 #include <BAS/Mem.h>
 #include <BAS/StaticArray.h>
-#include <ifs/DataTypes.h>
+#include <ifs/ComTypes.h>
 
 //  name, type, position
 struct Ntp

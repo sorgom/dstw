@@ -10,9 +10,9 @@
 #define OSTREAMS_H
 
 //## INCLUDES
-#include <ifs/DataTypes.h>
+#include <ifs/ComTypes.h>
 #include <ifs/PosRes.h>
-#include <ifs/ProjData.h>
+#include <ifs/ProjTypes.h>
 //## END
 #include <ostream>
 #include <comparators/ostreamHelpers.h>

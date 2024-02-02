@@ -7,7 +7,7 @@
 #ifndef TESTLIB_H
 #define TESTLIB_H
 
-#include <ifs/DataTypes.h>
+#include <ifs/ComTypes.h>
 #include <testlib/TestLiterals.h>
 #include <BAS/Mem.h>
 #include <BAS/coding.h>

@@ -6,7 +6,7 @@
 #ifndef PROJTYPES_H
 #define PROJTYPES_H
 
-#include <ifs/DataTypes.h>
+#include <ifs/ComTypes.h>
 
 #include <BAS/packBegin.h>
 

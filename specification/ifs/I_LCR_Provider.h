@@ -8,7 +8,7 @@
 #define I_LCR_PROVIDER_H
 
 #include <ifs/I_LCR.h>
-#include <ifs/ProjData.h>
+#include <ifs/ProjTypes.h>
 
 class I_LCR_Provider
 {
