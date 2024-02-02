@@ -35,7 +35,7 @@ StaticArrays
 -   act like arrays of pre-defined size
 -   can be filled with objects at runtime
 -   can store objects of different size classes
-    for the same interface
+    derived from main class
 -   do not provide any overflow protection
 
 StaticArray
