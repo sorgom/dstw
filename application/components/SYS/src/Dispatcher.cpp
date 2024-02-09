@@ -99,7 +99,7 @@ void Dispatcher::dispatch(const GuiCmd& tele) const
 
 void Dispatcher::dispatch(const size_t id, CmdFld&& tele) const
 {
-    if (id < mData.size())
+    if (mData.has(id))
     {
         tele.name = mData.at(id).name;
         IL::getCom().send(tele);
@@ -110,7 +110,7 @@ void Dispatcher::dispatch(const size_t id, CmdFld&& tele) const
 
 void Dispatcher::dispatch(const size_t id, StateGui&& tele) const
 {
-    if (id < mData.size())
+    if (mData.has(id))
     {
         tele.name = mData.at(id).name;
         IL::getCom().send(tele);
