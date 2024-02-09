@@ -14,11 +14,11 @@ namespace test
     void installComparators(MockSupportPlugin& plugin)
     {
         //# ADD_COMP
-        ADD_COMP(CmdFld)
+        ADD_COMP(ComCmdFld)
         ADD_COMP(ComName)
-        ADD_COMP(FldState)
-        ADD_COMP(GuiCmd)
-        ADD_COMP(StateGui)
+        ADD_COMP(ComFldState)
+        ADD_COMP(ComGuiCmd)
+        ADD_COMP(ComStateGui)
         //# END
     }
 }

@@ -15,8 +15,8 @@ class Com : public I_Com
 {
 public:
     inline Com() {}
-    inline void send(const CmdFld&   tele) const {}
-    inline void send(const StateGui& tele) const {}
+    inline void send(const ComCmdFld&   tele) const {}
+    inline void send(const ComStateGui& tele) const {}
 
     IL_INSTANCE_DEC(Com)
 

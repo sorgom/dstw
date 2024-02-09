@@ -37,7 +37,7 @@ const PosRes Dispatcher::assign(
     return PosRes{dpos, valid};
 }
 
-void Dispatcher::dispatch(const FldState& tele) const
+void Dispatcher::dispatch(const ComFldState& tele) const
 {
     const PosRes res = mIndx.find(tele.name);
 
@@ -67,7 +67,7 @@ void Dispatcher::dispatch(const FldState& tele) const
     }
 }
 
-void Dispatcher::dispatch(const GuiCmd& tele) const
+void Dispatcher::dispatch(const ComGuiCmd& tele) const
 {
     const PosRes res = mIndx.find(tele.name);
 
@@ -97,7 +97,7 @@ void Dispatcher::dispatch(const GuiCmd& tele) const
     }
 }
 
-void Dispatcher::dispatch(const size_t id, CmdFld&& tele) const
+void Dispatcher::dispatch(const size_t id, ComCmdFld&& tele) const
 {
     if (mData.has(id))
     {
@@ -108,7 +108,7 @@ void Dispatcher::dispatch(const size_t id, CmdFld&& tele) const
     { pass();}
 }
 
-void Dispatcher::dispatch(const size_t id, StateGui&& tele) const
+void Dispatcher::dispatch(const size_t id, ComStateGui&& tele) const
 {
     if (mData.has(id))
     {

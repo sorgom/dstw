@@ -23,11 +23,11 @@ public:
 
     const PosRes assign(const ComName& name, E_Subsys subs, size_t pos);
     
-    void dispatch(const FldState& tele) const;
-    void dispatch(const GuiCmd&   tele) const;
+    void dispatch(const ComFldState& tele) const;
+    void dispatch(const ComGuiCmd&   tele) const;
 
-    void dispatch(size_t id, CmdFld&&   tele) const;
-    void dispatch(size_t id, StateGui&& tele) const;
+    void dispatch(size_t id, ComCmdFld&&   tele) const;
+    void dispatch(size_t id, ComStateGui&& tele) const;
 
     IL_INSTANCE_DEC(Dispatcher)
 

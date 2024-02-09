@@ -19,8 +19,8 @@ public:
     void toFld(size_t id, UINT8 state) const;
     void toGui(size_t id, UINT8 state, UINT8 ubk) const;
 
-    void fromDsp(size_t pos, const FldState& tele) const;
-    void fromDsp(size_t pos, const GuiCmd&   tele) const;
+    void fromDsp(size_t pos, const ComFldState& tele) const;
+    void fromDsp(size_t pos, const ComGuiCmd&   tele) const;
 
     IL_INSTANCE_DEC(LCR_Hub)
 

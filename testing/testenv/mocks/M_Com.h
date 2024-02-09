@@ -17,22 +17,22 @@ namespace test
     public:
         MOCK_CON(Com)
 
-        inline void send(const CmdFld& tele) const
+        inline void send(const ComCmdFld& tele) const
         {
-            call("send").TPARAM(CmdFld, tele);
+            call("send").TPARAM(ComCmdFld, tele);
         }
-        inline void expectSend(const CmdFld& tele) const
+        inline void expectSend(const ComCmdFld& tele) const
         {
-            expect("send").TPARAM(CmdFld, tele);
+            expect("send").TPARAM(ComCmdFld, tele);
         }
 
-        inline void send(const StateGui& tele) const
+        inline void send(const ComStateGui& tele) const
         {
-            call("send").TPARAM(StateGui, tele);
+            call("send").TPARAM(ComStateGui, tele);
         }
-        inline void expectSend(const StateGui& tele) const
+        inline void expectSend(const ComStateGui& tele) const
         {
-            expect("send").TPARAM(StateGui, tele);
+            expect("send").TPARAM(ComStateGui, tele);
         }
     };
 } // namespace
