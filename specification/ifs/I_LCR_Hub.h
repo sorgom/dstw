@@ -12,8 +12,8 @@
 class I_LCR_Hub
 {
 public:
-    virtual void toFld(size_t id, INT32 state) const = 0;
-    virtual void toGui(size_t id, INT32 state, INT32 ubk) const = 0;
+    virtual void toFld(size_t id, UINT8 state) const = 0;
+    virtual void toGui(size_t id, UINT8 state, UINT8 ubk) const = 0;
 
     virtual void fromDsp(size_t pos, const FldState& tele) const = 0;
     virtual void fromDsp(size_t pos, const GuiCmd&   tele) const = 0;

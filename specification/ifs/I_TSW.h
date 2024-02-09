@@ -9,7 +9,7 @@
 
 #include <codebase/BaseTypes.h>
 
-enum E_TswState
+enum E_TswState : UINT8
 {
     TSW_STATE_LEFT = 101,
     TSW_STATE_RIGHT,
@@ -19,7 +19,7 @@ enum E_TswState
     TSW_STATE_WAIT_RIGHT
 };
 
-enum E_TswGuiCmd
+enum E_TswGuiCmd : UINT8
 {
     TSW_GUI_GMD_WU = 201,
     TSW_GUI_GMD_LEFT,
@@ -30,10 +30,10 @@ class I_TSW
 {
 public:
 //  commands from GUI
-    virtual void fromGui(INT32 cmd) = 0;
+    virtual void fromGui(UINT8 cmd) = 0;
 
 //  infos from field element
-    virtual void fromFld(INT32 state) = 0;
+    virtual void fromFld(UINT8 state) = 0;
 };
 
 #endif // _H

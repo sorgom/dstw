@@ -1,7 +1,7 @@
 #include <SIG/SIG_X.h>
 #include <SYS/IL.h>
 
-void SIG_X::procFromFld(const INT32 state)
+void SIG_X::procFromFld(const UINT8 state)
 {
     //  field values are only forwarded to GUI
     //  if GUI state differs
@@ -14,7 +14,7 @@ void SIG_X::procFromFld(const INT32 state)
     {pass();}
 }
 
-void SIG_XS::procFromFld(const INT32 state, INT32 speed)
+void SIG_XS::procFromFld(const UINT8 state, UINT8 speed)
 {
     switch (state)
     {
@@ -40,7 +40,7 @@ void SIG_XS::procFromFld(const INT32 state, INT32 speed)
     {pass();}
 }
 
-void SIG_X::procFromGui(const INT32 stateFld, const INT32 stateGui)
+void SIG_X::procFromGui(const UINT8 stateFld, const UINT8 stateGui)
 {
     mStateToFld = stateFld;
     mStateToGui = stateGui;
@@ -48,7 +48,7 @@ void SIG_X::procFromGui(const INT32 stateFld, const INT32 stateGui)
     IL::getSIG_Hub().toGui(mId, mStateToGui, 0);
 }
 
-void SIG_XS::procFromGui(const INT32 stateFld, const INT32 stateGui, const INT32 speed)
+void SIG_XS::procFromGui(const UINT8 stateFld, const UINT8 stateGui, const UINT8 speed)
 {
     mStateToFld = stateFld;
     mSpeedToFld = speed;
@@ -57,7 +57,7 @@ void SIG_XS::procFromGui(const INT32 stateFld, const INT32 stateGui, const INT32
     IL::getSIG_Hub().toGui(mId, mStateToGui, mSpeedToGui);
 }
 
-void SIG_XS::speedToFld(const INT32 speed)
+void SIG_XS::speedToFld(const UINT8 speed)
 {
     switch (mStateToFld)
     {
@@ -78,7 +78,7 @@ void SIG_X::logMismatch()
     IL::getLog().log(MOD_SIG, ERR_MATCH);
 }
 
-void SIG_H::fromFld(const INT32 state, const INT32 speed)
+void SIG_H::fromFld(const UINT8 state, const UINT8 speed)
 {
     switch (state)
     {
@@ -94,7 +94,7 @@ void SIG_H::fromFld(const INT32 state, const INT32 speed)
     };
 }
 
-void SIG_H::fromGui(const INT32 state, const INT32 speed)
+void SIG_H::fromGui(const UINT8 state, const UINT8 speed)
 {
     switch (state)
     {
@@ -138,7 +138,7 @@ void SIG_H::proc_H1()
     }
 }
 
-void SIG_N::fromFld(const INT32 state, const INT32 speed)
+void SIG_N::fromFld(const UINT8 state, const UINT8 speed)
 {
     switch (state)
     {
@@ -154,7 +154,7 @@ void SIG_N::fromFld(const INT32 state, const INT32 speed)
     };
 }
 
-void SIG_N::fromGui(const INT32 state, const INT32 speed)
+void SIG_N::fromGui(const UINT8 state, const UINT8 speed)
 {
     switch (state)
     {
@@ -170,7 +170,7 @@ void SIG_N::fromGui(const INT32 state, const INT32 speed)
     };
 }
 
-void SIG_N::proc_N0(const INT32 speed)
+void SIG_N::proc_N0(const UINT8 speed)
 {
     switch (mStateToGui)
     {
@@ -185,7 +185,7 @@ void SIG_N::proc_N0(const INT32 speed)
     }
 }
 
-void SIG_N::proc_N1(const INT32 speed)
+void SIG_N::proc_N1(const UINT8 speed)
 {
     switch (mStateToGui)
     {
@@ -201,7 +201,7 @@ void SIG_N::proc_N1(const INT32 speed)
 }
 
 
-void SIG_H_N::fromFld(const INT32 state, const INT32 speed)
+void SIG_H_N::fromFld(const UINT8 state, const UINT8 speed)
 {
     switch (state)
     {
@@ -219,7 +219,7 @@ void SIG_H_N::fromFld(const INT32 state, const INT32 speed)
     };
 }
 
-void SIG_H_N::fromGui(const INT32 state, const INT32 speed)
+void SIG_H_N::fromGui(const UINT8 state, const UINT8 speed)
 {
     switch (state)
     {
@@ -241,7 +241,7 @@ void SIG_H_N::fromGui(const INT32 state, const INT32 speed)
     };
 }
 
-void SIG_H_N::proc_H0_N0(const INT32 speed)
+void SIG_H_N::proc_H0_N0(const UINT8 speed)
 {
     switch (mStateToGui)
     {
@@ -262,7 +262,7 @@ void SIG_H_N::proc_H0_N0(const INT32 speed)
     }
 
 }
-void SIG_H_N::proc_H0_N1(const INT32 speed)
+void SIG_H_N::proc_H0_N1(const UINT8 speed)
 {
     switch (mStateToGui)
     {
@@ -283,7 +283,7 @@ void SIG_H_N::proc_H0_N1(const INT32 speed)
     }
     
 }
-void SIG_H_N::proc_H1_N0(const INT32 speed)
+void SIG_H_N::proc_H1_N0(const UINT8 speed)
 {
     switch (mStateToGui)
     {
@@ -304,7 +304,7 @@ void SIG_H_N::proc_H1_N0(const INT32 speed)
     }
     
 }
-void SIG_H_N::proc_H1_N1(const INT32 speed)
+void SIG_H_N::proc_H1_N1(const UINT8 speed)
 {
     switch (mStateToGui)
     {

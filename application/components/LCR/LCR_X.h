@@ -17,22 +17,22 @@ public:
         mId(id),
         mStateToGui(LCR_STATE_UNDEF)
     {}
-    void fromGui(INT32 state);
+    void fromGui(UINT8 state);
 
 protected:
     const size_t mId;
-    INT32 mStateToGui;
+    UINT8 mStateToGui;
 
     void open();
     void close();
 
-    void toFld(INT32 state) const;
+    void toFld(UINT8 state) const;
     void toGui() const;
 
-    virtual INT32 getUbkToGui() const = 0;
+    virtual UINT8 getUbkToGui() const = 0;
 
-    static bool validState(INT32 state);
-    static bool validUbk(INT32 ubk);
+    static bool validState(UINT8 state);
+    static bool validUbk(UINT8 ubk);
 
     NOCOPY(LCR_X)
     NODEF(LCR_X)
@@ -46,12 +46,12 @@ class LCR : public LCR_X
 public:
     inline LCR(size_t id): LCR_X(id) {}
 
-    void fromFld(INT32 state, INT32 ubk);
+    void fromFld(UINT8 state, UINT8 ubk);
 
-    inline INT32 type() const { return LCR_TYPE_LCR; }
+    inline UINT8 type() const { return LCR_TYPE_LCR; }
 
 protected:
-    inline INT32 getUbkToGui() const { return LCR_UBK_STATE_UNDEF; }
+    inline UINT8 getUbkToGui() const { return LCR_UBK_STATE_UNDEF; }
 
     NOCOPY(LCR)
     NODEF(LCR)
@@ -68,15 +68,15 @@ public:
         mUbkToGui(LCR_UBK_STATE_UNDEF)
     {}
 
-    void fromFld(INT32 state, INT32 ubk);
+    void fromFld(UINT8 state, UINT8 ubk);
 
-    inline INT32 type() const { return LCR_TYPE_LCR_UBK; }
+    inline UINT8 type() const { return LCR_TYPE_LCR_UBK; }
 
 protected:    
-    inline INT32 getUbkToGui() const { return mUbkToGui; }
+    inline UINT8 getUbkToGui() const { return mUbkToGui; }
 
 private:
-    INT32 mUbkToGui;
+    UINT8 mUbkToGui;
     NOCOPY(LCR_UBK)
     NODEF(LCR_UBK)
 };

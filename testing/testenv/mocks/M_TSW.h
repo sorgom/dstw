@@ -17,20 +17,20 @@ namespace test
     public:
         MOCK_CON(TSW)
         
-        inline void fromFld(INT32 state)
+        inline void fromFld(UINT8 state)
         {
             call("fromFld").PARAM(state);
         }
-        inline void expectFromFld(INT32 state)
+        inline void expectFromFld(UINT8 state)
         {
             expect("fromFld").PARAM(state);
         }
 
-        inline void fromGui(INT32 cmd)
+        inline void fromGui(UINT8 cmd)
         {
             call("fromGui").PARAM(cmd);
         }
-        inline void expectFromGui(INT32 cmd)
+        inline void expectFromGui(UINT8 cmd)
         {
             expect("fromGui").PARAM(cmd);
         }

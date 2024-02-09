@@ -19,16 +19,16 @@ static_assert(NumComNameChars == sizeof(ProjTSW));
 struct ProjSIG
 {
     ComName name;
-    INT32 type;
+    UINT8 type;
 };
-static_assert(NumComNameChars + SI32 == sizeof(ProjSIG));
+static_assert(NumComNameChars + SU8 == sizeof(ProjSIG));
 
 struct ProjLCR
 {
     ComName name;
-    INT32 type;
+    UINT8 type;
 };
-static_assert(NumComNameChars + SI32 == sizeof(ProjLCR));
+static_assert(NumComNameChars + SU8 == sizeof(ProjLCR));
 
 struct ProjSEG
 {

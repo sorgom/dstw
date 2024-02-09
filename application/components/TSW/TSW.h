@@ -21,18 +21,18 @@ public:
         mState(TSW_STATE_UNDEF)
     {}
 
-    void fromGui(INT32 cmd);
-    void fromFld(INT32 state);
+    void fromGui(UINT8 cmd);
+    void fromFld(UINT8 state);
 
 private:
     const size_t mId;
-    INT32 mState;
+    UINT8 mState;
 
     void wu();
     void swLeft();
     void swRight();
-    void chgState(INT32 state);
-    void toFld(INT32 state) const;
+    void chgState(UINT8 state);
+    void toFld(UINT8 state) const;
 
     NOCOPY(TSW)
     NODEF(TSW)

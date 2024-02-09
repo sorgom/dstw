@@ -15,7 +15,7 @@
 
 //  Com telegrams element identifier
 constexpr auto NumComNameChars = 9;
-constexpr auto SI32 = sizeof(INT32);
+constexpr auto SU8 = sizeof(UINT8);
 
 struct ComName
 {
@@ -36,15 +36,15 @@ struct ComName
 static_assert(NumComNameChars == sizeof(ComName));
 
 //  standard telegram size
-constexpr auto STDTSIZE = NumComNameChars + 2 * SI32;
+constexpr auto STDTSIZE = NumComNameChars + 2 * SU8;
 
 //  command to field
 struct CmdFld
 {
     ComName name;
-    const INT32 cmd1;
-    const INT32 cmd2;
-    inline CmdFld(INT32 cmd1 = 0, INT32 cmd2 = 0):
+    const UINT8 cmd1;
+    const UINT8 cmd2;
+    inline CmdFld(UINT8 cmd1 = 0, UINT8 cmd2 = 0):
         cmd1(cmd1),
         cmd2(cmd2)
     {}
@@ -56,9 +56,9 @@ static_assert(STDTSIZE == sizeof(CmdFld));
 struct FldState
 {
     ComName name;
-    const INT32 state1;
-    const INT32 state2;
-    inline FldState(INT32 state1 = 0, INT32 state2 = 0):
+    const UINT8 state1;
+    const UINT8 state2;
+    inline FldState(UINT8 state1 = 0, UINT8 state2 = 0):
         state1(state1),
         state2(state2)
     {}
@@ -70,9 +70,9 @@ static_assert(STDTSIZE == sizeof(FldState));
 struct GuiCmd
 {
     ComName name;
-    const INT32 cmd1;
-    const INT32 cmd2;
-    inline GuiCmd(INT32 cmd1 = 0, INT32 cmd2 = 0):
+    const UINT8 cmd1;
+    const UINT8 cmd2;
+    inline GuiCmd(UINT8 cmd1 = 0, UINT8 cmd2 = 0):
         cmd1(cmd1),
         cmd2(cmd2)
     {}
@@ -84,9 +84,9 @@ static_assert(STDTSIZE == sizeof(GuiCmd));
 struct StateGui
 {
     ComName name;
-    const INT32 state1;
-    const INT32 state2;
-    inline StateGui(INT32 state1 = 0, INT32 state2 = 0):
+    const UINT8 state1;
+    const UINT8 state2;
+    inline StateGui(UINT8 state1 = 0, UINT8 state2 = 0):
         state1(state1),
         state2(state2)
     {}

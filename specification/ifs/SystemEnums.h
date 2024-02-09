@@ -10,7 +10,9 @@
 #ifndef SYSTEMENUMS_H
 #define SYSTEMENUMS_H
 
-enum E_Subsys
+#include <codebase/BaseTypes.h>
+
+enum E_Subsys : UINT8
 {
     SUBSYS_TSW,
     SUBSYS_SIG,
@@ -18,7 +20,7 @@ enum E_Subsys
     SUBSYS_LCR
 };
 
-enum E_Mod
+enum E_Mod : UINT8
 {
     MOD_COM,
     MOD_DISPATCHER,
@@ -35,7 +37,7 @@ enum E_Mod
     MOD_LCR_PROVIDER
 };
 
-enum E_Err
+enum E_Err : UINT8
 {
     ERR_MATCH,
     ERR_RANGE,

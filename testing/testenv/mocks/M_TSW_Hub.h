@@ -17,20 +17,20 @@ namespace test
     public:
         MOCK_CON(TSW_Hub)
 
-        inline void toFld(size_t id, INT32 cmd) const
+        inline void toFld(size_t id, UINT8 cmd) const
         {
             call("toFld").PARAM(id).PARAM(cmd);
         }
-        inline void expectToFld(size_t id, INT32 cmd) const
+        inline void expectToFld(size_t id, UINT8 cmd) const
         {
             expect("toFld").PARAM(id).PARAM(cmd);
         }
 
-        inline void toGui(size_t id, INT32 state) const
+        inline void toGui(size_t id, UINT8 state) const
         {
             call("toGui").PARAM(id).PARAM(state);
         }
-        inline void expectToGui(size_t id, INT32 state) const
+        inline void expectToGui(size_t id, UINT8 state) const
         {
             expect("toGui").PARAM(id).PARAM(state);
         }

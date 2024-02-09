@@ -62,8 +62,8 @@ namespace test
     TEST(TSW_02, T03)
     {
         STEP(1)
-        m_Dispatcher().expectDispatch(3, CmdFld(303));
-        mSUT.toFld(3, 303);
+        m_Dispatcher().expectDispatch(1, CmdFld(103));
+        mSUT.toFld(1, 103);
         CHECK_N_CLEAR()
     }
 
@@ -72,8 +72,8 @@ namespace test
     TEST(TSW_02, T04)
     {
         STEP(1)
-        m_Dispatcher().expectDispatch(4, StateGui(404));
-        mSUT.toGui(4, 404);
+        m_Dispatcher().expectDispatch(2, StateGui(204));
+        mSUT.toGui(2, 204);
         CHECK_N_CLEAR()
     }
    

@@ -9,7 +9,7 @@
 
 #include <codebase/BaseTypes.h>
 
-enum E_SigType
+enum E_SigType : UINT8
 {
     SIG_TYPE_H = 100,
     SIG_TYPE_N,
@@ -17,7 +17,7 @@ enum E_SigType
     SIG_TYPE_S
 };
 
-enum E_SigState
+enum E_SigState : UINT8
 {
     SIG_STATE_UNDEF = 101,
     SIG_STATE_DEFECT,
@@ -45,13 +45,13 @@ class I_SIG
 {
 public:
 //  commands from GUI
-    virtual void fromGui(INT32 state, INT32 speed) = 0;
+    virtual void fromGui(UINT8 state, UINT8 speed) = 0;
 
 //  infos from field element
-    virtual void fromFld(INT32 state, INT32 speed) = 0;
+    virtual void fromFld(UINT8 state, UINT8 speed) = 0;
 
 //  type info
-    virtual INT32 type() const = 0;    
+    virtual UINT8 type() const = 0;    
 };
 
 #endif // _H

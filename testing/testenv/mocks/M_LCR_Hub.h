@@ -17,20 +17,20 @@ namespace test
     public:
         MOCK_CON(LCR_Hub)
 
-        inline void toFld(size_t id, INT32 state) const
+        inline void toFld(size_t id, UINT8 state) const
         {
             call("toFld").PARAM(id).PARAM(state);
         }
-        inline void expectToFld(size_t id, INT32 state) const
+        inline void expectToFld(size_t id, UINT8 state) const
         {
             expect("toFld").PARAM(id).PARAM(state);
         }
 
-        inline void toGui(size_t id, INT32 state, INT32 ubk) const
+        inline void toGui(size_t id, UINT8 state, UINT8 ubk) const
         {
             call("toGui").PARAM(id).PARAM(state).PARAM(ubk);
         }
-        inline void expectToGui(size_t id, INT32 state, INT32 ubk = 0) const
+        inline void expectToGui(size_t id, UINT8 state, UINT8 ubk = 0) const
         {
             expect("toGui").PARAM(id).PARAM(state).PARAM(ubk);
         }

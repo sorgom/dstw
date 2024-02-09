@@ -63,8 +63,8 @@ namespace test
     TEST(LCR_02, T03)
     {
         STEP(1)
-        m_Dispatcher().expectDispatch(3, CmdFld(301));
-        mSUT.toFld(3, 301);
+        m_Dispatcher().expectDispatch(1, CmdFld(101));
+        mSUT.toFld(1, 101);
         CHECK_N_CLEAR()
     }
 
@@ -73,8 +73,8 @@ namespace test
     TEST(LCR_02, T04)
     {
         STEP(1)
-        m_Dispatcher().expectDispatch(4, StateGui(401, 402));
-        mSUT.toGui(4, 401, 402);
+        m_Dispatcher().expectDispatch(2, StateGui(201, 202));
+        mSUT.toGui(2, 201, 202);
         CHECK_N_CLEAR()
     }
    

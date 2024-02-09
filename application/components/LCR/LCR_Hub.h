@@ -16,8 +16,8 @@ public:
     inline LCR_Hub()
     {}
 
-    void toFld(size_t id, INT32 state) const;
-    void toGui(size_t id, INT32 state, INT32 ubk) const;
+    void toFld(size_t id, UINT8 state) const;
+    void toGui(size_t id, UINT8 state, UINT8 ubk) const;
 
     void fromDsp(size_t pos, const FldState& tele) const;
     void fromDsp(size_t pos, const GuiCmd&   tele) const;
