@@ -2,7 +2,7 @@
 
 **ComTypes.h**
 ```
-communication telegrams types
+communication telegram types
 ```
 
 **I_Com.h**
