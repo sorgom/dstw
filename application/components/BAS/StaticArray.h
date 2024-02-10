@@ -21,8 +21,180 @@
 #include <type_traits>
 
 //  ============================================================
+//  InterfaceArray
+//  -   stores objects that implement an interface class
+//  -   keeps objects in the same order as they were added
+//  -   provides const and non const object access
+//  ============================================================
+template <class IC, size_t CAP, class ... DCS>
+class InterfaceArray final : 
+    public I_Array<IC, CAP>
+{
+public:
+    inline InterfaceArray():
+        mSize(0)
+    {}
+
+    inline void reset()
+    {
+        mSize = 0;
+    }
+
+    inline size_t size() const final
+    {
+        return mSize;
+    }
+
+    //  add an object of derived class
+    template <class DC, typename ... ARGS>
+    size_t add(const ARGS& ... args)
+    {
+        static_assert(std::is_base_of_v<IC, DC>);
+        static_assert(not std::is_same_v<IC, DC>);
+        static_assert(sizeof(DC) <= DIM);
+        new (mData[mSize]) DC(args...);
+        return mSize++;
+    }
+
+    inline IC& at(size_t pos)
+    {
+        return *reinterpret_cast<IC*>(mData[pos]);
+    }
+
+    inline const IC& at(size_t pos) const final
+    {
+        return *reinterpret_cast<const IC*>(mData[pos]);
+    }
+
+    NOCOPY(InterfaceArray)
+
+private:
+    constexpr static auto DIM = std::max({sizeof(IC), sizeof(DCS)...});
+    using Segment = BYTE[DIM];
+    Segment mData[CAP];
+    size_t mSize;
+};
+
+//  ============================================================
+//  ConstArray
+//  - keeps objects in the same order as they were added
+//  - stores objects of one class
+//  - provides const object access only
+//  ============================================================
+template <class C, size_t CAP, class ... SCS>
+class ConstArray final : 
+    public I_Array<C, CAP>
+{
+public:
+    inline ConstArray():
+        mSize(0)
+    {}
+
+    inline void reset()
+    {
+        mSize = 0;
+    }
+
+    inline size_t size() const final
+    {
+        return mSize;
+    }
+
+    inline size_t bytes() const
+    {
+        return mSize * DIM;
+    }
+
+    template <typename ... ARGS>
+    size_t add(const ARGS& ... args)
+    {
+        new (mData[mSize]) C(args...);
+        return mSize++;
+    }
+
+    inline const C& at(size_t pos) const final
+    {
+        return *reinterpret_cast<const C*>(mData[pos]);
+    }
+
+    inline const C* data() const
+    {
+        return reinterpret_cast<const C*>(mData);
+    } 
+
+    NOCOPY(ConstArray)
+
+private:
+    using Segment = BYTE[sizeof(C)];
+    Segment mData[CAP];
+    size_t mSize;
+};
+
+
+//  ============================================================
+//  MutableArray
+//  - keeps objects in the same order as they were added
+//  - stores objects of one class
+//  - provides const and mutable object access
+//  ============================================================
+template <class C, size_t CAP, class ... SCS>
+class MutableArray final : 
+    public I_Array<C, CAP>
+{
+public:
+    inline MutableArray():
+        mSize(0)
+    {}
+
+    inline void reset()
+    {
+        mSize = 0;
+    }
+
+    inline size_t size() const final
+    {
+        return mSize;
+    }
+
+    inline size_t bytes() const
+    {
+        return mSize * DIM;
+    }
+
+    template <typename ... ARGS>
+    size_t add(const ARGS& ... args)
+    {
+        new (mData[mSize]) C(args...);
+        return mSize++;
+    }
+
+    inline const C& at(size_t pos) const final
+    {
+        return *reinterpret_cast<const C*>(mData[pos]);
+    }
+
+    inline C& at(size_t pos)
+    {
+        return *reinterpret_cast<C*>(mData[pos]);
+    }
+
+    inline const C* data() const
+    {
+        return reinterpret_cast<const C*>(mData);
+    } 
+
+    NOCOPY(MutableArray)
+
+private:
+    using Segment = BYTE[sizeof(C)];
+    Segment mData[CAP];
+    size_t mSize;
+};
+
+
+//  ============================================================
 //  StaticArray
-//  keeps objects in the same order as they were added.
+//  keeps objects in the same order as they were added
 //  ============================================================
 template <class C, size_t CAP, class ... SCS>
 class StaticArray : 
@@ -49,26 +221,13 @@ public:
         return mSize * DIM;
     }
 
-    inline bool hasSpace() const
-    {
-        return mSize < CAP;
-    }
-
-    inline size_t spaceLeft() const
-    {
-        return mSize >= CAP ? 0 : CAP - mSize;
-    }
-
-    inline bool has(size_t pos) const
-    {
-        return pos < mSize;
-    }
 
     template <class T, typename ... ARGS>
     size_t addT(const ARGS& ... args)
     {
         static_assert(sizeof(T) <= DIM);
         static_assert(std::is_base_of_v<C, T>);
+        static_assert(not std::is_same_v<C, T>);
         new (mData[mSize]) T(args...);
         return mSize++;
     }
@@ -90,10 +249,6 @@ public:
         return *reinterpret_cast<const C*>(mData[pos]);
     }
 
-    inline const C& at(const PosRes& res) const final
-    {
-        return at(res.pos);
-    }
 
     inline const C* data() const
     {

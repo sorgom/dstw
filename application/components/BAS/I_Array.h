@@ -28,18 +28,44 @@ public:
     
     //  object access by position
     virtual const T& at(size_t pos) const = 0;
-    virtual const T& at(const PosRes& res) const = 0;
-    
-    //  definition object a is greater than object b
-    inline virtual bool isGreater(const T& a, const T& b) const
+
+    inline bool hasSpace() const
     {
-        return false;
-    } 
+        return size() < CAP;
+    }
+
+    inline size_t spaceLeft() const
+    {
+        return size() < CAP ? CAP - size() : 0;
+    }
+
+    inline bool has(size_t pos) const
+    {
+        return pos < size();
+    }
+};
+
+template <class T, size_t CAP>
+class I_SortableArray : public I_Array<T, CAP>
+{
+private:
+    using BaseType = I_Array<T, CAP>;
+protected:
+    //  definition object a is greater than object b
+    virtual bool isGreater(const T& a, const T& b) const = 0;
+
+    //  swap content of position a and b
+    virtual void swap(size_t posA, size_t posB) = 0;
+
+    inline const T& at(const PosRes& res) const
+    {
+        return at(res.pos);
+    }
 
     void sort()
     {
         bool swapped = true;
-        for (size_t n = size(); swapped and n > 1; --n)
+        for (size_t n = BaseType::size(); swapped and n > 1; --n)
         {
             swapped = false;
             for (size_t p = 0; p < n - 1; ++p)
@@ -57,10 +83,10 @@ public:
     {
         size_t pos = 0;
         bool valid = false;
-        if (size() > 0)
+        if (BaseType::size() > 0)
         {
             size_t pMin = 0;
-            size_t pMax = size() - 1;
+            size_t pMax = BaseType::size() - 1;
 
             while (pMax >= pMin)
             {
@@ -95,7 +121,7 @@ public:
     size_t dupCnt() const
     {
         size_t nd = 0;
-        for (size_t p = 1; p < size(); ++p)
+        for (size_t p = 1; p < BaseType::size(); ++p)
         {
             if (not isGreater(at(p), at(p - 1)))
             {
@@ -105,10 +131,6 @@ public:
         return nd;
     }
 
-protected:
-    //  swap content of position a and b
-    inline virtual void swap(size_t posA, size_t posB)
-    {}
 };
 
 #endif // H_
