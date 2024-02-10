@@ -2,7 +2,7 @@
 
 **ComTypes.h**
 ```
-communication telegrams types
+communication telegram types
 ```
 
 **I_Com.h**
@@ -107,6 +107,6 @@ projectation data types
 ```
 system wide enumerations
 -   E_Subsys subsystems
--   E_mod    modules
+-   E_Mod    modules
 -   E_Err    errors
 ```

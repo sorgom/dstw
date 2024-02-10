@@ -45,7 +45,7 @@ file                      lines  uncovered  percent
 BAS/src/SwapBytes.cpp         8         --       --
 LCR/src/LCR_Hub.cpp          32         --       --
 LCR/src/LCR_Provider.cpp     47         --       --
-LCR/src/LCR_X.cpp           120         --       --
+LCR/src/LCR_X.cpp           124         --       --
 SIG/src/SIG_Hub.cpp          32         --       --
 SIG/src/SIG_Provider.cpp     50         --       --
 SIG/src/SIG_X.cpp           293         --       --
@@ -56,5 +56,5 @@ SYS/src/Reader.cpp          100         --       --
 TSW/src/TSW.cpp              91         --       --
 TSW/src/TSW_Hub.cpp          32         --       --
 TSW/src/TSW_Provider.cpp     35         --       --
-total                       954         --       --
+total                       958         --       --
 ```

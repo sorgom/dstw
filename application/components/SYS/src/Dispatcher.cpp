@@ -17,7 +17,7 @@ void Dispatcher::index()
     { pass();}
     else
     {
-        IL::getLog().log(MOD_DISPATCHER, ERR_STARTUP);
+        IL::getLog().log(MOD_SYS_DISPATCHER, ERR_STARTUP);
     }
 }
 
@@ -37,7 +37,7 @@ const PosRes Dispatcher::assign(
     return PosRes{dpos, valid};
 }
 
-void Dispatcher::dispatch(const FldState& tele) const
+void Dispatcher::dispatch(const ComFldState& tele) const
 {
     const PosRes res = mIndx.find(tele.name);
 
@@ -63,11 +63,11 @@ void Dispatcher::dispatch(const FldState& tele) const
     }
     else
     { 
-        IL::getLog().log(MOD_DISPATCHER, ERR_MATCH);
+        IL::getLog().log(MOD_SYS_DISPATCHER, ERR_MATCH);
     }
 }
 
-void Dispatcher::dispatch(const GuiCmd& tele) const
+void Dispatcher::dispatch(const ComGuiCmd& tele) const
 {
     const PosRes res = mIndx.find(tele.name);
 
@@ -93,13 +93,13 @@ void Dispatcher::dispatch(const GuiCmd& tele) const
     }
     else
     { 
-        IL::getLog().log(MOD_DISPATCHER, ERR_MATCH);
+        IL::getLog().log(MOD_SYS_DISPATCHER, ERR_MATCH);
     }
 }
 
-void Dispatcher::dispatch(const size_t id, CmdFld&& tele) const
+void Dispatcher::dispatch(const size_t id, ComCmdFld&& tele) const
 {
-    if (id < mData.size())
+    if (mData.has(id))
     {
         tele.name = mData.at(id).name;
         IL::getCom().send(tele);
@@ -108,9 +108,9 @@ void Dispatcher::dispatch(const size_t id, CmdFld&& tele) const
     { pass();}
 }
 
-void Dispatcher::dispatch(const size_t id, StateGui&& tele) const
+void Dispatcher::dispatch(const size_t id, ComStateGui&& tele) const
 {
-    if (id < mData.size())
+    if (mData.has(id))
     {
         tele.name = mData.at(id).name;
         IL::getCom().send(tele);

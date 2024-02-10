@@ -38,8 +38,6 @@ namespace test
 
 } // namespace
 
-#define L_CHECK_ELEMENT_NAME(exp, act) L_CHECK_EQUAL(0, Mem::cmp(exp, act))
-
 #endif // _H
 
 

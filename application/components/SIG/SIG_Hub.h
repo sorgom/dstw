@@ -16,11 +16,11 @@ public:
     inline SIG_Hub()
     {}
 
-    void toFld(size_t id, INT32 state, INT32 speed) const;
-    void toGui(size_t id, INT32 state, INT32 speed) const;
+    void toFld(size_t id, UINT8 state, UINT8 speed = 0) const;
+    void toGui(size_t id, UINT8 state, UINT8 speed = 0) const;
 
-    void fromDsp(size_t pos, const FldState& tele) const;
-    void fromDsp(size_t pos, const GuiCmd&   tele) const;
+    void fromDsp(size_t pos, const ComFldState& tele) const;
+    void fromDsp(size_t pos, const ComGuiCmd&   tele) const;
 
     IL_INSTANCE_DEC(SIG_Hub)
 

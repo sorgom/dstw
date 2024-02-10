@@ -40,12 +40,12 @@ namespace test
         for (UINT16 i = 0; i < tSize; ++i)
         {
             LSTEP(i)
-            const ComName& en = genComName(tOffs - i);
-            const PosRes f = indx.find(en);
+            const ComName& cn = genComName(tOffs - i);
+            const PosRes f = indx.find(cn);
             L_CHECK_TRUE(f.valid)
             L_CHECK_EQUAL(tOffs -i, f.pos)
-            const INT32 cmp = Mem::cmp(en, indx.get(f).name);
-            L_CHECK_EQUAL(0, cmp)
+            const bool eq = cn == indx.get(f).name;
+            L_CHECK_TRUE(eq)
         }
         ENDSTEPS()
     }

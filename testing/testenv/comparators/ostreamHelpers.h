@@ -64,4 +64,10 @@ inline const FixChar fixC(const CHAR (&str)[N])
 //  stream FixChar as rvalue
 std::ostream& operator << (std::ostream& os, const FixChar&& d);
 
+//  make sure UINT8 output is numerical
+inline std::ostream& operator << (std::ostream& os, const UINT8 u)
+{
+    return os << static_cast<UINT16>(u);
+}
+
 #endif // H_

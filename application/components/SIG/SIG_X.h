@@ -24,11 +24,11 @@ public:
 
 protected:
     const size_t mId;
-    INT32 mStateToFld;
-    INT32 mStateToGui;
+    UINT8 mStateToFld;
+    UINT8 mStateToGui;
 
-    void procFromFld(INT32 state);
-    void procFromGui(INT32 stateFld, INT32 stateGui);
+    void procFromFld(UINT8 state);
+    void procFromGui(UINT8 stateFld, UINT8 stateGui);
 
     static void logMismatch();
 };
@@ -45,12 +45,12 @@ public:
     NOCOPY(SIG_XS)
     NODEF(SIG_XS)
 protected:
-    INT32 mSpeedToFld;
-    INT32 mSpeedToGui;
+    UINT8 mSpeedToFld;
+    UINT8 mSpeedToGui;
 
-    void procFromFld(INT32 state, INT32 speed);
-    void procFromGui(INT32 stateFld, INT32 stateGui, INT32 speed);
-    void speedToFld(INT32 speed);
+    void procFromFld(UINT8 state, UINT8 speed);
+    void procFromGui(UINT8 stateFld, UINT8 stateGui, UINT8 speed);
+    void speedToFld(UINT8 speed);
 };
 
 //  ============================================================
@@ -64,10 +64,10 @@ class SIG_H : public SIG_X
 public:
     inline SIG_H(size_t id): SIG_X(id) {}
 
-    void fromFld(INT32 state, INT32 speed);
-    void fromGui(INT32 state, INT32 speed);
+    void fromFld(UINT8 state, UINT8 speed);
+    void fromGui(UINT8 state, UINT8 speed);
 
-    inline INT32 type() const { return SIG_TYPE_H; }
+    inline UINT8 type() const { return SIG_TYPE_H; }
 
     NOCOPY(SIG_H)
     NODEF(SIG_H)
@@ -89,17 +89,17 @@ class SIG_N : public SIG_XS
 public:
     inline SIG_N(size_t id): SIG_XS(id) {}
 
-    void fromFld(INT32 state, INT32 speed);
-    void fromGui(INT32 state, INT32 speed);
+    void fromFld(UINT8 state, UINT8 speed);
+    void fromGui(UINT8 state, UINT8 speed);
 
-    inline INT32 type() const { return SIG_TYPE_N; }
+    inline UINT8 type() const { return SIG_TYPE_N; }
 
     NOCOPY(SIG_N)
     NODEF(SIG_N)
 
 private:
-    void proc_N0(INT32 speed);
-    void proc_N1(INT32 speed);
+    void proc_N0(UINT8 speed);
+    void proc_N1(UINT8 speed);
 };
 
 //  ============================================================
@@ -116,18 +116,18 @@ class SIG_H_N : public SIG_XS
 public:
     inline SIG_H_N(size_t id): SIG_XS(id) {}
 
-    void fromFld(INT32 state, INT32 speed);
-    void fromGui(INT32 state, INT32 speed);
+    void fromFld(UINT8 state, UINT8 speed);
+    void fromGui(UINT8 state, UINT8 speed);
 
-    inline INT32 type() const { return SIG_TYPE_H_N; }
+    inline UINT8 type() const { return SIG_TYPE_H_N; }
 
     NOCOPY(SIG_H_N)
     NODEF(SIG_H_N)
 
 private:
-    void proc_H0_N0(INT32 speed);
-    void proc_H0_N1(INT32 speed);
-    void proc_H1_N0(INT32 speed);
-    void proc_H1_N1(INT32 speed);
+    void proc_H0_N0(UINT8 speed);
+    void proc_H0_N1(UINT8 speed);
+    void proc_H1_N0(UINT8 speed);
+    void proc_H1_N1(UINT8 speed);
 };
 #endif // _H

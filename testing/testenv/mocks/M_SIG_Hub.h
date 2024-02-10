@@ -17,40 +17,40 @@ namespace test
     public:
         MOCK_CON(SIG_Hub)
 
-        inline void toFld(size_t id, INT32 state, INT32 speed) const
+        inline void toFld(size_t id, UINT8 state, UINT8 speed = 0) const
         {
             call("toFld").PARAM(id).PARAM(state).PARAM(speed);
         }
-        inline void expectToFld(size_t id, INT32 state, INT32 speed = 0) const
+        inline void expectToFld(size_t id, UINT8 state, UINT8 speed = 0) const
         {
             expect("toFld").PARAM(id).PARAM(state).PARAM(speed);
         }
 
-        inline void toGui(size_t id, INT32 state, INT32 speed) const
+        inline void toGui(size_t id, UINT8 state, UINT8 speed = 0) const
         {
             call("toGui").PARAM(id).PARAM(state).PARAM(speed);
         }
-        inline void expectToGui(size_t id, INT32 state, INT32 speed = 0) const
+        inline void expectToGui(size_t id, UINT8 state, UINT8 speed = 0) const
         {
             expect("toGui").PARAM(id).PARAM(state).PARAM(speed);
         }
 
-        inline void fromDsp(size_t pos, const FldState& tele) const
+        inline void fromDsp(size_t pos, const ComFldState& tele) const
         {
-            call("fromDsp").PARAM(pos).TPARAM(FldState, tele);
+            call("fromDsp").PARAM(pos).TPARAM(ComFldState, tele);
         }
-        inline void expectFromDsp(size_t pos, const FldState& tele) const
+        inline void expectFromDsp(size_t pos, const ComFldState& tele) const
         {
-            expect("fromDsp").PARAM(pos).TPARAM(FldState, tele);
+            expect("fromDsp").PARAM(pos).TPARAM(ComFldState, tele);
         }
 
-        inline void fromDsp(size_t pos, const GuiCmd& tele) const
+        inline void fromDsp(size_t pos, const ComGuiCmd& tele) const
         {
-            call("fromDsp").PARAM(pos).TPARAM(GuiCmd, tele);
+            call("fromDsp").PARAM(pos).TPARAM(ComGuiCmd, tele);
         }
-        inline void expectFromDsp(size_t pos, const GuiCmd& tele) const
+        inline void expectFromDsp(size_t pos, const ComGuiCmd& tele) const
         {
-            expect("fromDsp").PARAM(pos).TPARAM(GuiCmd, tele);
+            expect("fromDsp").PARAM(pos).TPARAM(ComGuiCmd, tele);
         }
     };
 }

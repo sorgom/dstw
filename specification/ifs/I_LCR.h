@@ -9,13 +9,13 @@
 
 #include <codebase/BaseTypes.h>
 
-enum E_LcrType
+enum E_LcrType : UINT8
 {
     LCR_TYPE_LCR = 100,
     LCR_TYPE_LCR_UBK
 };
 
-enum E_LcrState
+enum E_LcrState : UINT8
 {
     LCR_STATE_UNDEF = 101,
     LCR_STATE_DEFECT,
@@ -25,7 +25,7 @@ enum E_LcrState
     LCR_STATE_WAIT_CLOSED
 };
 
-enum E_LcrUbkState
+enum E_LcrUbkState : UINT8
 {
     LCR_UBK_STATE_UNDEF = 201,
     LCR_UBK_STATE_DEFECT,
@@ -37,13 +37,13 @@ class I_LCR
 {
 public:
 //  commands from GUI
-    virtual void fromGui(INT32 state) = 0;
+    virtual void fromGui(UINT8 state) = 0;
 
 //  infos from field element
-    virtual void fromFld(INT32 state, INT32 ubk) = 0;
+    virtual void fromFld(UINT8 state, UINT8 ubk) = 0;
 
 //  type info
-    virtual INT32 type() const = 0;    
+    virtual UINT8 type() const = 0;    
 };
 
 

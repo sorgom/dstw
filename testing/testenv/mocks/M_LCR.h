@@ -17,25 +17,25 @@ namespace test
     public:
         MOCK_CON(LCR)
         
-        inline void fromFld(INT32 state, INT32 ubk)
+        inline void fromFld(UINT8 state, UINT8 ubk)
         {
             call("fromFld").PARAM(state).PARAM(ubk);
         }
-        inline void expectFromFld(INT32 state, INT32 ubk)
+        inline void expectFromFld(UINT8 state, UINT8 ubk)
         {
             expect("fromFld").PARAM(state).PARAM(ubk);
         }
 
-        inline void fromGui(INT32 state)
+        inline void fromGui(UINT8 state)
         {
             call("fromGui").PARAM(state);
         }
-        inline void expectFromGui(INT32 state)
+        inline void expectFromGui(UINT8 state)
         {
             expect("fromGui").PARAM(state);
         }
 
-        inline INT32 type() const
+        inline UINT8 type() const
         {
             return LCR_TYPE_LCR;
         }  

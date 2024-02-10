@@ -14,12 +14,11 @@
 #include <codebase/packBegin.h>
 
 //  Com telegrams element identifier
-constexpr auto NumComNameChars = 9;
-constexpr auto SI32 = sizeof(INT32);
+constexpr auto ComNameSize = 12;
 
 struct ComName
 {
-    CHAR chars[NumComNameChars];
+    CHAR chars[ComNameSize];
     inline ComName()
     {
         Mem::set(chars);
@@ -33,66 +32,66 @@ struct ComName
         Mem::cpy(chars, src.chars);
     }
 };
-static_assert(NumComNameChars == sizeof(ComName));
+static_assert(ComNameSize == sizeof(ComName));
 
 //  standard telegram size
-constexpr auto STDTSIZE = NumComNameChars + 2 * SI32;
+constexpr auto ComTelegramSize = ComNameSize + 2;
 
 //  command to field
-struct CmdFld
+struct ComCmdFld
 {
     ComName name;
-    const INT32 cmd1;
-    const INT32 cmd2;
-    inline CmdFld(INT32 cmd1 = 0, INT32 cmd2 = 0):
+    const UINT8 cmd1;
+    const UINT8 cmd2;
+    inline ComCmdFld(UINT8 cmd1 = 0, UINT8 cmd2 = 0):
         cmd1(cmd1),
         cmd2(cmd2)
     {}
-    NOCOPY(CmdFld)
+    NOCOPY(ComCmdFld)
 };
-static_assert(STDTSIZE == sizeof(CmdFld));
+static_assert(ComTelegramSize == sizeof(ComCmdFld));
 
 //  state from field
-struct FldState
+struct ComFldState
 {
     ComName name;
-    const INT32 state1;
-    const INT32 state2;
-    inline FldState(INT32 state1 = 0, INT32 state2 = 0):
+    const UINT8 state1;
+    const UINT8 state2;
+    inline ComFldState(UINT8 state1 = 0, UINT8 state2 = 0):
         state1(state1),
         state2(state2)
     {}
-    NOCOPY(FldState)
+    NOCOPY(ComFldState)
 };
-static_assert(STDTSIZE == sizeof(FldState));
+static_assert(ComTelegramSize == sizeof(ComFldState));
 
 //  command from GUI
-struct GuiCmd
+struct ComGuiCmd
 {
     ComName name;
-    const INT32 cmd1;
-    const INT32 cmd2;
-    inline GuiCmd(INT32 cmd1 = 0, INT32 cmd2 = 0):
+    const UINT8 cmd1;
+    const UINT8 cmd2;
+    inline ComGuiCmd(UINT8 cmd1 = 0, UINT8 cmd2 = 0):
         cmd1(cmd1),
         cmd2(cmd2)
     {}
-    NOCOPY(GuiCmd)
+    NOCOPY(ComGuiCmd)
 };
-static_assert(STDTSIZE == sizeof(GuiCmd));
+static_assert(ComTelegramSize == sizeof(ComGuiCmd));
 
 //  state to GUI
-struct StateGui
+struct ComStateGui
 {
     ComName name;
-    const INT32 state1;
-    const INT32 state2;
-    inline StateGui(INT32 state1 = 0, INT32 state2 = 0):
+    const UINT8 state1;
+    const UINT8 state2;
+    inline ComStateGui(UINT8 state1 = 0, UINT8 state2 = 0):
         state1(state1),
         state2(state2)
     {}
-    NOCOPY(StateGui)
+    NOCOPY(ComStateGui)
 };
-static_assert(STDTSIZE == sizeof(StateGui));
+static_assert(ComTelegramSize == sizeof(ComStateGui));
 
 #include <codebase/packEnd.h>
 

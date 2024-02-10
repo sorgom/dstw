@@ -33,17 +33,12 @@ void LCR_X::close()
     }
 }
 
-void LCR_X::toGui() const
-{
-    IL::getLCR_Hub().toGui(mId, mStateToGui, getUbkToGui());
-}
-
-void LCR_X::toFld(const INT32 state) const
+void LCR_X::toFld(const UINT8 state) const
 {
     IL::getLCR_Hub().toFld(mId, state);
 }
 
-void LCR_X::fromGui(const INT32 state)
+void LCR_X::fromGui(const UINT8 state)
 {
     switch (state)
     {
@@ -59,7 +54,7 @@ void LCR_X::fromGui(const INT32 state)
     }
 }
 
-bool LCR_X::validState(const INT32 state)
+bool LCR_X::validState(const UINT8 state)
 {
     bool ok = false;
     switch (state)
@@ -77,7 +72,25 @@ bool LCR_X::validState(const INT32 state)
     return ok;
 }
 
-bool LCR_X::validUbk(const INT32 state)
+void LCR::fromFld(const UINT8 state, const UINT8 ubk)
+{
+    if (state == mStateToGui)
+    { pass(); }
+    else if (not validState(state))
+    { pass(); }
+    else
+    {
+        mStateToGui = state;
+        toGui();
+    }
+}
+
+void LCR::toGui() const
+{
+    IL::getLCR_Hub().toGui(mId, mStateToGui);
+}
+
+bool LCR_UBK::validUbk(const UINT8 state)
 {
     bool ok = false;
     switch (state)
@@ -95,20 +108,7 @@ bool LCR_X::validUbk(const INT32 state)
     return ok;
 }
 
-void LCR::fromFld(const INT32 state, const INT32 ubk)
-{
-    if (state == mStateToGui)
-    { pass(); }
-    else if (not validState(state))
-    { pass(); }
-    else
-    {
-        mStateToGui = state;
-        toGui();
-    }
-}
-
-void LCR_UBK::fromFld(const INT32 state, const INT32 ubk)
+void LCR_UBK::fromFld(const UINT8 state, const UINT8 ubk)
 {
     if (
         (state == mStateToGui) and
@@ -128,3 +128,7 @@ void LCR_UBK::fromFld(const INT32 state, const INT32 ubk)
     }
 }
 
+void LCR_UBK::toGui() const
+{
+    IL::getLCR_Hub().toGui(mId, mStateToGui, mUbkToGui);
+}

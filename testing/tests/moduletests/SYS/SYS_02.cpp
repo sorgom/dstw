@@ -29,9 +29,9 @@ namespace test
     TEST(SYS_02, T01)
     {
         SETUP()
-        FldState fldState;
+        ComFldState fldState;
 
-        // FldState
+        // ComFldState
         STEP(1)
         nameElement(fldState, 1, "TSW");
         m_TSW_Hub().expectFromDsp(1, fldState);
@@ -58,7 +58,7 @@ namespace test
 
         STEP(5)
         //  not assigned
-        m_Log().expectLog(MOD_DISPATCHER, ERR_MATCH);
+        m_Log().expectLog(MOD_SYS_DISPATCHER, ERR_MATCH);
         nameElement(fldState, 2, "TSW");
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
@@ -68,7 +68,7 @@ namespace test
     TEST(SYS_02, T02)
     {
         SETUP()
-        GuiCmd guiCmd;
+        ComGuiCmd guiCmd;
     
         STEP(1)
         nameElement(guiCmd, 1, "TSW");
@@ -97,7 +97,7 @@ namespace test
 
         STEP(5)
         //  not assigned
-        m_Log().expectLog(MOD_DISPATCHER, ERR_MATCH);
+        m_Log().expectLog(MOD_SYS_DISPATCHER, ERR_MATCH);
         nameElement(guiCmd, 2, "TSW");
         mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()
@@ -108,35 +108,35 @@ namespace test
     TEST(SYS_02, T03)
     {
         SETUP()
-        CmdFld cmdExp;
+        ComCmdFld cmdExp;
 
         STEP(1)
         nameElement(cmdExp, 1, "TSW");
         m_Com().expectSend(cmdExp);
-        mSUT.dispatch(0, CmdFld());
+        mSUT.dispatch(0, ComCmdFld());
         CHECK_N_CLEAR()
 
         STEP(2)
         nameElement(cmdExp, 2, "SIG");
         m_Com().expectSend(cmdExp);
-        mSUT.dispatch(1, CmdFld());
+        mSUT.dispatch(1, ComCmdFld());
         CHECK_N_CLEAR()
 
         STEP(3)
         nameElement(cmdExp, 3, "LCR");
         m_Com().expectSend(cmdExp);
-        mSUT.dispatch(2, CmdFld());
+        mSUT.dispatch(2, ComCmdFld());
         CHECK_N_CLEAR()
 
         STEP(4)
         nameElement(cmdExp, 4, "SEG");
         m_Com().expectSend(cmdExp);
-        mSUT.dispatch(3, CmdFld());
+        mSUT.dispatch(3, ComCmdFld());
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
-        mSUT.dispatch(4, CmdFld());
+        mSUT.dispatch(4, ComCmdFld());
         CHECK_N_CLEAR()
     }
 
@@ -145,35 +145,35 @@ namespace test
     TEST(SYS_02, T04)
     {
         SETUP()
-        StateGui stateExp;
+        ComStateGui stateExp;
 
         STEP(1)
         nameElement(stateExp, 1, "TSW");
         m_Com().expectSend(stateExp);
-        mSUT.dispatch(0, StateGui());
+        mSUT.dispatch(0, ComStateGui());
         CHECK_N_CLEAR()
 
         STEP(2)
         nameElement(stateExp, 2, "SIG");
         m_Com().expectSend(stateExp);
-        mSUT.dispatch(1, StateGui());
+        mSUT.dispatch(1, ComStateGui());
         CHECK_N_CLEAR()
 
         STEP(3)
         nameElement(stateExp, 3, "LCR");
         m_Com().expectSend(stateExp);
-        mSUT.dispatch(2, StateGui());
+        mSUT.dispatch(2, ComStateGui());
         CHECK_N_CLEAR()
 
         STEP(4)
         nameElement(stateExp, 4, "SEG");
         m_Com().expectSend(stateExp);
-        mSUT.dispatch(3, StateGui());
+        mSUT.dispatch(3, ComStateGui());
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
-        mSUT.dispatch(4, StateGui());
+        mSUT.dispatch(4, ComStateGui());
         CHECK_N_CLEAR()
     }
 
@@ -216,13 +216,13 @@ namespace test
         mSUT.index();
         
         STEP(1)
-        FldState fldState;
+        ComFldState fldState;
         nameElement(fldState, 1, "TSW");
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()    
 
         STEP(2)
-        GuiCmd guiCmd;
+        ComGuiCmd guiCmd;
         nameElement(guiCmd, 1, "TSW");
         mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()    
@@ -240,7 +240,7 @@ namespace test
         mSUT.assign(genComName(4, "SEG"), SUBSYS_SEG, 4);
         CHECK_N_CLEAR()
 
-        m_Log().expectLog(MOD_DISPATCHER, ERR_STARTUP);
+        m_Log().expectLog(MOD_SYS_DISPATCHER, ERR_STARTUP);
         mSUT.index();
         CHECK_N_CLEAR()
     }

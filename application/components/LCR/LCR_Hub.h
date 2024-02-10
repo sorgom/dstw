@@ -16,11 +16,11 @@ public:
     inline LCR_Hub()
     {}
 
-    void toFld(size_t id, INT32 state) const;
-    void toGui(size_t id, INT32 state, INT32 ubk) const;
+    void toFld(size_t id, UINT8 state) const;
+    void toGui(size_t id, UINT8 state, UINT8 ubk = LCR_UBK_STATE_UNDEF) const;
 
-    void fromDsp(size_t pos, const FldState& tele) const;
-    void fromDsp(size_t pos, const GuiCmd&   tele) const;
+    void fromDsp(size_t pos, const ComFldState& tele) const;
+    void fromDsp(size_t pos, const ComGuiCmd&   tele) const;
 
     IL_INSTANCE_DEC(LCR_Hub)
 

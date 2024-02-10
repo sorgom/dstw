@@ -17,40 +17,40 @@ namespace test
     public:
         MOCK_CON(TSW_Hub)
 
-        inline void toFld(size_t id, INT32 cmd) const
+        inline void toFld(size_t id, UINT8 cmd) const
         {
             call("toFld").PARAM(id).PARAM(cmd);
         }
-        inline void expectToFld(size_t id, INT32 cmd) const
+        inline void expectToFld(size_t id, UINT8 cmd) const
         {
             expect("toFld").PARAM(id).PARAM(cmd);
         }
 
-        inline void toGui(size_t id, INT32 state) const
+        inline void toGui(size_t id, UINT8 state) const
         {
             call("toGui").PARAM(id).PARAM(state);
         }
-        inline void expectToGui(size_t id, INT32 state) const
+        inline void expectToGui(size_t id, UINT8 state) const
         {
             expect("toGui").PARAM(id).PARAM(state);
         }
 
-        inline void fromDsp(size_t pos, const FldState& tele) const
+        inline void fromDsp(size_t pos, const ComFldState& tele) const
         {
-            call("fromDsp").PARAM(pos).TPARAM(FldState, tele);
+            call("fromDsp").PARAM(pos).TPARAM(ComFldState, tele);
         }
-        inline void expectFromDsp(size_t pos, const FldState& tele) const
+        inline void expectFromDsp(size_t pos, const ComFldState& tele) const
         {
-            expect("fromDsp").PARAM(pos).TPARAM(FldState, tele);
+            expect("fromDsp").PARAM(pos).TPARAM(ComFldState, tele);
         }
 
-        inline void fromDsp(size_t pos, const GuiCmd& tele) const
+        inline void fromDsp(size_t pos, const ComGuiCmd& tele) const
         {
-            call("fromDsp").PARAM(pos).TPARAM(GuiCmd, tele);
+            call("fromDsp").PARAM(pos).TPARAM(ComGuiCmd, tele);
         }
-        inline void expectFromDsp(size_t pos, const GuiCmd& tele) const
+        inline void expectFromDsp(size_t pos, const ComGuiCmd& tele) const
         {
-            expect("fromDsp").PARAM(pos).TPARAM(GuiCmd, tele);
+            expect("fromDsp").PARAM(pos).TPARAM(ComGuiCmd, tele);
         }
     };
 }

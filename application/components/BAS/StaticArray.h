@@ -24,9 +24,6 @@
 //  StaticArray
 //  keeps objects in the same order as they were added.
 //  ============================================================
-template <class ... Ts>
-constexpr auto max_sizeof = std::max({sizeof(Ts)...});
-
 template <class C, size_t CAP, class ... SCS>
 class StaticArray : 
     public I_Array<C, CAP>,
@@ -113,7 +110,7 @@ protected:
     }
 
 private:
-    constexpr static size_t DIM = max_sizeof<C, SCS...>;
+    constexpr static auto DIM = std::max({sizeof(C), sizeof(SCS)...});
     using Segment = BYTE[DIM];
     Segment mData[CAP];
     Segment mSwap;
