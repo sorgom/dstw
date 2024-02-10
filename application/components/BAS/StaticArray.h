@@ -40,7 +40,7 @@ public:
         mSize = 0;
     }
 
-    inline size_t size() const final
+    inline size_t size() const
     {
         return mSize;
     }
@@ -61,7 +61,7 @@ public:
         return *reinterpret_cast<IC*>(mData[pos]);
     }
 
-    inline const IC& at(size_t pos) const final
+    inline const IC& at(size_t pos) const
     {
         return *reinterpret_cast<const IC*>(mData[pos]);
     }
@@ -95,7 +95,7 @@ public:
         mSize = 0;
     }
 
-    inline size_t size() const final
+    inline size_t size() const
     {
         return mSize;
     }
@@ -112,7 +112,7 @@ public:
         return mSize++;
     }
 
-    inline const C& at(size_t pos) const final
+    inline const C& at(size_t pos) const
     {
         return *reinterpret_cast<const C*>(mData[pos]);
     }
@@ -125,7 +125,8 @@ public:
     NOCOPY(ConstArray)
 
 private:
-    using Segment = BYTE[sizeof(C)];
+    constexpr static auto DIM = sizeof(C);
+    using Segment = BYTE[DIM];
     Segment mData[CAP];
     size_t mSize;
 };
@@ -151,7 +152,7 @@ public:
         mSize = 0;
     }
 
-    inline size_t size() const final
+    inline size_t size() const
     {
         return mSize;
     }
@@ -168,7 +169,7 @@ public:
         return mSize++;
     }
 
-    inline const C& at(size_t pos) const final
+    inline const C& at(size_t pos) const
     {
         return *reinterpret_cast<const C*>(mData[pos]);
     }
@@ -186,91 +187,12 @@ public:
     NOCOPY(MutableArray)
 
 private:
-    using Segment = BYTE[sizeof(C)];
-    Segment mData[CAP];
-    size_t mSize;
-};
-
-
-//  ============================================================
-//  StaticArray
-//  keeps objects in the same order as they were added
-//  ============================================================
-template <class C, size_t CAP, class ... SCS>
-class StaticArray : 
-    public I_Array<C, CAP>,
-    private SwapBytes
-{
-public:
-    inline StaticArray():
-        mSize(0)
-    {}
-
-    inline void reset()
-    {
-        mSize = 0;
-    }
-
-    inline size_t size() const final
-    {
-        return mSize;
-    }
-
-    inline size_t bytes() const
-    {
-        return mSize * DIM;
-    }
-
-
-    template <class T, typename ... ARGS>
-    size_t addT(const ARGS& ... args)
-    {
-        static_assert(sizeof(T) <= DIM);
-        static_assert(std::is_base_of_v<C, T>);
-        static_assert(not std::is_same_v<C, T>);
-        new (mData[mSize]) T(args...);
-        return mSize++;
-    }
-
-    template <typename ... ARGS>
-    size_t add(const ARGS& ... args)
-    {
-        new (mData[mSize]) C(args...);
-        return mSize++;
-    }
-
-    inline C& at(size_t pos)
-    {
-        return *reinterpret_cast<C*>(mData[pos]);
-    }
-
-    inline const C& at(size_t pos) const final
-    {
-        return *reinterpret_cast<const C*>(mData[pos]);
-    }
-
-
-    inline const C* data() const
-    {
-        static_assert(sizeof(C) == DIM);
-        return reinterpret_cast<const C*>(mData);
-    } 
-
-    NOCOPY(StaticArray)
-
-protected:
-    inline void swap(size_t posA, size_t posB) final
-    {
-        swapBytes(mData[posA], mData[posB], mSwap, DIM);
-    }
-
-private:
-    constexpr static auto DIM = std::max({sizeof(C), sizeof(SCS)...});
+    constexpr static auto DIM = sizeof(C);
     using Segment = BYTE[DIM];
     Segment mData[CAP];
-    Segment mSwap;
     size_t mSize;
 };
+
 
 //  ============================================================
 //  class CRef
@@ -295,17 +217,17 @@ private:
 };
 
 //  ============================================================
-//  StaticIndex
-//  provides search for unsorted StaticArray.
+//  ConstArrayIndex
+//  provides search for unsorted ConstArray
 //  ============================================================
 
 template <class T, size_t CAP>
-class StaticIndex : private StaticArray<CRef<T>, CAP>
+class ConstArrayIndex : private StaticArray<CRef<T>, CAP>
 {
 private:
     using BaseT = StaticArray<CRef<T>, CAP>;
 public:
-    inline StaticIndex(const I_Array<T, CAP>& a):
+    inline ConstArrayIndex(const I_Array<T, CAP>& a):
         mSrc(a)
     {}
 
@@ -340,8 +262,8 @@ public:
         return BaseT::at(res).ref();
     }
 
-    NOCOPY(StaticIndex)
-    NODEF(StaticIndex)
+    NOCOPY(ConstArrayIndex)
+    NODEF(ConstArrayIndex)
 
 protected:
     virtual bool isGreater(const T& a, const T& b) const
