@@ -14,7 +14,7 @@
 #include <codebase/packBegin.h>
 
 //  Com telegrams element identifier
-constexpr auto ComNameSize = 9;
+constexpr auto ComNameSize = 12;
 
 struct ComName
 {

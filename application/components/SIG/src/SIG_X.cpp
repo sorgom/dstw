@@ -8,7 +8,7 @@ void SIG_X::procFromFld(const UINT8 state)
     if (mStateToGui != state)
     {
         mStateToGui = state;
-        IL::getSIG_Hub().toGui(mId, mStateToGui, 0);
+        IL::getSIG_Hub().toGui(mId, mStateToGui);
     }
     else
     {pass();}
@@ -44,8 +44,8 @@ void SIG_X::procFromGui(const UINT8 stateFld, const UINT8 stateGui)
 {
     mStateToFld = stateFld;
     mStateToGui = stateGui;
-    IL::getSIG_Hub().toFld(mId, mStateToFld, 0);
-    IL::getSIG_Hub().toGui(mId, mStateToGui, 0);
+    IL::getSIG_Hub().toFld(mId, mStateToFld);
+    IL::getSIG_Hub().toGui(mId, mStateToGui);
 }
 
 void SIG_XS::procFromGui(const UINT8 stateFld, const UINT8 stateGui, const UINT8 speed)

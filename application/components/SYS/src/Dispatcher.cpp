@@ -17,7 +17,7 @@ void Dispatcher::index()
     { pass();}
     else
     {
-        IL::getLog().log(MOD_DISPATCHER, ERR_STARTUP);
+        IL::getLog().log(MOD_SYS_DISPATCHER, ERR_STARTUP);
     }
 }
 
@@ -63,7 +63,7 @@ void Dispatcher::dispatch(const ComFldState& tele) const
     }
     else
     { 
-        IL::getLog().log(MOD_DISPATCHER, ERR_MATCH);
+        IL::getLog().log(MOD_SYS_DISPATCHER, ERR_MATCH);
     }
 }
 
@@ -93,7 +93,7 @@ void Dispatcher::dispatch(const ComGuiCmd& tele) const
     }
     else
     { 
-        IL::getLog().log(MOD_DISPATCHER, ERR_MATCH);
+        IL::getLog().log(MOD_SYS_DISPATCHER, ERR_MATCH);
     }
 }
 

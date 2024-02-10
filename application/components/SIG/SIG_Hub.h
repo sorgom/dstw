@@ -16,8 +16,8 @@ public:
     inline SIG_Hub()
     {}
 
-    void toFld(size_t id, UINT8 state, UINT8 speed) const;
-    void toGui(size_t id, UINT8 state, UINT8 speed) const;
+    void toFld(size_t id, UINT8 state, UINT8 speed = 0) const;
+    void toGui(size_t id, UINT8 state, UINT8 speed = 0) const;
 
     void fromDsp(size_t pos, const ComFldState& tele) const;
     void fromDsp(size_t pos, const ComGuiCmd&   tele) const;

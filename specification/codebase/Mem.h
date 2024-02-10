@@ -27,11 +27,11 @@ public:
         std::memcpy(trg, src, N);
     }
 
-    //  mem compare two objects
-    template <class T>
-    inline static auto cmp(const T& r1, const T& r2)
+    //  mem compare two char arrays
+    template <size_t N>
+    inline static auto cmp(const CHAR(& c1)[N], const CHAR(& c2)[N])
     {
-        return std::memcmp(&r1, &r2, sizeof(T));
+        return std::memcmp(c1, c2, N);
     }
 
 };

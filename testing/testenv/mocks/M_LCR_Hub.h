@@ -26,11 +26,11 @@ namespace test
             expect("toFld").PARAM(id).PARAM(state);
         }
 
-        inline void toGui(size_t id, UINT8 state, UINT8 ubk) const
+        inline void toGui(size_t id, UINT8 state, UINT8 ubk = LCR_UBK_STATE_UNDEF) const
         {
             call("toGui").PARAM(id).PARAM(state).PARAM(ubk);
         }
-        inline void expectToGui(size_t id, UINT8 state, UINT8 ubk = 0) const
+        inline void expectToGui(size_t id, UINT8 state, UINT8 ubk = LCR_UBK_STATE_UNDEF) const
         {
             expect("toGui").PARAM(id).PARAM(state).PARAM(ubk);
         }

@@ -58,7 +58,7 @@ namespace test
 
         STEP(5)
         //  not assigned
-        m_Log().expectLog(MOD_DISPATCHER, ERR_MATCH);
+        m_Log().expectLog(MOD_SYS_DISPATCHER, ERR_MATCH);
         nameElement(fldState, 2, "TSW");
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()
@@ -97,7 +97,7 @@ namespace test
 
         STEP(5)
         //  not assigned
-        m_Log().expectLog(MOD_DISPATCHER, ERR_MATCH);
+        m_Log().expectLog(MOD_SYS_DISPATCHER, ERR_MATCH);
         nameElement(guiCmd, 2, "TSW");
         mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()
@@ -240,7 +240,7 @@ namespace test
         mSUT.assign(genComName(4, "SEG"), SUBSYS_SEG, 4);
         CHECK_N_CLEAR()
 
-        m_Log().expectLog(MOD_DISPATCHER, ERR_STARTUP);
+        m_Log().expectLog(MOD_SYS_DISPATCHER, ERR_STARTUP);
         mSUT.index();
         CHECK_N_CLEAR()
     }

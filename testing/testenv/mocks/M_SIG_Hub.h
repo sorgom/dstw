@@ -17,7 +17,7 @@ namespace test
     public:
         MOCK_CON(SIG_Hub)
 
-        inline void toFld(size_t id, UINT8 state, UINT8 speed) const
+        inline void toFld(size_t id, UINT8 state, UINT8 speed = 0) const
         {
             call("toFld").PARAM(id).PARAM(state).PARAM(speed);
         }
@@ -26,7 +26,7 @@ namespace test
             expect("toFld").PARAM(id).PARAM(state).PARAM(speed);
         }
 
-        inline void toGui(size_t id, UINT8 state, UINT8 speed) const
+        inline void toGui(size_t id, UINT8 state, UINT8 speed = 0) const
         {
             call("toGui").PARAM(id).PARAM(state).PARAM(speed);
         }

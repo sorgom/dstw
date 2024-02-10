@@ -19,6 +19,9 @@ public:
     {}
     void fromGui(UINT8 state);
 
+    NOCOPY(LCR_X)
+    NODEF(LCR_X)
+
 protected:
     const size_t mId;
     UINT8 mStateToGui;
@@ -27,15 +30,10 @@ protected:
     void close();
 
     void toFld(UINT8 state) const;
-    void toGui() const;
 
-    virtual UINT8 getUbkToGui() const = 0;
+    virtual void toGui() const = 0;
 
     static bool validState(UINT8 state);
-    static bool validUbk(UINT8 ubk);
-
-    NOCOPY(LCR_X)
-    NODEF(LCR_X)
 };
 
 //  ============================================================
@@ -50,11 +48,11 @@ public:
 
     inline UINT8 type() const { return LCR_TYPE_LCR; }
 
-protected:
-    inline UINT8 getUbkToGui() const { return LCR_UBK_STATE_UNDEF; }
-
     NOCOPY(LCR)
     NODEF(LCR)
+
+protected:
+    void toGui() const;
 };
 
 //  ============================================================
@@ -72,13 +70,14 @@ public:
 
     inline UINT8 type() const { return LCR_TYPE_LCR_UBK; }
 
-protected:    
-    inline UINT8 getUbkToGui() const { return mUbkToGui; }
-
-private:
-    UINT8 mUbkToGui;
     NOCOPY(LCR_UBK)
     NODEF(LCR_UBK)
+
+protected:    
+    void toGui() const;
+private:
+    UINT8 mUbkToGui;
+    static bool validUbk(UINT8 ubk);
 };
 
 #endif // _H

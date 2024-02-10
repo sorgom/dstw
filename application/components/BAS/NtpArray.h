@@ -72,7 +72,7 @@ public:
 protected:
     inline bool isGreater(const Ntp& a, const Ntp& b) const final
     {
-        return Mem::cmp(a.name, b.name) > 0;
+        return Mem::cmp(a.name.chars, b.name.chars) > 0;
     }
 };
 

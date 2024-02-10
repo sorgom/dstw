@@ -17,6 +17,6 @@ namespace test
         const ComCmdFld   c {};
         Com::instance().send(s);
         Com::instance().send(c);
-        Log::instance().log(MOD_LOADER, ERR_MATCH);
+        Log::instance().log(MOD_SYS_READER, ERR_MATCH);
     }
 }
