@@ -12,6 +12,8 @@
 #include <BAS/StaticArray.h>
 #include <ifs/ComTypes.h>
 
+#include <codebase/packBegin.h>
+
 //  name, type, position
 struct Ntp
 {
@@ -31,22 +33,13 @@ struct Ntp
     NODEF(Ntp)
 };
 
+#include <codebase/packEnd.h>
+
 //  ============================================================
 //  - storage of name, type, position
 //  ============================================================
 template <size_t CAP>
-class NtpArray : 
-    public ConstArray<Ntp, CAP>
-{
-public:
-    inline NtpArray() = default;
-
-    inline auto add(const ComName& name, UINT8 type, size_t pos)
-    {
-        return ConstArray<Ntp, CAP>::add(name, type, pos);
-    }
-    NOCOPY(NtpArray)
-};
+using NtpArray = ConstArray<Ntp, CAP>;
 
 //  ============================================================
 //  - index of name, type, position by name

@@ -1,11 +1,13 @@
 //  ============================================================
-//  the core of static memory allocation
-//  StaticArrays
+//  collection of static array types
+//  Static arrays
 //  -   act like arrays of pre-defined size
 //  -   can be filled with objects at runtime
-//  -   can store objects of different size classes
-//      derived from main class
 //  -   do not provide any overflow protection
+//  This is not an API
+//  Static arrays defined here are suitable for the application:
+//  -   as flexible as needed
+//  -   as const as possible
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -14,7 +16,6 @@
 #define STATICARRAY_H
 
 #include <BAS/I_Array.h>
-#include <codebase/Mem.h>
 #include <BAS/SwapBytes.h>
 #include <algorithm>
 #include <new>
@@ -80,6 +81,7 @@ private:
 //  - keeps objects in the same order as they were added
 //  - stores objects of one class
 //  - provides const object access only
+//  - can be indexed
 //  ============================================================
 template <class C, size_t CAP>
 class ConstArray : 
@@ -100,11 +102,6 @@ public:
         return mSize;
     }
 
-    inline size_t bytes() const
-    {
-        return mSize * DIM;
-    }
-
     template <typename ... ARGS>
     size_t add(const ARGS& ... args)
     {
@@ -116,11 +113,6 @@ public:
     {
         return *reinterpret_cast<const C*>(mData[pos]);
     }
-
-    inline const C* data() const
-    {
-        return reinterpret_cast<const C*>(mData);
-    } 
 
     NOCOPY(ConstArray)
 
@@ -131,69 +123,6 @@ private:
     size_t mSize;
 };
 
-
-//  ============================================================
-//  MutableArray
-//  - keeps objects in the same order as they were added
-//  - stores objects of one class
-//  - provides const and mutable object access
-//  ============================================================
-template <class C, size_t CAP>
-class MutableArray : 
-    public I_Array<C, CAP>
-{
-public:
-    inline MutableArray():
-        mSize(0)
-    {}
-
-    inline void reset()
-    {
-        mSize = 0;
-    }
-
-    inline size_t size() const final
-    {
-        return mSize;
-    }
-
-    inline size_t bytes() const
-    {
-        return mSize * DIM;
-    }
-
-    template <typename ... ARGS>
-    size_t add(const ARGS& ... args)
-    {
-        new (mData[mSize]) C(args...);
-        return mSize++;
-    }
-
-    inline const C& at(size_t pos) const final
-    {
-        return *reinterpret_cast<const C*>(mData[pos]);
-    }
-
-    inline C& at(size_t pos)
-    {
-        return *reinterpret_cast<C*>(mData[pos]);
-    }
-
-    inline const C* data() const
-    {
-        return reinterpret_cast<const C*>(mData);
-    } 
-
-    NOCOPY(MutableArray)
-
-private:
-    constexpr static auto DIM = sizeof(C);
-    using Segment = BYTE[DIM];
-    Segment mData[CAP];
-    size_t mSize;
-};
-
-
 //  ============================================================
 //  class CRef
 //  enables to store references as objects
@@ -203,17 +132,17 @@ class CRef
 {
 public:
     inline CRef(const T& obj):
-        mPtr(&obj)
+        mRef(obj)
     {}
     inline const T& ref() const
     {
-        return *mPtr;
+        return mRef;
     }
 
     NOCOPY(CRef)
     NODEF(CRef)
 private:
-    const T* mPtr;
+    const T& mRef;
 };
 
 //  ============================================================
@@ -229,8 +158,9 @@ class ConstArrayIndex :
 public:
     using RefT = CRef<T>;
     using BaseT = I_SortableArray<RefT, CAP>;
+    using SrcT = ConstArray<T, CAP>;
 
-    inline ConstArrayIndex(const ConstArray<T, CAP>& a):
+    inline ConstArrayIndex(const SrcT& a):
         mSrc(a),
         mSize(0)
     {}
@@ -247,8 +177,8 @@ public:
             new (mData[p]) RefT(mSrc.at(p));
         }
         mSize = mSrc.size();
-        BaseT::sort();
-        return BaseT::dupCnt() == 0;
+        this->sort();
+        return this->dupCnt() == 0;
     }
 
     inline PosRes find(const T& obj) const
@@ -260,7 +190,6 @@ public:
     {
         return at(res.pos).ref();
     }
-
 
     NOCOPY(ConstArrayIndex)
     NODEF(ConstArrayIndex)
@@ -289,12 +218,11 @@ protected:
     }
 
 private:
-    const ConstArray<T, CAP>&  mSrc;
+    const SrcT&  mSrc;
     constexpr static auto DIM = sizeof(RefT);
     using Segment = BYTE[DIM];
     Segment mData[CAP];
     Segment mSwap;
     size_t mSize;
-
 };
 #endif // H_

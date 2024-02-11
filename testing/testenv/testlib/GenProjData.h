@@ -15,12 +15,12 @@
 #ifndef GENPROJDATA_H
 #define GENPROJDATA_H
 
-#include <ifs/ProjTypes.h>
-#include <ifs/I_SIG.h>
 #include <ifs/I_LCR.h>
-#include <BAS/StaticArray.h>
-#include <testlib/TestLib.h>
+#include <ifs/I_SIG.h>
+#include <ifs/ProjTypes.h>
 #include <setup/capacities.h>
+#include <testlib/MutableArray.h>
+#include <testlib/TestLib.h>
 #include <fstream>
 
 namespace test
@@ -34,10 +34,10 @@ namespace test
     class GenProjData 
     {
     private:
-        StaticArray<ProjTSW, NTSW> mTSWs;
-        StaticArray<ProjSIG, NSIG> mSIGs;
-        StaticArray<ProjLCR, NLCR> mLCRs;
-        StaticArray<ProjSEG, NSEG> mSEGs;
+        MutableArray<ProjTSW, NTSW> mTSWs;
+        MutableArray<ProjSIG, NSIG> mSIGs;
+        MutableArray<ProjLCR, NLCR> mLCRs;
+        MutableArray<ProjSEG, NSEG> mSEGs;
 
     public:
         const UINT32 numTSW;
@@ -121,7 +121,7 @@ namespace test
     private:
 
         template <class T, size_t CAP>
-        void preset(StaticArray<T, CAP>& array, CONST_C_STRING what)
+        void preset(MutableArray<T, CAP>& array, CONST_C_STRING what)
         {
             for (size_t n = 0; n < CAP; ++n)
             {
@@ -131,13 +131,13 @@ namespace test
         }
 
         template <class T, size_t CAP>
-        void setType(StaticArray<T, CAP>& array, size_t pos, INT32 type)
+        void setType(MutableArray<T, CAP>& array, size_t pos, INT32 type)
         {
             array.at(pos).type = type;
         }
 
         template <class T, size_t CAP>
-        void setType(StaticArray<T, CAP>& array, INT32 type)
+        void setType(MutableArray<T, CAP>& array, INT32 type)
         {
             for (size_t p = 0; p < CAP; ++p)
             {

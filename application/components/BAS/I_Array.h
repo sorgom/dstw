@@ -1,5 +1,5 @@
 //  ============================================================
-//  defintion of interface I_Array:
+//  definition of interfaces I_Array / I_SortableArray
 //  enables:
 //  - bubble sort
 //  - b-tree search
@@ -34,11 +34,6 @@ public:
         return size() < CAP;
     }
 
-    inline size_t spaceLeft() const
-    {
-        return size() < CAP ? CAP - size() : 0;
-    }
-
     inline bool has(size_t pos) const
     {
         return pos < size();
@@ -48,8 +43,6 @@ public:
 template <class T, size_t CAP>
 class I_SortableArray : public I_Array<T, CAP>
 {
-private:
-    using BaseT = I_Array<T, CAP>;
 protected:
     //  definition object a is greater than object b
     virtual bool isGreater(const T& a, const T& b) const = 0;

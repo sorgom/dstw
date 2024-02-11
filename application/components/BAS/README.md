@@ -2,7 +2,7 @@
 
 **I_Array.h**
 ```
-defintion of interface I_Array:
+definition of interfaces I_Array / I_SortableArray
 enables:
 - bubble sort
 - b-tree search
@@ -20,13 +20,15 @@ name, type, position
 
 **StaticArray.h**
 ```
-the core of static memory allocation
-StaticArrays
+collection of static array types
+Static arrays
 -   act like arrays of pre-defined size
 -   can be filled with objects at runtime
--   can store objects of different size classes
-    derived from main class
 -   do not provide any overflow protection
+This is not an API
+Static arrays defined here are suitable for the application:
+-   as flexible as needed
+-   as const as possible
 
 InterfaceArray
 -   stores objects that implement an interface class
@@ -37,11 +39,7 @@ ConstArray
 - keeps objects in the same order as they were added
 - stores objects of one class
 - provides const object access only
-
-MutableArray
-- keeps objects in the same order as they were added
-- stores objects of one class
-- provides const and mutable object access
+- can be indexed
 
 class CRef
 enables to store references as objects
