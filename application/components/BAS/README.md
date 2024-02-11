@@ -28,14 +28,26 @@ StaticArrays
     derived from main class
 -   do not provide any overflow protection
 
-StaticArray
-keeps objects in the same order as they were added.
+InterfaceArray
+-   stores objects that implement an interface class
+-   keeps objects in the same order as they were added
+-   provides const and non const object access
+
+ConstArray
+- keeps objects in the same order as they were added
+- stores objects of one class
+- provides const object access only
+
+MutableArray
+- keeps objects in the same order as they were added
+- stores objects of one class
+- provides const and mutable object access
 
 class CRef
 enables to store references as objects
 
-StaticIndex
-provides search for unsorted StaticArray.
+ConstArrayIndex
+provides search for unsorted ConstArray
 ```
 
 **SwapBytes.h**

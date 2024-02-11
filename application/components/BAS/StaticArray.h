@@ -27,7 +27,7 @@
 //  -   provides const and non const object access
 //  ============================================================
 template <class IC, size_t CAP, class ... DCS>
-class InterfaceArray final : 
+class InterfaceArray : 
     public I_Array<IC, CAP>
 {
 public:
@@ -40,7 +40,7 @@ public:
         mSize = 0;
     }
 
-    inline size_t size() const
+    inline size_t size() const final
     {
         return mSize;
     }
@@ -61,7 +61,7 @@ public:
         return *reinterpret_cast<IC*>(mData[pos]);
     }
 
-    inline const IC& at(size_t pos) const
+    inline const IC& at(size_t pos) const final
     {
         return *reinterpret_cast<const IC*>(mData[pos]);
     }
@@ -81,8 +81,8 @@ private:
 //  - stores objects of one class
 //  - provides const object access only
 //  ============================================================
-template <class C, size_t CAP, class ... SCS>
-class ConstArray final : 
+template <class C, size_t CAP>
+class ConstArray : 
     public I_Array<C, CAP>
 {
 public:
@@ -95,7 +95,7 @@ public:
         mSize = 0;
     }
 
-    inline size_t size() const
+    inline size_t size() const final
     {
         return mSize;
     }
@@ -112,7 +112,7 @@ public:
         return mSize++;
     }
 
-    inline const C& at(size_t pos) const
+    inline const C& at(size_t pos) const final
     {
         return *reinterpret_cast<const C*>(mData[pos]);
     }
@@ -138,8 +138,8 @@ private:
 //  - stores objects of one class
 //  - provides const and mutable object access
 //  ============================================================
-template <class C, size_t CAP, class ... SCS>
-class MutableArray final : 
+template <class C, size_t CAP>
+class MutableArray : 
     public I_Array<C, CAP>
 {
 public:
@@ -152,7 +152,7 @@ public:
         mSize = 0;
     }
 
-    inline size_t size() const
+    inline size_t size() const final
     {
         return mSize;
     }
@@ -169,7 +169,7 @@ public:
         return mSize++;
     }
 
-    inline const C& at(size_t pos) const
+    inline const C& at(size_t pos) const final
     {
         return *reinterpret_cast<const C*>(mData[pos]);
     }
@@ -222,55 +222,79 @@ private:
 //  ============================================================
 
 template <class T, size_t CAP>
-class ConstArrayIndex : private StaticArray<CRef<T>, CAP>
+class ConstArrayIndex : 
+    public I_SortableArray<CRef<T>, CAP>,
+    private SwapBytes
 {
-private:
-    using BaseT = StaticArray<CRef<T>, CAP>;
 public:
-    inline ConstArrayIndex(const I_Array<T, CAP>& a):
-        mSrc(a)
+    using RefT = CRef<T>;
+    using BaseT = I_SortableArray<RefT, CAP>;
+
+    inline ConstArrayIndex(const ConstArray<T, CAP>& a):
+        mSrc(a),
+        mSize(0)
     {}
 
     inline void reset()
     {
-        BaseT::reset();
+        mSize = 0;
     }
 
     bool index()
     {
-        BaseT::reset();
         for (size_t p = 0; p < mSrc.size(); ++p)
-        {
-            BaseT::add(mSrc.at(p));
+        {   
+            new (mData[p]) RefT(mSrc.at(p));
         }
+        mSize = mSrc.size();
         BaseT::sort();
         return BaseT::dupCnt() == 0;
-    }
-    
-    inline bool isGreater(const CRef<T>& a, const CRef<T>& b) const
-    {
-        return isGreater(a.ref(), b.ref());
     }
 
     inline PosRes find(const T& obj) const
     {
-        return BaseT::find(CRef<T>(obj));
+        return BaseT::find(RefT(obj));
     }
 
     inline const T& get(const PosRes& res) const
     {
-        return BaseT::at(res).ref();
+        return at(res.pos).ref();
     }
+
 
     NOCOPY(ConstArrayIndex)
     NODEF(ConstArrayIndex)
 
 protected:
-    virtual bool isGreater(const T& a, const T& b) const
+    inline size_t size() const final
     {
-        return mSrc.isGreater(a, b);
+        return mSize;
     }
+
+    inline const RefT& at(size_t pos) const final
+    {
+        return *reinterpret_cast<const RefT*>(mData[pos]);
+    }
+
+    inline bool isGreater(const RefT& a, const RefT& b) const final
+    {
+        return isGreater(a.ref(), b.ref());
+    }
+
+    virtual bool isGreater(const T& a, const T& b) const = 0;
+
+    inline void swap(size_t posA, size_t posB)
+    {
+        SwapBytes::swapBytes(mData[posA], mData[posB], mSwap);
+    }
+
 private:
-    const I_Array<T, CAP>& mSrc;
+    const ConstArray<T, CAP>&  mSrc;
+    constexpr static auto DIM = sizeof(RefT);
+    using Segment = BYTE[DIM];
+    Segment mData[CAP];
+    Segment mSwap;
+    size_t mSize;
+
 };
 #endif // H_

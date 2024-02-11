@@ -16,11 +16,11 @@
 struct Ntp
 {
     const ComName name;
-    const INT32 type;
+    const UINT8 type;
     const size_t pos;
     inline Ntp(
         const ComName& name,
-        INT32 type = 0,
+        UINT8 type = 0,
         size_t pos = 0
     ):
         name(name),
@@ -36,14 +36,14 @@ struct Ntp
 //  ============================================================
 template <size_t CAP>
 class NtpArray : 
-    public StaticArray<Ntp, CAP>
+    public ConstArray<Ntp, CAP>
 {
 public:
     inline NtpArray() = default;
 
-    inline auto add(const ComName& name, INT32 type, size_t pos)
+    inline auto add(const ComName& name, UINT8 type, size_t pos)
     {
-        return StaticArray<Ntp, CAP>::add(name, type, pos);
+        return ConstArray<Ntp, CAP>::add(name, type, pos);
     }
     NOCOPY(NtpArray)
 };
@@ -53,10 +53,10 @@ public:
 //  ============================================================
 template <size_t CAP>
 class NtpIndex : 
-    public StaticIndex<Ntp, CAP>
+    public ConstArrayIndex<Ntp, CAP>
 {
 private:
-    using BaseT = StaticIndex<Ntp, CAP>;
+    using BaseT = ConstArrayIndex<Ntp, CAP>;
 public:
     inline NtpIndex(const NtpArray<CAP>& a):
         BaseT(a)

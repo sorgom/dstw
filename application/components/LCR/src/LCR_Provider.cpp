@@ -24,10 +24,10 @@ void LCR_Provider::load(const ProjLCR* const data, const UINT32 num)
                 switch (proj.type)
                 {
                     case LCR_TYPE_LCR:
-                        mLCRs.addT<LCR>(res.pos);
+                        mLCRs.add<LCR>(res.pos);
                         break;
                     case LCR_TYPE_LCR_UBK:
-                        mLCRs.addT<LCR_UBK>(res.pos);
+                        mLCRs.add<LCR_UBK>(res.pos);
                         break;
                     default:
                         ok = false;
