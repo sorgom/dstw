@@ -3,10 +3,15 @@
 **I_Array.h**
 ```
 definition of interfaces I_Array / I_SortableArray
-enables:
+
+I_Array
+defines basic const access to an array type
+
+I_SortableArray extends I_Array
+to enable:
 - bubble sort
 - b-tree search
-- uniqueness check / duplicates count
+- duplicates count
 ```
 
 **NtpArray.h**

@@ -1,9 +1,5 @@
 //  ============================================================
 //  definition of interfaces I_Array / I_SortableArray
-//  enables:
-//  - bubble sort
-//  - b-tree search
-//  - uniqueness check / duplicates count
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -14,6 +10,10 @@
 #include <BAS/coding.h>
 #include <ifs/PosRes.h>
 
+//  ============================================================
+//  I_Array
+//  defines basic const access to an array type
+//  ============================================================
 template <class T, size_t CAP>
 class I_Array
 {
@@ -40,6 +40,13 @@ public:
     }
 };
 
+//  ============================================================
+//  I_SortableArray extends I_Array
+//  to enable:
+//  - bubble sort
+//  - b-tree search
+//  - duplicates count
+//  ============================================================
 template <class T, size_t CAP>
 class I_SortableArray : public I_Array<T, CAP>
 {

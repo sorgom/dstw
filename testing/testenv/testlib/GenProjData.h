@@ -6,8 +6,11 @@
 //      e.g. TSW, capacity 100:
 //          "TSW 100 *" .. "TSW 001 *"
 //  
+//      dumps data to file
+// 
 //      additional features
-//      -   set signal type for signal data
+//      -   set SIG type for signal data
+//      -   set LCR type for level crossing data 
 //  ============================================================
 //  created by Manfred Sorgo
 
