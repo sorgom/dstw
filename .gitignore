@@ -75,3 +75,6 @@ _*.*
 # depracated gen
 transitions_*.md
 *_states.md
+
+# .github
+.github/**/*.md
