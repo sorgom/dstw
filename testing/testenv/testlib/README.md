@@ -37,7 +37,7 @@ ProjData generator
     -   set LCR type for level crossing data
 ```
 
-**MutableArray.h**
+**TestArrays.h**
 ```
 array types for test issues
 

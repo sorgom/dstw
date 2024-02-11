@@ -4,8 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef MUTABLEARRAY_H
-#define MUTABLEARRAY_H
+#ifndef TESTARRAYS_H
+#define TESTARRAYS_H
 
 #include <BAS/I_Array.h>
 #include <new>

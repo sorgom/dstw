@@ -22,7 +22,7 @@
 #include <ifs/I_SIG.h>
 #include <ifs/ProjTypes.h>
 #include <setup/capacities.h>
-#include <testlib/MutableArray.h>
+#include <testlib/TestArrays.h>
 #include <testlib/TestLib.h>
 #include <fstream>
 
@@ -160,7 +160,5 @@ namespace test
         }    
 
     };
-
-
 } // namespace
 #endif // H_
