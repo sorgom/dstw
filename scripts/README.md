@@ -1,11 +1,5 @@
 ## directory content
 
-**ci.py**
-```
-run code checker if available
-* experimental *
-```
-
 **cleanMdj.py**
 ```
 put line breaks into mdj files
