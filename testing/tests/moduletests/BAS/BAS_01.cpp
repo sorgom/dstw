@@ -38,30 +38,24 @@ namespace test
         const INT32 m2;
     };
 
-    class IDataArray : public StaticArray<IData, 20, CData>
+    using IDataArray = InterfaceArray<IData, 20, CData>;
+    using CDataArray = ConstArray<CData, 20>;
+
+    class CDataIndex : public ConstArrayIndex<CData, 20>
     {
     public:
-        inline bool isGreater(const IData& a, const IData& b) const
+        inline CDataIndex(const CDataArray& a):
+            ConstArrayIndex<CData, 20>(a)
+        {}
+    protected:        
+        inline bool isGreater(const CData& a, const CData& b) const
         {
             return a.get1() > b.get1();
         }
     };
 
-    class IDataIndex : public StaticIndex<IData, 20>
-    {
-    public:
-        inline IDataIndex(const IDataArray& a):
-            StaticIndex<IData, 20>(a)
-        {}
-    protected:        
-        inline bool isGreater(const IData& a, const IData& b) const
-        {
-            return a.get1() < b.get1();
-        }
-    };
-
     //  test type: equivalence class test
-    //  test of StaticArray
+    //  test of InterfaceArray
     TEST(BAS_01, T01)
     {
         STEP(1)
@@ -76,14 +70,14 @@ namespace test
         for (UINT16 i = 0; i < a.capacity(); ++i)
         {
             L_CHECK_TRUE(a.hasSpace())
-            const size_t p = a.addT<CData>(-i, i);
+            const size_t p = a.add<CData>(-i, i);
             L_CHECK_EQUAL(i, p);
         }
         L_CHECK_EQUAL(a.capacity(), a.size())
         L_CHECK_FALSE(a.hasSpace())
 
         STEP(3)
-        //  test unsorted data as loaded
+        //  test data as loaded
         SUBSTEPS()
         for (UINT16 i = 0; i < a.size(); ++i)
         {
@@ -93,61 +87,16 @@ namespace test
             L_CHECK_EQUAL( i, d.get2())
         }
         ENDSTEPS()
-        
-        STEP(4)
-        //  apply sort()
-        //  test sorted data
-        a.sort();
-        const INT32 of = a.size() - 1;
-        SUBSTEPS()
-        for (UINT16 i = 0; i < a.size(); ++i)
-        {
-            LSTEP(i)
-            const IData& d = a.at(i);
-            L_CHECK_EQUAL(-of + i, d.get1())
-            L_CHECK_EQUAL( of - i, d.get2())
-        }
-        ENDSTEPS()
-
-        STEP(5)
-        //  apply find() to const object
-        const IDataArray& c = a;
-        SUBSTEPS()
-        for (UINT16 i = 0; i < c.size(); ++i)
-        {
-            LSTEP(i)
-            const PosRes p = c.find(c.at(i));
-            L_CHECK_EQUAL(i, p.pos)
-        }
-        ENDSTEPS()
     }
 
     //  test type: equivalence class test
-    //  test of StaticArray dupCnt
+    //  test of ConstArray / ConstArrayIndex
     TEST(BAS_01, T02)
     {
         SETUP()
-        IDataArray a;
-        a.addT<CData>(1, 2);
-        a.addT<CData>(2, 2);
-        a.addT<CData>(1, 2);
-        a.addT<CData>(2, 2);
-        a.sort();
-        const IDataArray& c = a;
-
-        STEP(1)
-        const size_t cnt = c.dupCnt();
-        L_CHECK_EQUAL(2, cnt)
-    }
-
-    //  test type: equivalence class test
-    //  test of StaticIndex
-    TEST(BAS_01, T03)
-    {
-        SETUP()
         //  create array
-        IDataArray a;
-        IDataIndex ix(a);
+        CDataArray a;
+        CDataIndex ix(a);
         bool ok = false;
 
         STEP(1)
@@ -164,7 +113,8 @@ namespace test
         //  load data
         for (UINT16 i = 0; i < a.capacity(); ++i)
         {
-            a.addT<CData>(-i, i);
+            L_CHECK_TRUE(a.hasSpace())
+            a.add(-i, i);
         }
         L_CHECK_FALSE(a.hasSpace())
 
@@ -178,10 +128,10 @@ namespace test
         for (UINT16 i = 0; i < a.size(); ++i)
         {
             LSTEP(i)
-            const IData& d = a.at(i);
+            const CData& d = a.at(i);
             const PosRes f = ix.find(d);
             L_CHECK_TRUE(f.valid)
-            const IData& r = ix.get(f);
+            const CData& r = ix.get(f);
             L_CHECK_EQUAL(d.get1(), r.get1())
             L_CHECK_EQUAL(d.get2(), r.get2())
         }
@@ -190,19 +140,10 @@ namespace test
         STEP(4)
         //  duplicates
         a.reset();
-        a.addT<CData>(1, 1);
-        a.addT<CData>(1, 2);
+        a.add(1, 1);
+        a.add(1, 2);
         ok = ix.index();
         L_CHECK_FALSE(ok)
-    }
-
-    //  test type: coverage
-    //  isGreater / swap
-    TEST(BAS_01, T04)
-    {
-        IDataArray a;
-        const bool res = a.isGreater(CData(1, 2), CData(2, 2));
-        L_CHECK_FALSE(res)
     }
 
 } // namespace

@@ -37,10 +37,10 @@ public:
 
     IL_INSTANCE_DEC(LCR_Provider)
 
-private:
-    StaticArray<I_LCR, CAPACITY_LCR, LCR, LCR_UBK> mLCRs;
-
     NOCOPY(LCR_Provider)
+
+private:
+    InterfaceArray<I_LCR, CAPACITY_LCR, LCR, LCR_UBK> mLCRs;
 };
 
 

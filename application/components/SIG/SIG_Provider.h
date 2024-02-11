@@ -38,7 +38,7 @@ public:
     IL_INSTANCE_DEC(SIG_Provider)
 
 private:
-    StaticArray<I_SIG, CAPACITY_SIG, SIG_H, SIG_N, SIG_H_N> mSIGs;
+    InterfaceArray<I_SIG, CAPACITY_SIG, SIG_H, SIG_N, SIG_H_N> mSIGs;
 
     NOCOPY(SIG_Provider)
 };

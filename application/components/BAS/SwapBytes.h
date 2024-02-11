@@ -13,8 +13,16 @@ class SwapBytes
 {
 protected:
     SwapBytes() = default;
-    static void swapBytes(PTR pA, PTR pB, PTR pS, size_t size);
+
+    template <size_t N>
+    inline static void swapBytes(BYTE(& pA)[N], BYTE(& pB)[N], BYTE(& pS)[N])
+    {
+        swapBytes(pA, pB, pS, N);
+    }
+
     NOCOPY(SwapBytes)
+private:    
+    static void swapBytes(BYTE* pA, BYTE* pB, BYTE* pS, size_t size);
 };
 
 #endif // H_

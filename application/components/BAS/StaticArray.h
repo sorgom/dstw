@@ -1,11 +1,13 @@
 //  ============================================================
-//  the core of static memory allocation
-//  StaticArrays
+//  collection of static array types
+//  Static arrays
 //  -   act like arrays of pre-defined size
 //  -   can be filled with objects at runtime
-//  -   can store objects of different size classes
-//      derived from main class
 //  -   do not provide any overflow protection
+//  This is not an API
+//  Static arrays defined here are suitable for the application:
+//  -   as flexible as needed
+//  -   as const as possible
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -14,23 +16,23 @@
 #define STATICARRAY_H
 
 #include <BAS/I_Array.h>
-#include <codebase/Mem.h>
 #include <BAS/SwapBytes.h>
 #include <algorithm>
 #include <new>
 #include <type_traits>
 
 //  ============================================================
-//  StaticArray
-//  keeps objects in the same order as they were added.
+//  InterfaceArray
+//  -   stores objects that implement an interface class
+//  -   keeps objects in the same order as they were added
+//  -   provides const and non const object access
 //  ============================================================
-template <class C, size_t CAP, class ... SCS>
-class StaticArray : 
-    public I_Array<C, CAP>,
-    private SwapBytes
+template <class IC, size_t CAP, class ... DCS>
+class InterfaceArray : 
+    public I_Array<IC, CAP>
 {
 public:
-    inline StaticArray():
+    inline InterfaceArray():
         mSize(0)
     {}
 
@@ -44,33 +46,60 @@ public:
         return mSize;
     }
 
-    inline size_t bytes() const
+    //  add an object of derived class
+    template <class DC, typename ... ARGS>
+    size_t add(const ARGS& ... args)
     {
-        return mSize * DIM;
-    }
-
-    inline bool hasSpace() const
-    {
-        return mSize < CAP;
-    }
-
-    inline size_t spaceLeft() const
-    {
-        return mSize >= CAP ? 0 : CAP - mSize;
-    }
-
-    inline bool has(size_t pos) const
-    {
-        return pos < mSize;
-    }
-
-    template <class T, typename ... ARGS>
-    size_t addT(const ARGS& ... args)
-    {
-        static_assert(sizeof(T) <= DIM);
-        static_assert(std::is_base_of_v<C, T>);
-        new (mData[mSize]) T(args...);
+        static_assert(std::is_base_of_v<IC, DC>);
+        static_assert(not std::is_same_v<IC, DC>);
+        static_assert(sizeof(DC) <= DIM);
+        new (mData[mSize]) DC(args...);
         return mSize++;
+    }
+
+    inline IC& at(size_t pos)
+    {
+        return *reinterpret_cast<IC*>(mData[pos]);
+    }
+
+    inline const IC& at(size_t pos) const final
+    {
+        return *reinterpret_cast<const IC*>(mData[pos]);
+    }
+
+    NOCOPY(InterfaceArray)
+
+private:
+    constexpr static auto DIM = std::max({sizeof(IC), sizeof(DCS)...});
+    using Segment = BYTE[DIM];
+    Segment mData[CAP];
+    size_t mSize;
+};
+
+//  ============================================================
+//  ConstArray
+//  - keeps objects in the same order as they were added
+//  - stores objects of one class
+//  - provides const object access only
+//  - can be indexed
+//  ============================================================
+template <class C, size_t CAP>
+class ConstArray : 
+    public I_Array<C, CAP>
+{
+public:
+    inline ConstArray():
+        mSize(0)
+    {}
+
+    inline void reset()
+    {
+        mSize = 0;
+    }
+
+    inline size_t size() const final
+    {
+        return mSize;
     }
 
     template <typename ... ARGS>
@@ -80,40 +109,17 @@ public:
         return mSize++;
     }
 
-    inline C& at(size_t pos)
-    {
-        return *reinterpret_cast<C*>(mData[pos]);
-    }
-
     inline const C& at(size_t pos) const final
     {
         return *reinterpret_cast<const C*>(mData[pos]);
     }
 
-    inline const C& at(const PosRes& res) const final
-    {
-        return at(res.pos);
-    }
-
-    inline const C* data() const
-    {
-        static_assert(sizeof(C) == DIM);
-        return reinterpret_cast<const C*>(mData);
-    } 
-
-    NOCOPY(StaticArray)
-
-protected:
-    inline void swap(size_t posA, size_t posB) final
-    {
-        swapBytes(mData[posA], mData[posB], mSwap, DIM);
-    }
+    NOCOPY(ConstArray)
 
 private:
-    constexpr static auto DIM = std::max({sizeof(C), sizeof(SCS)...});
+    constexpr static auto DIM = sizeof(C);
     using Segment = BYTE[DIM];
     Segment mData[CAP];
-    Segment mSwap;
     size_t mSize;
 };
 
@@ -126,74 +132,97 @@ class CRef
 {
 public:
     inline CRef(const T& obj):
-        mPtr(&obj)
+        mRef(obj)
     {}
     inline const T& ref() const
     {
-        return *mPtr;
+        return mRef;
     }
 
     NOCOPY(CRef)
     NODEF(CRef)
 private:
-    const T* mPtr;
+    const T& mRef;
 };
 
 //  ============================================================
-//  StaticIndex
-//  provides search for unsorted StaticArray.
+//  ConstArrayIndex
+//  provides search for unsorted ConstArray
 //  ============================================================
 
 template <class T, size_t CAP>
-class StaticIndex : private StaticArray<CRef<T>, CAP>
+class ConstArrayIndex : 
+    public I_SortableArray<CRef<T>, CAP>,
+    private SwapBytes
 {
-private:
-    using BaseT = StaticArray<CRef<T>, CAP>;
 public:
-    inline StaticIndex(const I_Array<T, CAP>& a):
-        mSrc(a)
+    using RefT = CRef<T>;
+    using BaseT = I_SortableArray<RefT, CAP>;
+    using SrcT = ConstArray<T, CAP>;
+
+    inline ConstArrayIndex(const SrcT& a):
+        mSrc(a),
+        mSize(0)
     {}
 
     inline void reset()
     {
-        BaseT::reset();
+        mSize = 0;
     }
 
     bool index()
     {
-        BaseT::reset();
         for (size_t p = 0; p < mSrc.size(); ++p)
-        {
-            BaseT::add(mSrc.at(p));
+        {   
+            new (mData[p]) RefT(mSrc.at(p));
         }
-        BaseT::sort();
-        return BaseT::dupCnt() == 0;
-    }
-    
-    inline bool isGreater(const CRef<T>& a, const CRef<T>& b) const
-    {
-        return isGreater(a.ref(), b.ref());
+        mSize = mSrc.size();
+        this->sort();
+        return this->dupCnt() == 0;
     }
 
     inline PosRes find(const T& obj) const
     {
-        return BaseT::find(CRef<T>(obj));
+        return BaseT::find(RefT(obj));
     }
 
     inline const T& get(const PosRes& res) const
     {
-        return BaseT::at(res).ref();
+        return at(res.pos).ref();
     }
 
-    NOCOPY(StaticIndex)
-    NODEF(StaticIndex)
+    NOCOPY(ConstArrayIndex)
+    NODEF(ConstArrayIndex)
 
 protected:
-    virtual bool isGreater(const T& a, const T& b) const
+    inline size_t size() const final
     {
-        return mSrc.isGreater(a, b);
+        return mSize;
     }
+
+    inline const RefT& at(size_t pos) const final
+    {
+        return *reinterpret_cast<const RefT*>(mData[pos]);
+    }
+
+    inline bool isGreater(const RefT& a, const RefT& b) const final
+    {
+        return isGreater(a.ref(), b.ref());
+    }
+
+    virtual bool isGreater(const T& a, const T& b) const = 0;
+
+    inline void swap(size_t posA, size_t posB)
+    {
+        SwapBytes::swapBytes(mData[posA], mData[posB], mSwap);
+    }
+
 private:
-    const I_Array<T, CAP>& mSrc;
+    const SrcT&  mSrc;
+    constexpr static auto DIM = sizeof(RefT);
+    using Segment = BYTE[DIM];
+    Segment mData[CAP];
+    Segment mSwap;
+    size_t mSize;
 };
 #endif // H_

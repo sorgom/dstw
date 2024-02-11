@@ -1,9 +1,5 @@
 //  ============================================================
-//  defintion of interface I_Array:
-//  enables:
-//  - bubble sort
-//  - b-tree search
-//  - uniqueness check / duplicates count
+//  definition of interfaces I_Array / I_SortableArray
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -14,6 +10,10 @@
 #include <BAS/coding.h>
 #include <ifs/PosRes.h>
 
+//  ============================================================
+//  I_Array
+//  defines basic const access to an array type
+//  ============================================================
 template <class T, size_t CAP>
 class I_Array
 {
@@ -28,23 +28,44 @@ public:
     
     //  object access by position
     virtual const T& at(size_t pos) const = 0;
-    virtual const T& at(const PosRes& res) const = 0;
-    
-    //  definition object a is greater than object b
-    inline virtual bool isGreater(const T& a, const T& b) const
+
+    inline bool hasSpace() const
     {
-        return false;
-    } 
+        return size() < CAP;
+    }
+
+    inline bool has(size_t pos) const
+    {
+        return pos < size();
+    }
+};
+
+//  ============================================================
+//  I_SortableArray extends I_Array
+//  to enable:
+//  - bubble sort
+//  - b-tree search
+//  - duplicates count
+//  ============================================================
+template <class T, size_t CAP>
+class I_SortableArray : public I_Array<T, CAP>
+{
+protected:
+    //  definition object a is greater than object b
+    virtual bool isGreater(const T& a, const T& b) const = 0;
+
+    //  swap content of position a and b
+    virtual void swap(size_t posA, size_t posB) = 0;
 
     void sort()
     {
         bool swapped = true;
-        for (size_t n = size(); swapped and n > 1; --n)
+        for (size_t n = this->size(); swapped and n > 1; --n)
         {
             swapped = false;
             for (size_t p = 0; p < n - 1; ++p)
             {
-                if (isGreater(at(p), at(p + 1)))
+                if (isGreater(this->at(p), this->at(p + 1)))
                 {
                     swap(p, p + 1);
                     swapped = true;
@@ -57,20 +78,20 @@ public:
     {
         size_t pos = 0;
         bool valid = false;
-        if (size() > 0)
+        if (this->size() > 0)
         {
             size_t pMin = 0;
-            size_t pMax = size() - 1;
+            size_t pMax = this->size() - 1;
 
             while (pMax >= pMin)
             {
                 const size_t pCur = (pMin + pMax + 1) / 2;
 
-                if (isGreater(obj, at(pCur)))
+                if (isGreater(obj, this->at(pCur)))
                 {
                     pMin = pCur + 1;
                 }
-                else if (isGreater(at(pCur), obj))
+                else if (isGreater(this->at(pCur), obj))
                 {
                     if (pCur > 0)
                     {
@@ -95,9 +116,9 @@ public:
     size_t dupCnt() const
     {
         size_t nd = 0;
-        for (size_t p = 1; p < size(); ++p)
+        for (size_t p = 1; p < this->size(); ++p)
         {
-            if (not isGreater(at(p), at(p - 1)))
+            if (not isGreater(this->at(p), this->at(p - 1)))
             {
                 ++nd;
             }
@@ -105,10 +126,6 @@ public:
         return nd;
     }
 
-protected:
-    //  swap content of position a and b
-    inline virtual void swap(size_t posA, size_t posB)
-    {}
 };
 
 #endif // H_

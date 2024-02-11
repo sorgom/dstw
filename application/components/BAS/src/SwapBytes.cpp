@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-void SwapBytes::swapBytes(const PTR pA, const PTR pB, const PTR pS, const size_t size)
+void SwapBytes::swapBytes(BYTE* const pA, BYTE* const pB, BYTE* const pS, const size_t size)
 {
     std::memcpy(pS, pB, size);
     std::memcpy(pB, pA, size);

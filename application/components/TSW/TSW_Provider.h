@@ -37,9 +37,9 @@ public:
 
     IL_INSTANCE_DEC(TSW_Provider)
 
-private:
-    StaticArray<I_TSW, CAPACITY_TSW, TSW> mTSWs;
-
     NOCOPY(TSW_Provider)
+
+private:
+    InterfaceArray<I_TSW, CAPACITY_TSW, TSW> mTSWs;
 };
 #endif // H_
