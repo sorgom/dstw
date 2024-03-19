@@ -3,10 +3,10 @@
 **capacities.h**
 ```
 capacities of element containers
-- signals
 - track switches
-- segments
+- signals
 - level crossings
+- segments
 
 pre-defined here
 definable at compile time

@@ -5,6 +5,7 @@
 build all major makes parallelly
 options:
 -r  remove all artifacts before
+-p  premake5 makefiles
 -x  execute all binaries
 -h  this help
 ```

@@ -31,7 +31,6 @@ namespace test
         SETUP()
         ComFldState fldState;
 
-        // ComFldState
         STEP(1)
         nameElement(fldState, 1, "TSW");
         m_TSW_Hub().expectFromDsp(1, fldState);

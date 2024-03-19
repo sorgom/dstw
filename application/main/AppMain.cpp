@@ -9,7 +9,7 @@ void capOut(const CONST_C_STRING what, const UINT32 size)
     printf("- %3s%10u\n", what, size);
 }
 
-int main(const INT32 argc, const CONST_C_STRING* const argv)
+int main()
 {
     //# GET_DDI
     GET_DDI(Com)
