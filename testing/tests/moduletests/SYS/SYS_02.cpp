@@ -183,7 +183,7 @@ namespace test
         mSUT.reset();
         STEP(1)
         SUBSTEPS()
-        for (size_t n = 0; n < CAPACITY_DSP; ++n)
+        for (UINT16 n = 0; n < CAPACITY_DSP; ++n)
         {
             LSTEP(n)
             const PosRes res = mSUT.assign(genComName(n, "TSW"), SUBSYS_TSW, n);

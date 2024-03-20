@@ -27,6 +27,8 @@ using C_STRING = CHAR*;
 using CONST_C_STRING = const CHAR*;
 using BOOL = bool;
 
+#ifndef _MSC_VER
 using std::size_t;
+#endif
 
 #endif // _H

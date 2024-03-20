@@ -33,10 +33,20 @@ testDefines = {
     'CAPACITY_SEG=22' 
 }
 
+testSrcs = {
+    testEnvSrcs,
+    appSrcs,
+    '../testing/tests/moduletests/**.cpp',
+    '../testing/tests/systemtests/**.cpp'
+}
+
 testLinks = { 'CppUTest', 'CppUTestExt' }
 
 -- buildOpts = { '-std=c++2a -pedantic-errors' }
 buildOpts = { '-std=c++17 -pedantic-errors -Werror -Wall' }
+buildOptsVC = { '/std:c++20 /W3' }
+
+CppUTestHome = '../BuildCppUTest/CppUTest/'
 
 --  ============================================================
 --  > tests.make
@@ -49,24 +59,38 @@ workspace 'tests'
     objdir      'obj/%{prj.name}'
 
     includedirs { testIncludes }
-    buildoptions { buildOpts }
+
+    filter { 'action:gmake2' }
+        buildoptions { buildOpts }
+
+    filter { 'action:vs*' }
+        buildoptions { buildOptsVC }
+        disablewarnings { '4103' }
 
     project 'tests'
         kind        'ConsoleApp'
-        targetdir   'bin'
 
-        files { 
-            testEnvSrcs,
-            appSrcs,
-            '../testing/tests/moduletests/**.cpp',
-            '../testing/tests/systemtests/**.cpp',
-        }
+        filter { 'action:gmake2' }
+            targetdir 'bin'
+            files { 
+                testSrcs
+            }
+            libdirs { '../BuildCppUTest/lib' }
+            links { testLinks }
+
+        filter { 'action:vs*' }
+            targetdir 'exe'
+            files { 
+                testSrcs,
+                CppUTestHome .. 'src/CppUTest/*.cpp',
+                CppUTestHome .. 'src/Platforms/VisualCpp/*.cpp',
+                CppUTestHome .. 'src/CppUTestExt/*.cpp'
+            }
+            links { 'winmm' }
 
         defines { 'NDEBUG', testDefines }
         optimize 'On'
         stl 'none'
-        libdirs { '../BuildCppUTest/lib' }
-        links { testLinks }
 
 --  ============================================================
 --  > coverage.make
@@ -119,11 +143,17 @@ workspace 'dstw'
 
     includedirs { appIncludes }
 
-    buildoptions { buildOpts }
+    filter { 'action:gmake2' }
+        targetdir   'bin'
+        buildoptions { buildOpts }
+
+    filter { 'action:vs*' }
+        targetdir   'exe'
+        buildoptions { buildOptsVC }
+        disablewarnings { '4103' }
 
     project 'dstw'
         kind        'ConsoleApp'
-        targetdir   'bin'
         
         files { 
             '../application/**.cpp'

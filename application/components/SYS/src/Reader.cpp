@@ -6,13 +6,9 @@
 #include <algorithm>
 #include <fstream>
 
-INSTANCE_DEF(Reader)
+using stype = std::streamoff;
 
-inline std::ifstream& operator>>(std::ifstream& is, UINT32& n)
-{
-    is.read(reinterpret_cast<CHAR*>(&n), sizeof(UINT32));
-    return is;
-}
+INSTANCE_DEF(Reader)
 
 void Reader::read(const CONST_C_STRING filename) const
 {
@@ -26,12 +22,12 @@ void Reader::read(const CONST_C_STRING filename) const
     bool ok = is.good();
     if (ok)
     {
-        constexpr static size_t nCAP = 4;
-        constexpr static size_t hSize = nCAP * sizeof(UINT32);
+        constexpr static stype nCAP = 4;
+        constexpr static stype hSize = nCAP * sizeof(UINT32);
         is.seekg(0, is.end);
-        const size_t end = is.tellg();
+        const stype end = is.tellg();
         is.seekg(0, is.beg);
-        const size_t fsize = end - is.tellg();
+        const stype fsize = end - is.tellg();
         ok = fsize >= hSize;
         if (ok)
         {
@@ -44,10 +40,10 @@ void Reader::read(const CONST_C_STRING filename) const
             is.read(head.buf, hSize);
             const auto [nTSW, nSIG, nLCR, nSEG] = head.vals;
 
-            const size_t sTSW = nTSW * sizeof(ProjTSW);
-            const size_t sSIG = nSIG * sizeof(ProjSIG);
-            const size_t sLCR = nLCR * sizeof(ProjLCR);
-            const size_t sSEG = nSEG * sizeof(ProjSEG);
+            const stype sTSW = nTSW * sizeof(ProjTSW);
+            const stype sSIG = nSIG * sizeof(ProjSIG);
+            const stype sLCR = nLCR * sizeof(ProjLCR);
+            const stype sSEG = nSEG * sizeof(ProjSEG);
 
             ok = fsize == hSize + sTSW + sSIG + sLCR + sSEG;
 
