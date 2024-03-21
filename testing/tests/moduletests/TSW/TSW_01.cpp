@@ -5,6 +5,7 @@
 
 #include <testlib/TestGroupBase.h>
 #include <TSW/TSW.h>
+#include <limits>
 
 namespace test
 {
@@ -19,9 +20,9 @@ namespace test
             mId(123),
             mSUT(mId)
         {}
-        void FLD(const INT32 fldState, const INT32 expStateGui = -1)
+        void FLD(const UINT8 fldState, const UINT8 expStateGui = UCHAR_MAX)
         {
-            if (expStateGui > -1)
+            if (expStateGui < UCHAR_MAX)
             {
                 m_TSW_Hub().expectToGui(mId, expStateGui);
             }
@@ -29,9 +30,9 @@ namespace test
             CHECK_N_CLEAR()
         }
 
-        void CMD(const INT32 guiCmd, const INT32 expCmdField = -1, const INT32 expStateGui = 0)
+        void CMD(const UINT8 guiCmd, const UINT8 expCmdField = UCHAR_MAX, const UINT8 expStateGui = 0)
         {
-            if (expCmdField > -1)
+            if (expCmdField < UCHAR_MAX)
             {
                 m_TSW_Hub().expectToFld(mId, expCmdField);
                 m_TSW_Hub().expectToGui(mId, expStateGui);
@@ -153,10 +154,10 @@ namespace test
     {
         STEP(1)
         m_Log().expectLog(MOD_TSW, ERR_MATCH);
-        CMD(1000);
+        CMD(UCHAR_MAX);
 
         STEP(2)
         m_Log().expectLog(MOD_TSW, ERR_MATCH);
-        FLD(1000);
+        FLD(UCHAR_MAX);
     }
 }

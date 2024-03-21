@@ -82,22 +82,22 @@ namespace test
         inline const ComName& lcrName(size_t pos) const { return lcr(pos).name; }
         inline const ComName& segName(size_t pos) const { return seg(pos).name; }
 
-        void setSigType(size_t pos, INT32 type)
+        void setSigType(size_t pos, UINT8 type)
         {
             setType(mSIGs, pos, type);
         }
 
-        void setSigType(INT32 type)
+        void setSigType(UINT8 type)
         {
             setType(mSIGs, type);
         }
 
-        void setLcrType(size_t pos, INT32 type)
+        void setLcrType(size_t pos, UINT8 type)
         {
             setType(mLCRs, pos, type);
         }
 
-        void setLcrType(INT32 type)
+        void setLcrType(UINT8 type)
         {
             setType(mLCRs, type);
         }
@@ -134,13 +134,13 @@ namespace test
         }
 
         template <class T, size_t CAP>
-        void setType(MutableArray<T, CAP>& array, size_t pos, INT32 type)
+        void setType(MutableArray<T, CAP>& array, size_t pos, UINT8 type)
         {
             array.at(pos).type = type;
         }
 
         template <class T, size_t CAP>
-        void setType(MutableArray<T, CAP>& array, INT32 type)
+        void setType(MutableArray<T, CAP>& array, UINT8 type)
         {
             for (size_t p = 0; p < CAP; ++p)
             {

@@ -21,9 +21,6 @@ as for example Cert C++.
 
 ### Compiler flags
 The gcc compiler itself turned out to be a very strong SCA tool with the appropriate flags set:
--pedantic-errors 
--Werror 
--Wall
 
 |Flag|Effect|
 |----|----|
@@ -33,3 +30,6 @@ The gcc compiler itself turned out to be a very strong SCA tool with the appropr
 
 ## Code coverage
 ### Gcov
+
+### bullseye
+

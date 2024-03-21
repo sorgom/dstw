@@ -210,7 +210,7 @@ namespace test
     {
         SETUP()
         mSUT.reset();
-        E_Subsys subs = (E_Subsys) 1000;
+        E_Subsys subs = (E_Subsys) 100;
         mSUT.assign(genComName(1, "TSW"), subs, 1);
         mSUT.index();
         
