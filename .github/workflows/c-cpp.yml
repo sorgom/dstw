@@ -32,6 +32,10 @@ jobs:
     steps:
     - name: "Checkout repository"
       uses: actions/checkout@v3
+    - name: "build gendata"
+      run: cd make; make -j -f gendata.make
+    - name: "run gendata"
+      run: make/bin/gendata
     - name: "build dstw app"
       run: cd make; make -j -f dstw.make
     - name: "run dstw app"

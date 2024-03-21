@@ -30,5 +30,9 @@ int main()
     capOut("SEG", CAPACITY_SEG);
     capOut("DSP", CAPACITY_DSP);
 
+    IL::getReader().read("sample.proj");
+
+    printf("maxerr: %u\n", IL::getLog().maxerr());
+
     return 0;
 }

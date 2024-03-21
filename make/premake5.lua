@@ -77,26 +77,32 @@ workspace 'dstw'
         configurations { 'ci' }
         language 'C++'
         objdir 'obj/%{prj.name}'
-
-        includedirs { appIncludes }
         targetdir 'bin'
         buildoptions { buildOpts }
-    
+        defines { 
+            'NDEBUG', 
+            'CAPACITY_TSW=2000', 
+            'CAPACITY_SIG=2000', 
+            'CAPACITY_LCR=2000', 
+            'CAPACITY_SEG=2000' 
+        }
+        optimize 'On'
+        stl 'none'
+
         project 'dstw'
             kind 'ConsoleApp'
-            
+            includedirs { appIncludes }
             files { '../application/**.cpp' }
 
-            defines { 
-                'NDEBUG', 
-                'CAPACITY_TSW=2000', 
-                'CAPACITY_SIG=2000', 
-                'CAPACITY_LCR=2000', 
-                'CAPACITY_SEG=2000' 
-            }
-            optimize 'On'
-            stl 'none'
     
+        project 'gendata'
+            kind 'ConsoleApp'
+            includedirs { testIncludes }
+            files { 
+                '../testing/gendata/genDataMain.cpp', 
+                '../testing/testenv/testlib/src/TestLib.cpp'
+            }
+
 --  ============================================================
 --  > _devtests.make
 --  development only tests
