@@ -79,4 +79,4 @@ transitions_*.md
 .github/**/*.md
 
 # runtime test
-sample.proj
+*.proj

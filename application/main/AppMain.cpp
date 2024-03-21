@@ -15,7 +15,7 @@ int main()
     capOut("SEG", CAPACITY_SEG);
     capOut("DSP", CAPACITY_DSP);
 
-    IL::getReader().read("sample.proj");
+    IL::getReader().read("dstw.proj");
 
     const E_Err e = IL::getLog().maxerr();
     printf("maxerr: %u\n", e);

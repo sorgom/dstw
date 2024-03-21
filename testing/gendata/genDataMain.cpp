@@ -8,6 +8,6 @@
 int main()
 {
     test::GenProjData data;
-    data.dump("sample.proj");
+    data.dump("dstw.proj");
     return 0;
 }
