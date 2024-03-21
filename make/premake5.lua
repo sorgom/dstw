@@ -69,6 +69,9 @@ workspace 'tests'
 
     project 'tests'
         kind        'ConsoleApp'
+        defines { 'NDEBUG', testDefines }
+        optimize 'On'
+        stl 'none'
 
         filter { 'action:gmake2' }
             targetdir 'bin'
@@ -88,9 +91,6 @@ workspace 'tests'
             }
             links { 'winmm' }
 
-        defines { 'NDEBUG', testDefines }
-        optimize 'On'
-        stl 'none'
 
 --  ============================================================
 --  > coverage.make

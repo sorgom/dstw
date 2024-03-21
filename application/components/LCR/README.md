@@ -20,7 +20,6 @@ classes LCR_(X) implement I_LCR
 -   LCR with occupation control
 ```
 
-
 ## directory content
 
 **LCR_Hub.h**

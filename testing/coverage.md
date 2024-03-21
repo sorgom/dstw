@@ -52,9 +52,9 @@ SIG/src/SIG_X.cpp           293         --       --
 SYS/src/Com.cpp               2         --       --
 SYS/src/Dispatcher.cpp      110         --       --
 SYS/src/Log.cpp               2         --       --
-SYS/src/Reader.cpp          100         --       --
+SYS/src/Reader.cpp           96         --       --
 TSW/src/TSW.cpp              91         --       --
 TSW/src/TSW_Hub.cpp          32         --       --
 TSW/src/TSW_Provider.cpp     35         --       --
-total                       958         --       --
+total                       954         --       --
 ```
