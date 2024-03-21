@@ -41,6 +41,7 @@ enum E_Mod : UINT8
 
 enum E_Err : UINT8
 {
+    NO_ERR,
     ERR_MATCH,
     ERR_RANGE,
     ERR_STARTUP

@@ -5,6 +5,7 @@
 
 #include <testlib/TestGroupBase.h>
 #include <LCR/LCR_X.h>
+#include <limits>
 
 namespace test
 {
@@ -31,15 +32,15 @@ namespace test
         }
 
         void FLD(
-            INT32 fldState,
-            INT32 fldUbk,
-            INT32 stateToGui = -1,
-            INT32 ubkToGui = 0
+            UINT8 fldState,
+            UINT8 fldUbk,
+            UINT8 stateToGui = UCHAR_MAX,
+            UINT8 ubkToGui = 0
         )
         {
             SUBSTEPS()
             STEP(1)
-            if (stateToGui >= 0)
+            if (stateToGui < UCHAR_MAX)
             {
                 m_LCR_Hub().expectToGui(mId, stateToGui, ubkToGui);
             }
@@ -50,15 +51,15 @@ namespace test
 
         void CMD
         (
-            INT32 guiState,
-            INT32 stateToFld = -1,
-            INT32 stateToGui = 0,
-            INT32 ubkToGui = 0
+            UINT8 guiState,
+            UINT8 stateToFld = UCHAR_MAX,
+            UINT8 stateToGui = 0,
+            UINT8 ubkToGui = 0
         )
         {
             SUBSTEPS()
             STEP(1)
-            if (stateToFld >= 0)
+            if (stateToFld < UCHAR_MAX)
             {
                 m_LCR_Hub().expectToFld(mId, stateToFld);
                 m_LCR_Hub().expectToGui(mId, stateToGui, ubkToGui);
@@ -189,14 +190,14 @@ namespace test
     {
         STEP(1)
         m_Log().expectLog(MOD_LCR, ERR_MATCH);
-        FLD(10000, LCR_UBK_STATE_UNDEF);
+        FLD(UCHAR_MAX, LCR_UBK_STATE_UNDEF);
 
         STEP(2)
         m_Log().expectLog(MOD_LCR, ERR_MATCH);
-        CMD(10000);
+        CMD(UCHAR_MAX);
 
         STEP(3)
-        FLD(LCR_STATE_UNDEF, 10000);
+        FLD(LCR_STATE_UNDEF, UCHAR_MAX);
     }
 
     //  test type: equivalence class test
@@ -269,18 +270,18 @@ namespace test
 
         STEP(1)
         m_Log().expectLog(MOD_LCR, ERR_MATCH);
-        FLD(10000, LCR_UBK_STATE_UNDEF);
+        FLD(UCHAR_MAX, LCR_UBK_STATE_UNDEF);
 
         STEP(2)
         m_Log().expectLog(MOD_LCR, ERR_MATCH);
-        CMD(10000);
+        CMD(UCHAR_MAX);
 
         STEP(3)
         m_Log().expectLog(MOD_LCR, ERR_MATCH);
-        FLD(LCR_STATE_UNDEF, 10000);
+        FLD(LCR_STATE_UNDEF, UCHAR_MAX);
 
         STEP(4)
         m_Log().expectLog(MOD_LCR, ERR_MATCH);
-        FLD(10000, 10000);
+        FLD(UCHAR_MAX, UCHAR_MAX);
     }
 }

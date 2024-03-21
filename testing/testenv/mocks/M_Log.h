@@ -24,6 +24,14 @@ namespace test
         {
             expect("log").PARAM(mod).PARAM(err);
         }
+        inline E_Err maxerr() const
+        {
+            return static_cast<E_Err>(call("maxerr").RETURN_DEF_UNSIGNED(NO_ERR));
+        }
+        inline void expectMaxerr(E_Err ret = NO_ERR) const
+        {
+            expect("maxerr").AND_RETURN(ret);
+        }
     };
 } 
 

@@ -1,8 +1,5 @@
 #include <comparators/ostreams.h>
 
-using std::ostream;
-using std::endl;
-
 OSTREAM_DEF(ComName)
 {
     return os << fixC(d.chars);

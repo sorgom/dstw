@@ -37,12 +37,11 @@ build
 bin
 obj
 lib
+exe
 .vs
 *.vcxproj.*
 *.vcxproj
 *.sln
-
-# *.make
 
 # gcov
 gcov
@@ -75,3 +74,9 @@ _*.*
 # depracated gen
 transitions_*.md
 *_states.md
+
+# .github
+.github/**/*.md
+
+# runtime test
+*.proj

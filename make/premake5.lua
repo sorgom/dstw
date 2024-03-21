@@ -1,41 +1,8 @@
 --  ============================================================
---  Makefile build rules for premake5:
+--  premake5 build rules for gcc (gmake2):
 --  ============================================================
 
-appIncludes = {
-    '../specification',
-    '../application',
-    '../application/components'
-}
-
-testIncludes = {
-    '../testing/testenv',
-    '../devel',
-    '../BuildCppUTest/CppUTest/include',
-    '../CppUTestSteps/TestSteps/include',
-    appIncludes
-}
-
-appSrcs = {
-    '../application/components/**.cpp'
-}
-
-testEnvSrcs = {
-    '../testing/testenv/**.cpp',
-    '../CppUTestSteps/TestSteps/src/*.cpp'
-}
-
-testDefines = {
-    'CPPUTEST_USE_LONG_LONG=0', 
-    'CAPACITY_TSW=11', 
-    'CAPACITY_SIG=10', 
-    'CAPACITY_LCR=9', 
-    'CAPACITY_SEG=22' 
-}
-
-testLinks = { 'CppUTest', 'CppUTestExt' }
-
--- buildOpts = { '-std=c++2a -pedantic-errors' }
+include 'premake5_settings.lua'
 buildOpts = { '-std=c++17 -pedantic-errors -Werror -Wall' }
 
 --  ============================================================
@@ -44,29 +11,23 @@ buildOpts = { '-std=c++17 -pedantic-errors -Werror -Wall' }
 --  ->  bin/tests
 --  ============================================================
 workspace 'tests'
-    configurations { 'ci' }
-    language    'C++'
-    objdir      'obj/%{prj.name}'
+    filter { 'action:gmake*' }
+        configurations { 'ci' }
+        language 'C++'
+        objdir 'obj/%{prj.name}'
 
-    includedirs { testIncludes }
-    buildoptions { buildOpts }
+        includedirs { testIncludes }
+        buildoptions { buildOpts }
 
-    project 'tests'
-        kind        'ConsoleApp'
-        targetdir   'bin'
-
-        files { 
-            testEnvSrcs,
-            appSrcs,
-            '../testing/tests/moduletests/**.cpp',
-            '../testing/tests/systemtests/**.cpp',
-        }
-
-        defines { 'NDEBUG', testDefines }
-        optimize 'On'
-        stl 'none'
-        libdirs { '../BuildCppUTest/lib' }
-        links { testLinks }
+        project 'tests'
+            kind 'ConsoleApp'
+            defines { 'NDEBUG', testDefines }
+            optimize 'On'
+            stl 'none'
+            targetdir 'bin'
+            files { testSrcs }
+            libdirs { '../BuildCppUTest/lib' }
+            links { testLinks }
 
 --  ============================================================
 --  > coverage.make
@@ -75,37 +36,36 @@ workspace 'tests'
 --  ->  bin/coverage_tests
 --  ============================================================
 workspace 'coverage'
-    configurations { 'ci' }
-    language    'C++'
-    objdir      'obj/%{prj.name}'
+    filter { 'action:gmake*' }
+        configurations { 'ci' }
+        language 'C++'
+        objdir 'obj/%{prj.name}'
 
-    includedirs { testIncludes }
+        includedirs { testIncludes }
+        buildoptions { buildOpts }
 
-    buildoptions { buildOpts }
+        defines { 'DEBUG', testDefines }
+        symbols 'On'
+        stl 'none'
 
-    defines { 'DEBUG', testDefines }
-    symbols 'On'
-    stl 'none'
+        project 'coverage_app'
+            kind 'StaticLib'
+            targetdir 'lib'
+            files { appSrcs }
+            buildoptions {'-fprofile-arcs -ftest-coverage'}
 
-    project 'coverage_app'
-        kind        'StaticLib'
-        targetdir   'lib'
-        
-        files { appSrcs }
-        buildoptions {'-fprofile-arcs -ftest-coverage'}
+        project 'coverage_tests'
+            kind 'ConsoleApp'
+            targetdir 'bin'
 
-    project 'coverage_tests'
-        kind        'ConsoleApp'
-        targetdir   'bin'
+            files { 
+                testEnvSrcs,
+                '../testing/tests/moduletests/**.cpp'
+            }
 
-        files { 
-            testEnvSrcs,
-            '../testing/tests/moduletests/**.cpp'
-        }
-
-        libdirs { 'lib', '../BuildCppUTest/lib' }
-        links { 'coverage_app', 'gcov', testLinks }
-        linkoptions { '--coverage' }
+            libdirs { 'lib', '../BuildCppUTest/lib' }
+            links { 'coverage_app', 'gcov', testLinks }
+            linkoptions { '--coverage' }
 
 --  ============================================================
 --  > dstw.make
@@ -113,22 +73,12 @@ workspace 'coverage'
 --  ->  bin/dstw
 --  ============================================================
 workspace 'dstw'
-    configurations { 'ci' }
-    language    'C++'
-    objdir      'obj/%{prj.name}'
-
-    includedirs { appIncludes }
-
-    buildoptions { buildOpts }
-
-    project 'dstw'
-        kind        'ConsoleApp'
-        targetdir   'bin'
-        
-        files { 
-            '../application/**.cpp'
-        }
-
+    filter { 'action:gmake*' }
+        configurations { 'ci' }
+        language 'C++'
+        objdir 'obj/%{prj.name}'
+        targetdir 'bin'
+        buildoptions { buildOpts }
         defines { 
             'NDEBUG', 
             'CAPACITY_TSW=2000', 
@@ -138,34 +88,49 @@ workspace 'dstw'
         }
         optimize 'On'
         stl 'none'
+
+        project 'dstw'
+            kind 'ConsoleApp'
+            includedirs { appIncludes }
+            files { '../application/**.cpp' }
+
     
+        project 'gendata'
+            kind 'ConsoleApp'
+            includedirs { testIncludes }
+            files { 
+                '../testing/gendata/genDataMain.cpp', 
+                '../testing/testenv/testlib/src/TestLib.cpp'
+            }
+
 --  ============================================================
 --  > _devtests.make
 --  development only tests
 --  ->  bin/_devtests
 --  ============================================================
 workspace '_devtests'
-    configurations { 'ci' }
-    language    'C++'
-    objdir      'obj/%{prj.name}'
+    filter { 'action:gmake*' }
+        configurations { 'ci' }
+        language 'C++'
+        objdir 'obj/%{prj.name}'
 
-    includedirs { testIncludes }
-    buildoptions { buildOpts }
+        includedirs { testIncludes }
+        buildoptions { buildOpts }
 
-    project '_devtests'
-        kind        'ConsoleApp'
-        targetdir   'bin'
+        project '_devtests'
+            kind 'ConsoleApp'
+            targetdir 'bin'
 
-        files { 
-            appSrcs,
-            testEnvSrcs,
-            '../testing/tests/devtests/*.cpp',
-        }
+            files { 
+                appSrcs,
+                testEnvSrcs,
+                '../testing/tests/devtests/*.cpp',
+            }
 
-        defines { 'NDEBUG', testDefines }
-        optimize 'On'
-        libdirs { '../BuildCppUTest/lib' }
-        links { testLinks }
+            defines { 'NDEBUG', testDefines }
+            optimize 'On'
+            libdirs { '../BuildCppUTest/lib' }
+            links { testLinks }
 
 --  ============================================================
 --  > _bullseye.make
@@ -173,29 +138,30 @@ workspace '_devtests'
 --  ->  bin/_bullseye
 --  ============================================================
 workspace '_bullseye'
-    configurations { 'ci' }
-    language    'C++'
-    objdir      'obj/%{prj.name}'
+    filter { 'action:gmake*' }
+        configurations { 'ci' }
+        language 'C++'
+        objdir 'obj/%{prj.name}'
 
-    includedirs { testIncludes }
-    buildoptions { buildOpts }
+        includedirs { testIncludes }
+        buildoptions { buildOpts }
 
-    project '_bullseye'
-        kind        'ConsoleApp'
-        targetdir   'bin'
+        project '_bullseye'
+            kind 'ConsoleApp'
+            targetdir 'bin'
 
-        files { 
-            appSrcs,
-            testEnvSrcs,
-            '../testing/tests/moduletests/**.cpp',
-        }
+            files { 
+                appSrcs,
+                testEnvSrcs,
+                '../testing/tests/moduletests/**.cpp',
+            }
 
-        defines { 'NDEBUG', testDefines }
-        optimize 'On'
-        stl 'none'
+            defines { 'NDEBUG', testDefines }
+            optimize 'On'
+            stl 'none'
 
-        libdirs { '../BuildCppUTest/lib' }
-        links { testLinks }
+            libdirs { '../BuildCppUTest/lib' }
+            links { testLinks }
 
-        prebuildcommands { 'cov01 -1 --no-banner' }
-        postbuildcommands { './bullseye.sh' }
+            prebuildcommands { 'cov01 -1 --no-banner' }
+            postbuildcommands { './bullseye.sh' }

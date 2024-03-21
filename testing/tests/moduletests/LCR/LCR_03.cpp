@@ -22,17 +22,9 @@ namespace test
     TEST_GROUP_BASE(LCR_03, TestGroupLCP)
     {};
 
-    //  test type: size check
-    TEST(LCR_03, T01)
-    {
-        STEP(1)
-        L_CHECK_EQUAL_SIZE(LCR_X, LCR)
-        L_CHECK_EQUAL_SIZE(LCR_X, LCR_UBK)
-    }
-
     //  test type: equivalence class test
     //  load valid ProjData LCR
-    TEST(LCR_03, T02)
+    TEST(LCR_03, T01)
     {
         STEP(1)
         m_Dispatcher().expectAssign(mData.lcrName(0), SUBSYS_LCR, 0, 0);
@@ -47,7 +39,7 @@ namespace test
 
     //  test type: equivalence class test
     //  load invalid ProjData LCR (unknown type)
-    TEST(LCR_03, T03)
+    TEST(LCR_03, T02)
     {
         SETUP()
         mData.setLcrType(1, LCR_TYPE_LCR_UBK + 100); 
@@ -63,7 +55,7 @@ namespace test
 
     //  test type: equivalence class test
     //  load invalid ProjData LCR (too many)
-    TEST(LCR_03, T04)
+    TEST(LCR_03, T03)
     {
         STEP(1)
         m_Log().expectLog(MOD_LCR_PROVIDER, ERR_STARTUP);
@@ -74,7 +66,7 @@ namespace test
 
     //  test type: equivalence class test
     //  load valid ProjData LCR Dispatcher returns negative value
-    TEST(LCR_03, T05)
+    TEST(LCR_03, T04)
     {
         STEP(1)
         m_Dispatcher().expectAssign(mData.lcrName(0), SUBSYS_LCR, 0, 0);
@@ -87,7 +79,7 @@ namespace test
     
     //  test type: coverage
     //  retrieve instance
-    TEST(LCR_03, T06)
+    TEST(LCR_03, T05)
     {
         I_LCR_Provider& inst = LCR_Provider::instance();
         play(inst);

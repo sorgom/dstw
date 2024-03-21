@@ -14,6 +14,7 @@ class I_Log
 {
 public:
     virtual void log(E_Mod mod, E_Err err) = 0;
+    virtual E_Err maxerr() const = 0;
 };
 
 #endif // H_

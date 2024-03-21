@@ -21,15 +21,15 @@ namespace test
         NtpIndex<CAPACITY_DSP> indx(data);
         L_CHECK_EQUAL(CAPACITY_DSP, data.capacity())
         
-        const size_t tSize = 10;
-        const size_t tOffs = tSize - 1;
+        const UINT8 tSize = 10;
+        const UINT8 tOffs = tSize - 1;
 
         STEP(1)
         SUBSTEPS()
-        for (UINT16 i = 0; i < tSize; ++i)
+        for (UINT8 n = 0; n < tSize; ++n)
         {
-            LSTEP(i)
-            data.add(genComName(tOffs - i), 100 + i, i);
+            LSTEP(n)
+            data.add(genComName(tOffs - n), n, n);
         }
         ENDSTEPS()
 
@@ -37,13 +37,13 @@ namespace test
         indx.index();
         STEP(3)
         SUBSTEPS()
-        for (UINT16 i = 0; i < tSize; ++i)
+        for (UINT8 n = 0; n < tSize; ++n)
         {
-            LSTEP(i)
-            const ComName& cn = genComName(tOffs - i);
+            LSTEP(n)
+            const ComName& cn = genComName(tOffs - n);
             const PosRes f = indx.find(cn);
             L_CHECK_TRUE(f.valid)
-            L_CHECK_EQUAL(tOffs -i, f.pos)
+            L_CHECK_EQUAL(static_cast<size_t>(tOffs - n), f.pos)
             const bool eq = cn == indx.get(f).name;
             L_CHECK_TRUE(eq)
         }

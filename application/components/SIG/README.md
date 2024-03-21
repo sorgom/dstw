@@ -1,3 +1,6 @@
+# component SIG
+**signals**
+
 ## directory content
 
 **SIG_Hub.h**

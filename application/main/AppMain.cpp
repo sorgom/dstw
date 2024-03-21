@@ -2,33 +2,19 @@
 #include <setup/capacities.h>
 #include <cstdio>
 
-#define GET_DDI(NAME) IL::get ## NAME();
+#define CO(WHAT) printf("- %3s%10u\n", #WHAT, CAPACITY_ ## WHAT); 
 
-void capOut(const CONST_C_STRING what, const UINT32 size)
+int main()
 {
-    printf("- %3s%10u\n", what, size);
-}
+    CO(TSW)
+    CO(SIG)
+    CO(LCR)
+    CO(SEG)
+ 
+    IL::getReader().read("dstw.proj");
 
-int main(const INT32 argc, const CONST_C_STRING* const argv)
-{
-    //# GET_DDI
-    GET_DDI(Com)
-    GET_DDI(Dispatcher)
-    GET_DDI(LCR_Hub)
-    GET_DDI(LCR_Provider)
-    GET_DDI(Log)
-    GET_DDI(Reader)
-    GET_DDI(SIG_Hub)
-    GET_DDI(SIG_Provider)
-    GET_DDI(TSW_Hub)
-    GET_DDI(TSW_Provider)
-    //# END
+    const E_Err e = IL::getLog().maxerr();
+    printf("maxerr: %u\n", e);
 
-    capOut("TSW", CAPACITY_TSW);
-    capOut("SIG", CAPACITY_SIG);
-    capOut("LCR", CAPACITY_LCR);
-    capOut("SEG", CAPACITY_SEG);
-    capOut("DSP", CAPACITY_DSP);
-
-    return 0;
+    return NO_ERR == e ? 0 : 1;
 }

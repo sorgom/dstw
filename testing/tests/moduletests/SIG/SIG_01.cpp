@@ -5,6 +5,7 @@
 
 #include <testlib/TestGroupBase.h>
 #include <SIG/SIG_X.h>
+#include <limits>
 
 namespace test
 {
@@ -29,15 +30,15 @@ namespace test
         }
 
         void FLD(
-            INT32 fldState,
-            INT32 fldSpeed,
-            INT32 stateToGui = -1,
-            INT32 speedToGui = 0
+            UINT8 fldState,
+            UINT8 fldSpeed,
+            UINT8 stateToGui = UCHAR_MAX,
+            UINT8 speedToGui = 0
         )
         {
             SUBSTEPS()
             STEP(1)
-            if (stateToGui >= 0)
+            if (stateToGui < UCHAR_MAX)
             {
                 m_SIG_Hub().expectToGui(mId, stateToGui, speedToGui);
             }
@@ -48,18 +49,18 @@ namespace test
 
         void CMD
         (
-            INT32 guiState,
-            INT32 guiSpeed,
-            INT32 stateToFld = -1,
-            INT32 speedToFld = 0,
-            INT32 stateToGui = 0,
-            INT32 speedToGui = 0
+            UINT8 guiState,
+            UINT8 guiSpeed,
+            UINT8 stateToFld = UCHAR_MAX,
+            UINT8 speedToFld = 0,
+            UINT8 stateToGui = 0,
+            UINT8 speedToGui = 0
 
         )
         {
             SUBSTEPS()
             STEP(1)
-            if (stateToFld >= 0)
+            if (stateToFld < UCHAR_MAX)
             {
                 m_SIG_Hub().expectToFld(mId, stateToFld, speedToFld);
                 m_SIG_Hub().expectToGui(mId, stateToGui, speedToGui);
@@ -179,11 +180,11 @@ namespace test
     {
         STEP(1)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        CMD(10000, 0);
+        CMD(UCHAR_MAX, 0);
 
         STEP(2)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        FLD(10000, 0);
+        FLD(UCHAR_MAX, 0);
 
         STEP(3)
         CMD(SIG_STATE_H0, 10, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
@@ -312,11 +313,11 @@ namespace test
 
         STEP(1)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        CMD(10000, 0);
+        CMD(UCHAR_MAX, 0);
 
         STEP(2)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        FLD(10000, 0);
+        FLD(UCHAR_MAX, 0);
 
         STEP(3)
         CMD(SIG_STATE_N0, 10, SIG_STATE_N0, 10, SIG_STATE_WAIT_N0, 0);
@@ -600,11 +601,11 @@ namespace test
 
         STEP(1)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        CMD(10000, 0);
+        CMD(UCHAR_MAX, 0);
 
         STEP(2)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        FLD(10000, 0);
+        FLD(UCHAR_MAX, 0);
 
         STEP(3)
         CMD(SIG_STATE_H1_N0, 0, SIG_STATE_H1_N0, 0, SIG_STATE_WAIT_H1_N0, 0);

@@ -6,6 +6,7 @@ help()
     echo "build all major makes parallelly"
     echo "options:"
     echo "-r  remove all artifacts before"
+    echo "-p  premake5 makefiles"
     echo "-x  execute all binaries"
     echo "-h  this help"
     echo "===================================="
@@ -27,17 +28,21 @@ mk()
 
 rem=
 exe=
-while getopts hrx option; do
+pre=
+while getopts hrxp option; do
     case $option in
       (h)  help;;
       (r)  rem=1;;
-      (x)  exe=1
+      (x)  exe=1;;
+      (p)  pre=1
     esac
 done
 
 cd $(dirname $0)
 
 if test ! -z $rem; then rm -rf bin lib obj *.gcov; fi
+
+if test ! -z $pre; then premake5 gmake2; fi
 
 st=$(date +%s)
 for fn in $(ls *.make | grep -v '_'); do
