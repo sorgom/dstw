@@ -2,19 +2,15 @@
 #include <setup/capacities.h>
 #include <cstdio>
 
-void capOut(const CONST_C_STRING what, const UINT32 size)
-{
-    printf("- %3s%10u\n", what, size);
-}
+#define CO(WHAT) printf("- %3s%10u\n", #WHAT, CAPACITY_ ## WHAT); 
 
 int main()
 {
-    capOut("TSW", CAPACITY_TSW);
-    capOut("SIG", CAPACITY_SIG);
-    capOut("LCR", CAPACITY_LCR);
-    capOut("SEG", CAPACITY_SEG);
-    capOut("DSP", CAPACITY_DSP);
-
+    CO(TSW)
+    CO(SIG)
+    CO(LCR)
+    CO(SEG)
+ 
     IL::getReader().read("dstw.proj");
 
     const E_Err e = IL::getLog().maxerr();
