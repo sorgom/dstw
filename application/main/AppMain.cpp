@@ -2,8 +2,6 @@
 #include <setup/capacities.h>
 #include <cstdio>
 
-#define GET_DDI(NAME) IL::get ## NAME();
-
 void capOut(const CONST_C_STRING what, const UINT32 size)
 {
     printf("- %3s%10u\n", what, size);
@@ -11,19 +9,6 @@ void capOut(const CONST_C_STRING what, const UINT32 size)
 
 int main()
 {
-    //# GET_DDI
-    GET_DDI(Com)
-    GET_DDI(Dispatcher)
-    GET_DDI(LCR_Hub)
-    GET_DDI(LCR_Provider)
-    GET_DDI(Log)
-    GET_DDI(Reader)
-    GET_DDI(SIG_Hub)
-    GET_DDI(SIG_Provider)
-    GET_DDI(TSW_Hub)
-    GET_DDI(TSW_Provider)
-    //# END
-
     capOut("TSW", CAPACITY_TSW);
     capOut("SIG", CAPACITY_SIG);
     capOut("LCR", CAPACITY_LCR);
@@ -32,7 +17,8 @@ int main()
 
     IL::getReader().read("sample.proj");
 
-    printf("maxerr: %u\n", IL::getLog().maxerr());
+    const E_Err e = IL::getLog().maxerr();
+    printf("maxerr: %u\n", e);
 
-    return 0;
+    return NO_ERR == e ? 0 : 1;
 }

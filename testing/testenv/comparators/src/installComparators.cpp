@@ -15,9 +15,9 @@ namespace test
     {
         //# ADD_COMP
         ADD_COMP(ComCmdFld)
-        ADD_COMP(ComName)
         ADD_COMP(ComFldState)
         ADD_COMP(ComGuiCmd)
+        ADD_COMP(ComName)
         ADD_COMP(ComStateGui)
         //# END
     }

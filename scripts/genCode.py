@@ -14,8 +14,7 @@ from projectDirs import *
 appIncludes, appNames = scanDdi(glob(modDir + '/*/*.h'))
 genCode(
     targets = [
-        modDir + '/SYS/IL.h',
-        appDir + '/AppMain.cpp'
+        modDir + '/SYS/IL.h'
     ],
     names = appNames,
     includes = appIncludes,
