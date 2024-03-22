@@ -2,6 +2,7 @@
 #include <setup/capacities.h>
 #include <SYS/IL.h>
 #include <SYS/Reader.h>
+#include <BAS/HN.h>
 
 #include <algorithm>
 #include <fstream>
@@ -38,7 +39,10 @@ void Reader::read(const CONST_C_STRING filename) const
             } head;
             
             is.read(head.buf, hSize);
-            const auto [nTSW, nSIG, nLCR, nSEG] = head.vals;
+            const UINT32 nTSW = HN::toH(head.vals[0]);
+            const UINT32 nSIG = HN::toH(head.vals[1]);
+            const UINT32 nLCR = HN::toH(head.vals[2]);
+            const UINT32 nSEG = HN::toH(head.vals[3]);
 
             const stype sTSW = nTSW * sizeof(ProjTSW);
             const stype sSIG = nSIG * sizeof(ProjSIG);

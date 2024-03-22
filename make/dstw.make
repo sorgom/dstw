@@ -53,6 +53,7 @@ OBJECTS :=
 GENERATED += $(OBJDIR)/AppMain.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/Dispatcher.o
+GENERATED += $(OBJDIR)/HN.o
 GENERATED += $(OBJDIR)/LCR_Hub.o
 GENERATED += $(OBJDIR)/LCR_Provider.o
 GENERATED += $(OBJDIR)/LCR_X.o
@@ -68,6 +69,7 @@ GENERATED += $(OBJDIR)/TSW_Provider.o
 OBJECTS += $(OBJDIR)/AppMain.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
+OBJECTS += $(OBJDIR)/HN.o
 OBJECTS += $(OBJDIR)/LCR_Hub.o
 OBJECTS += $(OBJDIR)/LCR_Provider.o
 OBJECTS += $(OBJDIR)/LCR_X.o
@@ -143,6 +145,9 @@ endif
 # File Rules
 # #############################################
 
+$(OBJDIR)/HN.o: ../application/components/BAS/src/HN.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/SwapBytes.o: ../application/components/BAS/src/SwapBytes.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"

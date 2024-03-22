@@ -55,6 +55,7 @@ GENERATED += $(OBJDIR)/BAS_02.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/Comparator.o
 GENERATED += $(OBJDIR)/Dispatcher.o
+GENERATED += $(OBJDIR)/HN.o
 GENERATED += $(OBJDIR)/IL.o
 GENERATED += $(OBJDIR)/LCR_01.o
 GENERATED += $(OBJDIR)/LCR_02.o
@@ -97,6 +98,7 @@ OBJECTS += $(OBJDIR)/BAS_02.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/Comparator.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
+OBJECTS += $(OBJDIR)/HN.o
 OBJECTS += $(OBJDIR)/IL.o
 OBJECTS += $(OBJDIR)/LCR_01.o
 OBJECTS += $(OBJDIR)/LCR_02.o
@@ -201,6 +203,9 @@ $(OBJDIR)/TestSteps.o: ../CppUTestSteps/TestSteps/src/TestSteps.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TestStepsPlugin.o: ../CppUTestSteps/TestSteps/src/TestStepsPlugin.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/HN.o: ../application/components/BAS/src/HN.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/SwapBytes.o: ../application/components/BAS/src/SwapBytes.cpp

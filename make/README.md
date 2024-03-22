@@ -48,7 +48,18 @@ common premake5 build settings gcc & VS
 
 **premake5_vs.lua**
 ```
-premake5 build rules for VS:
+premake5 build rules for VS
+
+general setup
+warning level: 4 (high)
+
+suppressed warnings application:
+-   4100 unreferenced formal parameter
+-   4103 change of alignement with header inclusion
+    this is intended behaviour of packBegin.h / packEnd.h
+additional suppressed warnings test code:
+-   4127 suggested 'if constexpr'
+    warning caused by CppUTest headers code
 
 > cpputest.sln
 cpputest library
@@ -58,6 +69,10 @@ cpputest library
 module tests and system tests at once runtime
 (requires cpputest.lib)
 ->  exe/tests.exe
+
+> gendata.sln
+generate proj data for application runtime
+->  exe/gendata.exe
 
 > dstw.sln
 application runtime

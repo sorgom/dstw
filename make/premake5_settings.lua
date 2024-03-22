@@ -33,6 +33,14 @@ testDefines = {
     'CAPACITY_SEG=22' 
 }
 
+appDefines = { 
+    'NDEBUG', 
+    'CAPACITY_TSW=2000', 
+    'CAPACITY_SIG=2000', 
+    'CAPACITY_LCR=2000', 
+    'CAPACITY_SEG=2000' 
+}
+
 testSrcs = {
     testEnvSrcs,
     appSrcs,

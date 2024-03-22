@@ -1,8 +1,23 @@
 --  ============================================================
---  premake5 build rules for VS:
+--  premake5 build rules for VS
 --  ============================================================
 
 include 'premake5_settings.lua'
+
+--  ============================================================
+--  general setup
+--  warning level: 4 (high)
+--  
+--  suppressed warnings application:
+--  -   4100 unreferenced formal parameter
+--  -   4103 change of alignement with header inclusion
+--      this is intended behaviour of packBegin.h / packEnd.h
+--  additional suppressed warnings test code:
+--  -   4127 suggested 'if constexpr' 
+--      warning caused by CppUTest headers code
+--  ============================================================
+buildOptsApp = '/std:c++20 /W4 /wd4100 /wd4103'
+buildOptsTest = buildOptsApp .. ' /wd4127'
 
 --  ============================================================
 --  > cpputest.sln
@@ -24,7 +39,6 @@ workspace 'cpputest'
         project 'cpputest'
             kind 'StaticLib'
             targetdir 'lib'
-            buildoptions { '/std:c++20 /W2' }
             files { 
                 CppUTestHome .. 'src/CppUTest/*.cpp',
                 CppUTestHome .. 'src/Platforms/VisualCpp/*.cpp',
@@ -53,13 +67,39 @@ workspace 'tests'
             kind 'ConsoleApp'
             targetdir 'exe'
             warnings 'high'
-            buildoptions { '/std:c++20 /W4 /wd4103 /wd4100 /wd4127' }
+            buildoptions { buildOptsTest }
 
             files { testSrcs }
             libdirs { 'lib' }
 
             links { 'winmm', 'cpputest' }
 
+--  ============================================================
+--  > gendata.sln
+--  generate proj data for application runtime
+--  ->  exe/gendata.exe
+--  ============================================================
+workspace 'gendata'
+    filter { 'action:vs*' }
+        configurations { 'ci' }
+        language 'C++'
+        objdir 'obj/%{prj.name}'
+
+        targetdir 'exe'
+        warnings 'high'
+        buildoptions { buildOptsApp }
+
+        defines { appDefines }
+        optimize 'On'
+        stl 'none'
+    
+        project 'gendata'
+            kind 'ConsoleApp'
+            includedirs { testIncludes }
+            files { 
+                '../testing/gendata/genDataMain.cpp', 
+                '../testing/testenv/testlib/src/TestLib.cpp'
+            }
 
 --  ============================================================
 --  > dstw.sln
@@ -72,23 +112,16 @@ workspace 'dstw'
         language 'C++'
         objdir 'obj/%{prj.name}'
 
-        includedirs { appIncludes }
         targetdir 'exe'
         warnings 'high'
-        buildoptions { '/std:c++20 /W4 /wd4100 /wd4103' }
+        buildoptions { buildOptsApp }
 
+        defines { appDefines }
+        optimize 'On'
+        stl 'none'
+    
         project 'dstw'
+            includedirs { appIncludes }
             kind 'ConsoleApp'
-            
             files { '../application/**.cpp' }
 
-            defines { 
-                'NDEBUG', 
-                'CAPACITY_TSW=2000', 
-                'CAPACITY_SIG=2000', 
-                'CAPACITY_LCR=2000', 
-                'CAPACITY_SEG=2000' 
-            }
-            optimize 'On'
-            stl 'none'
-   

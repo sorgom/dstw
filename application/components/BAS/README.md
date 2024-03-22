@@ -3,6 +3,11 @@
 
 ## directory content
 
+**HN.h**
+```
+host and network byte order
+```
+
 **I_Array.h**
 ```
 definition of interfaces I_Array / I_SortableArray
