@@ -3,7 +3,7 @@
 --  ============================================================
 
 include 'premake5_settings.lua'
-buildOpts = { '-std=c++17 -pedantic-errors -Werror -Wall' }
+buildOpts = { '-std=c++2a -pedantic-errors -Werror -Wall' }
 
 --  ============================================================
 --  > tests.make
@@ -98,10 +98,7 @@ workspace 'dstw'
         project 'gendata'
             kind 'ConsoleApp'
             includedirs { testIncludes }
-            files { 
-                '../testing/gendata/genDataMain.cpp', 
-                '../testing/testenv/testlib/src/TestLib.cpp'
-            }
+            files { genDataSrcs }
 
 --  ============================================================
 --  > _devtests.make

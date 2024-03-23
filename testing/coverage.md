@@ -42,6 +42,7 @@ For details see
 ## current source code coverage
 ```
 file                      lines  uncovered  percent
+BAS/src/HN.cpp               22          4     18.2
 BAS/src/SwapBytes.cpp         8         --       --
 LCR/src/LCR_Hub.cpp          32         --       --
 LCR/src/LCR_Provider.cpp     47         --       --
@@ -52,9 +53,9 @@ SIG/src/SIG_X.cpp           293         --       --
 SYS/src/Com.cpp               2         --       --
 SYS/src/Dispatcher.cpp      110         --       --
 SYS/src/Log.cpp               2         --       --
-SYS/src/Reader.cpp           96         --       --
+SYS/src/Reader.cpp          100         --       --
 TSW/src/TSW.cpp              91         --       --
 TSW/src/TSW_Hub.cpp          32         --       --
 TSW/src/TSW_Provider.cpp     35         --       --
-total                       954         --       --
+total                       980          4      0.4
 ```

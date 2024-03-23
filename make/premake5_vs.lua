@@ -72,7 +72,7 @@ workspace 'tests'
             files { testSrcs }
             libdirs { 'lib' }
 
-            links { 'winmm', 'cpputest' }
+            links { 'winmm', 'ws2_32', 'cpputest' }
 
 --  ============================================================
 --  > gendata.sln
@@ -96,10 +96,8 @@ workspace 'gendata'
         project 'gendata'
             kind 'ConsoleApp'
             includedirs { testIncludes }
-            files { 
-                '../testing/gendata/genDataMain.cpp', 
-                '../testing/testenv/testlib/src/TestLib.cpp'
-            }
+            files { genDataSrcs }
+            links { 'ws2_32' }
 
 --  ============================================================
 --  > dstw.sln
@@ -124,4 +122,5 @@ workspace 'dstw'
             includedirs { appIncludes }
             kind 'ConsoleApp'
             files { '../application/**.cpp' }
+            links { 'ws2_32' }
 

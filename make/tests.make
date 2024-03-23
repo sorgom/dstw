@@ -26,8 +26,8 @@ DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCAPACITY_TSW=11 -DCAPACITY_SIG=
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++2a -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++2a -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS += -lCppUTest -lCppUTestExt
 LDDEPS +=

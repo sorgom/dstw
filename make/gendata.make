@@ -26,8 +26,8 @@ DEFINES += -DNDEBUG -DCAPACITY_TSW=2000 -DCAPACITY_SIG=2000 -DCAPACITY_LCR=2000 
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++2a -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++2a -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
@@ -50,8 +50,10 @@ endef
 GENERATED :=
 OBJECTS :=
 
+GENERATED += $(OBJDIR)/HN.o
 GENERATED += $(OBJDIR)/TestLib.o
 GENERATED += $(OBJDIR)/genDataMain.o
+OBJECTS += $(OBJDIR)/HN.o
 OBJECTS += $(OBJDIR)/TestLib.o
 OBJECTS += $(OBJDIR)/genDataMain.o
 
@@ -117,6 +119,9 @@ endif
 # File Rules
 # #############################################
 
+$(OBJDIR)/HN.o: ../application/components/BAS/src/HN.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/genDataMain.o: ../testing/gendata/genDataMain.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"

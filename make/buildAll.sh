@@ -57,4 +57,5 @@ for b in bin/*; do
     echo ''
     echo "====== $b"
     $b -b
+    echo 'exit code:' $?
 done

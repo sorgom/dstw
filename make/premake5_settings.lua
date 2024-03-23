@@ -35,10 +35,10 @@ testDefines = {
 
 appDefines = { 
     'NDEBUG', 
-    'CAPACITY_TSW=2000', 
-    'CAPACITY_SIG=2000', 
-    'CAPACITY_LCR=2000', 
-    'CAPACITY_SEG=2000' 
+    'CAPACITY_TSW=5000', 
+    'CAPACITY_SIG=5000', 
+    'CAPACITY_LCR=5000', 
+    'CAPACITY_SEG=5000' 
 }
 
 testSrcs = {
@@ -46,6 +46,12 @@ testSrcs = {
     appSrcs,
     '../testing/tests/moduletests/**.cpp',
     '../testing/tests/systemtests/**.cpp'
+}
+
+genDataSrcs = { 
+    '../testing/gendata/genDataMain.cpp', 
+    '../testing/testenv/testlib/src/TestLib.cpp',
+    '../application/components/BAS/src/HN.cpp'
 }
 
 testLinks = { 'CppUTest', 'CppUTestExt' }
