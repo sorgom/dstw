@@ -43,12 +43,17 @@ Done (130ms).
 ````
 ## 2) build executables in VS
 ### 2.1) build and run module tests
-- open and build _cpputest.sln_
-- open and build _tests.sln_
-- run executable
+- open _cpputest.sln_
+- build
+- open _tests.sln_
+- build and run
 
 ### 2.2) build and run application
-- open and build _gendata.sln_
-- run executable
-- open and build _dstw.sln_
-- run executable
+- open _gendata.sln_
+- build and run
+- open _dstw.sln_
+- build and run
+
+## 3) VS keyboard shortcuts
+- build: [CTRL] [shift] [B]
+- (build and) run: [CTRL] [F5]

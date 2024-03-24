@@ -22,8 +22,6 @@ workspace 'tests'
         project 'tests'
             kind 'ConsoleApp'
             defines { 'NDEBUG', testDefines }
-            optimize 'On'
-            stl 'none'
             targetdir 'bin'
             files { testSrcs }
             libdirs { '../BuildCppUTest/lib' }
@@ -46,7 +44,6 @@ workspace 'coverage'
 
         defines { 'DEBUG', testDefines }
         symbols 'On'
-        stl 'none'
 
         project 'coverage_app'
             kind 'StaticLib'
@@ -87,7 +84,6 @@ workspace 'dstw'
             'CAPACITY_SEG=2000' 
         }
         optimize 'On'
-        stl 'none'
 
         project 'dstw'
             kind 'ConsoleApp'
@@ -125,7 +121,6 @@ workspace '_devtests'
             }
 
             defines { 'NDEBUG', testDefines }
-            optimize 'On'
             libdirs { '../BuildCppUTest/lib' }
             links { testLinks }
 
@@ -154,8 +149,6 @@ workspace '_bullseye'
             }
 
             defines { 'NDEBUG', testDefines }
-            optimize 'On'
-            stl 'none'
 
             libdirs { '../BuildCppUTest/lib' }
             links { testLinks }

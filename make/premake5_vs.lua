@@ -33,8 +33,6 @@ workspace 'cpputest'
         includedirs { testIncludes }
 
         defines { 'NDEBUG', testDefines }
-        optimize 'On'
-        stl 'none'
 
         project 'cpputest'
             kind 'StaticLib'
@@ -60,8 +58,6 @@ workspace 'tests'
         includedirs { testIncludes }
 
         defines { 'NDEBUG', testDefines }
-        optimize 'On'
-        stl 'none'
 
         project 'tests'
             kind 'ConsoleApp'
@@ -90,8 +86,6 @@ workspace 'gendata'
         buildoptions { buildOptsApp }
 
         defines { appDefines }
-        optimize 'On'
-        stl 'none'
     
         project 'gendata'
             kind 'ConsoleApp'
@@ -115,8 +109,6 @@ workspace 'dstw'
         buildoptions { buildOptsApp }
 
         defines { appDefines }
-        optimize 'On'
-        stl 'none'
     
         project 'dstw'
             includedirs { appIncludes }

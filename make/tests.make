@@ -26,8 +26,8 @@ DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCAPACITY_TSW=11 -DCAPACITY_SIG=
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++2a -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++2a -pedantic-errors -Werror -Wall
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++2a -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++2a -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS += -lCppUTest -lCppUTestExt
 LDDEPS +=
@@ -52,6 +52,7 @@ OBJECTS :=
 
 GENERATED += $(OBJDIR)/BAS_01.o
 GENERATED += $(OBJDIR)/BAS_02.o
+GENERATED += $(OBJDIR)/BAS_03.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/Comparator.o
 GENERATED += $(OBJDIR)/Dispatcher.o
@@ -95,6 +96,7 @@ GENERATED += $(OBJDIR)/ostreamHelpers.o
 GENERATED += $(OBJDIR)/ostreams.o
 OBJECTS += $(OBJDIR)/BAS_01.o
 OBJECTS += $(OBJDIR)/BAS_02.o
+OBJECTS += $(OBJDIR)/BAS_03.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/Comparator.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
@@ -284,6 +286,9 @@ $(OBJDIR)/BAS_01.o: ../testing/tests/moduletests/BAS/BAS_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/BAS_02.o: ../testing/tests/moduletests/BAS/BAS_02.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/BAS_03.o: ../testing/tests/moduletests/BAS/BAS_03.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_01.o: ../testing/tests/moduletests/LCR/LCR_01.cpp
