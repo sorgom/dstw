@@ -16,7 +16,7 @@ include 'premake5_settings.lua'
 --  -   4127 suggested 'if constexpr' 
 --      warning caused by CppUTest headers code
 --  ============================================================
-buildOptsApp = '/std:c++20 /W4 /wd4100 /wd4103'
+buildOptsApp = '/std:c++17 /W4 /wd4100 /wd4103'
 buildOptsTest = buildOptsApp .. ' /wd4127'
 
 --  ============================================================

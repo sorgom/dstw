@@ -22,12 +22,12 @@ RESCOMP = windres
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/dstw
 OBJDIR = obj/dstw
-DEFINES += -DNDEBUG -DCAPACITY_TSW=2000 -DCAPACITY_SIG=2000 -DCAPACITY_LCR=2000 -DCAPACITY_SEG=2000
+DEFINES += -DNDEBUG -DCAPACITY_TSW=5000 -DCAPACITY_SIG=5000 -DCAPACITY_LCR=5000 -DCAPACITY_SEG=5000
 INCLUDES += -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++2a -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++2a -pedantic-errors -Werror -Wall
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=

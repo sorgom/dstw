@@ -15,6 +15,5 @@ test of NtpArray / NtpIndex
 
 **BAS_03.cpp**
 ```
-test of endianess features
-requires C++ 2020 or above
+test of endianess dependent features
 ```

@@ -3,7 +3,7 @@
 --  ============================================================
 
 include 'premake5_settings.lua'
-buildOpts = { '-std=c++2a -pedantic-errors -Werror -Wall' }
+buildOpts = { '-std=c++17 -pedantic-errors -Werror -Wall' }
 
 --  ============================================================
 --  > tests.make
@@ -76,13 +76,7 @@ workspace 'dstw'
         objdir 'obj/%{prj.name}'
         targetdir 'bin'
         buildoptions { buildOpts }
-        defines { 
-            'NDEBUG', 
-            'CAPACITY_TSW=2000', 
-            'CAPACITY_SIG=2000', 
-            'CAPACITY_LCR=2000', 
-            'CAPACITY_SEG=2000' 
-        }
+        defines { appDefines }
         optimize 'On'
 
         project 'dstw'

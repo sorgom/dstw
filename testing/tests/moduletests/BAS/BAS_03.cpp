@@ -1,25 +1,43 @@
 //  ============================================================
-//  test of endianess features
-//  requires C++ 2020 or above
+//  test of endianess dependent features
 //  ============================================================
 //  created by Manfred Sorgo
 
-#include <bit>
-#if __cpp_lib_endian >= 201907L
-
 #include <testlib/TestGroupBase.h>
 #include <BAS/HN.h>
-
-using std::endian;
-
-static_assert(std::endian::native == std::endian::big or std::endian::native == std::endian::little);
+#include <type_traits>
 
 namespace test
 {
-
-    TEST_GROUP_BASE(BAS_03, TestGroupBase)
+    class TestGroup03 : public TestGroupBase
     {
-        //  swapbytes requires C++2023
+    protected:
+        TestGroup03():
+            checkVal(0xFB0000EAu),
+            firstByte(*reinterpret_cast<const UINT8*>(&checkVal)),
+            isBig(firstByte == 0xFB),
+            isLittle(firstByte == 0xEA)
+        {
+        }
+
+        void setup()
+        {
+            CHECK_TRUE((isBig or isLittle));
+        }
+
+        template<typename T>
+        T adapt(const T val)
+        {
+            static_assert(std::is_integral<T>::value);
+            return isLittle ? bswap(val) : val;
+        }
+
+    private:
+        const UINT32 checkVal;
+        const BYTE firstByte;
+        const bool isBig;
+        const bool isLittle;
+
         template<typename T>
         T bswap(const T val)
         {
@@ -35,18 +53,9 @@ namespace test
             }
             return b.v;
         }
-
-        template<typename T>
-        T adapt(const T val)
-        {
-            T res = val;
-            if constexpr (endian::native != endian::big)
-            {
-                res = bswap(val);
-            }
-            return res;
-        }
     };
+
+    TEST_GROUP_BASE(BAS_03, TestGroup03) {};
 
     //  test type: equivalence class test
     TEST(BAS_03, T01)
@@ -86,6 +95,3 @@ namespace test
 
 } // namespace
 
-#else
-#pragma message("no c++ 2020 endianess support - tests BAS_03 skipped")
-#endif
