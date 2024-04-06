@@ -13,8 +13,6 @@ help()
     exit
 }
 
-ecode=0
-
 function tm()
 {
     en=$(date +%s)
@@ -44,7 +42,7 @@ done
 
 cd $(dirname $0)
 
-if test ! -z $clean; then git clean -dfx .; fi
+if test ! -z $clean; then git clean -dfXq .; fi
 
 if test ! -z $pre; then premake5 gmake2; fi
 
@@ -53,6 +51,8 @@ st=$(date +%s)
 for fn in $(ls *.make | grep -v '_'); do
     mk $fn & pids+=($!)
 done
+
+ecode=0
 
 for pid in ${pids[*]}; do
     if ! wait $pid; then ecode=1; fi
