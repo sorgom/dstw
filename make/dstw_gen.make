@@ -20,8 +20,8 @@ endif
 
 RESCOMP = windres
 TARGETDIR = bin
-TARGET = $(TARGETDIR)/gendata
-OBJDIR = obj/gendata
+TARGET = $(TARGETDIR)/dstw_gen
+OBJDIR = obj/dstw_gen
 DEFINES += -DNDEBUG -DCAPACITY_TSW=5000 -DCAPACITY_SIG=5000 -DCAPACITY_LCR=5000 -DCAPACITY_SEG=5000
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
@@ -50,10 +50,8 @@ endef
 GENERATED :=
 OBJECTS :=
 
-GENERATED += $(OBJDIR)/HN.o
 GENERATED += $(OBJDIR)/TestLib.o
 GENERATED += $(OBJDIR)/genDataMain.o
-OBJECTS += $(OBJDIR)/HN.o
 OBJECTS += $(OBJDIR)/TestLib.o
 OBJECTS += $(OBJDIR)/genDataMain.o
 
@@ -65,7 +63,7 @@ all: $(TARGET)
 
 $(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking gendata
+	@echo Linking dstw_gen
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -86,7 +84,7 @@ else
 endif
 
 clean:
-	@echo Cleaning gendata
+	@echo Cleaning dstw_gen
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(GENERATED)
@@ -119,9 +117,6 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/HN.o: ../application/components/BAS/src/HN.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/genDataMain.o: ../testing/gendata/genDataMain.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"

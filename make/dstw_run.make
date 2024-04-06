@@ -19,20 +19,20 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = lib
-TARGET = $(TARGETDIR)/libcoverage_app.a
-OBJDIR = obj/coverage_app
-DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCAPACITY_TSW=11 -DCAPACITY_SIG=10 -DCAPACITY_LCR=9 -DCAPACITY_SEG=22
-INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
+TARGETDIR = bin
+TARGET = $(TARGETDIR)/dstw_run
+OBJDIR = obj/dstw_run
+DEFINES += -DNDEBUG -DCAPACITY_TSW=5000 -DCAPACITY_SIG=5000 -DCAPACITY_LCR=5000 -DCAPACITY_SEG=5000
+INCLUDES += -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS)
-LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
+ALL_LDFLAGS += $(LDFLAGS) -s
+LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
 define PRELINKCMDS
@@ -50,6 +50,7 @@ endef
 GENERATED :=
 OBJECTS :=
 
+GENERATED += $(OBJDIR)/AppMain.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/Dispatcher.o
 GENERATED += $(OBJDIR)/LCR_Hub.o
@@ -64,6 +65,7 @@ GENERATED += $(OBJDIR)/SwapBytes.o
 GENERATED += $(OBJDIR)/TSW.o
 GENERATED += $(OBJDIR)/TSW_Hub.o
 GENERATED += $(OBJDIR)/TSW_Provider.o
+OBJECTS += $(OBJDIR)/AppMain.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
 OBJECTS += $(OBJDIR)/LCR_Hub.o
@@ -87,7 +89,7 @@ all: $(TARGET)
 
 $(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking coverage_app
+	@echo Linking dstw_run
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -108,7 +110,7 @@ else
 endif
 
 clean:
-	@echo Cleaning coverage_app
+	@echo Cleaning dstw_run
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(GENERATED)
@@ -181,6 +183,9 @@ $(OBJDIR)/TSW_Hub.o: ../application/components/TSW/src/TSW_Hub.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW_Provider.o: ../application/components/TSW/src/TSW_Provider.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/AppMain.o: ../application/main/AppMain.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

@@ -50,8 +50,7 @@ testSrcs = {
 
 genDataSrcs = { 
     '../testing/gendata/genDataMain.cpp', 
-    '../testing/testenv/testlib/src/TestLib.cpp',
-    '../application/components/BAS/src/HN.cpp'
+    '../testing/testenv/testlib/src/TestLib.cpp'
 }
 
 testLinks = { 'CppUTest', 'CppUTestExt' }

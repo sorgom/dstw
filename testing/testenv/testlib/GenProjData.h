@@ -21,7 +21,6 @@
 #include <ifs/I_LCR.h>
 #include <ifs/I_SIG.h>
 #include <ifs/ProjTypes.h>
-#include <BAS/HN.h>
 #include <setup/capacities.h>
 #include <testlib/TestArrays.h>
 #include <testlib/TestLib.h>
@@ -149,10 +148,9 @@ namespace test
             }
         }
 
-        inline static void write(std::ostream& os, const UINT32 n)
+        inline static void write(std::ostream& os, const UINT32& n)
         {
-            const UINT32 nN = HN::toN(n);
-            os.write(reinterpret_cast<const char*>(&nN), sizeof(UINT32));
+            os.write(reinterpret_cast<const char*>(&n), sizeof(UINT32));
         }
 
         template <class T>

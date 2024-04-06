@@ -6,6 +6,31 @@ include 'premake5_settings.lua'
 buildOpts = { '-std=c++17 -pedantic-errors -Werror -Wall' }
 
 --  ============================================================
+--  > dstw.make
+--  application runtime
+--  ->  bin/dstw
+--  ============================================================
+workspace 'dstw'
+    filter { 'action:gmake*' }
+        configurations { 'ci' }
+        language 'C++'
+        objdir 'obj/%{prj.name}'
+        targetdir 'bin'
+        buildoptions { buildOpts }
+        defines { appDefines }
+        optimize 'On'
+
+        project 'dstw_gen'
+            kind 'ConsoleApp'
+            includedirs { testIncludes }
+            files { genDataSrcs }
+
+        project 'dstw_run'
+            kind 'ConsoleApp'
+            includedirs { appIncludes }
+            files { '../application/**.cpp' }
+
+--  ============================================================
 --  > tests.make
 --  module tests and system tests at once runtime
 --  ->  bin/tests
@@ -64,31 +89,6 @@ workspace 'coverage'
             links { 'coverage_app', 'gcov', testLinks }
             linkoptions { '--coverage' }
 
---  ============================================================
---  > dstw.make
---  application runtime
---  ->  bin/dstw
---  ============================================================
-workspace 'dstw'
-    filter { 'action:gmake*' }
-        configurations { 'ci' }
-        language 'C++'
-        objdir 'obj/%{prj.name}'
-        targetdir 'bin'
-        buildoptions { buildOpts }
-        defines { appDefines }
-        optimize 'On'
-
-        project 'dstw'
-            kind 'ConsoleApp'
-            includedirs { appIncludes }
-            files { '../application/**.cpp' }
-
-    
-        project 'gendata'
-            kind 'ConsoleApp'
-            includedirs { testIncludes }
-            files { genDataSrcs }
 
 --  ============================================================
 --  > _devtests.make

@@ -16,15 +16,18 @@ include 'premake5_settings.lua'
 --  -   4127 suggested 'if constexpr' 
 --      warning caused by CppUTest headers code
 --  ============================================================
-buildOptsApp = '/std:c++17 /W4 /wd4100 /wd4103'
+buildOpts = '/std:c++17'
+buildOptsApp = buildOpts .. ' /W4 /wd4100 /wd4103'
 buildOptsTest = buildOptsApp .. ' /wd4127'
+buildOptsCppU = buildOpts .. ' /W0'
 
 --  ============================================================
---  > cpputest.sln
---  cpputest library
---  ->  lib/cpputest.lib
+--  > tests.sln
+--  module tests and system tests at once runtime
+--  including cpputest.lib
+--  ->  exe/tests.exe
 --  ============================================================
-workspace 'cpputest'
+workspace 'tests'
     filter { 'action:vs*' }
         configurations { 'ci' }
         language 'C++'
@@ -37,27 +40,13 @@ workspace 'cpputest'
         project 'cpputest'
             kind 'StaticLib'
             targetdir 'lib'
+            warnings 'Off'
+            buildoptions { buildOptsCppU }
             files { 
                 CppUTestHome .. 'src/CppUTest/*.cpp',
                 CppUTestHome .. 'src/Platforms/VisualCpp/*.cpp',
                 CppUTestHome .. 'src/CppUTestExt/*.cpp'
             }
-
---  ============================================================
---  > tests.sln
---  module tests and system tests at once runtime
---  (requires cpputest.lib)
---  ->  exe/tests.exe
---  ============================================================
-workspace 'tests'
-    filter { 'action:vs*' }
-        configurations { 'ci' }
-        language 'C++'
-        objdir 'obj/%{prj.name}'
-
-        includedirs { testIncludes }
-
-        defines { 'NDEBUG', testDefines }
 
         project 'tests'
             kind 'ConsoleApp'
