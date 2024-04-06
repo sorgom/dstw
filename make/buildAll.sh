@@ -8,7 +8,6 @@ help()
     echo "-c  clean ignored artifacts before"
     echo "-p  premake5 makefiles"
     echo "-x  execute all binaries"
-    echo "-s  build sequencially"
     echo "-h  this help"
     echo "===================================="
     exit
@@ -34,14 +33,12 @@ function mk()
 clean=
 exe=
 pre=
-seq=
-while getopts hcxps option; do
+while getopts hcxp option; do
     case $option in
       (h)  help;;
       (c)  clean=1;;
       (x)  exe=1;;
       (p)  pre=1;;
-      (s)  seq=1;;
     esac
 done
 
@@ -54,19 +51,12 @@ if test ! -z $pre; then premake5 gmake2; fi
 pids=()
 st=$(date +%s)
 for fn in $(ls *.make | grep -v '_'); do
-    if test -z $seq
-    then
-        mk $fn & pids+=($!)
-    else 
-        mk $fn
-        if test $? -ne 0; then ecode=1; fi
-    fi
+    mk $fn & pids+=($!)
 done
 
 for pid in ${pids[*]}; do
     if ! wait $pid; then ecode=1; fi
 done
-echo ecode $ecode
 tm "DONE" $st
 
 if test -z $exe; then exit $ecode; fi
@@ -75,7 +65,7 @@ for b in bin/*; do
     echo ''
     echo "====== $b"
     $b -b
-    echo 'return:' $?
+    echo 'returned' $?
     if test $? -ne 0; then ecode=2; fi
 done
 
