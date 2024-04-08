@@ -21,7 +21,7 @@ jobs:
       with:
          submodules: 'true'
     - name: prepare build
-      run: chmod 755 make/buildAll.sh
+      run: chmod 755 make/build.sh
 
-    - name: "build all"
-      run: make/buildAll.sh -cx
+    - name: "build and run all"
+      run: make/build.sh -cx

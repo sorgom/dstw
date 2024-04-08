@@ -1,10 +1,25 @@
-# Visual Studio build
-## preconditions
+# how to build
+## gcc build
+### preconditions
+- make
+- gcc
+### use build.sh
+call help
+````shell
+DSTW/make$> ./build.sh -h
+````
+then call to build and run, e.g.
+````shell
+DSTW/make$> ./build.sh -cx
+````
+
+## Visual Studio build
+### preconditions
 - premake5 available
 - Visual Studio
 
-## 1) generate VS solution using premake5
-### 1.1) find out suitable VS version using premake5 --help
+### 1) generate VS solution using premake5
+#### 1.1) find out suitable VS version using premake5 --help
 
 ````shell
 D:\git\DSTW\make> premake5 --help
@@ -18,7 +33,7 @@ ACTIONS
  ...
  vs2022            Generate Visual Studio 2022 project files
 ````
-### 1.2) generate solution with your VS version
+#### 1.2) generate solution with your VS version
 e.g. VS 2019
 ````shell
 D:\git\DSTW\make> premake5 --file=premake5_vs.lua vs2019
@@ -28,17 +43,17 @@ Generated tests.sln...
 ...
 Done (143ms).
 ````
-## 2) build executables in VS
-### 2.1) build and run module tests
+### 2) build executables in VS
+#### 2.1) build and run module tests
 - open _tests.sln_
 - build and run
 
-### 2.2) build and run application
+#### 2.2) build and run application
 - open _gendata.sln_
 - build and run
 - open _dstw.sln_
 - build and run
 
-## 3) VS keyboard shortcuts
+### 3) VS keyboard shortcuts
 - build: [CTRL] [shift] [B]
 - (build and) run: [CTRL] [F5]

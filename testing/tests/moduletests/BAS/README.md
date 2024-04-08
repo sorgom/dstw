@@ -12,8 +12,3 @@ test of StaticArray, StaticIndex
 ```
 test of NtpArray / NtpIndex
 ```
-
-**BAS_03.cpp**
-```
-test of endianess dependent features
-```

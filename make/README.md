@@ -1,10 +1,10 @@
 ## directory content
 
-**buildAll.sh**
+**build.sh**
 ```
 build all major makes parallelly
 options:
--r  remove all artifacts before
+-c  clean ignored artifacts before
 -p  premake5 makefiles
 -x  execute all binaries
 -h  this help
@@ -19,6 +19,10 @@ bullseye coverage output
 ```
 premake5 build rules for gcc (gmake2):
 
+> dstw.make
+application runtime
+->  bin/dstw
+
 > tests.make
 module tests and system tests at once runtime
 ->  bin/tests
@@ -27,10 +31,6 @@ module tests and system tests at once runtime
 -   coverage instrumented application (static lib)
 -   module tests only runtime
 ->  bin/coverage_tests
-
-> dstw.make
-application runtime
-->  bin/dstw
 
 > _devtests.make
 development only tests
@@ -61,13 +61,9 @@ additional suppressed warnings test code:
 -   4127 suggested 'if constexpr'
     warning caused by CppUTest headers code
 
-> cpputest.sln
-cpputest library
-->  lib/cpputest.lib
-
 > tests.sln
 module tests and system tests at once runtime
-(requires cpputest.lib)
+including cpputest.lib
 ->  exe/tests.exe
 
 > gendata.sln

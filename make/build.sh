@@ -2,6 +2,7 @@
 
 help()
 {
+    echo "Usage: $(basename $0) options"
     echo "===================================="
     echo "build all major makes parallelly"
     echo "options:"
@@ -46,27 +47,27 @@ if test ! -z $clean; then git clean -dfXq .; fi
 
 if test ! -z $pre; then premake5 gmake2; fi
 
+echo build ...
 pids=()
-st=$(date +%s)
 for fn in $(ls *.make | grep -v '_'); do
     mk $fn & pids+=($!)
 done
 
-ecode=0
-
+err=0
 for pid in ${pids[*]}; do
-    if ! wait $pid; then ecode=1; fi
+    if ! wait $pid; then err=1; fi
 done
-tm "DONE" $st
+if test $err -ne 0; then exit 1; fi
 
-if test -z $exe; then exit $ecode; fi
+if test -z $exe; then exit 0; fi
 
 for b in bin/*; do
     echo ''
     echo "====== $b"
     $b -b
-    echo 'returned' $?
-    if test $? -ne 0; then ecode=2; fi
+    x=$?
+    echo 'returned' $x
+    if test $x -ne 0; then err=1; fi
 done
 
-exit $ecode
+exit $err
