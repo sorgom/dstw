@@ -15,7 +15,7 @@ DSTW/make$> ./build.sh -cx
 
 ## Visual Studio build
 ### preconditions
-- premake5 available
+- [premake5](https://premake.github.io/) available
 - Visual Studio
 
 ### 1) generate VS solution using premake5
