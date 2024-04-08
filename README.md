@@ -21,3 +21,5 @@ It shows a completely different approach than the [model driven](Clinch.md) one 
 ## topics
 - [SIL4](SIL4.md)
 - [testing](testing/README.md)
+- [build](make/howto_build.md)
+
