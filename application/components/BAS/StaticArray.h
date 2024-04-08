@@ -2,6 +2,7 @@
 //  collection of static array types
 //  Static arrays
 //  -   act like arrays of pre-defined size
+//  -   do not dynamically allocate memory
 //  -   can be filled with objects at runtime
 //  -   do not provide any overflow protection
 //  This is not an API
@@ -20,6 +21,7 @@
 #include <algorithm>
 #include <new>
 #include <type_traits>
+#include <utility>
 
 //  ============================================================
 //  InterfaceArray
@@ -47,13 +49,13 @@ public:
     }
 
     //  add an object of derived class
-    template <class DC, typename ... ARGS>
-    size_t add(const ARGS& ... args)
+    template <class DC, typename... ARGS>
+    size_t add(ARGS&&... args)
     {
         static_assert(std::is_base_of_v<IC, DC>);
         static_assert(not std::is_same_v<IC, DC>);
         static_assert(sizeof(DC) <= DIM);
-        new (mData[mSize]) DC(args...);
+        new (mData[mSize]) DC(std::forward<ARGS>(args)...);
         return mSize++;
     }
 
