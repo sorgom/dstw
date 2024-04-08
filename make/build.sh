@@ -2,7 +2,7 @@
 
 help()
 {
-    echo "Usage: $(basename $0) options"
+    echo "Usage: $(basename $0) [options]"
     echo "===================================="
     echo "build all major makes parallelly"
     echo "options:"
