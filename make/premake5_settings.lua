@@ -41,12 +41,9 @@ appDefines = {
     'CAPACITY_SEG=5000' 
 }
 
-testSrcs = {
-    testEnvSrcs,
-    appSrcs,
-    '../testing/tests/moduletests/**.cpp',
-    '../testing/tests/systemtests/**.cpp'
-}
+modTestSrcs = { '../testing/tests/moduletests/**.cpp' }
+sysTestSrcs = { '../testing/tests/systemtests/**.cpp' }
+devTestSrcs = { '../testing/tests/devtests/**.cpp' }
 
 genDataSrcs = { 
     '../testing/gendata/genDataMain.cpp', 

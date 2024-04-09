@@ -9,6 +9,7 @@
 
 #include <BAS/coding.h>
 #include <ifs/PosRes.h>
+#include <type_traits>
 
 //  ============================================================
 //  I_Array
@@ -47,12 +48,16 @@ public:
 //  - b-tree search
 //  - duplicates count
 //  ============================================================
-template <class T, size_t CAP>
-class I_SortableArray : public I_Array<T, CAP>
+template <class KEY, class CONT, size_t CAP>
+class I_SortableArray : public I_Array<CONT, CAP>
 {
 protected:
-    //  definition object a is greater than object b
-    virtual bool isGreater(const T& a, const T& b) const = 0;
+
+    //  definition key object a is greater than object b
+    virtual bool isGreater(const KEY& a, const KEY& b) const = 0;
+
+    //  get key type at position
+    virtual const KEY& getKey(const CONT&) const = 0;
 
     //  swap content of position a and b
     virtual void swap(size_t posA, size_t posB) = 0;
@@ -65,7 +70,7 @@ protected:
             swapped = false;
             for (size_t p = 0; p < n - 1; ++p)
             {
-                if (isGreater(this->at(p), this->at(p + 1)))
+                if (isGreater(keyAt(p), keyAt(p + 1)))
                 {
                     swap(p, p + 1);
                     swapped = true;
@@ -74,7 +79,7 @@ protected:
         }
     }
 
-    const PosRes find(const T& obj) const
+    const PosRes find(const KEY& key) const
     {
         size_t pos = 0;
         bool valid = false;
@@ -87,11 +92,11 @@ protected:
             {
                 const size_t pCur = (pMin + pMax + 1) / 2;
 
-                if (isGreater(obj, this->at(pCur)))
+                if (isGreater(key, keyAt(pCur)))
                 {
                     pMin = pCur + 1;
                 }
-                else if (isGreater(this->at(pCur), obj))
+                else if (isGreater(keyAt(pCur), key))
                 {
                     if (pCur > 0)
                     {
@@ -118,14 +123,18 @@ protected:
         size_t nd = 0;
         for (size_t p = 1; p < this->size(); ++p)
         {
-            if (not isGreater(this->at(p), this->at(p - 1)))
+            if (not isGreater(keyAt(p), keyAt(p - 1)))
             {
                 ++nd;
             }
         }
         return nd;
     }
-
+private:
+    inline const KEY& keyAt(size_t pos) const
+    {
+        return getKey(this->at(pos));
+    }
 };
 
 #endif // H_

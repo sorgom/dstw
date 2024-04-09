@@ -43,7 +43,7 @@ void Dispatcher::dispatch(const ComFldState& tele) const
 
     if (res.valid)
     {
-        const Ntp& ntp = mIndx.get(res);
+        const Ntp& ntp = mIndx.at(res);
         switch (ntp.type)
         {
         case SUBSYS_TSW:
@@ -73,7 +73,7 @@ void Dispatcher::dispatch(const ComGuiCmd& tele) const
 
     if (res.valid)
     {
-        const Ntp& ntp = mIndx.get(res);
+        const Ntp& ntp = mIndx.at(res);
         switch (ntp.type)
         {
         case SUBSYS_TSW:

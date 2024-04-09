@@ -19,12 +19,11 @@ include 'premake5_settings.lua'
 buildOpts = '/std:c++17'
 buildOptsApp = buildOpts .. ' /W4 /wd4100 /wd4103'
 buildOptsTest = buildOptsApp .. ' /wd4127'
-buildOptsCppU = buildOpts .. ' /W0'
 
 --  ============================================================
 --  > tests.sln
 --  module tests and system tests at once runtime
---  including cpputest.lib
+--  including CppUTest sources
 --  ->  exe/tests.exe
 --  ============================================================
 workspace 'tests'
@@ -37,27 +36,19 @@ workspace 'tests'
 
         defines { 'NDEBUG', testDefines }
 
-        project 'cpputest'
-            kind 'StaticLib'
-            targetdir 'lib'
-            warnings 'Off'
-            buildoptions { buildOptsCppU }
-            files { 
-                CppUTestHome .. 'src/CppUTest/*.cpp',
-                CppUTestHome .. 'src/Platforms/VisualCpp/*.cpp',
-                CppUTestHome .. 'src/CppUTestExt/*.cpp'
-            }
-
         project 'tests'
             kind 'ConsoleApp'
             targetdir 'exe'
             warnings 'high'
             buildoptions { buildOptsTest }
+            files { 
+                testEnvSrcs, appSrcs, modTestSrcs, sysTestSrcs,
+                CppUTestHome .. 'src/CppUTest/*.cpp',
+                CppUTestHome .. 'src/Platforms/VisualCpp/*.cpp',
+                CppUTestHome .. 'src/CppUTestExt/*.cpp'
+            }
 
-            files { testSrcs }
-            libdirs { 'lib' }
-
-            links { 'winmm', 'ws2_32', 'cpputest' }
+            links { 'winmm', 'ws2_32' }
 
 --  ============================================================
 --  > gendata.sln
