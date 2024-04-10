@@ -22,7 +22,7 @@ RESCOMP = windres
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/coverage_tests
 OBJDIR = obj/gcc/coverage_tests
-DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DTEST_NUM_TSW=11 -DTEST_NUM_SIG=10 -DTEST_NUM_LCR=9 -DTEST_NUM_SEG=22
+DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)

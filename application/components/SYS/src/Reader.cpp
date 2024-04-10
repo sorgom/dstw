@@ -44,13 +44,13 @@ void Reader::read(const CONST_C_STRING filename) const
             const stype sLCR = nLCR * sizeof(ProjLCR);
             const stype sSEG = nSEG * sizeof(ProjSEG);
 
-            ok = fsize == hSize + sTSW + sSIG + sLCR + sSEG;
+            ok = (fsize == hSize + sTSW + sSIG + sLCR + sSEG);
 
             if (ok)
             {
                 const auto mxSize = std::max({sTSW, sSIG, sLCR, sSEG});
 
-                CHAR* buf = new CHAR[mxSize];
+                CHAR* buf = new CHAR[static_cast<size_t>(mxSize)];
 
                 is.read(buf, sTSW);
                 IL::getTSW_Provider().load(reinterpret_cast<const ProjTSW*>(buf), nTSW);

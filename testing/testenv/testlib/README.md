@@ -66,7 +66,7 @@ literals for testing
 
 **testNumElements.h**
 ```
-capacities of element containers
+number of elements in test data
 - track switches
 - signals
 - level crossings

@@ -1,5 +1,5 @@
 //  ============================================================
-//  capacities of element containers
+//  number of elements in test data
 //  - track switches
 //  - signals
 //  - level crossings
@@ -12,27 +12,23 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef CAPACITIES_H
-#define CAPACITIES_H
-
-#include <codebase/BaseTypes.h>
+#ifndef TEST_NUM_ELEMENTS_H
+#define TEST_NUM_ELEMENTS_H
 
 #ifndef TEST_NUM_TSW
-#define TEST_NUM_TSW 100
+#define TEST_NUM_TSW 11
 #endif 
 
 #ifndef TEST_NUM_SIG
-#define TEST_NUM_SIG 100
+#define TEST_NUM_SIG 10
 #endif 
 
 #ifndef TEST_NUM_LCR
-#define TEST_NUM_LCR 100
+#define TEST_NUM_LCR 9
 #endif 
 
 #ifndef TEST_NUM_SEG
-#define TEST_NUM_SEG 100
+#define TEST_NUM_SEG 8
 #endif 
-
-constexpr size_t TEST_NUM_DSP = TEST_NUM_TSW + TEST_NUM_SIG + TEST_NUM_LCR + TEST_NUM_SEG;
 
 #endif // H_
