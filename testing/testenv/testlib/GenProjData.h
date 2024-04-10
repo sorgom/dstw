@@ -21,7 +21,7 @@
 #include <ifs/I_LCR.h>
 #include <ifs/I_SIG.h>
 #include <ifs/ProjTypes.h>
-#include <setup/capacities.h>
+#include <testlib/testNumElements.h>
 // #include <testlib/TestArrays.h>
 #include <testlib/TestLib.h>
 #include <fstream>

@@ -45,17 +45,17 @@ For details see
 file                      lines  uncovered  percent
 BAS/src/SwapBytes.cpp         8         --       --
 LCR/src/LCR_Hub.cpp          32         --       --
-LCR/src/LCR_Provider.cpp     47         --       --
+LCR/src/LCR_Provider.cpp     40         --       --
 LCR/src/LCR_X.cpp           124         --       --
 SIG/src/SIG_Hub.cpp          32         --       --
-SIG/src/SIG_Provider.cpp     50         --       --
+SIG/src/SIG_Provider.cpp     43         --       --
 SIG/src/SIG_X.cpp           293         --       --
 SYS/src/Com.cpp               2         --       --
-SYS/src/Dispatcher.cpp      110         --       --
+SYS/src/Dispatcher.cpp      102         --       --
 SYS/src/Log.cpp               2         --       --
-SYS/src/Reader.cpp           96         --       --
+SYS/src/Reader.cpp           67         --       --
 TSW/src/TSW.cpp              91         --       --
 TSW/src/TSW_Hub.cpp          32         --       --
-TSW/src/TSW_Provider.cpp     35         --       --
-total                       954         --       --
+TSW/src/TSW_Provider.cpp     28         --       --
+total                       896         --       --
 ```

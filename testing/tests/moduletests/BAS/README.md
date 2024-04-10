@@ -10,5 +10,5 @@ test of StaticArray, StaticIndex
 
 **BAS_02.cpp**
 ```
-test of NtpArray / NtpIndex
+test of NtpIndex
 ```

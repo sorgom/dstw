@@ -61,7 +61,6 @@ GENERATED += $(OBJDIR)/Reader.o
 GENERATED += $(OBJDIR)/SIG_Hub.o
 GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
-GENERATED += $(OBJDIR)/SwapBytes.o
 GENERATED += $(OBJDIR)/TSW.o
 GENERATED += $(OBJDIR)/TSW_Hub.o
 GENERATED += $(OBJDIR)/TSW_Provider.o
@@ -76,7 +75,6 @@ OBJECTS += $(OBJDIR)/Reader.o
 OBJECTS += $(OBJDIR)/SIG_Hub.o
 OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
-OBJECTS += $(OBJDIR)/SwapBytes.o
 OBJECTS += $(OBJDIR)/TSW.o
 OBJECTS += $(OBJDIR)/TSW_Hub.o
 OBJECTS += $(OBJDIR)/TSW_Provider.o
@@ -143,9 +141,6 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/SwapBytes.o: ../application/components/BAS/src/SwapBytes.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_Hub.o: ../application/components/LCR/src/LCR_Hub.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"

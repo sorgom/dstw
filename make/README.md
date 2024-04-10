@@ -31,14 +31,6 @@ module tests and system tests at once runtime
 -   coverage instrumented application (static lib)
 -   module tests only runtime
 ->  bin/coverage_tests
-
-> _devtests.make
-development only tests
-->  bin/_devtests
-
-> _bullseye.make
-module tests for bullseye coverage
-->  bin/_bullseye
 ```
 
 **premake5_settings.lua**
@@ -63,7 +55,7 @@ additional suppressed warnings test code:
 
 > tests.sln
 module tests and system tests at once runtime
-including cpputest.lib
+including CppUTest sources
 ->  exe/tests.exe
 
 > gendata.sln
