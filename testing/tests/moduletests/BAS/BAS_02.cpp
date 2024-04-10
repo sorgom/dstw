@@ -44,7 +44,7 @@ namespace test
             const PosRes f = indx.find(cn);
             L_CHECK_TRUE(f.valid)
             L_CHECK_EQUAL(static_cast<size_t>(tOffs - n), f.pos)
-            const bool eq = cn == indx.get(f).name;
+            const bool eq = cn == indx.at(f).name;
             L_CHECK_TRUE(eq)
         }
         ENDSTEPS()

@@ -33,11 +33,21 @@ testDefines = {
     'CAPACITY_SEG=22' 
 }
 
-testSrcs = {
-    testEnvSrcs,
-    appSrcs,
-    '../testing/tests/moduletests/**.cpp',
-    '../testing/tests/systemtests/**.cpp'
+appDefines = { 
+    'NDEBUG', 
+    'CAPACITY_TSW=5000', 
+    'CAPACITY_SIG=5000', 
+    'CAPACITY_LCR=5000', 
+    'CAPACITY_SEG=5000' 
+}
+
+modTestSrcs = { '../testing/tests/moduletests/**.cpp' }
+sysTestSrcs = { '../testing/tests/systemtests/**.cpp' }
+devTestSrcs = { '../testing/tests/devtests/**.cpp' }
+
+genDataSrcs = { 
+    '../testing/gendata/genDataMain.cpp', 
+    '../testing/testenv/testlib/src/TestLib.cpp'
 }
 
 testLinks = { 'CppUTest', 'CppUTestExt' }

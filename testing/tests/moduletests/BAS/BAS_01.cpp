@@ -14,15 +14,15 @@ namespace test
     class IData
     {
     public:
-        virtual INT32 get1() const = 0;
-        virtual INT32 get2() const = 0;
+        virtual const INT32& get1() const = 0;
+        virtual const INT32& get2() const = 0;
     };
 
     class CData : public IData
     {
     public:
-        inline INT32 get1() const { return m1; }
-        inline INT32 get2() const { return m2; };
+        inline const INT32& get1() const { return m1; }
+        inline const INT32& get2() const { return m2; };
         inline CData(INT32 i1, INT32 i2 = 0):
             m1(i1),
             m2(i2)
@@ -41,16 +41,21 @@ namespace test
     using IDataArray = InterfaceArray<IData, 20, CData>;
     using CDataArray = ConstArray<CData, 20>;
 
-    class CDataIndex : public ConstArrayIndex<CData, 20>
+    class CDataIndex : public ConstArrayIndex<INT32, CData, 20>
     {
     public:
         inline CDataIndex(const CDataArray& a):
-            ConstArrayIndex<CData, 20>(a)
+            ConstArrayIndex<INT32, CData, 20>(a)
         {}
-    protected:        
-        inline bool isGreater(const CData& a, const CData& b) const
+    protected:
+        inline const INT32& getKey(const CData& d) const
         {
-            return a.get1() > b.get1();
+            return d.get1();
+        }     
+
+        inline bool isGreater(const INT32& a, const INT32& b) const
+        {
+            return a > b;
         }
     };
 
@@ -105,7 +110,7 @@ namespace test
             ok = ix.index();
             L_CHECK_TRUE(ok)
             const CData d(1, 2);
-            const PosRes f = ix.find(d);
+            const PosRes f = ix.find(d.get1());
             L_CHECK_FALSE(f.valid)
         }
 
@@ -129,9 +134,9 @@ namespace test
         {
             LSTEP(i)
             const CData& d = a.at(i);
-            const PosRes f = ix.find(d);
+            const PosRes f = ix.find(d.get1());
             L_CHECK_TRUE(f.valid)
-            const CData& r = ix.get(f);
+            const CData& r = ix.at(f);
             L_CHECK_EQUAL(d.get1(), r.get1())
             L_CHECK_EQUAL(d.get2(), r.get2())
         }

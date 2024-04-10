@@ -20,9 +20,9 @@ endif
 
 RESCOMP = windres
 TARGETDIR = bin
-TARGET = $(TARGETDIR)/gendata
-OBJDIR = obj/gendata
-DEFINES += -DNDEBUG -DCAPACITY_TSW=2000 -DCAPACITY_SIG=2000 -DCAPACITY_LCR=2000 -DCAPACITY_SEG=2000
+TARGET = $(TARGETDIR)/dstw_gen
+OBJDIR = obj/dstw_gen
+DEFINES += -DNDEBUG -DCAPACITY_TSW=5000 -DCAPACITY_SIG=5000 -DCAPACITY_LCR=5000 -DCAPACITY_SEG=5000
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
@@ -63,7 +63,7 @@ all: $(TARGET)
 
 $(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking gendata
+	@echo Linking dstw_gen
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -84,7 +84,7 @@ else
 endif
 
 clean:
-	@echo Cleaning gendata
+	@echo Cleaning dstw_gen
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(GENERATED)

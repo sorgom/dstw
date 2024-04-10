@@ -1,10 +1,10 @@
+#include <SYS/Reader.h>
 #include <ifs/ProjTypes.h>
 #include <setup/capacities.h>
 #include <SYS/IL.h>
-#include <SYS/Reader.h>
 
-#include <algorithm>
 #include <fstream>
+#include <algorithm>
 
 using stype = std::streamoff;
 
@@ -38,7 +38,7 @@ void Reader::read(const CONST_C_STRING filename) const
             } head;
             
             is.read(head.buf, hSize);
-            const auto [nTSW, nSIG, nLCR, nSEG] = head.vals;
+            auto [nTSW, nSIG, nLCR, nSEG] = head.vals;
 
             const stype sTSW = nTSW * sizeof(ProjTSW);
             const stype sSIG = nSIG * sizeof(ProjSIG);

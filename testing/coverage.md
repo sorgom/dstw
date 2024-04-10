@@ -1,4 +1,5 @@
 ## coverage using bullseye coverage
+This is an older sample, because the bullseye trial period expired.
 ```
 Source            Function Coverage      C/D Coverage
 ----------------  -----------------  ----------------

@@ -44,28 +44,30 @@ using NtpArray = ConstArray<Ntp, CAP>;
 //  ============================================================
 //  - index of name, type, position by name
 //  ============================================================
+
 template <size_t CAP>
-class NtpIndex : 
-    public ConstArrayIndex<Ntp, CAP>
+using NtpIndexT = ConstArrayIndex<ComName, Ntp, CAP>;
+
+template <size_t CAP>
+class NtpIndex : public NtpIndexT<CAP>
 {
-private:
-    using BaseT = ConstArrayIndex<Ntp, CAP>;
 public:
     inline NtpIndex(const NtpArray<CAP>& a):
-        BaseT(a)
+        NtpIndexT<CAP>(a)
     {}
 
-    inline auto find(const ComName& name) const
-    {
-        return BaseT::find(Ntp(name));
-    }
     NOCOPY(NtpIndex)
     NODEF(NtpIndex)
 
 protected:
-    inline bool isGreater(const Ntp& a, const Ntp& b) const final
+    inline const ComName& getKey(const Ntp& ntp) const final
     {
-        return Mem::cmp(a.name.chars, b.name.chars) > 0;
+        return ntp.name;
+    }
+
+    inline bool isGreater(const ComName& a, const ComName& b) const override
+    {
+        return Mem::cmp(a.chars, b.chars) > 0;
     }
 };
 

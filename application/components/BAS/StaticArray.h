@@ -2,6 +2,7 @@
 //  collection of static array types
 //  Static arrays
 //  -   act like arrays of pre-defined size
+//  -   do not dynamically allocate memory
 //  -   can be filled with objects at runtime
 //  -   do not provide any overflow protection
 //  This is not an API
@@ -20,6 +21,7 @@
 #include <algorithm>
 #include <new>
 #include <type_traits>
+#include <utility>
 
 //  ============================================================
 //  InterfaceArray
@@ -47,13 +49,13 @@ public:
     }
 
     //  add an object of derived class
-    template <class DC, typename ... ARGS>
-    size_t add(const ARGS& ... args)
+    template <class DC, typename... ARGS>
+    size_t add(ARGS&&... args)
     {
         static_assert(std::is_base_of_v<IC, DC>);
         static_assert(not std::is_same_v<IC, DC>);
         static_assert(sizeof(DC) <= DIM);
-        new (mData[mSize]) DC(args...);
+        new (mData[mSize]) DC(std::forward<ARGS>(args)...);
         return mSize++;
     }
 
@@ -109,7 +111,7 @@ public:
         return mSize++;
     }
 
-    inline const C& at(size_t pos) const final
+    inline virtual const C& at(size_t pos) const
     {
         return *reinterpret_cast<const C*>(mData[pos]);
     }
@@ -150,15 +152,15 @@ private:
 //  provides search for unsorted ConstArray
 //  ============================================================
 
-template <class T, size_t CAP>
+template <class KEY, class CONT, size_t CAP>
 class ConstArrayIndex : 
-    public I_SortableArray<CRef<T>, CAP>,
+    public I_SortableArray<KEY, CONT, CAP>,
     private SwapBytes
 {
 public:
-    using RefT = CRef<T>;
-    using BaseT = I_SortableArray<RefT, CAP>;
-    using SrcT = ConstArray<T, CAP>;
+    using RefT = CRef<CONT>;
+    using BaseT = I_SortableArray<KEY, CONT, CAP>;
+    using SrcT = ConstArray<CONT, CAP>;
 
     inline ConstArrayIndex(const SrcT& a):
         mSrc(a),
@@ -181,36 +183,30 @@ public:
         return this->dupCnt() == 0;
     }
 
-    inline PosRes find(const T& obj) const
+    inline PosRes find(const KEY& key) const
     {
-        return BaseT::find(RefT(obj));
+        return BaseT::find(key);
     }
 
-    inline const T& get(const PosRes& res) const
+    inline size_t size() const final
     {
-        return at(res.pos).ref();
+        return mSize;
+    }
+
+    inline const CONT& at(size_t pos) const final
+    {
+        return reinterpret_cast<const RefT*>(mData[pos])->ref();
+    }
+
+    inline const CONT& at(const PosRes& res) const
+    {
+        return at(res.pos);
     }
 
     NOCOPY(ConstArrayIndex)
     NODEF(ConstArrayIndex)
 
 protected:
-    inline size_t size() const final
-    {
-        return mSize;
-    }
-
-    inline const RefT& at(size_t pos) const final
-    {
-        return *reinterpret_cast<const RefT*>(mData[pos]);
-    }
-
-    inline bool isGreater(const RefT& a, const RefT& b) const final
-    {
-        return isGreater(a.ref(), b.ref());
-    }
-
-    virtual bool isGreater(const T& a, const T& b) const = 0;
 
     inline void swap(size_t posA, size_t posB)
     {
