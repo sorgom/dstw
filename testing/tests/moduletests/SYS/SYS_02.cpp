@@ -176,28 +176,9 @@ namespace test
         CHECK_N_CLEAR()
     }
 
-    //  test type: boundary
-    //  assignment out of range
-    TEST(SYS_02, T05)
-    {
-        mSUT.reset();
-        STEP(1)
-        SUBSTEPS()
-        for (UINT16 n = 0; n < CAPACITY_DSP; ++n)
-        {
-            LSTEP(n)
-            const PosRes res = mSUT.assign(genComName(n, "TSW"), SUBSYS_TSW, n);
-            L_CHECK_EQUAL(n, res.pos)
-            L_CHECK_TRUE(res.valid)
-        }
-        ENDSTEPS()
-        const PosRes res = mSUT.assign(genComName(1, "TSW"), SUBSYS_TSW, 1);
-        L_CHECK_FALSE(res.valid)
-    }
-
     //  test type: coverage
     //  retrieve instance
-    TEST(SYS_02, T06)
+    TEST(SYS_02, T05)
     {
         unmock();
         I_Dispatcher& inst = IL::getDispatcher();
@@ -206,7 +187,7 @@ namespace test
 
     //  test type: coverage
     //  unmatchable subsytem identifier
-    TEST(SYS_02, T07)
+    TEST(SYS_02, T06)
     {
         SETUP()
         mSUT.reset();
@@ -230,7 +211,7 @@ namespace test
 
     //  test type: equivalence class test
     //  Dispatcher duplicate assignments -> index error
-    TEST(SYS_02, T08)
+    TEST(SYS_02, T07)
     {
         mSUT.reset();
         mSUT.assign(genComName(1, "TSW"), SUBSYS_TSW, 1);

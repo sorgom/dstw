@@ -30,7 +30,7 @@ workspace 'tests'
     filter { 'action:vs*' }
         configurations { 'ci' }
         language 'C++'
-        objdir 'obj/%{prj.name}'
+        objdir 'obj/vs/%{prj.name}'
 
         includedirs { testIncludes }
 
@@ -59,7 +59,7 @@ workspace 'gendata'
     filter { 'action:vs*' }
         configurations { 'ci' }
         language 'C++'
-        objdir 'obj/%{prj.name}'
+        objdir 'obj/vs/%{prj.name}'
 
         targetdir 'exe'
         warnings 'high'
@@ -82,7 +82,7 @@ workspace 'dstw'
     filter { 'action:vs*' }
         configurations { 'ci' }
         language 'C++'
-        objdir 'obj/%{prj.name}'
+        objdir 'obj/vs/%{prj.name}'
 
         targetdir 'exe'
         warnings 'high'

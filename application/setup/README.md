@@ -10,5 +10,5 @@ capacities of element containers
 
 pre-defined here
 definable at compile time
-e.g.: -DCAPACITY_SIG=500
+e.g.: -DTEST_NUM_SIG=500
 ```

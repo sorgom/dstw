@@ -14,7 +14,7 @@ workspace 'dstw'
     filter { 'action:gmake*' }
         configurations { 'ci' }
         language 'C++'
-        objdir 'obj/%{prj.name}'
+        objdir 'obj/gcc/%{prj.name}'
         targetdir 'bin'
         buildoptions { buildOpts }
         defines { appDefines }
@@ -39,7 +39,7 @@ workspace 'tests'
     filter { 'action:gmake*' }
         configurations { 'ci', 'sys', 'dev', 'bullseye' }
         language 'C++'
-        objdir 'obj/%{prj.name}/%{cfg.name}'
+        objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
 
         buildoptions { buildOpts }
 
@@ -76,7 +76,7 @@ workspace 'coverage'
     filter { 'action:gmake*' }
         configurations { 'ci' }
         language 'C++'
-        objdir 'obj/%{prj.name}'
+        objdir 'obj/gcc/%{prj.name}'
 
         includedirs { testIncludes }
         buildoptions { buildOpts }

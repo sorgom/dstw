@@ -56,9 +56,9 @@ namespace test
         STEP(1)
         expectReset();
         GenProjData<> data;
-        m_TSW_Provider().expectLoad(data.numTSW);
-        m_SIG_Provider().expectLoad(data.numSIG);
-        m_LCR_Provider().expectLoad(data.numLCR);
+        m_TSW_Provider().expectLoad(data.numTSW());
+        m_SIG_Provider().expectLoad(data.numSIG());
+        m_LCR_Provider().expectLoad(data.numLCR());
         m_Dispatcher().expectIndex();
         data.dump(fname);
         mSUT.read(fname);
@@ -76,53 +76,8 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  failure: correct files with capacities exceeded
-    TEST(SYS_01, T03)
-    {
-        STEP(1)
-        //  TSW
-        {
-            GenProjData<CAPACITY_TSW + 1, 1, 1, 1> data;
-            data.dump(fname);
-        }
-        expectFail();
-        mSUT.read(fname);
-        CHECK_N_CLEAR()
-
-        STEP(2)
-        //  SIG
-        {
-            GenProjData<1, CAPACITY_SIG + 1, 1, 1> data;
-            data.dump(fname);
-        }
-        expectFail();
-        mSUT.read(fname);
-        CHECK_N_CLEAR()
-
-        STEP(3)
-        //  LCR
-        {
-            GenProjData<1, 1, CAPACITY_LCR + 1, 1> data;
-            data.dump(fname);
-        }
-        expectFail();
-        mSUT.read(fname);
-        CHECK_N_CLEAR()
-
-        STEP(4)
-        //  SEG
-        {
-            GenProjData<1, 1, 1, CAPACITY_SEG + 1> data;
-            data.dump(fname);
-        }
-        expectFail();
-        mSUT.read(fname);
-        CHECK_N_CLEAR()
-    }
-
-    //  test type: equivalence class test
     //  failure: file size mismatch
-    TEST(SYS_01, T04)
+    TEST(SYS_01, T03)
     {
         STEP(1)
         //  too small
@@ -137,7 +92,7 @@ namespace test
 
     //  test type: equivalence class test
     //  failure: file smaller than header
-    TEST(SYS_01, T05)
+    TEST(SYS_01, T04)
     {
         SETUP()
         std::ofstream os(fname, std::ios::binary);
@@ -155,7 +110,7 @@ namespace test
 
     //  test type: coverage
     //  retrieve instance
-    TEST(SYS_01, T06)
+    TEST(SYS_01, T05)
     {
         unmock();
         I_Reader& inst = IL::getReader();

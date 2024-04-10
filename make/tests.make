@@ -21,7 +21,7 @@ endif
 RESCOMP = windres
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests
-DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCAPACITY_TSW=11 -DCAPACITY_SIG=10 -DCAPACITY_LCR=9 -DCAPACITY_SEG=22
+DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DTEST_NUM_TSW=11 -DTEST_NUM_SIG=10 -DTEST_NUM_LCR=9 -DTEST_NUM_SEG=22
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
@@ -36,28 +36,28 @@ define PRELINKCMDS
 endef
 
 ifeq ($(config),ci)
-OBJDIR = obj/tests/ci
+OBJDIR = obj/gcc/tests/ci
 define PREBUILDCMDS
 endef
 define POSTBUILDCMDS
 endef
 
 else ifeq ($(config),sys)
-OBJDIR = obj/tests/sys
+OBJDIR = obj/gcc/tests/sys
 define PREBUILDCMDS
 endef
 define POSTBUILDCMDS
 endef
 
 else ifeq ($(config),dev)
-OBJDIR = obj/tests/dev
+OBJDIR = obj/gcc/tests/dev
 define PREBUILDCMDS
 endef
 define POSTBUILDCMDS
 endef
 
 else ifeq ($(config),bullseye)
-OBJDIR = obj/tests/bullseye
+OBJDIR = obj/gcc/tests/bullseye
 define PREBUILDCMDS
 	@echo Running prebuild commands
 	cov01 -1 --no-banner

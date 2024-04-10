@@ -7,7 +7,7 @@
 //
 //  pre-defined here
 //  definable at compile time
-//  e.g.: -DCAPACITY_SIG=500 
+//  e.g.: -DTEST_NUM_SIG=500 
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -17,22 +17,22 @@
 
 #include <codebase/BaseTypes.h>
 
-#ifndef CAPACITY_TSW
-#define CAPACITY_TSW 100
+#ifndef TEST_NUM_TSW
+#define TEST_NUM_TSW 100
 #endif 
 
-#ifndef CAPACITY_SIG
-#define CAPACITY_SIG 100
+#ifndef TEST_NUM_SIG
+#define TEST_NUM_SIG 100
 #endif 
 
-#ifndef CAPACITY_LCR
-#define CAPACITY_LCR 100
+#ifndef TEST_NUM_LCR
+#define TEST_NUM_LCR 100
 #endif 
 
-#ifndef CAPACITY_SEG
-#define CAPACITY_SEG 100
+#ifndef TEST_NUM_SEG
+#define TEST_NUM_SEG 100
 #endif 
 
-constexpr size_t CAPACITY_DSP = CAPACITY_TSW + CAPACITY_SIG + CAPACITY_LCR + CAPACITY_SEG;
+constexpr size_t TEST_NUM_DSP = TEST_NUM_TSW + TEST_NUM_SIG + TEST_NUM_LCR + TEST_NUM_SEG;
 
 #endif // H_

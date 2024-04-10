@@ -1,6 +1,5 @@
 #include <SYS/Reader.h>
 #include <ifs/ProjTypes.h>
-#include <setup/capacities.h>
 #include <SYS/IL.h>
 
 #include <fstream>
@@ -49,42 +48,9 @@ void Reader::read(const CONST_C_STRING filename) const
 
             if (ok)
             {
-                ok = nTSW <= CAPACITY_TSW;
-            }
-            else
-            { pass(); }
+                const auto mxSize = std::max({sTSW, sSIG, sLCR, sSEG});
 
-            if (ok)
-            {
-                ok = nSIG <= CAPACITY_SIG;
-            }
-            else
-            { pass(); }
-
-            if (ok)
-            {
-                ok = nLCR <= CAPACITY_LCR;
-            }
-            else
-            { pass(); }
-
-            if (ok)
-            {
-                ok = nSEG <= CAPACITY_SEG;
-            }
-            else
-            { pass(); }
-
-            if (ok)
-            {
-                constexpr static size_t dSize = std::max({
-                    CAPACITY_TSW * sizeof(ProjTSW),
-                    CAPACITY_SIG * sizeof(ProjSIG),
-                    CAPACITY_LCR * sizeof(ProjLCR),
-                    CAPACITY_SEG * sizeof(ProjSEG)
-                });
-
-                CHAR buf[dSize];
+                CHAR* buf = new CHAR[mxSize];
 
                 is.read(buf, sTSW);
                 IL::getTSW_Provider().load(reinterpret_cast<const ProjTSW*>(buf), nTSW);
@@ -97,7 +63,8 @@ void Reader::read(const CONST_C_STRING filename) const
 
                 //  SEG not yet implemented
 
-                
+                delete [] buf;
+
                 IL::getDispatcher().index();
             }    
             else

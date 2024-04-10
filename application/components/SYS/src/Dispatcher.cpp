@@ -7,8 +7,7 @@ INSTANCE_DEF(Dispatcher)
 
 void Dispatcher::reset()
 {
-    mData.reset();
-    mIndx.reset();
+    mIndx.clear();
 }
 
 void Dispatcher::index()
@@ -26,15 +25,8 @@ const PosRes Dispatcher::assign(
     const E_Subsys subs, 
     const size_t pos)
 {
-    const bool valid = mData.hasSpace();
-    size_t dpos = 0;
-    if (valid)
-    {
-        dpos = mData.add(name, subs, pos);
-    }
-    else
-    { pass();}
-    return PosRes{dpos, valid};
+    mIndx.add(Ntp(name, subs, pos));
+    return PosRes{mIndx.size() - 1, true};
 }
 
 void Dispatcher::dispatch(const ComFldState& tele) const
@@ -99,9 +91,9 @@ void Dispatcher::dispatch(const ComGuiCmd& tele) const
 
 void Dispatcher::dispatch(const size_t id, ComCmdFld&& tele) const
 {
-    if (mData.has(id))
+    if (mIndx.size() > id)
     {
-        tele.name = mData.at(id).name;
+        tele.name = mIndx.at(id).name;
         IL::getCom().send(tele);
     }
     else
@@ -110,9 +102,9 @@ void Dispatcher::dispatch(const size_t id, ComCmdFld&& tele) const
 
 void Dispatcher::dispatch(const size_t id, ComStateGui&& tele) const
 {
-    if (mData.has(id))
+    if (mIndx.size() > id)
     {
-        tele.name = mData.at(id).name;
+        tele.name = mIndx.at(id).name;
         IL::getCom().send(tele);
     }
     else

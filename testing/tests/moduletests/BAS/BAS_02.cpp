@@ -1,10 +1,10 @@
 //  ============================================================
-//  test of NtpArray / NtpIndex
+//  test of NtpIndex
 //  ============================================================
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <BAS/NtpArray.h>
+#include <BAS/NtpIndex.h>
 
 namespace test
 {
@@ -17,9 +17,7 @@ namespace test
         // cout << endl;
         // TestSteps::show(1);
         SETUP()
-        NtpArray<CAPACITY_DSP> data;
-        NtpIndex<CAPACITY_DSP> indx(data);
-        L_CHECK_EQUAL(CAPACITY_DSP, data.capacity())
+        NtpIndex indx;
         
         const UINT8 tSize = 10;
         const UINT8 tOffs = tSize - 1;
@@ -29,7 +27,7 @@ namespace test
         for (UINT8 n = 0; n < tSize; ++n)
         {
             LSTEP(n)
-            data.add(genComName(tOffs - n), n, n);
+            indx << Ntp(genComName(tOffs - n), n, n);
         }
         ENDSTEPS()
 

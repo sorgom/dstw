@@ -7,16 +7,13 @@
 #define DISPATCHER_H
 
 #include <BAS/coding.h>
-#include <BAS/NtpArray.h>
+#include <BAS/NtpIndex.h>
 #include <ifs/I_Dispatcher.h>
-#include <setup/capacities.h>
 
 class Dispatcher : public I_Dispatcher
 {
 public:
-    inline Dispatcher():
-        mIndx(mData)
-    {}
+    inline Dispatcher() = default;
 
     void reset();
     void index();
@@ -34,10 +31,7 @@ public:
     NOCOPY(Dispatcher)
 
 private:
-    NtpArray<CAPACITY_DSP> mData;
-    NtpIndex<CAPACITY_DSP> mIndx;
-
-
+    NtpIndex mIndx;
 };
 
 #endif // H_
