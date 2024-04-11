@@ -10,6 +10,6 @@ test of Containers
 
 **BAS_02.cpp**
 ```
-test of NtpIndex
+test of NcpIndex
 - should also cover all methods of container class Index
 ```

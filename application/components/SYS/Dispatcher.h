@@ -7,7 +7,7 @@
 #define DISPATCHER_H
 
 #include <BAS/coding.h>
-#include <BAS/NtpIndex.h>
+#include <BAS/NcpIndex.h>
 #include <ifs/I_Dispatcher.h>
 
 class Dispatcher : public I_Dispatcher
@@ -31,7 +31,7 @@ public:
     NOCOPY(Dispatcher)
 
 private:
-    NtpIndex mIndx;
+    NcpIndex mIndx;
 };
 
 #endif // H_

@@ -17,8 +17,8 @@ Loader.cpp           1 /   1 = 100%    0 /   0
 Loader.h             1 /   1 = 100%    0 /   0
 Log.h                2 /   2 = 100%    0 /   0
 Mem.h                4 /   4 = 100%    0 /   0
-NtpArray.cpp         1 /   1 = 100%    0 /   0
-NtpArray.h           4 /   4 = 100%    0 /   0
+NcpArray.cpp         1 /   1 = 100%    0 /   0
+NcpArray.h           4 /   4 = 100%    0 /   0
 SIG_Hub.cpp          4 /   4 = 100%    4 /   4 = 100%
 SIG_Hub.h            1 /   1 = 100%    0 /   0
 SIG_Provider.cpp     1 /   1 = 100%   16 /  16 = 100%

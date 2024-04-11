@@ -1,6 +1,11 @@
+//  ============================================================
+//  name, component, position
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
-#ifndef NTPINDEX_H
-#define NTPINDEX_H
+#ifndef NCPINDEX_H
+#define NCPINDEX_H
 
 #include <BAS/coding.h>
 #include <BAS/Containers.h>
@@ -8,31 +13,31 @@
 
 #include <codebase/packBegin.h>
 
-struct Ntp
+struct Ncp
 {
     const ComName name;
-    const UINT8 type;
+    const UINT8 comp;
     const size_t pos;
-    inline Ntp(
+    inline Ncp(
         const ComName& name,
-        UINT8 type = 0,
+        UINT8 comp = 0,
         size_t pos = 0
     ):
         name(name),
-        type(type),
+        comp(comp),
         pos(pos)
     {}
 };
 
 #include <codebase/packEnd.h>
 
-class NtpIndex : public Index<ComName, Ntp>
+class NcpIndex : public Index<ComName, Ncp>
 {
 public:
-    inline NtpIndex() = default;
-    NOCOPY(NtpIndex)
+    inline NcpIndex() = default;
+    NOCOPY(NcpIndex)
 protected:
-    inline const ComName& getKey(const Ntp& ntp) const final
+    inline const ComName& getKey(const Ncp& ntp) const final
     {
         return ntp.name;
     }

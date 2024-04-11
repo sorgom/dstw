@@ -17,23 +17,29 @@ workspace 'dstw'
         objdir 'obj/gcc/%{prj.name}'
         targetdir 'bin'
         buildoptions { buildOpts }
-        defines { appDefines }
         optimize 'On'
 
         project 'dstw_gen'
             kind 'ConsoleApp'
             includedirs { testIncludes }
+            defines { genDefines }
             files { genDataSrcs }
 
         project 'dstw_run'
             kind 'ConsoleApp'
             includedirs { appIncludes }
+            defines { appDefines }
             files { '../application/**.cpp' }
 
 --  ============================================================
 --  > tests.make
 --  module tests and system tests at once runtime
 --  ->  bin/tests
+--  configurations: 
+--  - ci        module and system tests
+--  - sys       system tests
+--  - dev       developer tests
+--  - bullseye  module tests with bullseye coverage
 --  ============================================================
 workspace 'tests'
     filter { 'action:gmake*' }

@@ -29,7 +29,9 @@ testDefines = {
     'CPPUTEST_USE_LONG_LONG=0'
 }
 
-appDefines = { 
+appDefines = { 'NDEBUG' }
+
+genDefines = { 
     'NDEBUG', 
     'TEST_NUM_TSW=1000', 
     'TEST_NUM_SIG=1000', 

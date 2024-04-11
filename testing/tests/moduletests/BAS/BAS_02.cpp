@@ -1,11 +1,11 @@
 //  ============================================================
-//  test of NtpIndex
+//  test of NcpIndex
 //  - should also cover all methods of container class Index
 //  ============================================================
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <BAS/NtpIndex.h>
+#include <BAS/NcpIndex.h>
 
 namespace test
 {
@@ -16,7 +16,7 @@ namespace test
     //  add and find data
     TEST(BAS_02, T01)
     {
-        NtpIndex indx;
+        NcpIndex indx;
         
         const UINT8 tSize = 10;
         const UINT8 tOffs = tSize - 1;
@@ -24,7 +24,7 @@ namespace test
         STEP(1)
         for (UINT8 n = 0; n < tSize; ++n)
         {
-            indx << Ntp(genComName(tOffs - n), n, n);
+            indx << Ncp(genComName(tOffs - n), n, n);
         }
 
         STEP(2)
@@ -53,7 +53,7 @@ namespace test
     //  after successful index
     TEST(BAS_02, T02)
     {
-        NtpIndex indx;
+        NcpIndex indx;
         
         // no data added
         STEP(1)
@@ -70,8 +70,8 @@ namespace test
         for (UINT8 n = 0; n < 10; ++n)
         {
             indx 
-                << Ntp(genComName(n), n, n)
-                << Ntp(genComName(n + 10), n, n);
+                << Ncp(genComName(n), n, n)
+                << Ncp(genComName(n + 10), n, n);
         }
         {
             const auto ok = indx.index();
@@ -84,13 +84,13 @@ namespace test
     //  failure of index due to duplicate data
     TEST(BAS_02, T03)
     {
-        NtpIndex indx;
+        NcpIndex indx;
         
         // no data added
         STEP(1)
         indx 
-            << Ntp(genComName(1), 1, 1)
-            << Ntp(genComName(1), 2, 3)
+            << Ncp(genComName(1), 1, 1)
+            << Ncp(genComName(1), 2, 3)
         ;
         const auto ok = indx.index();
         L_CHECK_FALSE(ok);

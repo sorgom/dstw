@@ -25,7 +25,7 @@ const PosRes Dispatcher::assign(
     const E_Comp comp, 
     const size_t pos)
 {
-    mIndx.add(Ntp(name, comp, pos));
+    mIndx.add(Ncp(name, comp, pos));
     return PosRes{mIndx.size() - 1, true};
 }
 
@@ -35,17 +35,17 @@ void Dispatcher::dispatch(const ComFldState& tele) const
 
     if (res.valid)
     {
-        const Ntp& ntp = mIndx.at(res);
-        switch (ntp.type)
+        const Ncp& ncp = mIndx.at(res);
+        switch (ncp.comp)
         {
         case COMP_TSW:
-            IL::getTSW_Hub().fromDsp(ntp.pos, tele);
+            IL::getTSW_Hub().fromDsp(ncp.pos, tele);
             break;
         case COMP_SIG:
-            IL::getSIG_Hub().fromDsp(ntp.pos, tele);
+            IL::getSIG_Hub().fromDsp(ncp.pos, tele);
             break;
         case COMP_LCR:
-            IL::getLCR_Hub().fromDsp(ntp.pos, tele);
+            IL::getLCR_Hub().fromDsp(ncp.pos, tele);
             break;
         case COMP_SEG:
             break;
@@ -65,17 +65,17 @@ void Dispatcher::dispatch(const ComGuiCmd& tele) const
 
     if (res.valid)
     {
-        const Ntp& ntp = mIndx.at(res);
-        switch (ntp.type)
+        const Ncp& ncp = mIndx.at(res);
+        switch (ncp.comp)
         {
         case COMP_TSW:
-            IL::getTSW_Hub().fromDsp(ntp.pos, tele);
+            IL::getTSW_Hub().fromDsp(ncp.pos, tele);
             break;
         case COMP_SIG:
-            IL::getSIG_Hub().fromDsp(ntp.pos, tele);
+            IL::getSIG_Hub().fromDsp(ncp.pos, tele);
             break;
         case COMP_LCR:
-            IL::getLCR_Hub().fromDsp(ntp.pos, tele);
+            IL::getLCR_Hub().fromDsp(ncp.pos, tele);
             break;
         case COMP_SEG:
             break;

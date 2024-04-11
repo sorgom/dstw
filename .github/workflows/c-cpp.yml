@@ -20,8 +20,10 @@ jobs:
       uses: actions/checkout@v3
       with:
          submodules: 'true'
-    - name: prepare build
-      run: chmod 755 make/build.sh
 
-    - name: "build and run all"
-      run: make/build.sh -cx
+    - name: build and run all
+      run: chmod 755 make/build.sh; make/build.sh -cx
+
+    - name: check env
+      run: chmod 755 make/checkEnv.sh; make/checkEnv.sh
+

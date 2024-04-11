@@ -78,7 +78,7 @@ workspace 'gendata'
         warnings 'high'
         buildoptions { buildOptsApp }
 
-        defines { appDefines }
+        defines { genDefines }
     
         project 'gendata'
             kind 'ConsoleApp'

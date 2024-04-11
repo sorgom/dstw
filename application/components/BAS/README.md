@@ -15,6 +15,11 @@ class Index allows to
 - index and find objects by key
 ```
 
+**NcpIndex.h**
+```
+name, component, position
+```
+
 **coding.h**
 ```
 misc coding enhancers

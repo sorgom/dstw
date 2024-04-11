@@ -15,6 +15,11 @@ options:
 bullseye coverage output
 ```
 
+**checkEnv.sh**
+```
+check for availability of tools
+```
+
 **premake5.lua**
 ```
 premake5 build rules for gcc (gmake2):
@@ -26,6 +31,11 @@ application runtime
 > tests.make
 module tests and system tests at once runtime
 ->  bin/tests
+configurations:
+- ci        module and system tests
+- sys       system tests
+- dev       developer tests
+- bullseye  module tests with bullseye coverage
 
 > coverage.make
 -   coverage instrumented application (static lib)

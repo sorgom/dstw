@@ -15,7 +15,7 @@
 class LCR_Provider : public I_LCR_Provider
 {
 public:
-    inline LCR_Provider() {}
+    inline LCR_Provider() = default;
 
     inline bool has(size_t pos) const
     {

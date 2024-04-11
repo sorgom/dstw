@@ -48,7 +48,7 @@ namespace test
             << "MAX: " << setw(16) << Dotted(maxval) << endl
             << "SIG: " << setw(16) << Dotted(maxval / sizeof(SIG_X)) << endl
             << "TSW: " << setw(16) << Dotted(maxval / sizeof(TSW)) << endl
-            << "DSP: " << setw(16) << Dotted(maxval / sizeof(Ntp)) << endl
+            << "DSP: " << setw(16) << Dotted(maxval / sizeof(Ncp)) << endl
         ;
     }
 
