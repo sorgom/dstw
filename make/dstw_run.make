@@ -22,7 +22,7 @@ RESCOMP = windres
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/dstw_run
 OBJDIR = obj/gcc/dstw_run
-DEFINES += -DNDEBUG -DTEST_NUM_TSW=1000 -DTEST_NUM_SIG=1000 -DTEST_NUM_LCR=1000 -DTEST_NUM_SEG=1000
+DEFINES += -DNDEBUG
 INCLUDES += -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)

@@ -12,6 +12,10 @@ ifeq ($(config),ci)
   coverage_app_config = ci
   coverage_tests_config = ci
 
+else ifeq ($(config),fail)
+  coverage_app_config = fail
+  coverage_tests_config = fail
+
 else
   $(error "invalid configuration $(config)")
 endif
@@ -43,6 +47,7 @@ help:
 	@echo ""
 	@echo "CONFIGURATIONS:"
 	@echo "  ci"
+	@echo "  fail"
 	@echo ""
 	@echo "TARGETS:"
 	@echo "   all (default)"

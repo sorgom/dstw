@@ -80,7 +80,7 @@ workspace 'tests'
 --  ============================================================
 workspace 'coverage'
     filter { 'action:gmake*' }
-        configurations { 'ci' }
+        configurations { 'ci', 'fail' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}'
 
@@ -99,8 +99,12 @@ workspace 'coverage'
         project 'coverage_tests'
             kind 'ConsoleApp'
             targetdir 'bin'
-
-            files { testEnvSrcs, modTestSrcs }
             libdirs { 'lib', '../BuildCppUTest/lib' }
             links { 'coverage_app', 'gcov', testLinks }
             linkoptions { '--coverage' }
+            files { testEnvSrcs }
+            filter { 'configurations:ci' }
+                files { modTestSrcs }
+
+            filter { 'configurations:fail' }
+                files { devTestSrcs }

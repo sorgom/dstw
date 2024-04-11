@@ -21,7 +21,6 @@ endif
 RESCOMP = windres
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/coverage_tests
-OBJDIR = obj/gcc/coverage_tests
 DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
@@ -40,6 +39,14 @@ endef
 define POSTBUILDCMDS
 endef
 
+ifeq ($(config),ci)
+OBJDIR = obj/gcc/coverage_tests/ci
+
+else ifeq ($(config),fail)
+OBJDIR = obj/gcc/coverage_tests/fail
+
+endif
+
 # Per File Configurations
 # #############################################
 
@@ -50,23 +57,9 @@ endef
 GENERATED :=
 OBJECTS :=
 
-GENERATED += $(OBJDIR)/BAS_01.o
-GENERATED += $(OBJDIR)/BAS_02.o
 GENERATED += $(OBJDIR)/Comparator.o
 GENERATED += $(OBJDIR)/IL.o
-GENERATED += $(OBJDIR)/LCR_01.o
-GENERATED += $(OBJDIR)/LCR_02.o
-GENERATED += $(OBJDIR)/LCR_03.o
 GENERATED += $(OBJDIR)/M_Instances.o
-GENERATED += $(OBJDIR)/SIG_01.o
-GENERATED += $(OBJDIR)/SIG_02.o
-GENERATED += $(OBJDIR)/SIG_03.o
-GENERATED += $(OBJDIR)/SYS_01.o
-GENERATED += $(OBJDIR)/SYS_02.o
-GENERATED += $(OBJDIR)/SYS_03.o
-GENERATED += $(OBJDIR)/TSW_01.o
-GENERATED += $(OBJDIR)/TSW_02.o
-GENERATED += $(OBJDIR)/TSW_03.o
 GENERATED += $(OBJDIR)/TestGroupBase.o
 GENERATED += $(OBJDIR)/TestLib.o
 GENERATED += $(OBJDIR)/TestLiterals.o
@@ -76,23 +69,9 @@ GENERATED += $(OBJDIR)/TestStepsPlugin.o
 GENERATED += $(OBJDIR)/installComparators.o
 GENERATED += $(OBJDIR)/ostreamHelpers.o
 GENERATED += $(OBJDIR)/ostreams.o
-OBJECTS += $(OBJDIR)/BAS_01.o
-OBJECTS += $(OBJDIR)/BAS_02.o
 OBJECTS += $(OBJDIR)/Comparator.o
 OBJECTS += $(OBJDIR)/IL.o
-OBJECTS += $(OBJDIR)/LCR_01.o
-OBJECTS += $(OBJDIR)/LCR_02.o
-OBJECTS += $(OBJDIR)/LCR_03.o
 OBJECTS += $(OBJDIR)/M_Instances.o
-OBJECTS += $(OBJDIR)/SIG_01.o
-OBJECTS += $(OBJDIR)/SIG_02.o
-OBJECTS += $(OBJDIR)/SIG_03.o
-OBJECTS += $(OBJDIR)/SYS_01.o
-OBJECTS += $(OBJDIR)/SYS_02.o
-OBJECTS += $(OBJDIR)/SYS_03.o
-OBJECTS += $(OBJDIR)/TSW_01.o
-OBJECTS += $(OBJDIR)/TSW_02.o
-OBJECTS += $(OBJDIR)/TSW_03.o
 OBJECTS += $(OBJDIR)/TestGroupBase.o
 OBJECTS += $(OBJDIR)/TestLib.o
 OBJECTS += $(OBJDIR)/TestLiterals.o
@@ -102,6 +81,46 @@ OBJECTS += $(OBJDIR)/TestStepsPlugin.o
 OBJECTS += $(OBJDIR)/installComparators.o
 OBJECTS += $(OBJDIR)/ostreamHelpers.o
 OBJECTS += $(OBJDIR)/ostreams.o
+
+ifeq ($(config),ci)
+GENERATED += $(OBJDIR)/BAS_01.o
+GENERATED += $(OBJDIR)/BAS_02.o
+GENERATED += $(OBJDIR)/LCR_01.o
+GENERATED += $(OBJDIR)/LCR_02.o
+GENERATED += $(OBJDIR)/LCR_03.o
+GENERATED += $(OBJDIR)/SIG_01.o
+GENERATED += $(OBJDIR)/SIG_02.o
+GENERATED += $(OBJDIR)/SIG_03.o
+GENERATED += $(OBJDIR)/SYS_01.o
+GENERATED += $(OBJDIR)/SYS_02.o
+GENERATED += $(OBJDIR)/SYS_03.o
+GENERATED += $(OBJDIR)/TSW_01.o
+GENERATED += $(OBJDIR)/TSW_02.o
+GENERATED += $(OBJDIR)/TSW_03.o
+OBJECTS += $(OBJDIR)/BAS_01.o
+OBJECTS += $(OBJDIR)/BAS_02.o
+OBJECTS += $(OBJDIR)/LCR_01.o
+OBJECTS += $(OBJDIR)/LCR_02.o
+OBJECTS += $(OBJDIR)/LCR_03.o
+OBJECTS += $(OBJDIR)/SIG_01.o
+OBJECTS += $(OBJDIR)/SIG_02.o
+OBJECTS += $(OBJDIR)/SIG_03.o
+OBJECTS += $(OBJDIR)/SYS_01.o
+OBJECTS += $(OBJDIR)/SYS_02.o
+OBJECTS += $(OBJDIR)/SYS_03.o
+OBJECTS += $(OBJDIR)/TSW_01.o
+OBJECTS += $(OBJDIR)/TSW_02.o
+OBJECTS += $(OBJDIR)/TSW_03.o
+
+else ifeq ($(config),fail)
+GENERATED += $(OBJDIR)/DT_01.o
+GENERATED += $(OBJDIR)/DT_02.o
+GENERATED += $(OBJDIR)/DT_03.o
+OBJECTS += $(OBJDIR)/DT_01.o
+OBJECTS += $(OBJDIR)/DT_02.o
+OBJECTS += $(OBJDIR)/DT_03.o
+
+endif
 
 # Rules
 # #############################################
@@ -201,6 +220,8 @@ $(OBJDIR)/TestLiterals.o: ../testing/testenv/testlib/src/TestLiterals.cpp
 $(OBJDIR)/TestMain.o: ../testing/testenv/testlib/src/TestMain.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+
+ifeq ($(config),ci)
 $(OBJDIR)/BAS_01.o: ../testing/tests/moduletests/BAS/BAS_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -243,6 +264,19 @@ $(OBJDIR)/TSW_02.o: ../testing/tests/moduletests/TSW/TSW_02.cpp
 $(OBJDIR)/TSW_03.o: ../testing/tests/moduletests/TSW/TSW_03.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+
+else ifeq ($(config),fail)
+$(OBJDIR)/DT_01.o: ../testing/tests/devtests/DT_01.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/DT_02.o: ../testing/tests/devtests/DT_02.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/DT_03.o: ../testing/tests/devtests/DT_03.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+
+endif
 
 -include $(OBJECTS:%.o=%.d)
 ifneq (,$(PCH))
