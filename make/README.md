@@ -81,3 +81,8 @@ generate proj data for application runtime
 application runtime
 ->  exe/dstw.exe
 ```
+
+**runGcov.sh**
+```
+run coverage using gcov
+```

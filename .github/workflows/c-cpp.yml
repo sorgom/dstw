@@ -25,7 +25,7 @@ jobs:
       run: chmod 755 make/build.sh; make/build.sh -cx
 
     - name: check coverage
-      run: python3 scripts/runGcov.py
+      run: chmod 755 make/runGcov.sh; make/runGcov.sh
 
     # - name: check env
     #   run: chmod 755 make/checkEnv.sh; make/checkEnv.sh
