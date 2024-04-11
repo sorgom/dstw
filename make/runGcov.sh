@@ -4,7 +4,7 @@
 #   ====================================
 cd $(dirname $0)
 
-gcov -o obj/gcc/coverage_app/fail ../application/components/*/src/*.cpp > /dev/null   
+gcov -o obj/gcc/coverage_app/ci ../application/components/*/src/*.cpp > /dev/null   
 
 ret=0
 for cf in *.cpp.gcov; do
