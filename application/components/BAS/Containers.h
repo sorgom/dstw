@@ -1,3 +1,8 @@
+//  ============================================================
+//  container collection
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef CONTAINERS_H
 #define CONTAINERS_H
@@ -10,6 +15,10 @@
 #include <utility>
 #include <vector>
 
+//  ============================================================
+//  class PolyVec allows to store polymorphic objects
+//  derived from interface class IF
+//  ============================================================
 template <typename IF>
 class PolyVec 
 {
@@ -22,7 +31,7 @@ public:
     }
 
     template <typename T>
-    PolyVec operator <<(T&& elem) 
+    PolyVec& operator <<(T&& elem) 
     {
         static_assert(std::is_base_of<IF, T>::value);
         mData.push_back(std::make_unique<T>(elem));
@@ -43,6 +52,11 @@ private:
     std::vector<std::unique_ptr<IF>> mData;    
 };
 
+//  ============================================================
+//  class Index allows to 
+//  - store objects in (unsorted) order of insertion
+//  - index and find objects by key
+//  ============================================================
 template <typename KEY, typename CONT>
 class Index
 {
@@ -58,13 +72,13 @@ public:
         return mData.size();
     }
 
-    //  get data by data position
+    //  get data by storage position
     inline const CONT& at(size_t pos) const
     {
         return mData[pos];
     }
 
-    //  get data by search result
+    //  get data by search result (i.e. index) position
     inline const CONT& at(const PosRes& res) const
     {
         return *mIdx[res.pos];
@@ -80,6 +94,8 @@ public:
         return *this;
     }
 
+    //  index data by key after storage finished
+    //  returns true if no duplicates found
     bool index()
     {
         mIdx.clear();
@@ -90,13 +106,15 @@ public:
         sort();
         return dupCnt() == 0;
     }
-    PosRes find(const KEY& key) const
+    //  find data by key
+    //  requires that index() has been called once before
+    const PosRes find(const KEY& key) const
     {
-        bool valid = false;
+        bool found = false;
         size_t pos = 0;
         int left = 0;
         int right = mIdx.size() - 1;
-        while ((left <= right) and (not valid))
+        while ((left <= right) and (not found))
         {
             const int mid = left + (right - left) / 2;
 
@@ -110,11 +128,11 @@ public:
             }
             else
             {
-                valid = true;
+                found = true;
                 pos = mid;
             }
         }
-        return PosRes{pos, valid};
+        return PosRes{pos, found};
     }
 protected:
     //  definition key a is greater than key b

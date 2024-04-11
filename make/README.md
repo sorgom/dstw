@@ -44,6 +44,7 @@ premake5 build rules for VS
 
 general setup
 warning level: 4 (high)
+multi processor build
 
 suppressed warnings application:
 -   4100 unreferenced formal parameter
@@ -57,6 +58,10 @@ additional suppressed warnings test code:
 module tests and system tests at once runtime
 including CppUTest sources
 ->  exe/tests.exe
+configurations:
+- ci        module and system tests
+- sys       system tests
+- dev       developer tests
 
 > gendata.sln
 generate proj data for application runtime

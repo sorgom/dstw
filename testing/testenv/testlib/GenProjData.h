@@ -1,9 +1,9 @@
 //  ============================================================
-//  ProjData generator
+//  proj data generator
 //      presets all proj data 
 //      with element names in reversed alphanumerical order
-//      from capacity down to 1
-//      e.g. TSW, capacity 100:
+//      from size down to 1
+//      e.g. TSW, size 100:
 //          "TSW 100 *" .. "TSW 001 *"
 //  
 //      dumps data to file
@@ -22,7 +22,6 @@
 #include <ifs/I_SIG.h>
 #include <ifs/ProjTypes.h>
 #include <testlib/testNumElements.h>
-// #include <testlib/TestArrays.h>
 #include <testlib/TestLib.h>
 #include <fstream>
 #include <vector>
@@ -121,9 +120,8 @@ namespace test
         void preset(std::vector<T>& vec, CONST_C_STRING what, size_t num)
         {
             vec.resize(num);
-            UINT32 n = 0;
             for (auto& elem : vec)         {
-                nameElement(elem, num - n++, what);
+                nameElement(elem, num--, what);
             }
         }
 

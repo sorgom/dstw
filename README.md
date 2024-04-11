@@ -21,6 +21,6 @@ It shows a completely different approach than the [model driven](Clinch.md) one 
 ## topics
 - [SIL4](SIL4.md)
 - [testing](testing/README.md)
-- [cod coverage](testing/coverage.md)
+- [code coverage](testing/coverage.md)
 - [how to build](make/howto_build.md)
 - [lines of code](CLOC.md)
