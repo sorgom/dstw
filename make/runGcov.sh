@@ -6,6 +6,7 @@ cd $(dirname $0)
 
 gcov -o obj/gcc/coverage_app/ci ../application/components/*/src/*.cpp > /dev/null   
 
+echo cecking $(ls *.cpp.gcov | wc -l) files for coverage ...
 ret=0
 for cf in *.cpp.gcov; do
     nuc=$(cat $cf | grep '#####:' | wc -l)

@@ -22,10 +22,10 @@ jobs:
          submodules: 'true'
 
     - name: build and run all
-      run: chmod 755 make/build.sh; make/build.sh -cx
+      run: chmod 755 make/*.sh; make/build.sh -cx
 
     - name: check coverage
-      run: chmod 755 make/runGcov.sh; make/runGcov.sh
+      run: make/runGcov.sh
 
     # - name: check env
     #   run: chmod 755 make/checkEnv.sh; make/checkEnv.sh
