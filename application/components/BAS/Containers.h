@@ -30,24 +30,14 @@ public:
         mData.push_back(std::make_unique<T>(std::forward<Args>(args)...));
     }
 
-    template <typename T>
-    PolyVec& operator <<(T&& elem) 
-    {
-        static_assert(std::is_base_of<IF, T>::value);
-        mData.push_back(std::make_unique<T>(elem));
-        return *this;
-    }
-
     size_t size() const { return mData.size(); }
 
-    const IF& at(size_t index) const { return *mData.at(index); }
+    const IF& at(size_t pos) const { return *mData.at(pos); }
 
-    IF& at(size_t index) { return *mData.at(index); }
+    IF& at(size_t pos) { return *mData.at(pos); }
 
     inline void clear() { mData.clear(); }
 
-protected:    
-    inline const std::vector<std::unique_ptr<IF>>& data() const { return mData; }
 private:
     std::vector<std::unique_ptr<IF>> mData;    
 };
