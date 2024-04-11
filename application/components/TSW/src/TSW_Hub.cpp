@@ -13,7 +13,7 @@ void TSW_Hub::fromDsp(const size_t pos, const ComFldState& tele) const
         prov.at(pos).fromFld(tele.state1);
     }
     else
-    {pass();}
+    { pass(); }
 }
 
 void TSW_Hub::fromDsp(const size_t pos, const ComGuiCmd& tele) const
@@ -24,7 +24,7 @@ void TSW_Hub::fromDsp(const size_t pos, const ComGuiCmd& tele) const
         prov.at(pos).fromGui(tele.cmd1);
     }
     else
-    {pass();}
+    { pass(); }
 }
 
 void TSW_Hub::toFld(const size_t id, const UINT8 cmd) const

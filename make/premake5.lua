@@ -80,9 +80,10 @@ workspace 'tests'
 --  ============================================================
 workspace 'coverage'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'fail' }
+        configurations { 'ci', 'sys', 'fail' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}'
+        targetsuffix '_%{cfg.name}'
 
         includedirs { testIncludes }
         buildoptions { buildOpts }
@@ -105,6 +106,7 @@ workspace 'coverage'
             files { testEnvSrcs }
             filter { 'configurations:ci' }
                 files { modTestSrcs }
-
+            filter { 'configurations:sys' }
+                files { sysTestSrcs }
             filter { 'configurations:fail' }
                 files { devTestSrcs }

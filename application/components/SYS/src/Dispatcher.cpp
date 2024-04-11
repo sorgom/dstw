@@ -13,7 +13,7 @@ void Dispatcher::reset()
 void Dispatcher::index()
 {
     if (mIndx.index())
-    { pass();}
+    { pass(); }
     else
     {
         IL::getLog().log(MOD_SYS_DISPATCHER, ERR_STARTUP);
@@ -97,7 +97,7 @@ void Dispatcher::dispatch(const size_t id, ComCmdFld&& tele) const
         IL::getCom().send(tele);
     }
     else
-    { pass();}
+    { pass(); }
 }
 
 void Dispatcher::dispatch(const size_t id, ComStateGui&& tele) const
@@ -108,5 +108,5 @@ void Dispatcher::dispatch(const size_t id, ComStateGui&& tele) const
         IL::getCom().send(tele);
     }
     else
-    { pass();}
+    { pass(); }
 }

@@ -12,6 +12,10 @@ ifeq ($(config),ci)
   coverage_app_config = ci
   coverage_tests_config = ci
 
+else ifeq ($(config),sys)
+  coverage_app_config = sys
+  coverage_tests_config = sys
+
 else ifeq ($(config),fail)
   coverage_app_config = fail
   coverage_tests_config = fail
@@ -47,6 +51,7 @@ help:
 	@echo ""
 	@echo "CONFIGURATIONS:"
 	@echo "  ci"
+	@echo "  sys"
 	@echo "  fail"
 	@echo ""
 	@echo "TARGETS:"

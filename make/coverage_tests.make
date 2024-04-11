@@ -19,8 +19,6 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = bin
-TARGET = $(TARGETDIR)/coverage_tests
 DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
@@ -28,8 +26,6 @@ ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-LIBS += lib/libcoverage_app.a -lgcov -lCppUTest -lCppUTestExt
-LDDEPS += lib/libcoverage_app.a
 ALL_LDFLAGS += $(LDFLAGS) -Llib -L../BuildCppUTest/lib --coverage
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
@@ -40,10 +36,25 @@ define POSTBUILDCMDS
 endef
 
 ifeq ($(config),ci)
+TARGETDIR = bin
+TARGET = $(TARGETDIR)/coverage_tests_ci
 OBJDIR = obj/gcc/coverage_tests/ci
+LIBS += lib/libcoverage_app_ci.a -lgcov -lCppUTest -lCppUTestExt
+LDDEPS += lib/libcoverage_app_ci.a
+
+else ifeq ($(config),sys)
+TARGETDIR = bin
+TARGET = $(TARGETDIR)/coverage_tests_sys
+OBJDIR = obj/gcc/coverage_tests/sys
+LIBS += lib/libcoverage_app_sys.a -lgcov -lCppUTest -lCppUTestExt
+LDDEPS += lib/libcoverage_app_sys.a
 
 else ifeq ($(config),fail)
+TARGETDIR = bin
+TARGET = $(TARGETDIR)/coverage_tests_fail
 OBJDIR = obj/gcc/coverage_tests/fail
+LIBS += lib/libcoverage_app_fail.a -lgcov -lCppUTest -lCppUTestExt
+LDDEPS += lib/libcoverage_app_fail.a
 
 endif
 
@@ -111,6 +122,12 @@ OBJECTS += $(OBJDIR)/SYS_03.o
 OBJECTS += $(OBJDIR)/TSW_01.o
 OBJECTS += $(OBJDIR)/TSW_02.o
 OBJECTS += $(OBJDIR)/TSW_03.o
+
+else ifeq ($(config),sys)
+GENERATED += $(OBJDIR)/SYST_01.o
+GENERATED += $(OBJDIR)/SYST_02.o
+OBJECTS += $(OBJDIR)/SYST_01.o
+OBJECTS += $(OBJDIR)/SYST_02.o
 
 else ifeq ($(config),fail)
 GENERATED += $(OBJDIR)/DT_01.o
@@ -262,6 +279,14 @@ $(OBJDIR)/TSW_02.o: ../testing/tests/moduletests/TSW/TSW_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW_03.o: ../testing/tests/moduletests/TSW/TSW_03.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+
+else ifeq ($(config),sys)
+$(OBJDIR)/SYST_01.o: ../testing/tests/systemtests/SYST_01.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/SYST_02.o: ../testing/tests/systemtests/SYST_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

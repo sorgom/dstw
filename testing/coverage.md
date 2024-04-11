@@ -1,5 +1,20 @@
-## coverage using bullseye coverage
-This is an older sample, because the bullseye trial period expired.
+# code coverage
+## bullseye
+Bullseye coverage turned out a most excellent tool.
+
+It analyses:
+-   analyses source and header coverage
+-   every condition of logical and / or
+-   every item of multiple case statement
+-   for loops
+
+It can generate several outputs from simple text to html documentation.
+
+It's available for Windows and Linux. 
+
+Bullseye is not for free - but they provide a free trial period. 
+
+Sample text summary output:
 ```
 Source            Function Coverage      C/D Coverage
 ----------------  -----------------  ----------------
@@ -17,16 +32,16 @@ Loader.cpp           1 /   1 = 100%    0 /   0
 Loader.h             1 /   1 = 100%    0 /   0
 Log.h                2 /   2 = 100%    0 /   0
 Mem.h                4 /   4 = 100%    0 /   0
-NcpArray.cpp         1 /   1 = 100%    0 /   0
-NcpArray.h           4 /   4 = 100%    0 /   0
+NtpArray.cpp         1 /   1 = 100%    0 /   0
+NtpArray.h           4 /   4 = 100%    0 /   0
 SIG_Hub.cpp          4 /   4 = 100%    4 /   4 = 100%
 SIG_Hub.h            1 /   1 = 100%    0 /   0
 SIG_Provider.cpp     1 /   1 = 100%   16 /  16 = 100%
 SIG_Provider.h       3 /   3 = 100%    0 /   0
 SIG_X.cpp           18 /  18 = 100%   93 /  93 = 100%
 SIG_X.h              9 /   9 = 100%    0 /   0
-StaticArray.cpp       1 /   1 = 100%    0 /   0
-.h        26 /  26 = 100%    2 /   2 = 100%
+SortableStackArray.cpp       1 /   1 = 100%    0 /   0
+StackArray.h        26 /  26 = 100%    2 /   2 = 100%
 TSW.cpp              7 /   7 = 100%   22 /  22 = 100%
 TSW.h                1 /   1 = 100%    0 /   0
 TSW_Hub.cpp          4 /   4 = 100%    4 /   4 = 100%
@@ -37,10 +52,32 @@ coding.h             1 /   1 = 100%    0 /   0
 ----------------  -----------------  ----------------
 Total              133 / 133 = 100%  247 / 247 = 100%
 ```
-For details see
-<a href="http://dstw.sorgo.de/bullseye/" target="_blank">bullseye html report</a>
+For details see [bullseye html report](http://dstw.sorgo.de/bullseye/)
 
-## current source code coverage
+## gcov
+Gcov comes with gnu compiler collection (gcc) and therefore is available
+-   on a standard linux
+-   for the github CI
+
+It 
+-   provides a very limited impression of the source code coverage
+-   is quite useless with headers
+
+It requires explicit _if else_ blocks. Therefore one has to attach an _else_ block with a (dummy) statement to every _if_ block.
+
+sample:
+```cpp
+    if (mIndx.size() > id)
+    {
+        tele.name = mIndx.at(id).name;
+        IL::getCom().send(tele);
+    }
+    else
+    { pass(); }
+```
+But this isn't too bad, because some SIL4 coding guidelines require this anyhow.
+
+## current gcov code coverage
 ```
 file                      lines  uncovered  percent
 LCR/src/LCR_Hub.cpp          32         --       --

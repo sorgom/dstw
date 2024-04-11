@@ -4,9 +4,12 @@
 #   ====================================
 cd $(dirname $0)
 
-gcov -o obj/gcc/coverage_app/ci ../application/components/*/src/*.cpp > /dev/null   
+conf=$1
+if test -z $conf; then conf=ci; fi
 
-echo cecking $(ls *.cpp.gcov | wc -l) files for coverage ...
+gcov -o obj/gcc/coverage_app/$conf ../application/components/*/src/*.cpp > /dev/null   
+
+echo $(ls *.cpp.gcov | wc -l) files ...
 ret=0
 for cf in *.cpp.gcov; do
     nuc=$(cat $cf | grep '#####:' | wc -l)
@@ -15,4 +18,5 @@ for cf in *.cpp.gcov; do
         ret=1
     fi
 done
+if test $ret -eq 0; then echo OK; fi
 exit $ret
