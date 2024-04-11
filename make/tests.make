@@ -19,8 +19,6 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = bin
-TARGET = $(TARGETDIR)/tests
 DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
@@ -36,6 +34,8 @@ define PRELINKCMDS
 endef
 
 ifeq ($(config),ci)
+TARGETDIR = bin
+TARGET = $(TARGETDIR)/tests_ci
 OBJDIR = obj/gcc/tests/ci
 define PREBUILDCMDS
 endef
@@ -43,6 +43,8 @@ define POSTBUILDCMDS
 endef
 
 else ifeq ($(config),sys)
+TARGETDIR = bin
+TARGET = $(TARGETDIR)/tests_sys
 OBJDIR = obj/gcc/tests/sys
 define PREBUILDCMDS
 endef
@@ -50,6 +52,8 @@ define POSTBUILDCMDS
 endef
 
 else ifeq ($(config),dev)
+TARGETDIR = bin
+TARGET = $(TARGETDIR)/tests_dev
 OBJDIR = obj/gcc/tests/dev
 define PREBUILDCMDS
 endef
@@ -57,6 +61,8 @@ define POSTBUILDCMDS
 endef
 
 else ifeq ($(config),bullseye)
+TARGETDIR = bin
+TARGET = $(TARGETDIR)/tests_bullseye
 OBJDIR = obj/gcc/tests/bullseye
 define PREBUILDCMDS
 	@echo Running prebuild commands

@@ -18,6 +18,9 @@ class Index allows to
 **NcpIndex.h**
 ```
 name, component, position
+
+class NcpIndex is the core of Dispatcher
+see interface I_Dispatcher
 ```
 
 **coding.h**

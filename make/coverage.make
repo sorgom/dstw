@@ -16,9 +16,9 @@ else ifeq ($(config),sys)
   coverage_app_config = sys
   coverage_tests_config = sys
 
-else ifeq ($(config),fail)
-  coverage_app_config = fail
-  coverage_tests_config = fail
+else ifeq ($(config),dev)
+  coverage_app_config = dev
+  coverage_tests_config = dev
 
 else
   $(error "invalid configuration $(config)")
@@ -52,7 +52,7 @@ help:
 	@echo "CONFIGURATIONS:"
 	@echo "  ci"
 	@echo "  sys"
-	@echo "  fail"
+	@echo "  dev"
 	@echo ""
 	@echo "TARGETS:"
 	@echo "   all (default)"

@@ -19,32 +19,33 @@ public:
 
     //  ============================================================
     //  when loading project data
-    //  subsystems assign themselves with:
+    //  components providers (TSW, SIG, LCR, SEG) 
+    //  assign themselves with:
     //  - element name
-    //  - subsystem id
+    //  - component id
     //  - own processing element position
     //  and shall receive:
-    //  - dispatcher id
+    //  - dispatcher id (position of responsible dispatcher element)
     //  ============================================================
     virtual const PosRes assign(const ComName& name, E_Comp comp, size_t pos) = 0;
 
     //  ============================================================
-    //  field states shall be dispatched to subsystems
+    //  field states shall be dispatched to components
     //  ============================================================
     virtual void dispatch(const ComFldState& tele) const = 0;
 
     //  ============================================================
-    //  GUI commands shall be dispatched to subsystems
+    //  GUI commands shall be dispatched to components
     //  ============================================================
     virtual void dispatch(const ComGuiCmd& tele) const = 0;
 
     //  ============================================================
-    //  commands from subsystems shall be dispatched to field
+    //  commands from components shall be dispatched to field
     //  ============================================================
     virtual void dispatch(size_t id, ComCmdFld&& tele) const = 0;
 
     //  ============================================================
-    //  states from subsystems shall be dispatched to GUI
+    //  states from components shall be dispatched to GUI
     //  ============================================================
     virtual void dispatch(size_t id, ComStateGui&& tele) const = 0;
 };

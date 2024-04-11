@@ -47,10 +47,10 @@ TARGETDIR = lib
 TARGET = $(TARGETDIR)/libcoverage_app_sys.a
 OBJDIR = obj/gcc/coverage_app/sys
 
-else ifeq ($(config),fail)
+else ifeq ($(config),dev)
 TARGETDIR = lib
-TARGET = $(TARGETDIR)/libcoverage_app_fail.a
-OBJDIR = obj/gcc/coverage_app/fail
+TARGET = $(TARGETDIR)/libcoverage_app_dev.a
+OBJDIR = obj/gcc/coverage_app/dev
 
 endif
 

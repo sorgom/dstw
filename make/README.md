@@ -6,7 +6,7 @@ build all major makes parallelly
 options:
 -c  clean ignored artifacts before
 -p  premake5 makefiles
--x  execute all binaries
+-r  run all binaries
 -h  this help
 ```
 
@@ -40,7 +40,11 @@ configurations:
 > coverage.make
 -   coverage instrumented application (static lib)
 -   module tests only runtime
-->  bin/coverage_tests
+->  bin/coverage_tests_{config}
+configurations:
+- ci        module tests
+- sys       system tests
+- dev       developer tests
 ```
 
 **premake5_settings.lua**

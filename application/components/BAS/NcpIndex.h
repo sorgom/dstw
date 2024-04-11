@@ -31,6 +31,10 @@ struct Ncp
 
 #include <codebase/packEnd.h>
 
+//  ============================================================
+//  class NcpIndex is the core of Dispatcher
+//  see interface I_Dispatcher
+//  ============================================================
 class NcpIndex : public Index<ComName, Ncp>
 {
 public:

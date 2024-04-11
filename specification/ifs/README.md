@@ -16,20 +16,21 @@ Interface Com
 interface Dispatcher
 
 when loading project data
-subsystems assign themselves with:
+components providers (TSW, SIG, LCR, SEG)
+assign themselves with:
 - element name
-- subsystem id
+- component id
 - own processing element position
 and shall receive:
-- dispatcher id
+- dispatcher id (position of responsible dispatcher element)
 
-field states shall be dispatched to subsystems
+field states shall be dispatched to components
 
-GUI commands shall be dispatched to subsystems
+GUI commands shall be dispatched to components
 
-commands from subsystems shall be dispatched to field
+commands from components shall be dispatched to field
 
-states from subsystems shall be dispatched to GUI
+states from components shall be dispatched to GUI
 ```
 
 **I_LCR.h**

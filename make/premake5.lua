@@ -46,6 +46,7 @@ workspace 'tests'
         configurations { 'ci', 'sys', 'dev', 'bullseye' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
+        targetsuffix '_%{cfg.name}'
 
         buildoptions { buildOpts }
 
@@ -76,11 +77,15 @@ workspace 'tests'
 --  > coverage.make
 --  -   coverage instrumented application (static lib)
 --  -   module tests only runtime
---  ->  bin/coverage_tests
+--  ->  bin/coverage_tests_{config}
+--  configurations: 
+--  - ci        module tests
+--  - sys       system tests
+--  - dev       developer tests
 --  ============================================================
 workspace 'coverage'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'sys', 'fail' }
+        configurations { 'ci', 'sys', 'dev' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}'
         targetsuffix '_%{cfg.name}'
@@ -108,5 +113,5 @@ workspace 'coverage'
                 files { modTestSrcs }
             filter { 'configurations:sys' }
                 files { sysTestSrcs }
-            filter { 'configurations:fail' }
+            filter { 'configurations:dev' }
                 files { devTestSrcs }

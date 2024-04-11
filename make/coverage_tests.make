@@ -49,12 +49,12 @@ OBJDIR = obj/gcc/coverage_tests/sys
 LIBS += lib/libcoverage_app_sys.a -lgcov -lCppUTest -lCppUTestExt
 LDDEPS += lib/libcoverage_app_sys.a
 
-else ifeq ($(config),fail)
+else ifeq ($(config),dev)
 TARGETDIR = bin
-TARGET = $(TARGETDIR)/coverage_tests_fail
-OBJDIR = obj/gcc/coverage_tests/fail
-LIBS += lib/libcoverage_app_fail.a -lgcov -lCppUTest -lCppUTestExt
-LDDEPS += lib/libcoverage_app_fail.a
+TARGET = $(TARGETDIR)/coverage_tests_dev
+OBJDIR = obj/gcc/coverage_tests/dev
+LIBS += lib/libcoverage_app_dev.a -lgcov -lCppUTest -lCppUTestExt
+LDDEPS += lib/libcoverage_app_dev.a
 
 endif
 
@@ -129,7 +129,7 @@ GENERATED += $(OBJDIR)/SYST_02.o
 OBJECTS += $(OBJDIR)/SYST_01.o
 OBJECTS += $(OBJDIR)/SYST_02.o
 
-else ifeq ($(config),fail)
+else ifeq ($(config),dev)
 GENERATED += $(OBJDIR)/DT_01.o
 GENERATED += $(OBJDIR)/DT_02.o
 GENERATED += $(OBJDIR)/DT_03.o
@@ -290,7 +290,7 @@ $(OBJDIR)/SYST_02.o: ../testing/tests/systemtests/SYST_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
-else ifeq ($(config),fail)
+else ifeq ($(config),dev)
 $(OBJDIR)/DT_01.o: ../testing/tests/devtests/DT_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
