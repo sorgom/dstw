@@ -13,7 +13,7 @@ def runGcov(verbose=True):
     return Gcov().run(
         makDir,
         './bin/coverage_tests',
-        'obj/gcc/coverage_app/ci',
+        'obj/coverage_app',
         '../application/components/*/src/*.cpp',
         verbose=verbose
     )
@@ -28,5 +28,4 @@ def gcovToMd():
     writeFile(mdf, '\n\n'.join(res) + '\n')
 
 if __name__ == '__main__':
-    from sys import exit
-    exit(runGcov())
+    runGcov()

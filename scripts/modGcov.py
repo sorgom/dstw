@@ -74,7 +74,7 @@ class Gcov(object):
         out = '\n'.join(res)
         out = rxNlp.sub('  --', rxNul.sub('-- ', out))
         if self.verbose: print(out)
-        return 1 if tuncov > 0 else 0
+        return out
 
     def cntLines(self, mo):
         self.cntNoc += len(rxLin.findall(mo.group(1)))
