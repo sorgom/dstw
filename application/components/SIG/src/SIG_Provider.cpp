@@ -12,7 +12,7 @@ void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
     for (UINT32 n = 0; ok and (n < num); ++n)
     {
         const ProjSIG& proj = data[n];
-        const PosRes res = disp.assign(proj.name, SUBSYS_SIG, n);
+        const PosRes res = disp.assign(proj.name, COMP_SIG, n);
         if (res.valid)
         {
             switch (proj.type)

@@ -106,7 +106,7 @@ projectation data types
 **SystemEnums.h**
 ```
 system wide enumerations
--   E_Subsys subsystems
--   E_Mod    modules
--   E_Err    errors
+-   E_Comp  components
+-   E_Mod   modules
+-   E_Err   errors
 ```

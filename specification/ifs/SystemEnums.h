@@ -1,8 +1,8 @@
 //  ============================================================
 //  system wide enumerations
-//  -   E_Subsys subsystems
-//  -   E_Mod    modules
-//  -   E_Err    errors
+//  -   E_Comp  components
+//  -   E_Mod   modules
+//  -   E_Err   errors
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -12,12 +12,12 @@
 
 #include <codebase/BaseTypes.h>
 
-enum E_Subsys : UINT8
+enum E_Comp : UINT8
 {
-    SUBSYS_TSW,
-    SUBSYS_SIG,
-    SUBSYS_LCR,
-    SUBSYS_SEG
+    COMP_TSW,
+    COMP_SIG,
+    COMP_LCR,
+    COMP_SEG
 };
 
 enum E_Mod : UINT8

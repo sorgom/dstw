@@ -21,8 +21,8 @@ namespace test
     TEST(TSW_03, T01)
     {
         STEP(1)
-        m_Dispatcher().expectAssign(mData.tswName(0), SUBSYS_TSW, 0, 0);
-        m_Dispatcher().expectAssign(mData.tswName(1), SUBSYS_TSW, 1, 1);
+        m_Dispatcher().expectAssign(mData.tswName(0), COMP_TSW, 0, 0);
+        m_Dispatcher().expectAssign(mData.tswName(1), COMP_TSW, 1, 1);
         mSUT.load(mData.pTSW(), mData.numTSW());
         CHECK_N_CLEAR()
         L_CHECK_TRUE(mSUT.has(1))
@@ -38,8 +38,8 @@ namespace test
     TEST(TSW_03, T02)
     {
         STEP(1)
-        m_Dispatcher().expectAssign(mData.tswName(0), SUBSYS_TSW, 0, 0);
-        m_Dispatcher().expectAssign(mData.tswName(1), SUBSYS_TSW, 1, -1);
+        m_Dispatcher().expectAssign(mData.tswName(0), COMP_TSW, 0, 0);
+        m_Dispatcher().expectAssign(mData.tswName(1), COMP_TSW, 1, -1);
         m_Log().expectLog(MOD_TSW_PROVIDER, ERR_STARTUP);
         mSUT.load(mData.pTSW(), mData.numTSW());
         CHECK_N_CLEAR()

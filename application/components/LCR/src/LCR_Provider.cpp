@@ -12,7 +12,7 @@ void LCR_Provider::load(const ProjLCR* const data, const UINT32 num)
     for (UINT32 n = 0; ok and (n < num); ++n)
     {
         const ProjLCR& proj = data[n];
-        const PosRes res = disp.assign(proj.name, SUBSYS_LCR, n);
+        const PosRes res = disp.assign(proj.name, COMP_LCR, n);
         if (res.valid)
         {
             switch (proj.type)

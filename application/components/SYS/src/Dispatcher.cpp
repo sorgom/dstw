@@ -22,10 +22,10 @@ void Dispatcher::index()
 
 const PosRes Dispatcher::assign(
     const ComName& name, 
-    const E_Subsys subs, 
+    const E_Comp comp, 
     const size_t pos)
 {
-    mIndx.add(Ntp(name, subs, pos));
+    mIndx.add(Ntp(name, comp, pos));
     return PosRes{mIndx.size() - 1, true};
 }
 
@@ -38,16 +38,16 @@ void Dispatcher::dispatch(const ComFldState& tele) const
         const Ntp& ntp = mIndx.at(res);
         switch (ntp.type)
         {
-        case SUBSYS_TSW:
+        case COMP_TSW:
             IL::getTSW_Hub().fromDsp(ntp.pos, tele);
             break;
-        case SUBSYS_SIG:
+        case COMP_SIG:
             IL::getSIG_Hub().fromDsp(ntp.pos, tele);
             break;
-        case SUBSYS_LCR:
+        case COMP_LCR:
             IL::getLCR_Hub().fromDsp(ntp.pos, tele);
             break;
-        case SUBSYS_SEG:
+        case COMP_SEG:
             break;
         default:
             break;
@@ -68,16 +68,16 @@ void Dispatcher::dispatch(const ComGuiCmd& tele) const
         const Ntp& ntp = mIndx.at(res);
         switch (ntp.type)
         {
-        case SUBSYS_TSW:
+        case COMP_TSW:
             IL::getTSW_Hub().fromDsp(ntp.pos, tele);
             break;
-        case SUBSYS_SIG:
+        case COMP_SIG:
             IL::getSIG_Hub().fromDsp(ntp.pos, tele);
             break;
-        case SUBSYS_LCR:
+        case COMP_LCR:
             IL::getLCR_Hub().fromDsp(ntp.pos, tele);
             break;
-        case SUBSYS_SEG:
+        case COMP_SEG:
             break;
         default:
             break;

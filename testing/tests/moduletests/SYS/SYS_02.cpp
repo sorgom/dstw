@@ -14,10 +14,10 @@ namespace test
         inline TestGroupDSP()
         {
             mSUT.reset();
-            mSUT.assign(genComName(1, "TSW"), SUBSYS_TSW, 1);
-            mSUT.assign(genComName(2, "SIG"), SUBSYS_SIG, 2);
-            mSUT.assign(genComName(3, "LCR"), SUBSYS_LCR, 3);
-            mSUT.assign(genComName(4, "SEG"), SUBSYS_SEG, 4);
+            mSUT.assign(genComName(1, "TSW"), COMP_TSW, 1);
+            mSUT.assign(genComName(2, "SIG"), COMP_SIG, 2);
+            mSUT.assign(genComName(3, "LCR"), COMP_LCR, 3);
+            mSUT.assign(genComName(4, "SEG"), COMP_SEG, 4);
             mSUT.index();
         }
     };
@@ -191,8 +191,8 @@ namespace test
     {
         SETUP()
         mSUT.reset();
-        E_Subsys subs = (E_Subsys) 100;
-        mSUT.assign(genComName(1, "TSW"), subs, 1);
+        E_Comp comp = (E_Comp) 100;
+        mSUT.assign(genComName(1, "TSW"), comp, 1);
         mSUT.index();
         
         STEP(1)
@@ -214,10 +214,10 @@ namespace test
     TEST(SYS_02, T07)
     {
         mSUT.reset();
-        mSUT.assign(genComName(1, "TSW"), SUBSYS_TSW, 1);
-        mSUT.assign(genComName(1, "TSW"), SUBSYS_TSW, 2);
-        mSUT.assign(genComName(3, "LCR"), SUBSYS_LCR, 3);
-        mSUT.assign(genComName(4, "SEG"), SUBSYS_SEG, 4);
+        mSUT.assign(genComName(1, "TSW"), COMP_TSW, 1);
+        mSUT.assign(genComName(1, "TSW"), COMP_TSW, 2);
+        mSUT.assign(genComName(3, "LCR"), COMP_LCR, 3);
+        mSUT.assign(genComName(4, "SEG"), COMP_SEG, 4);
         CHECK_N_CLEAR()
 
         m_Log().expectLog(MOD_SYS_DISPATCHER, ERR_STARTUP);
