@@ -14,7 +14,9 @@ jobs:
   buildAndRunAll:
 
     runs-on: ubuntu-latest
-
+    container:
+      image: docker://cppcheck/cppcheck:latest
+      
     steps:
     - name: "Checkout repository"
       uses: actions/checkout@v3
