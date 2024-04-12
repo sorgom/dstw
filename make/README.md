@@ -33,6 +33,7 @@ module tests and system tests at once runtime
 ->  bin/tests
 configurations:
 - ci        module and system tests
+- mod       module tests
 - sys       system tests
 - dev       developer tests
 - bullseye  module tests with bullseye coverage
