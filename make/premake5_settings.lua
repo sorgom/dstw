@@ -10,7 +10,7 @@ appIncludes = {
 
 testIncludes = {
     '../testing/testenv',
-    '../devel',
+    -- '../devel',
     '../BuildCppUTest/CppUTest/include',
     '../CppUTestSteps/TestSteps/include',
     appIncludes

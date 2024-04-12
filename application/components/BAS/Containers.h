@@ -110,7 +110,7 @@ public:
     }
     //  find data by key
     //  requires that index() has been called once before
-    const PosRes find(const KEY& key) const
+    const PosRes find(KEY key) const
     {
         bool found = false;
         size_t pos = 0;
@@ -138,9 +138,9 @@ public:
     }
 protected:
     //  definition key a is greater than key b
-    virtual bool greater(const KEY& a, const KEY& b) const = 0;
+    virtual bool greater(KEY a, KEY b) const = 0;
     //  get key type from container type
-    virtual const KEY& getKey(const CONT&) const = 0;
+    virtual KEY getKey(const CONT&) const = 0;
 private:
     std::vector<std::unique_ptr<const CONT>> mData;
     std::vector<const CONT*> mIdx;

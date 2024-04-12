@@ -7,8 +7,7 @@ buildOpts = { '-std=c++17 -pedantic-errors -Werror -Wall' }
 
 --  ============================================================
 --  > dstw.make
---  application runtime
---  ->  bin/dstw
+--  data generator and application runtime
 --  ============================================================
 workspace 'dstw'
     filter { 'action:gmake*' }
@@ -34,9 +33,10 @@ workspace 'dstw'
 --  ============================================================
 --  > tests.make
 --  module tests and system tests at once runtime
---  ->  bin/tests
+--  ->  bin/tests_{config}
 --  configurations: 
 --  - ci        module and system tests
+--  - qnd       module and system tests with devel includes
 --  - mod       module tests
 --  - sys       system tests
 --  - dev       developer tests
@@ -44,7 +44,7 @@ workspace 'dstw'
 --  ============================================================
 workspace 'tests'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'mod', 'sys', 'dev', 'bullseye' }
+        configurations { 'ci', 'qnd', 'mod', 'sys', 'dev', 'bullseye' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
         targetsuffix '_%{cfg.name}'
@@ -62,6 +62,10 @@ workspace 'tests'
 
             filter { 'configurations:ci' }
                 files { modTestSrcs, sysTestSrcs }
+
+            filter { 'configurations:qnd' }
+                files { modTestSrcs, sysTestSrcs }
+                includedirs { '../devel' }
 
             filter { 'configurations:mod' }
                 files { modTestSrcs }

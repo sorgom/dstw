@@ -6,8 +6,6 @@
 #include <testlib/TestGroupBase.h>
 #include <BAS/Containers.h>
 
-#include <qnd/useCout.h>
-
 namespace test
 {
 
@@ -24,7 +22,7 @@ namespace test
     public:
         virtual bool answer() const = 0;
         virtual void set(UINT8 val) = 0;
-        virtual const UINT8& get() const = 0;
+        virtual UINT8 get() const = 0;
         virtual ~Base() = default;
     };
 
@@ -33,7 +31,7 @@ namespace test
     {
     public:
         inline D_val() : val(0) {}
-        inline const UINT8& get() const final { return val; }
+        inline UINT8 get() const final { return val; }
         inline void set(UINT8 v) final { val = v; }
     private:
         UINT8 val;
@@ -164,16 +162,14 @@ namespace test
     class IndexNo : public Index<UINT8, D_no>
     {
     protected:
-        inline const UINT8& getKey(const D_no& ntp) const final
+        inline UINT8 getKey(const D_no& ntp) const final
         {
             return ntp.get();
         }
-        inline bool greater(const UINT8& a, const UINT8& b) const final
+        inline bool greater(UINT8 a, UINT8 b) const final
         {
             return a > b;
         }
-    private:
-        static UINT8 tmp;
     };
 
     //  test type: equivalence class test
