@@ -25,7 +25,7 @@ const PosRes Dispatcher::assign(
     const E_Comp comp, 
     const size_t pos)
 {
-    mIndx.add(Ncp(name, comp, pos));
+    mIndx.add(name, comp, pos);
     return PosRes{mIndx.size() - 1, true};
 }
 

@@ -27,6 +27,7 @@ struct Ncp
         comp(comp),
         pos(pos)
     {}
+    NOCOPY(Ncp)
 };
 
 #include <codebase/packEnd.h>

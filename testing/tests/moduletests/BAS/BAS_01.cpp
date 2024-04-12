@@ -24,7 +24,7 @@ namespace test
     public:
         virtual bool answer() const = 0;
         virtual void set(UINT8 val) = 0;
-        virtual UINT8 get() const = 0;
+        virtual const UINT8& get() const = 0;
         virtual ~Base() = default;
     };
 
@@ -33,7 +33,7 @@ namespace test
     {
     public:
         inline D_val() : val(0) {}
-        inline UINT8 get() const final { return val; }
+        inline const UINT8& get() const final { return val; }
         inline void set(UINT8 v) final { val = v; }
     private:
         UINT8 val;
@@ -61,7 +61,7 @@ namespace test
     class D_no : public D_val
     {
     public:
-        inline D_no(UINT8 val, UINT16 = 0, UINT32 = 0) { ++cnt; set(val); }
+        inline D_no(UINT8 val, UINT16 = 0) { ++cnt; set(val); }
         inline ~D_no() { --cnt; }
         inline bool answer() const final { return NO; }
         inline static UINT32 count() { return cnt; }
@@ -73,79 +73,194 @@ namespace test
     };
     UINT32 D_no::cnt = 0;
 
-    TEST(BAS_01, T00)
-    {
-        std::vector<std::unique_ptr<const D_no>> vec;
-        vec.emplace_back(std::make_unique<const D_no>(22));
-        const D_no* p = vec.at(0).get();
-        play(p);
-    }
     //  test type: equivalence class test
     //  PolyVec methods
     TEST(BAS_01, T01)
     {
-        STEP(0)
+        STEP(1)
         L_CHECK_EQUAL(0, D_yes::count());
         L_CHECK_EQUAL(0, D_no::count());
         L_CHECK_TRUE(sizeof(D_no) > sizeof(D_yes));
         PolyVec<Base> vec;
         // mutable reference
-        PolyVec<Base>& mvec = vec;
+        PolyVec<Base>& mv = vec;
         // const reference
-        const PolyVec<Base>& cvec = vec;
-        L_CHECK_EQUAL(0, cvec.size())
+        const PolyVec<Base>& cv = vec;
+        L_CHECK_EQUAL(0, cv.size())
         
         //  reserve 30 elements
-        STEP(1)
-        const size_t cap = mvec.reserve(30);
+        STEP(2)
+        const size_t cap = mv.reserve(30);
         L_CHECK_TRUE(cap >= 30);
-        L_CHECK_EQUAL(0, cvec.size())
+        L_CHECK_EQUAL(0, cv.size())
 
         //  add 10 D_yes and 20 D_no elements
-        STEP(2)
+        STEP(3)
         for (UINT8 n = 0; n < 30; n += 3)
         {
-            mvec.add<D_yes>();
-            mvec.add<D_no>(n + 10, n + 1);
-            L_CHECK_EQUAL(n + 10, cvec.at(n + 1).get());
-            mvec.add<D_no>(n + 20);
-            L_CHECK_EQUAL(n + 20, cvec.at(n + 2).get());
+            mv.add<D_yes>();
+            mv.add<D_no>(n + 10, n + 1);
+            L_CHECK_EQUAL(n + 10, cv.at(n + 1).get());
+            mv.add<D_no>(n + 20);
+            L_CHECK_EQUAL(n + 20, cv.at(n + 2).get());
         }
         //  check size and count
-        L_CHECK_EQUAL(30, cvec.size());
+        L_CHECK_EQUAL(30, cv.size());
         L_CHECK_EQUAL(10, D_yes::count());
         L_CHECK_EQUAL(20, D_no::count());
         
         //  check derived classes answers
-        STEP(3)
+        STEP(4)
         SUBSTEPS()
         for (UINT8 n = 0; n < 30; n += 3)
         {
             STEP(n)
-            L_CHECK_TRUE(cvec.at(n).answer());
-            L_CHECK_FALSE(cvec.at(n + 1).answer());
-            L_CHECK_FALSE(cvec.at(n + 2).answer());
+            L_CHECK_TRUE(cv.at(n).answer());
+            L_CHECK_FALSE(cv.at(n + 1).answer());
+            L_CHECK_FALSE(cv.at(n + 2).answer());
         }
         ENDSTEPS()
 
         //  set mutable
         //  get const
-        STEP(4)
+        STEP(5)
         SUBSTEPS()
         for (UINT8 n = 0; n < 30; ++n)
         {
             STEP(n)
-            mvec.at(n).set(n);
-            L_CHECK_EQUAL(n, cvec.at(n).get())
+            mv.at(n).set(n);
+            L_CHECK_EQUAL(n, cv.at(n).get())
         }
         ENDSTEPS()
 
-        //  clear
-        //  check size and count
-        STEP(5)
-        mvec.clear();
-        L_CHECK_EQUAL(0, cvec.size());
+        STEP(6)
+        mv.clear();
+        L_CHECK_EQUAL(0, cv.size());
         L_CHECK_EQUAL(0, D_yes::count());
+        L_CHECK_EQUAL(0, D_no::count());
+    }
+
+    //  test type: equivalence class test
+    //  PolyVec destructor
+    TEST(BAS_01, T02)
+    {
+        SETUP()
+        L_CHECK_EQUAL(0, D_yes::count());
+        L_CHECK_EQUAL(0, D_no::count());
+        
+        STEP(1)
+        {
+            PolyVec<Base> vec;
+            vec.add<D_yes>();
+            vec.add<D_no>(1);
+            vec.add<D_no>(2);
+            L_CHECK_EQUAL(1, D_yes::count());
+            L_CHECK_EQUAL(2, D_no::count());
+        }
+        L_CHECK_EQUAL(0, D_yes::count());
+        L_CHECK_EQUAL(0, D_no::count());
+    }
+
+    class IndexNo : public Index<UINT8, D_no>
+    {
+    protected:
+        inline const UINT8& getKey(const D_no& ntp) const final
+        {
+            return ntp.get();
+        }
+        inline bool greater(const UINT8& a, const UINT8& b) const final
+        {
+            return a > b;
+        }
+    private:
+        static UINT8 tmp;
+    };
+
+    //  test type: equivalence class test
+    //  Index methods
+    TEST(BAS_01, T03)
+    {
+        SETUP()
+        IndexNo ix;
+        //  const reference
+        const IndexNo& cx = ix;
+        //  mutable reference
+        IndexNo& mx = ix;
+        L_CHECK_EQUAL(0, cx.size());
+        L_CHECK_EQUAL(0, D_no::count());
+        bool ok = false;
+
+        //  index of empty container
+        STEP(1)
+        ok = mx.index();
+        L_CHECK_TRUE(ok);
+
+        //  reserve 30 elements
+        STEP(2)
+        const size_t cap = mx.reserve(30);
+        L_CHECK_TRUE(cap >= 30);
+        L_CHECK_EQUAL(0, cx.size());
+
+        //  add 10 elements
+        STEP(3)
+        for (UINT8 n = 0; n < 10; ++n)
+        {
+            mx.add(10 - n);
+        }
+        L_CHECK_EQUAL(10, cx.size());
+        L_CHECK_EQUAL(10, D_no::count());
+
+        //  find without index
+        STEP(4)
+        {
+            const PosRes res = cx.find(5);
+            L_CHECK_FALSE(res.valid);
+        }
+        //  index & find
+        STEP(5)
+        ok = mx.index();
+        L_CHECK_TRUE(ok);
+        {
+            const PosRes res = cx.find(5);
+            L_CHECK_TRUE(res.valid);
+        }
+        {
+            const PosRes res = cx.find(11);
+            L_CHECK_FALSE(res.valid);
+        }
+        //  index with duplicate key
+        STEP(6)
+        mx.add(5);
+        ok = mx.index();
+        L_CHECK_FALSE(ok);
+        {
+            const PosRes res = cx.find(5);
+            L_CHECK_TRUE(res.valid);
+        }
+        //  clear
+        STEP(7)
+        mx.clear();
+        L_CHECK_EQUAL(0, cx.size());
+        L_CHECK_EQUAL(0, D_no::count());
+    }
+
+    //  test type: equivalence class test
+    //  Index destructor
+    TEST(BAS_01, T04)
+    {
+        SETUP()
+        L_CHECK_EQUAL(0, D_no::count());
+        STEP(1)
+        {
+            IndexNo ix;
+            for (UINT8 n = 0; n < 10; ++n)
+            {
+                ix.add(n, 0);
+            }
+            L_CHECK_EQUAL(10, ix.size());
+            L_CHECK_EQUAL(10, D_no::count());
+        }
+        STEP(2)
         L_CHECK_EQUAL(0, D_no::count());
     }
 } // namespace

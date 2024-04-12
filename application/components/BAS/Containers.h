@@ -16,6 +16,7 @@
 #include <vector>
 #include <algorithm>
 
+
 //  ============================================================
 //  class PolyVec allows to store polymorphic objects
 //  derived from interface class IF
@@ -80,7 +81,7 @@ public:
     //  get data by storage position
     inline const CONT& at(size_t pos) const
     {
-        return mData[pos];
+        return *mData[pos];
     }
 
     //  get data by search result (i.e. index) position
@@ -89,14 +90,10 @@ public:
         return *mIdx[res.pos];
     }
 
-    void add(const CONT&& cont)
+    template <typename... Args>
+    void add(Args&&... args)
     {
-        mData.push_back(std::move(cont));
-    }
-    Index& operator <<(const CONT&& cont)
-    {
-        add(std::move(cont));
-        return *this;
+        mData.emplace_back(std::make_unique<const CONT>(std::forward<Args>(args)...));
     }
 
     //  index data by key after storage finished
@@ -104,9 +101,9 @@ public:
     bool index()
     {
         mIdx.clear();
-        for (const CONT& cont : mData)
+        for (const auto& p : mData)
         {
-            mIdx.push_back(&cont);
+            mIdx.push_back(p.get());
         }
         sort();
         return dupCnt() == 0;
@@ -145,7 +142,7 @@ protected:
     //  get key type from container type
     virtual const KEY& getKey(const CONT&) const = 0;
 private:
-    std::vector<CONT> mData;
+    std::vector<std::unique_ptr<const CONT>> mData;
     std::vector<const CONT*> mIdx;
 
     inline bool gt(size_t a, size_t b) const

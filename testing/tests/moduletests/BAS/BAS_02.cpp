@@ -24,7 +24,7 @@ namespace test
         STEP(1)
         for (UINT8 n = 0; n < tSize; ++n)
         {
-            indx << Ncp(genComName(tOffs - n), n, n);
+            indx.add(genComName(tOffs - n), n, n);
         }
 
         STEP(2)
@@ -69,9 +69,8 @@ namespace test
         STEP(2)
         for (UINT8 n = 0; n < 10; ++n)
         {
-            indx 
-                << Ncp(genComName(n), n, n)
-                << Ncp(genComName(n + 10), n, n);
+            indx.add(genComName(n), n, n);
+            indx.add(genComName(n + 10), n, n);
         }
         {
             const auto ok = indx.index();
@@ -88,10 +87,8 @@ namespace test
         
         // no data added
         STEP(1)
-        indx 
-            << Ncp(genComName(1), 1, 1)
-            << Ncp(genComName(1), 2, 3)
-        ;
+        indx.add(genComName(1), 1, 1);
+        indx.add(genComName(1), 2, 3);
         const auto ok = indx.index();
         L_CHECK_FALSE(ok);
     }

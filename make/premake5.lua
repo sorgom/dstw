@@ -37,13 +37,14 @@ workspace 'dstw'
 --  ->  bin/tests
 --  configurations: 
 --  - ci        module and system tests
+--  - mod       module tests
 --  - sys       system tests
 --  - dev       developer tests
 --  - bullseye  module tests with bullseye coverage
 --  ============================================================
 workspace 'tests'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'sys', 'dev', 'bullseye' }
+        configurations { 'ci', 'mod', 'sys', 'dev', 'bullseye' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
         targetsuffix '_%{cfg.name}'
@@ -59,14 +60,17 @@ workspace 'tests'
             links { testLinks }
             files { testEnvSrcs, appSrcs }
 
+            filter { 'configurations:ci' }
+                files { modTestSrcs, sysTestSrcs }
+
+            filter { 'configurations:mod' }
+                files { modTestSrcs }
+
             filter { 'configurations:sys' }
                 files { sysTestSrcs }
 
             filter { 'configurations:dev' }
                 files { devTestSrcs }
-
-            filter { 'configurations:ci' }
-                files { modTestSrcs, sysTestSrcs }
 
             filter { 'configurations:bullseye' }
                 files { modTestSrcs }
