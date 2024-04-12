@@ -28,6 +28,8 @@ TEST_INCS="-I../testing/testenv
 APP_CALL="cppcheck -q -j 200 --language=c++ --check-level=exhaustive"
 TST_CALL="cppcheck -q -j 200 --language=c++ --check-level=exhaustive --force --inline-suppr"
 
+pids=()
+
 done=
 version()
 {
@@ -41,7 +43,7 @@ check_app()
     $APP_CALL \
         $APP_INCS \
         ../application/components/*/src/*.cpp \
-        ../application/components/*/*.h &
+        ../application/components/*/*.h & pids+=($!)
 }
 
 check_testenv()
@@ -51,7 +53,7 @@ check_testenv()
     $TST_CALL \
         $TEST_INCS \
         ../testing/testenv/*/src/*.cpp \
-        ../testing/testenv/*/*.h &
+        ../testing/testenv/*/*.h & pids+=($!)
 }
 
 check_tests()
@@ -61,7 +63,7 @@ check_tests()
     $TST_CALL \
         $TEST_INCS \
         ../testing/tests/*/*/*.cpp \
-        ../testing/tests/*/*.cpp &
+        ../testing/tests/*/*.cpp & pids+=($!)
 }
 
 ca=
@@ -83,5 +85,8 @@ if test ! -z $ce; then check_testenv; fi
 if test ! -z $ct; then check_tests; fi
 if test -z $done; then check_app; fi
 
-wait
-echo done
+err=0
+for pid in ${pids[*]}; do
+    if ! wait $pid; then err=1; fi
+done
+exit $err

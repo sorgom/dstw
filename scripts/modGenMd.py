@@ -39,7 +39,7 @@ def genMd(tabs=4):
                     if q: inf = rxQuo.sub('', inf)
                     if inf: cont.append(inf)
                 if cont:
-                    res.append('\n'.join([f'**{f}**', mdCode('\n\n'.join(cont))]))
+                    res.append('\n'.join([f'#### {f}', mdCode('\n\n'.join(cont))]))
             except:
                 pass
         if not res: continue

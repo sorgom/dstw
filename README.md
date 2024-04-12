@@ -23,4 +23,4 @@ It shows a completely different approach than the [model driven](Clinch.md) one 
 - [testing](testing/README.md)
 - [code coverage](testing/coverage.md)
 - [how to build](make/howto_build.md)
-- [lines of code](CLOC.md)
+- [current lines of code](CLOC.md)

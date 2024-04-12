@@ -1,6 +1,6 @@
 ## directory content
 
-**genDataMain.cpp**
+#### genDataMain.cpp
 ```
 sample proj data generator
 ```

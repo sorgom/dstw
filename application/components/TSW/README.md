@@ -3,7 +3,7 @@
 
 ## directory content
 
-**TSW.h**
+#### TSW.h
 ```
 class TSW implements I_TSW
 state of implementation:
@@ -11,12 +11,12 @@ state of implementation:
 - all states from field, forwarding to GUI
 ```
 
-**TSW_Hub.h**
+#### TSW_Hub.h
 ```
 class TSW_Hub implements I_TSW_Hub
 ```
 
-**TSW_Provider.h**
+#### TSW_Provider.h
 ```
 class TSW_Provider implements I_TSW_Provider
 ```

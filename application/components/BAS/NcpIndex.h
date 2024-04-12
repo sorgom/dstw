@@ -36,26 +36,20 @@ struct Ncp
 //  class NcpIndex is the core of Dispatcher
 //  see interface I_Dispatcher
 //  ============================================================
-class NcpIndex : public Index<const ComName*, Ncp>
+class NcpIndex : public Index<const ComName&, Ncp>
 {
 public:
-    using BaseT = Index<const ComName*, Ncp>;
     inline NcpIndex() = default;
     NOCOPY(NcpIndex)
 
-public:
-    const PosRes find(const ComName& name) const
-    {
-        return BaseT::find(&name);
-    }
 protected:
-    inline const ComName* getKey(const Ncp& ntp) const final
+    inline const ComName& getKey(const Ncp& ntp) const final
     {
-        return &(ntp.name);
+        return ntp.name;
     }
-    inline bool greater(const ComName* a, const ComName* b) const final
+    inline bool greater(const ComName& a, const ComName& b) const final
     {
-        return Mem::cmp(a->chars, b->chars) > 0;
+        return Mem::cmp(a.chars, b.chars) > 0;
     }
 };
 

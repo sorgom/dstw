@@ -159,17 +159,43 @@ namespace test
         L_CHECK_EQUAL(0, D_no::count());
     }
 
-    class IndexNo : public Index<UINT8, D_no>
+    //  complex key type which cannot be copied
+    class KeyType
+    {
+    public:
+        inline KeyType(int k=0) : id(k), data(0) {}
+        const int id;
+        const int data;
+        NOCOPY(KeyType)
+    };
+
+    //  container type with key type key
+    class ContType
+    {
+        public:
+        const KeyType key;
+        inline ContType(int k, int a=0) : key(k) { ++cnt; }
+        inline ~ContType() { --cnt; }    
+        int data[5];
+        NOCOPY(ContType)
+        inline static UINT32 count() { return cnt; }
+    private:
+        static UINT32 cnt;
+    };
+    UINT32 ContType::cnt = 0;
+
+    class IndexKeyCont : public Index<const KeyType&, ContType>
     {
     protected:
-        inline UINT8 getKey(const D_no& ntp) const final
+        inline const KeyType& getKey(const ContType& cont) const final
         {
-            return ntp.get();
+            return cont.key;
         }
-        inline bool greater(UINT8 a, UINT8 b) const final
+        inline bool greater(const KeyType& a, const KeyType& b) const final
         {
-            return a > b;
+            return a.id > b.id;
         }
+
     };
 
     //  test type: equivalence class test
@@ -177,13 +203,13 @@ namespace test
     TEST(BAS_01, T03)
     {
         SETUP()
-        IndexNo ix;
+        IndexKeyCont ix;
         //  const reference
-        const IndexNo& cx = ix;
+        const IndexKeyCont& cx = ix;
         //  mutable reference
-        IndexNo& mx = ix;
+        IndexKeyCont& mx = ix;
         L_CHECK_EQUAL(0, cx.size());
-        L_CHECK_EQUAL(0, D_no::count());
+        L_CHECK_EQUAL(0, ContType::count());
         bool ok = false;
 
         //  index of empty container
@@ -204,12 +230,15 @@ namespace test
             mx.add(10 - n);
         }
         L_CHECK_EQUAL(10, cx.size());
-        L_CHECK_EQUAL(10, D_no::count());
+        L_CHECK_EQUAL(10, ContType::count());
+
+        const KeyType key5(5);
+        const KeyType key11(11);
 
         //  find without index
         STEP(4)
         {
-            const PosRes res = cx.find(5);
+            const PosRes res = cx.find(key5);
             L_CHECK_FALSE(res.valid);
         }
         //  index & find
@@ -217,27 +246,29 @@ namespace test
         ok = mx.index();
         L_CHECK_TRUE(ok);
         {
-            const PosRes res = cx.find(5);
+            const PosRes res = cx.find(key5);
             L_CHECK_TRUE(res.valid);
         }
+        //  find non existing key
+        STEP(6)
         {
-            const PosRes res = cx.find(11);
+            const PosRes res = cx.find(key11);
             L_CHECK_FALSE(res.valid);
         }
         //  index with duplicate key
-        STEP(6)
+        STEP(7)
         mx.add(5);
         ok = mx.index();
         L_CHECK_FALSE(ok);
         {
-            const PosRes res = cx.find(5);
+            const PosRes res = cx.find(key5);
             L_CHECK_TRUE(res.valid);
         }
         //  clear
-        STEP(7)
+        STEP(8)
         mx.clear();
         L_CHECK_EQUAL(0, cx.size());
-        L_CHECK_EQUAL(0, D_no::count());
+        L_CHECK_EQUAL(0, ContType::count());
     }
 
     //  test type: equivalence class test
@@ -245,18 +276,18 @@ namespace test
     TEST(BAS_01, T04)
     {
         SETUP()
-        L_CHECK_EQUAL(0, D_no::count());
+        L_CHECK_EQUAL(0, ContType::count());
         STEP(1)
         {
-            IndexNo ix;
+            IndexKeyCont ix;
             for (UINT8 n = 0; n < 10; ++n)
             {
                 ix.add(n, 0);
             }
             L_CHECK_EQUAL(10, ix.size());
-            L_CHECK_EQUAL(10, D_no::count());
+            L_CHECK_EQUAL(10, ContType::count());
         }
         STEP(2)
-        L_CHECK_EQUAL(0, D_no::count());
+        L_CHECK_EQUAL(0, ContType::count());
     }
 } // namespace

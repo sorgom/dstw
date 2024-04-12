@@ -2,7 +2,7 @@
 
 ## directory content
 
-**cppcheck.sh**
+#### cppcheck.sh
 ```
 static code analysis using cppcheck
 check:
