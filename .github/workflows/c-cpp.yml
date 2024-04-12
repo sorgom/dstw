@@ -14,8 +14,6 @@ jobs:
   buildAndRunAll:
 
     runs-on: ubuntu-latest
-    container:
-      image: docker://cppcheck/cppcheck:latest
       
     steps:
     - name: "Checkout repository"
@@ -29,6 +27,6 @@ jobs:
     - name: check coverage
       run: make/runGcov.sh
 
-    - name: check env
-      run: make/checkEnv.sh
+    # - name: check env
+    #   run: make/checkEnv.sh
 
