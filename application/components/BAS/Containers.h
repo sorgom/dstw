@@ -139,8 +139,10 @@ public:
 protected:
     //  definition key a is greater than key b
     virtual bool greater(KEY a, KEY b) const = 0;
+
     //  get key type from container type
     virtual KEY getKey(const CONT&) const = 0;
+    
 private:
     std::vector<std::unique_ptr<const CONT>> mData;
     std::vector<const CONT*> mIdx;
