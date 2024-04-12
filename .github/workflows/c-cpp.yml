@@ -27,6 +27,6 @@ jobs:
     - name: check coverage
       run: make/runGcov.sh
 
-    # - name: check env
-    #   run: chmod 755 make/checkEnv.sh; make/checkEnv.sh
+    - name: check env
+      run: make/checkEnv.sh
 

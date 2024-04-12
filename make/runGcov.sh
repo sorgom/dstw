@@ -9,7 +9,7 @@ if test -z $conf; then conf=ci; fi
 
 gcov -o obj/gcc/coverage_app/$conf ../application/components/*/src/*.cpp > /dev/null   
 
-echo $(ls *.cpp.gcov | wc -l) files ...
+echo $(ls *.cpp.gcov | wc -l) files
 ret=0
 for cf in *.cpp.gcov; do
     nuc=$(cat $cf | grep '#####:' | wc -l)
