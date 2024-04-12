@@ -13,7 +13,7 @@
 #include <comparators/ostreams.h>
 #include <SYS/IL.h>
 #include <mocks/M_Instances.h>
-#include <setup/capacities.h>
+#include <testlib/testNumElements.h>
 #include <testlib/GenProjData.h>
 #include <testlib/TestLib.h>
 #include <testlib/TestLiterals.h>

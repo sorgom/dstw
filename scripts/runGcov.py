@@ -7,13 +7,13 @@ from modGcov import Gcov
 from projectDirs import makDir, tsgDir
 from modUtilz import mdTxt, mdCode, writeFile
 
-ttl = '## current source code coverage'
+ttl = '## current gcov code coverage'
 
-def runGcov(verbose=True):
+def runGcov(conf='ci', verbose=True):
     return Gcov().run(
         makDir,
-        './bin/coverage_tests',
-        'obj/coverage_app',
+        f'./bin/coverage_tests_{conf}',
+        f'obj/gcc/coverage_app/{conf}',
         '../application/components/*/src/*.cpp',
         verbose=verbose
     )
@@ -28,4 +28,5 @@ def gcovToMd():
     writeFile(mdf, '\n\n'.join(res) + '\n')
 
 if __name__ == '__main__':
-    runGcov()
+    from sys import argv
+    runGcov(*argv[1:2])

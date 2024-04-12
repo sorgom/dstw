@@ -1,9 +1,9 @@
 //  ============================================================
-//  ProjData generator
+//  proj data generator
 //      presets all proj data 
 //      with element names in reversed alphanumerical order
-//      from capacity down to 1
-//      e.g. TSW, capacity 100:
+//      from size down to 1
+//      e.g. TSW, size 100:
 //          "TSW 100 *" .. "TSW 001 *"
 //  
 //      dumps data to file
@@ -21,57 +21,50 @@
 #include <ifs/I_LCR.h>
 #include <ifs/I_SIG.h>
 #include <ifs/ProjTypes.h>
-#include <setup/capacities.h>
-#include <testlib/TestArrays.h>
+#include <testlib/testNumElements.h>
 #include <testlib/TestLib.h>
 #include <fstream>
+#include <vector>
 
 namespace test
 {
     template <
-        size_t NTSW = CAPACITY_TSW, 
-        size_t NSIG = CAPACITY_SIG, 
-        size_t NLCR = CAPACITY_LCR, 
-        size_t NSEG = CAPACITY_SEG
+        size_t NTSW = TEST_NUM_TSW, 
+        size_t NSIG = TEST_NUM_SIG, 
+        size_t NLCR = TEST_NUM_LCR, 
+        size_t NSEG = TEST_NUM_SEG
     >
     class GenProjData 
     {
     private:
-        MutableArray<ProjTSW, NTSW> mTSWs;
-        MutableArray<ProjSIG, NSIG> mSIGs;
-        MutableArray<ProjLCR, NLCR> mLCRs;
-        MutableArray<ProjSEG, NSEG> mSEGs;
+        std::vector<ProjTSW> mTSWs;
+        std::vector<ProjSIG> mSIGs;
+        std::vector<ProjLCR> mLCRs;
+        std::vector<ProjSEG> mSEGs;
 
     public:
-        const UINT32 numTSW;
-        const UINT32 numSIG;
-        const UINT32 numLCR;
-        const UINT32 numSEG;
-        const ProjTSW* const pTSW;
-        const ProjSIG* const pSIG;
-        const ProjLCR* const pLCR;
-        const ProjSEG* const pSEG;
 
-        GenProjData():
-            numTSW(NTSW),
-            numSIG(NSIG),
-            numLCR(NLCR),
-            numSEG(NSEG),
-            pTSW(mTSWs.data()),
-            pSIG(mSIGs.data()),
-            pLCR(mLCRs.data()),
-            pSEG(mSEGs.data())
-
+        GenProjData()
         {
-            preset(mTSWs, "TSW");
-            preset(mSIGs, "SIG");
-            preset(mLCRs, "LCR");
-            preset(mSEGs, "SEG");
+            preset(mTSWs, "TSW", NTSW);
+            preset(mSIGs, "SIG", NSIG);
+            preset(mLCRs, "LCR", NLCR);
+            preset(mSEGs, "SEG", NSEG);
 
             setSigType(SIG_TYPE_H);
             setLcrType(LCR_TYPE_LCR);
         }
     
+        inline UINT32 numTSW() const { return mTSWs.size(); }
+        inline UINT32 numSIG() const { return mSIGs.size(); }
+        inline UINT32 numLCR() const { return mLCRs.size(); }
+        inline UINT32 numSEG() const { return mSEGs.size(); }
+
+        inline const ProjTSW* pTSW() const { return mTSWs.data(); }
+        inline const ProjSIG* pSIG() const { return mSIGs.data(); }
+        inline const ProjLCR* pLCR() const { return mLCRs.data(); }
+        inline const ProjSEG* pSEG() const { return mSEGs.data(); }
+
         inline const ProjTSW& tsw(size_t pos) const { return mTSWs.at(pos); }
         inline const ProjSIG& sig(size_t pos) const { return mSIGs.at(pos); }
         inline const ProjLCR& lcr(size_t pos) const { return mLCRs.at(pos); }
@@ -107,14 +100,14 @@ namespace test
             std::ofstream os(filename, std::ios::binary);
             if (os.good())
             {
-                write(os, numTSW);
-                write(os, numSIG);
-                write(os, numLCR);
-                write(os, numSEG);
-                write(os, pTSW, numTSW);
-                write(os, pSIG, numSIG);
-                write(os, pLCR, numLCR);
-                write(os, pSEG, numSEG);
+                write(os, numTSW());
+                write(os, numSIG());
+                write(os, numLCR());
+                write(os, numSEG());
+                write(os, mTSWs);
+                write(os, mSIGs);
+                write(os, mLCRs);
+                write(os, mSEGs);
             }
             os.close();
         }
@@ -123,40 +116,40 @@ namespace test
 
     private:
 
-        template <class T, size_t CAP>
-        void preset(MutableArray<T, CAP>& array, CONST_C_STRING what)
+        template <class T>
+        void preset(std::vector<T>& vec, CONST_C_STRING what, size_t num)
         {
-            for (size_t n = 0; n < CAP; ++n)
-            {
-                array.add();
-                nameElement(array.at(n), CAP - n, what);
+            vec.resize(num);
+            for (auto& elem : vec)         {
+                nameElement(elem, num--, what);
             }
-        }
-
-        template <class T, size_t CAP>
-        void setType(MutableArray<T, CAP>& array, size_t pos, UINT8 type)
-        {
-            array.at(pos).type = type;
-        }
-
-        template <class T, size_t CAP>
-        void setType(MutableArray<T, CAP>& array, UINT8 type)
-        {
-            for (size_t p = 0; p < CAP; ++p)
-            {
-                setType(array, p, type);
-            }
-        }
-
-        inline static void write(std::ostream& os, const UINT32& n)
-        {
-            os.write(reinterpret_cast<const char*>(&n), sizeof(UINT32));
         }
 
         template <class T>
-        static void write(std::ostream& os, const T* data, UINT32 num)
+        void setType(std::vector<T>& vec, size_t pos, UINT8 type)
         {
-            os.write(reinterpret_cast<const char*>(data), sizeof(T) * num);
+            vec.at(pos).type = type;
+        }
+
+        template <class T>
+        void setType(std::vector<T>& vec, UINT8 type)
+        {
+            for (auto& elem : vec)
+            {
+                elem.type = type;
+            }
+        }
+
+        inline static void write(std::ostream& os, const UINT32 n)
+        {
+            const UINT32 r = n;
+            os.write(reinterpret_cast<const char*>(&r), sizeof(UINT32));
+        }
+
+        template <class T>
+        static void write(std::ostream& os, const std::vector<T>& vec)
+        {
+            os.write(reinterpret_cast<const char*>(vec.data()), sizeof(T) * vec.size());
         }    
 
     };

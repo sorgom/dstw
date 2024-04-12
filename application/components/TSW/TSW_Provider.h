@@ -8,29 +8,28 @@
 #define TSW_PROVIDER_H
 
 #include <BAS/coding.h>
-#include <BAS/StaticArray.h>
+#include <BAS/Containers.h>
 #include <ifs/I_TSW_Provider.h>
-#include <setup/capacities.h>
 #include <TSW/TSW.h>
 
 class TSW_Provider : public I_TSW_Provider
 {
 public:
-    inline TSW_Provider() {}
+    inline TSW_Provider() = default;
 
     inline bool has(size_t pos) const
     {
-        return mTSWs.has(pos);
+        return mElems.size() > pos;
     }
 
     inline I_TSW& at(size_t pos)
     {
-        return mTSWs.at(pos);
+        return mElems.at(pos);
     }
 
     inline void reset()
     {
-        mTSWs.reset();
+        mElems.clear();
     }
 
     void load(const ProjTSW* data, UINT32 num);
@@ -40,6 +39,6 @@ public:
     NOCOPY(TSW_Provider)
 
 private:
-    InterfaceArray<I_TSW, CAPACITY_TSW, TSW> mTSWs;
+    PolyVec<I_TSW> mElems;
 };
 #endif // H_

@@ -28,10 +28,10 @@ namespace test
     TEST(SIG_03, T01)
     {
         STEP(1)
-        m_Dispatcher().expectAssign(mData.sigName(0), SUBSYS_SIG, 0, 0);
-        m_Dispatcher().expectAssign(mData.sigName(1), SUBSYS_SIG, 1, 1);
-        m_Dispatcher().expectAssign(mData.sigName(2), SUBSYS_SIG, 2, 2);
-        mSUT.load(mData.pSIG, mData.numSIG);
+        m_Dispatcher().expectAssign(mData.sigName(0), COMP_SIG, 0, 0);
+        m_Dispatcher().expectAssign(mData.sigName(1), COMP_SIG, 1, 1);
+        m_Dispatcher().expectAssign(mData.sigName(2), COMP_SIG, 2, 2);
+        mSUT.load(mData.pSIG(), mData.numSIG());
         CHECK_N_CLEAR()
         L_CHECK_TRUE(mSUT.has(2))
         L_CHECK_FALSE(mSUT.has(3))
@@ -48,43 +48,32 @@ namespace test
         mData.setSigType(2, SIG_TYPE_H + 100); 
         
         STEP(1)
-        m_Dispatcher().expectAssign(mData.sigName(0), SUBSYS_SIG, 0, 0);
-        m_Dispatcher().expectAssign(mData.sigName(1), SUBSYS_SIG, 1, 1);
-        m_Dispatcher().expectAssign(mData.sigName(2), SUBSYS_SIG, 2, 2);
+        m_Dispatcher().expectAssign(mData.sigName(0), COMP_SIG, 0, 0);
+        m_Dispatcher().expectAssign(mData.sigName(1), COMP_SIG, 1, 1);
+        m_Dispatcher().expectAssign(mData.sigName(2), COMP_SIG, 2, 2);
         m_Log().expectLog(MOD_SIG_PROVIDER, ERR_STARTUP);
-        mSUT.load(mData.pSIG, mData.numSIG);
-        CHECK_N_CLEAR()
-        L_CHECK_FALSE(mSUT.has(0))
-    }
-
-    //  test type: equivalence class test
-    //  load invalid ProjData SIG (too many)
-    TEST(SIG_03, T03)
-    {
-        STEP(1)
-        m_Log().expectLog(MOD_SIG_PROVIDER, ERR_STARTUP);
-        mSUT.load(mData.pSIG, CAPACITY_SIG + 1);
+        mSUT.load(mData.pSIG(), mData.numSIG());
         CHECK_N_CLEAR()
         L_CHECK_FALSE(mSUT.has(0))
     }
 
     //  test type: equivalence class test
     //  load valid ProjData SIG Dispatcher returns negative value
-    TEST(SIG_03, T04)
+    TEST(SIG_03, T03)
     {
         STEP(1)
-        m_Dispatcher().expectAssign(mData.sigName(0), SUBSYS_SIG, 0, 0);
-        m_Dispatcher().expectAssign(mData.sigName(1), SUBSYS_SIG, 1, 1);
-        m_Dispatcher().expectAssign(mData.sigName(2), SUBSYS_SIG, 2, -1);
+        m_Dispatcher().expectAssign(mData.sigName(0), COMP_SIG, 0, 0);
+        m_Dispatcher().expectAssign(mData.sigName(1), COMP_SIG, 1, 1);
+        m_Dispatcher().expectAssign(mData.sigName(2), COMP_SIG, 2, -1);
         m_Log().expectLog(MOD_SIG_PROVIDER, ERR_STARTUP);
-        mSUT.load(mData.pSIG, mData.numSIG);
+        mSUT.load(mData.pSIG(), mData.numSIG());
         CHECK_N_CLEAR()
         L_CHECK_FALSE(mSUT.has(0))
     }
     
     //  test type: coverage
     //  retrieve instance
-    TEST(SIG_03, T05)
+    TEST(SIG_03, T04)
     {
         unmock();
         I_SIG_Provider& inst = IL::getSIG_Provider();

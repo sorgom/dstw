@@ -7,21 +7,18 @@
 #define DISPATCHER_H
 
 #include <BAS/coding.h>
-#include <BAS/NtpArray.h>
+#include <BAS/NcpIndex.h>
 #include <ifs/I_Dispatcher.h>
-#include <setup/capacities.h>
 
 class Dispatcher : public I_Dispatcher
 {
 public:
-    inline Dispatcher():
-        mIndx(mData)
-    {}
+    inline Dispatcher() = default;
 
     void reset();
     void index();
 
-    const PosRes assign(const ComName& name, E_Subsys subs, size_t pos);
+    const PosRes assign(const ComName& name, E_Comp comp, size_t pos);
     
     void dispatch(const ComFldState& tele) const;
     void dispatch(const ComGuiCmd&   tele) const;
@@ -34,10 +31,7 @@ public:
     NOCOPY(Dispatcher)
 
 private:
-    NtpArray<CAPACITY_DSP> mData;
-    NtpIndex<CAPACITY_DSP> mIndx;
-
-
+    NcpIndex mIndx;
 };
 
 #endif // H_

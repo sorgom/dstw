@@ -21,8 +21,8 @@ endif
 RESCOMP = windres
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/dstw_gen
-OBJDIR = obj/dstw_gen
-DEFINES += -DNDEBUG -DCAPACITY_TSW=5000 -DCAPACITY_SIG=5000 -DCAPACITY_LCR=5000 -DCAPACITY_SEG=5000
+OBJDIR = obj/gcc/dstw_gen
+DEFINES += -DNDEBUG -DTEST_NUM_TSW=1000 -DTEST_NUM_SIG=1000 -DTEST_NUM_LCR=1000 -DTEST_NUM_SEG=1000
 INCLUDES += -I../testing/testenv -I../devel -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)

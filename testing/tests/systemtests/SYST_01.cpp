@@ -19,23 +19,23 @@ namespace test
         mock_Com();
         const CONST_C_STRING fname = "tmp.dat";
         {
-            GenProjData<1, CAPACITY_SIG> projData;
+            GenProjData<1, TEST_NUM_SIG> projData;
             projData.dump(fname);
         }
         IL::getReader().read(fname);    
 
-        L_CHECK_TRUE(IL::getSIG_Provider().has(CAPACITY_SIG - 1))
+        L_CHECK_TRUE(IL::getSIG_Provider().has(TEST_NUM_SIG - 1))
 
         STEP(1)
         //  signal type SIG_H (default)
         //  stimulation: send SIG field states H0 to dispatcher
         //  expectation: GUI states H0 to Com
         SUBSTEPS()
-        for (UINT32 n = 0; n < CAPACITY_SIG; ++n)
+        for (UINT32 n = 0; n < TEST_NUM_SIG; ++n)
         {
             LSTEP(n)
             ComFldState fldState(SIG_STATE_H0);
-            nameElement(fldState, CAPACITY_SIG - n, "SIG");
+            nameElement(fldState, TEST_NUM_SIG - n, "SIG");
 
             ComStateGui stateGui(SIG_STATE_H0);
             stateGui.name = fldState.name;
@@ -53,11 +53,11 @@ namespace test
         //  -   commands SIG_STATE_H1 to Com
         //  -   GUI states SIG_STATE_WAIT to Com
         SUBSTEPS()
-        for (UINT32 n = 0; n < CAPACITY_SIG; ++n)
+        for (UINT32 n = 0; n < TEST_NUM_SIG; ++n)
         {
             LSTEP(n)
             ComGuiCmd guiCmd(SIG_STATE_H1);
-            nameElement(guiCmd, CAPACITY_SIG - n, "SIG");
+            nameElement(guiCmd, TEST_NUM_SIG - n, "SIG");
 
             ComCmdFld cmdFld(SIG_STATE_H1);
             cmdFld.name = guiCmd.name;

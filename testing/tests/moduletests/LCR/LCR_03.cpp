@@ -27,9 +27,9 @@ namespace test
     TEST(LCR_03, T01)
     {
         STEP(1)
-        m_Dispatcher().expectAssign(mData.lcrName(0), SUBSYS_LCR, 0, 0);
-        m_Dispatcher().expectAssign(mData.lcrName(1), SUBSYS_LCR, 1, 1);
-        mSUT.load(mData.pLCR, mData.numLCR);
+        m_Dispatcher().expectAssign(mData.lcrName(0), COMP_LCR, 0, 0);
+        m_Dispatcher().expectAssign(mData.lcrName(1), COMP_LCR, 1, 1);
+        mSUT.load(mData.pLCR(), mData.numLCR());
         CHECK_N_CLEAR()
         L_CHECK_TRUE(mSUT.has(1))
         L_CHECK_FALSE(mSUT.has(2))
@@ -45,41 +45,30 @@ namespace test
         mData.setLcrType(1, LCR_TYPE_LCR_UBK + 100); 
         
         STEP(1)
-        m_Dispatcher().expectAssign(mData.lcrName(0), SUBSYS_LCR, 0, 0);
-        m_Dispatcher().expectAssign(mData.lcrName(1), SUBSYS_LCR, 1, 1);
+        m_Dispatcher().expectAssign(mData.lcrName(0), COMP_LCR, 0, 0);
+        m_Dispatcher().expectAssign(mData.lcrName(1), COMP_LCR, 1, 1);
         m_Log().expectLog(MOD_LCR_PROVIDER, ERR_STARTUP);
-        mSUT.load(mData.pLCR, mData.numLCR);
-        CHECK_N_CLEAR()
-        L_CHECK_FALSE(mSUT.has(0))
-    }
-
-    //  test type: equivalence class test
-    //  load invalid ProjData LCR (too many)
-    TEST(LCR_03, T03)
-    {
-        STEP(1)
-        m_Log().expectLog(MOD_LCR_PROVIDER, ERR_STARTUP);
-        mSUT.load(mData.pLCR, CAPACITY_LCR + 1);
+        mSUT.load(mData.pLCR(), mData.numLCR());
         CHECK_N_CLEAR()
         L_CHECK_FALSE(mSUT.has(0))
     }
 
     //  test type: equivalence class test
     //  load valid ProjData LCR Dispatcher returns negative value
-    TEST(LCR_03, T04)
+    TEST(LCR_03, T03)
     {
         STEP(1)
-        m_Dispatcher().expectAssign(mData.lcrName(0), SUBSYS_LCR, 0, 0);
-        m_Dispatcher().expectAssign(mData.lcrName(1), SUBSYS_LCR, 1, -1);
+        m_Dispatcher().expectAssign(mData.lcrName(0), COMP_LCR, 0, 0);
+        m_Dispatcher().expectAssign(mData.lcrName(1), COMP_LCR, 1, -1);
         m_Log().expectLog(MOD_LCR_PROVIDER, ERR_STARTUP);
-        mSUT.load(mData.pLCR, mData.numLCR);
+        mSUT.load(mData.pLCR(), mData.numLCR());
         CHECK_N_CLEAR()
         L_CHECK_FALSE(mSUT.has(0))
     }
     
     //  test type: coverage
     //  retrieve instance
-    TEST(LCR_03, T05)
+    TEST(LCR_03, T04)
     {
         I_LCR_Provider& inst = LCR_Provider::instance();
         play(inst);

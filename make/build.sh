@@ -8,7 +8,7 @@ help()
     echo "options:"
     echo "-c  clean ignored artifacts before"
     echo "-p  premake5 makefiles"
-    echo "-x  execute all binaries"
+    echo "-r  run all binaries"
     echo "-h  this help"
     echo "===================================="
     exit
@@ -30,13 +30,13 @@ function mk()
 }
 
 clean=
-exe=
+run=
 pre=
-while getopts hcxp option; do
+while getopts hcrp option; do
     case $option in
       (h)  help;;
       (c)  clean=1;;
-      (x)  exe=1;;
+      (r)  run=1;;
       (p)  pre=1;;
     esac
 done
@@ -59,7 +59,7 @@ for pid in ${pids[*]}; do
 done
 if test $err -ne 0; then exit 1; fi
 
-if test -z $exe; then exit 0; fi
+if test -z $run; then exit 0; fi
 
 for b in bin/*; do
     echo ''

@@ -13,7 +13,7 @@ void SIG_Hub::fromDsp(const size_t pos, const ComFldState& tele) const
         prov.at(pos).fromFld(tele.state1, tele.state2);
     }
     else
-    {pass();}
+    { pass(); }
 }
 
 void SIG_Hub::fromDsp(const size_t pos, const ComGuiCmd&   tele) const
@@ -24,7 +24,7 @@ void SIG_Hub::fromDsp(const size_t pos, const ComGuiCmd&   tele) const
         prov.at(pos).fromGui(tele.cmd1, tele.cmd2);
     }
     else
-    {pass();}
+    { pass(); }
 }
 
 void SIG_Hub::toFld(const size_t id, const UINT8 state, const UINT8 speed) const

@@ -13,7 +13,7 @@ void LCR_Hub::fromDsp(const size_t pos, const ComFldState& tele) const
         prov.at(pos).fromFld(tele.state1, tele.state2);
     }
     else
-    {pass();}
+    { pass(); }
 }
 
 void LCR_Hub::fromDsp(const size_t pos, const ComGuiCmd& tele) const
@@ -24,7 +24,7 @@ void LCR_Hub::fromDsp(const size_t pos, const ComGuiCmd& tele) const
         prov.at(pos).fromGui(tele.cmd1);
     }
     else
-    {pass();}
+    { pass(); }
 }
 
 void LCR_Hub::toFld(const size_t id, const UINT8 state) const

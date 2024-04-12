@@ -14,32 +14,40 @@ workspace 'dstw'
     filter { 'action:gmake*' }
         configurations { 'ci' }
         language 'C++'
-        objdir 'obj/%{prj.name}'
+        objdir 'obj/gcc/%{prj.name}'
         targetdir 'bin'
         buildoptions { buildOpts }
-        defines { appDefines }
         optimize 'On'
 
         project 'dstw_gen'
             kind 'ConsoleApp'
             includedirs { testIncludes }
+            defines { genDefines }
             files { genDataSrcs }
 
         project 'dstw_run'
             kind 'ConsoleApp'
             includedirs { appIncludes }
+            defines { appDefines }
             files { '../application/**.cpp' }
 
 --  ============================================================
 --  > tests.make
 --  module tests and system tests at once runtime
 --  ->  bin/tests
+--  configurations: 
+--  - ci        module and system tests
+--  - mod       module tests
+--  - sys       system tests
+--  - dev       developer tests
+--  - bullseye  module tests with bullseye coverage
 --  ============================================================
 workspace 'tests'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'sys', 'dev', 'bullseye' }
+        configurations { 'ci', 'mod', 'sys', 'dev', 'bullseye' }
         language 'C++'
-        objdir 'obj/%{prj.name}/%{cfg.name}'
+        objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
+        targetsuffix '_%{cfg.name}'
 
         buildoptions { buildOpts }
 
@@ -52,14 +60,17 @@ workspace 'tests'
             links { testLinks }
             files { testEnvSrcs, appSrcs }
 
+            filter { 'configurations:ci' }
+                files { modTestSrcs, sysTestSrcs }
+
+            filter { 'configurations:mod' }
+                files { modTestSrcs }
+
             filter { 'configurations:sys' }
                 files { sysTestSrcs }
 
             filter { 'configurations:dev' }
                 files { devTestSrcs }
-
-            filter { 'configurations:ci' }
-                files { modTestSrcs, sysTestSrcs }
 
             filter { 'configurations:bullseye' }
                 files { modTestSrcs }
@@ -70,13 +81,18 @@ workspace 'tests'
 --  > coverage.make
 --  -   coverage instrumented application (static lib)
 --  -   module tests only runtime
---  ->  bin/coverage_tests
+--  ->  bin/coverage_tests_{config}
+--  configurations: 
+--  - ci        module tests
+--  - sys       system tests
+--  - dev       developer tests
 --  ============================================================
 workspace 'coverage'
     filter { 'action:gmake*' }
-        configurations { 'ci' }
+        configurations { 'ci', 'sys', 'dev' }
         language 'C++'
-        objdir 'obj/%{prj.name}'
+        objdir 'obj/gcc/%{prj.name}'
+        targetsuffix '_%{cfg.name}'
 
         includedirs { testIncludes }
         buildoptions { buildOpts }
@@ -93,8 +109,13 @@ workspace 'coverage'
         project 'coverage_tests'
             kind 'ConsoleApp'
             targetdir 'bin'
-
-            files { testEnvSrcs, modTestSrcs }
             libdirs { 'lib', '../BuildCppUTest/lib' }
             links { 'coverage_app', 'gcov', testLinks }
             linkoptions { '--coverage' }
+            files { testEnvSrcs }
+            filter { 'configurations:ci' }
+                files { modTestSrcs }
+            filter { 'configurations:sys' }
+                files { sysTestSrcs }
+            filter { 'configurations:dev' }
+                files { devTestSrcs }

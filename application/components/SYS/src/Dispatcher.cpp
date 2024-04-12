@@ -7,14 +7,13 @@ INSTANCE_DEF(Dispatcher)
 
 void Dispatcher::reset()
 {
-    mData.reset();
-    mIndx.reset();
+    mIndx.clear();
 }
 
 void Dispatcher::index()
 {
     if (mIndx.index())
-    { pass();}
+    { pass(); }
     else
     {
         IL::getLog().log(MOD_SYS_DISPATCHER, ERR_STARTUP);
@@ -23,18 +22,11 @@ void Dispatcher::index()
 
 const PosRes Dispatcher::assign(
     const ComName& name, 
-    const E_Subsys subs, 
+    const E_Comp comp, 
     const size_t pos)
 {
-    const bool valid = mData.hasSpace();
-    size_t dpos = 0;
-    if (valid)
-    {
-        dpos = mData.add(name, subs, pos);
-    }
-    else
-    { pass();}
-    return PosRes{dpos, valid};
+    mIndx.add(name, comp, pos);
+    return PosRes{mIndx.size() - 1, true};
 }
 
 void Dispatcher::dispatch(const ComFldState& tele) const
@@ -43,19 +35,19 @@ void Dispatcher::dispatch(const ComFldState& tele) const
 
     if (res.valid)
     {
-        const Ntp& ntp = mIndx.at(res);
-        switch (ntp.type)
+        const Ncp& ncp = mIndx.at(res);
+        switch (ncp.comp)
         {
-        case SUBSYS_TSW:
-            IL::getTSW_Hub().fromDsp(ntp.pos, tele);
+        case COMP_TSW:
+            IL::getTSW_Hub().fromDsp(ncp.pos, tele);
             break;
-        case SUBSYS_SIG:
-            IL::getSIG_Hub().fromDsp(ntp.pos, tele);
+        case COMP_SIG:
+            IL::getSIG_Hub().fromDsp(ncp.pos, tele);
             break;
-        case SUBSYS_LCR:
-            IL::getLCR_Hub().fromDsp(ntp.pos, tele);
+        case COMP_LCR:
+            IL::getLCR_Hub().fromDsp(ncp.pos, tele);
             break;
-        case SUBSYS_SEG:
+        case COMP_SEG:
             break;
         default:
             break;
@@ -73,19 +65,19 @@ void Dispatcher::dispatch(const ComGuiCmd& tele) const
 
     if (res.valid)
     {
-        const Ntp& ntp = mIndx.at(res);
-        switch (ntp.type)
+        const Ncp& ncp = mIndx.at(res);
+        switch (ncp.comp)
         {
-        case SUBSYS_TSW:
-            IL::getTSW_Hub().fromDsp(ntp.pos, tele);
+        case COMP_TSW:
+            IL::getTSW_Hub().fromDsp(ncp.pos, tele);
             break;
-        case SUBSYS_SIG:
-            IL::getSIG_Hub().fromDsp(ntp.pos, tele);
+        case COMP_SIG:
+            IL::getSIG_Hub().fromDsp(ncp.pos, tele);
             break;
-        case SUBSYS_LCR:
-            IL::getLCR_Hub().fromDsp(ntp.pos, tele);
+        case COMP_LCR:
+            IL::getLCR_Hub().fromDsp(ncp.pos, tele);
             break;
-        case SUBSYS_SEG:
+        case COMP_SEG:
             break;
         default:
             break;
@@ -99,22 +91,22 @@ void Dispatcher::dispatch(const ComGuiCmd& tele) const
 
 void Dispatcher::dispatch(const size_t id, ComCmdFld&& tele) const
 {
-    if (mData.has(id))
+    if (mIndx.size() > id)
     {
-        tele.name = mData.at(id).name;
+        tele.name = mIndx.at(id).name;
         IL::getCom().send(tele);
     }
     else
-    { pass();}
+    { pass(); }
 }
 
 void Dispatcher::dispatch(const size_t id, ComStateGui&& tele) const
 {
-    if (mData.has(id))
+    if (mIndx.size() > id)
     {
-        tele.name = mData.at(id).name;
+        tele.name = mIndx.at(id).name;
         IL::getCom().send(tele);
     }
     else
-    { pass();}
+    { pass(); }
 }

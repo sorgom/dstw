@@ -1,154 +1,266 @@
 //  ============================================================
-//  test of StaticArray, StaticIndex
+//  test of Containers
 //  ============================================================
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <BAS/StaticArray.h>
+#include <BAS/Containers.h>
+
+#include <qnd/useCout.h>
 
 namespace test
 {
 
     TEST_GROUP_BASE(BAS_01, TestGroupBase) {};
 
-    class IData
+    enum : bool
+    {
+        YES = true,
+        NO = false
+    };  
+
+    class Base
     {
     public:
-        virtual const INT32& get1() const = 0;
-        virtual const INT32& get2() const = 0;
+        virtual bool answer() const = 0;
+        virtual void set(UINT8 val) = 0;
+        virtual const UINT8& get() const = 0;
+        virtual ~Base() = default;
     };
 
-    class CData : public IData
+    //  in between class with virtual methods remaining undefined
+    class D_val : public Base
     {
     public:
-        inline const INT32& get1() const { return m1; }
-        inline const INT32& get2() const { return m2; };
-        inline CData(INT32 i1, INT32 i2 = 0):
-            m1(i1),
-            m2(i2)
-        {}
-        inline bool operator==(const CData& o) const
-        {
-            return m1 == o.get1() and m2 == o.get2();
-        }
-        NOCOPY(CData)
-        NODEF(CData)
-    private:    
-        const INT32 m1;
-        const INT32 m2;
+        inline D_val() : val(0) {}
+        inline const UINT8& get() const final { return val; }
+        inline void set(UINT8 v) final { val = v; }
+    private:
+        UINT8 val;
     };
 
-    using IDataArray = InterfaceArray<IData, 20, CData>;
-    using CDataArray = ConstArray<CData, 20>;
-
-    class CDataIndex : public ConstArrayIndex<INT32, CData, 20>
+    //  final class answering yes
+    //  with static counter
+    class D_yes : public D_val
     {
     public:
-        inline CDataIndex(const CDataArray& a):
-            ConstArrayIndex<INT32, CData, 20>(a)
-        {}
-    protected:
-        inline const INT32& getKey(const CData& d) const
-        {
-            return d.get1();
-        }     
-
-        inline bool isGreater(const INT32& a, const INT32& b) const
-        {
-            return a > b;
-        }
+        inline D_yes() { ++cnt; }
+        inline ~D_yes() { --cnt; }
+        inline bool answer() const final { return YES; }
+        inline static UINT32 count() { return cnt; }
+        NOCOPY(D_yes)
+    private:
+        static UINT32 cnt;
     };
+    UINT32 D_yes::cnt = 0;
+
+    //  final class answering no
+    //  with static counter
+    //  and additional data
+    //  requiring non default constructor
+    class D_no : public D_val
+    {
+    public:
+        inline D_no(UINT8 val, UINT16 = 0) { ++cnt; set(val); }
+        inline ~D_no() { --cnt; }
+        inline bool answer() const final { return NO; }
+        inline static UINT32 count() { return cnt; }
+        NODEF(D_no)
+        NOCOPY(D_no)
+    private:
+        static UINT32 cnt;
+        CHAR data[128];
+    };
+    UINT32 D_no::cnt = 0;
 
     //  test type: equivalence class test
-    //  test of InterfaceArray
+    //  PolyVec methods
     TEST(BAS_01, T01)
     {
         STEP(1)
-        //  create array
-        //  load data
-        IDataArray a;
-
-        L_CHECK_EQUAL(20, a.capacity())
-        L_CHECK_EQUAL( 0, a.size())
-
+        L_CHECK_EQUAL(0, D_yes::count());
+        L_CHECK_EQUAL(0, D_no::count());
+        L_CHECK_TRUE(sizeof(D_no) > sizeof(D_yes));
+        PolyVec<Base> vec;
+        // mutable reference
+        PolyVec<Base>& mv = vec;
+        // const reference
+        const PolyVec<Base>& cv = vec;
+        L_CHECK_EQUAL(0, cv.size())
+        
+        //  reserve 30 elements
         STEP(2)
-        for (UINT16 i = 0; i < a.capacity(); ++i)
-        {
-            L_CHECK_TRUE(a.hasSpace())
-            const size_t p = a.add<CData>(-i, i);
-            L_CHECK_EQUAL(i, p);
-        }
-        L_CHECK_EQUAL(a.capacity(), a.size())
-        L_CHECK_FALSE(a.hasSpace())
+        const size_t cap = mv.reserve(30);
+        L_CHECK_TRUE(cap >= 30);
+        L_CHECK_EQUAL(0, cv.size())
 
+        //  add 10 D_yes and 20 D_no elements
         STEP(3)
-        //  test data as loaded
-        SUBSTEPS()
-        for (UINT16 i = 0; i < a.size(); ++i)
+        for (UINT8 n = 0; n < 30; n += 3)
         {
-            LSTEP(i)
-            const IData& d = a.at(i);
-            L_CHECK_EQUAL(-i, d.get1())
-            L_CHECK_EQUAL( i, d.get2())
+            mv.add<D_yes>();
+            mv.add<D_no>(n + 10, n + 1);
+            L_CHECK_EQUAL(n + 10, cv.at(n + 1).get());
+            mv.add<D_no>(n + 20);
+            L_CHECK_EQUAL(n + 20, cv.at(n + 2).get());
+        }
+        //  check size and count
+        L_CHECK_EQUAL(30, cv.size());
+        L_CHECK_EQUAL(10, D_yes::count());
+        L_CHECK_EQUAL(20, D_no::count());
+        
+        //  check derived classes answers
+        STEP(4)
+        SUBSTEPS()
+        for (UINT8 n = 0; n < 30; n += 3)
+        {
+            STEP(n)
+            L_CHECK_TRUE(cv.at(n).answer());
+            L_CHECK_FALSE(cv.at(n + 1).answer());
+            L_CHECK_FALSE(cv.at(n + 2).answer());
         }
         ENDSTEPS()
+
+        //  set mutable
+        //  get const
+        STEP(5)
+        SUBSTEPS()
+        for (UINT8 n = 0; n < 30; ++n)
+        {
+            STEP(n)
+            mv.at(n).set(n);
+            L_CHECK_EQUAL(n, cv.at(n).get())
+        }
+        ENDSTEPS()
+
+        STEP(6)
+        mv.clear();
+        L_CHECK_EQUAL(0, cv.size());
+        L_CHECK_EQUAL(0, D_yes::count());
+        L_CHECK_EQUAL(0, D_no::count());
     }
 
     //  test type: equivalence class test
-    //  test of ConstArray / ConstArrayIndex
+    //  PolyVec destructor
     TEST(BAS_01, T02)
     {
         SETUP()
-        //  create array
-        CDataArray a;
-        CDataIndex ix(a);
-        bool ok = false;
-
+        L_CHECK_EQUAL(0, D_yes::count());
+        L_CHECK_EQUAL(0, D_no::count());
+        
         STEP(1)
-        //  index of empty array
         {
-            ok = ix.index();
-            L_CHECK_TRUE(ok)
-            const CData d(1, 2);
-            const PosRes f = ix.find(d.get1());
-            L_CHECK_FALSE(f.valid)
+            PolyVec<Base> vec;
+            vec.add<D_yes>();
+            vec.add<D_no>(1);
+            vec.add<D_no>(2);
+            L_CHECK_EQUAL(1, D_yes::count());
+            L_CHECK_EQUAL(2, D_no::count());
         }
-
-        STEP(2)
-        //  load data
-        for (UINT16 i = 0; i < a.capacity(); ++i)
-        {
-            L_CHECK_TRUE(a.hasSpace())
-            a.add(-i, i);
-        }
-        L_CHECK_FALSE(a.hasSpace())
-
-        STEP(3)
-        //  index
-        //  find all data in index
-        ok = ix.index();
-        L_CHECK_TRUE(ok)
-
-        SUBSTEPS()
-        for (UINT16 i = 0; i < a.size(); ++i)
-        {
-            LSTEP(i)
-            const CData& d = a.at(i);
-            const PosRes f = ix.find(d.get1());
-            L_CHECK_TRUE(f.valid)
-            const CData& r = ix.at(f);
-            L_CHECK_EQUAL(d.get1(), r.get1())
-            L_CHECK_EQUAL(d.get2(), r.get2())
-        }
-        ENDSTEPS()
-
-        STEP(4)
-        //  duplicates
-        a.reset();
-        a.add(1, 1);
-        a.add(1, 2);
-        ok = ix.index();
-        L_CHECK_FALSE(ok)
+        L_CHECK_EQUAL(0, D_yes::count());
+        L_CHECK_EQUAL(0, D_no::count());
     }
 
+    class IndexNo : public Index<UINT8, D_no>
+    {
+    protected:
+        inline const UINT8& getKey(const D_no& ntp) const final
+        {
+            return ntp.get();
+        }
+        inline bool greater(const UINT8& a, const UINT8& b) const final
+        {
+            return a > b;
+        }
+    private:
+        static UINT8 tmp;
+    };
+
+    //  test type: equivalence class test
+    //  Index methods
+    TEST(BAS_01, T03)
+    {
+        SETUP()
+        IndexNo ix;
+        //  const reference
+        const IndexNo& cx = ix;
+        //  mutable reference
+        IndexNo& mx = ix;
+        L_CHECK_EQUAL(0, cx.size());
+        L_CHECK_EQUAL(0, D_no::count());
+        bool ok = false;
+
+        //  index of empty container
+        STEP(1)
+        ok = mx.index();
+        L_CHECK_TRUE(ok);
+
+        //  reserve 30 elements
+        STEP(2)
+        const size_t cap = mx.reserve(30);
+        L_CHECK_TRUE(cap >= 30);
+        L_CHECK_EQUAL(0, cx.size());
+
+        //  add 10 elements
+        STEP(3)
+        for (UINT8 n = 0; n < 10; ++n)
+        {
+            mx.add(10 - n);
+        }
+        L_CHECK_EQUAL(10, cx.size());
+        L_CHECK_EQUAL(10, D_no::count());
+
+        //  find without index
+        STEP(4)
+        {
+            const PosRes res = cx.find(5);
+            L_CHECK_FALSE(res.valid);
+        }
+        //  index & find
+        STEP(5)
+        ok = mx.index();
+        L_CHECK_TRUE(ok);
+        {
+            const PosRes res = cx.find(5);
+            L_CHECK_TRUE(res.valid);
+        }
+        {
+            const PosRes res = cx.find(11);
+            L_CHECK_FALSE(res.valid);
+        }
+        //  index with duplicate key
+        STEP(6)
+        mx.add(5);
+        ok = mx.index();
+        L_CHECK_FALSE(ok);
+        {
+            const PosRes res = cx.find(5);
+            L_CHECK_TRUE(res.valid);
+        }
+        //  clear
+        STEP(7)
+        mx.clear();
+        L_CHECK_EQUAL(0, cx.size());
+        L_CHECK_EQUAL(0, D_no::count());
+    }
+
+    //  test type: equivalence class test
+    //  Index destructor
+    TEST(BAS_01, T04)
+    {
+        SETUP()
+        L_CHECK_EQUAL(0, D_no::count());
+        STEP(1)
+        {
+            IndexNo ix;
+            for (UINT8 n = 0; n < 10; ++n)
+            {
+                ix.add(n, 0);
+            }
+            L_CHECK_EQUAL(10, ix.size());
+            L_CHECK_EQUAL(10, D_no::count());
+        }
+        STEP(2)
+        L_CHECK_EQUAL(0, D_no::count());
+    }
 } // namespace

@@ -26,19 +26,17 @@ testEnvSrcs = {
 }
 
 testDefines = {
-    'CPPUTEST_USE_LONG_LONG=0', 
-    'CAPACITY_TSW=11', 
-    'CAPACITY_SIG=10', 
-    'CAPACITY_LCR=9', 
-    'CAPACITY_SEG=22' 
+    'CPPUTEST_USE_LONG_LONG=0'
 }
 
-appDefines = { 
+appDefines = { 'NDEBUG' }
+
+genDefines = { 
     'NDEBUG', 
-    'CAPACITY_TSW=5000', 
-    'CAPACITY_SIG=5000', 
-    'CAPACITY_LCR=5000', 
-    'CAPACITY_SEG=5000' 
+    'TEST_NUM_TSW=1000', 
+    'TEST_NUM_SIG=1000', 
+    'TEST_NUM_LCR=1000', 
+    'TEST_NUM_SEG=1000' 
 }
 
 modTestSrcs = { '../testing/tests/moduletests/**.cpp' }

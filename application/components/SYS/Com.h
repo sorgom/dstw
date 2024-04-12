@@ -14,7 +14,7 @@
 class Com : public I_Com
 {
 public:
-    inline Com() {}
+    inline Com() = default;
     inline void send(const ComCmdFld&   tele) const {}
     inline void send(const ComStateGui& tele) const {}
 

@@ -6,13 +6,18 @@ build all major makes parallelly
 options:
 -c  clean ignored artifacts before
 -p  premake5 makefiles
--x  execute all binaries
+-r  run all binaries
 -h  this help
 ```
 
 **bullseye.sh**
 ```
 bullseye coverage output
+```
+
+**checkEnv.sh**
+```
+check for availability of tools
 ```
 
 **premake5.lua**
@@ -26,19 +31,21 @@ application runtime
 > tests.make
 module tests and system tests at once runtime
 ->  bin/tests
+configurations:
+- ci        module and system tests
+- mod       module tests
+- sys       system tests
+- dev       developer tests
+- bullseye  module tests with bullseye coverage
 
 > coverage.make
 -   coverage instrumented application (static lib)
 -   module tests only runtime
-->  bin/coverage_tests
-
-> _devtests.make
-development only tests
-->  bin/_devtests
-
-> _bullseye.make
-module tests for bullseye coverage
-->  bin/_bullseye
+->  bin/coverage_tests_{config}
+configurations:
+- ci        module tests
+- sys       system tests
+- dev       developer tests
 ```
 
 **premake5_settings.lua**
@@ -52,6 +59,7 @@ premake5 build rules for VS
 
 general setup
 warning level: 4 (high)
+multi processor build
 
 suppressed warnings application:
 -   4100 unreferenced formal parameter
@@ -63,8 +71,12 @@ additional suppressed warnings test code:
 
 > tests.sln
 module tests and system tests at once runtime
-including cpputest.lib
+including CppUTest sources
 ->  exe/tests.exe
+configurations:
+- ci        module and system tests
+- sys       system tests
+- dev       developer tests
 
 > gendata.sln
 generate proj data for application runtime
@@ -73,4 +85,9 @@ generate proj data for application runtime
 > dstw.sln
 application runtime
 ->  exe/dstw.exe
+```
+
+**runGcov.sh**
+```
+run coverage using gcov
 ```

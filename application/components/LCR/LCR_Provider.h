@@ -8,29 +8,28 @@
 #define LCR_PROVIDER_H
 
 #include <BAS/coding.h>
-#include <BAS/StaticArray.h>
+#include <BAS/Containers.h>
 #include <ifs/I_LCR_Provider.h>
-#include <setup/capacities.h>
 #include <LCR/LCR_X.h>
 
 class LCR_Provider : public I_LCR_Provider
 {
 public:
-    inline LCR_Provider() {}
+    inline LCR_Provider() = default;
 
     inline bool has(size_t pos) const
     {
-        return mLCRs.has(pos);
+        return mElems.size() > pos;
     }
 
     inline I_LCR& at(size_t pos)
     {
-        return mLCRs.at(pos);
+        return mElems.at(pos);
     }
 
     inline void reset()
     {
-        mLCRs.reset();
+        mElems.clear();
     }
 
     void load(const ProjLCR* data, UINT32 num);
@@ -40,7 +39,7 @@ public:
     NOCOPY(LCR_Provider)
 
 private:
-    InterfaceArray<I_LCR, CAPACITY_LCR, LCR, LCR_UBK> mLCRs;
+    PolyVec<I_LCR> mElems;
 };
 
 

@@ -8,39 +8,37 @@
 #define SIG_PROVIDER_H
 
 #include <BAS/coding.h>
-#include <BAS/StaticArray.h>
+#include <BAS/Containers.h>
 #include <ifs/I_SIG_Provider.h>
-#include <setup/capacities.h>
 #include <SIG/SIG_X.h>
 
 class SIG_Provider : public I_SIG_Provider
 {
 public:
-    inline SIG_Provider() {}
+    inline SIG_Provider() = default;
 
     inline bool has(size_t pos) const
     {
-        return mSIGs.has(pos);
+        return mElems.size() > pos;
     }
 
     inline I_SIG& at(size_t pos)
     {
-        return mSIGs.at(pos);
+        return mElems.at(pos);
     }
 
     inline void reset()
     {
-        mSIGs.reset();
+        mElems.clear();
     }
 
     void load(const ProjSIG* data, UINT32 num);
 
     IL_INSTANCE_DEC(SIG_Provider)
-
-private:
-    InterfaceArray<I_SIG, CAPACITY_SIG, SIG_H, SIG_N, SIG_H_N> mSIGs;
-
     NOCOPY(SIG_Provider)
+private:
+    PolyVec<I_SIG> mElems;
+
 };
 
 
