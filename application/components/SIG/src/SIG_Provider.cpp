@@ -7,7 +7,7 @@ void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
 {
     I_Dispatcher& disp = IL::getDispatcher();
     reset();
-    bool ok = true;
+    bool ok = mElems.reserve(num) >= num;
 
     for (UINT32 n = 0; ok and (n < num); ++n)
     {
@@ -18,13 +18,13 @@ void SIG_Provider::load(const ProjSIG* const data, const UINT32 num)
             switch (proj.type)
             {
                 case SIG_TYPE_H:
-                    mSIGs.add<SIG_H>(res.pos);
+                    mElems.add<SIG_H>(res.pos);
                     break;
                 case SIG_TYPE_N:
-                    mSIGs.add<SIG_N>(res.pos);
+                    mElems.add<SIG_N>(res.pos);
                     break;
                 case SIG_TYPE_H_N:
-                    mSIGs.add<SIG_H_N>(res.pos);
+                    mElems.add<SIG_H_N>(res.pos);
                     break;
                 default:
                     ok = false;

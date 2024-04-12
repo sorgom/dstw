@@ -19,17 +19,17 @@ public:
 
     inline bool has(size_t pos) const
     {
-        return mTSWs.size() > pos;
+        return mElems.size() > pos;
     }
 
     inline I_TSW& at(size_t pos)
     {
-        return mTSWs.at(pos);
+        return mElems.at(pos);
     }
 
     inline void reset()
     {
-        mTSWs.clear();
+        mElems.clear();
     }
 
     void load(const ProjTSW* data, UINT32 num);
@@ -39,6 +39,6 @@ public:
     NOCOPY(TSW_Provider)
 
 private:
-    PolyVec<I_TSW> mTSWs;
+    PolyVec<I_TSW> mElems;
 };
 #endif // H_

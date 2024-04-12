@@ -19,17 +19,17 @@ public:
 
     inline bool has(size_t pos) const
     {
-        return mLCRs.size() > pos;
+        return mElems.size() > pos;
     }
 
     inline I_LCR& at(size_t pos)
     {
-        return mLCRs.at(pos);
+        return mElems.at(pos);
     }
 
     inline void reset()
     {
-        mLCRs.clear();
+        mElems.clear();
     }
 
     void load(const ProjLCR* data, UINT32 num);
@@ -39,7 +39,7 @@ public:
     NOCOPY(LCR_Provider)
 
 private:
-    PolyVec<I_LCR> mLCRs;
+    PolyVec<I_LCR> mElems;
 };
 
 

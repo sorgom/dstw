@@ -19,17 +19,17 @@ public:
 
     inline bool has(size_t pos) const
     {
-        return mSIGs.size() > pos;
+        return mElems.size() > pos;
     }
 
     inline I_SIG& at(size_t pos)
     {
-        return mSIGs.at(pos);
+        return mElems.at(pos);
     }
 
     inline void reset()
     {
-        mSIGs.clear();
+        mElems.clear();
     }
 
     void load(const ProjSIG* data, UINT32 num);
@@ -37,7 +37,7 @@ public:
     IL_INSTANCE_DEC(SIG_Provider)
     NOCOPY(SIG_Provider)
 private:
-    PolyVec<I_SIG> mSIGs;
+    PolyVec<I_SIG> mElems;
 
 };
 

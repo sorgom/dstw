@@ -14,6 +14,7 @@
 #include <type_traits>
 #include <utility>
 #include <vector>
+#include <algorithm>
 
 //  ============================================================
 //  class PolyVec allows to store polymorphic objects
@@ -27,7 +28,7 @@ public:
     void add(Args&&... args) 
     {
         static_assert(std::is_base_of<IF, T>::value);
-        mData.push_back(std::make_unique<T>(std::forward<Args>(args)...));
+        mData.emplace_back(std::make_unique<T>(std::forward<Args>(args)...));
     }
 
     size_t size() const { return mData.size(); }
@@ -37,6 +38,13 @@ public:
     IF& at(size_t pos) { return *mData.at(pos); }
 
     inline void clear() { mData.clear(); }
+
+    //  reserve memory for size objects
+    //  returns the new capacity
+    size_t reserve(size_t size) { 
+        mData.reserve(size); 
+        return mData.capacity(); 
+    }
 
 private:
     std::vector<std::unique_ptr<IF>> mData;    
@@ -60,6 +68,13 @@ public:
     inline size_t size() const
     {
         return mData.size();
+    }
+
+    size_t reserve(size_t size)
+    {
+        mData.reserve(size);
+        mIdx.reserve(size);
+        return std::min(mData.capacity(), mIdx.capacity());
     }
 
     //  get data by storage position

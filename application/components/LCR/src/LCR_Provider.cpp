@@ -7,7 +7,7 @@ void LCR_Provider::load(const ProjLCR* const data, const UINT32 num)
 {
     I_Dispatcher& disp = IL::getDispatcher();
     reset();
-    bool ok = true;
+    bool ok = mElems.reserve(num) >= num;
 
     for (UINT32 n = 0; ok and (n < num); ++n)
     {
@@ -18,10 +18,10 @@ void LCR_Provider::load(const ProjLCR* const data, const UINT32 num)
             switch (proj.type)
             {
                 case LCR_TYPE_LCR:
-                    mLCRs.add<LCR>(res.pos);
+                    mElems.add<LCR>(res.pos);
                     break;
                 case LCR_TYPE_LCR_UBK:
-                    mLCRs.add<LCR_UBK>(res.pos);
+                    mElems.add<LCR_UBK>(res.pos);
                     break;
                 default:
                     ok = false;

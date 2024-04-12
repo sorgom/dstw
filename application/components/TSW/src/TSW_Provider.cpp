@@ -7,13 +7,14 @@ void TSW_Provider::load(const ProjTSW* const data, const UINT32 num)
 {
     I_Dispatcher& disp = IL::getDispatcher();
     reset();
-    bool ok = true;
+    bool ok = mElems.reserve(num) >= num;
+
     for (UINT32 n = 0; ok and (n < num); ++n)
     {
         const PosRes res = disp.assign(data[n].name, COMP_TSW, n);
         if (res.valid)
         { 
-            mTSWs.add<TSW>(res.pos);
+            mElems.add<TSW>(res.pos);
         }
         else
         {
