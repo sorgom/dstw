@@ -47,10 +47,6 @@ protected:
     {
         return ntp.name;
     }
-    inline bool greater(const ComName& a, const ComName& b) const final
-    {
-        return Mem::cmp(a.chars, b.chars) > 0;
-    }
 };
 
 #endif // H_

@@ -160,30 +160,38 @@ namespace test
     }
 
     //  complex key type which cannot be copied
+    //  with a very special operator >
     class KeyType
     {
     public:
-        inline KeyType(int k=0) : id(k), data(0) {}
         const int id;
-        const int data;
+        inline KeyType(int id) : id(id) {}
+        inline bool operator >(const KeyType& b) const
+        {
+            return id < b.id;
+        }
+        NODEF(KeyType)
         NOCOPY(KeyType)
     };
 
-    //  container type with key type key
+    //  container type with key type key and data
+    //  and a static counter
     class ContType
     {
-        public:
+    public:
         const KeyType key;
-        inline ContType(int k, int a=0) : key(k) { ++cnt; }
+        const int data[5];
+        inline ContType(int k, int d=0) : key(k), data{d} { ++cnt; }
         inline ~ContType() { --cnt; }    
-        int data[5];
-        NOCOPY(ContType)
         inline static UINT32 count() { return cnt; }
+        NODEF(ContType)
+        NOCOPY(ContType)
     private:
         static UINT32 cnt;
     };
     UINT32 ContType::cnt = 0;
 
+    //  class indexing by key element
     class IndexKeyCont : public Index<const KeyType&, ContType>
     {
     protected:
@@ -191,11 +199,16 @@ namespace test
         {
             return cont.key;
         }
-        inline bool greater(const KeyType& a, const KeyType& b) const final
-        {
-            return a.id > b.id;
-        }
+    };
 
+    //  class indexing by 1st data element
+    class IndexIntCont : public Index<int, ContType>
+    {
+    protected:
+        inline int getKey(const ContType& cont) const final
+        {
+            return cont.data[0];
+        }
     };
 
     //  test type: equivalence class test
@@ -203,71 +216,107 @@ namespace test
     TEST(BAS_01, T03)
     {
         SETUP()
-        IndexKeyCont ix;
-        //  const reference
-        const IndexKeyCont& cx = ix;
-        //  mutable reference
-        IndexKeyCont& mx = ix;
-        L_CHECK_EQUAL(0, cx.size());
+        IndexKeyCont ixk;
+        IndexIntCont ixi;
+        //  const references
+        const IndexKeyCont& cxk = ixk;
+        const IndexIntCont& cxi = ixi;
+        //  mutable references
+        IndexKeyCont& mxk = ixk;
+        IndexIntCont& mxi = ixi;
+
+        L_CHECK_EQUAL(0, cxk.size());
+        L_CHECK_EQUAL(0, cxi.size());
         L_CHECK_EQUAL(0, ContType::count());
         bool ok = false;
 
         //  index of empty container
         STEP(1)
-        ok = mx.index();
+        ok = mxk.index();
+        L_CHECK_TRUE(ok);
+        ok = mxi.index();
         L_CHECK_TRUE(ok);
 
         //  reserve 30 elements
         STEP(2)
-        const size_t cap = mx.reserve(30);
-        L_CHECK_TRUE(cap >= 30);
-        L_CHECK_EQUAL(0, cx.size());
+        {
+            const size_t cap = mxk.reserve(30);
+            L_CHECK_TRUE(cap >= 30);
+            L_CHECK_EQUAL(0, cxk.size());
+        }
+        {
+            const size_t cap = mxi.reserve(30);
+            L_CHECK_TRUE(cap >= 30);
+            L_CHECK_EQUAL(0, cxi.size());
+        }
 
         //  add 10 elements
+        //  keys 10 .. 1
         STEP(3)
-        for (UINT8 n = 0; n < 10; ++n)
+        for (int n = 0; n < 10; ++n)
         {
-            mx.add(10 - n);
+            mxk.add(10 - n);
+            mxi.add(0, 10 - n);
         }
-        L_CHECK_EQUAL(10, cx.size());
-        L_CHECK_EQUAL(10, ContType::count());
-
-        const KeyType key5(5);
-        const KeyType key11(11);
+        L_CHECK_EQUAL(10, cxk.size());
+        L_CHECK_EQUAL(10, cxi.size());
+        L_CHECK_EQUAL(20, ContType::count());
 
         //  find without index
         STEP(4)
         {
-            const PosRes res = cx.find(key5);
-            L_CHECK_FALSE(res.valid);
+            const PosRes res1 = cxk.find(KeyType(5));
+            L_CHECK_FALSE(res1.valid);
+            const PosRes res2 = cxi.find(5);
+            L_CHECK_FALSE(res2.valid);
         }
-        //  index & find
+        //  index
         STEP(5)
-        ok = mx.index();
+        ok = mxk.index() and mxi.index();
         L_CHECK_TRUE(ok);
-        {
-            const PosRes res = cx.find(key5);
-            L_CHECK_TRUE(res.valid);
-        }
-        //  find non existing key
-        STEP(6)
-        {
-            const PosRes res = cx.find(key11);
-            L_CHECK_FALSE(res.valid);
-        }
+
         //  index with duplicate key
-        STEP(7)
-        mx.add(5);
-        ok = mx.index();
+        STEP(6)
+        mxk.add(5);
+        mxi.add(0, 5);
+        ok = mxk.index() or mxi.index();
         L_CHECK_FALSE(ok);
+
+        //  find even with duplicates
+        STEP(7)
+        SUBSTEPS()
+        for (int n = 1; n < 11; ++n)
         {
-            const PosRes res = cx.find(key5);
-            L_CHECK_TRUE(res.valid);
+            STEP(n)
+            const PosRes res1 = cxk.find(KeyType(n));
+            L_CHECK_TRUE(res1.valid);
+            const ContType& c1 = cxk.at(res1);
+            L_CHECK_EQUAL(n, c1.key.id);
+
+            const PosRes res2 = cxi.find(n);
+            L_CHECK_TRUE(res2.valid);
+            const ContType& c2 = cxi.at(res2);
+            L_CHECK_EQUAL(n, c2.data[0]);
+        }
+        ENDSTEPS()
+
+        //  search for non existing key
+        STEP(8)
+        {
+            const PosRes res1 = cxk.find(KeyType(11));
+            L_CHECK_FALSE(res1.valid);
+            const PosRes res2 = cxi.find(11);
+            L_CHECK_FALSE(res2.valid);
         }
         //  clear
-        STEP(8)
-        mx.clear();
-        L_CHECK_EQUAL(0, cx.size());
+        STEP(9)
+        mxk.clear();
+        L_CHECK_EQUAL(0, cxk.size());
+        L_CHECK_EQUAL(11, ContType::count());
+
+        STEP(10)
+        mxi.clear();
+        L_CHECK_EQUAL(0, cxi.size());
         L_CHECK_EQUAL(0, ContType::count());
     }
 
@@ -279,13 +328,16 @@ namespace test
         L_CHECK_EQUAL(0, ContType::count());
         STEP(1)
         {
-            IndexKeyCont ix;
+            IndexKeyCont ixk;
+            IndexIntCont ixi;
             for (UINT8 n = 0; n < 10; ++n)
             {
-                ix.add(n, 0);
+                ixk.add(n, 0);
+                ixi.add(0, n);
             }
-            L_CHECK_EQUAL(10, ix.size());
-            L_CHECK_EQUAL(10, ContType::count());
+            L_CHECK_EQUAL(10, ixk.size());
+            L_CHECK_EQUAL(10, ixi.size());
+            L_CHECK_EQUAL(20, ContType::count());
         }
         STEP(2)
         L_CHECK_EQUAL(0, ContType::count());

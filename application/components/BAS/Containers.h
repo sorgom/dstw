@@ -54,11 +54,16 @@ private:
 //  ============================================================
 //  class Index allows to 
 //  - store objects in (unsorted) order of insertion
-//  - index and find objects by key
+//  - index and find objects by KEY type
+//  requires operator > (KEY a, KEY b) to be defined
 //  ============================================================
 template <typename KEY, typename CONT>
 class Index
 {
+protected:
+    //  get key type from container type
+    virtual KEY getKey(const CONT&) const = 0;
+
 public:
     void clear()
     {
@@ -81,13 +86,13 @@ public:
     //  get data by storage position
     inline const CONT& at(size_t pos) const
     {
-        return *mData[pos];
+        return *mData.at(pos);
     }
 
     //  get data by search result (i.e. index) position
     inline const CONT& at(const PosRes& res) const
     {
-        return *mIdx[res.pos];
+        return *mIdx.at(res.pos);
     }
 
     template <typename... Args>
@@ -119,12 +124,12 @@ public:
         while ((left <= right) and (not found))
         {
             const int mid = left + (right - left) / 2;
-
-            if (greater(key, getKey(*mIdx[mid])))
+            KEY km = getKey(*mIdx[mid]);
+            if (key > km)
             {
                 left = mid + 1;
             }
-            else if (greater(getKey(*mIdx[mid]), key))
+            else if (km > key)
             {
                 right = mid - 1;
             }
@@ -136,20 +141,13 @@ public:
         }
         return PosRes{pos, found};
     }
-protected:
-    //  definition key a is greater than key b
-    virtual bool greater(KEY a, KEY b) const = 0;
-
-    //  get key type from container type
-    virtual KEY getKey(const CONT&) const = 0;
-    
 private:
     std::vector<std::unique_ptr<const CONT>> mData;
     std::vector<const CONT*> mIdx;
 
     inline bool gt(size_t a, size_t b) const
     {
-        return greater(getKey(*mIdx[a]), getKey(*mIdx[b]));
+        return getKey(*mIdx[a]) > getKey(*mIdx[b]);
     }
 
     void sort()
