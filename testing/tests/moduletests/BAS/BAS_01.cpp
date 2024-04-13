@@ -161,51 +161,51 @@ namespace test
 
     //  complex key type which cannot be copied
     //  with a very special operator >
-    class KeyType
+    class Key
     {
     public:
         const int id;
-        inline KeyType(int id) : id(id) {}
-        inline bool operator >(const KeyType& b) const
+        inline Key(int id) : id(id) {}
+        inline bool operator >(const Key& b) const
         {
             return id < b.id;
         }
-        NODEF(KeyType)
-        NOCOPY(KeyType)
+        NODEF(Key)
+        NOCOPY(Key)
     };
 
     //  container type with key type key and data
     //  and a static counter
-    class ContType
+    class Cont
     {
     public:
-        const KeyType key;
+        const Key key;
         const int data[5];
-        inline ContType(int k, int d=0) : key(k), data{d, d, d, d, d} { ++cnt; }
-        inline ~ContType() { --cnt; }    
+        inline Cont(int k, int d=0) : key(k), data{d, d, d, d, d} { ++cnt; }
+        inline ~Cont() { --cnt; }    
         inline static UINT32 count() { return cnt; }
-        NODEF(ContType)
-        NOCOPY(ContType)
+        NODEF(Cont)
+        NOCOPY(Cont)
     private:
         static UINT32 cnt;
     };
-    UINT32 ContType::cnt = 0;
+    UINT32 Cont::cnt = 0;
 
     //  class indexing by key element
-    class IndexKeyCont : public Index<const KeyType&, ContType>
+    class IndexKeyCont : public Index<const Key&, Cont>
     {
     protected:
-        inline const KeyType& getKey(const ContType& cont) const final
+        inline const Key& getKey(const Cont& cont) const final
         {
             return cont.key;
         }
     };
 
     //  class indexing by 1st data element
-    class IndexIntCont : public Index<int, ContType>
+    class IndexIntCont : public Index<int, Cont>
     {
     protected:
-        inline int getKey(const ContType& cont) const final
+        inline int getKey(const Cont& cont) const final
         {
             return cont.data[0];
         }
@@ -227,7 +227,7 @@ namespace test
 
         L_CHECK_EQUAL(0, cxk.size());
         L_CHECK_EQUAL(0, cxi.size());
-        L_CHECK_EQUAL(0, ContType::count());
+        L_CHECK_EQUAL(0, Cont::count());
         bool ok = false;
 
         //  index of empty container
@@ -260,12 +260,12 @@ namespace test
         }
         L_CHECK_EQUAL(10, cxk.size());
         L_CHECK_EQUAL(10, cxi.size());
-        L_CHECK_EQUAL(20, ContType::count());
+        L_CHECK_EQUAL(20, Cont::count());
 
         //  find without index
         STEP(4)
         {
-            const PosRes res1 = cxk.find(KeyType(5));
+            const PosRes res1 = cxk.find(Key(5));
             L_CHECK_FALSE(res1.valid);
             const PosRes res2 = cxi.find(5);
             L_CHECK_FALSE(res2.valid);
@@ -288,14 +288,14 @@ namespace test
         for (int n = 1; n < 11; ++n)
         {
             STEP(n)
-            const PosRes res1 = cxk.find(KeyType(n));
+            const PosRes res1 = cxk.find(Key(n));
             L_CHECK_TRUE(res1.valid);
-            const ContType& c1 = cxk.at(res1);
+            const Cont& c1 = cxk.at(res1);
             L_CHECK_EQUAL(n, c1.key.id);
 
             const PosRes res2 = cxi.find(n);
             L_CHECK_TRUE(res2.valid);
-            const ContType& c2 = cxi.at(res2);
+            const Cont& c2 = cxi.at(res2);
             L_CHECK_EQUAL(n, c2.data[0]);
         }
         ENDSTEPS()
@@ -303,7 +303,7 @@ namespace test
         //  search for non existing key
         STEP(8)
         {
-            const PosRes res1 = cxk.find(KeyType(11));
+            const PosRes res1 = cxk.find(Key(11));
             L_CHECK_FALSE(res1.valid);
             const PosRes res2 = cxi.find(11);
             L_CHECK_FALSE(res2.valid);
@@ -312,12 +312,12 @@ namespace test
         STEP(9)
         mxk.clear();
         L_CHECK_EQUAL(0, cxk.size());
-        L_CHECK_EQUAL(11, ContType::count());
+        L_CHECK_EQUAL(11, Cont::count());
 
         STEP(10)
         mxi.clear();
         L_CHECK_EQUAL(0, cxi.size());
-        L_CHECK_EQUAL(0, ContType::count());
+        L_CHECK_EQUAL(0, Cont::count());
     }
 
     //  test type: equivalence class test
@@ -325,7 +325,7 @@ namespace test
     TEST(BAS_01, T04)
     {
         SETUP()
-        L_CHECK_EQUAL(0, ContType::count());
+        L_CHECK_EQUAL(0, Cont::count());
         STEP(1)
         {
             IndexKeyCont ixk;
@@ -337,9 +337,9 @@ namespace test
             }
             L_CHECK_EQUAL(10, ixk.size());
             L_CHECK_EQUAL(10, ixi.size());
-            L_CHECK_EQUAL(20, ContType::count());
+            L_CHECK_EQUAL(20, Cont::count());
         }
         STEP(2)
-        L_CHECK_EQUAL(0, ContType::count());
+        L_CHECK_EQUAL(0, Cont::count());
     }
 } // namespace
