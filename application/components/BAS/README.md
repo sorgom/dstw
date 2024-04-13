@@ -12,7 +12,8 @@ derived from interface class IF
 
 class Index allows to
 - store objects in (unsorted) order of insertion
-- index and find objects by key
+- index and find objects by KEY type
+requires operator > (KEY a, KEY b) to be defined
 ```
 
 #### NcpIndex.h
