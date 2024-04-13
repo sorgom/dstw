@@ -53,7 +53,8 @@ private:
 
 //  ============================================================
 //  class Index allows to 
-//  - store objects in (unsorted) order of insertion
+//  - store const CONT objects with KEY type member
+//    in the order that the were added
 //  - index and find objects by KEY type
 //  requires operator > (KEY a, KEY b) to be defined
 //  ============================================================
@@ -102,7 +103,8 @@ public:
     }
 
     //  index data by key after storage finished
-    //  returns true if no duplicates found
+    //  returns false if duplicates found
+    //  but finishes anyway
     bool index()
     {
         mIdx.clear();
@@ -124,7 +126,7 @@ public:
         while ((left <= right) and (not found))
         {
             const int mid = left + (right - left) / 2;
-            KEY km = getKey(*mIdx[mid]);
+            const KEY km = getKey(*mIdx[mid]);
             if (key > km)
             {
                 left = mid + 1;
@@ -142,7 +144,10 @@ public:
         return PosRes{pos, found};
     }
 private:
+    //  data storage
+    //  unique_ptr enables to store const objects that cannot be copied
     std::vector<std::unique_ptr<const CONT>> mData;
+    //  index storage
     std::vector<const CONT*> mIdx;
 
     inline bool gt(size_t a, size_t b) const

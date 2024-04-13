@@ -181,7 +181,7 @@ namespace test
     public:
         const KeyType key;
         const int data[5];
-        inline ContType(int k, int d=0) : key(k), data{d} { ++cnt; }
+        inline ContType(int k, int d=0) : key(k), data{d, d, d, d, d} { ++cnt; }
         inline ~ContType() { --cnt; }    
         inline static UINT32 count() { return cnt; }
         NODEF(ContType)
