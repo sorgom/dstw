@@ -88,8 +88,7 @@ namespace test
         
         //  reserve 30 elements
         STEP(2)
-        const size_t cap = mv.reserve(30);
-        L_CHECK_TRUE(cap >= 30);
+        mv.reserve(30);
         L_CHECK_EQUAL(0, cv.size())
 
         //  add 10 D_yes and 20 D_no elements
@@ -239,16 +238,10 @@ namespace test
 
         //  reserve 30 elements
         STEP(2)
-        {
-            const size_t cap = mxk.reserve(30);
-            L_CHECK_TRUE(cap >= 30);
-            L_CHECK_EQUAL(0, cxk.size());
-        }
-        {
-            const size_t cap = mxi.reserve(30);
-            L_CHECK_TRUE(cap >= 30);
-            L_CHECK_EQUAL(0, cxi.size());
-        }
+        mxk.reserve(30);
+        L_CHECK_EQUAL(0, cxk.size());
+        mxi.reserve(30);
+        L_CHECK_EQUAL(0, cxi.size());
 
         //  add 10 elements
         //  keys 10 .. 1

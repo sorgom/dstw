@@ -1,5 +1,8 @@
 //  ============================================================
 //  class BAS_Provider: base class to implement I_Provider
+//  - provides everything to satisfy 
+//    an I_Provider derived interface
+//  - except the load method which is too specific
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -10,8 +13,8 @@
 #include <BAS/Containers.h>
 #include <ifs/I_Provider.h>
 
-template <typename ELEM, typename PROJ, typename IF>
-class BAS_Provider : public IF
+template <typename I_ELEM, typename PROJ, typename I_PROV>
+class BAS_Provider : public I_PROV
 {
 public:
     inline BAS_Provider() = default;
@@ -21,7 +24,7 @@ public:
         return mElems.size() > pos;
     }
 
-    inline ELEM& at(size_t pos)
+    inline I_ELEM& at(size_t pos)
     {
         return mElems.at(pos);
     }
@@ -32,7 +35,7 @@ public:
     }
 
 protected:
-    PolyVec<ELEM> mElems;
+    PolyVec<I_ELEM> mElems;
 };
 
 

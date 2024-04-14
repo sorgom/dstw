@@ -3,29 +3,27 @@
 
 INSTANCE_DEF(TSW_Provider)
 
-void TSW_Provider::load(const ProjTSW* const data, const UINT32 num)
+void TSW_Provider::load(const ProjTSW* data, const UINT32 num)
 {
-    I_Dispatcher& disp = IL::getDispatcher();
     reset();
-    bool ok = mElems.reserve(num) >= num;
-
-    for (UINT32 n = 0; ok and (n < num); ++n)
+    mElems.reserve(num);
+    bool ok = true;
+    for (UINT32 n = 0; ok and (n < num); ++n, ++data)
     {
-        const PosRes res = disp.assign(data[n].name, COMP_TSW, n);
-        if (res.valid)
-        { 
+        const PosRes res = IL::getDispatcher().assign(data->name, COMP_TSW, n);
+        ok = res.valid;
+        if (ok)
+        {
             mElems.add<TSW>(res.pos);
         }
-        else
-        {
-            ok = false;
-        }
+        else 
+        { pass(); }
     }
-    if (ok)
-    { pass(); }
-    else
+    if (not ok)
     {
         reset();
         IL::getLog().log(MOD_TSW_PROVIDER, ERR_STARTUP);
     }
+    else 
+    { pass(); }
 }

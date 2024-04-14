@@ -15,6 +15,14 @@ mock for interface I_Com
 mock for interface Dispatcher
 ```
 
+#### M_Hub.h
+```
+common mock for all Hub interfaces
+- I_TSW_Hub
+- I_SIG_Hub
+- I_LCR_Hub
+```
+
 #### M_Instances.h
 ```
 mock instances (for IL)
@@ -26,11 +34,6 @@ for interface I_<NAME>
 #### M_LCR.h
 ```
 mock for interface LCR
-```
-
-#### M_Hub.h
-```
-mock for interface I_LCR_Hub
 ```
 
 #### M_LCR_Provider.h
@@ -48,11 +51,6 @@ mock for interface Log
 mock for interface SIG
 ```
 
-#### M_Hub.h
-```
-mock for interface I_SIG_Hub
-```
-
 #### M_SIG_Provider.h
 ```
 mock for interface SIG_Provider
@@ -61,11 +59,6 @@ mock for interface SIG_Provider
 #### M_TSW.h
 ```
 mock for interface TSW
-```
-
-#### M_Hub.h
-```
-mock for interface I_TSW_Hub
 ```
 
 #### M_TSW_Provider.h

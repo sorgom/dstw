@@ -26,29 +26,28 @@ class PolyVec
 {
 public:
     template <typename T, typename... Args>
-    void add(Args&&... args) 
+    inline void add(Args&&... args) 
     {
         static_assert(std::is_base_of<IF, T>::value);
         mData.emplace_back(std::make_unique<T>(std::forward<Args>(args)...));
     }
 
-    size_t size() const { return mData.size(); }
+    inline size_t size() const { return mData.size(); }
 
-    const IF& at(size_t pos) const { return *mData.at(pos); }
+    inline const IF& at(size_t pos) const { return *mData.at(pos); }
 
-    IF& at(size_t pos) { return *mData.at(pos); }
+    inline IF& at(size_t pos) { return *mData.at(pos); }
 
     inline void clear() { mData.clear(); }
 
     //  reserve memory for size objects
-    //  returns the new capacity
-    size_t reserve(size_t size) { 
+    inline void reserve(size_t size) 
+    { 
         mData.reserve(size); 
-        return mData.capacity(); 
     }
 
 private:
-    std::vector<std::unique_ptr<IF>> mData;    
+    std::vector<std::unique_ptr<IF>> mData;
 };
 
 //  ============================================================
@@ -77,15 +76,18 @@ public:
         return mData.size();
     }
 
-    size_t reserve(size_t size)
+    inline void reserve(size_t size)
     {
         mData.reserve(size);
         mIdx.reserve(size);
-        return std::min(mData.capacity(), mIdx.capacity());
     }
 
     //  get data by storage position
     inline const CONT& at(size_t pos) const
+    {
+        return *mData.at(pos);
+    }
+    inline CONT& at(size_t pos)
     {
         return *mData.at(pos);
     }
@@ -95,11 +97,15 @@ public:
     {
         return *mIdx.at(res.pos);
     }
+    inline CONT& at(const PosRes& res)
+    {
+        return *mIdx.at(res.pos);
+    }
 
     template <typename... Args>
     void add(Args&&... args)
     {
-        mData.emplace_back(std::make_unique<const CONT>(std::forward<Args>(args)...));
+        mData.emplace_back(std::make_unique<CONT>(std::forward<Args>(args)...));
     }
 
     //  index data by key after storage finished
@@ -108,7 +114,7 @@ public:
     bool index()
     {
         mIdx.clear();
-        for (const auto& p : mData)
+        for (auto& p : mData)
         {
             mIdx.push_back(p.get());
         }
@@ -146,9 +152,9 @@ public:
 private:
     //  data storage
     //  unique_ptr enables to store const objects that cannot be copied
-    std::vector<std::unique_ptr<const CONT>> mData;
+    std::vector<std::unique_ptr<CONT>> mData;
     //  index storage
-    std::vector<const CONT*> mIdx;
+    std::vector<CONT*> mIdx;
 
     inline bool gt(size_t a, size_t b) const
     {
@@ -165,7 +171,7 @@ private:
             {
                 if (gt(a, b))
                 {
-                    const CONT* t = mIdx[a];
+                    CONT* t = mIdx[a];
                     mIdx[a] = mIdx[b];
                     mIdx[b] = t;
                     swapped = true;

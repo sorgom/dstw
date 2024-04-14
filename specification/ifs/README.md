@@ -33,25 +33,31 @@ commands from components shall be dispatched to field
 states from components shall be dispatched to GUI
 ```
 
+#### I_Hub.h
+```
+interface Hub and derived interfaces:
+- I_TSW_Hub
+- I_SIG_Hub
+- I_LCR_Hub
+```
+
 #### I_LCR.h
 ```
 interface LCR (level crossing)
-```
-
-#### I_Hub.h
-```
-interface LCR_Hub
-```
-
-#### I_Provider.h
-```
-interface LCR_Provider
 ```
 
 #### I_Log.h
 ```
 interface Log
 - runtime error logging
+```
+
+#### I_Provider.h
+```
+interface Provider and derived interfaces:
+- I_TSW_Provider
+- I_SIG_Provider
+- I_LCR_Provider
 ```
 
 #### I_Reader.h
@@ -69,29 +75,9 @@ the Reader is called at system start and shall:
 interface SIG (signal)
 ```
 
-#### I_Hub.h
-```
-interface SIG_Hub
-```
-
-#### I_Provider.h
-```
-interface SIG_Provider
-```
-
 #### I_TSW.h
 ```
 interface TSW (track switch)
-```
-
-#### I_Hub.h
-```
-interface TSW_Hub
-```
-
-#### I_Provider.h
-```
-interface TSW_Provider
 ```
 
 #### PosRes.h

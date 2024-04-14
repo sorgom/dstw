@@ -5,11 +5,6 @@
 test of modules SIG_(X)
 ```
 
-#### SIG_01.json
-```
-transitions test code setup for SIG_X
-```
-
 #### SIG_02.cpp
 ```
 test of module SIG_Hub
@@ -18,4 +13,16 @@ test of module SIG_Hub
 #### SIG_03.cpp
 ```
 test of module SIG_Provider
+```
+
+#### SIG_H.json
+```
+transitions test code setup for
+SIG_X without speed
+```
+
+#### SIG_N.json
+```
+transitions test code setup for
+SIG_X with speed
 ```
