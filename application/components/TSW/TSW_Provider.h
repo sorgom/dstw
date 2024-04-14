@@ -9,7 +9,7 @@
 
 #include <BAS/coding.h>
 #include <BAS/Containers.h>
-#include <ifs/I_TSW_Provider.h>
+#include <ifs/I_Provider.h>
 #include <TSW/TSW.h>
 
 class TSW_Provider : public I_TSW_Provider

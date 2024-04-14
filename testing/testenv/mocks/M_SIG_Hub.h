@@ -7,7 +7,7 @@
 #ifndef M_SIG_HUB_H
 #define M_SIG_HUB_H
 
-#include <ifs/I_SIG_Hub.h>
+#include <ifs/I_Hub.h>
 #include "M_Base.h"
 
 namespace test

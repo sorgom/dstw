@@ -24,6 +24,8 @@ class I_LCR_Hub : public I_Hub
 {};
 class I_SIG_Hub : public I_Hub
 {};
+class I_TSW_Hub : public I_Hub
+{};
 
 
 #endif // H_

@@ -10,20 +10,19 @@
 #include <BAS/coding.h>
 #include <BAS/BAS_Provider.h>
 #include <ifs/I_LCR.h>
-#include <ifs/I_LCR_Provider.h>
-#include <ifs/SystemEnums.h>
+#include <ifs/I_Provider.h>
 
 class LCR_Provider : 
-    public BAS_Provider<I_LCR, ProjLCR>
+    public BAS_Provider<I_LCR, ProjLCR, I_LCR_Provider>
 {
 public:
     inline LCR_Provider() = default;
 
     ILX_INSTANCE_DEC(LCR_Provider)
 
-    NOCOPY(LCR_Provider)
-
     void load(const ProjLCR* data, UINT32 num) final;
+
+    NOCOPY(LCR_Provider)
 };
 
 

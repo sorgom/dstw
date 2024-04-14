@@ -1,6 +1,7 @@
 #include <LCR/LCR_Provider.h>
 #include <LCR/LCR_X.h>
 #include <SYS/IL.h>
+#include <ifs/SystemEnums.h>
 
 ILX_INSTANCE_DEF(LCR_Provider)
 

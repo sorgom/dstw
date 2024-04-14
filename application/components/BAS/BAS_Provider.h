@@ -7,12 +7,11 @@
 #ifndef BAS_PROVIDER_H
 #define BAS_PROVIDER_H
 
-// #include <BAS/coding.h>
 #include <BAS/Containers.h>
 #include <ifs/I_Provider.h>
 
-template <typename ELEM, typename PROJ>
-class BAS_Provider : public I_Provider<ELEM, PROJ>
+template <typename ELEM, typename PROJ, typename IF>
+class BAS_Provider : public IF
 {
 public:
     inline BAS_Provider() = default;

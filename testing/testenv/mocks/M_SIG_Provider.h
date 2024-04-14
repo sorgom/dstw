@@ -7,7 +7,7 @@
 #ifndef M_SIG_PROVIDER_H
 #define M_SIG_PROVIDER_H
 
-#include <ifs/I_SIG_Provider.h>
+#include <ifs/I_Provider.h>
 #include "M_Base.h"
 #include "M_SIG.h"
 

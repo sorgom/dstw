@@ -8,7 +8,7 @@
 #define LCR_HUB_H
 
 #include <BAS/coding.h>
-#include <ifs/I_LCR_Hub.h>
+#include <ifs/I_Hub.h>
 
 class LCR_Hub : public I_LCR_Hub
 {

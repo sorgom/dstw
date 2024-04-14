@@ -7,7 +7,7 @@
 #ifndef M_TSW_PROVIDER_H
 #define M_TSW_PROVIDER_H
 
-#include <ifs/I_TSW_Provider.h>
+#include <ifs/I_Provider.h>
 #include "M_Base.h"
 #include "M_TSW.h"
 

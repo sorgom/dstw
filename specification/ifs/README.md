@@ -38,12 +38,12 @@ states from components shall be dispatched to GUI
 interface LCR (level crossing)
 ```
 
-#### I_LCR_Hub.h
+#### I_Hub.h
 ```
 interface LCR_Hub
 ```
 
-#### I_LCR_Provider.h
+#### I_Provider.h
 ```
 interface LCR_Provider
 ```
@@ -69,12 +69,12 @@ the Reader is called at system start and shall:
 interface SIG (signal)
 ```
 
-#### I_SIG_Hub.h
+#### I_Hub.h
 ```
 interface SIG_Hub
 ```
 
-#### I_SIG_Provider.h
+#### I_Provider.h
 ```
 interface SIG_Provider
 ```
@@ -84,12 +84,12 @@ interface SIG_Provider
 interface TSW (track switch)
 ```
 
-#### I_TSW_Hub.h
+#### I_Hub.h
 ```
 interface TSW_Hub
 ```
 
-#### I_TSW_Provider.h
+#### I_Provider.h
 ```
 interface TSW_Provider
 ```

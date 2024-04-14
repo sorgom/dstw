@@ -7,7 +7,7 @@
 #ifndef M_LCR_PROVIDER_H
 #define M_LCR_PROVIDER_H
 
-#include <ifs/I_LCR_Provider.h>
+#include <ifs/I_Provider.h>
 #include "M_Base.h"
 #include "M_LCR.h"
 

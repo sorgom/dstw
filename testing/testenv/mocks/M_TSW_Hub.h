@@ -7,7 +7,7 @@
 #ifndef M_TSW_HUB_H
 #define M_TSW_HUB_H
 
-#include <ifs/I_TSW_Hub.h>
+#include <ifs/I_Hub.h>
 #include "M_Base.h"
 
 namespace test

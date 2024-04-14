@@ -7,7 +7,7 @@
 #ifndef M_LCR_HUB_H
 #define M_LCR_HUB_H
 
-#include <ifs/I_LCR_Hub.h>
+#include <ifs/I_Hub.h>
 #include "M_Base.h"
 
 namespace test

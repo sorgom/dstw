@@ -8,7 +8,7 @@
 #define TSW_HUB_H
 
 #include <BAS/coding.h>
-#include <ifs/I_TSW_Hub.h>
+#include <ifs/I_Hub.h>
 
 class TSW_Hub : public I_TSW_Hub
 {
