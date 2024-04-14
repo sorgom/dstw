@@ -3,17 +3,17 @@
 
 ## directory content
 
-**SIG_Hub.h**
+#### SIG_Hub.h
 ```
 class SIG_Hub implements I_SIG_Hub
 ```
 
-**SIG_Provider.h**
+#### SIG_Provider.h
 ```
 class SIG_Provider implements I_SIG_Provider
 ```
 
-**SIG_X.h**
+#### SIG_X.h
 ```
 classes SIG_(X) implement I_SIG
 

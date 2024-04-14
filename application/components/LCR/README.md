@@ -3,17 +3,17 @@
 
 ## directory content
 
-**LCR_Hub.h**
+#### LCR_Hub.h
 ```
 class LCR_Hub implements I_LCR_Hub
 ```
 
-**LCR_Provider.h**
+#### LCR_Provider.h
 ```
 class LCR_Provider implements I_LCR_Provider
 ```
 
-**LCR_X.h**
+#### LCR_X.h
 ```
 classes LCR_(X) implement I_LCR
 

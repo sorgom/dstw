@@ -6,8 +6,6 @@
 #include <testlib/TestGroupBase.h>
 #include <BAS/Containers.h>
 
-#include <qnd/useCout.h>
-
 namespace test
 {
 
@@ -24,7 +22,7 @@ namespace test
     public:
         virtual bool answer() const = 0;
         virtual void set(UINT8 val) = 0;
-        virtual const UINT8& get() const = 0;
+        virtual UINT8 get() const = 0;
         virtual ~Base() = default;
     };
 
@@ -33,7 +31,7 @@ namespace test
     {
     public:
         inline D_val() : val(0) {}
-        inline const UINT8& get() const final { return val; }
+        inline UINT8 get() const final { return val; }
         inline void set(UINT8 v) final { val = v; }
     private:
         UINT8 val;
@@ -161,19 +159,56 @@ namespace test
         L_CHECK_EQUAL(0, D_no::count());
     }
 
-    class IndexNo : public Index<UINT8, D_no>
+    //  complex key type which cannot be copied
+    //  with a very special operator >
+    class Key
+    {
+    public:
+        const int id;
+        inline Key(int id) : id(id) {}
+        inline bool operator >(const Key& b) const
+        {
+            return id < b.id;
+        }
+        NODEF(Key)
+        NOCOPY(Key)
+    };
+
+    //  container type with key type key and data
+    //  and a static counter
+    class Cont
+    {
+    public:
+        const Key key;
+        const int data[5];
+        inline Cont(int k, int d=0) : key(k), data{d, d, d, d, d} { ++cnt; }
+        inline ~Cont() { --cnt; }    
+        inline static UINT32 count() { return cnt; }
+        NODEF(Cont)
+        NOCOPY(Cont)
+    private:
+        static UINT32 cnt;
+    };
+    UINT32 Cont::cnt = 0;
+
+    //  class indexing by key element
+    class IndexKeyCont : public Index<const Key&, Cont>
     {
     protected:
-        inline const UINT8& getKey(const D_no& ntp) const final
+        inline const Key& getKey(const Cont& cont) const final
         {
-            return ntp.get();
+            return cont.key;
         }
-        inline bool greater(const UINT8& a, const UINT8& b) const final
+    };
+
+    //  class indexing by 1st data element
+    class IndexIntCont : public Index<int, Cont>
+    {
+    protected:
+        inline int getKey(const Cont& cont) const final
         {
-            return a > b;
+            return cont.data[0];
         }
-    private:
-        static UINT8 tmp;
     };
 
     //  test type: equivalence class test
@@ -181,67 +216,108 @@ namespace test
     TEST(BAS_01, T03)
     {
         SETUP()
-        IndexNo ix;
-        //  const reference
-        const IndexNo& cx = ix;
-        //  mutable reference
-        IndexNo& mx = ix;
-        L_CHECK_EQUAL(0, cx.size());
-        L_CHECK_EQUAL(0, D_no::count());
+        IndexKeyCont ixk;
+        IndexIntCont ixi;
+        //  const references
+        const IndexKeyCont& cxk = ixk;
+        const IndexIntCont& cxi = ixi;
+        //  mutable references
+        IndexKeyCont& mxk = ixk;
+        IndexIntCont& mxi = ixi;
+
+        L_CHECK_EQUAL(0, cxk.size());
+        L_CHECK_EQUAL(0, cxi.size());
+        L_CHECK_EQUAL(0, Cont::count());
         bool ok = false;
 
         //  index of empty container
         STEP(1)
-        ok = mx.index();
+        ok = mxk.index();
+        L_CHECK_TRUE(ok);
+        ok = mxi.index();
         L_CHECK_TRUE(ok);
 
         //  reserve 30 elements
         STEP(2)
-        const size_t cap = mx.reserve(30);
-        L_CHECK_TRUE(cap >= 30);
-        L_CHECK_EQUAL(0, cx.size());
+        {
+            const size_t cap = mxk.reserve(30);
+            L_CHECK_TRUE(cap >= 30);
+            L_CHECK_EQUAL(0, cxk.size());
+        }
+        {
+            const size_t cap = mxi.reserve(30);
+            L_CHECK_TRUE(cap >= 30);
+            L_CHECK_EQUAL(0, cxi.size());
+        }
 
         //  add 10 elements
+        //  keys 10 .. 1
         STEP(3)
-        for (UINT8 n = 0; n < 10; ++n)
+        for (int n = 0; n < 10; ++n)
         {
-            mx.add(10 - n);
+            mxk.add(10 - n);
+            mxi.add(0, 10 - n);
         }
-        L_CHECK_EQUAL(10, cx.size());
-        L_CHECK_EQUAL(10, D_no::count());
+        L_CHECK_EQUAL(10, cxk.size());
+        L_CHECK_EQUAL(10, cxi.size());
+        L_CHECK_EQUAL(20, Cont::count());
 
         //  find without index
         STEP(4)
         {
-            const PosRes res = cx.find(5);
-            L_CHECK_FALSE(res.valid);
+            const PosRes res1 = cxk.find(Key(5));
+            L_CHECK_FALSE(res1.valid);
+            const PosRes res2 = cxi.find(5);
+            L_CHECK_FALSE(res2.valid);
         }
-        //  index & find
+        //  index
         STEP(5)
-        ok = mx.index();
+        ok = mxk.index() and mxi.index();
         L_CHECK_TRUE(ok);
-        {
-            const PosRes res = cx.find(5);
-            L_CHECK_TRUE(res.valid);
-        }
-        {
-            const PosRes res = cx.find(11);
-            L_CHECK_FALSE(res.valid);
-        }
+
         //  index with duplicate key
         STEP(6)
-        mx.add(5);
-        ok = mx.index();
+        mxk.add(5);
+        mxi.add(0, 5);
+        ok = mxk.index() or mxi.index();
         L_CHECK_FALSE(ok);
+
+        //  find even with duplicates
+        STEP(7)
+        SUBSTEPS()
+        for (int n = 1; n < 11; ++n)
         {
-            const PosRes res = cx.find(5);
-            L_CHECK_TRUE(res.valid);
+            STEP(n)
+            const PosRes res1 = cxk.find(Key(n));
+            L_CHECK_TRUE(res1.valid);
+            const Cont& c1 = cxk.at(res1);
+            L_CHECK_EQUAL(n, c1.key.id);
+
+            const PosRes res2 = cxi.find(n);
+            L_CHECK_TRUE(res2.valid);
+            const Cont& c2 = cxi.at(res2);
+            L_CHECK_EQUAL(n, c2.data[0]);
+        }
+        ENDSTEPS()
+
+        //  search for non existing key
+        STEP(8)
+        {
+            const PosRes res1 = cxk.find(Key(11));
+            L_CHECK_FALSE(res1.valid);
+            const PosRes res2 = cxi.find(11);
+            L_CHECK_FALSE(res2.valid);
         }
         //  clear
-        STEP(7)
-        mx.clear();
-        L_CHECK_EQUAL(0, cx.size());
-        L_CHECK_EQUAL(0, D_no::count());
+        STEP(9)
+        mxk.clear();
+        L_CHECK_EQUAL(0, cxk.size());
+        L_CHECK_EQUAL(11, Cont::count());
+
+        STEP(10)
+        mxi.clear();
+        L_CHECK_EQUAL(0, cxi.size());
+        L_CHECK_EQUAL(0, Cont::count());
     }
 
     //  test type: equivalence class test
@@ -249,18 +325,21 @@ namespace test
     TEST(BAS_01, T04)
     {
         SETUP()
-        L_CHECK_EQUAL(0, D_no::count());
+        L_CHECK_EQUAL(0, Cont::count());
         STEP(1)
         {
-            IndexNo ix;
+            IndexKeyCont ixk;
+            IndexIntCont ixi;
             for (UINT8 n = 0; n < 10; ++n)
             {
-                ix.add(n, 0);
+                ixk.add(n, 0);
+                ixi.add(0, n);
             }
-            L_CHECK_EQUAL(10, ix.size());
-            L_CHECK_EQUAL(10, D_no::count());
+            L_CHECK_EQUAL(10, ixk.size());
+            L_CHECK_EQUAL(10, ixi.size());
+            L_CHECK_EQUAL(20, Cont::count());
         }
         STEP(2)
-        L_CHECK_EQUAL(0, D_no::count());
+        L_CHECK_EQUAL(0, Cont::count());
     }
 } // namespace

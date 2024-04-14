@@ -3,31 +3,31 @@
 
 ## directory content
 
-**Com.h**
+#### Com.h
 ```
 class Com implements I_Com
 - currently without functionality
 ```
 
-**Dispatcher.h**
+#### Dispatcher.h
 ```
 Dispatcher implements I_Dispatcher
 ```
 
-**IL.h**
+#### IL.h
 ```
 Interface Locator IL
 - production application version
 - no exchange of providers
 ```
 
-**Log.h**
+#### Log.h
 ```
 class Log implements I_Log
 - currently without functionality
 ```
 
-**Reader.h**
+#### Reader.h
 ```
 class Reader implements I_Reader
 ```

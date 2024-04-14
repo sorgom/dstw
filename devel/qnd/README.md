@@ -2,7 +2,7 @@
 
 ## directory content
 
-**useCout.h**
+#### useCout.h
 ```
 use cout for quick and dirty temporary traces
 note

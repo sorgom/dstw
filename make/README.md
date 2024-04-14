@@ -1,6 +1,6 @@
 ## directory content
 
-**build.sh**
+#### build.sh
 ```
 build all major makes parallelly
 options:
@@ -10,29 +10,29 @@ options:
 -h  this help
 ```
 
-**bullseye.sh**
+#### bullseye.sh
 ```
 bullseye coverage output
 ```
 
-**checkEnv.sh**
+#### checkEnv.sh
 ```
 check for availability of tools
 ```
 
-**premake5.lua**
+#### premake5.lua
 ```
 premake5 build rules for gcc (gmake2):
 
 > dstw.make
-application runtime
-->  bin/dstw
+data generator and application runtime
 
 > tests.make
 module tests and system tests at once runtime
-->  bin/tests
+->  bin/tests_{config}
 configurations:
 - ci        module and system tests
+- qnd       module and system tests with devel includes
 - mod       module tests
 - sys       system tests
 - dev       developer tests
@@ -48,12 +48,12 @@ configurations:
 - dev       developer tests
 ```
 
-**premake5_settings.lua**
+#### premake5_settings.lua
 ```
 common premake5 build settings gcc & VS
 ```
 
-**premake5_vs.lua**
+#### premake5_vs.lua
 ```
 premake5 build rules for VS
 
@@ -87,7 +87,7 @@ application runtime
 ->  exe/dstw.exe
 ```
 
-**runGcov.sh**
+#### runGcov.sh
 ```
 run coverage using gcov
 ```

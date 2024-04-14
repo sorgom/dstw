@@ -5,8 +5,6 @@
 
 #include <testlib/TestGroupBase.h>
 
-#include <qnd/useCout.h>
-
 namespace test
 {
 

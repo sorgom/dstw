@@ -27,11 +27,20 @@ struct ComName
     {
         Mem::cpy(chars, src.chars);
     }
+    inline ComName(const ComName&& src)
+    {
+        Mem::cpy(chars, src.chars);
+    }
     inline void operator=(const ComName& src)
     {
         Mem::cpy(chars, src.chars);
     }
+    inline bool operator>(const ComName& b) const
+    {
+        return Mem::cmp(chars, b.chars) > 0;
+    }
 };
+
 static_assert(ComNameSize == sizeof(ComName));
 
 //  standard telegram size
