@@ -27,14 +27,14 @@ void LCR_Hub::fromDsp(const size_t pos, const ComTeleGui& tele) const
     { pass(); }
 }
 
-void LCR_Hub::toFld(const size_t id, const UINT8 state) const
+void LCR_Hub::toFld(const size_t id, UINT8 param1, UINT8 param2) const
 {
-    IL::getDispatcher().dispatch(id, ComTeleFld(state));
+    IL::getDispatcher().dispatch(id, ComTeleFld(param1, param2));
 }
 
-void LCR_Hub::toGui(const size_t id, const UINT8 state, const UINT8 ubk) const
+void LCR_Hub::toGui(const size_t id, UINT8 param1, UINT8 param2) const
 {
-    IL::getDispatcher().dispatch(id, ComTeleGui(state, ubk));
+    IL::getDispatcher().dispatch(id, ComTeleGui(param1, param2));
 }
 
 

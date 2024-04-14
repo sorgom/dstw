@@ -34,13 +34,13 @@ namespace test
         void FLD(
             UINT8 fldState,
             UINT8 fldUbk,
-            UINT8 stateToGui = UCHAR_MAX,
+            UINT8 stateToGui = NO_PARAM,
             UINT8 ubkToGui = 0
         )
         {
             SUBSTEPS()
             STEP(1)
-            if (stateToGui < UCHAR_MAX)
+            if (stateToGui != NO_PARAM)
             {
                 m_LCR_Hub().expectToGui(mId, stateToGui, ubkToGui);
             }
@@ -52,14 +52,14 @@ namespace test
         void CMD
         (
             UINT8 guiState,
-            UINT8 stateToFld = UCHAR_MAX,
+            UINT8 stateToFld = NO_PARAM,
             UINT8 stateToGui = 0,
             UINT8 ubkToGui = 0
         )
         {
             SUBSTEPS()
             STEP(1)
-            if (stateToFld < UCHAR_MAX)
+            if (stateToFld != NO_PARAM)
             {
                 m_LCR_Hub().expectToFld(mId, stateToFld);
                 m_LCR_Hub().expectToGui(mId, stateToGui, ubkToGui);
@@ -185,19 +185,19 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  LCR unknown states / unknown UBK
+    //  LCR PARAM_UNKNOWN states / PARAM_UNKNOWN UBK
     TEST(LCR_01, T02)
     {
         STEP(1)
         m_Log().expectLog(MOD_LCR, ERR_MATCH);
-        FLD(UCHAR_MAX, LCR_UBK_STATE_UNDEF);
+        FLD(PARAM_UNKNOWN, LCR_UBK_STATE_UNDEF);
 
         STEP(2)
         m_Log().expectLog(MOD_LCR, ERR_MATCH);
-        CMD(UCHAR_MAX);
+        CMD(PARAM_UNKNOWN);
 
         STEP(3)
-        FLD(LCR_STATE_UNDEF, UCHAR_MAX);
+        FLD(LCR_STATE_UNDEF, PARAM_UNKNOWN);
     }
 
     //  test type: equivalence class test
@@ -261,7 +261,7 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  LCR UBK unknown states / unknown UBK
+    //  LCR UBK PARAM_UNKNOWN states / PARAM_UNKNOWN UBK
     TEST(LCR_01, T05)
     {
         SETUP()
@@ -270,18 +270,18 @@ namespace test
 
         STEP(1)
         m_Log().expectLog(MOD_LCR, ERR_MATCH);
-        FLD(UCHAR_MAX, LCR_UBK_STATE_UNDEF);
+        FLD(PARAM_UNKNOWN, LCR_UBK_STATE_UNDEF);
 
         STEP(2)
         m_Log().expectLog(MOD_LCR, ERR_MATCH);
-        CMD(UCHAR_MAX);
+        CMD(PARAM_UNKNOWN);
 
         STEP(3)
         m_Log().expectLog(MOD_LCR, ERR_MATCH);
-        FLD(LCR_STATE_UNDEF, UCHAR_MAX);
+        FLD(LCR_STATE_UNDEF, PARAM_UNKNOWN);
 
         STEP(4)
         m_Log().expectLog(MOD_LCR, ERR_MATCH);
-        FLD(UCHAR_MAX, UCHAR_MAX);
+        FLD(PARAM_UNKNOWN, PARAM_UNKNOWN);
     }
 }

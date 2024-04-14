@@ -8,6 +8,7 @@
 #define I_LCR_H
 
 #include <codebase/BaseTypes.h>
+#include "SystemEnums.h"
 
 enum E_LcrType : UINT8
 {
@@ -17,8 +18,8 @@ enum E_LcrType : UINT8
 
 enum E_LcrState : UINT8
 {
-    LCR_STATE_UNDEF = 101,
-    LCR_STATE_DEFECT,
+    LCR_STATE_UNDEF = PARAM_UNDEF,
+    LCR_STATE_DEFECT = 101,
     LCR_STATE_OPEN,
     LCR_STATE_CLOSED,
     LCR_STATE_WAIT_OPEN,
@@ -27,8 +28,8 @@ enum E_LcrState : UINT8
 
 enum E_LcrUbkState : UINT8
 {
-    LCR_UBK_STATE_UNDEF = 201,
-    LCR_UBK_STATE_DEFECT,
+    LCR_UBK_STATE_UNDEF = PARAM_UNDEF,
+    LCR_UBK_STATE_DEFECT = 201,
     LCR_UBK_STATE_OCCUPIED,
     LCR_UBK_STATE_FREE
 };

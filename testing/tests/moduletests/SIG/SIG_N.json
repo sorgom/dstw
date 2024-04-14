@@ -11,9 +11,6 @@
 
     "cfgs": [
         {
-            "csv": "specification/doc/transitions_SIG_H.csv"
-        },
-        {
             "csv": "specification/doc/transitions_SIG_N.csv"
         },
         {

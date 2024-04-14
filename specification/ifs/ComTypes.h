@@ -10,8 +10,9 @@
 #include <codebase/BaseTypes.h>
 #include <codebase/nocopy.h>
 #include <codebase/Mem.h>
-
 #include <codebase/packBegin.h>
+
+#include "SystemEnums.h"
 
 //  Com telegrams element identifier
 constexpr auto ComNameSize = 12;
@@ -52,7 +53,7 @@ struct ComTele
     ComName name;
     const UINT8 param1;
     const UINT8 param2;
-    inline ComTele(UINT8 param1 = 0, UINT8 param2 = 0):
+    inline ComTele(UINT8 param1 = PARAM_UNDEF, UINT8 param2 = PARAM_UNDEF):
         param1(param1),
         param2(param2)
     {}
@@ -63,7 +64,7 @@ static_assert(ComTelegramSize == sizeof(ComTele));
 //  field communication telegram
 struct ComTeleFld : ComTele
 {
-    inline ComTeleFld(UINT8 param1 = 0, UINT8 param2 = 0):
+    inline ComTeleFld(UINT8 param1 = PARAM_UNDEF, UINT8 param2 = PARAM_UNDEF):
         ComTele(param1, param2)
     {}
     NOCOPY(ComTeleFld)
@@ -72,69 +73,11 @@ struct ComTeleFld : ComTele
 //  DiB communication telegram
 struct ComTeleGui : ComTele
 {
-    inline ComTeleGui(UINT8 param1 = 0, UINT8 param2 = 0):
+    inline ComTeleGui(UINT8 param1 = PARAM_UNDEF, UINT8 param2 = PARAM_UNDEF):
         ComTele(param1, param2)
     {}
     NOCOPY(ComTeleGui)
 };
-
-
-
-// //  command to field
-// struct ComTeleFld
-// {
-//     ComName name;
-//     const UINT8 param1;
-//     const UINT8 param2;
-//     inline ComTeleFld(UINT8 param1 = 0, UINT8 param2 = 0):
-//         param1(param1),
-//         param2(param2)
-//     {}
-//     NOCOPY(ComTeleFld)
-// };
-// static_assert(ComTelegramSize == sizeof(ComTeleFld));
-
-// //  state from field
-// struct ComTeleFld
-// {
-//     ComName name;
-//     const UINT8 param1;
-//     const UINT8 param2;
-//     inline ComTeleFld(UINT8 param1 = 0, UINT8 param2 = 0):
-//         param1(param1),
-//         param2(param2)
-//     {}
-//     NOCOPY(ComTeleFld)
-// };
-// static_assert(ComTelegramSize == sizeof(ComTeleFld));
-
-// //  command from GUI
-// struct ComTeleGui
-// {
-//     ComName name;
-//     const UINT8 param1;
-//     const UINT8 param2;
-//     inline ComTeleGui(UINT8 param1 = 0, UINT8 param2 = 0):
-//         param1(param1),
-//         param2(param2)
-//     {}
-//     NOCOPY(ComTeleGui)
-// };
-// static_assert(ComTelegramSize == sizeof(ComTeleGui));
-
-// //  state to GUI
-// struct ComTeleGui
-// {
-//     ComName name;
-//     const UINT8 param1;
-//     const UINT8 param2;
-//     inline ComTeleGui(UINT8 param1 = 0, UINT8 param2 = 0):
-//         param1(param1),
-//         param2(param2)
-//     {}
-//     NOCOPY(ComTeleGui)
-// };
-// static_assert(ComTelegramSize == sizeof(ComTeleGui));
 
 #include <codebase/packEnd.h>
 

@@ -8,6 +8,7 @@
 #define I_SIG_H
 
 #include <codebase/BaseTypes.h>
+#include "SystemEnums.h"
 
 enum E_SigType : UINT8
 {
@@ -19,8 +20,8 @@ enum E_SigType : UINT8
 
 enum E_SigState : UINT8
 {
-    SIG_STATE_UNDEF = 101,
-    SIG_STATE_DEFECT,
+    SIG_STATE_UNDEF = PARAM_UNDEF,
+    SIG_STATE_DEFECT = 201,
 
     SIG_STATE_H0,
     SIG_STATE_H1,

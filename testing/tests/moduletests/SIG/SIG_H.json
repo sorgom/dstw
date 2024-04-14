@@ -1,0 +1,18 @@
+{
+    "//" : "=====================================",
+    "//" : "transitions test code setup for", 
+    "//" : "SIG_X without speed",
+    "//" : "=====================================",
+    "prefixState": "SIG_STATE",
+    "prefixCmd": "SIG_STATE",
+    "param1": "CMD_H(_CMD_, _FLD_, _GUI_);",
+    "cmd0": "CMD_H(_CMD_);",
+    "fld1": "FLD_H(_VAL_, _VAL_);",
+    "fld0": "FLD_H(_VAL_);",
+
+    "cfgs": [
+        {
+            "csv": "specification/doc/transitions_SIG_H.csv"
+        }
+    ]
+}

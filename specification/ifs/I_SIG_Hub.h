@@ -6,16 +6,9 @@
 #ifndef I_SIG_HUB_H
 #define I_SIG_HUB_H
 
-#include "ComTypes.h"
+#include "I_Hub.h"
 
-class I_SIG_Hub
-{
-public:
-    virtual void toFld(size_t id, UINT8 state, UINT8 speed = 0) const = 0;
-    virtual void toGui(size_t id, UINT8 state, UINT8 speed = 0) const = 0;
-
-    virtual void fromDsp(size_t pos, const ComTeleFld& tele) const = 0;
-    virtual void fromDsp(size_t pos, const ComTeleGui&   tele) const = 0;
-};
+class I_SIG_Hub : public I_Hub
+{};
 
 #endif // H_

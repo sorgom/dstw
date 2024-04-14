@@ -17,22 +17,22 @@ namespace test
     public:
         MOCK_CON(SIG_Hub)
 
-        inline void toFld(size_t id, UINT8 state, UINT8 speed = 0) const
+        inline void toFld(size_t id, UINT8 param1, UINT8 param2 = PARAM_UNDEF) const
         {
-            call("toFld").PARAM(id).PARAM(state).PARAM(speed);
+            call("toFld").PARAM(id).PARAM(param1).PARAM(param2);
         }
-        inline void expectToFld(size_t id, UINT8 state, UINT8 speed = 0) const
+        inline void expectToFld(size_t id, UINT8 param1, UINT8 param2 = PARAM_UNDEF) const
         {
-            expect("toFld").PARAM(id).PARAM(state).PARAM(speed);
+            expect("toFld").PARAM(id).PARAM(param1).PARAM(param2);
         }
 
-        inline void toGui(size_t id, UINT8 state, UINT8 speed = 0) const
+        inline void toGui(size_t id, UINT8 param1, UINT8 param2 = PARAM_UNDEF) const
         {
-            call("toGui").PARAM(id).PARAM(state).PARAM(speed);
+            call("toGui").PARAM(id).PARAM(param1).PARAM(param2);
         }
-        inline void expectToGui(size_t id, UINT8 state, UINT8 speed = 0) const
+        inline void expectToGui(size_t id, UINT8 param1, UINT8 param2 = PARAM_UNDEF) const
         {
-            expect("toGui").PARAM(id).PARAM(state).PARAM(speed);
+            expect("toGui").PARAM(id).PARAM(param1).PARAM(param2);
         }
 
         inline void fromDsp(size_t pos, const ComTeleFld& tele) const

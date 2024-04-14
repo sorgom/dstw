@@ -7,8 +7,8 @@ ILX_INSTANCE_DEF(LCR_Provider)
 void LCR_Provider::load(const ProjLCR* data, UINT32 num)
 {
     reset();
-    bool ok = mElems.reserve(num) >= num;
-
+    mElems.reserve(num);
+    bool ok = true;
     for (UINT32 n = 0; ok and (n < num); ++n, ++data)
     {
         const PosRes res = IL::getDispatcher().assign(data->name, COMP_LCR, n);

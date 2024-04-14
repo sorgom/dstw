@@ -33,10 +33,9 @@ namespace test
         SUBSTEPS()
         for (UINT32 n = 0; n < TEST_NUM_SIG; ++n)
         {
-            LSTEP(n)
+            STEP(n)
             ComTeleFld fldState(SIG_STATE_H0);
             nameElement(fldState, TEST_NUM_SIG - n, "SIG");
-
             ComTeleGui stateGui(SIG_STATE_H0);
             stateGui.name = fldState.name;
 

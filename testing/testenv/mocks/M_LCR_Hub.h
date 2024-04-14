@@ -17,22 +17,22 @@ namespace test
     public:
         MOCK_CON(LCR_Hub)
 
-        inline void toFld(size_t id, UINT8 state) const
+        inline void toFld(size_t id, UINT8 param1, UINT8 param2 = PARAM_UNDEF) const
         {
-            call("toFld").PARAM(id).PARAM(state);
+            call("toFld").PARAM(id).PARAM(param1).PARAM(param2);
         }
-        inline void expectToFld(size_t id, UINT8 state) const
+        inline void expectToFld(size_t id, UINT8 param1, UINT8 param2 = PARAM_UNDEF) const
         {
-            expect("toFld").PARAM(id).PARAM(state);
+            expect("toFld").PARAM(id).PARAM(param1).PARAM(param2);
         }
 
-        inline void toGui(size_t id, UINT8 state, UINT8 ubk = LCR_UBK_STATE_UNDEF) const
+        inline void toGui(size_t id, UINT8 param1, UINT8 param2 = PARAM_UNDEF) const
         {
-            call("toGui").PARAM(id).PARAM(state).PARAM(ubk);
+            call("toGui").PARAM(id).PARAM(param1).PARAM(param2);
         }
-        inline void expectToGui(size_t id, UINT8 state, UINT8 ubk = LCR_UBK_STATE_UNDEF) const
+        inline void expectToGui(size_t id, UINT8 param1, UINT8 param2 = PARAM_UNDEF) const
         {
-            expect("toGui").PARAM(id).PARAM(state).PARAM(ubk);
+            expect("toGui").PARAM(id).PARAM(param1).PARAM(param2);
         }
 
         inline void fromDsp(size_t pos, const ComTeleFld& tele) const

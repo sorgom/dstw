@@ -32,13 +32,13 @@ namespace test
         void FLD(
             UINT8 fldState,
             UINT8 fldSpeed,
-            UINT8 stateToGui = UCHAR_MAX,
-            UINT8 speedToGui = 0
+            UINT8 stateToGui = NO_PARAM,
+            UINT8 speedToGui = PARAM_UNDEF
         )
         {
             SUBSTEPS()
             STEP(1)
-            if (stateToGui < UCHAR_MAX)
+            if (stateToGui != NO_PARAM)
             {
                 m_SIG_Hub().expectToGui(mId, stateToGui, speedToGui);
             }
@@ -51,21 +51,58 @@ namespace test
         (
             UINT8 guiState,
             UINT8 guiSpeed,
-            UINT8 stateToFld = UCHAR_MAX,
+            UINT8 stateToFld = NO_PARAM,
             UINT8 speedToFld = 0,
-            UINT8 stateToGui = 0,
+            UINT8 stateToGui = PARAM_UNDEF,
             UINT8 speedToGui = 0
 
         )
         {
             SUBSTEPS()
             STEP(1)
-            if (stateToFld < UCHAR_MAX)
+            if (stateToFld != NO_PARAM)
             {
                 m_SIG_Hub().expectToFld(mId, stateToFld, speedToFld);
                 m_SIG_Hub().expectToGui(mId, stateToGui, speedToGui);
             }
             mSUT().fromGui(guiState, guiSpeed);
+            CHECK_N_CLEAR()
+            ENDSTEPS()
+        }
+
+        void FLD_H(
+            UINT8 fldState,
+            UINT8 stateToGui = NO_PARAM,
+            UINT8 speed = PARAM_UNDEF
+        )
+        {
+            SUBSTEPS()
+            STEP(1)
+            if (stateToGui != NO_PARAM)
+            {
+                m_SIG_Hub().expectToGui(mId, stateToGui, PARAM_UNDEF);
+            }
+            mSUT().fromFld(fldState, speed);
+            CHECK_N_CLEAR()
+            ENDSTEPS()
+        }
+
+        void CMD_H
+        (
+            UINT8 guiState,
+            UINT8 stateToFld = NO_PARAM,
+            UINT8 stateToGui = PARAM_UNDEF,
+            UINT8 speed = PARAM_UNDEF
+        )
+        {
+            SUBSTEPS()
+            STEP(1)
+            if (stateToFld != NO_PARAM)
+            {
+                m_SIG_Hub().expectToFld(mId, stateToFld, PARAM_UNDEF);
+                m_SIG_Hub().expectToGui(mId, stateToGui, PARAM_UNDEF);
+            }
+            mSUT().fromGui(guiState, speed);
             CHECK_N_CLEAR()
             ENDSTEPS()
         }
@@ -79,99 +116,99 @@ namespace test
     TEST(SIG_01, T01)
     {
         STEP(1)
-        FLD(SIG_STATE_H0, 0, SIG_STATE_H0, 0);
+        FLD_H(SIG_STATE_H0, SIG_STATE_H0);
         STEP(2)
-        CMD(SIG_STATE_H0, 0);
+        CMD_H(SIG_STATE_H0);
         STEP(3)
-        FLD(SIG_STATE_H0, 0);
+        FLD_H(SIG_STATE_H0);
         STEP(4)
-        FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
+        FLD_H(SIG_STATE_UNDEF, SIG_STATE_UNDEF);
         STEP(5)
-        FLD(SIG_STATE_UNDEF, 0);
+        FLD_H(SIG_STATE_UNDEF);
         STEP(6)
-        FLD(SIG_STATE_H1, 0, SIG_STATE_H1, 0);
+        FLD_H(SIG_STATE_H1, SIG_STATE_H1);
         STEP(7)
-        CMD(SIG_STATE_H1, 0);
+        CMD_H(SIG_STATE_H1);
         STEP(8)
-        FLD(SIG_STATE_H1, 0);
+        FLD_H(SIG_STATE_H1);
         STEP(9)
-        FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
+        FLD_H(SIG_STATE_UNDEF, SIG_STATE_UNDEF);
         STEP(10)
-        FLD(SIG_STATE_DEFECT, 0, SIG_STATE_DEFECT, 0);
+        FLD_H(SIG_STATE_DEFECT, SIG_STATE_DEFECT);
         STEP(11)
-        CMD(SIG_STATE_H0, 0);
+        CMD_H(SIG_STATE_H0);
         STEP(12)
-        CMD(SIG_STATE_H1, 0);
+        CMD_H(SIG_STATE_H1);
         STEP(13)
-        FLD(SIG_STATE_DEFECT, 0);
+        FLD_H(SIG_STATE_DEFECT);
         STEP(14)
-        FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
+        FLD_H(SIG_STATE_UNDEF, SIG_STATE_UNDEF);
         STEP(15)
-        CMD(SIG_STATE_H0, 0, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
+        CMD_H(SIG_STATE_H0, SIG_STATE_H0, SIG_STATE_WAIT_H0);
         STEP(16)
-        CMD(SIG_STATE_H0, 0);
+        CMD_H(SIG_STATE_H0);
         STEP(17)
-        FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
+        FLD_H(SIG_STATE_UNDEF, SIG_STATE_UNDEF);
         STEP(18)
-        CMD(SIG_STATE_H1, 0, SIG_STATE_H1, 0, SIG_STATE_WAIT_H1, 0);
+        CMD_H(SIG_STATE_H1, SIG_STATE_H1, SIG_STATE_WAIT_H1);
         STEP(19)
-        CMD(SIG_STATE_H1, 0);
+        CMD_H(SIG_STATE_H1);
         STEP(20)
-        FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
+        FLD_H(SIG_STATE_UNDEF, SIG_STATE_UNDEF);
         STEP(21)
-        FLD(SIG_STATE_DEFECT, 0, SIG_STATE_DEFECT, 0);
+        FLD_H(SIG_STATE_DEFECT, SIG_STATE_DEFECT);
         STEP(22)
-        FLD(SIG_STATE_H0, 0, SIG_STATE_H0, 0);
+        FLD_H(SIG_STATE_H0, SIG_STATE_H0);
         STEP(23)
-        FLD(SIG_STATE_H1, 0, SIG_STATE_H1, 0);
+        FLD_H(SIG_STATE_H1, SIG_STATE_H1);
         STEP(24)
-        FLD(SIG_STATE_H0, 0, SIG_STATE_H0, 0);
+        FLD_H(SIG_STATE_H0, SIG_STATE_H0);
         STEP(25)
-        FLD(SIG_STATE_DEFECT, 0, SIG_STATE_DEFECT, 0);
+        FLD_H(SIG_STATE_DEFECT, SIG_STATE_DEFECT);
         STEP(26)
-        FLD(SIG_STATE_H1, 0, SIG_STATE_H1, 0);
+        FLD_H(SIG_STATE_H1, SIG_STATE_H1);
         STEP(27)
-        FLD(SIG_STATE_DEFECT, 0, SIG_STATE_DEFECT, 0);
+        FLD_H(SIG_STATE_DEFECT, SIG_STATE_DEFECT);
         STEP(28)
-        FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
+        FLD_H(SIG_STATE_UNDEF, SIG_STATE_UNDEF);
         STEP(29)
-        CMD(SIG_STATE_H0, 0, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
+        CMD_H(SIG_STATE_H0, SIG_STATE_H0, SIG_STATE_WAIT_H0);
         STEP(30)
-        FLD(SIG_STATE_H0, 0, SIG_STATE_H0, 0);
+        FLD_H(SIG_STATE_H0, SIG_STATE_H0);
         STEP(31)
-        CMD(SIG_STATE_H1, 0, SIG_STATE_H1, 0, SIG_STATE_WAIT_H1, 0);
+        CMD_H(SIG_STATE_H1, SIG_STATE_H1, SIG_STATE_WAIT_H1);
         STEP(32)
-        FLD(SIG_STATE_H0, 0, SIG_STATE_H0, 0);
+        FLD_H(SIG_STATE_H0, SIG_STATE_H0);
         STEP(33)
-        FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
+        FLD_H(SIG_STATE_UNDEF, SIG_STATE_UNDEF);
         STEP(34)
-        CMD(SIG_STATE_H0, 0, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
+        CMD_H(SIG_STATE_H0, SIG_STATE_H0, SIG_STATE_WAIT_H0);
         STEP(35)
-        FLD(SIG_STATE_H1, 0, SIG_STATE_H1, 0);
+        FLD_H(SIG_STATE_H1, SIG_STATE_H1);
         STEP(36)
-        CMD(SIG_STATE_H0, 0, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
+        CMD_H(SIG_STATE_H0, SIG_STATE_H0, SIG_STATE_WAIT_H0);
         STEP(37)
-        FLD(SIG_STATE_DEFECT, 0, SIG_STATE_DEFECT, 0);
+        FLD_H(SIG_STATE_DEFECT, SIG_STATE_DEFECT);
         STEP(38)
-        FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
+        FLD_H(SIG_STATE_UNDEF, SIG_STATE_UNDEF);
         STEP(39)
-        CMD(SIG_STATE_H1, 0, SIG_STATE_H1, 0, SIG_STATE_WAIT_H1, 0);
+        CMD_H(SIG_STATE_H1, SIG_STATE_H1, SIG_STATE_WAIT_H1);
         STEP(40)
-        FLD(SIG_STATE_H1, 0, SIG_STATE_H1, 0);
+        FLD_H(SIG_STATE_H1, SIG_STATE_H1);
         STEP(41)
-        FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
+        FLD_H(SIG_STATE_UNDEF, SIG_STATE_UNDEF);
         STEP(42)
-        CMD(SIG_STATE_H1, 0, SIG_STATE_H1, 0, SIG_STATE_WAIT_H1, 0);
+        CMD_H(SIG_STATE_H1, SIG_STATE_H1, SIG_STATE_WAIT_H1);
         STEP(43)
-        FLD(SIG_STATE_DEFECT, 0, SIG_STATE_DEFECT, 0);
+        FLD_H(SIG_STATE_DEFECT, SIG_STATE_DEFECT);
         STEP(44)
-        FLD(SIG_STATE_UNDEF, 0, SIG_STATE_UNDEF, 0);
+        FLD_H(SIG_STATE_UNDEF, SIG_STATE_UNDEF);
         STEP(45)
-        CMD(SIG_STATE_H1, 0, SIG_STATE_H1, 0, SIG_STATE_WAIT_H1, 0);
+        CMD_H(SIG_STATE_H1, SIG_STATE_H1, SIG_STATE_WAIT_H1);
         STEP(46)
-        CMD(SIG_STATE_H0, 0, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
+        CMD_H(SIG_STATE_H0, SIG_STATE_H0, SIG_STATE_WAIT_H0);
         STEP(47)
-        CMD(SIG_STATE_H1, 0, SIG_STATE_H1, 0, SIG_STATE_WAIT_H1, 0);
+        CMD_H(SIG_STATE_H1, SIG_STATE_H1, SIG_STATE_WAIT_H1);
     }
 
     //  test type: equivalence class test
@@ -180,23 +217,25 @@ namespace test
     {
         STEP(1)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        CMD(UCHAR_MAX, 0);
+        CMD_H(PARAM_UNKNOWN);
 
         STEP(2)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        FLD(UCHAR_MAX, 0);
+        FLD_H(PARAM_UNKNOWN);
 
         STEP(3)
-        CMD(SIG_STATE_H0, 10, SIG_STATE_H0, 0, SIG_STATE_WAIT_H0, 0);
+        CMD_H(SIG_STATE_H0, SIG_STATE_H0, SIG_STATE_WAIT_H0, 22);
 
         STEP(4)
-        FLD(SIG_STATE_H0, 20, SIG_STATE_H0, 0);
+        FLD_H(SIG_STATE_H0, SIG_STATE_H0, 20);
 
         STEP(5)
-        CMD(SIG_STATE_H0, 30);
+        mSUT().fromGui(SIG_STATE_H0, 30);   
+        CHECK_N_CLEAR()
 
         STEP(6)
-        FLD(SIG_STATE_H0, 40);
+        mSUT().fromFld(SIG_STATE_H0, 40);
+        CHECK_N_CLEAR()
     }
 
     //  test type: equivalence class test
@@ -313,11 +352,11 @@ namespace test
 
         STEP(1)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        CMD(UCHAR_MAX, 0);
+        CMD(PARAM_UNKNOWN, 0);
 
         STEP(2)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        FLD(UCHAR_MAX, 0);
+        FLD(PARAM_UNKNOWN, 0);
 
         STEP(3)
         CMD(SIG_STATE_N0, 10, SIG_STATE_N0, 10, SIG_STATE_WAIT_N0, 0);
@@ -601,11 +640,11 @@ namespace test
 
         STEP(1)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        CMD(UCHAR_MAX, 0);
+        CMD(PARAM_UNKNOWN, 0);
 
         STEP(2)
         m_Log().expectLog(MOD_SIG, ERR_MATCH);
-        FLD(UCHAR_MAX, 0);
+        FLD(PARAM_UNKNOWN, 0);
 
         STEP(3)
         CMD(SIG_STATE_H1_N0, 0, SIG_STATE_H1_N0, 0, SIG_STATE_WAIT_H1_N0, 0);
