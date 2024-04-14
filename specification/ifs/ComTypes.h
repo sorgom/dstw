@@ -46,15 +46,49 @@ static_assert(ComNameSize == sizeof(ComName));
 //  standard telegram size
 constexpr auto ComTelegramSize = ComNameSize + 2;
 
+//  common telegram format
+struct ComTele
+{
+    ComName name;
+    const UINT8 param1;
+    const UINT8 param2;
+    inline ComTele(UINT8 param1 = 0, UINT8 param2 = 0):
+        param1(param1),
+        param2(param2)
+    {}
+    NOCOPY(ComTele)
+};
+static_assert(ComTelegramSize == sizeof(ComTele));
+
+//  field communication telegram
+struct ComTeleFld : ComTele
+{
+    inline ComTeleFld(UINT8 param1 = 0, UINT8 param2 = 0):
+        ComTele(param1, param2)
+    {}
+    NOCOPY(ComTeleFld)
+};
+
+//  DiB communication telegram
+struct ComTeleGui : ComTele
+{
+    inline ComTeleGui(UINT8 param1 = 0, UINT8 param2 = 0):
+        ComTele(param1, param2)
+    {}
+    NOCOPY(ComTeleGui)
+};
+
+
+
 //  command to field
 struct ComCmdFld
 {
     ComName name;
-    const UINT8 cmd1;
-    const UINT8 cmd2;
-    inline ComCmdFld(UINT8 cmd1 = 0, UINT8 cmd2 = 0):
-        cmd1(cmd1),
-        cmd2(cmd2)
+    const UINT8 param1;
+    const UINT8 param2;
+    inline ComCmdFld(UINT8 param1 = 0, UINT8 param2 = 0):
+        param1(param1),
+        param2(param2)
     {}
     NOCOPY(ComCmdFld)
 };
@@ -64,11 +98,11 @@ static_assert(ComTelegramSize == sizeof(ComCmdFld));
 struct ComFldState
 {
     ComName name;
-    const UINT8 state1;
-    const UINT8 state2;
-    inline ComFldState(UINT8 state1 = 0, UINT8 state2 = 0):
-        state1(state1),
-        state2(state2)
+    const UINT8 param1;
+    const UINT8 param2;
+    inline ComFldState(UINT8 param1 = 0, UINT8 param2 = 0):
+        param1(param1),
+        param2(param2)
     {}
     NOCOPY(ComFldState)
 };
@@ -78,11 +112,11 @@ static_assert(ComTelegramSize == sizeof(ComFldState));
 struct ComGuiCmd
 {
     ComName name;
-    const UINT8 cmd1;
-    const UINT8 cmd2;
-    inline ComGuiCmd(UINT8 cmd1 = 0, UINT8 cmd2 = 0):
-        cmd1(cmd1),
-        cmd2(cmd2)
+    const UINT8 param1;
+    const UINT8 param2;
+    inline ComGuiCmd(UINT8 param1 = 0, UINT8 param2 = 0):
+        param1(param1),
+        param2(param2)
     {}
     NOCOPY(ComGuiCmd)
 };
@@ -92,11 +126,11 @@ static_assert(ComTelegramSize == sizeof(ComGuiCmd));
 struct ComStateGui
 {
     ComName name;
-    const UINT8 state1;
-    const UINT8 state2;
-    inline ComStateGui(UINT8 state1 = 0, UINT8 state2 = 0):
-        state1(state1),
-        state2(state2)
+    const UINT8 param1;
+    const UINT8 param2;
+    inline ComStateGui(UINT8 param1 = 0, UINT8 param2 = 0):
+        param1(param1),
+        param2(param2)
     {}
     NOCOPY(ComStateGui)
 };

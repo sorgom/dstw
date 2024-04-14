@@ -10,7 +10,7 @@ void TSW_Hub::fromDsp(const size_t pos, const ComFldState& tele) const
     I_TSW_Provider& prov = IL::getTSW_Provider();
     if (prov.has(pos))
     {
-        prov.at(pos).fromFld(tele.state1);
+        prov.at(pos).fromFld(tele.param1);
     }
     else
     { pass(); }
@@ -21,7 +21,7 @@ void TSW_Hub::fromDsp(const size_t pos, const ComGuiCmd& tele) const
     I_TSW_Provider& prov = IL::getTSW_Provider();
     if (prov.has(pos))
     {
-        prov.at(pos).fromGui(tele.cmd1);
+        prov.at(pos).fromGui(tele.param1);
     }
     else
     { pass(); }

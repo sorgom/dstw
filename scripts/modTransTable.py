@@ -132,7 +132,7 @@ class TransTable(object):
     def genCpp(self, transEvents:list, 
             prefixState = 'SIG_STATE',
             prefixCmd = 'SIG_STATE',
-            cmd1 = 'CMD(_VAL_, 0, _VAL_, 0, _TRG_, 0);',
+            param1 = 'CMD(_VAL_, 0, _VAL_, 0, _TRG_, 0);',
             cmd0 = 'CMD(_VAL_, 0);',
             fld1 = 'FLD(_VAL_, 0, _VAL_, 0);',
             fld0 = 'FLD(_VAL_, 0);'
@@ -147,7 +147,7 @@ class TransTable(object):
             gui = tre.trg
             templ = ''
             if call == 'CMD':
-                templ = cmd0 if tre.isNone() else cmd1
+                templ = cmd0 if tre.isNone() else param1
             elif call == 'FLD':
                 templ = fld0 if tre.isNone() else fld1
             

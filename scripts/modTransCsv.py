@@ -90,7 +90,7 @@ class TransCsv(object):
                         f'{repoDir()}/{csv}',
                         prefixState = setup['prefixState'],
                         prefixCmd = setup['prefixCmd'],
-                        cmd1 = setup['cmd1'],
+                        param1 = setup['param1'],
                         cmd0 = setup['cmd0'],
                         fld1 = setup['fld1'],
                         fld0 = setup['fld0']

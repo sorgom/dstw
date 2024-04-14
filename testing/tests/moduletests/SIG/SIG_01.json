@@ -4,7 +4,7 @@
     "//" : "=====================================",
     "prefixState": "SIG_STATE",
     "prefixCmd": "SIG_STATE",
-    "cmd1": "CMD(_CMD_, 0, _FLD_, 0, _GUI_, 0);",
+    "param1": "CMD(_CMD_, 0, _FLD_, 0, _GUI_, 0);",
     "cmd0": "CMD(_CMD_, 0);",
     "fld1": "FLD(_VAL_, 0, _VAL_, 0);",
     "fld0": "FLD(_VAL_, 0);",

@@ -9,8 +9,8 @@ OSTREAM_DEF(ComCmdFld)
 {
     return os 
         << DOUT(name)
-        << DOUT(cmd1)
-        << DOUT(cmd2)
+        << DOUT(param1)
+        << DOUT(param2)
     ;
 }
 
@@ -18,8 +18,8 @@ OSTREAM_DEF(ComFldState)
 {
     return os 
         << DOUT(name)
-        << DOUT(state1)
-        << DOUT(state2)
+        << DOUT(param1)
+        << DOUT(param2)
     ;
 }
 
@@ -27,8 +27,8 @@ OSTREAM_DEF(ComGuiCmd)
 {
     return os 
         << DOUT(name)
-        << DOUT(cmd1)
-        << DOUT(cmd2)
+        << DOUT(param1)
+        << DOUT(param2)
     ;
 }
 
@@ -36,7 +36,7 @@ OSTREAM_DEF(ComStateGui)
 {
     return os 
         << DOUT(name)
-        << DOUT(state1)
-        << DOUT(state2)
+        << DOUT(param1)
+        << DOUT(param2)
     ;
 }
