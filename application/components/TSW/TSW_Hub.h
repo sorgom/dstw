@@ -13,14 +13,13 @@
 class TSW_Hub : public I_TSW_Hub
 {
 public:
-    inline TSW_Hub()
-    {}
+    inline TSW_Hub() = default;
 
-    void toFld(size_t id, UINT8 cmd) const;
-    void toGui(size_t id, UINT8 state) const;
+    void toFld(size_t id, UINT8 param1, UINT8 param2 = PARAM_UNDEF) const;
+    void toGui(size_t id, UINT8 param1, UINT8 param2 = PARAM_UNDEF) const;
 
     void fromDsp(size_t pos, const ComTeleFld& tele) const;
-    void fromDsp(size_t pos, const ComTeleGui&   tele) const;
+    void fromDsp(size_t pos, const ComTeleGui& tele) const;
 
     IL_INSTANCE_DEC(TSW_Hub)
 

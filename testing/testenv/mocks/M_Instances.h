@@ -16,14 +16,14 @@
 #include "M_Com.h"
 #include "M_Dispatcher.h"
 #include "M_LCR.h"
-#include "M_LCR_Hub.h"
+#include "M_Hub.h"
 #include "M_LCR_Provider.h"
 #include "M_Log.h"
 #include "M_SIG.h"
-#include "M_SIG_Hub.h"
+#include "M_Hub.h"
 #include "M_SIG_Provider.h"
 #include "M_TSW.h"
-#include "M_TSW_Hub.h"
+#include "M_Hub.h"
 #include "M_TSW_Provider.h"
 //## END
 

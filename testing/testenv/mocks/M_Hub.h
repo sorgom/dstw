@@ -7,9 +7,9 @@
 
 namespace test
 {
-    template <class T>
+    template <class IF>
     class M_Hub : 
-        public T,
+        public IF,
         protected M_Base
     {
 public:
@@ -48,12 +48,13 @@ public:
         {
             expect("fromDsp").PARAM(pos).TPARAM(ComTeleGui, tele);
         }
-protected:
-    M_Hub(const CONST_C_STRING name) :
-        M_Base(name)
-    {}
+
         NODEF(M_Hub)
         NOCOPY(M_Hub)
+    protected:
+        M_Hub(const CONST_C_STRING name) :
+            M_Base(name)
+        {}
     };
 
     class M_LCR_Hub : public M_Hub<I_LCR_Hub>
@@ -74,6 +75,14 @@ protected:
         INSTANCE_DEC(M_SIG_Hub)
     };
     
+    class M_TSW_Hub : public M_Hub<I_TSW_Hub>
+    {
+    public:
+        inline M_TSW_Hub():
+            M_Hub(c__TSW_Hub)
+        {}
+        INSTANCE_DEC(M_TSW_Hub)
+    };
 } // namespace
 
 #endif // _H

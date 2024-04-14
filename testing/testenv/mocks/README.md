@@ -28,7 +28,7 @@ for interface I_<NAME>
 mock for interface LCR
 ```
 
-#### M_LCR_Hub.h
+#### M_Hub.h
 ```
 mock for interface I_LCR_Hub
 ```
@@ -48,7 +48,7 @@ mock for interface Log
 mock for interface SIG
 ```
 
-#### M_SIG_Hub.h
+#### M_Hub.h
 ```
 mock for interface I_SIG_Hub
 ```
@@ -63,7 +63,7 @@ mock for interface SIG_Provider
 mock for interface TSW
 ```
 
-#### M_TSW_Hub.h
+#### M_Hub.h
 ```
 mock for interface I_TSW_Hub
 ```

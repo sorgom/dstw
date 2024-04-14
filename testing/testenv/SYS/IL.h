@@ -24,14 +24,14 @@
 #include <mocks/M_Com.h>
 #include <mocks/M_Dispatcher.h>
 #include <mocks/M_LCR.h>
-#include <mocks/M_LCR_Hub.h>
+#include <mocks/M_Hub.h>
 #include <mocks/M_LCR_Provider.h>
 #include <mocks/M_Log.h>
 #include <mocks/M_SIG.h>
-#include <mocks/M_SIG_Hub.h>
+#include <mocks/M_Hub.h>
 #include <mocks/M_SIG_Provider.h>
 #include <mocks/M_TSW.h>
-#include <mocks/M_TSW_Hub.h>
+#include <mocks/M_Hub.h>
 #include <mocks/M_TSW_Provider.h>
 //## END
 

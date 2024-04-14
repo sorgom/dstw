@@ -1,6 +1,5 @@
 #include <TSW/TSW_Hub.h>
 
-#include <codebase/Mem.h>
 #include <SYS/IL.h>
 
 INSTANCE_DEF(TSW_Hub)
@@ -27,14 +26,13 @@ void TSW_Hub::fromDsp(const size_t pos, const ComTeleGui& tele) const
     { pass(); }
 }
 
-void TSW_Hub::toFld(const size_t id, const UINT8 cmd) const
+void TSW_Hub::toFld(const size_t id, const UINT8 param1, const UINT8 param2) const
 {
-    IL::getDispatcher().dispatch(id, ComTeleFld(cmd));
+    IL::getDispatcher().dispatch(id, ComTeleFld(param1, param2));
 }
 
-void TSW_Hub::toGui(const size_t id, const UINT8 state) const
+void TSW_Hub::toGui(const size_t id, const UINT8 param1, const UINT8 param2) const
 {
-    IL::getDispatcher().dispatch(id, ComTeleGui(state));
+    IL::getDispatcher().dispatch(id, ComTeleGui(param1, param2));
 }
-
 
