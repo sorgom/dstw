@@ -29,10 +29,14 @@ void LCR_Provider::load(const ProjLCR* data, UINT32 num)
                     break;;
             }
         }
+        else 
+        { pass(); }
     }
     if (not ok)
     {
         reset();
         IL::getLog().log(MOD_LCR_PROVIDER, ERR_STARTUP);
     }
+    else 
+    { pass(); }
 }
