@@ -1,6 +1,7 @@
 {
     "//" : "=====================================",
-    "//" : "transitions test code setup for SIG_X",
+    "//" : "transitions test code setup for", 
+    "//" : "SIG_X with speed",
     "//" : "=====================================",
     "prefixState": "SIG_STATE",
     "prefixCmd": "SIG_STATE",
