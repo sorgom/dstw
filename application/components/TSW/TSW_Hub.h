@@ -19,8 +19,8 @@ public:
     void toFld(size_t id, UINT8 cmd) const;
     void toGui(size_t id, UINT8 state) const;
 
-    void fromDsp(size_t pos, const ComFldState& tele) const;
-    void fromDsp(size_t pos, const ComGuiCmd&   tele) const;
+    void fromDsp(size_t pos, const ComTeleFld& tele) const;
+    void fromDsp(size_t pos, const ComTeleGui&   tele) const;
 
     IL_INSTANCE_DEC(TSW_Hub)
 

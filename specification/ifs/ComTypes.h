@@ -80,61 +80,61 @@ struct ComTeleGui : ComTele
 
 
 
-//  command to field
-struct ComCmdFld
-{
-    ComName name;
-    const UINT8 param1;
-    const UINT8 param2;
-    inline ComCmdFld(UINT8 param1 = 0, UINT8 param2 = 0):
-        param1(param1),
-        param2(param2)
-    {}
-    NOCOPY(ComCmdFld)
-};
-static_assert(ComTelegramSize == sizeof(ComCmdFld));
+// //  command to field
+// struct ComTeleFld
+// {
+//     ComName name;
+//     const UINT8 param1;
+//     const UINT8 param2;
+//     inline ComTeleFld(UINT8 param1 = 0, UINT8 param2 = 0):
+//         param1(param1),
+//         param2(param2)
+//     {}
+//     NOCOPY(ComTeleFld)
+// };
+// static_assert(ComTelegramSize == sizeof(ComTeleFld));
 
-//  state from field
-struct ComFldState
-{
-    ComName name;
-    const UINT8 param1;
-    const UINT8 param2;
-    inline ComFldState(UINT8 param1 = 0, UINT8 param2 = 0):
-        param1(param1),
-        param2(param2)
-    {}
-    NOCOPY(ComFldState)
-};
-static_assert(ComTelegramSize == sizeof(ComFldState));
+// //  state from field
+// struct ComTeleFld
+// {
+//     ComName name;
+//     const UINT8 param1;
+//     const UINT8 param2;
+//     inline ComTeleFld(UINT8 param1 = 0, UINT8 param2 = 0):
+//         param1(param1),
+//         param2(param2)
+//     {}
+//     NOCOPY(ComTeleFld)
+// };
+// static_assert(ComTelegramSize == sizeof(ComTeleFld));
 
-//  command from GUI
-struct ComGuiCmd
-{
-    ComName name;
-    const UINT8 param1;
-    const UINT8 param2;
-    inline ComGuiCmd(UINT8 param1 = 0, UINT8 param2 = 0):
-        param1(param1),
-        param2(param2)
-    {}
-    NOCOPY(ComGuiCmd)
-};
-static_assert(ComTelegramSize == sizeof(ComGuiCmd));
+// //  command from GUI
+// struct ComTeleGui
+// {
+//     ComName name;
+//     const UINT8 param1;
+//     const UINT8 param2;
+//     inline ComTeleGui(UINT8 param1 = 0, UINT8 param2 = 0):
+//         param1(param1),
+//         param2(param2)
+//     {}
+//     NOCOPY(ComTeleGui)
+// };
+// static_assert(ComTelegramSize == sizeof(ComTeleGui));
 
-//  state to GUI
-struct ComStateGui
-{
-    ComName name;
-    const UINT8 param1;
-    const UINT8 param2;
-    inline ComStateGui(UINT8 param1 = 0, UINT8 param2 = 0):
-        param1(param1),
-        param2(param2)
-    {}
-    NOCOPY(ComStateGui)
-};
-static_assert(ComTelegramSize == sizeof(ComStateGui));
+// //  state to GUI
+// struct ComTeleGui
+// {
+//     ComName name;
+//     const UINT8 param1;
+//     const UINT8 param2;
+//     inline ComTeleGui(UINT8 param1 = 0, UINT8 param2 = 0):
+//         param1(param1),
+//         param2(param2)
+//     {}
+//     NOCOPY(ComTeleGui)
+// };
+// static_assert(ComTelegramSize == sizeof(ComTeleGui));
 
 #include <codebase/packEnd.h>
 

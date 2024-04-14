@@ -44,41 +44,41 @@ namespace test
             expect("assign").TPARAM(ComName, name).PARAM(comp).PARAM(pos).AND_RETURN(ret);
         }
 
-        inline void dispatch(const ComFldState& tele) const
+        inline void dispatch(const ComTeleFld& tele) const
         {
-            call("dispatch").TPARAM(ComFldState, tele);
+            call("dispatch").TPARAM(ComTeleFld, tele);
         }
-        inline void expectDispatch(const ComFldState& tele) const
+        inline void expectDispatch(const ComTeleFld& tele) const
         {
-            expect("dispatch").TPARAM(ComFldState, tele);
-        }
-
-        inline void dispatch(const ComGuiCmd& tele) const
-        {
-            call("dispatch").TPARAM(ComGuiCmd, tele);
-        }
-        inline void expectDispatch(const ComGuiCmd& tele) const
-        {
-            expect("dispatch").TPARAM(ComGuiCmd, tele);
+            expect("dispatch").TPARAM(ComTeleFld, tele);
         }
 
+        inline void dispatch(const ComTeleGui& tele) const
+        {
+            call("dispatch").TPARAM(ComTeleGui, tele);
+        }
+        inline void expectDispatch(const ComTeleGui& tele) const
+        {
+            expect("dispatch").TPARAM(ComTeleGui, tele);
+        }
 
-        inline void dispatch(size_t id, ComCmdFld&& tele) const
+
+        inline void dispatch(size_t id, ComTeleFld&& tele) const
         {
-            call("dispatch").PARAM(id).TPARAM(ComCmdFld, tele);
+            call("dispatch").PARAM(id).TPARAM(ComTeleFld, tele);
         }
-        inline void expectDispatch(size_t id, ComCmdFld&& tele) const
+        inline void expectDispatch(size_t id, ComTeleFld&& tele) const
         {
-            expect("dispatch").PARAM(id).TPARAM(ComCmdFld, tele);
+            expect("dispatch").PARAM(id).TPARAM(ComTeleFld, tele);
         }
 
-        inline void dispatch(size_t id, ComStateGui&& tele) const
+        inline void dispatch(size_t id, ComTeleGui&& tele) const
         {
-            call("dispatch").PARAM(id).TPARAM(ComStateGui, tele);
+            call("dispatch").PARAM(id).TPARAM(ComTeleGui, tele);
         }
-        inline void expectDispatch(size_t id, ComStateGui&& tele) const
+        inline void expectDispatch(size_t id, ComTeleGui&& tele) const
         {
-            expect("dispatch").PARAM(id).TPARAM(ComStateGui, tele);
+            expect("dispatch").PARAM(id).TPARAM(ComTeleGui, tele);
         }
     };
 } 

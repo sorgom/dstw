@@ -47,5 +47,9 @@ enum E_Err : UINT8
     ERR_STARTUP
 };
                 
+enum E_Param : UINT8
+{
+    PARAM_UNDEF = 255
+};
 
 #endif // _H

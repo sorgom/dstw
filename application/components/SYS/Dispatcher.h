@@ -20,11 +20,11 @@ public:
 
     const PosRes assign(const ComName& name, E_Comp comp, size_t pos);
     
-    void dispatch(const ComFldState& tele) const;
-    void dispatch(const ComGuiCmd&   tele) const;
+    void dispatch(const ComTeleFld& tele) const;
+    void dispatch(const ComTeleGui&   tele) const;
 
-    void dispatch(size_t id, ComCmdFld&&   tele) const;
-    void dispatch(size_t id, ComStateGui&& tele) const;
+    void dispatch(size_t id, ComTeleFld&&   tele) const;
+    void dispatch(size_t id, ComTeleGui&& tele) const;
 
     IL_INSTANCE_DEC(Dispatcher)
 

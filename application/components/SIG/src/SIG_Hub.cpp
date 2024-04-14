@@ -5,7 +5,7 @@
 
 INSTANCE_DEF(SIG_Hub)
 
-void SIG_Hub::fromDsp(const size_t pos, const ComFldState& tele) const
+void SIG_Hub::fromDsp(const size_t pos, const ComTeleFld& tele) const
 {
     I_SIG_Provider& prov = IL::getSIG_Provider();
     if (prov.has(pos))
@@ -16,7 +16,7 @@ void SIG_Hub::fromDsp(const size_t pos, const ComFldState& tele) const
     { pass(); }
 }
 
-void SIG_Hub::fromDsp(const size_t pos, const ComGuiCmd&   tele) const
+void SIG_Hub::fromDsp(const size_t pos, const ComTeleGui&   tele) const
 {
     I_SIG_Provider& prov = IL::getSIG_Provider();
     if (prov.has(pos))
@@ -29,12 +29,12 @@ void SIG_Hub::fromDsp(const size_t pos, const ComGuiCmd&   tele) const
 
 void SIG_Hub::toFld(const size_t id, const UINT8 state, const UINT8 speed) const
 {
-    IL::getDispatcher().dispatch(id, ComCmdFld(state, speed));
+    IL::getDispatcher().dispatch(id, ComTeleFld(state, speed));
 }
 
 void SIG_Hub::toGui(const size_t id, const UINT8 state, const UINT8 speed) const
 {
-    IL::getDispatcher().dispatch(id, ComStateGui(state, speed));
+    IL::getDispatcher().dispatch(id, ComTeleGui(state, speed));
 }
 
 

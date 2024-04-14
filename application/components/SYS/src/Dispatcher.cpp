@@ -29,7 +29,7 @@ const PosRes Dispatcher::assign(
     return PosRes{mIndx.size() - 1, true};
 }
 
-void Dispatcher::dispatch(const ComFldState& tele) const
+void Dispatcher::dispatch(const ComTeleFld& tele) const
 {
     const PosRes res = mIndx.find(tele.name);
 
@@ -59,7 +59,7 @@ void Dispatcher::dispatch(const ComFldState& tele) const
     }
 }
 
-void Dispatcher::dispatch(const ComGuiCmd& tele) const
+void Dispatcher::dispatch(const ComTeleGui& tele) const
 {
     const PosRes res = mIndx.find(tele.name);
 
@@ -89,7 +89,7 @@ void Dispatcher::dispatch(const ComGuiCmd& tele) const
     }
 }
 
-void Dispatcher::dispatch(const size_t id, ComCmdFld&& tele) const
+void Dispatcher::dispatch(const size_t id, ComTeleFld&& tele) const
 {
     if (mIndx.size() > id)
     {
@@ -100,7 +100,7 @@ void Dispatcher::dispatch(const size_t id, ComCmdFld&& tele) const
     { pass(); }
 }
 
-void Dispatcher::dispatch(const size_t id, ComStateGui&& tele) const
+void Dispatcher::dispatch(const size_t id, ComTeleGui&& tele) const
 {
     if (mIndx.size() > id)
     {

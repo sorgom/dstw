@@ -5,7 +5,7 @@ OSTREAM_DEF(ComName)
     return os << fixC(d.chars);
 }
 
-OSTREAM_DEF(ComCmdFld)
+OSTREAM_DEF(ComTele)
 {
     return os 
         << DOUT(name)
@@ -14,29 +14,13 @@ OSTREAM_DEF(ComCmdFld)
     ;
 }
 
-OSTREAM_DEF(ComFldState)
+OSTREAM_DEF(ComTeleFld)
 {
-    return os 
-        << DOUT(name)
-        << DOUT(param1)
-        << DOUT(param2)
-    ;
+    return os << static_cast<const ComTele&>(d);
 }
 
-OSTREAM_DEF(ComGuiCmd)
+OSTREAM_DEF(ComTeleGui)
 {
-    return os 
-        << DOUT(name)
-        << DOUT(param1)
-        << DOUT(param2)
-    ;
+    return os << static_cast<const ComTele&>(d);
 }
 
-OSTREAM_DEF(ComStateGui)
-{
-    return os 
-        << DOUT(name)
-        << DOUT(param1)
-        << DOUT(param2)
-    ;
-}

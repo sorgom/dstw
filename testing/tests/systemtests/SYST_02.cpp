@@ -33,10 +33,10 @@ namespace test
         for (UINT32 n = 0; n < TEST_NUM_TSW; ++n)
         {
             LSTEP(n)
-            ComFldState fldState(TSW_STATE_LEFT);
+            ComTeleFld fldState(TSW_STATE_LEFT);
             nameElement(fldState, TEST_NUM_TSW - n, "TSW");
 
-            ComStateGui stateGui(TSW_STATE_LEFT);
+            ComTeleGui stateGui(TSW_STATE_LEFT);
             stateGui.name = fldState.name;
 
             m_Com().expectSend(stateGui);
@@ -55,13 +55,13 @@ namespace test
         for (UINT32 n = 0; n < TEST_NUM_TSW; ++n)
         {
             LSTEP(n)
-            ComGuiCmd guiCmd(TSW_GUI_GMD_WU);
+            ComTeleGui guiCmd(TSW_GUI_GMD_WU);
             nameElement(guiCmd, TEST_NUM_TSW - n, "TSW");
 
-            ComCmdFld cmdFld(TSW_STATE_RIGHT);
+            ComTeleFld cmdFld(TSW_STATE_RIGHT);
             cmdFld.name = guiCmd.name;
 
-            ComStateGui stateGui(TSW_STATE_WAIT_RIGHT);
+            ComTeleGui stateGui(TSW_STATE_WAIT_RIGHT);
             stateGui.name = guiCmd.name;
 
             m_Com().expectSend(cmdFld);

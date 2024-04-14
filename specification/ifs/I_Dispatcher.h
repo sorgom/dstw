@@ -32,22 +32,22 @@ public:
     //  ============================================================
     //  field states shall be dispatched to components
     //  ============================================================
-    virtual void dispatch(const ComFldState& tele) const = 0;
+    virtual void dispatch(const ComTeleFld& tele) const = 0;
 
     //  ============================================================
     //  GUI commands shall be dispatched to components
     //  ============================================================
-    virtual void dispatch(const ComGuiCmd& tele) const = 0;
+    virtual void dispatch(const ComTeleGui& tele) const = 0;
 
     //  ============================================================
     //  commands from components shall be dispatched to field
     //  ============================================================
-    virtual void dispatch(size_t id, ComCmdFld&& tele) const = 0;
+    virtual void dispatch(size_t id, ComTeleFld&& tele) const = 0;
 
     //  ============================================================
     //  states from components shall be dispatched to GUI
     //  ============================================================
-    virtual void dispatch(size_t id, ComStateGui&& tele) const = 0;
+    virtual void dispatch(size_t id, ComTeleGui&& tele) const = 0;
 };
 
 #endif // H_

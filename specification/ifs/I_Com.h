@@ -13,8 +13,8 @@
 class I_Com
 {
 public:
-    virtual void send(const ComCmdFld&   tele) const = 0;
-    virtual void send(const ComStateGui& tele) const = 0;
+    virtual void send(const ComTeleFld&   tele) const = 0;
+    virtual void send(const ComTeleGui& tele) const = 0;
 };
 
 #endif // H_

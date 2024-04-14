@@ -30,4 +30,15 @@ inline void pass() {}
         return instance; \
     }
 
+#define ILX_INSTANCE_DEC(NAME) \
+    static I_ ## NAME& instance();
+
+//  unified instance definition for IL modules
+#define ILX_INSTANCE_DEF(NAME) \
+    I_ ## NAME& NAME::instance() \
+    { \
+        static NAME instance; \
+        return instance; \
+    }
+
 #endif // H_

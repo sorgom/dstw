@@ -35,22 +35,22 @@ namespace test
             expect("toGui").PARAM(id).PARAM(state).PARAM(ubk);
         }
 
-        inline void fromDsp(size_t pos, const ComFldState& tele) const
+        inline void fromDsp(size_t pos, const ComTeleFld& tele) const
         {
-            call("fromDsp").PARAM(pos).TPARAM(ComFldState, tele);
+            call("fromDsp").PARAM(pos).TPARAM(ComTeleFld, tele);
         }
-        inline void expectFromDsp(size_t pos, const ComFldState& tele) const
+        inline void expectFromDsp(size_t pos, const ComTeleFld& tele) const
         {
-            expect("fromDsp").PARAM(pos).TPARAM(ComFldState, tele);
+            expect("fromDsp").PARAM(pos).TPARAM(ComTeleFld, tele);
         }
 
-        inline void fromDsp(size_t pos, const ComGuiCmd& tele) const
+        inline void fromDsp(size_t pos, const ComTeleGui& tele) const
         {
-            call("fromDsp").PARAM(pos).TPARAM(ComGuiCmd, tele);
+            call("fromDsp").PARAM(pos).TPARAM(ComTeleGui, tele);
         }
-        inline void expectFromDsp(size_t pos, const ComGuiCmd& tele) const
+        inline void expectFromDsp(size_t pos, const ComTeleGui& tele) const
         {
-            expect("fromDsp").PARAM(pos).TPARAM(ComGuiCmd, tele);
+            expect("fromDsp").PARAM(pos).TPARAM(ComTeleGui, tele);
         }
     };
 }

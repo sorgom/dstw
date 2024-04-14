@@ -29,7 +29,7 @@ namespace test
     TEST(SYS_02, T01)
     {
         SETUP()
-        ComFldState fldState;
+        ComTeleFld fldState;
 
         STEP(1)
         nameElement(fldState, 1, "TSW");
@@ -67,7 +67,7 @@ namespace test
     TEST(SYS_02, T02)
     {
         SETUP()
-        ComGuiCmd guiCmd;
+        ComTeleGui guiCmd;
     
         STEP(1)
         nameElement(guiCmd, 1, "TSW");
@@ -107,35 +107,35 @@ namespace test
     TEST(SYS_02, T03)
     {
         SETUP()
-        ComCmdFld cmdExp;
+        ComTeleFld cmdExp;
 
         STEP(1)
         nameElement(cmdExp, 1, "TSW");
         m_Com().expectSend(cmdExp);
-        mSUT.dispatch(0, ComCmdFld());
+        mSUT.dispatch(0, ComTeleFld());
         CHECK_N_CLEAR()
 
         STEP(2)
         nameElement(cmdExp, 2, "SIG");
         m_Com().expectSend(cmdExp);
-        mSUT.dispatch(1, ComCmdFld());
+        mSUT.dispatch(1, ComTeleFld());
         CHECK_N_CLEAR()
 
         STEP(3)
         nameElement(cmdExp, 3, "LCR");
         m_Com().expectSend(cmdExp);
-        mSUT.dispatch(2, ComCmdFld());
+        mSUT.dispatch(2, ComTeleFld());
         CHECK_N_CLEAR()
 
         STEP(4)
         nameElement(cmdExp, 4, "SEG");
         m_Com().expectSend(cmdExp);
-        mSUT.dispatch(3, ComCmdFld());
+        mSUT.dispatch(3, ComTeleFld());
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
-        mSUT.dispatch(4, ComCmdFld());
+        mSUT.dispatch(4, ComTeleFld());
         CHECK_N_CLEAR()
     }
 
@@ -144,35 +144,35 @@ namespace test
     TEST(SYS_02, T04)
     {
         SETUP()
-        ComStateGui stateExp;
+        ComTeleGui stateExp;
 
         STEP(1)
         nameElement(stateExp, 1, "TSW");
         m_Com().expectSend(stateExp);
-        mSUT.dispatch(0, ComStateGui());
+        mSUT.dispatch(0, ComTeleGui());
         CHECK_N_CLEAR()
 
         STEP(2)
         nameElement(stateExp, 2, "SIG");
         m_Com().expectSend(stateExp);
-        mSUT.dispatch(1, ComStateGui());
+        mSUT.dispatch(1, ComTeleGui());
         CHECK_N_CLEAR()
 
         STEP(3)
         nameElement(stateExp, 3, "LCR");
         m_Com().expectSend(stateExp);
-        mSUT.dispatch(2, ComStateGui());
+        mSUT.dispatch(2, ComTeleGui());
         CHECK_N_CLEAR()
 
         STEP(4)
         nameElement(stateExp, 4, "SEG");
         m_Com().expectSend(stateExp);
-        mSUT.dispatch(3, ComStateGui());
+        mSUT.dispatch(3, ComTeleGui());
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
-        mSUT.dispatch(4, ComStateGui());
+        mSUT.dispatch(4, ComTeleGui());
         CHECK_N_CLEAR()
     }
 
@@ -196,13 +196,13 @@ namespace test
         mSUT.index();
         
         STEP(1)
-        ComFldState fldState;
+        ComTeleFld fldState;
         nameElement(fldState, 1, "TSW");
         mSUT.dispatch(fldState);
         CHECK_N_CLEAR()    
 
         STEP(2)
-        ComGuiCmd guiCmd;
+        ComTeleGui guiCmd;
         nameElement(guiCmd, 1, "TSW");
         mSUT.dispatch(guiCmd);
         CHECK_N_CLEAR()    

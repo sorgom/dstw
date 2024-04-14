@@ -18,11 +18,10 @@ namespace test
 
     //# C_STR_DEC
     C_STR_DEC(Com)
-    C_STR_DEC(ComCmdFld)
-    C_STR_DEC(ComFldState)
-    C_STR_DEC(ComGuiCmd)
     C_STR_DEC(ComName)
-    C_STR_DEC(ComStateGui)
+    C_STR_DEC(ComTele)
+    C_STR_DEC(ComTeleFld)
+    C_STR_DEC(ComTeleGui)
     C_STR_DEC(Dispatcher)
     C_STR_DEC(LCR)
     C_STR_DEC(LCR_Hub)

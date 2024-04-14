@@ -18,11 +18,10 @@
 #include <comparators/ostreamHelpers.h>
 
 //# OSTREAM_DEC
-OSTREAM_DEC(ComCmdFld)
-OSTREAM_DEC(ComFldState)
-OSTREAM_DEC(ComGuiCmd)
 OSTREAM_DEC(ComName)
-OSTREAM_DEC(ComStateGui)
+OSTREAM_DEC(ComTele)
+OSTREAM_DEC(ComTeleFld)
+OSTREAM_DEC(ComTeleGui)
 OSTREAM_DEC(PosRes)
 OSTREAM_DEC(ProjLCR)
 OSTREAM_DEC(ProjSEG)

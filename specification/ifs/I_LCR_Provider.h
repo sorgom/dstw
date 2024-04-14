@@ -7,18 +7,20 @@
 #ifndef I_LCR_PROVIDER_H
 #define I_LCR_PROVIDER_H
 
+#include "I_Provider.h"
 #include "I_LCR.h"
-#include "ProjTypes.h"
 
-class I_LCR_Provider
-{
-public:
-    virtual bool has(size_t pos) const = 0;
-    virtual I_LCR& at(size_t pos) = 0;
+using I_LCR_Provider = I_Provider<I_LCR, ProjLCR>;
 
-    virtual void reset() = 0;
-    virtual void load(const ProjLCR* data, UINT32 num) = 0;
-};
+// class I_LCR_Provider
+// {
+// public:
+//     virtual bool has(size_t pos) const = 0;
+//     virtual I_LCR& at(size_t pos) = 0;
+
+//     virtual void reset() = 0;
+//     virtual void load(const ProjLCR* data, UINT32 num) = 0;
+// };
 
 
 #endif // H_

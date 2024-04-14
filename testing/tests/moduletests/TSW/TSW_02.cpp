@@ -16,11 +16,11 @@ namespace test
     TEST_GROUP_BASE(TSW_02, TestGroupTSH) {};
 
     //  test type: equivalence class test
-    //  fromDsp ComFldState
+    //  fromDsp ComTeleFld
     TEST(TSW_02, T01)
     {
         SETUP()
-        const ComFldState tele(101);
+        const ComTeleFld tele(101);
         
         STEP(1)
         //  good case
@@ -37,11 +37,11 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  fromDsp ComGuiCmd
+    //  fromDsp ComTeleGui
     TEST(TSW_02, T02)
     {
         SETUP()
-        const ComGuiCmd tele(202);
+        const ComTeleGui tele(202);
         
         STEP(1)
         //  good case
@@ -62,7 +62,7 @@ namespace test
     TEST(TSW_02, T03)
     {
         STEP(1)
-        m_Dispatcher().expectDispatch(1, ComCmdFld(103));
+        m_Dispatcher().expectDispatch(1, ComTeleFld(103));
         mSUT.toFld(1, 103);
         CHECK_N_CLEAR()
     }
@@ -72,7 +72,7 @@ namespace test
     TEST(TSW_02, T04)
     {
         STEP(1)
-        m_Dispatcher().expectDispatch(2, ComStateGui(204));
+        m_Dispatcher().expectDispatch(2, ComTeleGui(204));
         mSUT.toGui(2, 204);
         CHECK_N_CLEAR()
     }

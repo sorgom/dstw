@@ -5,7 +5,7 @@
 
 INSTANCE_DEF(LCR_Hub)
 
-void LCR_Hub::fromDsp(const size_t pos, const ComFldState& tele) const
+void LCR_Hub::fromDsp(const size_t pos, const ComTeleFld& tele) const
 {
     I_LCR_Provider& prov = IL::getLCR_Provider();
     if (prov.has(pos))
@@ -16,7 +16,7 @@ void LCR_Hub::fromDsp(const size_t pos, const ComFldState& tele) const
     { pass(); }
 }
 
-void LCR_Hub::fromDsp(const size_t pos, const ComGuiCmd& tele) const
+void LCR_Hub::fromDsp(const size_t pos, const ComTeleGui& tele) const
 {
     I_LCR_Provider& prov = IL::getLCR_Provider();
     if (prov.has(pos))
@@ -29,12 +29,12 @@ void LCR_Hub::fromDsp(const size_t pos, const ComGuiCmd& tele) const
 
 void LCR_Hub::toFld(const size_t id, const UINT8 state) const
 {
-    IL::getDispatcher().dispatch(id, ComCmdFld(state));
+    IL::getDispatcher().dispatch(id, ComTeleFld(state));
 }
 
 void LCR_Hub::toGui(const size_t id, const UINT8 state, const UINT8 ubk) const
 {
-    IL::getDispatcher().dispatch(id, ComStateGui(state, ubk));
+    IL::getDispatcher().dispatch(id, ComTeleGui(state, ubk));
 }
 
 

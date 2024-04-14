@@ -1,21 +1,21 @@
 #include <LCR/LCR_Provider.h>
+#include <LCR/LCR_X.h>
 #include <SYS/IL.h>
 
-INSTANCE_DEF(LCR_Provider)
+ILX_INSTANCE_DEF(LCR_Provider)
 
-void LCR_Provider::load(const ProjLCR* const data, const UINT32 num)
+void LCR_Provider::load(const ProjLCR* data, UINT32 num)
 {
-    I_Dispatcher& disp = IL::getDispatcher();
     reset();
     bool ok = mElems.reserve(num) >= num;
 
-    for (UINT32 n = 0; ok and (n < num); ++n)
+    for (UINT32 n = 0; ok and (n < num); ++n, ++data)
     {
-        const ProjLCR& proj = data[n];
-        const PosRes res = disp.assign(proj.name, COMP_LCR, n);
-        if (res.valid)
+        const PosRes res = IL::getDispatcher().assign(data->name, COMP_LCR, n);
+        ok = res.valid;
+        if (ok)
         {
-            switch (proj.type)
+            switch (data->type)
             {
                 case LCR_TYPE_LCR:
                     mElems.add<LCR>(res.pos);
@@ -25,17 +25,11 @@ void LCR_Provider::load(const ProjLCR* const data, const UINT32 num)
                     break;
                 default:
                     ok = false;
-                    break;
-            } 
-        }
-        else
-        {
-            ok = false;
+                    break;;
+            }
         }
     }
-    if (ok)
-    { pass(); }
-    else
+    if (not ok)
     {
         reset();
         IL::getLog().log(MOD_LCR_PROVIDER, ERR_STARTUP);
