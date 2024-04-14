@@ -1,5 +1,8 @@
 //  ============================================================
-//  interface Hub
+//  interface Hub and derived interfaces:
+//  - I_TSW_Hub
+//  - I_SIG_Hub
+//  - I_LCR_Hub
 //  ============================================================
 //  created by Manfred Sorgo
 

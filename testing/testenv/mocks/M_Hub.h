@@ -1,3 +1,11 @@
+//  ============================================================
+//  common mock for all Hub interfaces
+//  - I_TSW_Hub
+//  - I_SIG_Hub
+//  - I_LCR_Hub
+//  ============================================================
+//  created by Manfred Sorgo
+
 #pragma once
 #ifndef M_HUB_H
 #define M_HUB_H

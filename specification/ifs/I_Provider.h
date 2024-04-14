@@ -1,5 +1,8 @@
 //  ============================================================
-//  interface Provider
+//  interface Provider and derived interfaces:
+//  - I_TSW_Provider
+//  - I_SIG_Provider
+//  - I_LCR_Provider
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -21,16 +24,18 @@ public:
     virtual void load(const PROJ* data, UINT32 num) = 0;
 };
 
-#include "I_LCR.h"
-class I_LCR_Provider : public I_Provider<I_LCR, ProjLCR>
+#include "I_TSW.h"
+class I_TSW_Provider : public I_Provider<I_TSW, ProjTSW>
 {};
 
 #include "I_SIG.h"
 class I_SIG_Provider : public I_Provider<I_SIG, ProjSIG>
 {};
 
-#include "I_TSW.h"
-class I_TSW_Provider : public I_Provider<I_TSW, ProjTSW>
+#include "I_LCR.h"
+class I_LCR_Provider : public I_Provider<I_LCR, ProjLCR>
 {};
+
+
 
 #endif // H_
