@@ -1,3 +1,3 @@
 #include <SYS/Log.h>
 
-INSTANCE_DEF(Log)
+IL_INSTANCE_DEF(Log)

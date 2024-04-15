@@ -18,7 +18,7 @@ class LCR_Provider :
 public:
     inline LCR_Provider() = default;
 
-    ILX_INSTANCE_DEC(LCR_Provider)
+    IL_INSTANCE_DEC(LCR_Provider)
 
     void load(const ProjLCR* data, UINT32 num) final;
 

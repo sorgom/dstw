@@ -1,7 +1,7 @@
 #include <TSW/TSW_Provider.h>
 #include <SYS/IL.h>
 
-INSTANCE_DEF(TSW_Provider)
+IL_INSTANCE_DEF(TSW_Provider)
 
 void TSW_Provider::load(const ProjTSW* data, const UINT32 num)
 {

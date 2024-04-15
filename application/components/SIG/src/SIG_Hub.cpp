@@ -2,7 +2,7 @@
 
 #include <SYS/IL.h>
 
-INSTANCE_DEF(SIG_Hub)
+IL_INSTANCE_DEF(SIG_Hub)
 
 void SIG_Hub::fromDsp(const size_t pos, const ComTeleFld& tele) const
 {

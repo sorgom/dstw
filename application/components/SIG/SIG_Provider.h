@@ -18,7 +18,7 @@ class SIG_Provider : public BAS_Provider<I_SIG, ProjSIG, I_SIG_Provider>
 public:
     inline SIG_Provider() = default;
 
-    ILX_INSTANCE_DEC(SIG_Provider)
+    IL_INSTANCE_DEC(SIG_Provider)
 
     void load(const ProjSIG* data, UINT32 num);
 

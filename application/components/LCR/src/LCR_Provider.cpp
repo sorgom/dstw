@@ -3,7 +3,7 @@
 #include <SYS/IL.h>
 #include <ifs/SystemEnums.h>
 
-ILX_INSTANCE_DEF(LCR_Provider)
+IL_INSTANCE_DEF(LCR_Provider)
 
 void LCR_Provider::load(const ProjLCR* data, UINT32 num)
 {

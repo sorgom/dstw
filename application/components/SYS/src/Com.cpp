@@ -1,3 +1,3 @@
 #include <SYS/Com.h>
 
-INSTANCE_DEF(Com)
+IL_INSTANCE_DEF(Com)

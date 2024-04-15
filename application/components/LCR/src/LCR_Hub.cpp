@@ -2,7 +2,7 @@
 
 #include <SYS/IL.h>
 
-INSTANCE_DEF(LCR_Hub)
+IL_INSTANCE_DEF(LCR_Hub)
 
 void LCR_Hub::fromDsp(const size_t pos, const ComTeleFld& tele) const
 {

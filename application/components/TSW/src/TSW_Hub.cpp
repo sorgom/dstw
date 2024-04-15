@@ -2,7 +2,7 @@
 
 #include <SYS/IL.h>
 
-INSTANCE_DEF(TSW_Hub)
+IL_INSTANCE_DEF(TSW_Hub)
 
 void TSW_Hub::fromDsp(const size_t pos, const ComTeleFld& tele) const
 {
