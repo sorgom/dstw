@@ -18,11 +18,11 @@ rxDdi = re.compile(r'^[ \t]*IL_INSTANCE_DEC[ \t]*\([ \t]*(\w+)[ \t]*\)', re.M)
 rxMoc = re.compile(r'^[ \t]*MOCK_CLASS\([ \t]*(\w+)[ \t]*\)', re.M)
 # derived mock class
 rxDmo = re.compile(r'^[ \t]*class[ \t]+M_(\w+)\s*:\s*public\s+M_', re.M)
-# data type
+# data struct
 rxDat = re.compile(r'^[ \t]*struct[ \t]+(\w+)', re.M)
-# interface class
+# interface declaration
 rxInt = re.compile(r'^[ \t]*class[ \t]+I_(\w+)', re.M)
-# defined ostream specialization
+# ostream specialization
 rxStr = re.compile(r'^[ \t]*OSTREAM_DEF\([ \t]*(\w+)[ \t]*\)', re.M)
 
 def scanCode(rxs:list, files:list):
