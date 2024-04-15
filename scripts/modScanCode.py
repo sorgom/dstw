@@ -12,10 +12,17 @@ from os.path import normpath
 import re
 from modUtilz import isHaeder
 
+# IL instance declaration
 rxDdi = re.compile(r'^[ \t]*IL_INSTANCE_DEC[ \t]*\([ \t]*(\w+)[ \t]*\)', re.M) 
+# announced mock class macro
 rxMoc = re.compile(r'^[ \t]*MOCK_CLASS\([ \t]*(\w+)[ \t]*\)', re.M)
+# derived mock class
+rxDmo = re.compile(r'^[ \t]*class[ \t]+M_(\w+)\s*:\s*public\s+M_', re.M)
+# data type
 rxDat = re.compile(r'^[ \t]*struct[ \t]+(\w+)', re.M)
+# interface class
 rxInt = re.compile(r'^[ \t]*class[ \t]+I_(\w+)', re.M)
+# defined ostream specialization
 rxStr = re.compile(r'^[ \t]*OSTREAM_DEF\([ \t]*(\w+)[ \t]*\)', re.M)
 
 def scanCode(rxs:list, files:list):
@@ -38,7 +45,7 @@ def scanDdi(files:list):
     return scanCode([rxDdi], files)
 
 def scanMoc(files:list):
-    return scanCode([rxMoc], files)
+    return scanCode([rxMoc, rxDmo], files)
 
 def scanLit(files:list):
     return scanCode([rxDat, rxInt], files)

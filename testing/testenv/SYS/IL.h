@@ -23,16 +23,12 @@
 #include <TSW/TSW_Provider.h>
 #include <mocks/M_Com.h>
 #include <mocks/M_Dispatcher.h>
+#include <mocks/M_Hub.h>
 #include <mocks/M_LCR.h>
-#include <mocks/M_Hub.h>
-#include <mocks/M_Provider.h>
 #include <mocks/M_Log.h>
+#include <mocks/M_Provider.h>
 #include <mocks/M_SIG.h>
-#include <mocks/M_Hub.h>
-#include <mocks/M_Provider.h>
 #include <mocks/M_TSW.h>
-#include <mocks/M_Hub.h>
-#include <mocks/M_Provider.h>
 //## END
 
 #include <BAS/coding.h>
