@@ -57,14 +57,15 @@ Simple small csv files describing the possible transitions.
 
 Sample: transitions TSW
 
-|FLD *||CMD LEFT||CMD RIGHT||CMD WU||CMD WU||
-|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
-|UNDEF|UNDEF|UNDEF|WAIT LEFT|UNDEF|WAIT RIGHT||WAIT RIGHT||WAIT LEFT|
-|DEFECT|LEFT|||||||||
-|LEFT|RIGHT|||LEFT||LEFT||||
-|RIGHT|DEFECT|RIGHT||||||RIGHT||
-|WAIT LEFT||||WAIT LEFT||||||
-|WAIT RIGHT||WAIT RIGHT||||||||
+| FLD *      |        | CMD LEFT   |           | CMD RIGHT |            | CMD WU |            | CMD WU |           |
+| :--------- | :----- | :--------- | :-------- | :-------- | :--------- | :----- | :--------- | :----- | :-------- |
+| UNDEF      | UNDEF  | UNDEF      | WAIT LEFT | UNDEF     | WAIT RIGHT |        | WAIT RIGHT |        | WAIT LEFT |
+| DEFECT     | LEFT   |            |           |           |            |        |            |        |           |
+| LEFT       | RIGHT  |            |           | LEFT      |            | LEFT   |            |        |           |
+| RIGHT      | DEFECT | RIGHT      |           |           |            |        |            | RIGHT  |           |
+| WAIT LEFT  |        |            |           | WAIT LEFT |            |        |            |        |           |
+| WAIT RIGHT |        | WAIT RIGHT |           |           |            |        |            |        |           |
+|            |        |            |           |           |            |        |            |        |           |
 
 ## test steps
 
@@ -204,18 +205,18 @@ Sample: generated test code for TSW
 ## sample: transitions SIG_H_N
 
 ### transition table
-|FLD *||CMD H0 N0||CMD H0 N1||CMD H1 N0||CMD H1 N1||
+|FLD *| |CMD H0 N0| |CMD H0 N1| |CMD H1 N0| |CMD H1 N1| |
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
 |UNDEF|UNDEF|UNDEF|WAIT H0 N0|UNDEF|WAIT H0 N1|UNDEF|WAIT H1 N0|UNDEF|WAIT H1 N1|
-|DEFECT|DEFECT|||||||||
-|H0 N0|H0 N0|||H0 N0||H0 N0||H0 N0||
-|H0 N1|H0 N1|H0 N1||||H0 N1||H0 N1||
-|H1 N0|H1 N0|H1 N0||H1 N0||||H1 N0||
-|H1 N1|H1 N1|H1 N1||H1 N1||H1 N1||||
-|WAIT H0 N0||||WAIT H0 N0||WAIT H0 N0||WAIT H0 N0||
-|WAIT H0 N1||WAIT H0 N1||||WAIT H0 N1||WAIT H0 N1||
-|WAIT H1 N0||WAIT H1 N0||WAIT H1 N0||||WAIT H1 N0||
-|WAIT H1 N1||WAIT H1 N1||WAIT H1 N1||WAIT H1 N1||||
+|DEFECT|DEFECT| | | | | | | | |
+|H0 N0|H0 N0| | |H0 N0| |H0 N0| |H0 N0| |
+|H0 N1|H0 N1|H0 N1| | | |H0 N1| |H0 N1| |
+|H1 N0|H1 N0|H1 N0| |H1 N0| | | |H1 N0| |
+|H1 N1|H1 N1|H1 N1| |H1 N1| |H1 N1| | | |
+|WAIT H0 N0| | | |WAIT H0 N0| |WAIT H0 N0| |WAIT H0 N0| |
+|WAIT H0 N1| |WAIT H0 N1| | | |WAIT H0 N1| |WAIT H0 N1| |
+|WAIT H1 N0| |WAIT H1 N0| |WAIT H1 N0| | | |WAIT H1 N0| |
+|WAIT H1 N1| |WAIT H1 N1| |WAIT H1 N1| |WAIT H1 N1| | | |
 
 ### transitions & test steps
 

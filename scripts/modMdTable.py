@@ -5,11 +5,16 @@
 #   ============================================================
 #   created by Manfred Sorgo
 
-import re
+import re, csv
 rxWord = re.compile(r'[^\d]+')
+rxCsv = re.compile(r'\.csv$', re.I)
+rxDelim = re.compile(r'^[;,]$')
 
 def mdLine(args):
-    return '|' + '|'.join([str(c) for c in args]) + '|'
+    c = '|' + '|'.join([str(c) for c in args]) + '|'
+    while '||' in c:
+        c = c.replace('||', '| |')
+    return c
 
 def mdTable(data:list):
     cont = data.copy()
@@ -19,7 +24,6 @@ def mdTable(data:list):
         for n, c in enumerate(row):
             if type(c) == str and rxWord.search(c):
                 aligns[n] = ':---'
-
     return '\n'.join([
         mdLine(heading),
         mdLine(aligns),
@@ -28,11 +32,22 @@ def mdTable(data:list):
         ]
     ])
 
-if __name__ == '__main__':
-    data = [
-        ['STEP', 'FROM', 'TO'],
-        [1, 'B', 'KR'],
-        [2, 'KR', 'B'],
-    ]
+def csvTable(file:str, delim:str=';'):
+    with open(file, 'r') as fh:
+        rdr = csv.reader(fh, delimiter=delim)
+        data = [row for row in rdr]
+        fh.close()
+    return mdTable(data)
 
-    print(mdTable(data))
+if __name__ == '__main__':
+    from sys import argv
+    delim = ';'
+    csvs = []
+    for arg in argv[1:]:
+        if rxDelim.match(arg):
+            delim = arg
+        elif rxCsv.search(arg):
+            csvs.append(arg)
+    for file in csvs:
+        print(csvTable(file, delim))
+        print()
