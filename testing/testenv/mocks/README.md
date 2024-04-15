@@ -36,14 +36,17 @@ for interface I_<NAME>
 mock for interface LCR
 ```
 
-#### M_Provider.h
-```
-mock for interface LCR_Provider
-```
-
 #### M_Log.h
 ```
 mock for interface Log
+```
+
+#### M_Provider.h
+```
+common mock for all Provider interfaces
+- I_TSW_Provider
+- I_SIG_Provider
+- I_LCR_Provider
 ```
 
 #### M_SIG.h
@@ -51,17 +54,7 @@ mock for interface Log
 mock for interface SIG
 ```
 
-#### M_Provider.h
-```
-mock for interface SIG_Provider
-```
-
 #### M_TSW.h
 ```
 mock for interface TSW
-```
-
-#### M_Provider.h
-```
-mock for interface TSW_Provider
 ```
