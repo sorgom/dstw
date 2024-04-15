@@ -2,6 +2,26 @@
 
 #include <mocks/M_Instances.h>
 #include <BAS/coding.h>
+//## INCLUDES
+#include <LCR/LCR_Hub.h>
+#include <LCR/LCR_Provider.h>
+#include <SIG/SIG_Hub.h>
+#include <SIG/SIG_Provider.h>
+#include <SYS/Com.h>
+#include <SYS/Dispatcher.h>
+#include <SYS/Log.h>
+#include <SYS/Reader.h>
+#include <TSW/TSW_Hub.h>
+#include <TSW/TSW_Provider.h>
+#include <mocks/M_Com.h>
+#include <mocks/M_Dispatcher.h>
+#include <mocks/M_Hub.h>
+#include <mocks/M_LCR.h>
+#include <mocks/M_Log.h>
+#include <mocks/M_Provider.h>
+#include <mocks/M_SIG.h>
+#include <mocks/M_TSW.h>
+//## END
 
 #define IL_MEMB(NAME) \
     ILPLug<I_ ## NAME> m ## NAME;

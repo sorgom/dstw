@@ -7,10 +7,11 @@
 #ifndef SIG_X_H
 #define SIG_X_H
 
-#include <ifs/I_SIG.h>
+#include <ifs/CompEnums.h>
+#include <ifs/I_Elem.h>
 #include <BAS/coding.h>
 
-class SIG_X : public I_SIG
+class SIG_X : public I_Elem
 {
 public:
     inline SIG_X(size_t id):

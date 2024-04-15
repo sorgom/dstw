@@ -18,9 +18,9 @@
 #ifndef GENPROJDATA_H
 #define GENPROJDATA_H
 
-#include <ifs/I_LCR.h>
-#include <ifs/I_SIG.h>
-#include <ifs/ProjTypes.h>
+#include <ifs/CompEnums.h>
+#include <ifs/CompEnums.h>
+#include <ifs/ProjItem.h>
 #include <testlib/testNumElements.h>
 #include <testlib/TestLib.h>
 #include <fstream>

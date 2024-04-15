@@ -38,7 +38,7 @@ void LCR_X::toFld(const UINT8 state) const
     IL::getLCR_Hub().toFld(mId, state);
 }
 
-void LCR_X::fromGui(const UINT8 state)
+void LCR_X::fromGui(const UINT8 state, UINT8)
 {
     switch (state)
     {

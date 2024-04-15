@@ -1,9 +1,10 @@
 #include <TSW/TSW_Provider.h>
 #include <SYS/IL.h>
+#include <TSW/TSW.h>
 
 IL_INSTANCE_DEF(TSW_Provider)
 
-void TSW_Provider::load(const ProjTSW* data, const UINT32 num)
+void TSW_Provider::load(const ProjItem* data, const UINT32 num)
 {
     reset();
     mElems.reserve(num);

@@ -9,6 +9,8 @@ from modScanCode import *
 from modGenCode import genCode
 from projectDirs import *
 
+ifIncludes, ifNames = scanIfs(glob(ifsDir + '/*.h')) 
+
 # application IL
 # application main
 appIncludes, appNames = scanDdi(glob(modDir + '/*/*.h'))
@@ -33,10 +35,22 @@ genCode(
     nsub = 1
 )
 
-# test env IL
+# test env IL header
 genCode(
     targets = [
-        envDir + '/SYS/IL.h',
+        envDir + '/SYS/IL.h'
+    ],
+    names = {
+        None  : mocNames.union(appNames),
+        'APP' : appNames,
+        'MOCK': mocNames.difference(appNames)
+    },
+    includes = ifIncludes,
+    nsub = 1
+)
+# test env IL src
+genCode(
+    targets = [
         envDir + '/SYS/src/IL.cpp'
     ],
     names = {
@@ -44,9 +58,11 @@ genCode(
         'APP' : appNames,
         'MOCK': mocNames.difference(appNames)
     },
-    includes = mocIncludes.union(appIncludes),
+    includes = appIncludes.union(mocIncludes),
     nsub = 1
 )
+
+
 
 # test env literals
 includes, litNames = scanLit(glob(ifsDir + '/*.h'))

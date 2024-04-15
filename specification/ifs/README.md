@@ -41,7 +41,7 @@ interface Hub and derived interfaces:
 - I_LCR_Hub
 ```
 
-#### I_LCR.h
+#### CompEnums.h
 ```
 interface LCR (level crossing)
 ```
@@ -70,12 +70,12 @@ the Reader is called at system start and shall:
 -   call indexing of I_Dispatcher
 ```
 
-#### I_SIG.h
+#### CompEnums.h
 ```
 interface SIG (signal)
 ```
 
-#### I_TSW.h
+#### CompEnums.h
 ```
 interface TSW (track switch)
 ```
@@ -85,7 +85,7 @@ interface TSW (track switch)
 defintion of position result
 ```
 
-#### ProjTypes.h
+#### ProjItem.h
 ```
 projectation data types
 ```

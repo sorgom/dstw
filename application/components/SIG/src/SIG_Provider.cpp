@@ -1,9 +1,10 @@
 #include <SIG/SIG_Provider.h>
 #include <SYS/IL.h>
+#include <SIG/SIG_X.h>
 
 IL_INSTANCE_DEF(SIG_Provider)
 
-void SIG_Provider::load(const ProjSIG* data, const UINT32 num)
+void SIG_Provider::load(const ProjItem* data, const UINT32 num)
 {
     reset();
     mElems.reserve(num);

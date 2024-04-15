@@ -7,7 +7,7 @@
 #ifndef M_TSW_H
 #define M_TSW_H
 
-#include <ifs/I_TSW.h>
+#include <ifs/CompEnums.h>
 #include "M_Base.h"
 
 namespace test

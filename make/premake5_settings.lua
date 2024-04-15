@@ -16,7 +16,11 @@ testIncludes = {
 }
 
 appSrcs = {
-    '../application/components/**.cpp'
+    '../application/**.cpp'
+}
+noTestSrcs = {
+    '../application/components/SYS/src/IL.cpp',
+    '../application/main/*cpp'
 }
 
 testEnvSrcs = {

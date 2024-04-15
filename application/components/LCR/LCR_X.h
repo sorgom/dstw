@@ -7,17 +7,18 @@
 #ifndef LCR_X_H
 #define LCR_X_H
 
-#include <ifs/I_LCR.h>
+#include <ifs/I_Elem.h>
 #include <BAS/coding.h>
+#include <ifs/CompEnums.h>
 
-class LCR_X : public I_LCR
+class LCR_X : public I_Elem
 {
 public:
     inline LCR_X(size_t id):
         mId(id),
         mStateToGui(LCR_STATE_UNDEF)
     {}
-    void fromGui(UINT8 state);
+    void fromGui(UINT8 state, UINT8 = PARAM_UNDEF);
 
     NOCOPY(LCR_X)
     NODEF(LCR_X)

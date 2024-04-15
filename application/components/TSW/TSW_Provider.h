@@ -8,37 +8,18 @@
 #define TSW_PROVIDER_H
 
 #include <BAS/coding.h>
-#include <BAS/Containers.h>
-#include <ifs/I_Provider.h>
-#include <TSW/TSW.h>
+#include <BAS/BAS_Provider.h>
 
-class TSW_Provider : public I_TSW_Provider
+class TSW_Provider : public BAS_Provider
 {
 public:
     inline TSW_Provider() = default;
 
-    inline bool has(size_t pos) const
-    {
-        return mElems.size() > pos;
-    }
-
-    inline I_TSW& at(size_t pos)
-    {
-        return mElems.at(pos);
-    }
-
-    inline void reset()
-    {
-        mElems.clear();
-    }
-
-    void load(const ProjTSW* data, UINT32 num);
-
     IL_INSTANCE_DEC(TSW_Provider)
 
-    NOCOPY(TSW_Provider)
+    void load(const ProjItem* data, UINT32 num);
 
-private:
-    PolyVec<I_TSW> mElems;
+    NOCOPY(TSW_Provider)
 };
+
 #endif // H_

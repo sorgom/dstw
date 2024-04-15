@@ -11,24 +11,15 @@
 #define IL_H
 
 //## INCLUDES
-#include <LCR/LCR_Hub.h>
-#include <LCR/LCR_Provider.h>
-#include <SIG/SIG_Hub.h>
-#include <SIG/SIG_Provider.h>
-#include <SYS/Com.h>
-#include <SYS/Dispatcher.h>
-#include <SYS/Log.h>
-#include <SYS/Reader.h>
-#include <TSW/TSW_Hub.h>
-#include <TSW/TSW_Provider.h>
-#include <mocks/M_Com.h>
-#include <mocks/M_Dispatcher.h>
-#include <mocks/M_Hub.h>
-#include <mocks/M_LCR.h>
-#include <mocks/M_Log.h>
-#include <mocks/M_Provider.h>
-#include <mocks/M_SIG.h>
-#include <mocks/M_TSW.h>
+#include <ifs/I_Com.h>
+#include <ifs/I_Dispatcher.h>
+#include <ifs/I_Hub.h>
+#include <ifs/CompEnums.h>
+#include <ifs/I_Log.h>
+#include <ifs/I_Provider.h>
+#include <ifs/I_Reader.h>
+#include <ifs/CompEnums.h>
+#include <ifs/CompEnums.h>
 //## END
 
 #include <BAS/coding.h>

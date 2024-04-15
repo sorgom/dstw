@@ -1,7 +1,7 @@
 #include <TSW/TSW.h>
 #include <SYS/IL.h>
 
-void TSW::fromGui(const UINT8 cmd)
+void TSW::fromGui(const UINT8 cmd, UINT8)
 {
     switch(cmd)
     {
@@ -67,7 +67,7 @@ void TSW::wu()
     };
 }
 
-void TSW::fromFld(const UINT8 state)
+void TSW::fromFld(const UINT8 state, UINT8)
 {
     switch(state)
     {

@@ -53,7 +53,8 @@ workspace 'tests'
                 CppUTestHome .. 'src/Platforms/VisualCpp/*.cpp',
                 CppUTestHome .. 'src/CppUTestExt/*.cpp'
             }
-
+            removefiles { noTestSrcs }
+            
             filter { 'configurations:ci' }
                 files { modTestSrcs, sysTestSrcs }
 

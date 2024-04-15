@@ -7,7 +7,7 @@
 #ifndef M_SIG_H
 #define M_SIG_H
 
-#include <ifs/I_SIG.h>
+#include <ifs/CompEnums.h>
 #include "M_Base.h"
 
 namespace test

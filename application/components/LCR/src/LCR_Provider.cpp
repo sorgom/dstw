@@ -1,11 +1,12 @@
 #include <LCR/LCR_Provider.h>
 #include <LCR/LCR_X.h>
 #include <SYS/IL.h>
+#include <ifs/CompEnums.h>
 #include <ifs/SystemEnums.h>
 
 IL_INSTANCE_DEF(LCR_Provider)
 
-void LCR_Provider::load(const ProjLCR* data, UINT32 num)
+void LCR_Provider::load(const ProjItem* data, UINT32 num)
 {
     reset();
     mElems.reserve(num);

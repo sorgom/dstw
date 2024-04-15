@@ -56,6 +56,9 @@ def scanCmp(files:list):
 def scanDat(files:list):
     return scanCode([rxDat], files)
 
+def scanIfs(files:list):
+    return scanCode([rxInt], files)
+
 if __name__ == '__main__':
     from projectDirs import modDir, envDir
     from os import name as osname

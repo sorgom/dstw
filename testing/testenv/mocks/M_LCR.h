@@ -7,7 +7,7 @@
 #ifndef M_LCR_H
 #define M_LCR_H
 
-#include <ifs/I_LCR.h>
+#include <ifs/CompEnums.h>
 #include "M_Base.h"
 
 namespace test

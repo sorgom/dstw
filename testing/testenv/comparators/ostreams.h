@@ -12,7 +12,7 @@
 //## INCLUDES
 #include <ifs/ComTypes.h>
 #include <ifs/PosRes.h>
-#include <ifs/ProjTypes.h>
+#include <ifs/ProjItem.h>
 //## END
 #include <ostream>
 #include <comparators/ostreamHelpers.h>

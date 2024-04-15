@@ -59,6 +59,7 @@ workspace 'tests'
             includedirs { testIncludes }
             links { testLinks }
             files { testEnvSrcs, appSrcs }
+            removefiles { noTestSrcs }
 
             filter { 'configurations:ci' }
                 files { modTestSrcs, sysTestSrcs }
@@ -108,6 +109,7 @@ workspace 'coverage'
             kind 'StaticLib'
             targetdir 'lib'
             files { appSrcs }
+            removefiles { noTestSrcs }
             buildoptions {'-fprofile-arcs -ftest-coverage'}
 
         project 'coverage_tests'

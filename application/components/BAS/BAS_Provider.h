@@ -13,8 +13,7 @@
 #include <BAS/Containers.h>
 #include <ifs/I_Provider.h>
 
-template <typename I_ELEM, typename PROJ, typename I_PROV>
-class BAS_Provider : public I_PROV
+class BAS_Provider : public I_Provider
 {
 public:
     inline BAS_Provider() = default;
@@ -24,7 +23,7 @@ public:
         return mElems.size() > pos;
     }
 
-    inline I_ELEM& at(size_t pos)
+    inline I_Elem& at(size_t pos)
     {
         return mElems.at(pos);
     }
@@ -34,8 +33,13 @@ public:
         mElems.clear();
     }
 
+    void load(const ProjItem* data, UINT32 num);
+    
 protected:
-    PolyVec<I_ELEM> mElems;
+    virtual bool add(size_t pos, const ProjItem& item) = 0;
+    virtual UINT8 getComp() const = 0;
+
+    PolyVec<I_Elem> mElems;
 };
 
 

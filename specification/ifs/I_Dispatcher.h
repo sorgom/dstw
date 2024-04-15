@@ -30,22 +30,22 @@ public:
     virtual const PosRes assign(const ComName& name, E_Comp comp, size_t pos) = 0;
 
     //  ============================================================
-    //  field states shall be dispatched to components
+    //  field telegrams shall be dispatched to components
     //  ============================================================
     virtual void dispatch(const ComTeleFld& tele) const = 0;
 
     //  ============================================================
-    //  GUI commands shall be dispatched to components
+    //  GUI telegrams shall be dispatched to components
     //  ============================================================
     virtual void dispatch(const ComTeleGui& tele) const = 0;
 
     //  ============================================================
-    //  commands from components shall be dispatched to field
+    //  field telegrams from components shall be dispatched to field
     //  ============================================================
     virtual void dispatch(size_t id, ComTeleFld&& tele) const = 0;
 
     //  ============================================================
-    //  states from components shall be dispatched to GUI
+    //  GUI telegrams components shall be dispatched to GUI
     //  ============================================================
     virtual void dispatch(size_t id, ComTeleGui&& tele) const = 0;
 };
