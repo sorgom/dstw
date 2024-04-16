@@ -37,6 +37,7 @@ configurations:
 - sys       system tests
 - dev       developer tests
 - bullseye  module tests with bullseye coverage
+- none      no tests
 
 > coverage.make
 -   coverage instrumented application (static lib)

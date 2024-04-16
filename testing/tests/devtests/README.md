@@ -4,11 +4,6 @@
 
 ## directory content
 
-#### DT_01.cpp
-```
-output of maximum capacities
-```
-
 #### DT_02.cpp
 ```
 test of test features

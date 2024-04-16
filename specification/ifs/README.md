@@ -5,6 +5,17 @@
 communication telegram types
 ```
 
+#### CompEnums.h
+```
+component specific enumerations
+
+SIG types and states
+
+TSW commands and states
+
+TSW types and states
+```
+
 #### I_Com.h
 ```
 Interface Com
@@ -24,13 +35,21 @@ assign themselves with:
 and shall receive:
 - dispatcher id (position of responsible dispatcher element)
 
-field states shall be dispatched to components
+field telegrams shall be dispatched to components
 
-GUI commands shall be dispatched to components
+GUI telegrams shall be dispatched to components
 
-commands from components shall be dispatched to field
+field telegrams from components shall be dispatched to field
 
-states from components shall be dispatched to GUI
+GUI telegrams components shall be dispatched to GUI
+```
+
+#### I_Elem.h
+```
+interface Elem
+processing:
+- GUI telegrams
+- field telegrams
 ```
 
 #### I_Hub.h
@@ -39,11 +58,6 @@ interface Hub and derived interfaces:
 - I_TSW_Hub
 - I_SIG_Hub
 - I_LCR_Hub
-```
-
-#### CompEnums.h
-```
-interface LCR (level crossing)
 ```
 
 #### I_Log.h
@@ -70,16 +84,6 @@ the Reader is called at system start and shall:
 -   call indexing of I_Dispatcher
 ```
 
-#### CompEnums.h
-```
-interface SIG (signal)
-```
-
-#### CompEnums.h
-```
-interface TSW (track switch)
-```
-
 #### PosRes.h
 ```
 defintion of position result
@@ -87,7 +91,7 @@ defintion of position result
 
 #### ProjItem.h
 ```
-projectation data types
+unified proj data item
 ```
 
 #### SystemEnums.h

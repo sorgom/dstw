@@ -3,11 +3,6 @@
 
 ## directory content
 
-#### LCR_Hub.h
-```
-class LCR_Hub implements I_LCR_Hub
-```
-
 #### LCR_Provider.h
 ```
 class LCR_Provider implements I_LCR_Provider
