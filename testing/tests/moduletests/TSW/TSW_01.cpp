@@ -26,10 +26,10 @@ namespace test
         {
             cout << "==== FLD ====" << endl;
             TRACEVAR(fldState)
-            TRACEVAR(expStateGui)
 
             if (expStateGui != NO_PARAM)
             {
+                TRACEVAR(expStateGui)
                 m_Dispatcher().expectDispatch(mId, ComTeleGui(expStateGui));
             }
             mSUT.process(ComTeleFld(fldState));
@@ -38,18 +38,21 @@ namespace test
 
         void CMD(const UINT8 guiCmd, const UINT8 expCmdField = NO_PARAM, const UINT8 expStateGui = PARAM_UNDEF)
         {
+            SUBSTEPS()
+            STEP(1)
             cout << "==== CMD ====" << endl;     
             TRACEVAR(guiCmd)
-            TRACEVAR(expCmdField)
-            TRACEVAR(expStateGui)
             if (expCmdField != NO_PARAM)
             {
+                TRACEVAR(expStateGui)
                 m_Dispatcher().expectDispatch(mId, ComTeleGui(expStateGui));
+                TRACEVAR(expCmdField)
                 m_Dispatcher().expectDispatch(mId, ComTeleFld(expCmdField));
             }
             mSUT.process(ComTeleGui(guiCmd));
             CHECK_N_CLEAR()
-            cout << "==== END CMD ====" << endl;     
+            cout << "==== END CMD ====" << endl;
+            ENDSTEPS()     
         }
     };
     

@@ -59,7 +59,7 @@ enum E_TswState : UINT8
 
 enum E_TswGuiCmd : UINT8
 {
-    TSW_GUI_GMD_WU = 201,
+    TSW_GUI_GMD_WU = 221,
     TSW_GUI_GMD_LEFT,
     TSW_GUI_GMD_RIGHT
 };

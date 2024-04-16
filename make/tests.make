@@ -270,8 +270,10 @@ OBJECTS += $(OBJDIR)/SYST_01.o
 OBJECTS += $(OBJDIR)/SYST_02.o
 
 else ifeq ($(config),dev)
+GENERATED += $(OBJDIR)/DT_01.o
 GENERATED += $(OBJDIR)/DT_02.o
 GENERATED += $(OBJDIR)/DT_03.o
+OBJECTS += $(OBJDIR)/DT_01.o
 OBJECTS += $(OBJDIR)/DT_02.o
 OBJECTS += $(OBJDIR)/DT_03.o
 
@@ -306,7 +308,9 @@ OBJECTS += $(OBJDIR)/TSW_02.o
 OBJECTS += $(OBJDIR)/TSW_03.o
 
 else ifeq ($(config),tmp)
+GENERATED += $(OBJDIR)/DT_01.o
 GENERATED += $(OBJDIR)/TSW_01.o
+OBJECTS += $(OBJDIR)/DT_01.o
 OBJECTS += $(OBJDIR)/TSW_01.o
 
 endif
@@ -596,6 +600,9 @@ $(OBJDIR)/SYST_02.o: ../testing/tests/systemtests/SYST_02.cpp
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
 else ifeq ($(config),dev)
+$(OBJDIR)/DT_01.o: ../testing/tests/devtests/DT_01.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/DT_02.o: ../testing/tests/devtests/DT_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -648,6 +655,9 @@ $(OBJDIR)/TSW_03.o: ../testing/tests/moduletests/TSW/TSW_03.cpp
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
 else ifeq ($(config),tmp)
+$(OBJDIR)/DT_01.o: ../testing/tests/devtests/DT_01.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW_01.o: ../testing/tests/moduletests/TSW/TSW_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"

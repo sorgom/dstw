@@ -26,6 +26,7 @@ void TSW::process(const ComTeleGui& tele)
 
 void TSW::swLeft()
 {
+    cout << "TSW::swLeft" << endl;
     switch (mState)
     {
     case TSW_STATE_LEFT:
@@ -41,6 +42,7 @@ void TSW::swLeft()
 
 void TSW::swRight()
 {
+    cout << "TSW::swRight" << endl;
     switch (mState)
     {
     case TSW_STATE_RIGHT:
@@ -93,13 +95,15 @@ void TSW::chgState(const UINT8 state)
 {
     if (state != mState)
     {
+        cout << "TSW::chgState: " << (UINT16) state << endl;
         mState = state;
-        cout << "TSW::chgState: " << (UINT16) mState << endl;
+        cout << "TSW::toGui: " << (UINT16) mState << endl;
         IL::getDispatcher().dispatch(mId, ComTeleGui(mState));
     }
 }
 
 void TSW::toFld(const UINT8 state) const
 {
+    cout << "TSW::toFld: " << (UINT16) state << endl;
     IL::getDispatcher().dispatch(mId, ComTeleFld(state));
 } 
