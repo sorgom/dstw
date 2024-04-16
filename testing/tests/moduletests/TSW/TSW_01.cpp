@@ -7,6 +7,8 @@
 #include <TSW/TSW.h>
 #include <limits>
 
+#include <qnd/useCout.h>
+
 namespace test
 {
 
@@ -20,25 +22,34 @@ namespace test
             mId(123),
             mSUT(mId)
         {}
-        void FLD(const UINT8 fldState, const UINT8 expStateGui = UCHAR_MAX)
+        void FLD(const UINT8 fldState, const UINT8 expStateGui = NO_PARAM)
         {
-            if (expStateGui < UCHAR_MAX)
+            cout << "==== FLD ====" << endl;
+            TRACEVAR(fldState)
+            TRACEVAR(expStateGui)
+
+            if (expStateGui != NO_PARAM)
             {
-                m_TSW_Hub().expectToGui(mId, expStateGui);
+                m_Dispatcher().expectDispatch(mId, ComTeleGui(expStateGui));
             }
-            mSUT.fromFld(fldState);
+            mSUT.process(ComTeleFld(fldState));
             CHECK_N_CLEAR()
         }
 
-        void CMD(const UINT8 guiCmd, const UINT8 expCmdField = UCHAR_MAX, const UINT8 expStateGui = 0)
+        void CMD(const UINT8 guiCmd, const UINT8 expCmdField = NO_PARAM, const UINT8 expStateGui = PARAM_UNDEF)
         {
-            if (expCmdField < UCHAR_MAX)
+            cout << "==== CMD ====" << endl;     
+            TRACEVAR(guiCmd)
+            TRACEVAR(expCmdField)
+            TRACEVAR(expStateGui)
+            if (expCmdField != NO_PARAM)
             {
-                m_TSW_Hub().expectToFld(mId, expCmdField);
-                m_TSW_Hub().expectToGui(mId, expStateGui);
+                m_Dispatcher().expectDispatch(mId, ComTeleGui(expStateGui));
+                m_Dispatcher().expectDispatch(mId, ComTeleFld(expCmdField));
             }
-            mSUT.fromGui(guiCmd);
+            mSUT.process(ComTeleGui(guiCmd));
             CHECK_N_CLEAR()
+            cout << "==== END CMD ====" << endl;     
         }
     };
     
@@ -48,6 +59,8 @@ namespace test
     //  transitions TSW
     TEST(TSW_01, T01)
     {
+        TestSteps::show();
+
         STEP(1)
         FLD(TSW_STATE_LEFT, TSW_STATE_LEFT);
         STEP(2)
@@ -153,11 +166,11 @@ namespace test
     TEST(TSW_01, T02)
     {
         STEP(1)
-        m_Log().expectLog(MOD_TSW, ERR_MATCH);
-        CMD(UCHAR_MAX);
+        m_Log().expectLog(COMP_TSW, ERR_MATCH);
+        CMD(PARAM_UNKNOWN);
 
         STEP(2)
-        m_Log().expectLog(MOD_TSW, ERR_MATCH);
-        FLD(UCHAR_MAX);
+        m_Log().expectLog(COMP_TSW, ERR_MATCH);
+        FLD(PARAM_UNKNOWN);
     }
 }

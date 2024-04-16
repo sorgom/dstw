@@ -1,43 +1,22 @@
 #include <LCR/LCR_Provider.h>
 #include <LCR/LCR_X.h>
-#include <SYS/IL.h>
-#include <ifs/CompEnums.h>
-#include <ifs/SystemEnums.h>
 
 IL_INSTANCE_DEF(LCR_Provider)
 
-void LCR_Provider::load(const ProjItem* data, UINT32 num)
+bool LCR_Provider::add(const size_t id, const ProjItem& item)
 {
-    reset();
-    mElems.reserve(num);
     bool ok = true;
-    for (UINT32 n = 0; ok and (n < num); ++n, ++data)
+    switch (item.type)
     {
-        const PosRes res = IL::getDispatcher().assign(data->name, COMP_LCR, n);
-        ok = res.valid;
-        if (ok)
-        {
-            switch (data->type)
-            {
-                case LCR_TYPE_LCR:
-                    mElems.add<LCR>(res.pos);
-                    break;
-                case LCR_TYPE_LCR_UBK:
-                    mElems.add<LCR_UBK>(res.pos);
-                    break;
-                default:
-                    ok = false;
-                    break;;
-            }
-        }
-        else 
-        { pass(); }
+        case LCR_TYPE_LCR:
+            mElems.add<LCR>(id);
+            break;
+        case LCR_TYPE_LCR_UBK:
+            mElems.add<LCR_UBK>(id);
+            break;
+        default:
+            ok = false;
+            break;
     }
-    if (not ok)
-    {
-        reset();
-        IL::getLog().log(MOD_LCR_PROVIDER, ERR_STARTUP);
-    }
-    else 
-    { pass(); }
+    return ok;
 }

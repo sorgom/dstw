@@ -9,6 +9,7 @@
 #include <BAS/coding.h>
 #include <BAS/NcpIndex.h>
 #include <ifs/I_Dispatcher.h>
+#include <ifs/I_Provider.h>
 
 class Dispatcher : public I_Dispatcher
 {
@@ -32,6 +33,14 @@ public:
 
 private:
     NcpIndex mIndx;
+    template <typename T> 
+    void forward(I_Provider& prov, const Ncp& ncp, const T& tele) const
+    {
+        if (prov.size() > ncp.pos)
+        {
+            prov.at(ncp.pos).process(tele);
+        }
+    }
 };
 
 #endif // H_

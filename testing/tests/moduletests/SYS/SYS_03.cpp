@@ -13,10 +13,10 @@ namespace test
     //  test type: coverage
     TEST(SYS_03, T01)
     {
-        const ComTeleGui s {};
-        const ComTeleFld   c {};
-        Com::instance().send(s);
-        Com::instance().send(c);
-        Log::instance().log(MOD_SYS_READER, ERR_MATCH);
+        const ComTeleGui tg {};
+        const ComTeleFld tf {};
+        Com::instance().send(tg);
+        Com::instance().send(tf);
+        Log::instance().log(COMP_SYS, ERR_MATCH);
     }
 }

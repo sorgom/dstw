@@ -1,9 +1,13 @@
 #include <TSW/TSW.h>
 #include <SYS/IL.h>
 
-void TSW::fromGui(const UINT8 cmd, UINT8)
+#include <qnd/useCout.h>
+
+void TSW::process(const ComTeleGui& tele)
 {
-    switch(cmd)
+    const auto state = tele.param1;
+    cout << "TSW::process GUI: " << (UINT16) state << endl;
+    switch(state)
     {
     case TSW_GUI_GMD_WU:
         wu();
@@ -15,7 +19,7 @@ void TSW::fromGui(const UINT8 cmd, UINT8)
         swRight();
         break;
     default:
-        IL::getLog().log(MOD_TSW, ERR_MATCH);
+        IL::getLog().log(COMP_TSW, ERR_MATCH);
         break;
     };
 }
@@ -67,8 +71,10 @@ void TSW::wu()
     };
 }
 
-void TSW::fromFld(const UINT8 state, UINT8)
+void TSW::process(const ComTeleFld& tele)
 {
+    const auto state = tele.param1;
+    cout << "TSW::process FLD: " << (UINT16) state << endl;
     switch(state)
     {
     case TSW_STATE_LEFT:
@@ -78,7 +84,7 @@ void TSW::fromFld(const UINT8 state, UINT8)
         chgState(state);
         break;
     default:
-        IL::getLog().log(MOD_TSW, ERR_MATCH);
+        IL::getLog().log(COMP_TSW, ERR_MATCH);
         break;
     }
 }
@@ -88,11 +94,12 @@ void TSW::chgState(const UINT8 state)
     if (state != mState)
     {
         mState = state;
-        IL::getTSW_Hub().toGui(mId, mState);
+        cout << "TSW::chgState: " << (UINT16) mState << endl;
+        IL::getDispatcher().dispatch(mId, ComTeleGui(mState));
     }
 }
 
 void TSW::toFld(const UINT8 state) const
 {
-    IL::getTSW_Hub().toFld(mId, state);
+    IL::getDispatcher().dispatch(mId, ComTeleFld(state));
 } 

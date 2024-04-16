@@ -41,10 +41,11 @@ workspace 'dstw'
 --  - sys       system tests
 --  - dev       developer tests
 --  - bullseye  module tests with bullseye coverage
+--  - none      no tests
 --  ============================================================
 workspace 'tests'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'qnd', 'mod', 'sys', 'dev', 'bullseye' }
+        configurations { 'ci', 'qnd', 'mod', 'sys', 'dev', 'bullseye', 'tmp' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
         targetsuffix '_%{cfg.name}'
@@ -81,6 +82,16 @@ workspace 'tests'
                 files { modTestSrcs }
                 prebuildcommands { 'cov01 -1 --no-banner' }
                 postbuildcommands { './bullseye.sh' }
+            filter { 'configurations:tmp' }
+                includedirs { '../devel' }
+                files {
+                    -- '../testing/tests/moduletests/BAS/BAS_01.cpp',
+                    -- '../testing/tests/moduletests/BAS/BAS_02.cpp',  
+                    -- '../testing/tests/moduletests/SYS/SYS_01.cpp',
+                    -- '../testing/tests/moduletests/SYS/SYS_02.cpp',
+                    -- '../testing/tests/moduletests/SYS/SYS_03.cpp',
+                    '../testing/tests/moduletests/TSW/TSW_01.cpp',
+                }
     
 --  ============================================================
 --  > coverage.make

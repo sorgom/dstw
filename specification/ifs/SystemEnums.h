@@ -17,7 +17,8 @@ enum E_Comp : UINT8
     COMP_TSW,
     COMP_SIG,
     COMP_LCR,
-    COMP_SEG
+    COMP_SEG,
+    COMP_SYS
 };
 
 enum E_Mod : UINT8

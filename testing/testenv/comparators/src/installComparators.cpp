@@ -15,7 +15,6 @@ namespace test
     {
         //# ADD_COMP
         ADD_COMP(ComName)
-        ADD_COMP(ComTele)
         ADD_COMP(ComTeleFld)
         ADD_COMP(ComTeleGui)
         //# END

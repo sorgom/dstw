@@ -17,7 +17,7 @@
 class I_Provider
 {
 public:
-    virtual bool has(size_t pos) const = 0;
+    virtual size_t size() const = 0;
     virtual I_Elem& at(size_t pos) = 0;
 
     virtual void reset() = 0;

@@ -10,9 +10,9 @@
 #include <codebase/BaseTypes.h>
 #include <codebase/nocopy.h>
 #include <codebase/Mem.h>
-#include <codebase/packBegin.h>
-
 #include "SystemEnums.h"
+
+#include <codebase/packBegin.h>
 
 //  Com telegrams element identifier
 constexpr auto ComNameSize = 12;

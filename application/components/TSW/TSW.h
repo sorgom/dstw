@@ -22,13 +22,9 @@ public:
         mState(TSW_STATE_UNDEF)
     {}
 
-    void fromGui(UINT8 cmd, UINT8 = PARAM_UNDEF);
-    void fromFld(UINT8 state, UINT8 = PARAM_UNDEF);
+    void process(const ComTeleGui& tele);
+    void process(const ComTeleFld& tele);
 
-    inline UINT8 type() const
-    {
-        return 0;
-    }
 private:
     const size_t mId;
     UINT8 mState;

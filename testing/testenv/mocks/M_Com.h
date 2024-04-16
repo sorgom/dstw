@@ -12,10 +12,11 @@
 
 namespace test
 {
-    MOCK_CLASS(Com)
+    class M_Com : public I_Com, private M_Base
     {
     public:
-        MOCK_CON(Com)
+        inline M_Com() : M_Base("Com") {}
+        IL_INSTANCE_DEC(M_Com)
 
         inline void send(const ComTeleFld& tele) const
         {

@@ -11,13 +11,10 @@
 
 #include <ifs/I_Com.h>
 #include <ifs/I_Dispatcher.h>
-#include <ifs/I_Hub.h>
 #include <ifs/CompEnums.h>
 #include <ifs/I_Log.h>
 #include <ifs/I_Provider.h>
 #include <ifs/I_Reader.h>
-#include <ifs/CompEnums.h>
-#include <ifs/CompEnums.h>
 
 #include <BAS/coding.h>
 
@@ -25,9 +22,6 @@ namespace IL
 {
     I_Com& getCom();
     I_Dispatcher& getDispatcher();
-    I_Hub& getLCR_Hub();
-    I_Hub& getSIG_Hub();
-    I_Hub& getTSW_Hub();
     I_Log& getLog();
     I_Provider& getLCR_Provider();
     I_Provider& getSIG_Provider();

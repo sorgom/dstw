@@ -10,49 +10,38 @@
 #ifndef IL_H
 #define IL_H
 
-//## INCLUDES
+#include <ifs/CompEnums.h>
 #include <ifs/I_Com.h>
 #include <ifs/I_Dispatcher.h>
 #include <ifs/I_Hub.h>
-#include <ifs/CompEnums.h>
 #include <ifs/I_Log.h>
 #include <ifs/I_Provider.h>
 #include <ifs/I_Reader.h>
-#include <ifs/CompEnums.h>
-#include <ifs/CompEnums.h>
-//## END
 
 #include <BAS/coding.h>
 
-//  static I_NAME& getNAME();
-//  static void setNAME(I_NAME& ref);
-#define IL_DEC(NAME) \
-    static I_ ## NAME& get ## NAME(); \
-    static void set ## NAME(I_ ## NAME& ref);
-
-class IL
+namespace IL
 {
-public:
-    //# IL_DEC
-    IL_DEC(Com)
-    IL_DEC(Dispatcher)
-    IL_DEC(LCR)
-    IL_DEC(LCR_Hub)
-    IL_DEC(LCR_Provider)
-    IL_DEC(Log)
-    IL_DEC(Reader)
-    IL_DEC(SIG)
-    IL_DEC(SIG_Hub)
-    IL_DEC(SIG_Provider)
-    IL_DEC(TSW)
-    IL_DEC(TSW_Hub)
-    IL_DEC(TSW_Provider)
-    //# END
+    I_Com& getCom();
+    void setCom(I_Com& ref);
 
-    static void reset();
+    I_Dispatcher& getDispatcher();
+    void setDispatcher(I_Dispatcher& ref);
 
-    NOCOPY(IL)
-    IL();    
-};
+    I_Provider& getLCR_Provider();
+    void setLCR_Provider(I_Provider& ref);
+
+    I_Provider& getSIG_Provider();
+    void setSIG_Provider(I_Provider& ref);
+
+    I_Provider& getTSW_Provider();
+    void setTSW_Provider(I_Provider& ref);
+
+    I_Log& getLog();
+    void setLog(I_Log& ref);
+
+    void reset();
+    void prod();
+} // namespace
 
 #endif // _H

@@ -16,7 +16,7 @@ void Dispatcher::index()
     { pass(); }
     else
     {
-        IL::getLog().log(MOD_SYS_DISPATCHER, ERR_STARTUP);
+        IL::getLog().log(COMP_SYS, ERR_STARTUP);
     }
 }
 
@@ -39,13 +39,13 @@ void Dispatcher::dispatch(const ComTeleFld& tele) const
         switch (ncp.comp)
         {
         case COMP_TSW:
-            IL::getTSW_Hub().fromDsp(ncp.pos, tele);
+            forward(IL::getTSW_Provider(), ncp, tele);
             break;
         case COMP_SIG:
-            IL::getSIG_Hub().fromDsp(ncp.pos, tele);
+            forward(IL::getSIG_Provider(), ncp, tele);
             break;
         case COMP_LCR:
-            IL::getLCR_Hub().fromDsp(ncp.pos, tele);
+            forward(IL::getLCR_Provider(), ncp, tele);
             break;
         case COMP_SEG:
             break;
@@ -55,7 +55,7 @@ void Dispatcher::dispatch(const ComTeleFld& tele) const
     }
     else
     { 
-        IL::getLog().log(MOD_SYS_DISPATCHER, ERR_MATCH);
+        IL::getLog().log(COMP_SYS, ERR_MATCH);
     }
 }
 
@@ -69,13 +69,13 @@ void Dispatcher::dispatch(const ComTeleGui& tele) const
         switch (ncp.comp)
         {
         case COMP_TSW:
-            IL::getTSW_Hub().fromDsp(ncp.pos, tele);
+            forward(IL::getTSW_Provider(), ncp, tele);
             break;
         case COMP_SIG:
-            IL::getSIG_Hub().fromDsp(ncp.pos, tele);
+            forward(IL::getSIG_Provider(), ncp, tele);
             break;
         case COMP_LCR:
-            IL::getLCR_Hub().fromDsp(ncp.pos, tele);
+            forward(IL::getLCR_Provider(), ncp, tele);
             break;
         case COMP_SEG:
             break;
@@ -85,7 +85,7 @@ void Dispatcher::dispatch(const ComTeleGui& tele) const
     }
     else
     { 
-        IL::getLog().log(MOD_SYS_DISPATCHER, ERR_MATCH);
+        IL::getLog().log(COMP_SYS, ERR_MATCH);
     }
 }
 

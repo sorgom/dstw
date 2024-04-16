@@ -68,7 +68,6 @@ namespace test
         inline static std::ostringstream& prep()
         {
             mStream.str("");
-            mStream << "I_";
             return mStream;
         }
         inline static MockActualCall& mkCall()

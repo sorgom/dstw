@@ -9,12 +9,16 @@
 #include <ifs/I_Dispatcher.h>
 #include "M_Base.h"
 
+#include <qnd/useCout.h>
+#include <comparators/ostreams.h>
+
 namespace test
 {
-    MOCK_CLASS(Dispatcher)
+    class M_Dispatcher : public I_Dispatcher, private M_Base
     {
     public:
-        MOCK_CON(Dispatcher)
+        inline M_Dispatcher() : M_Base("Dispatcher") {}
+        IL_INSTANCE_DEC(M_Dispatcher)
 
         inline void reset()
         {
@@ -61,24 +65,26 @@ namespace test
         {
             expect("dispatch").TPARAM(ComTeleGui, tele);
         }
-
-
         inline void dispatch(size_t id, ComTeleFld&& tele) const
         {
-            call("dispatch").PARAM(id).TPARAM(ComTeleFld, tele);
+            cout << "dispatch FLD " << id << endl << tele << endl;
+            call("dispatchFLD").PARAM(id).TPARAM(ComTeleFld, tele);
         }
-        inline void expectDispatch(size_t id, ComTeleFld&& tele) const
+        inline void expectDispatch(size_t id, const ComTeleFld& tele) const
         {
-            expect("dispatch").PARAM(id).TPARAM(ComTeleFld, tele);
+            cout << "expect dispatch FLD " << id << endl << tele << endl;
+            expect("dispatchFLD").PARAM(id).TPARAM(ComTeleFld, tele);
         }
 
         inline void dispatch(size_t id, ComTeleGui&& tele) const
         {
-            call("dispatch").PARAM(id).TPARAM(ComTeleGui, tele);
+            cout << "dispatch GUI " << id << endl << tele << endl;
+            call("dispatchGUI").PARAM(id).TPARAM(ComTeleGui, tele);
         }
-        inline void expectDispatch(size_t id, ComTeleGui&& tele) const
+        inline void expectDispatch(size_t id, const ComTeleGui& tele) const
         {
-            expect("dispatch").PARAM(id).TPARAM(ComTeleGui, tele);
+            cout << "expect dispatch GUI " << id << endl << tele << endl;
+            expect("dispatchGUI").PARAM(id).TPARAM(ComTeleGui, tele);
         }
     };
 } 

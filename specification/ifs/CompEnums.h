@@ -49,9 +49,9 @@ enum E_SigState : UINT8
 //  ============================================================
 enum E_TswState : UINT8
 {
+    TSW_STATE_UNDEF = PARAM_UNDEF,
     TSW_STATE_LEFT = 101,
     TSW_STATE_RIGHT,
-    TSW_STATE_UNDEF,
     TSW_STATE_DEFECT,
     TSW_STATE_WAIT_LEFT,
     TSW_STATE_WAIT_RIGHT

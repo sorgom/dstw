@@ -9,6 +9,7 @@
 
 #include <ifs/CompEnums.h>
 #include <ifs/I_Elem.h>
+#include <SYS/IL.h>
 #include <BAS/coding.h>
 
 class SIG_X : public I_Elem
@@ -30,6 +31,15 @@ protected:
 
     void procFromFld(UINT8 state);
     void procFromGui(UINT8 stateFld, UINT8 stateGui);
+
+    inline void toGui(UINT8 state, UINT8 speed = PARAM_UNDEF) 
+    { 
+        IL::getDispatcher().dispatch(mId, ComTeleGui(state, speed)); 
+    }
+    inline void toFld(UINT8 state, UINT8 speed = PARAM_UNDEF) 
+    { 
+        IL::getDispatcher().dispatch(mId, ComTeleFld(state, speed)); 
+    }
 
     static void logMismatch();
 };
@@ -65,8 +75,8 @@ class SIG_H : public SIG_X
 public:
     inline SIG_H(size_t id): SIG_X(id) {}
 
-    void fromFld(UINT8 state, UINT8 speed);
-    void fromGui(UINT8 state, UINT8 speed);
+    void process(const ComTeleGui& tele);
+    void process(const ComTeleFld& tele);
 
     inline UINT8 type() const { return SIG_TYPE_H; }
 
@@ -90,8 +100,8 @@ class SIG_N : public SIG_XS
 public:
     inline SIG_N(size_t id): SIG_XS(id) {}
 
-    void fromFld(UINT8 state, UINT8 speed);
-    void fromGui(UINT8 state, UINT8 speed);
+    void process(const ComTeleGui& tele);
+    void process(const ComTeleFld& tele);
 
     inline UINT8 type() const { return SIG_TYPE_N; }
 
@@ -117,8 +127,8 @@ class SIG_H_N : public SIG_XS
 public:
     inline SIG_H_N(size_t id): SIG_XS(id) {}
 
-    void fromFld(UINT8 state, UINT8 speed);
-    void fromGui(UINT8 state, UINT8 speed);
+    void process(const ComTeleGui& tele);
+    void process(const ComTeleFld& tele);
 
     inline UINT8 type() const { return SIG_TYPE_H_N; }
 

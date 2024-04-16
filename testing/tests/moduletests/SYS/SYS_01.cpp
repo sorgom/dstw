@@ -22,7 +22,7 @@ namespace test
         void expectFail()
         {
             expectReset();
-            m_Log().expectLog(MOD_SYS_READER, ERR_STARTUP);
+            m_Log().expectLog(COMP_SYS, ERR_STARTUP);
         }
 
         void wrongSize(int dev)
@@ -31,8 +31,7 @@ namespace test
             constexpr static const UINT32 nums[] = { 1, 1, 1, 1 };
             os.write(reinterpret_cast<const CHAR*>(nums), 4 * sizeof(UINT32));
 
-            constexpr static const size_t wSize = 
-                sizeof(ProjTSW) + sizeof(ProjSIG) + sizeof(ProjLCR) + sizeof(ProjSEG);
+            constexpr static const size_t wSize = sizeof(ProjItem) * 4;
 
             for (size_t n = 0; n < wSize + dev; ++n)
             {
@@ -112,8 +111,7 @@ namespace test
     //  retrieve instance
     TEST(SYS_01, T05)
     {
-        unmock();
-        I_Reader& inst = IL::getReader();
+        I_Reader& inst = Reader::instance();
         play(inst);
     }
 }

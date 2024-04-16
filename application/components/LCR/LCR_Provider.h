@@ -9,7 +9,6 @@
 
 #include <BAS/coding.h>
 #include <BAS/BAS_Provider.h>
-#include <ifs/I_Provider.h>
 
 class LCR_Provider : public BAS_Provider
 {
@@ -18,10 +17,10 @@ public:
 
     IL_INSTANCE_DEC(LCR_Provider)
 
-    void load(const ProjItem* data, UINT32 num) final;
-
     NOCOPY(LCR_Provider)
+protected:
+    bool add(size_t id, const ProjItem& item) final;
+    inline E_Comp comp() const final { return COMP_LCR; };  
 };
-
 
 #endif // H_

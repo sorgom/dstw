@@ -16,7 +16,7 @@ class Log : public I_Log
 {
 public:
     inline Log(): mErr(NO_ERR) {}
-    inline void log(E_Mod mod, E_Err err)
+    inline void log(E_Comp comp, E_Err err)
     {
         mErr = std::max(mErr, err);
     }

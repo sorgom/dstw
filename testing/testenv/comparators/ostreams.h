@@ -17,16 +17,11 @@
 #include <ostream>
 #include <comparators/ostreamHelpers.h>
 
-//# OSTREAM_DEC
 OSTREAM_DEC(ComName)
 OSTREAM_DEC(ComTele)
 OSTREAM_DEC(ComTeleFld)
 OSTREAM_DEC(ComTeleGui)
 OSTREAM_DEC(PosRes)
-OSTREAM_DEC(ProjLCR)
-OSTREAM_DEC(ProjSEG)
-OSTREAM_DEC(ProjSIG)
-OSTREAM_DEC(ProjTSW)
-//# END
+OSTREAM_DEC(ProjItem)
 
 #endif // H_

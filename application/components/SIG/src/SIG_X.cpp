@@ -8,7 +8,7 @@ void SIG_X::procFromFld(const UINT8 state)
     if (mStateToGui != state)
     {
         mStateToGui = state;
-        IL::getSIG_Hub().toGui(mId, mStateToGui);
+        toGui(mStateToGui);
     }
     else
     { pass(); }
@@ -34,7 +34,7 @@ void SIG_XS::procFromFld(const UINT8 state, UINT8 speed)
     {
         mStateToGui = state;
         mSpeedToGui = speed;
-        IL::getSIG_Hub().toGui(mId, mStateToGui, mSpeedToGui);
+        toGui(mStateToGui, mSpeedToGui);
     }
     else
     { pass(); }
@@ -44,8 +44,8 @@ void SIG_X::procFromGui(const UINT8 stateFld, const UINT8 stateGui)
 {
     mStateToFld = stateFld;
     mStateToGui = stateGui;
-    IL::getSIG_Hub().toFld(mId, mStateToFld);
-    IL::getSIG_Hub().toGui(mId, mStateToGui);
+    toGui(mStateToGui);
+    toFld(mStateToFld);
 }
 
 void SIG_XS::procFromGui(const UINT8 stateFld, const UINT8 stateGui, const UINT8 speed)
@@ -53,8 +53,8 @@ void SIG_XS::procFromGui(const UINT8 stateFld, const UINT8 stateGui, const UINT8
     mStateToFld = stateFld;
     mSpeedToFld = speed;
     mStateToGui = stateGui;
-    IL::getSIG_Hub().toFld(mId, mStateToFld, mSpeedToFld);
-    IL::getSIG_Hub().toGui(mId, mStateToGui, mSpeedToGui);
+    toGui(mStateToGui, mSpeedToGui);
+    toFld(mStateToFld, mSpeedToFld);
 }
 
 void SIG_XS::speedToFld(const UINT8 speed)
@@ -67,7 +67,7 @@ void SIG_XS::speedToFld(const UINT8 speed)
             if (speed != mSpeedToFld)
             {
                 mSpeedToFld = speed;
-                IL::getSIG_Hub().toFld(mId, mStateToFld, mSpeedToFld);
+                toFld(mStateToFld, mSpeedToFld);
             }
             break;    
     };
@@ -75,11 +75,12 @@ void SIG_XS::speedToFld(const UINT8 speed)
 
 void SIG_X::logMismatch()
 {
-    IL::getLog().log(MOD_SIG, ERR_MATCH);
+    IL::getLog().log(COMP_SIG, ERR_MATCH);
 }
 
-void SIG_H::fromFld(const UINT8 state, const UINT8 speed)
+void SIG_H::process(const ComTeleFld& tele)
 {
+    const auto state = tele.param1;
     switch (state)
     {
     case SIG_STATE_UNDEF:
@@ -94,9 +95,9 @@ void SIG_H::fromFld(const UINT8 state, const UINT8 speed)
     };
 }
 
-void SIG_H::fromGui(const UINT8 state, const UINT8 speed)
+void SIG_H::process(const ComTeleGui& tele)
 {
-    switch (state)
+    switch (tele.param1)
     {
     case SIG_STATE_H0:
         proc_H0();
@@ -138,24 +139,9 @@ void SIG_H::proc_H1()
     }
 }
 
-void SIG_N::fromFld(const UINT8 state, const UINT8 speed)
+void SIG_N::process(const ComTeleGui& tele)
 {
-    switch (state)
-    {
-    case SIG_STATE_UNDEF:
-    case SIG_STATE_DEFECT:
-    case SIG_STATE_N0:
-    case SIG_STATE_N1:
-        procFromFld(state, speed);
-        break;    
-    default:
-        logMismatch();
-        break;    
-    };
-}
-
-void SIG_N::fromGui(const UINT8 state, const UINT8 speed)
-{
+    const auto state = tele.param1, speed = tele.param2;
     switch (state)
     {
     case SIG_STATE_N0:
@@ -163,6 +149,23 @@ void SIG_N::fromGui(const UINT8 state, const UINT8 speed)
         break;    
     case SIG_STATE_N1:
         proc_N1(speed);
+        break;    
+    default:
+        logMismatch();
+        break;    
+    };
+}
+
+void SIG_N::process(const ComTeleFld& tele)
+{
+    const auto state = tele.param1, speed = tele.param2;
+    switch (state)
+    {
+    case SIG_STATE_UNDEF:
+    case SIG_STATE_DEFECT:
+    case SIG_STATE_N0:
+    case SIG_STATE_N1:
+        procFromFld(state, speed);
         break;    
     default:
         logMismatch();
@@ -200,27 +203,9 @@ void SIG_N::proc_N1(const UINT8 speed)
     }
 }
 
-
-void SIG_H_N::fromFld(const UINT8 state, const UINT8 speed)
+void SIG_H_N::process(const ComTeleGui& tele)
 {
-    switch (state)
-    {
-    case SIG_STATE_UNDEF:
-    case SIG_STATE_DEFECT:
-    case SIG_STATE_H0_N0:
-    case SIG_STATE_H0_N1:
-    case SIG_STATE_H1_N0:
-    case SIG_STATE_H1_N1:
-        procFromFld(state, speed);
-        break;    
-    default:
-        logMismatch();
-        break;    
-    };
-}
-
-void SIG_H_N::fromGui(const UINT8 state, const UINT8 speed)
-{
+    const auto state = tele.param1, speed = tele.param2;
     switch (state)
     {
     case SIG_STATE_H0_N0:
@@ -234,6 +219,25 @@ void SIG_H_N::fromGui(const UINT8 state, const UINT8 speed)
         break;    
     case SIG_STATE_H1_N1:
         proc_H1_N1(speed);
+        break;    
+    default:
+        logMismatch();
+        break;    
+    };
+}
+
+void SIG_H_N::process(const ComTeleFld& tele)
+{
+    const auto state = tele.param1, speed = tele.param2;
+    switch (state)
+    {
+    case SIG_STATE_UNDEF:
+    case SIG_STATE_DEFECT:
+    case SIG_STATE_H0_N0:
+    case SIG_STATE_H0_N1:
+    case SIG_STATE_H1_N0:
+    case SIG_STATE_H1_N1:
+        procFromFld(state, speed);
         break;    
     default:
         logMismatch();

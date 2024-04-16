@@ -18,7 +18,8 @@ public:
         mId(id),
         mStateToGui(LCR_STATE_UNDEF)
     {}
-    void fromGui(UINT8 state, UINT8 = PARAM_UNDEF);
+
+    void process(const ComTeleGui& tele);
 
     NOCOPY(LCR_X)
     NODEF(LCR_X)
@@ -45,7 +46,7 @@ class LCR : public LCR_X
 public:
     inline LCR(size_t id): LCR_X(id) {}
 
-    void fromFld(UINT8 state, UINT8 ubk);
+    void process(const ComTeleFld& tele);
 
     inline UINT8 type() const { return LCR_TYPE_LCR; }
 
@@ -67,7 +68,7 @@ public:
         mUbkToGui(LCR_UBK_STATE_UNDEF)
     {}
 
-    void fromFld(UINT8 state, UINT8 ubk);
+    void process(const ComTeleFld& tele);
 
     inline UINT8 type() const { return LCR_TYPE_LCR_UBK; }
 

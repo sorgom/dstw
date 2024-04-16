@@ -35,12 +35,12 @@ void LCR_X::close()
 
 void LCR_X::toFld(const UINT8 state) const
 {
-    IL::getLCR_Hub().toFld(mId, state);
+    IL::getDispatcher().dispatch(mId, ComTeleFld(state));
 }
 
-void LCR_X::fromGui(const UINT8 state, UINT8)
+void LCR_X::process(const ComTeleGui& tele)
 {
-    switch (state)
+    switch (tele.param1)
     {
         case LCR_STATE_CLOSED:
             close();
@@ -49,7 +49,7 @@ void LCR_X::fromGui(const UINT8 state, UINT8)
             open();
             break;
         default:
-            IL::getLog().log(MOD_LCR, ERR_MATCH);
+            IL::getLog().log(COMP_LCR, ERR_MATCH);
             break;
     }
 }
@@ -66,14 +66,15 @@ bool LCR_X::validState(const UINT8 state)
         ok = true;
         break;
     default:
-        IL::getLog().log(MOD_LCR, ERR_MATCH);
+        IL::getLog().log(COMP_LCR, ERR_MATCH);
         break;    
     };
     return ok;
 }
 
-void LCR::fromFld(const UINT8 state, const UINT8 ubk)
+void LCR::process(const ComTeleFld& tele)
 {
+    const auto state = tele.param1;
     if (state == mStateToGui)
     { pass(); }
     else if (not validState(state))
@@ -87,7 +88,7 @@ void LCR::fromFld(const UINT8 state, const UINT8 ubk)
 
 void LCR::toGui() const
 {
-    IL::getLCR_Hub().toGui(mId, mStateToGui);
+    IL::getDispatcher().dispatch(mId, ComTeleGui(mStateToGui));
 }
 
 bool LCR_UBK::validUbk(const UINT8 state)
@@ -102,14 +103,15 @@ bool LCR_UBK::validUbk(const UINT8 state)
         ok = true;
         break;    
     default:
-        IL::getLog().log(MOD_LCR, ERR_MATCH);
+        IL::getLog().log(COMP_LCR, ERR_MATCH);
         break;    
     };
     return ok;
 }
 
-void LCR_UBK::fromFld(const UINT8 state, const UINT8 ubk)
+void LCR_UBK::process(const ComTeleFld& tele)
 {
+    const auto state = tele.param1, ubk = tele.param2;
     if (
         (state == mStateToGui) and
         (ubk   == mUbkToGui)
@@ -130,5 +132,5 @@ void LCR_UBK::fromFld(const UINT8 state, const UINT8 ubk)
 
 void LCR_UBK::toGui() const
 {
-    IL::getLCR_Hub().toGui(mId, mStateToGui, mUbkToGui);
+    IL::getDispatcher().dispatch(mId, ComTeleGui(mStateToGui, mUbkToGui));
 }

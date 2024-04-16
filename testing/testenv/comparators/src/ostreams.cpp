@@ -24,3 +24,18 @@ OSTREAM_DEF(ComTeleGui)
     return os << static_cast<const ComTele&>(d);
 }
 
+OSTREAM_DEF(PosRes)
+{
+    return os 
+        << DOUT(pos)
+        << DOUT(valid)
+    ;
+}
+
+OSTREAM_DEF(ProjItem)
+{
+    return os 
+        << DOUT(name)
+        << DOUT(type)
+    ;
+}
