@@ -13,7 +13,7 @@ namespace test
         Dispatcher mSUT;
         inline TestGroupDSP()
         {
-            mSUT.reset();
+            mSUT.clear();
             mSUT.assign(genComName(1, "TSW"), COMP_TSW, 1);
             mSUT.assign(genComName(2, "SIG"), COMP_SIG, 2);
             mSUT.assign(genComName(3, "LCR"), COMP_LCR, 3);
@@ -194,7 +194,7 @@ namespace test
     TEST(SYS_02, T06)
     {
         SETUP()
-        mSUT.reset();
+        mSUT.clear();
         E_Comp comp = (E_Comp) 100;
         mSUT.assign(genComName(1, "TSW"), comp, 1);
         mSUT.index();
@@ -216,7 +216,7 @@ namespace test
     //  Dispatcher duplicate assignments -> index error
     TEST(SYS_02, T07)
     {
-        mSUT.reset();
+        mSUT.clear();
         mSUT.assign(genComName(1, "TSW"), COMP_TSW, 1);
         mSUT.assign(genComName(1, "TSW"), COMP_TSW, 2);
         mSUT.assign(genComName(3, "LCR"), COMP_LCR, 3);

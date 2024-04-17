@@ -16,16 +16,16 @@ class Dispatcher : public I_Dispatcher
 public:
     inline Dispatcher() = default;
 
-    void reset();
+    void clear();
     void index();
 
     const PosRes assign(const ComName& name, E_Comp comp, size_t pos);
     
-    void dispatch(const ComTeleFld& tele) const;
-    void dispatch(const ComTeleGui&   tele) const;
+    void fromFld(const ComTele& tele) const;
+    void fromGui(const ComTele& tele) const;
 
-    void dispatch(size_t id, ComTeleFld&& tele) const;
-    void dispatch(size_t id, ComTeleGui&& tele) const;
+    void toFld(size_t id, const ComData& data) const;
+    void toGui(size_t id, const ComData& data) const;
 
     IL_INSTANCE_DEC(Dispatcher)
 

@@ -1,8 +1,8 @@
 //  ============================================================
 //  interface Elem
 //  processing:
-//  - GUI telegrams
-//  - field telegrams
+//  - commands from GUI
+//  - states from field
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -15,11 +15,11 @@
 class I_Elem
 {
 public:
-    //  process GUI telegram
-    virtual void process(const ComTeleGui& tele) = 0;
+    //  process GUI commands
+    virtual void fromGui(const ComData& data) = 0;
 
-    //  process field telegram
-    virtual void process(const ComTeleFld& tele) = 0;
+    //  process field states
+    virtual void fromFld(const ComData& data) = 0;
 
 //  this is test code: type info if relevant
     virtual UINT8 type() { return 0; }    

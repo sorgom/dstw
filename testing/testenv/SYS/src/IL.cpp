@@ -30,7 +30,7 @@ public:
         mPointer = &ref;
     }
 
-    inline void reset()
+    inline void clear()
     {
         mPointer = &mDefault;
     }
@@ -52,7 +52,7 @@ class ILPLugs
 public:
     INSTANCE_DEC(ILPLugs)
 
-    void reset();
+    void clear();
 
     ILPLug<I_Com> mCom;
     ILPLug<I_Dispatcher> mDispatcher;
@@ -93,14 +93,14 @@ ILPLugs::ILPLugs():
     mLog(test::M_Log::instance())
 {}
 
-void ILPLugs::reset()
+void ILPLugs::clear()
 {
-    mCom.reset();
-    mDispatcher.reset();
-    mLCR_Provider.reset();
-    mSIG_Provider.reset();
-    mTSW_Provider.reset();
-    mLog.reset();
+    mCom.clear();
+    mDispatcher.clear();
+    mLCR_Provider.clear();
+    mSIG_Provider.clear();
+    mTSW_Provider.clear();
+    mLog.clear();
 }
 
 namespace IL
@@ -123,7 +123,7 @@ namespace IL
     I_Log& getLog() { return ILPLugs::instance().mLog.ref(); }
     void setLog(I_Log& ref) { ILPLugs::instance().mLog.set(ref); }
 
-    void reset() { ILPLugs::instance().reset(); }
+    void clear() { ILPLugs::instance().clear(); }
     void prod() { ILPLugs::instance().prod(); }
 } // namespace
 

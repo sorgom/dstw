@@ -1,8 +1,5 @@
 //  ============================================================
-//  interface Provider and derived interfaces:
-//  - I_TSW_Provider
-//  - I_SIG_Provider
-//  - I_LCR_Provider
+//  interface Provider
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -10,9 +7,8 @@
 #ifndef I_PROVIDER_H
 #define I_PROVIDER_H
 
-#include "ProjItem.h"
 #include "I_Elem.h"
-#include "SystemEnums.h"
+#include "ProjItem.h"
 
 class I_Provider
 {
@@ -20,19 +16,8 @@ public:
     virtual size_t size() const = 0;
     virtual I_Elem& at(size_t pos) = 0;
 
-    virtual void reset() = 0;
+    virtual void clear() = 0;
     virtual void load(const ProjItem* data, UINT32 num) = 0;
 };
-
-class I_TSW_Provider : public I_Provider
-{};
-
-class I_SIG_Provider : public I_Provider
-{};
-
-class I_LCR_Provider : public I_Provider
-{};
-
-
 
 #endif // H_

@@ -28,7 +28,7 @@ public:
         return mElems.at(pos);
     }
 
-    inline void reset() final
+    inline void clear() final
     {
         mElems.clear();
     }

@@ -40,7 +40,7 @@ namespace IL
     I_Log& getLog();
     void setLog(I_Log& ref);
 
-    void reset();
+    void clear();
     void prod();
 } // namespace
 

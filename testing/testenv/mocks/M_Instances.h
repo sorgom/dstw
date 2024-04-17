@@ -43,7 +43,7 @@ namespace test
     inline M_TSW& m_TSW() { return M_TSW::instance(); }
 
     inline void unmock() { IL::prod(); }
-    inline void mockAll() { IL::reset(); }
+    inline void mockAll() { IL::clear(); }
 }
 
 #endif // _H

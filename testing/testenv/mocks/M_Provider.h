@@ -31,13 +31,13 @@ namespace test
             expect("size").AND_RETURN(ret);
         }
 
-        inline void reset()
+        inline void clear()
         {
-            call("reset");
+            call("clear");
         }
         inline void expectReset() const
         {
-            expect("reset");
+            expect("clear");
         }
         
         inline void load(const ProjItem* data, UINT32 num)

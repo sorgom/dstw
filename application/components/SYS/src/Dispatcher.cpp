@@ -5,7 +5,7 @@
 
 IL_INSTANCE_DEF(Dispatcher)
 
-void Dispatcher::reset()
+void Dispatcher::clear()
 {
     mIndx.clear();
 }
@@ -29,12 +29,14 @@ const PosRes Dispatcher::assign(
     return PosRes{mIndx.size() - 1, true};
 }
 
-void Dispatcher::dispatch(const ComTeleFld& tele) const
+void Dispatcher::fromFld(const ComTele& tele) const
 {
     const PosRes res = mIndx.find(tele.name);
 
     if (res.valid)
     {
+        const ComData data = static_cast<ComData>(tele);
+
         const Ncp& ncp = mIndx.at(res);
         switch (ncp.comp)
         {

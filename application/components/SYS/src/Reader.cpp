@@ -11,10 +11,10 @@ IL_INSTANCE_DEF(Reader)
 
 void Reader::read(const CONST_C_STRING filename) const
 {
-    IL::getDispatcher().reset();
-    IL::getTSW_Provider().reset();
-    IL::getSIG_Provider().reset();
-    IL::getLCR_Provider().reset();
+    IL::getDispatcher().clear();
+    IL::getTSW_Provider().clear();
+    IL::getSIG_Provider().clear();
+    IL::getLCR_Provider().clear();
     //  SEG not yet implemented
 
     std::ifstream is(filename, std::ios::binary);

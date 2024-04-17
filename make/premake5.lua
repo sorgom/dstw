@@ -90,8 +90,8 @@ workspace 'tests'
                     -- '../testing/tests/moduletests/SYS/SYS_01.cpp',
                     -- '../testing/tests/moduletests/SYS/SYS_02.cpp',
                     -- '../testing/tests/moduletests/SYS/SYS_03.cpp',
-                    -- '../testing/tests/devtests/DT_01.cpp',
-                    '../testing/tests/moduletests/TSW/TSW_01.cpp',
+                    '../testing/tests/devtests/DT_01.cpp',
+                    -- '../testing/tests/moduletests/TSW/TSW_01.cpp',
                 }
     
 --  ============================================================

@@ -4,7 +4,7 @@
 
 void BAS_Provider::load(const ProjItem* data, const UINT32 num)
 {
-    reset();
+    clear();
     mElems.reserve(num);
     bool ok = true;
     for (UINT32 n = 0; ok and (n < num); ++n, ++data)
@@ -20,7 +20,7 @@ void BAS_Provider::load(const ProjItem* data, const UINT32 num)
     }
     if (not ok)
     {
-        reset();
+        clear();
         IL::getLog().log(comp(), ERR_STARTUP);
     }
     else 

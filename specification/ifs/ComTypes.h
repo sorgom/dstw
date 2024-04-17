@@ -47,18 +47,19 @@ static_assert(ComNameSize == sizeof(ComName));
 //  standard telegram size
 constexpr auto ComTelegramSize = ComNameSize + 2;
 
+struct ComData
+{
+    UINT8 param1;
+    UINT8 param2;
+};
+
 //  common telegram format
 struct ComTele
 {
     ComName name;
-    const UINT8 param1;
-    const UINT8 param2;
-    inline ComTele(UINT8 param1 = PARAM_UNDEF, UINT8 param2 = PARAM_UNDEF):
-        param1(param1),
-        param2(param2)
-    {}
-    NOCOPY(ComTele)
+    ComData data;
 };
+
 static_assert(ComTelegramSize == sizeof(ComTele));
 
 #include <qnd/useCout.h>

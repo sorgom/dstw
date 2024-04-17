@@ -20,13 +20,13 @@ namespace test
         inline M_Dispatcher() : M_Base("Dispatcher") {}
         IL_INSTANCE_DEC(M_Dispatcher)
 
-        inline void reset()
+        inline void clear()
         {
-            call("reset");
+            call("clear");
         }
         inline void expectReset() const
         {
-            expect("reset");
+            expect("clear");
         }
 
         inline void index()
