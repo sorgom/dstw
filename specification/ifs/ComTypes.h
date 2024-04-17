@@ -47,44 +47,21 @@ static_assert(ComNameSize == sizeof(ComName));
 //  standard telegram size
 constexpr auto ComTelegramSize = ComNameSize + 2;
 
+//  Com telegrams data
 struct ComData
 {
     UINT8 param1;
     UINT8 param2;
 };
 
-//  common telegram format
+//  Com telegram
 struct ComTele
 {
     ComName name;
     ComData data;
 };
 
-static_assert(ComTelegramSize == sizeof(ComTele));
-
-#include <qnd/useCout.h>
-
-//  field communication telegram
-struct ComTeleFld : ComTele
-{
-    inline ComTeleFld(UINT8 param1 = PARAM_UNDEF, UINT8 param2 = PARAM_UNDEF):
-        ComTele(param1, param2)
-    {
-        cout << "ComTeleFld: " << (int) param1 << ", " << (int) param2 << endl;
-    }
-    NOCOPY(ComTeleFld)
-};
-
-//  DiB communication telegram
-struct ComTeleGui : ComTele
-{
-    inline ComTeleGui(UINT8 param1 = PARAM_UNDEF, UINT8 param2 = PARAM_UNDEF):
-        ComTele(param1, param2)
-    {
-        cout << "ComTeleGui: " << (int) param1 << ", " << (int) param2 << endl;
-    }
-    NOCOPY(ComTeleGui)
-};
+static_assert(sizeof(ComTele) == ComTelegramSize);
 
 #include <codebase/packEnd.h>
 

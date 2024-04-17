@@ -1,12 +1,26 @@
 #include <TSW/TSW.h>
 #include <SYS/IL.h>
 
-#include <qnd/useCout.h>
-
-void TSW::process(const ComTeleGui& tele)
+void TSW::fromFld(const ComData& data)
 {
-    const auto state = tele.param1;
-    cout << "TSW::process GUI: " << (UINT16) state << endl;
+    const auto state = data.param1;
+    switch(state)
+    {
+    case TSW_STATE_LEFT:
+    case TSW_STATE_RIGHT:
+    case TSW_STATE_UNDEF:
+    case TSW_STATE_DEFECT:
+        chgState(state);
+        break;
+    default:
+        IL::getLog().log(COMP_TSW, ERR_MATCH);
+        break;
+    }
+}
+
+void TSW::fromGui(const ComData& data)
+{
+    const auto state = data.param1;
     switch(state)
     {
     case TSW_GUI_GMD_WU:
@@ -26,7 +40,6 @@ void TSW::process(const ComTeleGui& tele)
 
 void TSW::swLeft()
 {
-    cout << "TSW::swLeft" << endl;
     switch (mState)
     {
     case TSW_STATE_LEFT:
@@ -42,7 +55,6 @@ void TSW::swLeft()
 
 void TSW::swRight()
 {
-    cout << "TSW::swRight" << endl;
     switch (mState)
     {
     case TSW_STATE_RIGHT:
@@ -73,37 +85,18 @@ void TSW::wu()
     };
 }
 
-void TSW::process(const ComTeleFld& tele)
-{
-    const auto state = tele.param1;
-    cout << "TSW::process FLD: " << (UINT16) state << endl;
-    switch(state)
-    {
-    case TSW_STATE_LEFT:
-    case TSW_STATE_RIGHT:
-    case TSW_STATE_UNDEF:
-    case TSW_STATE_DEFECT:
-        chgState(state);
-        break;
-    default:
-        IL::getLog().log(COMP_TSW, ERR_MATCH);
-        break;
-    }
-}
-
 void TSW::chgState(const UINT8 state)
 {
     if (state != mState)
     {
-        cout << "TSW::chgState: " << (UINT16) state << endl;
         mState = state;
-        cout << "TSW::toGui: " << (UINT16) mState << endl;
-        IL::getDispatcher().dispatch(mId, ComTeleGui(mState));
+        IL::getDispatcher().toGui(mId, ComData{mState, PARAM_UNDEF});
     }
+    else
+    { pass(); }
 }
 
 void TSW::toFld(const UINT8 state) const
 {
-    cout << "TSW::toFld: " << (UINT16) state << endl;
-    IL::getDispatcher().dispatch(mId, ComTeleFld(state));
+    IL::getDispatcher().toFld(mId, ComData{state, PARAM_UNDEF});
 } 

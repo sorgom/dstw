@@ -22,9 +22,11 @@ public:
         mState(TSW_STATE_UNDEF)
     {}
 
-    void process(const ComTeleGui& tele);
-    void process(const ComTeleFld& tele);
+    void fromFld(const ComData& data);
+    void fromGui(const ComData& data);
 
+    NOCOPY(TSW)
+    NODEF(TSW)
 private:
     const size_t mId;
     UINT8 mState;
@@ -34,9 +36,6 @@ private:
     void swRight();
     void chgState(UINT8 state);
     void toFld(UINT8 state) const;
-
-    NOCOPY(TSW)
-    NODEF(TSW)
 };
 
 

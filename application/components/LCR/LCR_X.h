@@ -14,17 +14,18 @@
 class LCR_X : public I_Elem
 {
 public:
-    inline LCR_X(size_t id):
-        mId(id),
-        mStateToGui(LCR_STATE_UNDEF)
-    {}
 
-    void process(const ComTeleGui& tele);
+    void fromGui(const ComData& data);
 
     NOCOPY(LCR_X)
     NODEF(LCR_X)
 
 protected:
+    inline LCR_X(size_t id):
+        mId(id),
+        mStateToGui(LCR_STATE_UNDEF)
+    {}
+
     const size_t mId;
     UINT8 mStateToGui;
 
@@ -46,7 +47,7 @@ class LCR : public LCR_X
 public:
     inline LCR(size_t id): LCR_X(id) {}
 
-    void process(const ComTeleFld& tele);
+    void fromFld(const ComData& data);
 
     inline UINT8 type() const { return LCR_TYPE_LCR; }
 
@@ -68,7 +69,7 @@ public:
         mUbkToGui(LCR_UBK_STATE_UNDEF)
     {}
 
-    void process(const ComTeleFld& tele);
+    void fromFld(const ComData& data);
 
     inline UINT8 type() const { return LCR_TYPE_LCR_UBK; }
 

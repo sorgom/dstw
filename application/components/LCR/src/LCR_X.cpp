@@ -35,12 +35,12 @@ void LCR_X::close()
 
 void LCR_X::toFld(const UINT8 state) const
 {
-    IL::getDispatcher().dispatch(mId, ComTeleFld(state));
+    IL::getDispatcher().toFld(mId, ComData{state, PARAM_UNDEF});
 }
 
-void LCR_X::process(const ComTeleGui& tele)
+void LCR_X::fromGui(const ComData& data)
 {
-    switch (tele.param1)
+    switch (data.param1)
     {
         case LCR_STATE_CLOSED:
             close();
@@ -72,9 +72,9 @@ bool LCR_X::validState(const UINT8 state)
     return ok;
 }
 
-void LCR::process(const ComTeleFld& tele)
+void LCR::fromFld(const ComData& data)
 {
-    const auto state = tele.param1;
+    const auto state = data.param1;
     if (state == mStateToGui)
     { pass(); }
     else if (not validState(state))
@@ -88,7 +88,7 @@ void LCR::process(const ComTeleFld& tele)
 
 void LCR::toGui() const
 {
-    IL::getDispatcher().dispatch(mId, ComTeleGui(mStateToGui));
+    IL::getDispatcher().toGui(mId, ComData{mStateToGui, PARAM_UNDEF});
 }
 
 bool LCR_UBK::validUbk(const UINT8 state)
@@ -109,9 +109,9 @@ bool LCR_UBK::validUbk(const UINT8 state)
     return ok;
 }
 
-void LCR_UBK::process(const ComTeleFld& tele)
+void LCR_UBK::fromFld(const ComData& data)
 {
-    const auto state = tele.param1, ubk = tele.param2;
+    const auto state = data.param1, ubk = data.param2;
     if (
         (state == mStateToGui) and
         (ubk   == mUbkToGui)
@@ -132,5 +132,5 @@ void LCR_UBK::process(const ComTeleFld& tele)
 
 void LCR_UBK::toGui() const
 {
-    IL::getDispatcher().dispatch(mId, ComTeleGui(mStateToGui, mUbkToGui));
+    IL::getDispatcher().toGui(mId, ComData{mStateToGui, mUbkToGui});
 }

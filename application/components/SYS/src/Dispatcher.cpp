@@ -35,19 +35,17 @@ void Dispatcher::fromFld(const ComTele& tele) const
 
     if (res.valid)
     {
-        const ComData data = static_cast<ComData>(tele);
-
         const Ncp& ncp = mIndx.at(res);
         switch (ncp.comp)
         {
         case COMP_TSW:
-            forward(IL::getTSW_Provider(), ncp, tele);
+            forwardFld(IL::getTSW_Provider(), ncp, tele);
             break;
         case COMP_SIG:
-            forward(IL::getSIG_Provider(), ncp, tele);
+            forwardFld(IL::getSIG_Provider(), ncp, tele);
             break;
         case COMP_LCR:
-            forward(IL::getLCR_Provider(), ncp, tele);
+            forwardFld(IL::getLCR_Provider(), ncp, tele);
             break;
         case COMP_SEG:
             break;
@@ -61,7 +59,7 @@ void Dispatcher::fromFld(const ComTele& tele) const
     }
 }
 
-void Dispatcher::dispatch(const ComTeleGui& tele) const
+void Dispatcher::fromGui(const ComTele& tele) const
 {
     const PosRes res = mIndx.find(tele.name);
 
@@ -71,13 +69,13 @@ void Dispatcher::dispatch(const ComTeleGui& tele) const
         switch (ncp.comp)
         {
         case COMP_TSW:
-            forward(IL::getTSW_Provider(), ncp, tele);
+            forwardGui(IL::getTSW_Provider(), ncp, tele);
             break;
         case COMP_SIG:
-            forward(IL::getSIG_Provider(), ncp, tele);
+            forwardGui(IL::getSIG_Provider(), ncp, tele);
             break;
         case COMP_LCR:
-            forward(IL::getLCR_Provider(), ncp, tele);
+            forwardGui(IL::getLCR_Provider(), ncp, tele);
             break;
         case COMP_SEG:
             break;
@@ -91,24 +89,47 @@ void Dispatcher::dispatch(const ComTeleGui& tele) const
     }
 }
 
-void Dispatcher::dispatch(const size_t id, ComTeleFld&& tele) const
+void Dispatcher::toFld(const size_t id, const ComData& data) const
 {
     if (mIndx.size() > id)
     {
-        tele.name = mIndx.at(id).name;
-        IL::getCom().send(tele);
+        const ComTele tele { mIndx.at(id).name, data };
+        IL::getCom().toFld(tele);
     }
     else
     { pass(); }
 }
 
-void Dispatcher::dispatch(const size_t id, ComTeleGui&& tele) const
+void Dispatcher::toGui(const size_t id, const ComData& data) const
 {
     if (mIndx.size() > id)
     {
-        tele.name = mIndx.at(id).name;
-        IL::getCom().send(tele);
+        const ComTele tele { mIndx.at(id).name, data };
+        IL::getCom().toGui(tele);
     }
     else
     { pass(); }
+}
+
+void Dispatcher::forwardFld(I_Provider& prov, const Ncp& ncp, const ComTele& tele)
+{
+    if (prov.size() > ncp.pos)
+    {
+        prov.at(ncp.pos).fromFld(tele.data);
+    }
+    else
+    { 
+        IL::getLog().log(COMP_SYS, ERR_RANGE);    
+    }
+}
+void Dispatcher::forwardGui(I_Provider& prov, const Ncp& ncp, const ComTele& tele)
+{
+    if (prov.size() > ncp.pos)
+    {
+        prov.at(ncp.pos).fromGui(tele.data);
+    }
+    else
+    { 
+        IL::getLog().log(COMP_SYS, ERR_RANGE);    
+    }
 }

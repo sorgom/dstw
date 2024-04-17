@@ -32,13 +32,13 @@ protected:
     void procFromFld(UINT8 state);
     void procFromGui(UINT8 stateFld, UINT8 stateGui);
 
-    inline void toGui(UINT8 state, UINT8 speed = PARAM_UNDEF) 
-    { 
-        IL::getDispatcher().dispatch(mId, ComTeleGui(state, speed)); 
-    }
     inline void toFld(UINT8 state, UINT8 speed = PARAM_UNDEF) 
     { 
-        IL::getDispatcher().dispatch(mId, ComTeleFld(state, speed)); 
+        IL::getDispatcher().toFld(mId, ComData{state, speed});
+    }
+    inline void toGui(UINT8 state, UINT8 speed = PARAM_UNDEF) 
+    { 
+        IL::getDispatcher().toGui(mId, ComData{state, speed});
     }
 
     static void logMismatch();
@@ -75,8 +75,8 @@ class SIG_H : public SIG_X
 public:
     inline SIG_H(size_t id): SIG_X(id) {}
 
-    void process(const ComTeleGui& tele);
-    void process(const ComTeleFld& tele);
+    void fromFld(const ComData& data);
+    void fromGui(const ComData& data);
 
     inline UINT8 type() const { return SIG_TYPE_H; }
 
@@ -100,8 +100,8 @@ class SIG_N : public SIG_XS
 public:
     inline SIG_N(size_t id): SIG_XS(id) {}
 
-    void process(const ComTeleGui& tele);
-    void process(const ComTeleFld& tele);
+    void fromFld(const ComData& data);
+    void fromGui(const ComData& data);
 
     inline UINT8 type() const { return SIG_TYPE_N; }
 
@@ -127,8 +127,8 @@ class SIG_H_N : public SIG_XS
 public:
     inline SIG_H_N(size_t id): SIG_XS(id) {}
 
-    void process(const ComTeleGui& tele);
-    void process(const ComTeleFld& tele);
+    void fromFld(const ComData& data);
+    void fromGui(const ComData& data);
 
     inline UINT8 type() const { return SIG_TYPE_H_N; }
 

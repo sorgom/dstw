@@ -33,14 +33,8 @@ public:
 
 private:
     NcpIndex mIndx;
-    template <typename T> 
-    void forward(I_Provider& prov, const Ncp& ncp, const T& tele) const
-    {
-        if (prov.size() > ncp.pos)
-        {
-            prov.at(ncp.pos).process(tele);
-        }
-    }
+    static void forwardFld(I_Provider& prov, const Ncp& ncp, const ComTele& tele);
+    static void forwardGui(I_Provider& prov, const Ncp& ncp, const ComTele& tele);
 };
 
 #endif // H_
