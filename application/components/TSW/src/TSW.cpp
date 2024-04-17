@@ -34,8 +34,8 @@ void TSW::swLeft()
     case TSW_STATE_DEFECT:
         break;
     default:
-        toFld(TSW_STATE_LEFT);
         chgState(TSW_STATE_WAIT_LEFT);
+        toFld(TSW_STATE_LEFT);
         break;
     }
 }
@@ -50,8 +50,8 @@ void TSW::swRight()
     case TSW_STATE_DEFECT:
         break;
     default:
-        toFld(TSW_STATE_RIGHT);
         chgState(TSW_STATE_WAIT_RIGHT);
+        toFld(TSW_STATE_RIGHT);
         break;
     }
 }
@@ -61,12 +61,12 @@ void TSW::wu()
     switch(mState)
     {
     case TSW_STATE_LEFT:
-        toFld(TSW_STATE_RIGHT);
         chgState(TSW_STATE_WAIT_RIGHT);
+        toFld(TSW_STATE_RIGHT);
         break;
     case TSW_STATE_RIGHT:
-        toFld(TSW_STATE_LEFT);
         chgState(TSW_STATE_WAIT_LEFT);
+        toFld(TSW_STATE_LEFT);
         break;
     default:
         break;

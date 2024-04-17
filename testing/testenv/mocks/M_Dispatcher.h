@@ -70,7 +70,7 @@ namespace test
             cout << "dispatch FLD " << id << endl << tele << endl;
             call("dispatchFLD").PARAM(id).TPARAM(ComTeleFld, tele);
         }
-        inline void expectDispatch(size_t id, const ComTeleFld& tele) const
+        inline void expectDispatch(size_t id, const ComTeleFld&& tele) const
         {
             cout << "expect dispatch FLD " << id << endl << tele << endl;
             expect("dispatchFLD").PARAM(id).TPARAM(ComTeleFld, tele);
@@ -81,10 +81,10 @@ namespace test
             cout << "dispatch GUI " << id << endl << tele << endl;
             call("dispatchGUI").PARAM(id).TPARAM(ComTeleGui, tele);
         }
-        inline void expectDispatch(size_t id, const ComTeleGui& tele) const
+        inline void expectDispatch(size_t id, const ComTeleGui&& tele) const
         {
-            cout << "expect dispatch GUI " << id << endl << tele << endl;
             expect("dispatchGUI").PARAM(id).TPARAM(ComTeleGui, tele);
+            cout << "expect dispatch GUI " << id << endl << tele << endl;
         }
     };
 } 

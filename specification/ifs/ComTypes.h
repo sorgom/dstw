@@ -61,12 +61,16 @@ struct ComTele
 };
 static_assert(ComTelegramSize == sizeof(ComTele));
 
+#include <qnd/useCout.h>
+
 //  field communication telegram
 struct ComTeleFld : ComTele
 {
     inline ComTeleFld(UINT8 param1 = PARAM_UNDEF, UINT8 param2 = PARAM_UNDEF):
         ComTele(param1, param2)
-    {}
+    {
+        cout << "ComTeleFld: " << (int) param1 << ", " << (int) param2 << endl;
+    }
     NOCOPY(ComTeleFld)
 };
 
@@ -75,7 +79,9 @@ struct ComTeleGui : ComTele
 {
     inline ComTeleGui(UINT8 param1 = PARAM_UNDEF, UINT8 param2 = PARAM_UNDEF):
         ComTele(param1, param2)
-    {}
+    {
+        cout << "ComTeleGui: " << (int) param1 << ", " << (int) param2 << endl;
+    }
     NOCOPY(ComTeleGui)
 };
 
