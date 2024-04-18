@@ -7,7 +7,7 @@ cd $(dirname $0)
 conf=$1
 if test -z $conf; then conf=ci; fi
 
-gcov -o obj/gcc/coverage_app/$conf ../application/components/*/src/*.cpp > /dev/null   
+gcov -o obj/gcc/coverage_app/$conf ../application/components/*/src/*.cpp > /dev/null 2> /dev/null  
 
 out () {
     printf "%-25s: %4d\n" $1 $2

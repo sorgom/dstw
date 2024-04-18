@@ -49,32 +49,18 @@ void Reader::read(const CONST_C_STRING filename) const
 
             if (ok)
             {
+                
                 const auto mxSize = std::max({sTSW, sSIG, sLCR, sSEG});
-
                 CHAR* buf = new CHAR[static_cast<size_t>(mxSize)];
-                if (sTSW > 0)
-                { 
-                    is.read(buf, sTSW);
-                    IL::getTSW_Provider().load(reinterpret_cast<const ProjItem*>(buf), nTSW);
-                }
-                else
-                { pass(); }
 
-                if (sSIG > 0)
-                { 
-                    is.read(buf, sSIG);
-                    IL::getSIG_Provider().load(reinterpret_cast<const ProjItem*>(buf), nSIG);
-                }
-                else
-                { pass(); }
+                is.read(buf, sTSW);
+                IL::getTSW_Provider().load(reinterpret_cast<const ProjItem*>(buf), nTSW);
 
-                if (sLCR > 0)
-                { 
-                    is.read(buf, sLCR);
-                    IL::getLCR_Provider().load(reinterpret_cast<const ProjItem*>(buf), nLCR);
-                }
-                else
-                { pass(); }
+                is.read(buf, sSIG);
+                IL::getSIG_Provider().load(reinterpret_cast<const ProjItem*>(buf), nSIG);
+
+                is.read(buf, sLCR);
+                IL::getLCR_Provider().load(reinterpret_cast<const ProjItem*>(buf), nLCR);
 
                 //  SEG not yet implemented
 
