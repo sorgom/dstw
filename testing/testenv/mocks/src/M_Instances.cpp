@@ -1,6 +1,9 @@
-#include <mocks/M_Instances.h>
-#include <mocks/M_Base.h>
+
+#include <mocks/M_Dispatcher.h>
 #include <mocks/M_Elem.h>
+#include <mocks/M_Instances.h>
+#include <mocks/M_Log.h>
+#include <mocks/M_Provider.h>
 #include <BAS/coding.h>
 
 namespace test

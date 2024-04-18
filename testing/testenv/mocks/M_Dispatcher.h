@@ -8,9 +8,6 @@
 
 #include <ifs/I_Dispatcher.h>
 #include "M_Base.h"
-#include <utility>
-#include <comparators/ostreams.h>
-#include <qnd/useCout.h>
 
 namespace test
 {

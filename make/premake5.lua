@@ -90,8 +90,12 @@ workspace 'tests'
                     -- '../testing/tests/moduletests/SYS/SYS_01.cpp',
                     -- '../testing/tests/moduletests/SYS/SYS_02.cpp',
                     -- '../testing/tests/moduletests/SYS/SYS_03.cpp',
-                    -- '../testing/tests/devtests/DT_01.cpp',
-                    '../testing/tests/moduletests/SIG/SIG_01.cpp',
+                    '../testing/tests/devtests/*.cpp',
+                    '../testing/tests/moduletests/LCR/*.cpp',
+                    '../testing/tests/moduletests/SIG/*.cpp',
+                    '../testing/tests/moduletests/TSW/*.cpp',
+                    '../testing/tests/moduletests/SYS/*.cpp',
+                    '../testing/tests/systemtests/SYST_01.cpp',
                 }
     
 --  ============================================================
@@ -106,7 +110,7 @@ workspace 'tests'
 --  ============================================================
 workspace 'coverage'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'sys', 'dev' }
+        configurations { 'ci', 'dev' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}'
         targetsuffix '_%{cfg.name}'
@@ -133,7 +137,5 @@ workspace 'coverage'
             files { testEnvSrcs }
             filter { 'configurations:ci' }
                 files { modTestSrcs }
-            filter { 'configurations:sys' }
-                files { sysTestSrcs }
             filter { 'configurations:dev' }
                 files { devTestSrcs }

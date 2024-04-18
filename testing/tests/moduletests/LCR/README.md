@@ -12,10 +12,5 @@ transitions test code setup for LCR
 
 #### LCR_02.cpp
 ```
-test of module LCR_Hub
-```
-
-#### LCR_03.cpp
-```
 test of module LCR_Provider
 ```

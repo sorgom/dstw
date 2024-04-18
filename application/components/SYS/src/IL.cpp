@@ -2,7 +2,6 @@
 
 #include <LCR/LCR_Provider.h>
 #include <SIG/SIG_Provider.h>
-#include <SYS/Com.h>
 #include <SYS/Dispatcher.h>
 #include <SYS/Log.h>
 #include <SYS/Reader.h>
@@ -10,7 +9,6 @@
 
 namespace IL
 {
-    I_Com& getCom() { return Com::instance(); }
     I_Dispatcher& getDispatcher() { return Dispatcher::instance(); }
     I_Log& getLog() { return Log::instance(); }
     I_Provider& getLCR_Provider() { return LCR_Provider::instance(); }

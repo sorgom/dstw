@@ -1,10 +1,5 @@
 ## directory content
 
-#### DataTypes.h
-```
-communication telegram types
-```
-
 #### CompEnums.h
 ```
 component specific enumerations
@@ -14,6 +9,13 @@ SIG types and states
 TSW commands and states
 
 TSW types and states
+```
+
+#### DataTypes.h
+```
+structured data types
+- communication telegrams
+- project items
 ```
 
 #### I_Com.h
@@ -35,29 +37,21 @@ assign themselves with:
 and shall receive:
 - dispatcher id (position of responsible dispatcher element)
 
-field telegrams shall be dispatched to components
+field state telegrams shall be dispatched to components
 
-GUI telegrams shall be dispatched to components
+GUI command telegrams shall be dispatched to components
 
-field telegrams from components shall be dispatched to field
+element commands shall be dispatched to field
 
-GUI telegrams components shall be dispatched to GUI
+element states shall be dispatched to GUI
 ```
 
 #### I_Elem.h
 ```
 interface Elem
 processing:
-- GUI telegrams
-- field telegrams
-```
-
-#### I_Hub.h
-```
-interface Hub and derived interfaces:
-- I_TSW_Hub
-- I_SIG_Hub
-- I_LCR_Hub
+- commands from GUI
+- states from field
 ```
 
 #### I_Log.h
@@ -68,10 +62,7 @@ interface Log
 
 #### I_Provider.h
 ```
-interface Provider and derived interfaces:
-- I_TSW_Provider
-- I_SIG_Provider
-- I_LCR_Provider
+interface Provider
 ```
 
 #### I_Reader.h
@@ -89,7 +80,7 @@ the Reader is called at system start and shall:
 defintion of position result
 ```
 
-#### DataTypes.h
+#### ProjItem.h
 ```
 unified proj data item
 ```

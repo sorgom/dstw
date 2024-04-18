@@ -49,7 +49,6 @@ namespace test
     //  retrieve instance / at
     TEST(TSW_02, T03)
     {
-        unmock();
         I_Provider& inst = TSW_Provider::instance();
         play(inst);
     }

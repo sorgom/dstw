@@ -7,11 +7,6 @@ test of modules SIG_(X)
 
 #### SIG_02.cpp
 ```
-test of module SIG_Hub
-```
-
-#### SIG_03.cpp
-```
 test of module SIG_Provider
 ```
 

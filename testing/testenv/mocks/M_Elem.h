@@ -21,7 +21,7 @@ namespace test
         {
             call("fromFld").TPARAM(ComData, data);
         }
-        inline void expectFromFld(ComData& data) const
+        inline void expectFromFld(const ComData& data) const
         {
             expect("fromFld").TPARAM(ComData, data);
         }
@@ -30,7 +30,7 @@ namespace test
         {
             call("fromGui").TPARAM(ComData, data);
         }
-        inline void expectFrom(const ComData& data) const
+        inline void expectFromGui(const ComData& data) const
         {
             expect("fromGui").TPARAM(ComData, data);
         }

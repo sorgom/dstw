@@ -19,7 +19,7 @@ appSrcs = {
     '../application/**.cpp'
 }
 noTestSrcs = {
-    '../application/components/SYS/src/IL.cpp',
+    '../application/components/SYS/src/IL*.cpp',
     '../application/main/*cpp'
 }
 
