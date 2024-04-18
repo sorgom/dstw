@@ -5,7 +5,6 @@
 
 #include <testlib/TestGroupBase.h>
 #include <LCR/LCR_X.h>
-#include <limits>
 
 namespace test
 {
@@ -14,19 +13,19 @@ namespace test
     protected:
         const size_t mId;
         LCR mLCR;
-        Ref<I_LCR> rSUT;
+        Ref<I_Elem> rSUT;
         inline TestGroupLCR():
             mId(123),
             mLCR(mId),
             rSUT(mLCR)
         {}
         
-        inline void setSUT(I_LCR& lcr)
+        inline void setSUT(I_Elem& lcr)
         {
             rSUT.set(lcr);
         }
         
-        inline I_LCR& mSUT()
+        inline I_Elem& mSUT()
         {
             return rSUT.ref();
         }
@@ -35,16 +34,17 @@ namespace test
             UINT8 fldState,
             UINT8 fldUbk,
             UINT8 stateToGui = NO_PARAM,
-            UINT8 ubkToGui = 0
+            UINT8 ubkToGui = PARAM_UNDEF
         )
         {
             SUBSTEPS()
             STEP(1)
+            const ComData dataGui{stateToGui, ubkToGui};
             if (stateToGui != NO_PARAM)
             {
-                m_LCR_Hub().expectToGui(mId, stateToGui, ubkToGui);
+                m_Dispatcher().expectToGui(mId, dataGui);
             }
-            mSUT().fromFld(fldState, fldUbk);
+            mSUT().fromFld(ComData{fldState, fldUbk});
             CHECK_N_CLEAR()
             ENDSTEPS()
         }
@@ -53,18 +53,20 @@ namespace test
         (
             UINT8 guiState,
             UINT8 stateToFld = NO_PARAM,
-            UINT8 stateToGui = 0,
-            UINT8 ubkToGui = 0
+            UINT8 stateToGui = PARAM_UNDEF,
+            UINT8 ubkToGui = PARAM_UNDEF
         )
         {
             SUBSTEPS()
             STEP(1)
+            const ComData dataFld{stateToFld, PARAM_UNDEF};
+            const ComData dataGui{stateToGui, ubkToGui};
             if (stateToFld != NO_PARAM)
             {
-                m_LCR_Hub().expectToFld(mId, stateToFld);
-                m_LCR_Hub().expectToGui(mId, stateToGui, ubkToGui);
+                m_Dispatcher().expectToFld(mId, dataFld);
+                m_Dispatcher().expectToGui(mId, dataGui);
             }
-            mSUT().fromGui(guiState);
+            mSUT().fromGui(ComData{guiState, PARAM_UNDEF});
             CHECK_N_CLEAR()
             ENDSTEPS()
         }
@@ -189,11 +191,11 @@ namespace test
     TEST(LCR_01, T02)
     {
         STEP(1)
-        m_Log().expectLog(MOD_LCR, ERR_MATCH);
+        m_Log().expectLog(COMP_LCR, ERR_MATCH);
         FLD(PARAM_UNKNOWN, LCR_UBK_STATE_UNDEF);
 
         STEP(2)
-        m_Log().expectLog(MOD_LCR, ERR_MATCH);
+        m_Log().expectLog(COMP_LCR, ERR_MATCH);
         CMD(PARAM_UNKNOWN);
 
         STEP(3)
@@ -269,19 +271,19 @@ namespace test
         setSUT(lcr);
 
         STEP(1)
-        m_Log().expectLog(MOD_LCR, ERR_MATCH);
+        m_Log().expectLog(COMP_LCR, ERR_MATCH);
         FLD(PARAM_UNKNOWN, LCR_UBK_STATE_UNDEF);
 
         STEP(2)
-        m_Log().expectLog(MOD_LCR, ERR_MATCH);
+        m_Log().expectLog(COMP_LCR, ERR_MATCH);
         CMD(PARAM_UNKNOWN);
 
         STEP(3)
-        m_Log().expectLog(MOD_LCR, ERR_MATCH);
+        m_Log().expectLog(COMP_LCR, ERR_MATCH);
         FLD(LCR_STATE_UNDEF, PARAM_UNKNOWN);
 
         STEP(4)
-        m_Log().expectLog(MOD_LCR, ERR_MATCH);
+        m_Log().expectLog(COMP_LCR, ERR_MATCH);
         FLD(PARAM_UNKNOWN, PARAM_UNKNOWN);
     }
 }

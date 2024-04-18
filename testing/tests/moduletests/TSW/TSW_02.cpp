@@ -14,11 +14,11 @@ namespace test
         GenProjData<2, 0, 0, 0> mData;
     };
 
-    TEST_GROUP_BASE(TSW_03, TestGroupTSP) {};
+    TEST_GROUP_BASE(TSW_02, TestGroupTSP) {};
 
     //  test type: equivalence class test
     //  load valid ProjData TSW
-    TEST(TSW_03, T01)
+    TEST(TSW_02, T01)
     {
         STEP(1)
         m_Dispatcher().expectAssign(mData.tswName(0), COMP_TSW, 0, 0);
@@ -34,7 +34,7 @@ namespace test
 
     //  test type: equivalence class test
     //  load valid ProjData TSW Dispatcher returns PosRes invalid
-    TEST(TSW_03, T02)
+    TEST(TSW_02, T02)
     {
         STEP(1)
         m_Dispatcher().expectAssign(mData.tswName(0), COMP_TSW, 0, 0);
@@ -47,7 +47,7 @@ namespace test
 
     //  test type: coverage
     //  retrieve instance / at
-    TEST(TSW_03, T03)
+    TEST(TSW_02, T03)
     {
         unmock();
         I_Provider& inst = TSW_Provider::instance();
