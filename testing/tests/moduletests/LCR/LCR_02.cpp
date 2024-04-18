@@ -33,6 +33,8 @@ namespace test
         mSUT.load(mData.pLCR(), mData.numLCR());
         CHECK_N_CLEAR()
         L_CHECK_EQUAL(2, mSUT.size())
+        L_CHECK_EQUAL(LCR_TYPE_LCR, mSUT.at(0).type())
+        L_CHECK_EQUAL(LCR_TYPE_LCR_UBK, mSUT.at(1).type())
     }
 
     //  test type: equivalence class test

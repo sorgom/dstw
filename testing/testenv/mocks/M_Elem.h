@@ -34,6 +34,8 @@ namespace test
         {
             expect("fromGui").TPARAM(ComData, data);
         }
+        
+        inline UINT8 type() const { return 0; }
     };
 
     class M_TSW : public M_Elem
