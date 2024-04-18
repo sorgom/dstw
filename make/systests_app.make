@@ -20,11 +20,10 @@ endif
 
 RESCOMP = windres
 DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
-INCLUDES += -I../testing/testenv -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
@@ -39,13 +38,15 @@ endef
 
 ifeq ($(config),ci)
 TARGETDIR = lib
-TARGET = $(TARGETDIR)/libcoverage_app_ci.a
-OBJDIR = obj/gcc/coverage_app/ci
+TARGET = $(TARGETDIR)/libsystests_app_ci.a
+OBJDIR = obj/gcc/systests_app/ci
+INCLUDES += -I../specification -I../application -I../application/components
 
-else ifeq ($(config),dev)
+else ifeq ($(config),qnd)
 TARGETDIR = lib
-TARGET = $(TARGETDIR)/libcoverage_app_dev.a
-OBJDIR = obj/gcc/coverage_app/dev
+TARGET = $(TARGETDIR)/libsystests_app_qnd.a
+OBJDIR = obj/gcc/systests_app/qnd
+INCLUDES += -I../devel -I../specification -I../application -I../application/components
 
 endif
 
@@ -62,6 +63,7 @@ OBJECTS :=
 GENERATED += $(OBJDIR)/BAS_Provider.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/Dispatcher.o
+GENERATED += $(OBJDIR)/IL.o
 GENERATED += $(OBJDIR)/LCR_Provider.o
 GENERATED += $(OBJDIR)/LCR_X.o
 GENERATED += $(OBJDIR)/Log.o
@@ -73,6 +75,7 @@ GENERATED += $(OBJDIR)/TSW_Provider.o
 OBJECTS += $(OBJDIR)/BAS_Provider.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
+OBJECTS += $(OBJDIR)/IL.o
 OBJECTS += $(OBJDIR)/LCR_Provider.o
 OBJECTS += $(OBJDIR)/LCR_X.o
 OBJECTS += $(OBJDIR)/Log.o
@@ -90,7 +93,7 @@ all: $(TARGET)
 
 $(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking coverage_app
+	@echo Linking systests_app
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -111,7 +114,7 @@ else
 endif
 
 clean:
-	@echo Cleaning coverage_app
+	@echo Cleaning systests_app
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(GENERATED)
@@ -163,6 +166,9 @@ $(OBJDIR)/Com.o: ../application/components/SYS/src/Com.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Dispatcher.o: ../application/components/SYS/src/Dispatcher.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/IL.o: ../application/components/SYS/src/IL.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Log.o: ../application/components/SYS/src/Log.cpp

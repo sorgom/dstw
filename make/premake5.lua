@@ -32,20 +32,18 @@ workspace 'dstw'
 
 --  ============================================================
 --  > tests.make
---  module tests and system tests at once runtime
+--  app and tests at once runtime
 --  ->  bin/tests_{config}
 --  configurations: 
---  - ci        module and system tests
---  - qnd       module and system tests with devel includes
---  - mod       module tests
---  - sys       system tests
+--  - ci        module tests
+--  - qnd       module tests with devel includes
 --  - dev       developer tests
 --  - bullseye  module tests with bullseye coverage
 --  - none      no tests
 --  ============================================================
 workspace 'tests'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'qnd', 'mod', 'sys', 'dev', 'bullseye', 'tmp' }
+        configurations { 'ci', 'qnd', 'dev', 'bullseye', 'tmp' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
         targetsuffix '_%{cfg.name}'
@@ -63,17 +61,11 @@ workspace 'tests'
             removefiles { noTestSrcs }
 
             filter { 'configurations:ci' }
-                files { modTestSrcs, sysTestSrcs }
-
-            filter { 'configurations:qnd' }
-                files { modTestSrcs, sysTestSrcs }
-                includedirs { '../devel' }
-
-            filter { 'configurations:mod' }
                 files { modTestSrcs }
 
-            filter { 'configurations:sys' }
-                files { sysTestSrcs }
+            filter { 'configurations:qnd' }
+                files { modTestSrcs }
+                includedirs { '../devel' }
 
             filter { 'configurations:dev' }
                 files { devTestSrcs }
@@ -85,17 +77,6 @@ workspace 'tests'
             filter { 'configurations:tmp' }
                 includedirs { '../devel' }
                 files {
-                    -- '../testing/tests/moduletests/BAS/BAS_01.cpp',
-                    -- '../testing/tests/moduletests/BAS/BAS_02.cpp',  
-                    -- '../testing/tests/moduletests/SYS/SYS_01.cpp',
-                    -- '../testing/tests/moduletests/SYS/SYS_02.cpp',
-                    -- '../testing/tests/moduletests/SYS/SYS_03.cpp',
-                    '../testing/tests/devtests/*.cpp',
-                    '../testing/tests/moduletests/LCR/*.cpp',
-                    '../testing/tests/moduletests/SIG/*.cpp',
-                    '../testing/tests/moduletests/TSW/*.cpp',
-                    '../testing/tests/moduletests/SYS/*.cpp',
-                    '../testing/tests/systemtests/SYST_01.cpp',
                 }
     
 --  ============================================================
@@ -105,7 +86,6 @@ workspace 'tests'
 --  ->  bin/coverage_tests_{config}
 --  configurations: 
 --  - ci        module tests
---  - sys       system tests
 --  - dev       developer tests
 --  ============================================================
 workspace 'coverage'
@@ -139,3 +119,43 @@ workspace 'coverage'
                 files { modTestSrcs }
             filter { 'configurations:dev' }
                 files { devTestSrcs }
+
+--  ============================================================
+--  > systests.make
+--  -   application without test includes (static lib)
+--  -   system tests only runtime
+--  ->  bin/sysests_tests_{config}
+--  configurations: 
+--  - ci        module tests
+--  - qnd       with devel includes
+--  ============================================================
+workspace 'systests'
+    filter { 'action:gmake*' }
+        configurations { 'ci', 'qnd' }
+        language 'C++'
+        objdir 'obj/gcc/%{prj.name}'
+        targetsuffix '_%{cfg.name}'
+
+        buildoptions { buildOpts }
+
+        defines { 'DEBUG', testDefines }
+        symbols 'On'
+
+        filter { 'configurations:qnd' }
+            includedirs { '../devel' }
+
+        project 'systests_app'
+            kind 'StaticLib'
+            targetdir 'lib'
+            files { appSrcs }
+            includedirs { appIncludes }
+            removefiles { noSysTestSrcs_app }
+
+        project 'systests_tests'
+            kind 'ConsoleApp'
+            targetdir 'bin'
+            libdirs { 'lib', '../BuildCppUTest/lib' }
+            links { 'systests_app_%{cfg.name}', testLinks }
+            files { testEnvSrcs, sysTestSrcs }
+            removefiles { noSysTestSrcs_tests }
+            includedirs { testIncludes }

@@ -22,6 +22,13 @@ noTestSrcs = {
     '../application/components/SYS/src/IL*.cpp',
     '../application/main/*cpp'
 }
+noSysTestSrcs_app =  {
+    '../application/components/SYS/src/IL_Com.cpp',
+    '../application/main/*cpp'
+}
+noSysTestSrcs_tests =  {
+    '../testing/testenv/mocks/src/mock_IL.cpp'
+}
 
 testEnvSrcs = {
     '../testing/testenv/**.cpp',

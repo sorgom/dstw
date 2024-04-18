@@ -28,13 +28,11 @@ premake5 build rules for gcc (gmake2):
 data generator and application runtime
 
 > tests.make
-module tests and system tests at once runtime
+app and tests at once runtime
 ->  bin/tests_{config}
 configurations:
-- ci        module and system tests
-- qnd       module and system tests with devel includes
-- mod       module tests
-- sys       system tests
+- ci        module tests
+- qnd       module tests with devel includes
 - dev       developer tests
 - bullseye  module tests with bullseye coverage
 - none      no tests
@@ -45,8 +43,15 @@ configurations:
 ->  bin/coverage_tests_{config}
 configurations:
 - ci        module tests
-- sys       system tests
 - dev       developer tests
+
+> systests.make
+-   application without test includes (static lib)
+-   system tests only runtime
+->  bin/sysests_tests_{config}
+configurations:
+- ci        module tests
+- qnd       with devel includes
 ```
 
 #### premake5_settings.lua

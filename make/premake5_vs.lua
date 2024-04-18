@@ -33,7 +33,7 @@ buildOptsTest = buildOptsApp .. ' /wd4127'
 --  ============================================================
 workspace 'tests'
     filter { 'action:vs*' }
-        configurations { 'ci', 'sys', 'dev' }
+        configurations { 'ci', 'dev' }
         language 'C++'
         objdir 'obj/vs/%{prj.name}'
 
@@ -57,9 +57,6 @@ workspace 'tests'
             
             filter { 'configurations:ci' }
                 files { modTestSrcs, sysTestSrcs }
-
-            filter { 'configurations:sys' }
-                files { sysTestSrcs }
 
             filter { 'configurations:dev' }
                 files { devTestSrcs }

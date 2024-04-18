@@ -16,7 +16,6 @@ namespace test
     TEST(SYST_01, T01)
     {
         SETUP()
-        unmock();
         mock_Com();
         I_Dispatcher& dispatcher = Dispatcher::instance();
         I_Reader& reader = Reader::instance();
@@ -24,7 +23,7 @@ namespace test
 
         const CONST_C_STRING fname = "tmp.dat";
         {
-            GenProjData<1, TEST_NUM_SIG, 1, 1> projData;
+            GenProjData<0, TEST_NUM_SIG, 0, 0> projData;
             projData.dump(fname);
         }
         reader.read(fname);    

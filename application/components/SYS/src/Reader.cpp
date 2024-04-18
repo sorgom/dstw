@@ -43,23 +43,38 @@ void Reader::read(const CONST_C_STRING filename) const
             const stype sSIG = nSIG * sizeof(ProjItem);
             const stype sLCR = nLCR * sizeof(ProjItem);
             const stype sSEG = nSEG * sizeof(ProjItem);
+            const stype sTOT = sTSW + sSIG + sLCR + sSEG;
 
-            ok = (fsize == hSize + sTSW + sSIG + sLCR + sSEG);
+            ok = (sTOT > 0) and (fsize == hSize + sTOT);
 
             if (ok)
             {
                 const auto mxSize = std::max({sTSW, sSIG, sLCR, sSEG});
 
                 CHAR* buf = new CHAR[static_cast<size_t>(mxSize)];
+                if (sTSW > 0)
+                { 
+                    is.read(buf, sTSW);
+                    IL::getTSW_Provider().load(reinterpret_cast<const ProjItem*>(buf), nTSW);
+                }
+                else
+                { pass(); }
 
-                is.read(buf, sTSW);
-                IL::getTSW_Provider().load(reinterpret_cast<const ProjItem*>(buf), nTSW);
+                if (sSIG > 0)
+                { 
+                    is.read(buf, sSIG);
+                    IL::getSIG_Provider().load(reinterpret_cast<const ProjItem*>(buf), nSIG);
+                }
+                else
+                { pass(); }
 
-                is.read(buf, sSIG);
-                IL::getSIG_Provider().load(reinterpret_cast<const ProjItem*>(buf), nSIG);
-
-                is.read(buf, sLCR);
-                IL::getLCR_Provider().load(reinterpret_cast<const ProjItem*>(buf), nLCR);
+                if (sLCR > 0)
+                { 
+                    is.read(buf, sLCR);
+                    IL::getLCR_Provider().load(reinterpret_cast<const ProjItem*>(buf), nLCR);
+                }
+                else
+                { pass(); }
 
                 //  SEG not yet implemented
 

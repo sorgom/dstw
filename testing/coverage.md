@@ -80,18 +80,18 @@ But this isn't too bad, because some SIL4 coding guidelines require this anyhow.
 ## current gcov code coverage
 ```
 file                      lines  uncovered  percent
-LCR/src/LCR_Hub.cpp          32         --       --
-LCR/src/LCR_Provider.cpp     40         --       --
-LCR/src/LCR_X.cpp           124         --       --
-SIG/src/SIG_Hub.cpp          32         --       --
-SIG/src/SIG_Provider.cpp     43         --       --
-SIG/src/SIG_X.cpp           293         --       --
+BAS/src/BAS_Provider.cpp     26         --       --
+LCR/src/LCR_Provider.cpp     20         --       --
+LCR/src/LCR_X.cpp           126         --       --
+SIG/src/SIG_Provider.cpp     23         --       --
+SIG/src/SIG_X.cpp           298         --       --
 SYS/src/Com.cpp               2         --       --
-SYS/src/Dispatcher.cpp      102         --       --
+SYS/src/Dispatcher.cpp      124          2      1.6
+SYS/src/IL.cpp               16         --       --
+SYS/src/IL_Com.cpp            6         --       --
 SYS/src/Log.cpp               2         --       --
-SYS/src/Reader.cpp           67         --       --
-TSW/src/TSW.cpp              91         --       --
-TSW/src/TSW_Hub.cpp          32         --       --
-TSW/src/TSW_Provider.cpp     28         --       --
-total                       888         --       --
+SYS/src/Reader.cpp           83          3      3.6
+TSW/src/TSW.cpp              95         --       --
+TSW/src/TSW_Provider.cpp      2         --       --
+total                       823          5      0.6
 ```
