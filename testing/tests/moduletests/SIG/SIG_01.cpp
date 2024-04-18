@@ -14,17 +14,17 @@ namespace test
     protected:
         const size_t mId;
         SIG_H mSIG_H;
-        Ref<I_SIG> rSUT;
+        Ref<I_Elem> rSUT;
         inline TestGroupSIG():
             mId(123),
             mSIG_H(mId),
             rSUT(mSIG_H)
         {}
-        inline void setSUT(I_SIG& sig)
+        inline void setSUT(I_Elem& sig)
         {
             rSUT.set(sig);
         }
-        inline I_SIG& mSUT()
+        inline I_Elem& mSUT()
         {
             return rSUT.ref();
         }
@@ -38,11 +38,12 @@ namespace test
         {
             SUBSTEPS()
             STEP(1)
+            const ComData dataGui{stateToGui, speedToGui};
             if (stateToGui != NO_PARAM)
             {
-                m_SIG_Hub().expectToGui(mId, stateToGui, speedToGui);
+                m_Dispatcher().expectToGui(mId, dataGui);
             }
-            mSUT().fromFld(fldState, fldSpeed);
+            mSUT().fromFld(ComData{fldState, fldSpeed});
             CHECK_N_CLEAR()
             ENDSTEPS()
         }
@@ -52,20 +53,22 @@ namespace test
             UINT8 guiState,
             UINT8 guiSpeed,
             UINT8 stateToFld = NO_PARAM,
-            UINT8 speedToFld = 0,
+            UINT8 speedToFld = PARAM_UNDEF,
             UINT8 stateToGui = PARAM_UNDEF,
-            UINT8 speedToGui = 0
+            UINT8 speedToGui = PARAM_UNDEF
 
         )
         {
             SUBSTEPS()
             STEP(1)
+            const ComData dataFld{stateToFld, speedToFld};
+            const ComData dataGui{stateToGui, speedToGui};
             if (stateToFld != NO_PARAM)
             {
-                m_SIG_Hub().expectToFld(mId, stateToFld, speedToFld);
-                m_SIG_Hub().expectToGui(mId, stateToGui, speedToGui);
+                m_Dispatcher().expectToGui(mId, dataGui);
+                m_Dispatcher().expectToFld(mId, dataFld);
             }
-            mSUT().fromGui(guiState, guiSpeed);
+            mSUT().fromGui(ComData{guiState, guiSpeed});
             CHECK_N_CLEAR()
             ENDSTEPS()
         }
@@ -78,11 +81,12 @@ namespace test
         {
             SUBSTEPS()
             STEP(1)
+            const ComData dataGui{stateToGui, PARAM_UNDEF};
             if (stateToGui != NO_PARAM)
             {
-                m_SIG_Hub().expectToGui(mId, stateToGui, PARAM_UNDEF);
+                m_Dispatcher().expectToGui(mId, dataGui);
             }
-            mSUT().fromFld(fldState, speed);
+            mSUT().fromFld(ComData{fldState, speed});
             CHECK_N_CLEAR()
             ENDSTEPS()
         }
@@ -97,12 +101,14 @@ namespace test
         {
             SUBSTEPS()
             STEP(1)
+            const ComData dataFld{stateToFld, PARAM_UNDEF};
+            const ComData dataGui{stateToGui, PARAM_UNDEF};
             if (stateToFld != NO_PARAM)
             {
-                m_SIG_Hub().expectToFld(mId, stateToFld, PARAM_UNDEF);
-                m_SIG_Hub().expectToGui(mId, stateToGui, PARAM_UNDEF);
+                m_Dispatcher().expectToGui(mId, dataGui);
+                m_Dispatcher().expectToFld(mId, dataFld);
             }
-            mSUT().fromGui(guiState, speed);
+            mSUT().fromGui(ComData{guiState, speed});
             CHECK_N_CLEAR()
             ENDSTEPS()
         }
@@ -216,11 +222,11 @@ namespace test
     TEST(SIG_01, T02)
     {
         STEP(1)
-        m_Log().expectLog(MOD_SIG, ERR_MATCH);
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         CMD_H(PARAM_UNKNOWN);
 
         STEP(2)
-        m_Log().expectLog(MOD_SIG, ERR_MATCH);
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         FLD_H(PARAM_UNKNOWN);
 
         STEP(3)
@@ -230,11 +236,11 @@ namespace test
         FLD_H(SIG_STATE_H0, SIG_STATE_H0, 20);
 
         STEP(5)
-        mSUT().fromGui(SIG_STATE_H0, 30);   
+        mSUT().fromGui(ComData{SIG_STATE_H0, 30});   
         CHECK_N_CLEAR()
 
         STEP(6)
-        mSUT().fromFld(SIG_STATE_H0, 40);
+        mSUT().fromFld(ComData{SIG_STATE_H0, 40});
         CHECK_N_CLEAR()
     }
 
@@ -351,11 +357,11 @@ namespace test
         setSUT(sig);
 
         STEP(1)
-        m_Log().expectLog(MOD_SIG, ERR_MATCH);
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         CMD(PARAM_UNKNOWN, 0);
 
         STEP(2)
-        m_Log().expectLog(MOD_SIG, ERR_MATCH);
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         FLD(PARAM_UNKNOWN, 0);
 
         STEP(3)
@@ -365,9 +371,11 @@ namespace test
         FLD(SIG_STATE_N0, 10, SIG_STATE_N0, 10);
 
         STEP(5)
-        m_SIG_Hub().expectToFld(mId, SIG_STATE_N0, 20);
-        CMD(SIG_STATE_N0, 20);
-
+        {
+            const ComData dataFld{SIG_STATE_N0, 20};
+            m_Dispatcher().expectToFld(mId, dataFld);
+            CMD(SIG_STATE_N0, 20);
+        }
         STEP(6)
         FLD(SIG_STATE_N0, 20, SIG_STATE_N0, 20);
 
@@ -639,23 +647,29 @@ namespace test
         setSUT(sig);
 
         STEP(1)
-        m_Log().expectLog(MOD_SIG, ERR_MATCH);
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         CMD(PARAM_UNKNOWN, 0);
 
         STEP(2)
-        m_Log().expectLog(MOD_SIG, ERR_MATCH);
+        m_Log().expectLog(COMP_SIG, ERR_MATCH);
         FLD(PARAM_UNKNOWN, 0);
 
         STEP(3)
         CMD(SIG_STATE_H1_N0, 0, SIG_STATE_H1_N0, 0, SIG_STATE_WAIT_H1_N0, 0);
 
         STEP(4)
-        m_SIG_Hub().expectToFld(mId, SIG_STATE_H1_N0, 10);
-        CMD(SIG_STATE_H1_N0, 10);
+        {
+            const ComData dataFld{SIG_STATE_H1_N0, 10};
+            m_Dispatcher().expectToFld(mId, dataFld);
+            CMD(SIG_STATE_H1_N0, 10);
+        }
 
         STEP(5)
-        m_SIG_Hub().expectToGui(mId, SIG_STATE_H1_N0, 10);
-        FLD(SIG_STATE_H1_N0, 10);
+        {
+            const ComData dataGui{SIG_STATE_H1_N0, 10};
+            m_Dispatcher().expectToGui(mId, dataGui);
+            FLD(SIG_STATE_H1_N0, 10);
+        }
 
         STEP(6)
         CMD(SIG_STATE_H1_N0, 10);

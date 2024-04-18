@@ -290,8 +290,8 @@ OBJECTS += $(OBJDIR)/TSW_01.o
 OBJECTS += $(OBJDIR)/TSW_02.o
 
 else ifeq ($(config),tmp)
-GENERATED += $(OBJDIR)/LCR_02.o
-OBJECTS += $(OBJDIR)/LCR_02.o
+GENERATED += $(OBJDIR)/SIG_01.o
+OBJECTS += $(OBJDIR)/SIG_01.o
 
 endif
 
@@ -608,7 +608,7 @@ $(OBJDIR)/TSW_02.o: ../testing/tests/moduletests/TSW/TSW_02.cpp
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
 else ifeq ($(config),tmp)
-$(OBJDIR)/LCR_02.o: ../testing/tests/moduletests/LCR/LCR_02.cpp
+$(OBJDIR)/SIG_01.o: ../testing/tests/moduletests/SIG/SIG_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
