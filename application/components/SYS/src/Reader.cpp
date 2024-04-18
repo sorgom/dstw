@@ -7,7 +7,7 @@
 
 using stype = std::streamoff;
 
-IL_INSTANCE_DEF(Reader)
+INSTANCE_DEF(Reader)
 
 void Reader::read(const CONST_C_STRING filename) const
 {

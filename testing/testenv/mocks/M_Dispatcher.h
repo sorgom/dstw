@@ -15,7 +15,7 @@ namespace test
     {
     public:
         inline M_Dispatcher() : M_Base("Dispatcher") {}
-        IL_INSTANCE_DEC(M_Dispatcher)
+        INSTANCE_DEC(M_Dispatcher)
 
         inline void clear()
         {

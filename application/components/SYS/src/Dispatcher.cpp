@@ -3,7 +3,7 @@
 #include <BAS/coding.h>
 #include <SYS/IL.h>
 
-IL_INSTANCE_DEF(Dispatcher)
+INSTANCE_DEF(Dispatcher)
 
 void Dispatcher::clear()
 {

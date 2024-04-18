@@ -27,7 +27,7 @@ public:
     void toFld(size_t id, const ComData& data) const;
     void toGui(size_t id, const ComData& data) const;
 
-    IL_INSTANCE_DEC(Dispatcher)
+    INSTANCE_DEC(Dispatcher)
 
     NOCOPY(Dispatcher)
 

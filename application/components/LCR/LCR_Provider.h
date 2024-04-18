@@ -15,7 +15,7 @@ class LCR_Provider : public BAS_Provider
 public:
     inline LCR_Provider() = default;
 
-    IL_INSTANCE_DEC(LCR_Provider)
+    INSTANCE_DEC(LCR_Provider)
 
     NOCOPY(LCR_Provider)
 protected:

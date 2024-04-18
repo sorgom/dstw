@@ -16,7 +16,7 @@ class TSW_Provider : public BAS_Provider
 public:
     inline TSW_Provider() = default;
 
-    IL_INSTANCE_DEC(TSW_Provider)
+    INSTANCE_DEC(TSW_Provider)
 
     NOCOPY(TSW_Provider)
 protected:

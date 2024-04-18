@@ -15,7 +15,7 @@ class SIG_Provider : public BAS_Provider
 public:
     inline SIG_Provider() = default;
 
-    IL_INSTANCE_DEC(SIG_Provider)
+    INSTANCE_DEC(SIG_Provider)
 
     NOCOPY(SIG_Provider)
 protected:

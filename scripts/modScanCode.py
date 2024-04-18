@@ -13,7 +13,7 @@ import re
 from modUtilz import isHaeder
 
 # IL instance declaration
-rxDdi = re.compile(r'^[ \t]*IL_INSTANCE_DEC[ \t]*\([ \t]*(\w+)[ \t]*\)', re.M) 
+rxDdi = re.compile(r'^[ \t]*INSTANCE_DEC[ \t]*\([ \t]*(\w+)[ \t]*\)', re.M) 
 # announced mock class macro
 rxMoc = re.compile(r'^[ \t]*MOCK_CLASS\([ \t]*(\w+)[ \t]*\)', re.M)
 # derived mock class

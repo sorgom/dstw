@@ -1,7 +1,7 @@
 #include <SIG/SIG_Provider.h>
 #include <SIG/SIG_X.h>
 
-IL_INSTANCE_DEF(SIG_Provider)
+INSTANCE_DEF(SIG_Provider)
 
 bool SIG_Provider::add(const size_t id, const ProjItem& item)
 {

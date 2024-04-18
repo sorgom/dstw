@@ -1,7 +1,7 @@
 #include <LCR/LCR_Provider.h>
 #include <LCR/LCR_X.h>
 
-IL_INSTANCE_DEF(LCR_Provider)
+INSTANCE_DEF(LCR_Provider)
 
 bool LCR_Provider::add(const size_t id, const ProjItem& item)
 {

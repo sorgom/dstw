@@ -26,7 +26,7 @@ public:
         return mErr;
     }
 
-    IL_INSTANCE_DEC(Log)
+    INSTANCE_DEC(Log)
 
     NOCOPY(Log)
 private:

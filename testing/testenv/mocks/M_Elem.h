@@ -42,21 +42,21 @@ namespace test
     {
     public:
         inline M_TSW() : M_Elem("TSW") {}
-        IL_INSTANCE_DEC(M_TSW)
+        INSTANCE_DEC(M_TSW)
     };
 
     class M_SIG : public M_Elem
     {
     public:
         inline M_SIG() : M_Elem("SIG") {}
-        IL_INSTANCE_DEC(M_SIG)
+        INSTANCE_DEC(M_SIG)
     };
 
     class M_LCR : public M_Elem
     {
     public:
         inline M_LCR() : M_Elem("LCR") {}
-        IL_INSTANCE_DEC(M_LCR)
+        INSTANCE_DEC(M_LCR)
     };
     
 } // namespace

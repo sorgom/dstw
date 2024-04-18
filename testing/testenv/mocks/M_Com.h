@@ -16,7 +16,7 @@ namespace test
     {
     public:
         inline M_Com() : M_Base("Com") {}
-        IL_INSTANCE_DEC(M_Com)
+        INSTANCE_DEC(M_Com)
 
         inline void toFld(const ComTele& tele) const
         {

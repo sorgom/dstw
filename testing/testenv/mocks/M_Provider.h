@@ -62,7 +62,7 @@ namespace test
         inline M_TSW_Provider():
             M_Provider("TSW_Provider")
         {}
-        IL_INSTANCE_DEC(M_TSW_Provider)
+        INSTANCE_DEC(M_TSW_Provider)
 
         inline I_Elem& at(size_t pos)
         {
