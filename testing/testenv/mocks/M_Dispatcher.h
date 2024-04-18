@@ -8,9 +8,9 @@
 
 #include <ifs/I_Dispatcher.h>
 #include "M_Base.h"
-
-#include <qnd/useCout.h>
+#include <utility>
 #include <comparators/ostreams.h>
+#include <qnd/useCout.h>
 
 namespace test
 {
@@ -24,7 +24,7 @@ namespace test
         {
             call("clear");
         }
-        inline void expectReset() const
+        inline void expectClear() const
         {
             expect("clear");
         }
@@ -48,43 +48,40 @@ namespace test
             expect("assign").TPARAM(ComName, name).PARAM(comp).PARAM(pos).AND_RETURN(ret);
         }
 
-        inline void dispatch(const ComTeleFld& tele) const
+        inline void fromFld(const ComTele& tele) const
         {
-            call("dispatch").TPARAM(ComTeleFld, tele);
+            call("fromFld").TPARAM(ComTele, tele);
         }
-        inline void expectDispatch(const ComTeleFld& tele) const
+        inline void expectFromFld(const ComTele& tele) const
         {
-            expect("dispatch").TPARAM(ComTeleFld, tele);
-        }
-
-        inline void dispatch(const ComTeleGui& tele) const
-        {
-            call("dispatch").TPARAM(ComTeleGui, tele);
-        }
-        inline void expectDispatch(const ComTeleGui& tele) const
-        {
-            expect("dispatch").TPARAM(ComTeleGui, tele);
-        }
-        inline void dispatch(size_t id, ComTeleFld&& tele) const
-        {
-            cout << "dispatch FLD " << id << endl << tele << endl;
-            call("dispatchFLD").PARAM(id).TPARAM(ComTeleFld, tele);
-        }
-        inline void expectDispatch(size_t id, const ComTeleFld&& tele) const
-        {
-            cout << "expect dispatch FLD " << id << endl << tele << endl;
-            expect("dispatchFLD").PARAM(id).TPARAM(ComTeleFld, tele);
+            expect("fromFld").TPARAM(ComTele, tele);
         }
 
-        inline void dispatch(size_t id, ComTeleGui&& tele) const
+        inline void fromGui(const ComTele& tele) const
         {
-            cout << "dispatch GUI " << id << endl << tele << endl;
-            call("dispatchGUI").PARAM(id).TPARAM(ComTeleGui, tele);
+            call("fromGui").TPARAM(ComTele, tele);
         }
-        inline void expectDispatch(size_t id, const ComTeleGui&& tele) const
+        inline void expectFromGui(const ComTele& tele) const
         {
-            expect("dispatchGUI").PARAM(id).TPARAM(ComTeleGui, tele);
-            cout << "expect dispatch GUI " << id << endl << tele << endl;
+            expect("fromGui").TPARAM(ComTele, tele);
+        }
+
+        inline void toFld(size_t id, const ComData& data) const
+        {
+            call("toFld").PARAM(id).TPARAM(ComData, data);
+        }
+        inline void expectToFld(size_t id, const ComData& data) const
+        {
+            expect("toFld").PARAM(id).TPARAM(ComData, data);
+        }
+
+        inline void toGui(size_t id, const ComData& data) const
+        {
+            call("toGui").PARAM(id).TPARAM(ComData, data);
+        }
+        inline void expectToGui(size_t id, const ComData& data) const
+        {
+            expect("toGui").PARAM(id).TPARAM(ComData, data);
         }
     };
 } 

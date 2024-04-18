@@ -14,32 +14,25 @@
 
 namespace test
 {
-    C_STR_DEC(ELM)
 
+    C_STR_DEC(ELM)
     //# C_STR_DEC
     C_STR_DEC(Com)
     C_STR_DEC(ComName)
+    C_STR_DEC(ComData)
     C_STR_DEC(ComTele)
-    C_STR_DEC(ComTeleFld)
-    C_STR_DEC(ComTeleGui)
     C_STR_DEC(Dispatcher)
-    C_STR_DEC(Hub)
+    C_STR_DEC(Elem)
     C_STR_DEC(LCR)
-    C_STR_DEC(LCR_Hub)
     C_STR_DEC(LCR_Provider)
     C_STR_DEC(Log)
     C_STR_DEC(PosRes)
-    C_STR_DEC(ProjLCR)
-    C_STR_DEC(ProjSEG)
-    C_STR_DEC(ProjSIG)
-    C_STR_DEC(ProjTSW)
+    C_STR_DEC(ProItem)
     C_STR_DEC(Provider)
     C_STR_DEC(Reader)
     C_STR_DEC(SIG)
-    C_STR_DEC(SIG_Hub)
     C_STR_DEC(SIG_Provider)
     C_STR_DEC(TSW)
-    C_STR_DEC(TSW_Hub)
     C_STR_DEC(TSW_Provider)
     //# END
 } // namespace

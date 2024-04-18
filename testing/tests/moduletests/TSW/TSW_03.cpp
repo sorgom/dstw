@@ -11,7 +11,7 @@ namespace test
     {
     protected:
         TSW_Provider mSUT;
-        GenProjData<2, 1, 1, 1> mData;
+        GenProjData<2, 0, 0, 0> mData;
     };
 
     TEST_GROUP_BASE(TSW_03, TestGroupTSP) {};
@@ -25,25 +25,24 @@ namespace test
         m_Dispatcher().expectAssign(mData.tswName(1), COMP_TSW, 1, 1);
         mSUT.load(mData.pTSW(), mData.numTSW());
         CHECK_N_CLEAR()
-        L_CHECK_TRUE(mSUT.has(1))
-        L_CHECK_FALSE(mSUT.has(2))
+        L_CHECK_EQUAL(2, mSUT.size())
 
         STEP(2)
-        I_TSW& tsw = mSUT.at(1);
+        I_Elem& tsw = mSUT.at(1);
         play(tsw);
     }
 
     //  test type: equivalence class test
-    //  load valid ProjData TSW Dispatcher returns negative value
+    //  load valid ProjData TSW Dispatcher returns PosRes invalid
     TEST(TSW_03, T02)
     {
         STEP(1)
         m_Dispatcher().expectAssign(mData.tswName(0), COMP_TSW, 0, 0);
         m_Dispatcher().expectAssign(mData.tswName(1), COMP_TSW, 1, -1);
-        m_Log().expectLog(MOD_TSW_PROVIDER, ERR_STARTUP);
+        m_Log().expectLog(COMP_TSW, ERR_STARTUP);
         mSUT.load(mData.pTSW(), mData.numTSW());
         CHECK_N_CLEAR()
-        L_CHECK_FALSE(mSUT.has(0))
+        L_CHECK_EQUAL(0, mSUT.size())
     }
 
     //  test type: coverage
@@ -51,7 +50,7 @@ namespace test
     TEST(TSW_03, T03)
     {
         unmock();
-        I_TSW_Provider& inst = IL::getTSW_Provider();
+        I_Provider& inst = TSW_Provider::instance();
         play(inst);
     }
 }

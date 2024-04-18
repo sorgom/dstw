@@ -55,7 +55,7 @@ namespace test
         for (UINT32 n = 0; n < TEST_NUM_TSW; ++n)
         {
             LSTEP(n)
-            ComTeleGui guiCmd(TSW_GUI_GMD_WU);
+            ComTeleGui guiCmd(TSW_GUI_CMD_WU);
             nameElement(guiCmd, TEST_NUM_TSW - n, "TSW");
 
             ComTeleFld cmdFld(TSW_STATE_RIGHT);

@@ -8,7 +8,7 @@
 #ifndef I_COM_H
 #define I_COM_H
 
-#include "ComTypes.h"
+#include "DataTypes.h"
 
 class I_Com
 {

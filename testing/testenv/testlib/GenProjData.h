@@ -20,7 +20,7 @@
 
 #include <ifs/CompEnums.h>
 #include <ifs/CompEnums.h>
-#include <ifs/ProjItem.h>
+#include <ifs/DataTypes.h>
 #include <testlib/testNumElements.h>
 #include <testlib/TestLib.h>
 #include <fstream>

@@ -17,22 +17,22 @@ namespace test
     public:
         inline M_Elem(const CONST_C_STRING name = "Elem") : M_Base(name) {}
 
-        inline void process(const ComTeleGui& tele)
+        inline void fromFld(const ComData& data)
         {
-            call("process").TPARAM(ComTeleGui, tele);
+            call("fromFld").TPARAM(ComData, data);
         }
-        inline void expectProcess(const ComTeleGui& tele) const
+        inline void expectFromFld(ComData& data) const
         {
-            expect("process").TPARAM(ComTeleGui, tele);
+            expect("fromFld").TPARAM(ComData, data);
         }
 
-        inline void process(const ComTeleFld& tele)
+        inline void fromGui(const ComData& data)
         {
-            call("process").TPARAM(ComTeleFld, tele);
+            call("fromGui").TPARAM(ComData, data);
         }
-        inline void expectProcess(const ComTeleFld& tele) const
+        inline void expectFrom(const ComData& data) const
         {
-            expect("process").TPARAM(ComTeleFld, tele);
+            expect("fromGui").TPARAM(ComData, data);
         }
     };
 

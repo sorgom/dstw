@@ -12,16 +12,16 @@ namespace test
     protected:
         Reader mSUT;
         static const CONST_C_STRING fname;
-        void expectReset()
+        void expectClear()
         {
-            m_Dispatcher().expectReset();
-            m_TSW_Provider().expectReset();
-            m_SIG_Provider().expectReset();
-            m_LCR_Provider().expectReset();
+            m_Dispatcher().expectClear();
+            m_TSW_Provider().expectClear();
+            m_SIG_Provider().expectClear();
+            m_LCR_Provider().expectClear();
         }
         void expectFail()
         {
-            expectReset();
+            expectClear();
             m_Log().expectLog(COMP_SYS, ERR_STARTUP);
         }
 
@@ -53,7 +53,7 @@ namespace test
     TEST(SYS_01, T01)
     {
         STEP(1)
-        expectReset();
+        expectClear();
         GenProjData<> data;
         m_TSW_Provider().expectLoad(data.numTSW());
         m_SIG_Provider().expectLoad(data.numSIG());

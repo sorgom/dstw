@@ -1,6 +1,6 @@
 ## directory content
 
-#### ComTypes.h
+#### DataTypes.h
 ```
 communication telegram types
 ```
@@ -89,7 +89,7 @@ the Reader is called at system start and shall:
 defintion of position result
 ```
 
-#### ProjItem.h
+#### DataTypes.h
 ```
 unified proj data item
 ```

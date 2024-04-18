@@ -18,22 +18,22 @@ namespace test
         inline M_Com() : M_Base("Com") {}
         IL_INSTANCE_DEC(M_Com)
 
-        inline void send(const ComTeleFld& tele) const
+        inline void toFld(const ComTele& tele) const
         {
-            call("send").TPARAM(ComTeleFld, tele);
+            call("toFld").TPARAM(ComTele, tele);
         }
-        inline void expectSend(const ComTeleFld& tele) const
+        inline void expectToFld(const ComTele& tele) const
         {
-            expect("send").TPARAM(ComTeleFld, tele);
+            expect("toFld").TPARAM(ComTele, tele);
         }
 
-        inline void send(const ComTeleGui& tele) const
+        inline void toGui(const ComTele& tele) const
         {
-            call("send").TPARAM(ComTeleGui, tele);
+            call("toGui").TPARAM(ComTele, tele);
         }
-        inline void expectSend(const ComTeleGui& tele) const
+        inline void expectToGui(const ComTele& tele) const
         {
-            expect("send").TPARAM(ComTeleGui, tele);
+            expect("toGui").TPARAM(ComTele, tele);
         }
     };
 } // namespace

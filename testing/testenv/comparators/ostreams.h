@@ -9,18 +9,14 @@
 #ifndef OSTREAMS_H
 #define OSTREAMS_H
 
-//## INCLUDES
-#include <ifs/ComTypes.h>
+#include <ifs/DataTypes.h>
 #include <ifs/PosRes.h>
-#include <ifs/ProjItem.h>
-//## END
 #include <ostream>
 #include <comparators/ostreamHelpers.h>
 
+OSTREAM_DEC(ComData)
 OSTREAM_DEC(ComName)
 OSTREAM_DEC(ComTele)
-OSTREAM_DEC(ComTeleFld)
-OSTREAM_DEC(ComTeleGui)
 OSTREAM_DEC(PosRes)
 OSTREAM_DEC(ProjItem)
 

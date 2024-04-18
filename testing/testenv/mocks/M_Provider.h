@@ -35,7 +35,7 @@ namespace test
         {
             call("clear");
         }
-        inline void expectReset() const
+        inline void expectClear() const
         {
             expect("clear");
         }

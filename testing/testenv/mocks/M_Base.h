@@ -11,22 +11,8 @@
 
 #include <codebase/BaseTypes.h>
 #include <BAS/coding.h>
-#include <testlib/TestLiterals.h>
 
 #include <sstream>
-
-//  standard mock class begin
-#define MOCK_CLASS(NAME) \
-    class M_ ## NAME : \
-        public I_ ## NAME, \
-        private M_Base
-
-//  standard constructor with test literals
-#define MOCK_CON(NAME) \
-    inline M_ ## NAME(): \
-        M_Base(c__ ## NAME) \
-    {} \
-    static M_ ## NAME& instance();
 
 namespace test
 {

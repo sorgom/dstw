@@ -1,14 +1,15 @@
 //  ============================================================
-//  communication telegram types
+//  structured data types
+//  - communication telegrams
+//  - project items
 //  ============================================================
 //  created by Manfred Sorgo 
 
 #pragma once
-#ifndef COMTYPES_H
-#define COMTYPES_H
+#ifndef DATAYPES_H
+#define DATAYPES_H
 
 #include <codebase/BaseTypes.h>
-#include <codebase/nocopy.h>
 #include <codebase/Mem.h>
 #include "SystemEnums.h"
 
@@ -62,6 +63,12 @@ struct ComTele
 };
 
 static_assert(sizeof(ComTele) == ComTelegramSize);
+
+struct ProjItem
+{
+    ComName name;
+    UINT8 type;
+};
 
 #include <codebase/packEnd.h>
 

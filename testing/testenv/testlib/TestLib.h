@@ -7,16 +7,15 @@
 #ifndef TESTLIB_H
 #define TESTLIB_H
 
-#include <ifs/ComTypes.h>
-#include <testlib/TestLiterals.h>
+#include <ifs/DataTypes.h>
 #include <codebase/Mem.h>
 #include <BAS/coding.h>
 
 namespace test
 {
     //  preset an ElmentName for testing
-    const ComName& genComName(UINT32 num, CONST_C_STRING name = c__ELM);
-    void genComName(ComName& eName, UINT32 num, CONST_C_STRING name = c__ELM);
+    const ComName& genComName(UINT32 num, CONST_C_STRING name = "ELM");
+    void genComName(ComName& eName, UINT32 num, CONST_C_STRING name = "ELM");
 
     inline void genComName(ComName& eName, UINT32 num, CONST_C_STRING name)
     {
@@ -24,7 +23,7 @@ namespace test
     }
 
     template <class T>
-    void nameElement(T& elem, UINT32 num, CONST_C_STRING name = c__ELM)
+    void nameElement(T& elem, UINT32 num, CONST_C_STRING name = "ELM")
     {
         genComName(elem.name, num, name);
     }

@@ -8,7 +8,7 @@
 #define I_PROVIDER_H
 
 #include "I_Elem.h"
-#include "ProjItem.h"
+#include "DataTypes.h"
 
 class I_Provider
 {
