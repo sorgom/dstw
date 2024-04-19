@@ -148,7 +148,7 @@ Sample: test template json file for TSW
     "//" : "transitions test code setup for TSW",
     "//" : "===================================",
     "prefixState": "TSW_STATE",
-    "prefixCmd": "TSW_GUI_GMD",
+    "prefixCmd": "TSW_GUI_CMD",
     "param1": "CMD(_CMD_, _FLD_, _GUI_);",
     "cmd0": "CMD(_CMD_);",
     "fld1": "FLD(_VAL_, _VAL_);",
@@ -162,19 +162,19 @@ Sample: generated test code for TSW
         STEP(1)
         FLD(TSW_STATE_LEFT, TSW_STATE_LEFT);
         STEP(2)
-        CMD(TSW_GUI_GMD_LEFT);
+        CMD(TSW_GUI_CMD_LEFT);
         STEP(3)
         FLD(TSW_STATE_LEFT);
         STEP(4)
         FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
         STEP(5)
-        CMD(TSW_GUI_GMD_WU);
+        CMD(TSW_GUI_CMD_WU);
         STEP(6)
         FLD(TSW_STATE_UNDEF);
         STEP(7)
         FLD(TSW_STATE_RIGHT, TSW_STATE_RIGHT);
         STEP(8)
-        CMD(TSW_GUI_GMD_RIGHT);
+        CMD(TSW_GUI_CMD_RIGHT);
         STEP(9)
         FLD(TSW_STATE_RIGHT);
         STEP(10)
@@ -183,23 +183,23 @@ Sample: generated test code for TSW
         STEP(40)
         FLD(TSW_STATE_RIGHT, TSW_STATE_RIGHT);
         STEP(41)
-        CMD(TSW_GUI_GMD_WU, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
+        CMD(TSW_GUI_CMD_WU, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
         STEP(42)
         FLD(TSW_STATE_DEFECT, TSW_STATE_DEFECT);
         STEP(43)
         FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
         STEP(44)
-        CMD(TSW_GUI_GMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
+        CMD(TSW_GUI_CMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
         STEP(45)
         FLD(TSW_STATE_DEFECT, TSW_STATE_DEFECT);
         STEP(46)
         FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
         STEP(47)
-        CMD(TSW_GUI_GMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
+        CMD(TSW_GUI_CMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
         STEP(48)
-        CMD(TSW_GUI_GMD_LEFT, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
+        CMD(TSW_GUI_CMD_LEFT, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
         STEP(49)
-        CMD(TSW_GUI_GMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
+        CMD(TSW_GUI_CMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
 ```
 
 ## sample: transitions SIG_H_N
