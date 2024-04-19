@@ -12,10 +12,8 @@ namespace test
 {
     void installComparators(MockSupportPlugin& plugin)
     {
-        //# ADD_COMP
         ADD_COMP(ComName)
         ADD_COMP(ComData)
         ADD_COMP(ComTele)
-        //# END
     }
 }

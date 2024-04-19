@@ -3,6 +3,7 @@
 //  for interface I_<NAME>
 //  - function m_<NAME>() returns mock instance 
 //  - function mock_<NAME>() plugs mock instance into IL
+//    currently only mock_Com() is implemented
 //  ============================================================
 //  created by Manfred Sorgo
 
