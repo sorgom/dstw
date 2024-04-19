@@ -1,5 +1,5 @@
 //  ============================================================
-//  classes SIG_(X) implement I_SIG
+//  classes SIG_(X) implements I_SIG
 //  ============================================================
 //  created by Manfred Sorgo
 

@@ -2,5 +2,5 @@
 
 namespace IL
 {
-    I_Com& getCom() { return ILPLugs::instance().mCom.ref(); }
+    I_Com& getCom() { return test::ILPLugs::instance().mCom.ref(); }
 } // namespace

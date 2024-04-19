@@ -16,8 +16,6 @@
 class BAS_Provider : public I_Provider
 {
 public:
-    inline BAS_Provider() = default;
-
     inline size_t size() const final
     {
         return mElems.size();
@@ -36,6 +34,8 @@ public:
     void load(const ProjItem* data, UINT32 num) final;
     
 protected:
+    inline BAS_Provider() = default;
+
     virtual bool add(size_t id, const ProjItem& item) = 0;
     virtual E_Comp comp() const = 0;
 

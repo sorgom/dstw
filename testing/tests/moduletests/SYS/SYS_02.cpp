@@ -229,4 +229,27 @@ namespace test
         mSUT.index();
         CHECK_N_CLEAR()
     }
+    
+    //  test type: equivalence class test
+    //  telegrams from field and GUI
+    //  Provider returns wrong size
+    TEST(SYS_02, T08)
+    {
+        SETUP()
+        const ComData data{33, 44};
+        ComTele tele{{}, data};
+        nameElement(tele, 1, "TSW");
+
+        STEP(1)
+        m_TSW_Provider().expectSize(1);
+        m_Log().expectLog(COMP_SYS, ERR_RANGE);
+        mSUT.fromGui(tele);
+        CHECK_N_CLEAR()
+
+        STEP(2)
+        m_TSW_Provider().expectSize(1);
+        m_Log().expectLog(COMP_SYS, ERR_RANGE);
+        mSUT.fromFld(tele);
+        CHECK_N_CLEAR()
+    }
 }

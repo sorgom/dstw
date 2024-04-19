@@ -23,12 +23,11 @@ buildOptsTest = buildOptsApp .. ' /wd4127'
 
 --  ============================================================
 --  > tests.sln
---  module tests and system tests at once runtime
+--  module tests at once runtime
 --  including CppUTest sources
 --  ->  exe/tests.exe
 --  configurations: 
---  - ci        module and system tests
---  - sys       system tests
+--  - ci        module tests
 --  - dev       developer tests
 --  ============================================================
 workspace 'tests'
@@ -45,7 +44,7 @@ workspace 'tests'
             kind 'ConsoleApp'
             targetdir 'exe'
             warnings 'high'
-            links { 'winmm', 'ws2_32' }
+            links { 'winmm' }
             buildoptions { buildOptsTest }
             files { 
                 testEnvSrcs, appSrcs,
@@ -56,7 +55,7 @@ workspace 'tests'
             removefiles { noTestSrcs }
             
             filter { 'configurations:ci' }
-                files { modTestSrcs, sysTestSrcs }
+                files { modTestSrcs }
 
             filter { 'configurations:dev' }
                 files { devTestSrcs }
@@ -82,7 +81,6 @@ workspace 'gendata'
             kind 'ConsoleApp'
             includedirs { testIncludes }
             files { genDataSrcs }
-            links { 'ws2_32' }
 
 --  ============================================================
 --  > dstw.sln
@@ -105,5 +103,4 @@ workspace 'dstw'
             includedirs { appIncludes }
             kind 'ConsoleApp'
             files { '../application/**.cpp' }
-            links { 'ws2_32' }
 
