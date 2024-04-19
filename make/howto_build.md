@@ -10,7 +10,7 @@ DSTW/make$> ./build.sh -h
 ````
 then call to build and run, e.g.
 ````shell
-DSTW/make$> ./build.sh -cx
+DSTW/make$> ./build.sh -cr
 ````
 
 ## Visual Studio build

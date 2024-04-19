@@ -16,7 +16,7 @@ The aim is to apply and demonstrate techniques to meet security integrity level 
 It shows a completely different approach than the [model driven](Clinch.md) one I happened to experience.
 
 ## components interaction overview
-![overview](specification/doc/rel-2023-12_overview.svg)
+![overview](specification/doc/overview.svg)
 
 ## topics
 - [SIL4](SIL4.md)
