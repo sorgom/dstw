@@ -46,7 +46,7 @@ workspace 'tests'
             warnings 'high'
             links { 'winmm' }
             buildoptions { buildoptions_vs_test }
-            files { files_cpputest_vs }
+            files { files_cpputest_vs, files_testenv, files_app }
             removefiles { removefiles_test }
             
             filter { 'configurations:ci' }

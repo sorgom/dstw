@@ -36,7 +36,7 @@ ifeq ($(config),ci)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_ci
 OBJDIR = obj/gcc/tests/ci
-INCLUDES += -I../testing/testenv -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 define PREBUILDCMDS
 endef
 define POSTBUILDCMDS
@@ -46,7 +46,7 @@ else ifeq ($(config),qnd)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_qnd
 OBJDIR = obj/gcc/tests/qnd
-INCLUDES += -I../testing/testenv -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components -I../devel
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components -I../devel
 define PREBUILDCMDS
 endef
 define POSTBUILDCMDS
@@ -56,7 +56,7 @@ else ifeq ($(config),dev)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_dev
 OBJDIR = obj/gcc/tests/dev
-INCLUDES += -I../testing/testenv -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 define PREBUILDCMDS
 endef
 define POSTBUILDCMDS
@@ -66,7 +66,7 @@ else ifeq ($(config),bullseye)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_bullseye
 OBJDIR = obj/gcc/tests/bullseye
-INCLUDES += -I../testing/testenv -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 define PREBUILDCMDS
 	@echo Running prebuild commands
 	cov01 -1 --no-banner
@@ -80,7 +80,7 @@ else ifeq ($(config),tmp)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_tmp
 OBJDIR = obj/gcc/tests/tmp
-INCLUDES += -I../testing/testenv -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components -I../devel
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components -I../devel
 define PREBUILDCMDS
 endef
 define POSTBUILDCMDS

@@ -6,3 +6,6 @@
 	path = CppUTestSteps
 	url = git@github.com:sorgom/CppUTestSteps.git
 	branch = dev
+[submodule "cpputest"]
+	path = cpputest
+	url = git@github.com:cpputest/cpputest.git

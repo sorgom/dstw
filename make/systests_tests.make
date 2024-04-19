@@ -39,14 +39,14 @@ ifeq ($(config),ci)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/systests_tests_ci
 OBJDIR = obj/gcc/systests_tests/ci
-INCLUDES += -I../testing/testenv -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 LIBS += -lsystests_app_ci -lcppu_test
 
 else ifeq ($(config),qnd)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/systests_tests_qnd
 OBJDIR = obj/gcc/systests_tests/qnd
-INCLUDES += -I../devel -I../testing/testenv -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
+INCLUDES += -I../devel -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 LIBS += -lsystests_app_qnd -lcppu_test
 
 endif
