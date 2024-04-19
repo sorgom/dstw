@@ -873,7 +873,7 @@
 "_type":"LabelView","_id":"AAAAAAGLTLJZxoINSIQ=","_parent":{
 "$ref":"AAAAAAGLTLJZxoILZ/o="
 }
-,"fillColor":"#FFFFFF00","font":"Arial;13;1","left":1061,"top":1223,"width":151,"height":13,"underline":true,"text":"Storage"
+,"fillColor":"#FFFFFF00","font":"Arial;13;1","left":1061,"top":1223,"width":151,"height":13,"underline":true,"text":"project data file"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLTLJZxoIOqCA=","_parent":{
@@ -5272,12 +5272,6 @@
 "$ref":"AAAAAAGO44Fna6MdG0A="
 }
 }
-,{
-"_type":"UMLTextView","_id":"AAAAAAGO44Mk58bFZLU=","_parent":{
-"$ref":"AAAAAAFF+qBtyKM79qY="
-}
-,"font":"Arial;13;0","left":534,"top":63,"width":100,"height":25,"text":"Text"
-}
 ]
 }
 ,{
@@ -6046,7 +6040,7 @@
 "_type":"UMLObject","_id":"AAAAAAGLTLJZxoIImiI=","_parent":{
 "$ref":"AAAAAAFF+qBWK6M3Z8Y="
 }
-,"name":"Storage","ownedElements":[
+,"name":"project data file","ownedElements":[
 {
 "_type":"UMLLink","_id":"AAAAAAGLTLkNjzq05vc=","_parent":{
 "$ref":"AAAAAAGLTLJZxoIImiI="
