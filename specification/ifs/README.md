@@ -68,18 +68,6 @@ the Reader is called at system start and shall:
 -   call indexing of I_Dispatcher
 ```
 
-#### PosRes.h
-```
-defintion of position result
-```
-
-#### SystemEnums.h
-```
-system wide enumerations
--   E_Comp  components
--   E_Err   errors
-```
-
 #### values.h
 ```
 system wide specified values

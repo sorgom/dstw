@@ -14,7 +14,7 @@ It's available for Windows and Linux.
 
 Bullseye is not for free - but they provide a free trial period. 
 
-Sample text summary output:
+Sample (and very outdated) text summary output:
 ```
 Source            Function Coverage      C/D Coverage
 ----------------  -----------------  ----------------

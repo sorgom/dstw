@@ -133,13 +133,13 @@ namespace test
             }
         }
 
-        inline static void write(std::ostream& os, const UINT32 n)
+        inline static void write(std::ofstream& os, const UINT32 n)
         {
             const UINT32 r = n;
             os.write(reinterpret_cast<const char*>(&r), sizeof(UINT32));
         }
 
-        static void write(std::ostream& os, const ProjVec& vec)
+        static void write(std::ofstream& os, const ProjVec& vec)
         {
             os.write(reinterpret_cast<const char*>(vec.data()), sizeof(ProjItem) * vec.size());
         }    
