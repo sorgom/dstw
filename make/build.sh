@@ -48,15 +48,23 @@ if test ! -z $clean; then git clean -dfXq .; fi
 if test ! -z $pre; then premake5 gmake2; fi
 
 echo build ...
+err=0
+pids=()
+for fn in lib_*.make; do
+    mk $fn & pids+=($!)
+done
+for pid in ${pids[*]}; do
+    if ! wait $pid; then err=1; fi
+done
+
 pids=()
 for fn in $(ls *.make | grep -v '_'); do
     mk $fn & pids+=($!)
 done
-
-err=0
 for pid in ${pids[*]}; do
     if ! wait $pid; then err=1; fi
 done
+
 if test $err -ne 0; then exit 1; fi
 
 if test -z $run; then exit 0; fi

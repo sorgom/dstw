@@ -25,9 +25,9 @@ ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-LIBS += -lCppUTest -lCppUTestExt
+LIBS += -lcppu_test
 LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS) -L../BuildCppUTest/lib -s
+ALL_LDFLAGS += $(LDFLAGS) -Llib -s
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PRELINKCMDS
 endef

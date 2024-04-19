@@ -26,7 +26,7 @@ ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS) -Llib -L../BuildCppUTest/lib
+ALL_LDFLAGS += $(LDFLAGS) -Llib
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -40,14 +40,14 @@ TARGETDIR = bin
 TARGET = $(TARGETDIR)/systests_tests_ci
 OBJDIR = obj/gcc/systests_tests/ci
 INCLUDES += -I../testing/testenv -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
-LIBS += -lsystests_app_ci -lCppUTest -lCppUTestExt
+LIBS += -lsystests_app_ci -lcppu_test
 
 else ifeq ($(config),qnd)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/systests_tests_qnd
 OBJDIR = obj/gcc/systests_tests/qnd
 INCLUDES += -I../devel -I../testing/testenv -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
-LIBS += -lsystests_app_qnd -lCppUTest -lCppUTestExt
+LIBS += -lsystests_app_qnd -lcppu_test
 
 endif
 

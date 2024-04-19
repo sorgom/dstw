@@ -26,7 +26,7 @@ ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-ALL_LDFLAGS += $(LDFLAGS) -Llib -L../BuildCppUTest/lib --coverage
+ALL_LDFLAGS += $(LDFLAGS) -Llib --coverage
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -39,14 +39,14 @@ ifeq ($(config),ci)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/coverage_tests_ci
 OBJDIR = obj/gcc/coverage_tests/ci
-LIBS += lib/libcoverage_app_ci.a -lgcov -lCppUTest -lCppUTestExt
+LIBS += lib/libcoverage_app_ci.a -lgcov -lcppu_test
 LDDEPS += lib/libcoverage_app_ci.a
 
 else ifeq ($(config),dev)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/coverage_tests_dev
 OBJDIR = obj/gcc/coverage_tests/dev
-LIBS += lib/libcoverage_app_dev.a -lgcov -lCppUTest -lCppUTestExt
+LIBS += lib/libcoverage_app_dev.a -lgcov -lcppu_test
 LDDEPS += lib/libcoverage_app_dev.a
 
 endif

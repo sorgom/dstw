@@ -3,32 +3,24 @@
 --  ============================================================
 
 include 'premake5_settings.lua'
-buildOpts = { '-std=c++17 -pedantic-errors -Werror -Wall' }
+buildoptions_gcc = { '-std=c++17 -pedantic-errors -Werror -Wall' }
 
 --  ============================================================
---  > dstw.make
---  data generator and application runtime
+--  > lib_cpputest.make
+--  cpputest lib
 --  ============================================================
-workspace 'dstw'
+workspace 'lib_cpputest'
     filter { 'action:gmake*' }
         configurations { 'ci' }
         language 'C++'
-        objdir 'obj/gcc/%{prj.name}'
-        targetdir 'bin'
-        buildoptions { buildOpts }
-        optimize 'On'
-
-        project 'dstw_gen'
-            kind 'ConsoleApp'
-            includedirs { testIncludes }
-            defines { genDefines }
-            files { genDataSrcs }
-
-        project 'dstw_run'
-            kind 'ConsoleApp'
-            includedirs { appIncludes }
-            defines { appDefines }
-            files { '../application/**.cpp' }
+        objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
+        defines { defines_test }
+        project 'cppu_test'
+            kind 'StaticLib'
+            targetdir 'lib'
+            files { files_cpputest_gcc }
+            includedirs { includedirs_cpputest }
+            buildoptions { buildoptions_gcc }
 
 --  ============================================================
 --  > tests.make
@@ -48,30 +40,30 @@ workspace 'tests'
         objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
         targetsuffix '_%{cfg.name}'
 
-        buildoptions { buildOpts }
+        buildoptions { buildoptions_gcc }
 
         project 'tests'
             kind 'ConsoleApp'
-            defines { 'NDEBUG', testDefines }
+            defines { 'NDEBUG', defines_test }
             targetdir 'bin'
-            libdirs { '../BuildCppUTest/lib' }
-            includedirs { testIncludes }
-            links { testLinks }
-            files { testEnvSrcs, appSrcs }
-            removefiles { noTestSrcs }
+            libdirs { 'lib' }
+            includedirs { includedirs_test }
+            links { links_test_gcc }
+            files { files_testenv, files_app }
+            removefiles { removefiles_test }
 
             filter { 'configurations:ci' }
-                files { modTestSrcs }
+                files { files_moduletest }
 
             filter { 'configurations:qnd' }
-                files { modTestSrcs }
+                files { files_moduletest }
                 includedirs { '../devel' }
 
             filter { 'configurations:dev' }
-                files { devTestSrcs }
+                files { files_devtest }
 
             filter { 'configurations:bullseye' }
-                files { modTestSrcs }
+                files { files_moduletest }
                 prebuildcommands { 'cov01 -1 --no-banner' }
                 postbuildcommands { './bullseye.sh' }
             filter { 'configurations:tmp' }
@@ -95,30 +87,30 @@ workspace 'coverage'
         objdir 'obj/gcc/%{prj.name}'
         targetsuffix '_%{cfg.name}'
 
-        includedirs { testIncludes }
-        buildoptions { buildOpts }
+        includedirs { includedirs_test }
+        buildoptions { buildoptions_gcc }
 
-        defines { 'DEBUG', testDefines }
+        defines { 'DEBUG', defines_test }
         symbols 'On'
 
         project 'coverage_app'
             kind 'StaticLib'
             targetdir 'lib'
-            files { appSrcs }
-            removefiles { noTestSrcs }
+            files { files_app }
+            removefiles { removefiles_test }
             buildoptions {'-fprofile-arcs -ftest-coverage'}
 
         project 'coverage_tests'
             kind 'ConsoleApp'
             targetdir 'bin'
-            libdirs { 'lib', '../BuildCppUTest/lib' }
-            links { 'coverage_app', 'gcov', testLinks }
+            libdirs { 'lib' }
+            links { 'coverage_app', 'gcov', links_test_gcc }
             linkoptions { '--coverage' }
-            files { testEnvSrcs }
+            files { files_testenv }
             filter { 'configurations:ci' }
-                files { modTestSrcs }
+                files { files_moduletest }
             filter { 'configurations:dev' }
-                files { devTestSrcs }
+                files { files_devtest }
 
 --  ============================================================
 --  > systests.make
@@ -136,9 +128,9 @@ workspace 'systests'
         objdir 'obj/gcc/%{prj.name}'
         targetsuffix '_%{cfg.name}'
 
-        buildoptions { buildOpts }
+        buildoptions { buildoptions_gcc }
 
-        defines { 'DEBUG', testDefines }
+        defines { 'DEBUG', defines_test }
         symbols 'On'
 
         filter { 'configurations:qnd' }
@@ -147,15 +139,41 @@ workspace 'systests'
         project 'systests_app'
             kind 'StaticLib'
             targetdir 'lib'
-            files { appSrcs }
-            includedirs { appIncludes }
-            removefiles { noSysTestSrcs_app }
+            files { files_app }
+            includedirs { includedirs_app }
+            removefiles { removefiles_systest_app }
 
         project 'systests_tests'
             kind 'ConsoleApp'
             targetdir 'bin'
-            libdirs { 'lib', '../BuildCppUTest/lib' }
-            links { 'systests_app_%{cfg.name}', testLinks }
-            files { testEnvSrcs, sysTestSrcs }
-            removefiles { noSysTestSrcs_tests }
-            includedirs { testIncludes }
+            libdirs { 'lib' }
+            links { 'systests_app_%{cfg.name}', links_test_gcc }
+            files { files_testenv, files_systest }
+            removefiles { removefiles_systest_test }
+            includedirs { includedirs_test }
+
+--  ============================================================
+--  > dstw.make
+--  data generator and application runtime
+--  ============================================================
+workspace 'dstw'
+    filter { 'action:gmake*' }
+        configurations { 'ci' }
+        language 'C++'
+        objdir 'obj/gcc/%{prj.name}'
+        targetdir 'bin'
+        buildoptions { buildoptions_gcc }
+        optimize 'On'
+
+        project 'dstw_gen'
+            kind 'ConsoleApp'
+            includedirs { includedirs_test }
+            defines { defines_gendata }
+            files { files_gendata }
+
+        project 'dstw_run'
+            kind 'ConsoleApp'
+            includedirs { includedirs_app }
+            defines { defines_app }
+            files { files_app }
+

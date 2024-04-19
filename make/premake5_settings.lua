@@ -2,46 +2,62 @@
 --  common premake5 build settings gcc & VS
 --  ============================================================
 
-appIncludes = {
+base_cpputest = '../BuildCppUTest/CppUTest'
+
+includedirs_cpputest = {
+    base_cpputest .. '/include'
+}
+
+base_teststeps = '../CppUTestSteps/TestSteps'
+
+includedirs_teststeps = {
+    base_teststeps .. '/include'
+}
+
+files_teststeps = {
+    base_teststeps .. '/src/*.cpp'
+}
+
+includedirs_app = {
     '../specification',
     '../application',
     '../application/components'
 }
 
-testIncludes = {
+includedirs_test = {
     '../testing/testenv',
-    '../BuildCppUTest/CppUTest/include',
-    '../CppUTestSteps/TestSteps/include',
-    appIncludes
+    base_cpputest .. '/include',
+    includedirs_teststeps,
+    includedirs_app
 }
 
-appSrcs = {
+files_app = {
     '../application/**.cpp'
 }
-noTestSrcs = {
+removefiles_test = {
     '../application/components/SYS/src/IL*.cpp',
     '../application/main/*cpp'
 }
-noSysTestSrcs_app =  {
+removefiles_systest_app =  {
     '../application/components/SYS/src/IL_Com.cpp',
     '../application/main/*cpp'
 }
-noSysTestSrcs_tests =  {
+removefiles_systest_test =  {
     '../testing/testenv/mocks/src/mock_IL.cpp'
 }
 
-testEnvSrcs = {
+files_testenv = {
     '../testing/testenv/**.cpp',
-    '../CppUTestSteps/TestSteps/src/*.cpp'
+    files_teststeps
 }
 
-testDefines = {
+defines_test = {
     'CPPUTEST_USE_LONG_LONG=0'
 }
 
-appDefines = { 'NDEBUG' }
+defines_app = { 'NDEBUG' }
 
-genDefines = { 
+defines_gendata = { 
     'NDEBUG', 
     'TEST_NUM_TSW=1000', 
     'TEST_NUM_SIG=1000', 
@@ -49,16 +65,28 @@ genDefines = {
     'TEST_NUM_SEG=1000' 
 }
 
-modTestSrcs = { '../testing/tests/moduletests/**.cpp' }
-sysTestSrcs = { '../testing/tests/systemtests/**.cpp' }
-devTestSrcs = { '../testing/tests/devtests/**.cpp' }
+files_moduletest = { '../testing/tests/moduletests/**.cpp' }
+files_systest = { '../testing/tests/systemtests/**.cpp' }
+files_devtest = { '../testing/tests/devtests/**.cpp' }
 
-genDataSrcs = { 
+files_gendata = { 
     '../testing/gendata/genDataMain.cpp', 
     '../testing/testenv/testlib/src/TestLib.cpp'
 }
 
-testLinks = { 'CppUTest', 'CppUTestExt' }
+links_test_gcc = { 'cppu_test' }
 
-CppUTestHome = '../BuildCppUTest/CppUTest/'
+files_cpputest = {
+    base_cpputest .. '/src/CppUTest/*.cpp',
+    base_cpputest .. '/src/CppUTestExt/*.cpp'
+}
 
+files_cpputest_vs = {
+    files_cpputest,
+    base_cpputest .. '/src/Platforms/VisualCpp/*.cpp'
+}
+
+files_cpputest_gcc = {
+    files_cpputest,
+    base_cpputest .. '/src/Platforms/Gcc/*.cpp'
+}

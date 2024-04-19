@@ -17,9 +17,9 @@ include 'premake5_settings.lua'
 --  -   4127 suggested 'if constexpr' 
 --      warning caused by CppUTest headers code
 --  ============================================================
-buildOpts = '/std:c++17 /MP'
-buildOptsApp = buildOpts .. ' /W4 /wd4100 /wd4103'
-buildOptsTest = buildOptsApp .. ' /wd4127'
+buildoptions_vs = '/std:c++17 /MP'
+buildoptions_vs_app = buildoptions_vs .. ' /W4 /wd4100 /wd4103'
+buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127'
 
 --  ============================================================
 --  > tests.sln
@@ -36,29 +36,24 @@ workspace 'tests'
         language 'C++'
         objdir 'obj/vs/%{prj.name}'
 
-        includedirs { testIncludes }
+        includedirs { includedirs_test }
 
-        defines { 'NDEBUG', testDefines }
+        defines { 'NDEBUG', defines_test }
 
         project 'tests'
             kind 'ConsoleApp'
             targetdir 'exe'
             warnings 'high'
             links { 'winmm' }
-            buildoptions { buildOptsTest }
-            files { 
-                testEnvSrcs, appSrcs,
-                CppUTestHome .. 'src/CppUTest/*.cpp',
-                CppUTestHome .. 'src/Platforms/VisualCpp/*.cpp',
-                CppUTestHome .. 'src/CppUTestExt/*.cpp'
-            }
-            removefiles { noTestSrcs }
+            buildoptions { buildoptions_vs_test }
+            files { files_cpputest_vs }
+            removefiles { removefiles_test }
             
             filter { 'configurations:ci' }
-                files { modTestSrcs }
+                files { files_moduletest }
 
             filter { 'configurations:dev' }
-                files { devTestSrcs }
+                files { files_devtest }
 
 --  ============================================================
 --  > gendata.sln
@@ -73,14 +68,14 @@ workspace 'gendata'
 
         targetdir 'exe'
         warnings 'high'
-        buildoptions { buildOptsApp }
+        buildoptions { buildoptions_vs_app }
 
-        defines { genDefines }
+        defines { defines_gendata }
     
         project 'gendata'
             kind 'ConsoleApp'
-            includedirs { testIncludes }
-            files { genDataSrcs }
+            includedirs { includedirs_test }
+            files { files_gendata }
 
 --  ============================================================
 --  > dstw.sln
@@ -95,12 +90,12 @@ workspace 'dstw'
 
         targetdir 'exe'
         warnings 'high'
-        buildoptions { buildOptsApp }
+        buildoptions { buildoptions_vs_app }
 
-        defines { appDefines }
+        defines { defines_app }
     
         project 'dstw'
-            includedirs { appIncludes }
+            includedirs { includedirs_app }
             kind 'ConsoleApp'
-            files { '../application/**.cpp' }
+            files { files_app }
 

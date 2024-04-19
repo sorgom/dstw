@@ -24,8 +24,8 @@ check for availability of tools
 ```
 premake5 build rules for gcc (gmake2):
 
-> dstw.make
-data generator and application runtime
+> lib_cpputest.make
+cpputest lib
 
 > tests.make
 app and tests at once runtime
@@ -52,6 +52,9 @@ configurations:
 configurations:
 - ci        module tests
 - qnd       with devel includes
+
+> dstw.make
+data generator and application runtime
 ```
 
 #### premake5_settings.lua
