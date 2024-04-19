@@ -10,7 +10,7 @@ class SIG_Provider implements I_SIG_Provider
 
 #### SIG_X.h
 ```
-classes SIG_(X) implement I_SIG
+classes SIG_(X) implements I_SIG
 
 SIG_H  main signal without speed indicator
 handles:

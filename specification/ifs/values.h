@@ -1,16 +1,47 @@
 //  ============================================================
-//  component specific enumerations
+//  system wide specified values
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef COMP_ENUMS_H
-#define COMP_ENUMS_H
+#ifndef VALUES_H
+#define VALUES_H
 
-#include "SystemEnums.h"
+#include <codebase/BaseTypes.h>
 
 //  ============================================================
-//  SIG types and states
+//  - component identifiers
+//  ============================================================
+enum E_Comp : UINT8
+{
+    COMP_TSW,
+    COMP_SIG,
+    COMP_LCR,
+    COMP_SEG,
+    COMP_SYS
+};
+
+//  ============================================================
+//  - return types
+//  ============================================================
+enum E_Err : UINT8
+{
+    NO_ERR,
+    ERR_MATCH,
+    ERR_RANGE,
+    ERR_STARTUP
+};
+                
+//  ============================================================
+//  - parameter values
+//  ============================================================
+enum E_Param : UINT8
+{
+    PARAM_UNDEF = 255
+};
+
+//  ============================================================
+//  - SIG types and states
 //  ============================================================
 enum E_SigType : UINT8
 {
@@ -45,7 +76,7 @@ enum E_SigState : UINT8
 };
 
 //  ============================================================
-//  TSW commands and states
+//  - TSW commands and states
 //  ============================================================
 enum E_TswState : UINT8
 {
@@ -65,7 +96,7 @@ enum E_TswGuiCmd : UINT8
 };
 
 //  ============================================================
-//  TSW types and states
+//  - LCR types and states
 //  ============================================================
 enum E_LcrType : UINT8
 {

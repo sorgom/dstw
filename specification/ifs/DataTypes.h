@@ -1,7 +1,5 @@
 //  ============================================================
 //  structured data types
-//  - communication telegrams
-//  - project items
 //  ============================================================
 //  created by Manfred Sorgo 
 
@@ -9,11 +7,16 @@
 #ifndef DATAYPES_H
 #define DATAYPES_H
 
+#include "values.h"
 #include <codebase/BaseTypes.h>
 #include <codebase/Mem.h>
-#include "SystemEnums.h"
+#include <codebase/nocopy.h>
 
 #include <codebase/packBegin.h>
+
+//  ============================================================
+//  - communication telegrams
+//  ============================================================
 
 //  Com telegrams element identifier
 constexpr auto ComNameSize = 12;
@@ -61,15 +64,32 @@ struct ComTele
     ComName name;
     ComData data;
 };
+static_assert(ComNameSize + 2 == sizeof(ComTele));
 
-static_assert(sizeof(ComTele) == ComTelegramSize);
-
+//  ============================================================
+//  - project items
+//  ============================================================
 struct ProjItem
 {
     ComName name;
     UINT8 type;
 };
+static_assert(ComNameSize + 1 == sizeof(ProjItem));
 
 #include <codebase/packEnd.h>
+
+//  ============================================================
+//  - result of a find operation
+//  ============================================================
+struct PosRes
+{
+    const size_t pos;
+    const bool valid;
+    inline PosRes(size_t pos, bool valid):
+        pos(pos),
+        valid(valid)
+    {}
+    NODEF(PosRes)
+};
 
 #endif // H_

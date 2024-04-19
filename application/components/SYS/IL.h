@@ -11,7 +11,7 @@
 
 #include <ifs/I_Com.h>
 #include <ifs/I_Dispatcher.h>
-#include <ifs/CompEnums.h>
+#include <ifs/values.h>
 #include <ifs/I_Log.h>
 #include <ifs/I_Provider.h>
 #include <ifs/I_Reader.h>

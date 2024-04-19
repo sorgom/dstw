@@ -10,7 +10,6 @@
 #define OSTREAMS_H
 
 #include <ifs/DataTypes.h>
-#include <ifs/PosRes.h>
 #include <ostream>
 #include <comparators/ostreamHelpers.h>
 

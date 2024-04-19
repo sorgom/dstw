@@ -8,7 +8,7 @@
 #ifndef I_LOGGER_H
 #define I_LOGGER_H
 
-#include "SystemEnums.h"
+#include "values.h"
 
 class I_Log
 {

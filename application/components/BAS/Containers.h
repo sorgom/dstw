@@ -8,7 +8,7 @@
 #define CONTAINERS_H
 
 #include <BAS/coding.h>
-#include <ifs/PosRes.h>
+#include <ifs/DataTypes.h>
 
 #include <memory>
 #include <type_traits>

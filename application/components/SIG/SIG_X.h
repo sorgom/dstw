@@ -7,7 +7,7 @@
 #ifndef SIG_X_H
 #define SIG_X_H
 
-#include <ifs/CompEnums.h>
+#include <ifs/values.h>
 #include <ifs/I_Elem.h>
 #include <SYS/IL.h>
 #include <BAS/coding.h>

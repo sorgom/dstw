@@ -1,21 +1,14 @@
 ## directory content
 
-#### CompEnums.h
-```
-component specific enumerations
-
-SIG types and states
-
-TSW commands and states
-
-TSW types and states
-```
-
 #### DataTypes.h
 ```
 structured data types
+
 - communication telegrams
+
 - project items
+
+- result of a find operation
 ```
 
 #### I_Com.h
@@ -80,15 +73,26 @@ the Reader is called at system start and shall:
 defintion of position result
 ```
 
-#### ProjItem.h
-```
-unified proj data item
-```
-
 #### SystemEnums.h
 ```
 system wide enumerations
 -   E_Comp  components
--   E_Mod   modules
 -   E_Err   errors
+```
+
+#### values.h
+```
+system wide specified values
+
+- component identifiers
+
+- return types
+
+- parameter values
+
+- SIG types and states
+
+- TSW commands and states
+
+- LCR types and states
 ```

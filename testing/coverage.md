@@ -86,12 +86,12 @@ LCR/src/LCR_X.cpp           126         --       --
 SIG/src/SIG_Provider.cpp     23         --       --
 SIG/src/SIG_X.cpp           298         --       --
 SYS/src/Com.cpp               2         --       --
-SYS/src/Dispatcher.cpp      124          2      1.6
+SYS/src/Dispatcher.cpp      124         --       --
 SYS/src/IL.cpp               16         --       --
 SYS/src/IL_Com.cpp            6         --       --
 SYS/src/Log.cpp               2         --       --
-SYS/src/Reader.cpp           83          3      3.6
+SYS/src/Reader.cpp           68         --       --
 TSW/src/TSW.cpp              95         --       --
 TSW/src/TSW_Provider.cpp      2         --       --
-total                       823          5      0.6
+total                       808         --       --
 ```

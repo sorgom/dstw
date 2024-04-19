@@ -9,7 +9,7 @@
 
 #include <ifs/I_Elem.h>
 #include <BAS/coding.h>
-#include <ifs/CompEnums.h>
+#include <ifs/values.h>
 
 class LCR_X : public I_Elem
 {

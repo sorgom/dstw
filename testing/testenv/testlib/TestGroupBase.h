@@ -9,7 +9,7 @@
 
 #include <testlib/CppUTest.h>
 
-#include <ifs/SystemEnums.h>
+#include <ifs/values.h>
 #include <codebase/Mem.h>
 #include <comparators/ostreams.h>
 #include <SYS/IL.h>

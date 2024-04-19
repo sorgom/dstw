@@ -10,7 +10,7 @@
 #ifndef TSW_H
 #define TSW_H
 
-#include <ifs/CompEnums.h>
+#include <ifs/values.h>
 #include <ifs/I_Elem.h>
 #include <BAS/coding.h>
 

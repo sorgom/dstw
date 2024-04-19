@@ -76,12 +76,11 @@ additional suppressed warnings test code:
     warning caused by CppUTest headers code
 
 > tests.sln
-module tests and system tests at once runtime
+module tests at once runtime
 including CppUTest sources
 ->  exe/tests.exe
 configurations:
-- ci        module and system tests
-- sys       system tests
+- ci        module tests
 - dev       developer tests
 
 > gendata.sln
