@@ -1,6 +1,6 @@
 {
     "//" : "=====================================",
-    "//" : "transitions test code setup for SIG_X",
+    "//" : "transitions test code setup for SIG_X", 
     "//" : "=====================================",
     "prefixState": "SIG_STATE",
     "prefixCmd": "SIG_STATE",
@@ -11,13 +11,17 @@
 
     "cfgs": [
         {
-            "csv": "specification/doc/transitions_SIG_H.csv"
-        },
-        {
             "csv": "specification/doc/transitions_SIG_N.csv"
         },
         {
             "csv": "specification/doc/transitions_SIG_H_N.csv"
-        }
+        },
+        {
+            "csv": "specification/doc/transitions_SIG_H.csv",
+            "cmd1": "CMD_H(_CMD_, _FLD_, _GUI_);",
+            "cmd0": "CMD_H(_CMD_);",
+            "fld1": "FLD_H(_VAL_, _VAL_);",
+            "fld0": "FLD_H(_VAL_);"
+        }    
     ]
 }

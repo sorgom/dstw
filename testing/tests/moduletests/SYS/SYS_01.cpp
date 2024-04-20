@@ -12,17 +12,17 @@ namespace test
     protected:
         Reader mSUT;
         static const CONST_C_STRING fname;
-        void expectReset()
+        void expectClear()
         {
-            m_Dispatcher().expectReset();
-            m_TSW_Provider().expectReset();
-            m_SIG_Provider().expectReset();
-            m_LCR_Provider().expectReset();
+            m_Dispatcher().expectClear();
+            m_TSW_Provider().expectClear();
+            m_SIG_Provider().expectClear();
+            m_LCR_Provider().expectClear();
         }
         void expectFail()
         {
-            expectReset();
-            m_Log().expectLog(MOD_SYS_READER, ERR_STARTUP);
+            expectClear();
+            m_Log().expectLog(COMP_SYS, RET_ERR_STARTUP);
         }
 
         void wrongSize(int dev)
@@ -31,8 +31,7 @@ namespace test
             constexpr static const UINT32 nums[] = { 1, 1, 1, 1 };
             os.write(reinterpret_cast<const CHAR*>(nums), 4 * sizeof(UINT32));
 
-            constexpr static const size_t wSize = 
-                sizeof(ProjTSW) + sizeof(ProjSIG) + sizeof(ProjLCR) + sizeof(ProjSEG);
+            constexpr static const size_t wSize = sizeof(ProjItem) * 4;
 
             for (size_t n = 0; n < wSize + dev; ++n)
             {
@@ -54,7 +53,7 @@ namespace test
     TEST(SYS_01, T01)
     {
         STEP(1)
-        expectReset();
+        expectClear();
         GenProjData<> data;
         m_TSW_Provider().expectLoad(data.numTSW());
         m_SIG_Provider().expectLoad(data.numSIG());
@@ -112,8 +111,7 @@ namespace test
     //  retrieve instance
     TEST(SYS_01, T05)
     {
-        unmock();
-        I_Reader& inst = IL::getReader();
+        I_Reader& inst = Reader::instance();
         play(inst);
     }
 }

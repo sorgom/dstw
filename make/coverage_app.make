@@ -20,7 +20,7 @@ endif
 
 RESCOMP = windres
 DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
-INCLUDES += -I../testing/testenv -I../BuildCppUTest/CppUTest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
@@ -42,11 +42,6 @@ TARGETDIR = lib
 TARGET = $(TARGETDIR)/libcoverage_app_ci.a
 OBJDIR = obj/gcc/coverage_app/ci
 
-else ifeq ($(config),sys)
-TARGETDIR = lib
-TARGET = $(TARGETDIR)/libcoverage_app_sys.a
-OBJDIR = obj/gcc/coverage_app/sys
-
 else ifeq ($(config),dev)
 TARGETDIR = lib
 TARGET = $(TARGETDIR)/libcoverage_app_dev.a
@@ -64,31 +59,27 @@ endif
 GENERATED :=
 OBJECTS :=
 
+GENERATED += $(OBJDIR)/BAS_Provider.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/Dispatcher.o
-GENERATED += $(OBJDIR)/LCR_Hub.o
 GENERATED += $(OBJDIR)/LCR_Provider.o
 GENERATED += $(OBJDIR)/LCR_X.o
 GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/Reader.o
-GENERATED += $(OBJDIR)/SIG_Hub.o
 GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
 GENERATED += $(OBJDIR)/TSW.o
-GENERATED += $(OBJDIR)/TSW_Hub.o
 GENERATED += $(OBJDIR)/TSW_Provider.o
+OBJECTS += $(OBJDIR)/BAS_Provider.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
-OBJECTS += $(OBJDIR)/LCR_Hub.o
 OBJECTS += $(OBJDIR)/LCR_Provider.o
 OBJECTS += $(OBJDIR)/LCR_X.o
 OBJECTS += $(OBJDIR)/Log.o
 OBJECTS += $(OBJDIR)/Reader.o
-OBJECTS += $(OBJDIR)/SIG_Hub.o
 OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
 OBJECTS += $(OBJDIR)/TSW.o
-OBJECTS += $(OBJDIR)/TSW_Hub.o
 OBJECTS += $(OBJDIR)/TSW_Provider.o
 
 # Rules
@@ -153,16 +144,13 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/LCR_Hub.o: ../application/components/LCR/src/LCR_Hub.cpp
+$(OBJDIR)/BAS_Provider.o: ../application/components/BAS/src/BAS_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_Provider.o: ../application/components/LCR/src/LCR_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_X.o: ../application/components/LCR/src/LCR_X.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SIG_Hub.o: ../application/components/SIG/src/SIG_Hub.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/SIG_Provider.o: ../application/components/SIG/src/SIG_Provider.cpp
@@ -184,9 +172,6 @@ $(OBJDIR)/Reader.o: ../application/components/SYS/src/Reader.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW.o: ../application/components/TSW/src/TSW.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TSW_Hub.o: ../application/components/TSW/src/TSW_Hub.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW_Provider.o: ../application/components/TSW/src/TSW_Provider.cpp

@@ -1,5 +1,5 @@
 #include <SYS/Reader.h>
-#include <ifs/ProjTypes.h>
+#include <ifs/DataTypes.h>
 #include <SYS/IL.h>
 
 #include <fstream>
@@ -11,10 +11,10 @@ INSTANCE_DEF(Reader)
 
 void Reader::read(const CONST_C_STRING filename) const
 {
-    IL::getDispatcher().reset();
-    IL::getTSW_Provider().reset();
-    IL::getSIG_Provider().reset();
-    IL::getLCR_Provider().reset();
+    IL::getDispatcher().clear();
+    IL::getTSW_Provider().clear();
+    IL::getSIG_Provider().clear();
+    IL::getLCR_Provider().clear();
     //  SEG not yet implemented
 
     std::ifstream is(filename, std::ios::binary);
@@ -39,27 +39,28 @@ void Reader::read(const CONST_C_STRING filename) const
             is.read(head.buf, hSize);
             auto [nTSW, nSIG, nLCR, nSEG] = head.vals;
 
-            const stype sTSW = nTSW * sizeof(ProjTSW);
-            const stype sSIG = nSIG * sizeof(ProjSIG);
-            const stype sLCR = nLCR * sizeof(ProjLCR);
-            const stype sSEG = nSEG * sizeof(ProjSEG);
+            const stype sTSW = nTSW * sizeof(ProjItem);
+            const stype sSIG = nSIG * sizeof(ProjItem);
+            const stype sLCR = nLCR * sizeof(ProjItem);
+            const stype sSEG = nSEG * sizeof(ProjItem);
+            const stype sTOT = sTSW + sSIG + sLCR + sSEG;
 
-            ok = (fsize == hSize + sTSW + sSIG + sLCR + sSEG);
+            ok = (sTOT > 0) and (fsize == hSize + sTOT);
 
             if (ok)
             {
+                
                 const auto mxSize = std::max({sTSW, sSIG, sLCR, sSEG});
-
                 CHAR* buf = new CHAR[static_cast<size_t>(mxSize)];
 
                 is.read(buf, sTSW);
-                IL::getTSW_Provider().load(reinterpret_cast<const ProjTSW*>(buf), nTSW);
+                IL::getTSW_Provider().load(reinterpret_cast<const ProjItem*>(buf), nTSW);
 
                 is.read(buf, sSIG);
-                IL::getSIG_Provider().load(reinterpret_cast<const ProjSIG*>(buf), nSIG);
+                IL::getSIG_Provider().load(reinterpret_cast<const ProjItem*>(buf), nSIG);
 
                 is.read(buf, sLCR);
-                IL::getLCR_Provider().load(reinterpret_cast<const ProjLCR*>(buf), nLCR);
+                IL::getLCR_Provider().load(reinterpret_cast<const ProjItem*>(buf), nLCR);
 
                 //  SEG not yet implemented
 
@@ -80,7 +81,7 @@ void Reader::read(const CONST_C_STRING filename) const
 
     if (not ok)
     {
-        IL::getLog().log(MOD_SYS_READER, ERR_STARTUP);
+        IL::getLog().log(COMP_SYS, RET_ERR_STARTUP);
     }
     else
     { pass(); }

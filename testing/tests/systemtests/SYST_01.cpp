@@ -4,27 +4,31 @@
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-
+#include <SYS/Reader.h>
+#include <SYS/Dispatcher.h>
+#include <SIG/SIG_Provider.h>
 namespace test
 {
 
     TEST_GROUP_BASE(SYST_01, TestGroupBase) {};
 
     //  test type: blackbox test
-    //  
     TEST(SYST_01, T01)
     {
         SETUP()
-        unmock();
         mock_Com();
+        I_Dispatcher& dispatcher = Dispatcher::instance();
+        I_Reader& reader = Reader::instance();
+        I_Provider& provider = SIG_Provider::instance();
+
         const CONST_C_STRING fname = "tmp.dat";
         {
-            GenProjData<1, TEST_NUM_SIG> projData;
+            GenProjData<0, TEST_NUM_SIG, 0, 0> projData;
             projData.dump(fname);
         }
-        IL::getReader().read(fname);    
+        reader.read(fname);    
 
-        L_CHECK_TRUE(IL::getSIG_Provider().has(TEST_NUM_SIG - 1))
+        L_CHECK_EQUAL(TEST_NUM_SIG, provider.size())
 
         STEP(1)
         //  signal type SIG_H (default)
@@ -33,16 +37,12 @@ namespace test
         SUBSTEPS()
         for (UINT32 n = 0; n < TEST_NUM_SIG; ++n)
         {
-            LSTEP(n)
-            ComFldState fldState(SIG_STATE_H0);
-            nameElement(fldState, TEST_NUM_SIG - n, "SIG");
+            STEP(n)
+            ComTele tele{{}, {SIG_STATE_H0, PARAM_UNDEF}};
+            nameElement(tele, TEST_NUM_SIG - n, "SIG");
 
-            ComStateGui stateGui(SIG_STATE_H0);
-            stateGui.name = fldState.name;
-
-            m_Com().expectSend(stateGui);
-            IL::getDispatcher().dispatch(fldState);
-
+            m_Com().expectToGui(tele);
+            dispatcher.fromFld(tele);
             CHECK_N_CLEAR()
         }
         ENDSTEPS()
@@ -55,20 +55,15 @@ namespace test
         SUBSTEPS()
         for (UINT32 n = 0; n < TEST_NUM_SIG; ++n)
         {
-            LSTEP(n)
-            ComGuiCmd guiCmd(SIG_STATE_H1);
-            nameElement(guiCmd, TEST_NUM_SIG - n, "SIG");
+            STEP(n)
+            ComTele fromGui{{}, {SIG_STATE_H1, PARAM_UNDEF}};
+            ComTele toGui{{}, {SIG_STATE_WAIT_H1, PARAM_UNDEF}};
+            nameElement(fromGui, TEST_NUM_SIG - n, "SIG");
+            toGui.name = fromGui.name;
 
-            ComCmdFld cmdFld(SIG_STATE_H1);
-            cmdFld.name = guiCmd.name;
-
-            ComStateGui stateGui(SIG_STATE_WAIT_H1);
-            stateGui.name = guiCmd.name;
-
-            m_Com().expectSend(cmdFld);
-            m_Com().expectSend(stateGui);
-            IL::getDispatcher().dispatch(guiCmd);
-
+            m_Com().expectToFld(fromGui);
+            m_Com().expectToGui(toGui);
+            dispatcher.fromGui(fromGui);
             CHECK_N_CLEAR()
         }
         ENDSTEPS()

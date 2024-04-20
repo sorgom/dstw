@@ -36,7 +36,7 @@
 "_type":"LabelView","_id":"AAAAAAGLTIfCHkXAXlQ=","_parent":{
 "$ref":"AAAAAAGLTIfCHkW+WW8="
 }
-,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;1","left":581,"top":631,"width":119,"height":13,"underline":true,"text":"mock TSW Hub"
+,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;1","left":581,"top":631,"width":123.80810546875,"height":13,"underline":true,"text":"mock TSW Provider"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLTIfCHkXBVlc=","_parent":{
@@ -50,7 +50,7 @@
 }
 ,"visible":false,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","left":832,"top":976,"height":13,"horizontalAlignment":1
 }
-],"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","left":576,"top":624,"width":129,"height":25,"stereotypeLabel":{
+],"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","left":576,"top":624,"width":133.80810546875,"height":25,"stereotypeLabel":{
 "$ref":"AAAAAAGLTIfCHkW/xDc="
 }
 ,"nameLabel":{
@@ -72,7 +72,7 @@
 }
 ,"visible":false,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","left":336,"top":464,"width":10,"height":10
 }
-],"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","showShadow":false,"containerChangeable":true,"left":576,"top":624,"width":128,"height":96,"nameCompartment":{
+],"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","showShadow":false,"containerChangeable":true,"left":576,"top":624,"width":132.80810546875,"height":96,"nameCompartment":{
 "$ref":"AAAAAAGLTIfCHkW+WW8="
 }
 ,"slotCompartment":{
@@ -235,7 +235,7 @@
 ,"model":{
 "$ref":"AAAAAAGLTI095Vhh5R8="
 }
-,"visible":false,"font":"Arial;13;0","left":729,"top":680,"height":13,"alpha":-0.5235987755982988,"distance":30,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":734,"top":680,"height":13,"alpha":-0.5235987755982988,"distance":30,"hostEdge":{
 "$ref":"AAAAAAGLTI095VhjuAg="
 }
 }
@@ -246,7 +246,7 @@
 ,"model":{
 "$ref":"AAAAAAGLTI095Vhh5R8="
 }
-,"visible":false,"font":"Arial;13;0","left":732,"top":694,"height":13,"alpha":-0.7853981633974483,"distance":40,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":737,"top":694,"height":13,"alpha":-0.7853981633974483,"distance":40,"hostEdge":{
 "$ref":"AAAAAAGLTI095VhjuAg="
 }
 }
@@ -257,7 +257,7 @@
 ,"model":{
 "$ref":"AAAAAAGLTI095Vhh5R8="
 }
-,"visible":false,"font":"Arial;13;0","left":725,"top":653,"height":13,"alpha":0.5235987755982988,"distance":25,"hostEdge":{
+,"visible":false,"font":"Arial;13;0","left":730,"top":653,"height":13,"alpha":0.5235987755982988,"distance":25,"hostEdge":{
 "$ref":"AAAAAAGLTI095VhjuAg="
 }
 }
@@ -267,7 +267,7 @@
 ,"tail":{
 "$ref":"AAAAAAGLTIj7N0ZZqaI="
 }
-,"points":"768:704;768:672;704:672","showVisibility":true,"nameLabel":{
+,"points":"768:704;768:672;709:672","showVisibility":true,"nameLabel":{
 "$ref":"AAAAAAGLTI095Vhkkbw="
 }
 ,"stereotypeLabel":{
@@ -537,7 +537,7 @@
 "_type":"LabelView","_id":"AAAAAAGLdlfIYtR9KYs=","_parent":{
 "$ref":"AAAAAAGLdlfIYtR7TzU="
 }
-,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;1","left":613,"top":519,"width":119,"height":13,"underline":true,"text":"mock SIG Hub"
+,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;1","left":613,"top":519,"width":119,"height":13,"underline":true,"text":"mock SIG Provider"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGLdlfIYtR+6G0=","_parent":{
@@ -936,7 +936,7 @@
 }
 ,"visible":false,"lineColor":"#707070","fillColor":"#FFFFFF","font":"Arial;13;0","left":288,"top":-88,"width":10,"height":10
 }
-],"lineColor":"#707070","fillColor":"#FFFFFF","font":"Arial;13;0","showShadow":false,"containerChangeable":true,"left":560,"top":832,"width":256,"height":32,"nameCompartment":{
+],"lineColor":"#707070","fillColor":"#FFFFFF","font":"Arial;13;0","showShadow":false,"containerChangeable":true,"left":560,"top":832,"width":256,"height":64,"nameCompartment":{
 "$ref":"AAAAAAGLhl7QziEYt4o="
 }
 ,"slotCompartment":{
@@ -1160,144 +1160,6 @@
 }
 }
 ,{
-"_type":"UMLObjectView","_id":"AAAAAAGLj6zbII+vpWw=","_parent":{
-"$ref":"AAAAAAFF+qBtyKM79qY="
-}
-,"model":{
-"$ref":"AAAAAAGLj6zbH4+tTbo="
-}
-,"subViews":[
-{
-"_type":"UMLNameCompartmentView","_id":"AAAAAAGLj6zbII+wq1c=","_parent":{
-"$ref":"AAAAAAGLj6zbII+vpWw="
-}
-,"model":{
-"$ref":"AAAAAAGLj6zbH4+tTbo="
-}
-,"subViews":[
-{
-"_type":"LabelView","_id":"AAAAAAGLj6zbII+xrLQ=","_parent":{
-"$ref":"AAAAAAGLj6zbII+wq1c="
-}
-,"visible":false,"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;0","left":-560,"top":-80,"height":13
-}
-,{
-"_type":"LabelView","_id":"AAAAAAGLj6zbII+y3ks=","_parent":{
-"$ref":"AAAAAAGLj6zbII+wq1c="
-}
-,"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;1","left":565,"top":871,"width":247,"height":13,"underline":true,"text":"telegrams from Com"
-}
-,{
-"_type":"LabelView","_id":"AAAAAAGLj6zbII+z/Uo=","_parent":{
-"$ref":"AAAAAAGLj6zbII+wq1c="
-}
-,"visible":false,"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;0","left":-560,"top":-80,"width":73.67724609375,"height":13,"text":"(from Model)"
-}
-,{
-"_type":"LabelView","_id":"AAAAAAGLj6zbII+0bTM=","_parent":{
-"$ref":"AAAAAAGLj6zbII+wq1c="
-}
-,"visible":false,"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;0","left":-560,"top":-80,"height":13,"horizontalAlignment":1
-}
-],"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;0","left":560,"top":864,"width":257,"height":25,"stereotypeLabel":{
-"$ref":"AAAAAAGLj6zbII+xrLQ="
-}
-,"nameLabel":{
-"$ref":"AAAAAAGLj6zbII+y3ks="
-}
-,"namespaceLabel":{
-"$ref":"AAAAAAGLj6zbII+z/Uo="
-}
-,"propertyLabel":{
-"$ref":"AAAAAAGLj6zbII+0bTM="
-}
-}
-,{
-"_type":"UMLSlotCompartmentView","_id":"AAAAAAGLj6zbII+1SZQ=","_parent":{
-"$ref":"AAAAAAGLj6zbII+vpWw="
-}
-,"model":{
-"$ref":"AAAAAAGLj6zbH4+tTbo="
-}
-,"visible":false,"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;0","left":-280,"top":-40,"width":10,"height":10
-}
-],"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;0","showShadow":false,"containerChangeable":true,"left":560,"top":864,"width":256,"height":32,"nameCompartment":{
-"$ref":"AAAAAAGLj6zbII+wq1c="
-}
-,"slotCompartment":{
-"$ref":"AAAAAAGLj6zbII+1SZQ="
-}
-}
-,{
-"_type":"UMLObjectView","_id":"AAAAAAGLj6142plbFNg=","_parent":{
-"$ref":"AAAAAAFF+qBtyKM79qY="
-}
-,"model":{
-"$ref":"AAAAAAGLj6142plZxFM="
-}
-,"subViews":[
-{
-"_type":"UMLNameCompartmentView","_id":"AAAAAAGLj6142plc7Yc=","_parent":{
-"$ref":"AAAAAAGLj6142plbFNg="
-}
-,"model":{
-"$ref":"AAAAAAGLj6142plZxFM="
-}
-,"subViews":[
-{
-"_type":"LabelView","_id":"AAAAAAGLj6142pldrXc=","_parent":{
-"$ref":"AAAAAAGLj6142plc7Yc="
-}
-,"visible":false,"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;0","left":-560,"top":-96,"height":13
-}
-,{
-"_type":"LabelView","_id":"AAAAAAGLj6142pleFAM=","_parent":{
-"$ref":"AAAAAAGLj6142plc7Yc="
-}
-,"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;1","left":565,"top":903,"width":247,"height":13,"underline":true,"text":"telegrams from subsystems"
-}
-,{
-"_type":"LabelView","_id":"AAAAAAGLj6142plfRQk=","_parent":{
-"$ref":"AAAAAAGLj6142plc7Yc="
-}
-,"visible":false,"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;0","left":-560,"top":-96,"width":73.67724609375,"height":13,"text":"(from Model)"
-}
-,{
-"_type":"LabelView","_id":"AAAAAAGLj6142plgjcQ=","_parent":{
-"$ref":"AAAAAAGLj6142plc7Yc="
-}
-,"visible":false,"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;0","left":-560,"top":-96,"height":13,"horizontalAlignment":1
-}
-],"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;0","left":560,"top":896,"width":257,"height":25,"stereotypeLabel":{
-"$ref":"AAAAAAGLj6142pldrXc="
-}
-,"nameLabel":{
-"$ref":"AAAAAAGLj6142pleFAM="
-}
-,"namespaceLabel":{
-"$ref":"AAAAAAGLj6142plfRQk="
-}
-,"propertyLabel":{
-"$ref":"AAAAAAGLj6142plgjcQ="
-}
-}
-,{
-"_type":"UMLSlotCompartmentView","_id":"AAAAAAGLj6142plh82c=","_parent":{
-"$ref":"AAAAAAGLj6142plbFNg="
-}
-,"model":{
-"$ref":"AAAAAAGLj6142plZxFM="
-}
-,"visible":false,"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;0","left":-280,"top":-48,"width":10,"height":10
-}
-],"lineColor":"#707070","fillColor":"#E2E2E2","font":"Arial;13;0","showShadow":false,"containerChangeable":true,"left":560,"top":896,"width":256,"height":32,"nameCompartment":{
-"$ref":"AAAAAAGLj6142plc7Yc="
-}
-,"slotCompartment":{
-"$ref":"AAAAAAGLj6142plh82c="
-}
-}
-,{
 "_type":"UMLObjectView","_id":"AAAAAAGL2VT6glB6TAM=","_parent":{
 "$ref":"AAAAAAFF+qBtyKM79qY="
 }
@@ -1323,7 +1185,7 @@
 "_type":"LabelView","_id":"AAAAAAGL2VT6glB96fc=","_parent":{
 "$ref":"AAAAAAGL2VT6glB7cjs="
 }
-,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;1","left":981,"top":631,"width":119,"height":13,"underline":true,"text":"mock LCR Hub"
+,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;1","left":981,"top":631,"width":121.6435546875,"height":13,"underline":true,"text":"mock LCR Provider"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGL2VT6glB+lBo=","_parent":{
@@ -1337,7 +1199,7 @@
 }
 ,"visible":false,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","left":800,"top":256,"height":13,"horizontalAlignment":1
 }
-],"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","left":976,"top":624,"width":129,"height":25,"stereotypeLabel":{
+],"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","left":976,"top":624,"width":131.6435546875,"height":25,"stereotypeLabel":{
 "$ref":"AAAAAAGL2VT6glB8ZnI="
 }
 ,"nameLabel":{
@@ -1359,7 +1221,7 @@
 }
 ,"visible":false,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","left":400,"top":128,"width":10,"height":10
 }
-],"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","showShadow":false,"containerChangeable":true,"left":976,"top":624,"width":128,"height":96,"nameCompartment":{
+],"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","showShadow":false,"containerChangeable":true,"left":976,"top":624,"width":130.6435546875,"height":96,"nameCompartment":{
 "$ref":"AAAAAAGL2VT6glB7cjs="
 }
 ,"slotCompartment":{
@@ -1392,7 +1254,7 @@
 "_type":"LabelView","_id":"AAAAAAGL2VW3vGMj9mA=","_parent":{
 "$ref":"AAAAAAGL2VW3vGMhCmE="
 }
-,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;1","left":933,"top":519,"width":119,"height":13,"underline":true,"text":"mock SEG Hub"
+,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;1","left":933,"top":519,"width":122.3798828125,"height":13,"underline":true,"text":"mock SEG Provider"
 }
 ,{
 "_type":"LabelView","_id":"AAAAAAGL2VW3vGMk+PE=","_parent":{
@@ -1406,7 +1268,7 @@
 }
 ,"visible":false,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","left":704,"top":224,"height":13,"horizontalAlignment":1
 }
-],"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","left":928,"top":512,"width":129,"height":25,"stereotypeLabel":{
+],"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","left":928,"top":512,"width":132.3798828125,"height":25,"stereotypeLabel":{
 "$ref":"AAAAAAGL2VW3vGMi+3U="
 }
 ,"nameLabel":{
@@ -1428,7 +1290,7 @@
 }
 ,"visible":false,"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","left":352,"top":112,"width":10,"height":10
 }
-],"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","showShadow":false,"containerChangeable":true,"left":928,"top":512,"width":128,"height":96,"nameCompartment":{
+],"lineColor":"#707070","fillColor":"#FF8282","font":"Arial;13;0","showShadow":false,"containerChangeable":true,"left":928,"top":512,"width":131.3798828125,"height":96,"nameCompartment":{
 "$ref":"AAAAAAGL2VW3vGMhCmE="
 }
 ,"slotCompartment":{
@@ -1735,7 +1597,7 @@
 "_type":"UMLObject","_id":"AAAAAAGLTIfCHUW7XEg=","_parent":{
 "$ref":"AAAAAAFF+qBWK6M3Z8Y="
 }
-,"name":"mock TSW Hub","ownedElements":[
+,"name":"mock TSW Provider","ownedElements":[
 {
 "_type":"UMLLink","_id":"AAAAAAGLTIwDpVCIbmo=","_parent":{
 "$ref":"AAAAAAGLTIfCHUW7XEg="
@@ -2632,7 +2494,7 @@
 "_type":"UMLObject","_id":"AAAAAAGLdlfIYtR4qks=","_parent":{
 "$ref":"AAAAAAFF+qBWK6M3Z8Y="
 }
-,"name":"mock SIG Hub","ownedElements":[
+,"name":"mock SIG Provider","ownedElements":[
 {
 "_type":"UMLLink","_id":"AAAAAAGLdl0WVkg69DQ=","_parent":{
 "$ref":"AAAAAAGLdlfIYtR4qks="
@@ -2758,13 +2620,13 @@
 "_type":"UMLObject","_id":"AAAAAAGL2VT6glB4Xvo=","_parent":{
 "$ref":"AAAAAAFF+qBWK6M3Z8Y="
 }
-,"name":"mock LCR Hub"
+,"name":"mock LCR Provider"
 }
 ,{
 "_type":"UMLObject","_id":"AAAAAAGL2VW3u2MewOc=","_parent":{
 "$ref":"AAAAAAFF+qBWK6M3Z8Y="
 }
-,"name":"mock SEG Hub"
+,"name":"mock SEG Provider"
 }
 ]
 }

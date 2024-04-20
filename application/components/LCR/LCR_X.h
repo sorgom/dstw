@@ -7,22 +7,25 @@
 #ifndef LCR_X_H
 #define LCR_X_H
 
-#include <ifs/I_LCR.h>
+#include <ifs/I_Elem.h>
 #include <BAS/coding.h>
+#include <ifs/values.h>
 
-class LCR_X : public I_LCR
+class LCR_X : public I_Elem
 {
 public:
-    inline LCR_X(size_t id):
-        mId(id),
-        mStateToGui(LCR_STATE_UNDEF)
-    {}
-    void fromGui(UINT8 state);
+
+    void fromGui(const ComData& data);
 
     NOCOPY(LCR_X)
     NODEF(LCR_X)
 
 protected:
+    inline LCR_X(size_t id):
+        mId(id),
+        mStateToGui(LCR_STATE_UNDEF)
+    {}
+
     const size_t mId;
     UINT8 mStateToGui;
 
@@ -44,9 +47,9 @@ class LCR : public LCR_X
 public:
     inline LCR(size_t id): LCR_X(id) {}
 
-    void fromFld(UINT8 state, UINT8 ubk);
+    void fromFld(const ComData& data);
 
-    inline UINT8 type() const { return LCR_TYPE_LCR; }
+    inline E_Type type() const { return TYPE_LCR; }
 
     NOCOPY(LCR)
     NODEF(LCR)
@@ -66,9 +69,9 @@ public:
         mUbkToGui(LCR_UBK_STATE_UNDEF)
     {}
 
-    void fromFld(UINT8 state, UINT8 ubk);
+    void fromFld(const ComData& data);
 
-    inline UINT8 type() const { return LCR_TYPE_LCR_UBK; }
+    inline E_Type type() const { return TYPE_LCR_UBK; }
 
     NOCOPY(LCR_UBK)
     NODEF(LCR_UBK)

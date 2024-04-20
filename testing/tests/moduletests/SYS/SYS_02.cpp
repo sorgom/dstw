@@ -13,7 +13,7 @@ namespace test
         Dispatcher mSUT;
         inline TestGroupDSP()
         {
-            mSUT.reset();
+            mSUT.clear();
             mSUT.assign(genComName(1, "TSW"), COMP_TSW, 1);
             mSUT.assign(genComName(2, "SIG"), COMP_SIG, 2);
             mSUT.assign(genComName(3, "LCR"), COMP_LCR, 3);
@@ -29,37 +29,41 @@ namespace test
     TEST(SYS_02, T01)
     {
         SETUP()
-        ComFldState fldState;
+        const ComData data{11, 22};
+        ComTele tele{{}, data};
 
         STEP(1)
-        nameElement(fldState, 1, "TSW");
-        m_TSW_Hub().expectFromDsp(1, fldState);
-        mSUT.dispatch(fldState);
+        nameElement(tele, 1, "TSW");
+        m_TSW_Provider().expectSize(2);
+        m_TSW().expectFromFld(data);
+        mSUT.fromFld(tele);
         CHECK_N_CLEAR()
 
         STEP(2)
-        nameElement(fldState, 2, "SIG");
-        m_SIG_Hub().expectFromDsp(2, fldState);
-        mSUT.dispatch(fldState);
+        nameElement(tele, 2, "SIG");
+        m_SIG_Provider().expectSize(3);
+        m_SIG().expectFromFld(data);
+        mSUT.fromFld(tele);
         CHECK_N_CLEAR()
 
         STEP(3)
-        nameElement(fldState, 3, "LCR");
-        m_LCR_Hub().expectFromDsp(3, fldState);
-        mSUT.dispatch(fldState);
+        nameElement(tele, 3, "LCR");
+        m_LCR_Provider().expectSize(4);
+        m_LCR().expectFromFld(data);
+        mSUT.fromFld(tele);
         CHECK_N_CLEAR()
 
         STEP(4)
         //  SEG not part of current implementation
-        nameElement(fldState, 4, "SEG");
-        mSUT.dispatch(fldState);
+        nameElement(tele, 4, "SEG");
+        mSUT.fromFld(tele);
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
-        m_Log().expectLog(MOD_SYS_DISPATCHER, ERR_MATCH);
-        nameElement(fldState, 2, "TSW");
-        mSUT.dispatch(fldState);
+        m_Log().expectLog(COMP_SYS, RET_ERR_MATCH);
+        nameElement(tele, 2, "TSW");
+        mSUT.fromFld(tele);
         CHECK_N_CLEAR()
     }
     //  test type: equivalence class test
@@ -67,38 +71,41 @@ namespace test
     TEST(SYS_02, T02)
     {
         SETUP()
-        ComGuiCmd guiCmd;
-    
+        const ComData data{33, 44};
+        ComTele tele{{}, data};
+
         STEP(1)
-        nameElement(guiCmd, 1, "TSW");
-        m_TSW_Hub().expectFromDsp(1, guiCmd);
-        mSUT.dispatch(guiCmd);
+        nameElement(tele, 1, "TSW");
+        m_TSW_Provider().expectSize(2);
+        m_TSW().expectFromGui(data);
+        mSUT.fromGui(tele);
         CHECK_N_CLEAR()
 
         STEP(2)
-        nameElement(guiCmd, 2, "SIG");
-        m_SIG_Hub().expectFromDsp(2, guiCmd);
-        mSUT.dispatch(guiCmd);
+        nameElement(tele, 2, "SIG");
+        m_SIG_Provider().expectSize(3);
+        m_SIG().expectFromGui(data);
+        mSUT.fromGui(tele);
         CHECK_N_CLEAR()
 
         STEP(3)
-        //  LCR not part of current implementation
-        nameElement(guiCmd, 3, "LCR");
-        m_LCR_Hub().expectFromDsp(3, guiCmd);
-        mSUT.dispatch(guiCmd);
+        nameElement(tele, 3, "LCR");
+        m_LCR_Provider().expectSize(4);
+        m_LCR().expectFromGui(data);
+        mSUT.fromGui(tele);
         CHECK_N_CLEAR()
 
         STEP(4)
         //  SEG not part of current implementation
-        nameElement(guiCmd, 4, "SEG");
-        mSUT.dispatch(guiCmd);
+        nameElement(tele, 4, "SEG");
+        mSUT.fromGui(tele);
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
-        m_Log().expectLog(MOD_SYS_DISPATCHER, ERR_MATCH);
-        nameElement(guiCmd, 2, "TSW");
-        mSUT.dispatch(guiCmd);
+        m_Log().expectLog(COMP_SYS, RET_ERR_MATCH);
+        nameElement(tele, 2, "TSW");
+        mSUT.fromGui(tele);
         CHECK_N_CLEAR()
     }
 
@@ -107,35 +114,36 @@ namespace test
     TEST(SYS_02, T03)
     {
         SETUP()
-        ComCmdFld cmdExp;
+        const ComData data{55, 66};
+        ComTele teleExp{{}, data};
 
         STEP(1)
-        nameElement(cmdExp, 1, "TSW");
-        m_Com().expectSend(cmdExp);
-        mSUT.dispatch(0, ComCmdFld());
+        nameElement(teleExp, 1, "TSW");
+        m_Com().expectToFld(teleExp);
+        mSUT.toFld(0, data);
         CHECK_N_CLEAR()
 
         STEP(2)
-        nameElement(cmdExp, 2, "SIG");
-        m_Com().expectSend(cmdExp);
-        mSUT.dispatch(1, ComCmdFld());
+        nameElement(teleExp, 2, "SIG");
+        m_Com().expectToFld(teleExp);
+        mSUT.toFld(1, data);
         CHECK_N_CLEAR()
 
         STEP(3)
-        nameElement(cmdExp, 3, "LCR");
-        m_Com().expectSend(cmdExp);
-        mSUT.dispatch(2, ComCmdFld());
+        nameElement(teleExp, 3, "LCR");
+        m_Com().expectToFld(teleExp);
+        mSUT.toFld(2, data);
         CHECK_N_CLEAR()
 
         STEP(4)
-        nameElement(cmdExp, 4, "SEG");
-        m_Com().expectSend(cmdExp);
-        mSUT.dispatch(3, ComCmdFld());
+        nameElement(teleExp, 4, "SEG");
+        m_Com().expectToFld(teleExp);
+        mSUT.toFld(3, data);
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
-        mSUT.dispatch(4, ComCmdFld());
+        mSUT.toFld(4, data);
         CHECK_N_CLEAR()
     }
 
@@ -144,35 +152,36 @@ namespace test
     TEST(SYS_02, T04)
     {
         SETUP()
-        ComStateGui stateExp;
+        const ComData data{77, 88};
+        ComTele teleExp{{}, data};
 
         STEP(1)
-        nameElement(stateExp, 1, "TSW");
-        m_Com().expectSend(stateExp);
-        mSUT.dispatch(0, ComStateGui());
+        nameElement(teleExp, 1, "TSW");
+        m_Com().expectToGui(teleExp);
+        mSUT.toGui(0, data);
         CHECK_N_CLEAR()
 
         STEP(2)
-        nameElement(stateExp, 2, "SIG");
-        m_Com().expectSend(stateExp);
-        mSUT.dispatch(1, ComStateGui());
+        nameElement(teleExp, 2, "SIG");
+        m_Com().expectToGui(teleExp);
+        mSUT.toGui(1, data);
         CHECK_N_CLEAR()
 
         STEP(3)
-        nameElement(stateExp, 3, "LCR");
-        m_Com().expectSend(stateExp);
-        mSUT.dispatch(2, ComStateGui());
+        nameElement(teleExp, 3, "LCR");
+        m_Com().expectToGui(teleExp);
+        mSUT.toGui(2, data);
         CHECK_N_CLEAR()
 
         STEP(4)
-        nameElement(stateExp, 4, "SEG");
-        m_Com().expectSend(stateExp);
-        mSUT.dispatch(3, ComStateGui());
+        nameElement(teleExp, 4, "SEG");
+        m_Com().expectToGui(teleExp);
+        mSUT.toGui(3, data);
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
-        mSUT.dispatch(4, ComStateGui());
+        mSUT.toGui(4, data);
         CHECK_N_CLEAR()
     }
 
@@ -180,8 +189,7 @@ namespace test
     //  retrieve instance
     TEST(SYS_02, T05)
     {
-        unmock();
-        I_Dispatcher& inst = IL::getDispatcher();
+        I_Dispatcher& inst = Dispatcher::instance();
         play(inst);
     }
 
@@ -190,38 +198,58 @@ namespace test
     TEST(SYS_02, T06)
     {
         SETUP()
-        mSUT.reset();
+        mSUT.clear();
         E_Comp comp = (E_Comp) 100;
         mSUT.assign(genComName(1, "TSW"), comp, 1);
         mSUT.index();
         
         STEP(1)
-        ComFldState fldState;
-        nameElement(fldState, 1, "TSW");
-        mSUT.dispatch(fldState);
+        ComTele tele{{}, {99, 111}};
+        nameElement(tele, 1, "TSW");
+        mSUT.fromFld(tele);
         CHECK_N_CLEAR()    
 
         STEP(2)
-        ComGuiCmd guiCmd;
-        nameElement(guiCmd, 1, "TSW");
-        mSUT.dispatch(guiCmd);
+        mSUT.fromGui(tele);
         CHECK_N_CLEAR()    
-
     }
 
     //  test type: equivalence class test
     //  Dispatcher duplicate assignments -> index error
     TEST(SYS_02, T07)
     {
-        mSUT.reset();
+        mSUT.clear();
         mSUT.assign(genComName(1, "TSW"), COMP_TSW, 1);
         mSUT.assign(genComName(1, "TSW"), COMP_TSW, 2);
         mSUT.assign(genComName(3, "LCR"), COMP_LCR, 3);
         mSUT.assign(genComName(4, "SEG"), COMP_SEG, 4);
         CHECK_N_CLEAR()
 
-        m_Log().expectLog(MOD_SYS_DISPATCHER, ERR_STARTUP);
+        m_Log().expectLog(COMP_SYS, RET_ERR_STARTUP);
         mSUT.index();
+        CHECK_N_CLEAR()
+    }
+    
+    //  test type: equivalence class test
+    //  telegrams from field and GUI
+    //  Provider returns wrong size
+    TEST(SYS_02, T08)
+    {
+        SETUP()
+        const ComData data{33, 44};
+        ComTele tele{{}, data};
+        nameElement(tele, 1, "TSW");
+
+        STEP(1)
+        m_TSW_Provider().expectSize(1);
+        m_Log().expectLog(COMP_SYS, RET_ERR_RANGE);
+        mSUT.fromGui(tele);
+        CHECK_N_CLEAR()
+
+        STEP(2)
+        m_TSW_Provider().expectSize(1);
+        m_Log().expectLog(COMP_SYS, RET_ERR_RANGE);
+        mSUT.fromFld(tele);
         CHECK_N_CLEAR()
     }
 }

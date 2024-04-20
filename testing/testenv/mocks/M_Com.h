@@ -12,27 +12,28 @@
 
 namespace test
 {
-    MOCK_CLASS(Com)
+    class M_Com : public I_Com, private M_Base
     {
     public:
-        MOCK_CON(Com)
+        inline M_Com() : M_Base("Com") {}
+        INSTANCE_DEC(M_Com)
 
-        inline void send(const ComCmdFld& tele) const
+        inline void toFld(const ComTele& tele) const
         {
-            call("send").TPARAM(ComCmdFld, tele);
+            call("toFld").TPARAM(ComTele, tele);
         }
-        inline void expectSend(const ComCmdFld& tele) const
+        inline void expectToFld(const ComTele& tele) const
         {
-            expect("send").TPARAM(ComCmdFld, tele);
+            expect("toFld").TPARAM(ComTele, tele);
         }
 
-        inline void send(const ComStateGui& tele) const
+        inline void toGui(const ComTele& tele) const
         {
-            call("send").TPARAM(ComStateGui, tele);
+            call("toGui").TPARAM(ComTele, tele);
         }
-        inline void expectSend(const ComStateGui& tele) const
+        inline void expectToGui(const ComTele& tele) const
         {
-            expect("send").TPARAM(ComStateGui, tele);
+            expect("toGui").TPARAM(ComTele, tele);
         }
     };
 } // namespace

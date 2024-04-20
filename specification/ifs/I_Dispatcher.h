@@ -7,14 +7,13 @@
 #ifndef I_DISPATCHER_H
 #define I_DISPATCHER_H
 
-#include "SystemEnums.h"
-#include "ComTypes.h"
-#include "PosRes.h"
+#include "values.h"
+#include "DataTypes.h"
 
 class I_Dispatcher
 {
 public:
-    virtual void reset() = 0;
+    virtual void clear() = 0;
     virtual void index() = 0;
 
     //  ============================================================
@@ -30,24 +29,24 @@ public:
     virtual const PosRes assign(const ComName& name, E_Comp comp, size_t pos) = 0;
 
     //  ============================================================
-    //  field states shall be dispatched to components
+    //  field state telegrams shall be dispatched to components
     //  ============================================================
-    virtual void dispatch(const ComFldState& tele) const = 0;
+    virtual void fromFld(const ComTele& tele) const = 0;
 
     //  ============================================================
-    //  GUI commands shall be dispatched to components
+    //  GUI command telegrams shall be dispatched to components
     //  ============================================================
-    virtual void dispatch(const ComGuiCmd& tele) const = 0;
+    virtual void fromGui(const ComTele& tele) const = 0;
 
     //  ============================================================
-    //  commands from components shall be dispatched to field
+    //  element commands shall be dispatched to field
     //  ============================================================
-    virtual void dispatch(size_t id, ComCmdFld&& tele) const = 0;
+    virtual void toFld(size_t id, const ComData& data) const = 0;
 
     //  ============================================================
-    //  states from components shall be dispatched to GUI
+    //  element states shall be dispatched to GUI
     //  ============================================================
-    virtual void dispatch(size_t id, ComStateGui&& tele) const = 0;
+    virtual void toGui(size_t id, const ComData& data) const = 0;
 };
 
 #endif // H_

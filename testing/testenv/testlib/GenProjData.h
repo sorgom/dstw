@@ -18,9 +18,7 @@
 #ifndef GENPROJDATA_H
 #define GENPROJDATA_H
 
-#include <ifs/I_LCR.h>
-#include <ifs/I_SIG.h>
-#include <ifs/ProjTypes.h>
+#include <ifs/DataTypes.h>
 #include <testlib/testNumElements.h>
 #include <testlib/TestLib.h>
 #include <fstream>
@@ -37,10 +35,8 @@ namespace test
     class GenProjData 
     {
     private:
-        std::vector<ProjTSW> mTSWs;
-        std::vector<ProjSIG> mSIGs;
-        std::vector<ProjLCR> mLCRs;
-        std::vector<ProjSEG> mSEGs;
+        using ProjVec = std::vector<ProjItem>;
+        ProjVec mTSWs, mSIGs, mLCRs, mSEGs;
 
     public:
 
@@ -51,8 +47,8 @@ namespace test
             preset(mLCRs, "LCR", NLCR);
             preset(mSEGs, "SEG", NSEG);
 
-            setSigType(SIG_TYPE_H);
-            setLcrType(LCR_TYPE_LCR);
+            setSigType(TYPE_SIG_H);
+            setLcrType(TYPE_LCR);
         }
     
         inline UINT32 numTSW() const { return mTSWs.size(); }
@@ -60,15 +56,15 @@ namespace test
         inline UINT32 numLCR() const { return mLCRs.size(); }
         inline UINT32 numSEG() const { return mSEGs.size(); }
 
-        inline const ProjTSW* pTSW() const { return mTSWs.data(); }
-        inline const ProjSIG* pSIG() const { return mSIGs.data(); }
-        inline const ProjLCR* pLCR() const { return mLCRs.data(); }
-        inline const ProjSEG* pSEG() const { return mSEGs.data(); }
+        inline const ProjItem* pTSW() const { return mTSWs.data(); }
+        inline const ProjItem* pSIG() const { return mSIGs.data(); }
+        inline const ProjItem* pLCR() const { return mLCRs.data(); }
+        inline const ProjItem* pSEG() const { return mSEGs.data(); }
 
-        inline const ProjTSW& tsw(size_t pos) const { return mTSWs.at(pos); }
-        inline const ProjSIG& sig(size_t pos) const { return mSIGs.at(pos); }
-        inline const ProjLCR& lcr(size_t pos) const { return mLCRs.at(pos); }
-        inline const ProjSEG& seg(size_t pos) const { return mSEGs.at(pos); }
+        inline const ProjItem& tsw(size_t pos) const { return mTSWs.at(pos); }
+        inline const ProjItem& sig(size_t pos) const { return mSIGs.at(pos); }
+        inline const ProjItem& lcr(size_t pos) const { return mLCRs.at(pos); }
+        inline const ProjItem& seg(size_t pos) const { return mSEGs.at(pos); }
 
         inline const ComName& tswName(size_t pos) const { return tsw(pos).name; }
         inline const ComName& sigName(size_t pos) const { return sig(pos).name; }
@@ -116,8 +112,7 @@ namespace test
 
     private:
 
-        template <class T>
-        void preset(std::vector<T>& vec, CONST_C_STRING what, size_t num)
+        void preset(ProjVec& vec, CONST_C_STRING what, size_t num)
         {
             vec.resize(num);
             for (auto& elem : vec)         {
@@ -125,14 +120,12 @@ namespace test
             }
         }
 
-        template <class T>
-        void setType(std::vector<T>& vec, size_t pos, UINT8 type)
+        void setType(ProjVec& vec, size_t pos, UINT8 type)
         {
             vec.at(pos).type = type;
         }
 
-        template <class T>
-        void setType(std::vector<T>& vec, UINT8 type)
+        void setType(ProjVec& vec, UINT8 type)
         {
             for (auto& elem : vec)
             {
@@ -140,18 +133,16 @@ namespace test
             }
         }
 
-        inline static void write(std::ostream& os, const UINT32 n)
+        inline static void write(std::ofstream& os, const UINT32 n)
         {
             const UINT32 r = n;
             os.write(reinterpret_cast<const char*>(&r), sizeof(UINT32));
         }
 
-        template <class T>
-        static void write(std::ostream& os, const std::vector<T>& vec)
+        static void write(std::ofstream& os, const ProjVec& vec)
         {
-            os.write(reinterpret_cast<const char*>(vec.data()), sizeof(T) * vec.size());
+            os.write(reinterpret_cast<const char*>(vec.data()), sizeof(ProjItem) * vec.size());
         }    
-
     };
 } // namespace
 #endif // H_

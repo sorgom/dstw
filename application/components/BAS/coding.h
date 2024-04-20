@@ -19,9 +19,6 @@ inline void pass() {}
 #define INSTANCE_DEC(NAME) \
     static NAME& instance();
 
-//  unified instance declaration for IL modules
-#define IL_INSTANCE_DEC(NAME) INSTANCE_DEC(NAME)
-
 //  unified instance definition
 #define INSTANCE_DEF(NAME) \
     NAME& NAME::instance() \

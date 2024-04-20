@@ -8,7 +8,7 @@ void SIG_X::procFromFld(const UINT8 state)
     if (mStateToGui != state)
     {
         mStateToGui = state;
-        IL::getSIG_Hub().toGui(mId, mStateToGui);
+        toGui(mStateToGui);
     }
     else
     { pass(); }
@@ -34,7 +34,7 @@ void SIG_XS::procFromFld(const UINT8 state, UINT8 speed)
     {
         mStateToGui = state;
         mSpeedToGui = speed;
-        IL::getSIG_Hub().toGui(mId, mStateToGui, mSpeedToGui);
+        toGui(mStateToGui, mSpeedToGui);
     }
     else
     { pass(); }
@@ -44,8 +44,17 @@ void SIG_X::procFromGui(const UINT8 stateFld, const UINT8 stateGui)
 {
     mStateToFld = stateFld;
     mStateToGui = stateGui;
-    IL::getSIG_Hub().toFld(mId, mStateToFld);
-    IL::getSIG_Hub().toGui(mId, mStateToGui);
+    toGui(mStateToGui);
+    toFld(mStateToFld);
+}
+
+void SIG_X::toFld(const UINT8 state, const UINT8 speed) 
+{ 
+    IL::getDispatcher().toFld(mId, ComData{state, speed});
+}
+void SIG_X::toGui(const UINT8 state, const UINT8 speed) 
+{ 
+    IL::getDispatcher().toGui(mId, ComData{state, speed});
 }
 
 void SIG_XS::procFromGui(const UINT8 stateFld, const UINT8 stateGui, const UINT8 speed)
@@ -53,9 +62,10 @@ void SIG_XS::procFromGui(const UINT8 stateFld, const UINT8 stateGui, const UINT8
     mStateToFld = stateFld;
     mSpeedToFld = speed;
     mStateToGui = stateGui;
-    IL::getSIG_Hub().toFld(mId, mStateToFld, mSpeedToFld);
-    IL::getSIG_Hub().toGui(mId, mStateToGui, mSpeedToGui);
+    toGui(mStateToGui, mSpeedToGui);
+    toFld(mStateToFld, mSpeedToFld);
 }
+
 
 void SIG_XS::speedToFld(const UINT8 speed)
 {
@@ -67,7 +77,7 @@ void SIG_XS::speedToFld(const UINT8 speed)
             if (speed != mSpeedToFld)
             {
                 mSpeedToFld = speed;
-                IL::getSIG_Hub().toFld(mId, mStateToFld, mSpeedToFld);
+                toFld(mStateToFld, mSpeedToFld);
             }
             break;    
     };
@@ -75,11 +85,12 @@ void SIG_XS::speedToFld(const UINT8 speed)
 
 void SIG_X::logMismatch()
 {
-    IL::getLog().log(MOD_SIG, ERR_MATCH);
+    IL::getLog().log(COMP_SIG, RET_ERR_MATCH);
 }
 
-void SIG_H::fromFld(const UINT8 state, const UINT8 speed)
+void SIG_H::fromFld(const ComData& data)
 {
+    const auto state = data.param1;
     switch (state)
     {
     case SIG_STATE_UNDEF:
@@ -94,9 +105,9 @@ void SIG_H::fromFld(const UINT8 state, const UINT8 speed)
     };
 }
 
-void SIG_H::fromGui(const UINT8 state, const UINT8 speed)
+void SIG_H::fromGui(const ComData& data)
 {
-    switch (state)
+    switch (data.param1)
     {
     case SIG_STATE_H0:
         proc_H0();
@@ -138,8 +149,9 @@ void SIG_H::proc_H1()
     }
 }
 
-void SIG_N::fromFld(const UINT8 state, const UINT8 speed)
+void SIG_N::fromFld(const ComData& data)
 {
+    const auto state = data.param1, speed = data.param2;
     switch (state)
     {
     case SIG_STATE_UNDEF:
@@ -154,8 +166,9 @@ void SIG_N::fromFld(const UINT8 state, const UINT8 speed)
     };
 }
 
-void SIG_N::fromGui(const UINT8 state, const UINT8 speed)
+void SIG_N::fromGui(const ComData& data)
 {
+    const auto state = data.param1, speed = data.param2;
     switch (state)
     {
     case SIG_STATE_N0:
@@ -200,9 +213,9 @@ void SIG_N::proc_N1(const UINT8 speed)
     }
 }
 
-
-void SIG_H_N::fromFld(const UINT8 state, const UINT8 speed)
+void SIG_H_N::fromFld(const ComData& data)
 {
+    const auto state = data.param1, speed = data.param2;
     switch (state)
     {
     case SIG_STATE_UNDEF:
@@ -219,8 +232,9 @@ void SIG_H_N::fromFld(const UINT8 state, const UINT8 speed)
     };
 }
 
-void SIG_H_N::fromGui(const UINT8 state, const UINT8 speed)
+void SIG_H_N::fromGui(const ComData& data)
 {
+    const auto state = data.param1, speed = data.param2;
     switch (state)
     {
     case SIG_STATE_H0_N0:
@@ -262,6 +276,7 @@ void SIG_H_N::proc_H0_N0(const UINT8 speed)
     }
 
 }
+
 void SIG_H_N::proc_H0_N1(const UINT8 speed)
 {
     switch (mStateToGui)
@@ -283,6 +298,7 @@ void SIG_H_N::proc_H0_N1(const UINT8 speed)
     }
     
 }
+
 void SIG_H_N::proc_H1_N0(const UINT8 speed)
 {
     switch (mStateToGui)
@@ -304,6 +320,7 @@ void SIG_H_N::proc_H1_N0(const UINT8 speed)
     }
     
 }
+
 void SIG_H_N::proc_H1_N1(const UINT8 speed)
 {
     switch (mStateToGui)
@@ -324,4 +341,3 @@ void SIG_H_N::proc_H1_N1(const UINT8 speed)
         break;
     }
 }
-

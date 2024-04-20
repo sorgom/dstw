@@ -15,22 +15,22 @@
 class Log : public I_Log
 {
 public:
-    inline Log(): mErr(NO_ERR) {}
-    inline void log(E_Mod mod, E_Err err)
+    inline Log(): mErr(RET_NO_ERR) {}
+    inline void log(E_Comp comp, E_Ret ret)
     {
-        mErr = std::max(mErr, err);
+        mErr = std::max(mErr, ret);
     }
 
-    inline E_Err maxerr() const
+    inline E_Ret maxerr() const
     {
         return mErr;
     }
 
-    IL_INSTANCE_DEC(Log)
+    INSTANCE_DEC(Log)
 
     NOCOPY(Log)
 private:
-    E_Err mErr;
+    E_Ret mErr;
 };
 
 #endif // H_

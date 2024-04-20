@@ -1,88 +1,75 @@
 //  ============================================================
-//  test of module LCR_Hub
+//  test of module LCR_Provider
 //  ============================================================
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <LCR/LCR_Hub.h>
+#include <LCR/LCR_Provider.h>
 
 namespace test
 {
-    class TestGroupLCH : public TestGroupBase
+    class TestGroupLCP : public TestGroupBase
     {
     protected:
-        LCR_Hub mSUT;
+        LCR_Provider mSUT;
+        GenProjData<0, 0, 2, 0> mData;
+        inline TestGroupLCP()
+        {
+            mData.setLcrType(0, TYPE_LCR);
+            mData.setLcrType(1, TYPE_LCR_UBK); 
+        }
     };
 
-    TEST_GROUP_BASE(LCR_02, TestGroupLCH) {};
+    TEST_GROUP_BASE(LCR_02, TestGroupLCP)
+    {};
 
     //  test type: equivalence class test
-    //  fromDsp ComFldState
+    //  load valid ProjData LCR
     TEST(LCR_02, T01)
     {
-        SETUP()
-        const ComFldState tele(101, 102);
-
         STEP(1)
-        //  good case
-        m_LCR_Provider().expectHas(11, true);
-        m_LCR().expectFromFld(101, 102);
-        mSUT.fromDsp(11, tele);
+        m_Dispatcher().expectAssign(mData.lcrName(0), COMP_LCR, 0, 0);
+        m_Dispatcher().expectAssign(mData.lcrName(1), COMP_LCR, 1, 1);
+        mSUT.load(mData.pLCR(), mData.numLCR());
         CHECK_N_CLEAR()
-
-        STEP(2)
-        //  fail case
-        m_LCR_Provider().expectHas(11, false);
-        mSUT.fromDsp(11, tele);
-        CHECK_N_CLEAR()
+        L_CHECK_EQUAL(2, mSUT.size())
+        L_CHECK_EQUAL(TYPE_LCR, mSUT.at(0).type())
+        L_CHECK_EQUAL(TYPE_LCR_UBK, mSUT.at(1).type())
     }
 
     //  test type: equivalence class test
-    //  fromDsp ComGuiCmd
+    //  load invalid ProjData LCR (unknown type)
     TEST(LCR_02, T02)
     {
         SETUP()
-        const ComGuiCmd tele(201);
+        mData.setLcrType(1, TYPE_LCR_UBK + 100); 
         
         STEP(1)
-        //  good case
-        m_LCR_Provider().expectHas(22, true);
-        m_LCR().expectFromGui(201);
-        mSUT.fromDsp(22, tele);
+        m_Dispatcher().expectAssign(mData.lcrName(0), COMP_LCR, 0, 0);
+        m_Dispatcher().expectAssign(mData.lcrName(1), COMP_LCR, 1, 1);
+        m_Log().expectLog(COMP_LCR, RET_ERR_STARTUP);
+        mSUT.load(mData.pLCR(), mData.numLCR());
         CHECK_N_CLEAR()
-
-        STEP(2)
-        //  fail case
-        m_LCR_Provider().expectHas(22, false);
-        mSUT.fromDsp(22, tele);
-        CHECK_N_CLEAR()
+        L_CHECK_EQUAL(0, mSUT.size())
     }
 
     //  test type: equivalence class test
-    //  toFld
+    //  load valid ProjData LCR Dispatcher returns PosRes invalid
     TEST(LCR_02, T03)
     {
         STEP(1)
-        m_Dispatcher().expectDispatch(1, ComCmdFld(101));
-        mSUT.toFld(1, 101);
+        m_Dispatcher().expectAssign(mData.lcrName(0), COMP_LCR, 0, 0);
+        m_Dispatcher().expectAssign(mData.lcrName(1), COMP_LCR, 1, -1);
+        m_Log().expectLog(COMP_LCR, RET_ERR_STARTUP);
+        mSUT.load(mData.pLCR(), mData.numLCR());
         CHECK_N_CLEAR()
     }
-
-    //  test type: equivalence class test
-    //  toGui
-    TEST(LCR_02, T04)
-    {
-        STEP(1)
-        m_Dispatcher().expectDispatch(2, ComStateGui(201, 202));
-        mSUT.toGui(2, 201, 202);
-        CHECK_N_CLEAR()
-    }
-   
+    
     //  test type: coverage
     //  retrieve instance
-    TEST(LCR_02, T05)
+    TEST(LCR_02, T04)
     {
-        I_LCR_Hub& inst = LCR_Hub::instance();
+        I_Provider& inst = LCR_Provider::instance();
         play(inst);
     }
 }

@@ -1,5 +1,5 @@
 //  ============================================================
-//  classes SIG_(X) implement I_SIG
+//  classes SIG_(X) implements I_SIG
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -7,22 +7,24 @@
 #ifndef SIG_X_H
 #define SIG_X_H
 
-#include <ifs/I_SIG.h>
+#include <ifs/values.h>
+#include <ifs/I_Elem.h>
+#include <SYS/IL.h>
 #include <BAS/coding.h>
 
-class SIG_X : public I_SIG
+class SIG_X : public I_Elem
 {
 public:
+    NOCOPY(SIG_X)
+    NODEF(SIG_X)
+
+protected:
     inline SIG_X(size_t id):
         mId(id),
         mStateToFld(SIG_STATE_UNDEF),
         mStateToGui(SIG_STATE_UNDEF)
     {}
 
-    NOCOPY(SIG_X)
-    NODEF(SIG_X)
-
-protected:
     const size_t mId;
     UINT8 mStateToFld;
     UINT8 mStateToGui;
@@ -30,21 +32,25 @@ protected:
     void procFromFld(UINT8 state);
     void procFromGui(UINT8 stateFld, UINT8 stateGui);
 
+    void toFld(UINT8 state, UINT8 speed = PARAM_UNDEF); 
+    void toGui(UINT8 state, UINT8 speed = PARAM_UNDEF);
+
     static void logMismatch();
 };
 
 class SIG_XS : public SIG_X
 {
 public:
+
+    NOCOPY(SIG_XS)
+    NODEF(SIG_XS)
+protected:
     inline SIG_XS(size_t id):
         SIG_X(id),
         mSpeedToFld(0),
         mSpeedToGui(0)
     {}
 
-    NOCOPY(SIG_XS)
-    NODEF(SIG_XS)
-protected:
     UINT8 mSpeedToFld;
     UINT8 mSpeedToGui;
 
@@ -64,10 +70,10 @@ class SIG_H : public SIG_X
 public:
     inline SIG_H(size_t id): SIG_X(id) {}
 
-    void fromFld(UINT8 state, UINT8 speed);
-    void fromGui(UINT8 state, UINT8 speed);
+    void fromFld(const ComData& data);
+    void fromGui(const ComData& data);
 
-    inline UINT8 type() const { return SIG_TYPE_H; }
+    inline E_Type type() const { return TYPE_SIG_H; }
 
     NOCOPY(SIG_H)
     NODEF(SIG_H)
@@ -89,10 +95,10 @@ class SIG_N : public SIG_XS
 public:
     inline SIG_N(size_t id): SIG_XS(id) {}
 
-    void fromFld(UINT8 state, UINT8 speed);
-    void fromGui(UINT8 state, UINT8 speed);
+    void fromFld(const ComData& data);
+    void fromGui(const ComData& data);
 
-    inline UINT8 type() const { return SIG_TYPE_N; }
+    inline E_Type type() const { return TYPE_SIG_N; }
 
     NOCOPY(SIG_N)
     NODEF(SIG_N)
@@ -116,10 +122,10 @@ class SIG_H_N : public SIG_XS
 public:
     inline SIG_H_N(size_t id): SIG_XS(id) {}
 
-    void fromFld(UINT8 state, UINT8 speed);
-    void fromGui(UINT8 state, UINT8 speed);
+    void fromFld(const ComData& data);
+    void fromGui(const ComData& data);
 
-    inline UINT8 type() const { return SIG_TYPE_H_N; }
+    inline E_Type type() const { return TYPE_SIG_H_N; }
 
     NOCOPY(SIG_H_N)
     NODEF(SIG_H_N)

@@ -9,7 +9,7 @@
 
 #include <BAS/coding.h>
 #include <BAS/Containers.h>
-#include <ifs/ComTypes.h>
+#include <ifs/DataTypes.h>
 
 #include <codebase/packBegin.h>
 

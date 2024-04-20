@@ -15,16 +15,18 @@ namespace test
     TEST(SYST_02, T01)
     {
         SETUP()
-        unmock();
         mock_Com();
+        I_Dispatcher& dispatcher = Dispatcher::instance();
+        I_Reader& reader = Reader::instance();
+        I_Provider& provider = TSW_Provider::instance();
         const CONST_C_STRING fname = "tmp.dat";
         {
-            GenProjData<TEST_NUM_TSW> projData;
+            GenProjData<TEST_NUM_TSW, 0, 0, 0> projData;
             projData.dump(fname);
         }
-        IL::getReader().read(fname);
+        reader.read(fname);
 
-        L_CHECK_TRUE(IL::getTSW_Provider().has(TEST_NUM_TSW - 1))
+        L_CHECK_EQUAL(TEST_NUM_TSW, provider.size())
 
         STEP(1)
         //  stimulation: send TSW field states LEFT to dispatcher
@@ -33,15 +35,11 @@ namespace test
         for (UINT32 n = 0; n < TEST_NUM_TSW; ++n)
         {
             LSTEP(n)
-            ComFldState fldState(TSW_STATE_LEFT);
-            nameElement(fldState, TEST_NUM_TSW - n, "TSW");
+            ComTele tele{{}, {TSW_STATE_LEFT, PARAM_UNDEF}};
+            nameElement(tele, TEST_NUM_TSW - n, "TSW");
 
-            ComStateGui stateGui(TSW_STATE_LEFT);
-            stateGui.name = fldState.name;
-
-            m_Com().expectSend(stateGui);
-            IL::getDispatcher().dispatch(fldState);
-
+            m_Com().expectToGui(tele);
+            dispatcher.fromFld(tele);
             CHECK_N_CLEAR()
         }
         ENDSTEPS()
@@ -54,20 +52,17 @@ namespace test
         SUBSTEPS()
         for (UINT32 n = 0; n < TEST_NUM_TSW; ++n)
         {
-            LSTEP(n)
-            ComGuiCmd guiCmd(TSW_GUI_GMD_WU);
-            nameElement(guiCmd, TEST_NUM_TSW - n, "TSW");
+            STEP(n)
+            ComTele fromGui{{}, {TSW_GUI_CMD_WU, PARAM_UNDEF}};
+            ComTele toFld{{}, {TSW_STATE_RIGHT, PARAM_UNDEF}};
+            ComTele toGui{{}, {TSW_STATE_WAIT_RIGHT, PARAM_UNDEF}};
+            nameElement(fromGui, TEST_NUM_TSW - n, "TSW");
+            toFld.name = fromGui.name;
+            toGui.name = fromGui.name;
 
-            ComCmdFld cmdFld(TSW_STATE_RIGHT);
-            cmdFld.name = guiCmd.name;
-
-            ComStateGui stateGui(TSW_STATE_WAIT_RIGHT);
-            stateGui.name = guiCmd.name;
-
-            m_Com().expectSend(cmdFld);
-            m_Com().expectSend(stateGui);
-            IL::getDispatcher().dispatch(guiCmd);
-
+            m_Com().expectToFld(toFld);
+            m_Com().expectToGui(toGui);
+            dispatcher.fromGui(fromGui);
             CHECK_N_CLEAR()
         }
         ENDSTEPS()

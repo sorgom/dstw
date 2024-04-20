@@ -3,7 +3,154 @@
 --  ============================================================
 
 include 'premake5_settings.lua'
-buildOpts = { '-std=c++17 -pedantic-errors -Werror -Wall' }
+buildoptions_gcc = { '-std=c++17 -pedantic-errors -Werror -Wall' }
+
+--  ============================================================
+--  > lib_cpputest.make
+--  cpputest lib
+--  ============================================================
+workspace 'lib_cpputest'
+    filter { 'action:gmake*' }
+        configurations { 'ci' }
+        language 'C++'
+        objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
+        defines { defines_test }
+        project 'cppu_test'
+            kind 'StaticLib'
+            targetdir 'lib'
+            files { files_cpputest_gcc }
+            includedirs { includedirs_cpputest }
+            buildoptions { buildoptions_gcc }
+
+--  ============================================================
+--  > tests.make
+--  app and tests at once runtime
+--  ->  bin/tests_{config}
+--  configurations: 
+--  - ci        module tests
+--  - qnd       module tests with devel includes
+--  - dev       developer tests
+--  - bullseye  module tests with bullseye coverage
+--  - none      no tests
+--  ============================================================
+workspace 'tests'
+    filter { 'action:gmake*' }
+        configurations { 'ci', 'qnd', 'dev', 'bullseye', 'tmp' }
+        language 'C++'
+        objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
+        targetsuffix '_%{cfg.name}'
+
+        buildoptions { buildoptions_gcc }
+
+        project 'tests'
+            kind 'ConsoleApp'
+            defines { 'NDEBUG', defines_test }
+            targetdir 'bin'
+            libdirs { 'lib' }
+            includedirs { includedirs_test }
+            links { links_test_gcc }
+            files { files_testenv, files_app }
+            removefiles { removefiles_test }
+
+            filter { 'configurations:ci' }
+                files { files_moduletest }
+
+            filter { 'configurations:qnd' }
+                files { files_moduletest }
+                includedirs { '../devel' }
+
+            filter { 'configurations:dev' }
+                files { files_devtest }
+
+            filter { 'configurations:bullseye' }
+                files { files_moduletest }
+                prebuildcommands { 'cov01 -1 --no-banner' }
+                postbuildcommands { './bullseye.sh' }
+            filter { 'configurations:tmp' }
+                includedirs { '../devel' }
+                files {
+                }
+    
+--  ============================================================
+--  > coverage.make
+--  -   coverage instrumented application (static lib)
+--  -   module tests only runtime
+--  ->  bin/coverage_tests_{config}
+--  configurations: 
+--  - ci        module tests
+--  - dev       developer tests
+--  ============================================================
+workspace 'coverage'
+    filter { 'action:gmake*' }
+        configurations { 'ci', 'dev' }
+        language 'C++'
+        objdir 'obj/gcc/%{prj.name}'
+        targetsuffix '_%{cfg.name}'
+
+        includedirs { includedirs_test }
+        buildoptions { buildoptions_gcc }
+
+        defines { 'DEBUG', defines_test }
+        symbols 'On'
+
+        project 'coverage_app'
+            kind 'StaticLib'
+            targetdir 'lib'
+            files { files_app }
+            removefiles { removefiles_test }
+            buildoptions {'-fprofile-arcs -ftest-coverage'}
+
+        project 'coverage_tests'
+            kind 'ConsoleApp'
+            targetdir 'bin'
+            libdirs { 'lib' }
+            links { 'coverage_app', 'gcov', links_test_gcc }
+            linkoptions { '--coverage' }
+            files { files_testenv }
+            filter { 'configurations:ci' }
+                files { files_moduletest }
+            filter { 'configurations:dev' }
+                files { files_devtest }
+
+--  ============================================================
+--  > systests.make
+--  -   application without test includes (static lib)
+--  -   system tests only runtime
+--  ->  bin/sysests_tests_{config}
+--  configurations: 
+--  - ci        module tests
+--  - qnd       with devel includes
+--  ============================================================
+workspace 'systests'
+    filter { 'action:gmake*' }
+        configurations { 'ci', 'qnd' }
+        language 'C++'
+        objdir 'obj/gcc/%{prj.name}'
+        targetsuffix '_%{cfg.name}'
+
+        buildoptions { buildoptions_gcc }
+
+        defines { 'DEBUG', defines_test }
+        symbols 'On'
+
+        filter { 'configurations:qnd' }
+            includedirs { '../devel' }
+
+        project 'systests_app'
+            kind 'StaticLib'
+            targetdir 'lib'
+            files { files_app }
+            includedirs { includedirs_app }
+            removefiles { removefiles_systest_app }
+
+        project 'systests_tests'
+            kind 'ConsoleApp'
+            targetdir 'bin'
+            libdirs { 'lib' }
+            links { 'systests_app_%{cfg.name}', links_test_gcc }
+            files { files_testenv, files_systest }
+            removefiles { removefiles_systest_test }
+            includedirs { includedirs_test }
 
 --  ============================================================
 --  > dstw.make
@@ -15,111 +162,18 @@ workspace 'dstw'
         language 'C++'
         objdir 'obj/gcc/%{prj.name}'
         targetdir 'bin'
-        buildoptions { buildOpts }
+        buildoptions { buildoptions_gcc }
         optimize 'On'
 
         project 'dstw_gen'
             kind 'ConsoleApp'
-            includedirs { testIncludes }
-            defines { genDefines }
-            files { genDataSrcs }
+            includedirs { includedirs_test }
+            defines { defines_gendata }
+            files { files_gendata }
 
         project 'dstw_run'
             kind 'ConsoleApp'
-            includedirs { appIncludes }
-            defines { appDefines }
-            files { '../application/**.cpp' }
+            includedirs { includedirs_app }
+            defines { defines_app }
+            files { files_app }
 
---  ============================================================
---  > tests.make
---  module tests and system tests at once runtime
---  ->  bin/tests_{config}
---  configurations: 
---  - ci        module and system tests
---  - qnd       module and system tests with devel includes
---  - mod       module tests
---  - sys       system tests
---  - dev       developer tests
---  - bullseye  module tests with bullseye coverage
---  ============================================================
-workspace 'tests'
-    filter { 'action:gmake*' }
-        configurations { 'ci', 'qnd', 'mod', 'sys', 'dev', 'bullseye' }
-        language 'C++'
-        objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
-        targetsuffix '_%{cfg.name}'
-
-        buildoptions { buildOpts }
-
-        project 'tests'
-            kind 'ConsoleApp'
-            defines { 'NDEBUG', testDefines }
-            targetdir 'bin'
-            libdirs { '../BuildCppUTest/lib' }
-            includedirs { testIncludes }
-            links { testLinks }
-            files { testEnvSrcs, appSrcs }
-
-            filter { 'configurations:ci' }
-                files { modTestSrcs, sysTestSrcs }
-
-            filter { 'configurations:qnd' }
-                files { modTestSrcs, sysTestSrcs }
-                includedirs { '../devel' }
-
-            filter { 'configurations:mod' }
-                files { modTestSrcs }
-
-            filter { 'configurations:sys' }
-                files { sysTestSrcs }
-
-            filter { 'configurations:dev' }
-                files { devTestSrcs }
-
-            filter { 'configurations:bullseye' }
-                files { modTestSrcs }
-                prebuildcommands { 'cov01 -1 --no-banner' }
-                postbuildcommands { './bullseye.sh' }
-    
---  ============================================================
---  > coverage.make
---  -   coverage instrumented application (static lib)
---  -   module tests only runtime
---  ->  bin/coverage_tests_{config}
---  configurations: 
---  - ci        module tests
---  - sys       system tests
---  - dev       developer tests
---  ============================================================
-workspace 'coverage'
-    filter { 'action:gmake*' }
-        configurations { 'ci', 'sys', 'dev' }
-        language 'C++'
-        objdir 'obj/gcc/%{prj.name}'
-        targetsuffix '_%{cfg.name}'
-
-        includedirs { testIncludes }
-        buildoptions { buildOpts }
-
-        defines { 'DEBUG', testDefines }
-        symbols 'On'
-
-        project 'coverage_app'
-            kind 'StaticLib'
-            targetdir 'lib'
-            files { appSrcs }
-            buildoptions {'-fprofile-arcs -ftest-coverage'}
-
-        project 'coverage_tests'
-            kind 'ConsoleApp'
-            targetdir 'bin'
-            libdirs { 'lib', '../BuildCppUTest/lib' }
-            links { 'coverage_app', 'gcov', testLinks }
-            linkoptions { '--coverage' }
-            files { testEnvSrcs }
-            filter { 'configurations:ci' }
-                files { modTestSrcs }
-            filter { 'configurations:sys' }
-                files { sysTestSrcs }
-            filter { 'configurations:dev' }
-                files { devTestSrcs }

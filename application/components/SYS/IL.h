@@ -9,43 +9,24 @@
 #ifndef IL_H
 #define IL_H
 
-//## INCLUDES
-#include <LCR/LCR_Hub.h>
-#include <LCR/LCR_Provider.h>
-#include <SIG/SIG_Hub.h>
-#include <SIG/SIG_Provider.h>
-#include <SYS/Com.h>
-#include <SYS/Dispatcher.h>
-#include <SYS/Log.h>
-#include <SYS/Reader.h>
-#include <TSW/TSW_Hub.h>
-#include <TSW/TSW_Provider.h>
-//## END
+#include <ifs/I_Com.h>
+#include <ifs/I_Dispatcher.h>
+#include <ifs/values.h>
+#include <ifs/I_Log.h>
+#include <ifs/I_Provider.h>
+#include <ifs/I_Reader.h>
 
 #include <BAS/coding.h>
 
-//  inline static I_NAME& getNAME() { return NAME::instance(); }
-#define IL_INLINE(NAME) \
-    inline static I_ ## NAME& get ## NAME() { return NAME::instance(); }
-
-class IL
+namespace IL
 {
-public:
-    //# IL_INLINE
-    IL_INLINE(Com)
-    IL_INLINE(Dispatcher)
-    IL_INLINE(LCR_Hub)
-    IL_INLINE(LCR_Provider)
-    IL_INLINE(Log)
-    IL_INLINE(Reader)
-    IL_INLINE(SIG_Hub)
-    IL_INLINE(SIG_Provider)
-    IL_INLINE(TSW_Hub)
-    IL_INLINE(TSW_Provider)
-    //# END
-
-    NOCOPY(IL)
-    IL();
-};
+    I_Com& getCom();
+    I_Dispatcher& getDispatcher();
+    I_Log& getLog();
+    I_Provider& getLCR_Provider();
+    I_Provider& getSIG_Provider();
+    I_Provider& getTSW_Provider();
+    I_Reader& getReader();
+} // namespace
 
 #endif // _H

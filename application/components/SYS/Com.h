@@ -15,10 +15,10 @@ class Com : public I_Com
 {
 public:
     inline Com() = default;
-    inline void send(const ComCmdFld&   tele) const {}
-    inline void send(const ComStateGui& tele) const {}
+    inline void toFld(const ComTele& tele) const {}
+    inline void toGui(const ComTele& tele) const {}
 
-    IL_INSTANCE_DEC(Com)
+    INSTANCE_DEC(Com)
 
     NOCOPY(Com)
 };

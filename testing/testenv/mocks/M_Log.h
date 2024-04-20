@@ -11,27 +11,33 @@
 
 namespace test
 {
-    MOCK_CLASS(Log)
+    class M_Log : 
+        public I_Log,
+        protected M_Base
     {
     public:
-        MOCK_CON(Log)
+        M_Log() :
+            M_Base("Log")
+        {}
 
-        inline void log(E_Mod mod, E_Err err)
+        inline void log(E_Comp comp, E_Ret ret)
         {
-            call("log").PARAM(mod).PARAM(err);
+            call("log").PARAM(comp).PARAM(ret);
         }
-        inline void expectLog(E_Mod mod, E_Err err) const
+        inline void expectLog(E_Comp comp, E_Ret ret) const
         {
-            expect("log").PARAM(mod).PARAM(err);
+            expect("log").PARAM(comp).PARAM(ret);
         }
-        inline E_Err maxerr() const
+        inline E_Ret maxerr() const
         {
-            return static_cast<E_Err>(call("maxerr").RETURN_DEF_UNSIGNED(NO_ERR));
+            return static_cast<E_Ret>(call("maxerr").RETURN_DEF_UNSIGNED(RET_NO_ERR));
         }
-        inline void expectMaxerr(E_Err ret = NO_ERR) const
+        inline void expectMaxerr(E_Ret ret = RET_NO_ERR) const
         {
             expect("maxerr").AND_RETURN(ret);
         }
+
+        INSTANCE_DEC(M_Log)
     };
 } 
 

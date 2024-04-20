@@ -11,18 +11,19 @@
 
 namespace test
 {
-    MOCK_CLASS(Dispatcher)
+    class M_Dispatcher : public I_Dispatcher, private M_Base
     {
     public:
-        MOCK_CON(Dispatcher)
+        inline M_Dispatcher() : M_Base("Dispatcher") {}
+        INSTANCE_DEC(M_Dispatcher)
 
-        inline void reset()
+        inline void clear()
         {
-            call("reset");
+            call("clear");
         }
-        inline void expectReset() const
+        inline void expectClear() const
         {
-            expect("reset");
+            expect("clear");
         }
 
         inline void index()
@@ -44,41 +45,40 @@ namespace test
             expect("assign").TPARAM(ComName, name).PARAM(comp).PARAM(pos).AND_RETURN(ret);
         }
 
-        inline void dispatch(const ComFldState& tele) const
+        inline void fromFld(const ComTele& tele) const
         {
-            call("dispatch").TPARAM(ComFldState, tele);
+            call("fromFld").TPARAM(ComTele, tele);
         }
-        inline void expectDispatch(const ComFldState& tele) const
+        inline void expectFromFld(const ComTele& tele) const
         {
-            expect("dispatch").TPARAM(ComFldState, tele);
-        }
-
-        inline void dispatch(const ComGuiCmd& tele) const
-        {
-            call("dispatch").TPARAM(ComGuiCmd, tele);
-        }
-        inline void expectDispatch(const ComGuiCmd& tele) const
-        {
-            expect("dispatch").TPARAM(ComGuiCmd, tele);
+            expect("fromFld").TPARAM(ComTele, tele);
         }
 
+        inline void fromGui(const ComTele& tele) const
+        {
+            call("fromGui").TPARAM(ComTele, tele);
+        }
+        inline void expectFromGui(const ComTele& tele) const
+        {
+            expect("fromGui").TPARAM(ComTele, tele);
+        }
 
-        inline void dispatch(size_t id, ComCmdFld&& tele) const
+        inline void toFld(size_t id, const ComData& data) const
         {
-            call("dispatch").PARAM(id).TPARAM(ComCmdFld, tele);
+            call("toFld").PARAM(id).TPARAM(ComData, data);
         }
-        inline void expectDispatch(size_t id, ComCmdFld&& tele) const
+        inline void expectToFld(size_t id, const ComData& data) const
         {
-            expect("dispatch").PARAM(id).TPARAM(ComCmdFld, tele);
+            expect("toFld").PARAM(id).TPARAM(ComData, data);
         }
 
-        inline void dispatch(size_t id, ComStateGui&& tele) const
+        inline void toGui(size_t id, const ComData& data) const
         {
-            call("dispatch").PARAM(id).TPARAM(ComStateGui, tele);
+            call("toGui").PARAM(id).TPARAM(ComData, data);
         }
-        inline void expectDispatch(size_t id, ComStateGui&& tele) const
+        inline void expectToGui(size_t id, const ComData& data) const
         {
-            expect("dispatch").PARAM(id).TPARAM(ComStateGui, tele);
+            expect("toGui").PARAM(id).TPARAM(ComData, data);
         }
     };
 } 

@@ -1,43 +1,22 @@
 #include <LCR/LCR_Provider.h>
-#include <SYS/IL.h>
+#include <LCR/LCR_X.h>
 
 INSTANCE_DEF(LCR_Provider)
 
-void LCR_Provider::load(const ProjLCR* const data, const UINT32 num)
+bool LCR_Provider::add(const size_t id, const ProjItem& item)
 {
-    I_Dispatcher& disp = IL::getDispatcher();
-    reset();
-    bool ok = mElems.reserve(num) >= num;
-
-    for (UINT32 n = 0; ok and (n < num); ++n)
+    bool ok = true;
+    switch (item.type)
     {
-        const ProjLCR& proj = data[n];
-        const PosRes res = disp.assign(proj.name, COMP_LCR, n);
-        if (res.valid)
-        {
-            switch (proj.type)
-            {
-                case LCR_TYPE_LCR:
-                    mElems.add<LCR>(res.pos);
-                    break;
-                case LCR_TYPE_LCR_UBK:
-                    mElems.add<LCR_UBK>(res.pos);
-                    break;
-                default:
-                    ok = false;
-                    break;
-            } 
-        }
-        else
-        {
+        case TYPE_LCR:
+            mElems.add<LCR>(id);
+            break;
+        case TYPE_LCR_UBK:
+            mElems.add<LCR_UBK>(id);
+            break;
+        default:
             ok = false;
-        }
+            break;
     }
-    if (ok)
-    { pass(); }
-    else
-    {
-        reset();
-        IL::getLog().log(MOD_LCR_PROVIDER, ERR_STARTUP);
-    }
+    return ok;
 }

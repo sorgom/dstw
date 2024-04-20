@@ -1,7 +1,7 @@
 //  ============================================================
 //  interface Reader
 //  the Reader is called at system start and shall:
-//  -   reset I_Dispatcher
+//  -   clear I_Dispatcher
 //  -   read proj data from binary file
 //  -   distribute load to subsystems
 //  -   call indexing of I_Dispatcher

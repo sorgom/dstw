@@ -8,39 +8,19 @@
 #define LCR_PROVIDER_H
 
 #include <BAS/coding.h>
-#include <BAS/Containers.h>
-#include <ifs/I_LCR_Provider.h>
-#include <LCR/LCR_X.h>
+#include <BAS/BAS_Provider.h>
 
-class LCR_Provider : public I_LCR_Provider
+class LCR_Provider : public BAS_Provider
 {
 public:
     inline LCR_Provider() = default;
 
-    inline bool has(size_t pos) const
-    {
-        return mElems.size() > pos;
-    }
-
-    inline I_LCR& at(size_t pos)
-    {
-        return mElems.at(pos);
-    }
-
-    inline void reset()
-    {
-        mElems.clear();
-    }
-
-    void load(const ProjLCR* data, UINT32 num);
-
-    IL_INSTANCE_DEC(LCR_Provider)
+    INSTANCE_DEC(LCR_Provider)
 
     NOCOPY(LCR_Provider)
-
-private:
-    PolyVec<I_LCR> mElems;
+protected:
+    bool add(size_t id, const ProjItem& item) final;
+    inline E_Comp comp() const final { return COMP_LCR; };  
 };
-
 
 #endif // H_

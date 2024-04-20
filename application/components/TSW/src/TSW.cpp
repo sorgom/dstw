@@ -1,21 +1,39 @@
 #include <TSW/TSW.h>
 #include <SYS/IL.h>
 
-void TSW::fromGui(const UINT8 cmd)
+void TSW::fromFld(const ComData& data)
 {
-    switch(cmd)
+    const auto state = data.param1;
+    switch(state)
     {
-    case TSW_GUI_GMD_WU:
+    case TSW_STATE_LEFT:
+    case TSW_STATE_RIGHT:
+    case TSW_STATE_UNDEF:
+    case TSW_STATE_DEFECT:
+        chgState(state);
+        break;
+    default:
+        IL::getLog().log(COMP_TSW, RET_ERR_MATCH);
+        break;
+    }
+}
+
+void TSW::fromGui(const ComData& data)
+{
+    const auto state = data.param1;
+    switch(state)
+    {
+    case TSW_GUI_CMD_WU:
         wu();
         break;
-    case TSW_GUI_GMD_LEFT:
+    case TSW_GUI_CMD_LEFT:
         swLeft();
         break;
-    case TSW_GUI_GMD_RIGHT:
+    case TSW_GUI_CMD_RIGHT:
         swRight();
         break;
     default:
-        IL::getLog().log(MOD_TSW, ERR_MATCH);
+        IL::getLog().log(COMP_TSW, RET_ERR_MATCH);
         break;
     };
 }
@@ -29,8 +47,8 @@ void TSW::swLeft()
     case TSW_STATE_DEFECT:
         break;
     default:
-        toFld(TSW_STATE_LEFT);
         chgState(TSW_STATE_WAIT_LEFT);
+        toFld(TSW_STATE_LEFT);
         break;
     }
 }
@@ -44,8 +62,8 @@ void TSW::swRight()
     case TSW_STATE_DEFECT:
         break;
     default:
-        toFld(TSW_STATE_RIGHT);
         chgState(TSW_STATE_WAIT_RIGHT);
+        toFld(TSW_STATE_RIGHT);
         break;
     }
 }
@@ -55,32 +73,16 @@ void TSW::wu()
     switch(mState)
     {
     case TSW_STATE_LEFT:
-        toFld(TSW_STATE_RIGHT);
         chgState(TSW_STATE_WAIT_RIGHT);
+        toFld(TSW_STATE_RIGHT);
         break;
     case TSW_STATE_RIGHT:
-        toFld(TSW_STATE_LEFT);
         chgState(TSW_STATE_WAIT_LEFT);
+        toFld(TSW_STATE_LEFT);
         break;
     default:
         break;
     };
-}
-
-void TSW::fromFld(const UINT8 state)
-{
-    switch(state)
-    {
-    case TSW_STATE_LEFT:
-    case TSW_STATE_RIGHT:
-    case TSW_STATE_UNDEF:
-    case TSW_STATE_DEFECT:
-        chgState(state);
-        break;
-    default:
-        IL::getLog().log(MOD_TSW, ERR_MATCH);
-        break;
-    }
 }
 
 void TSW::chgState(const UINT8 state)
@@ -88,11 +90,13 @@ void TSW::chgState(const UINT8 state)
     if (state != mState)
     {
         mState = state;
-        IL::getTSW_Hub().toGui(mId, mState);
+        IL::getDispatcher().toGui(mId, ComData{mState});
     }
+    else
+    { pass(); }
 }
 
 void TSW::toFld(const UINT8 state) const
 {
-    IL::getTSW_Hub().toFld(mId, state);
+    IL::getDispatcher().toFld(mId, ComData{state});
 } 

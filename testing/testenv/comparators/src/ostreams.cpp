@@ -1,42 +1,39 @@
 #include <comparators/ostreams.h>
 
+
+OSTREAM_DEF(ComData)
+{
+    return os 
+        << DOUT(param1)
+        << DOUT(param2)
+    ;
+}
+
 OSTREAM_DEF(ComName)
 {
     return os << fixC(d.chars);
 }
 
-OSTREAM_DEF(ComCmdFld)
+OSTREAM_DEF(ComTele)
 {
     return os 
         << DOUT(name)
-        << DOUT(cmd1)
-        << DOUT(cmd2)
+        << d.data
     ;
 }
 
-OSTREAM_DEF(ComFldState)
+OSTREAM_DEF(PosRes)
 {
     return os 
-        << DOUT(name)
-        << DOUT(state1)
-        << DOUT(state2)
+        << DOUT(pos)
+        << DOUT(valid)
     ;
 }
 
-OSTREAM_DEF(ComGuiCmd)
+OSTREAM_DEF(ProjItem)
 {
     return os 
         << DOUT(name)
-        << DOUT(cmd1)
-        << DOUT(cmd2)
-    ;
-}
-
-OSTREAM_DEF(ComStateGui)
-{
-    return os 
-        << DOUT(name)
-        << DOUT(state1)
-        << DOUT(state2)
+        << DOUT(type)
     ;
 }

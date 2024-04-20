@@ -9,29 +9,32 @@
 #include <BAS/coding.h>
 #include <BAS/NcpIndex.h>
 #include <ifs/I_Dispatcher.h>
+#include <ifs/I_Provider.h>
 
 class Dispatcher : public I_Dispatcher
 {
 public:
     inline Dispatcher() = default;
 
-    void reset();
+    void clear();
     void index();
 
     const PosRes assign(const ComName& name, E_Comp comp, size_t pos);
     
-    void dispatch(const ComFldState& tele) const;
-    void dispatch(const ComGuiCmd&   tele) const;
+    void fromFld(const ComTele& tele) const;
+    void fromGui(const ComTele& tele) const;
 
-    void dispatch(size_t id, ComCmdFld&&   tele) const;
-    void dispatch(size_t id, ComStateGui&& tele) const;
+    void toFld(size_t id, const ComData& data) const;
+    void toGui(size_t id, const ComData& data) const;
 
-    IL_INSTANCE_DEC(Dispatcher)
+    INSTANCE_DEC(Dispatcher)
 
     NOCOPY(Dispatcher)
 
 private:
     NcpIndex mIndx;
+    static void forwardFld(I_Provider& prov, const Ncp& ncp, const ComTele& tele);
+    static void forwardGui(I_Provider& prov, const Ncp& ncp, const ComTele& tele);
 };
 
 #endif // H_

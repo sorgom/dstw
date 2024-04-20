@@ -6,7 +6,7 @@
 #   created by Manfred Sorgo
 
 from modTransTable import TransTable, TransEvent
-from modMdTable import mdTable
+from modMdTable import mdTable, csvTable, rxCsv
 from modUtilz import repoDir
 import re, csv
 from json import load as jload
@@ -20,7 +20,6 @@ class TransCsv(object):
         self.mdData = ''
         self.delimiter = ';'
         self.info = False
-        self.rxCsv = re.compile(r'\.csv$', re.I)
         self.rxJsn = re.compile(r'\.json$', re.I)
 
     def pivot(self, data:list):
@@ -102,7 +101,7 @@ class TransCsv(object):
         return  self.transTable.genCpp(self.genTransEvents(srcCsv), **args)
 
     def fromFile(self, fp):
-        if self.rxCsv.search(fp):
+        if rxCsv.search(fp):
             if self.info: self.genInfo(fp)
             else: self.genMd(fp)
         elif self.rxJsn.search(fp):
