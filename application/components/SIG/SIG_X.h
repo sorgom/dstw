@@ -73,7 +73,7 @@ public:
     void fromFld(const ComData& data);
     void fromGui(const ComData& data);
 
-    inline UINT8 type() const { return SIG_TYPE_H; }
+    inline E_Type type() const { return TYPE_SIG_H; }
 
     NOCOPY(SIG_H)
     NODEF(SIG_H)
@@ -98,7 +98,7 @@ public:
     void fromFld(const ComData& data);
     void fromGui(const ComData& data);
 
-    inline UINT8 type() const { return SIG_TYPE_N; }
+    inline E_Type type() const { return TYPE_SIG_N; }
 
     NOCOPY(SIG_N)
     NODEF(SIG_N)
@@ -125,7 +125,7 @@ public:
     void fromFld(const ComData& data);
     void fromGui(const ComData& data);
 
-    inline UINT8 type() const { return SIG_TYPE_H_N; }
+    inline E_Type type() const { return TYPE_SIG_H_N; }
 
     NOCOPY(SIG_H_N)
     NODEF(SIG_H_N)

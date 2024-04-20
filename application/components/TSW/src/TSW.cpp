@@ -13,7 +13,7 @@ void TSW::fromFld(const ComData& data)
         chgState(state);
         break;
     default:
-        IL::getLog().log(COMP_TSW, ERR_MATCH);
+        IL::getLog().log(COMP_TSW, RET_ERR_MATCH);
         break;
     }
 }
@@ -33,7 +33,7 @@ void TSW::fromGui(const ComData& data)
         swRight();
         break;
     default:
-        IL::getLog().log(COMP_TSW, ERR_MATCH);
+        IL::getLog().log(COMP_TSW, RET_ERR_MATCH);
         break;
     };
 }

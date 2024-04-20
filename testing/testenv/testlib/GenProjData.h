@@ -47,8 +47,8 @@ namespace test
             preset(mLCRs, "LCR", NLCR);
             preset(mSEGs, "SEG", NSEG);
 
-            setSigType(SIG_TYPE_H);
-            setLcrType(LCR_TYPE_LCR);
+            setSigType(TYPE_SIG_H);
+            setLcrType(TYPE_LCR);
         }
     
         inline UINT32 numTSW() const { return mTSWs.size(); }

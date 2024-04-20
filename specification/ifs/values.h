@@ -24,12 +24,12 @@ enum E_Comp : UINT8
 //  ============================================================
 //  - return types
 //  ============================================================
-enum E_Err : UINT8
+enum E_Ret : UINT8
 {
-    NO_ERR,
-    ERR_MATCH,
-    ERR_RANGE,
-    ERR_STARTUP
+    RET_NO_ERR,
+    RET_ERR_MATCH,
+    RET_ERR_RANGE,
+    RET_ERR_STARTUP
 };
                 
 //  ============================================================
@@ -41,16 +41,24 @@ enum E_Param : UINT8
 };
 
 //  ============================================================
-//  - SIG types and states
+//  - module types
 //  ============================================================
-enum E_SigType : UINT8
+enum E_Type : UINT8
 {
-    SIG_TYPE_H = 100,
-    SIG_TYPE_N,
-    SIG_TYPE_H_N,
-    SIG_TYPE_S
+    TYPE_LCR = 100,
+    TYPE_LCR_UBK,
+    TYPE_SEG,
+    TYPE_SIG_H,
+    TYPE_SIG_H_N,
+    TYPE_SIG_N,
+    TYPE_SIG_S,
+    TYPE_TSW,
+    TYPE_UNDEF = PARAM_UNDEF
 };
 
+//  ============================================================
+//  - SIG states
+//  ============================================================
 enum E_SigState : UINT8
 {
     SIG_STATE_UNDEF = PARAM_UNDEF,
@@ -96,14 +104,8 @@ enum E_TswGuiCmd : UINT8
 };
 
 //  ============================================================
-//  - LCR types and states
+//  - LCR states
 //  ============================================================
-enum E_LcrType : UINT8
-{
-    LCR_TYPE_LCR = 100,
-    LCR_TYPE_LCR_UBK
-};
-
 enum E_LcrState : UINT8
 {
     LCR_STATE_UNDEF = PARAM_UNDEF,

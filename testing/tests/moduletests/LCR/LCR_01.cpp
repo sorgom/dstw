@@ -191,11 +191,11 @@ namespace test
     TEST(LCR_01, T02)
     {
         STEP(1)
-        m_Log().expectLog(COMP_LCR, ERR_MATCH);
+        m_Log().expectLog(COMP_LCR, RET_ERR_MATCH);
         FLD(PARAM_UNKNOWN, LCR_UBK_STATE_UNDEF);
 
         STEP(2)
-        m_Log().expectLog(COMP_LCR, ERR_MATCH);
+        m_Log().expectLog(COMP_LCR, RET_ERR_MATCH);
         CMD(PARAM_UNKNOWN);
 
         STEP(3)
@@ -271,19 +271,19 @@ namespace test
         setSUT(lcr);
 
         STEP(1)
-        m_Log().expectLog(COMP_LCR, ERR_MATCH);
+        m_Log().expectLog(COMP_LCR, RET_ERR_MATCH);
         FLD(PARAM_UNKNOWN, LCR_UBK_STATE_UNDEF);
 
         STEP(2)
-        m_Log().expectLog(COMP_LCR, ERR_MATCH);
+        m_Log().expectLog(COMP_LCR, RET_ERR_MATCH);
         CMD(PARAM_UNKNOWN);
 
         STEP(3)
-        m_Log().expectLog(COMP_LCR, ERR_MATCH);
+        m_Log().expectLog(COMP_LCR, RET_ERR_MATCH);
         FLD(LCR_STATE_UNDEF, PARAM_UNKNOWN);
 
         STEP(4)
-        m_Log().expectLog(COMP_LCR, ERR_MATCH);
+        m_Log().expectLog(COMP_LCR, RET_ERR_MATCH);
         FLD(PARAM_UNKNOWN, PARAM_UNKNOWN);
     }
 }

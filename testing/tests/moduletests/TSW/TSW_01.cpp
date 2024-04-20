@@ -155,11 +155,11 @@ namespace test
     TEST(TSW_01, T02)
     {
         STEP(1)
-        m_Log().expectLog(COMP_TSW, ERR_MATCH);
+        m_Log().expectLog(COMP_TSW, RET_ERR_MATCH);
         CMD(PARAM_UNKNOWN);
 
         STEP(2)
-        m_Log().expectLog(COMP_TSW, ERR_MATCH);
+        m_Log().expectLog(COMP_TSW, RET_ERR_MATCH);
         FLD(PARAM_UNKNOWN);
     }
 }

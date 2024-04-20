@@ -21,7 +21,7 @@ void BAS_Provider::load(const ProjItem* data, const UINT32 num)
     if (not ok)
     {
         clear();
-        IL::getLog().log(comp(), ERR_STARTUP);
+        IL::getLog().log(comp(), RET_ERR_STARTUP);
     }
     else 
     { pass(); }

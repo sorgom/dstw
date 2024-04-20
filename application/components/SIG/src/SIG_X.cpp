@@ -85,7 +85,7 @@ void SIG_XS::speedToFld(const UINT8 speed)
 
 void SIG_X::logMismatch()
 {
-    IL::getLog().log(COMP_SIG, ERR_MATCH);
+    IL::getLog().log(COMP_SIG, RET_ERR_MATCH);
 }
 
 void SIG_H::fromFld(const ComData& data)

@@ -17,6 +17,6 @@ namespace test
         const ComTele tg {};
         Com::instance().toFld(tf);
         Com::instance().toGui(tg);
-        Log::instance().log(COMP_SYS, ERR_MATCH);
+        Log::instance().log(COMP_SYS, RET_ERR_MATCH);
     }
 }

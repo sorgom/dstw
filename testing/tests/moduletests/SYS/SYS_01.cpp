@@ -22,7 +22,7 @@ namespace test
         void expectFail()
         {
             expectClear();
-            m_Log().expectLog(COMP_SYS, ERR_STARTUP);
+            m_Log().expectLog(COMP_SYS, RET_ERR_STARTUP);
         }
 
         void wrongSize(int dev)

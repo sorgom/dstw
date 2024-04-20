@@ -39,7 +39,7 @@ namespace test
         STEP(1)
         m_Dispatcher().expectAssign(mData.tswName(0), COMP_TSW, 0, 0);
         m_Dispatcher().expectAssign(mData.tswName(1), COMP_TSW, 1, -1);
-        m_Log().expectLog(COMP_TSW, ERR_STARTUP);
+        m_Log().expectLog(COMP_TSW, RET_ERR_STARTUP);
         mSUT.load(mData.pTSW(), mData.numTSW());
         CHECK_N_CLEAR()
         L_CHECK_EQUAL(0, mSUT.size())

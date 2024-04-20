@@ -35,7 +35,7 @@ namespace test
             expect("fromGui").TPARAM(ComData, data);
         }
         
-        inline UINT8 type() const { return 0; }
+        inline E_Type type() const { return TYPE_UNDEF; }
     };
 
     // mock TSW

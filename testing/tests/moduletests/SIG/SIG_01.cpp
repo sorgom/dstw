@@ -222,11 +222,11 @@ namespace test
     TEST(SIG_01, T02)
     {
         STEP(1)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(COMP_SIG, RET_ERR_MATCH);
         CMD_H(PARAM_UNKNOWN);
 
         STEP(2)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(COMP_SIG, RET_ERR_MATCH);
         FLD_H(PARAM_UNKNOWN);
 
         STEP(3)
@@ -357,11 +357,11 @@ namespace test
         setSUT(sig);
 
         STEP(1)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(COMP_SIG, RET_ERR_MATCH);
         CMD(PARAM_UNKNOWN, 0);
 
         STEP(2)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(COMP_SIG, RET_ERR_MATCH);
         FLD(PARAM_UNKNOWN, 0);
 
         STEP(3)
@@ -647,11 +647,11 @@ namespace test
         setSUT(sig);
 
         STEP(1)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(COMP_SIG, RET_ERR_MATCH);
         CMD(PARAM_UNKNOWN, 0);
 
         STEP(2)
-        m_Log().expectLog(COMP_SIG, ERR_MATCH);
+        m_Log().expectLog(COMP_SIG, RET_ERR_MATCH);
         FLD(PARAM_UNKNOWN, 0);
 
         STEP(3)

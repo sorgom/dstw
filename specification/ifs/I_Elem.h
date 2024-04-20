@@ -22,7 +22,7 @@ public:
     virtual void fromGui(const ComData& data) = 0;
 
     //  this is test code: type info if relevant
-    virtual UINT8 type() const = 0;
+    virtual E_Type type() const = 0;
 };
 
 

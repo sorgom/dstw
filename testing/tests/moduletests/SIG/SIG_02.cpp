@@ -15,9 +15,9 @@ namespace test
         GenProjData<1, 3, 1, 1> mData;
         inline TestGroupSIP()
         {
-            mData.setSigType(0, SIG_TYPE_H);
-            mData.setSigType(1, SIG_TYPE_N); 
-            mData.setSigType(2, SIG_TYPE_H_N); 
+            mData.setSigType(0, TYPE_SIG_H);
+            mData.setSigType(1, TYPE_SIG_N); 
+            mData.setSigType(2, TYPE_SIG_H_N); 
         }
     };
 
@@ -35,9 +35,9 @@ namespace test
         mSUT.load(mData.pSIG(), mData.numSIG());
         CHECK_N_CLEAR()
         L_CHECK_EQUAL(3, mSUT.size())
-        L_CHECK_EQUAL(SIG_TYPE_H,   mSUT.at(0).type())
-        L_CHECK_EQUAL(SIG_TYPE_N,   mSUT.at(1).type())
-        L_CHECK_EQUAL(SIG_TYPE_H_N, mSUT.at(2).type())
+        L_CHECK_EQUAL(TYPE_SIG_H,   mSUT.at(0).type())
+        L_CHECK_EQUAL(TYPE_SIG_N,   mSUT.at(1).type())
+        L_CHECK_EQUAL(TYPE_SIG_H_N, mSUT.at(2).type())
     }
 
     //  test type: equivalence class test
@@ -45,13 +45,13 @@ namespace test
     TEST(SIG_03, T02)
     {
         SETUP()
-        mData.setSigType(2, SIG_TYPE_H + 100); 
+        mData.setSigType(2, TYPE_SIG_H + 100); 
         
         STEP(1)
         m_Dispatcher().expectAssign(mData.sigName(0), COMP_SIG, 0, 0);
         m_Dispatcher().expectAssign(mData.sigName(1), COMP_SIG, 1, 1);
         m_Dispatcher().expectAssign(mData.sigName(2), COMP_SIG, 2, 2);
-        m_Log().expectLog(COMP_SIG, ERR_STARTUP);
+        m_Log().expectLog(COMP_SIG, RET_ERR_STARTUP);
         mSUT.load(mData.pSIG(), mData.numSIG());
         CHECK_N_CLEAR()
         L_CHECK_EQUAL(0, mSUT.size())
@@ -65,7 +65,7 @@ namespace test
         m_Dispatcher().expectAssign(mData.sigName(0), COMP_SIG, 0, 0);
         m_Dispatcher().expectAssign(mData.sigName(1), COMP_SIG, 1, 1);
         m_Dispatcher().expectAssign(mData.sigName(2), COMP_SIG, 2, -1);
-        m_Log().expectLog(COMP_SIG, ERR_STARTUP);
+        m_Log().expectLog(COMP_SIG, RET_ERR_STARTUP);
         mSUT.load(mData.pSIG(), mData.numSIG());
         CHECK_N_CLEAR()
         L_CHECK_EQUAL(0, mSUT.size())

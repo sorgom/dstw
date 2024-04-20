@@ -15,8 +15,8 @@ namespace test
         GenProjData<0, 0, 2, 0> mData;
         inline TestGroupLCP()
         {
-            mData.setLcrType(0, LCR_TYPE_LCR);
-            mData.setLcrType(1, LCR_TYPE_LCR_UBK); 
+            mData.setLcrType(0, TYPE_LCR);
+            mData.setLcrType(1, TYPE_LCR_UBK); 
         }
     };
 
@@ -33,8 +33,8 @@ namespace test
         mSUT.load(mData.pLCR(), mData.numLCR());
         CHECK_N_CLEAR()
         L_CHECK_EQUAL(2, mSUT.size())
-        L_CHECK_EQUAL(LCR_TYPE_LCR, mSUT.at(0).type())
-        L_CHECK_EQUAL(LCR_TYPE_LCR_UBK, mSUT.at(1).type())
+        L_CHECK_EQUAL(TYPE_LCR, mSUT.at(0).type())
+        L_CHECK_EQUAL(TYPE_LCR_UBK, mSUT.at(1).type())
     }
 
     //  test type: equivalence class test
@@ -42,12 +42,12 @@ namespace test
     TEST(LCR_02, T02)
     {
         SETUP()
-        mData.setLcrType(1, LCR_TYPE_LCR_UBK + 100); 
+        mData.setLcrType(1, TYPE_LCR_UBK + 100); 
         
         STEP(1)
         m_Dispatcher().expectAssign(mData.lcrName(0), COMP_LCR, 0, 0);
         m_Dispatcher().expectAssign(mData.lcrName(1), COMP_LCR, 1, 1);
-        m_Log().expectLog(COMP_LCR, ERR_STARTUP);
+        m_Log().expectLog(COMP_LCR, RET_ERR_STARTUP);
         mSUT.load(mData.pLCR(), mData.numLCR());
         CHECK_N_CLEAR()
         L_CHECK_EQUAL(0, mSUT.size())
@@ -60,7 +60,7 @@ namespace test
         STEP(1)
         m_Dispatcher().expectAssign(mData.lcrName(0), COMP_LCR, 0, 0);
         m_Dispatcher().expectAssign(mData.lcrName(1), COMP_LCR, 1, -1);
-        m_Log().expectLog(COMP_LCR, ERR_STARTUP);
+        m_Log().expectLog(COMP_LCR, RET_ERR_STARTUP);
         mSUT.load(mData.pLCR(), mData.numLCR());
         CHECK_N_CLEAR()
     }

@@ -24,7 +24,7 @@ public:
 
     void fromFld(const ComData& data);
     void fromGui(const ComData& data);
-    inline UINT8 type() const { return 0; }
+    inline E_Type type() const { return TYPE_TSW; }
     
     NOCOPY(TSW)
     NODEF(TSW)

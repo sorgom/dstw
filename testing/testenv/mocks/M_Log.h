@@ -20,19 +20,19 @@ namespace test
             M_Base("Log")
         {}
 
-        inline void log(E_Comp comp, E_Err err)
+        inline void log(E_Comp comp, E_Ret ret)
         {
-            call("log").PARAM(comp).PARAM(err);
+            call("log").PARAM(comp).PARAM(ret);
         }
-        inline void expectLog(E_Comp comp, E_Err err) const
+        inline void expectLog(E_Comp comp, E_Ret ret) const
         {
-            expect("log").PARAM(comp).PARAM(err);
+            expect("log").PARAM(comp).PARAM(ret);
         }
-        inline E_Err maxerr() const
+        inline E_Ret maxerr() const
         {
-            return static_cast<E_Err>(call("maxerr").RETURN_DEF_UNSIGNED(NO_ERR));
+            return static_cast<E_Ret>(call("maxerr").RETURN_DEF_UNSIGNED(RET_NO_ERR));
         }
-        inline void expectMaxerr(E_Err ret = NO_ERR) const
+        inline void expectMaxerr(E_Ret ret = RET_NO_ERR) const
         {
             expect("maxerr").AND_RETURN(ret);
         }

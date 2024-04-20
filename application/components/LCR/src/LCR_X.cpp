@@ -49,7 +49,7 @@ void LCR_X::fromGui(const ComData& data)
             open();
             break;
         default:
-            IL::getLog().log(COMP_LCR, ERR_MATCH);
+            IL::getLog().log(COMP_LCR, RET_ERR_MATCH);
             break;
     }
 }
@@ -66,7 +66,7 @@ bool LCR_X::validState(const UINT8 state)
         ok = true;
         break;
     default:
-        IL::getLog().log(COMP_LCR, ERR_MATCH);
+        IL::getLog().log(COMP_LCR, RET_ERR_MATCH);
         break;    
     };
     return ok;
@@ -103,7 +103,7 @@ bool LCR_UBK::validUbk(const UINT8 state)
         ok = true;
         break;    
     default:
-        IL::getLog().log(COMP_LCR, ERR_MATCH);
+        IL::getLog().log(COMP_LCR, RET_ERR_MATCH);
         break;    
     };
     return ok;

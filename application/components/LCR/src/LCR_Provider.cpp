@@ -8,10 +8,10 @@ bool LCR_Provider::add(const size_t id, const ProjItem& item)
     bool ok = true;
     switch (item.type)
     {
-        case LCR_TYPE_LCR:
+        case TYPE_LCR:
             mElems.add<LCR>(id);
             break;
-        case LCR_TYPE_LCR_UBK:
+        case TYPE_LCR_UBK:
             mElems.add<LCR_UBK>(id);
             break;
         default:

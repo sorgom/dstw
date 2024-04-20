@@ -61,7 +61,7 @@ namespace test
 
         STEP(5)
         //  not assigned
-        m_Log().expectLog(COMP_SYS, ERR_MATCH);
+        m_Log().expectLog(COMP_SYS, RET_ERR_MATCH);
         nameElement(tele, 2, "TSW");
         mSUT.fromFld(tele);
         CHECK_N_CLEAR()
@@ -103,7 +103,7 @@ namespace test
 
         STEP(5)
         //  not assigned
-        m_Log().expectLog(COMP_SYS, ERR_MATCH);
+        m_Log().expectLog(COMP_SYS, RET_ERR_MATCH);
         nameElement(tele, 2, "TSW");
         mSUT.fromGui(tele);
         CHECK_N_CLEAR()
@@ -225,7 +225,7 @@ namespace test
         mSUT.assign(genComName(4, "SEG"), COMP_SEG, 4);
         CHECK_N_CLEAR()
 
-        m_Log().expectLog(COMP_SYS, ERR_STARTUP);
+        m_Log().expectLog(COMP_SYS, RET_ERR_STARTUP);
         mSUT.index();
         CHECK_N_CLEAR()
     }
@@ -242,13 +242,13 @@ namespace test
 
         STEP(1)
         m_TSW_Provider().expectSize(1);
-        m_Log().expectLog(COMP_SYS, ERR_RANGE);
+        m_Log().expectLog(COMP_SYS, RET_ERR_RANGE);
         mSUT.fromGui(tele);
         CHECK_N_CLEAR()
 
         STEP(2)
         m_TSW_Provider().expectSize(1);
-        m_Log().expectLog(COMP_SYS, ERR_RANGE);
+        m_Log().expectLog(COMP_SYS, RET_ERR_RANGE);
         mSUT.fromFld(tele);
         CHECK_N_CLEAR()
     }

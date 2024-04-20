@@ -81,7 +81,7 @@ void Reader::read(const CONST_C_STRING filename) const
 
     if (not ok)
     {
-        IL::getLog().log(COMP_SYS, ERR_STARTUP);
+        IL::getLog().log(COMP_SYS, RET_ERR_STARTUP);
     }
     else
     { pass(); }
