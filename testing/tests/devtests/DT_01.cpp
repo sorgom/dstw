@@ -15,7 +15,6 @@ namespace test
         STEP(1)
         ComData d1 {11, 111};
         m_Dispatcher().expectToFld(1, d1);
-        // ComData d2 {11, 121};
         m_Dispatcher().toFld(1, ComData{11, 111});
         CHECK_N_CLEAR()
     }

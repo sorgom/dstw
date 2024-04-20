@@ -15,16 +15,16 @@
 class SIG_X : public I_Elem
 {
 public:
+    NOCOPY(SIG_X)
+    NODEF(SIG_X)
+
+protected:
     inline SIG_X(size_t id):
         mId(id),
         mStateToFld(SIG_STATE_UNDEF),
         mStateToGui(SIG_STATE_UNDEF)
     {}
 
-    NOCOPY(SIG_X)
-    NODEF(SIG_X)
-
-protected:
     const size_t mId;
     UINT8 mStateToFld;
     UINT8 mStateToGui;
@@ -32,14 +32,8 @@ protected:
     void procFromFld(UINT8 state);
     void procFromGui(UINT8 stateFld, UINT8 stateGui);
 
-    inline void toFld(UINT8 state, UINT8 speed = PARAM_UNDEF) 
-    { 
-        IL::getDispatcher().toFld(mId, ComData{state, speed});
-    }
-    inline void toGui(UINT8 state, UINT8 speed = PARAM_UNDEF) 
-    { 
-        IL::getDispatcher().toGui(mId, ComData{state, speed});
-    }
+    void toFld(UINT8 state, UINT8 speed = PARAM_UNDEF); 
+    void toGui(UINT8 state, UINT8 speed = PARAM_UNDEF);
 
     static void logMismatch();
 };
@@ -47,15 +41,16 @@ protected:
 class SIG_XS : public SIG_X
 {
 public:
+
+    NOCOPY(SIG_XS)
+    NODEF(SIG_XS)
+protected:
     inline SIG_XS(size_t id):
         SIG_X(id),
         mSpeedToFld(0),
         mSpeedToGui(0)
     {}
 
-    NOCOPY(SIG_XS)
-    NODEF(SIG_XS)
-protected:
     UINT8 mSpeedToFld;
     UINT8 mSpeedToGui;
 

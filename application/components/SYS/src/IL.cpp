@@ -1,3 +1,9 @@
+//  ============================================================
+//  interface locator of application
+//  - must be compiled into application runtime
+//  - must be compiled into system tests runtime
+//  - must not be compiled into other tests runtime
+//  ============================================================
 #include <SYS/IL.h>
 
 #include <LCR/LCR_Provider.h>

@@ -1,5 +1,5 @@
 //  ============================================================
-//  mock for interface Elem
+//  mock for interface Elem derived classes
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -38,6 +38,7 @@ namespace test
         inline UINT8 type() const { return 0; }
     };
 
+    // mock TSW
     class M_TSW : public M_Elem
     {
     public:
@@ -45,6 +46,7 @@ namespace test
         INSTANCE_DEC(M_TSW)
     };
 
+    // mock SIG
     class M_SIG : public M_Elem
     {
     public:
@@ -52,6 +54,7 @@ namespace test
         INSTANCE_DEC(M_SIG)
     };
 
+    // mock LCR
     class M_LCR : public M_Elem
     {
     public:
@@ -60,7 +63,5 @@ namespace test
     };
     
 } // namespace
-
-
 
 #endif // _H
