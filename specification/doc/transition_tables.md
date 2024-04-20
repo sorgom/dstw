@@ -149,7 +149,7 @@ Sample: test template json file for TSW
     "//" : "===================================",
     "prefixState": "TSW_STATE",
     "prefixCmd": "TSW_GUI_CMD",
-    "param1": "CMD(_CMD_, _FLD_, _GUI_);",
+    "cmd1": "CMD(_CMD_, _FLD_, _GUI_);",
     "cmd0": "CMD(_CMD_);",
     "fld1": "FLD(_VAL_, _VAL_);",
     "fld0": "FLD(_VAL_);",

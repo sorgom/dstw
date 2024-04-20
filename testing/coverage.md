@@ -21,7 +21,7 @@ Source            Function Coverage      C/D Coverage
 Com.h                3 /   3 = 100%    0 /   0
 Dispatcher.cpp       7 /   7 = 100%   20 /  20 = 100%
 Dispatcher.h         1 /   1 = 100%    0 /   0
-I_Array.h       3 /   3 = 100%   18 /  18 = 100%
+I_Array.h            3 /   3 = 100%   18 /  18 = 100%
 LCR_Hub.cpp          4 /   4 = 100%    4 /   4 = 100%
 LCR_Hub.h            1 /   1 = 100%    0 /   0
 LCR_Provider.cpp     1 /   1 = 100%   15 /  15 = 100%
@@ -40,7 +40,7 @@ SIG_Provider.cpp     1 /   1 = 100%   16 /  16 = 100%
 SIG_Provider.h       3 /   3 = 100%    0 /   0
 SIG_X.cpp           18 /  18 = 100%   93 /  93 = 100%
 SIG_X.h              9 /   9 = 100%    0 /   0
-SortableStackArray.cpp       1 /   1 = 100%    0 /   0
+StackArray.cpp       1 /   1 = 100%    0 /   0
 StackArray.h        26 /  26 = 100%    2 /   2 = 100%
 TSW.cpp              7 /   7 = 100%   22 /  22 = 100%
 TSW.h                1 /   1 = 100%    0 /   0
