@@ -84,7 +84,7 @@ BAS/src/BAS_Provider.cpp     26         --       --
 LCR/src/LCR_Provider.cpp     20         --       --
 LCR/src/LCR_X.cpp           126         --       --
 SIG/src/SIG_Provider.cpp     23         --       --
-SIG/src/SIG_X.cpp           298         --       --
+SIG/src/SIG_X.cpp           306         --       --
 SYS/src/Com.cpp               2         --       --
 SYS/src/Dispatcher.cpp      124         --       --
 SYS/src/IL.cpp               16         --       --
@@ -93,5 +93,5 @@ SYS/src/Log.cpp               2         --       --
 SYS/src/Reader.cpp           68         --       --
 TSW/src/TSW.cpp              95         --       --
 TSW/src/TSW_Provider.cpp      2         --       --
-total                       808         --       --
+total                       816         --       --
 ```

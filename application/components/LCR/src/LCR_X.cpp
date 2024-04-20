@@ -35,7 +35,7 @@ void LCR_X::close()
 
 void LCR_X::toFld(const UINT8 state) const
 {
-    IL::getDispatcher().toFld(mId, ComData{state, PARAM_UNDEF});
+    IL::getDispatcher().toFld(mId, ComData{state});
 }
 
 void LCR_X::fromGui(const ComData& data)

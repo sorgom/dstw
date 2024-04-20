@@ -54,8 +54,8 @@ constexpr auto ComTelegramSize = ComNameSize + 2;
 //  Com telegrams data
 struct ComData
 {
-    UINT8 param1;
-    UINT8 param2;
+    UINT8 param1 = PARAM_UNDEF;
+    UINT8 param2 = PARAM_UNDEF;
 };
 
 //  Com telegram
