@@ -1,11 +1,10 @@
 {
     "//" : "=====================================",
-    "//" : "transitions test code setup for", 
-    "//" : "SIG_X with speed",
+    "//" : "transitions test code setup for SIG_X", 
     "//" : "=====================================",
     "prefixState": "SIG_STATE",
     "prefixCmd": "SIG_STATE",
-    "param1": "CMD(_CMD_, 0, _FLD_, 0, _GUI_, 0);",
+    "cmd1": "CMD(_CMD_, 0, _FLD_, 0, _GUI_, 0);",
     "cmd0": "CMD(_CMD_, 0);",
     "fld1": "FLD(_VAL_, 0, _VAL_, 0);",
     "fld0": "FLD(_VAL_, 0);",
@@ -16,6 +15,13 @@
         },
         {
             "csv": "specification/doc/transitions_SIG_H_N.csv"
-        }
+        },
+        {
+            "csv": "specification/doc/transitions_SIG_H.csv",
+            "cmd1": "CMD_H(_CMD_, _FLD_, _GUI_);",
+            "cmd0": "CMD_H(_CMD_);",
+            "fld1": "FLD_H(_VAL_, _VAL_);",
+            "fld0": "FLD_H(_VAL_);"
+        }    
     ]
 }
