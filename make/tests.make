@@ -56,6 +56,16 @@ else ifeq ($(config),dev)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_dev
 OBJDIR = obj/gcc/tests/dev
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components -I../devel
+define PREBUILDCMDS
+endef
+define POSTBUILDCMDS
+endef
+
+else ifeq ($(config),dev_qnd)
+TARGETDIR = bin
+TARGET = $(TARGETDIR)/tests_dev_qnd
+OBJDIR = obj/gcc/tests/dev_qnd
 INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
 define PREBUILDCMDS
 endef

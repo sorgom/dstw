@@ -29,13 +29,13 @@ workspace 'lib_cpputest'
 --  configurations: 
 --  - ci        module tests
 --  - qnd       module tests with devel includes
---  - dev       developer tests
+--  - dev       developer tests with devel includes
 --  - bullseye  module tests with bullseye coverage
 --  - none      no tests
 --  ============================================================
 workspace 'tests'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'qnd', 'dev', 'bullseye', 'tmp' }
+        configurations { 'ci', 'qnd', 'dev', 'dev_qnd', 'bullseye', 'tmp' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
         targetsuffix '_%{cfg.name}'
@@ -61,6 +61,7 @@ workspace 'tests'
 
             filter { 'configurations:dev' }
                 files { files_devtest }
+                includedirs { '../devel' }
 
             filter { 'configurations:bullseye' }
                 files { files_moduletest }

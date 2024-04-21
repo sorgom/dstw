@@ -13,20 +13,16 @@
 
 namespace test
 {
-    //  preset an ElmentName for testing
-    const ComName& genComName(UINT32 num, CONST_C_STRING name = "ELM");
-    void genComName(ComName& eName, UINT32 num, CONST_C_STRING name = "ELM");
-
-    inline void genComName(ComName& eName, UINT32 num, CONST_C_STRING name)
-    {
-        eName = genComName(num, name);
-    }
+    //  preset ComName for testing
+    void genComName(ComName& cName, UINT32 num, CONST_C_STRING name = "ELM");
 
     template <class T>
     void nameElement(T& elem, UINT32 num, CONST_C_STRING name = "ELM")
     {
         genComName(elem.name, num, name);
     }
+
+    const ComName& genComName(UINT32 num, CONST_C_STRING name = "ELM");
 
     inline bool operator==(const ComName& n1, const ComName& n2)
     {

@@ -24,19 +24,8 @@ constexpr auto ComNameSize = 12;
 struct ComName
 {
     CHAR chars[ComNameSize];
-    inline ComName()
-    {
-        Mem::set(chars);
-    }
+    inline ComName() = default;
     inline ComName(const ComName& src)
-    {
-        Mem::cpy(chars, src.chars);
-    }
-    inline ComName(const ComName&& src)
-    {
-        Mem::cpy(chars, src.chars);
-    }
-    inline void operator=(const ComName& src)
     {
         Mem::cpy(chars, src.chars);
     }
@@ -49,13 +38,14 @@ struct ComName
 static_assert(ComNameSize == sizeof(ComName));
 
 //  standard telegram size
-constexpr auto ComTelegramSize = ComNameSize + 2;
+constexpr auto ComTelegramSize = ComNameSize + 8;
 
 //  Com telegrams data
 struct ComData
 {
     UINT8 param1 = PARAM_UNDEF;
     UINT8 param2 = PARAM_UNDEF;
+    UINT8 reserve[6];
 };
 
 //  Com telegram
@@ -64,7 +54,8 @@ struct ComTele
     ComName name;
     ComData data;
 };
-static_assert(ComNameSize + 2 == sizeof(ComTele));
+
+static_assert(ComTelegramSize == sizeof(ComTele));
 
 //  ============================================================
 //  - project items
@@ -73,8 +64,9 @@ struct ProjItem
 {
     ComName name;
     UINT8 type;
+    UINT8 reserve[7];
 };
-static_assert(ComNameSize + 1 == sizeof(ProjItem));
+static_assert(ComNameSize + 8 == sizeof(ProjItem));
 
 #include <codebase/packEnd.h>
 

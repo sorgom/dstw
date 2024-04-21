@@ -81,5 +81,7 @@ transitions_*.md
 # runtime test
 *.proj
 
+# valgrind
+*.out.[0-9]*
 
 .obsidian

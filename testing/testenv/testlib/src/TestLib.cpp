@@ -8,17 +8,21 @@ namespace test
 
     const ComName& genComName(const UINT32 num, const CONST_C_STRING name)
     {
-        static ComName eName;
-        Mem::set(eName.chars, ' ');
-        CHAR buf[sizeof(ComName) + 1];
+        static ComName cName;
+        genComName(cName, num, name);
+        return cName;
+    }
+
+    void genComName(ComName& cName, UINT32 num, CONST_C_STRING name)
+    {
+        Mem::set(cName.chars, ' ');
+        static CHAR buf[sizeof(ComName) + 1];
         const int sz = std::snprintf(buf, sizeof(buf), "%s %03u ", name, num);
         if (sz > 0)
         {
-            std::memcpy(eName.chars, buf, sz - 1);
+            std::memcpy(cName.chars, buf, sz - 1);
         }
-        return eName;
     }
-
     
 
 } // namespace

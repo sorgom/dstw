@@ -10,12 +10,13 @@ namespace test
     TEST_GROUP_BASE(DT_01, TestGroupBase) {};
 
     //  call mock explicitly
-    TEST(DT_01, T02)
+    TEST(DT_01, T01)
     {
         STEP(1)
         ComData d {11};
         L_CHECK_EQUAL(PARAM_UNDEF, d.param2)
-        
+
+
         STEP(2)
         ComData d1 {11, 111};
         m_Dispatcher().expectToFld(1, d1);
