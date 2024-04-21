@@ -3,7 +3,7 @@
 --  ============================================================
 
 include 'premake5_settings.lua'
-buildoptions_gcc = { '-std=c++17 -pedantic-errors -Werror -Wall' }
+buildoptions_gcc = '-std=c++17 -pedantic-errors -Werror -Wall'
 
 --  ============================================================
 --  > lib_cpputest.make
@@ -20,7 +20,7 @@ workspace 'lib_cpputest'
             targetdir 'lib'
             files { files_cpputest_gcc }
             includedirs { includedirs_cpputest }
-            buildoptions { buildoptions_gcc }
+            buildoptions { buildoptions_gcc .. ' -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED' }
 
 --  ============================================================
 --  > tests.make
@@ -176,4 +176,22 @@ workspace 'dstw'
             includedirs { includedirs_app }
             defines { defines_app }
             files { files_app }
+
+--  ============================================================
+--  > _valgrind.make
+--  sample runtime with memory leak
+--  ============================================================
+workspace '_valgrind'
+    filter { 'action:gmake*' }
+        configurations { 'ci' }
+        language 'C++'
+        objdir 'obj/gcc/%{prj.name}'
+        targetdir 'bin'
+        buildoptions { buildoptions_gcc }
+        defines { 'DEBUG' }
+        symbols 'On'
+
+        project '_valgrind'
+            kind 'ConsoleApp'
+            files { '../testing/valgrind/*.cpp' }
 
