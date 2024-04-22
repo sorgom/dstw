@@ -29,12 +29,9 @@ This requires 28 test steps.
 ## events causing no transition
 
 But we do not only want to test all events that cause transition.
-
-In order to complete application code coverage we also want to test all events that cause no transition.
-
-And also we want to have as few test steps as possible.
-
-That means to generate sequences of test steps using the result state of the preceding steps.
+- In order to complete application code coverage we also want to test all events that cause no transition.
+- And also we want to have as few test steps as possible.
+- That means to generate sequences of test steps using the result state of the preceding steps.
 
 This is done by script.
 
@@ -57,15 +54,52 @@ Simple small csv files describing the possible transitions.
 
 Sample: transitions TSW
 
-| FLD *      |        | CMD LEFT   |           | CMD RIGHT |            | CMD WU |            | CMD WU |           |
-| :--------- | :----- | :--------- | :-------- | :-------- | :--------- | :----- | :--------- | :----- | :-------- |
-| UNDEF      | UNDEF  | UNDEF      | WAIT LEFT | UNDEF     | WAIT RIGHT |        | WAIT RIGHT |        | WAIT LEFT |
-| DEFECT     | LEFT   |            |           |           |            |        |            |        |           |
-| LEFT       | RIGHT  |            |           | LEFT      |            | LEFT   |            |        |           |
-| RIGHT      | DEFECT | RIGHT      |           |           |            |        |            | RIGHT  |           |
-| WAIT LEFT  |        |            |           | WAIT LEFT |            |        |            |        |           |
-| WAIT RIGHT |        | WAIT RIGHT |           |           |            |        |            |        |           |
-|            |        |            |           |           |            |        |            |        |           |
+The potential transitions for each event consist of two columns
+- source states (from)
+- target states (to)
+
+|FLD *| |CMD LEFT| |CMD RIGHT| |CMD WU| |CMD WU| |       
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|      
+|UNDEF|UNDEF|UNDEF| |UNDEF| | | | | |
+|DEFECT|DEFECT| | | | | | | | |
+|LEFT|LEFT| | |LEFT| |LEFT| | | |
+|RIGHT|RIGHT|RIGHT| | | | | |RIGHT| |
+|WAIT LEFT| | |WAIT LEFT|WAIT LEFT| | | | |WAIT LEFT|    
+|WAIT RIGHT| |WAIT RIGHT| | |WAIT RIGHT| |WAIT RIGHT| | |
+
+How to read the table:
+```
+The FLD * state event's parameters are identical to the target state.
+In the given table we have 4 different state events.
+So for instance FLD RIGHT causes state RIGHT.
+That causes a change from all source states except state RIGHT itself.
+
+The calculation is similar
+The field (FLD) state event has
+6 source states
+4 target states
+= 24 transitions
+-  4 transitions A -> A
+= 20
+GUI commands (CMD) LEFT and RIGHT
+3 source states
+1 target state
+=  2 X 3 transitions 
+=  6
+The WU command can cause
+LEFT to WAIT_RIGHT
+RIGHT to WAIT_LEFT
+=  2
+= 28 events that cause a change
+
+To get all combinations we multiply all source states
+with the number of events
+4 field state events
+3 commands
+=  7
+X  6 source states
+= 42 combinations to test
+```
 
 ## test steps
 
