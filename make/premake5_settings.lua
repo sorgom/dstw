@@ -52,10 +52,10 @@ defines_app = { 'NDEBUG' }
 
 defines_gendata = { 
     'NDEBUG', 
-    'TEST_NUM_TSW=1000', 
-    'TEST_NUM_SIG=1000', 
-    'TEST_NUM_LCR=1000', 
-    'TEST_NUM_SEG=1000' 
+    'TEST_NUM_TSW=1001', 
+    'TEST_NUM_SIG=1002', 
+    'TEST_NUM_LCR=1003', 
+    'TEST_NUM_SEG=1004' 
 }
 
 files_moduletest = { '../testing/tests/moduletests/**.cpp' }
