@@ -20,7 +20,7 @@ files_teststeps = {
 
 includedirs_app = {
     '../specification',
-    '../application',
+    -- '../application',
     '../application/components'
 }
 
@@ -32,18 +32,11 @@ includedirs_test = {
 }
 
 files_app = {
-    '../application/**.cpp'
+    '../application/components/**.cpp'
 }
-removefiles_test = {
-    '../application/components/SYS/src/IL*.cpp',
-    '../application/main/*cpp'
-}
-removefiles_systest_app =  {
-    '../application/components/SYS/src/IL_Com.cpp',
-    '../application/main/*cpp'
-}
-removefiles_systest_test =  {
-    '../testing/testenv/mocks/src/mock_IL.cpp'
+
+files_app_main = {
+    '../application/main/*.cpp'
 }
 
 files_testenv = {

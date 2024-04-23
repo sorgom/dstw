@@ -4,6 +4,15 @@
 #include <mocks/M_Log.h>
 #include <mocks/M_Provider.h>
 
+#include <LCR/LCR_Provider.h>
+#include <SIG/SIG_Provider.h>
+#include <SYS/Com.h>
+#include <SYS/Dispatcher.h>
+#include <SYS/Log.h>
+#include <SYS/Reader.h>
+#include <TSW/TSW_Provider.h>
+
+
 namespace test
 {
 
@@ -24,6 +33,16 @@ namespace test
         mSIG_Provider.reset();
         mTSW_Provider.reset();
         mLog.reset();
+    }
+
+    void ILPLugs::unmock()
+    {
+        mCom.set(Com::instance());
+        mDispatcher.set(Dispatcher::instance());
+        mLCR_Provider.set(LCR_Provider::instance());
+        mSIG_Provider.set(SIG_Provider::instance());
+        mTSW_Provider.set(TSW_Provider::instance());
+        mLog.set(Log::instance());
     }
 
     INSTANCE_DEF(ILPLugs)

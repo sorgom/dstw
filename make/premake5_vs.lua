@@ -32,7 +32,7 @@ buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127'
 --  ============================================================
 workspace 'tests'
     filter { 'action:vs*' }
-        configurations { 'ci', 'dev' }
+        configurations { 'ci', 'dev', 'sys' }
         language 'C++'
         objdir 'obj/vs/%{prj.name}'
 
@@ -47,7 +47,6 @@ workspace 'tests'
             links { 'winmm' }
             buildoptions { buildoptions_vs_test }
             files { files_cpputest_vs, files_testenv, files_app }
-            removefiles { removefiles_test }
             
             filter { 'configurations:ci' }
                 files { files_moduletest }
@@ -55,6 +54,8 @@ workspace 'tests'
             filter { 'configurations:dev' }
                 files { files_devtest }
 
+            filter { 'configurations:sys' }
+                files { files_systest }
 --  ============================================================
 --  > gendata.sln
 --  generate proj data for application runtime
@@ -97,5 +98,5 @@ workspace 'dstw'
         project 'dstw'
             includedirs { includedirs_app }
             kind 'ConsoleApp'
-            files { files_app }
+            files { files_app, files_app_main }
 

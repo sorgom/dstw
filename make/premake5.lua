@@ -50,7 +50,6 @@ workspace 'tests'
             includedirs { includedirs_test }
             links { links_test_gcc }
             files { files_testenv, files_app }
-            removefiles { removefiles_test }
 
             filter { 'configurations:ci' }
                 files { files_moduletest }
@@ -98,7 +97,6 @@ workspace 'coverage'
             kind 'StaticLib'
             targetdir 'lib'
             files { files_app }
-            removefiles { removefiles_test }
             buildoptions {'-fprofile-arcs -ftest-coverage'}
 
         project 'coverage_tests'
@@ -137,20 +135,12 @@ workspace 'systests'
         filter { 'configurations:qnd' }
             includedirs { '../devel' }
 
-        project 'systests_app'
-            kind 'StaticLib'
-            targetdir 'lib'
-            files { files_app }
-            includedirs { includedirs_app }
-            removefiles { removefiles_systest_app }
-
-        project 'systests_tests'
+        project 'systests'
             kind 'ConsoleApp'
             targetdir 'bin'
             libdirs { 'lib' }
-            links { 'systests_app_%{cfg.name}', links_test_gcc }
-            files { files_testenv, files_systest }
-            removefiles { removefiles_systest_test }
+            links { links_test_gcc }
+            files { files_testenv, files_app, files_systest }
             includedirs { includedirs_test }
 
 --  ============================================================
@@ -176,7 +166,7 @@ workspace 'dstw'
             kind 'ConsoleApp'
             includedirs { includedirs_app }
             defines { defines_app }
-            files { files_app }
+            files { files_app, files_app_main }
 
 --  ============================================================
 --  > _valgrind.make

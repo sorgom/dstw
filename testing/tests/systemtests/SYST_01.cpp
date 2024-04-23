@@ -16,7 +16,9 @@ namespace test
     TEST(SYST_01, T01)
     {
         SETUP()
+        unmock();
         mock_Com();
+        mock_Log();
         I_Dispatcher& dispatcher = Dispatcher::instance();
         I_Reader& reader = Reader::instance();
         I_Provider& provider = SIG_Provider::instance();

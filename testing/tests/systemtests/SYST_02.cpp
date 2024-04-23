@@ -15,7 +15,9 @@ namespace test
     TEST(SYST_02, T01)
     {
         SETUP()
+        unmock();
         mock_Com();
+        mock_Log();
         I_Dispatcher& dispatcher = Dispatcher::instance();
         I_Reader& reader = Reader::instance();
         I_Provider& provider = TSW_Provider::instance();
@@ -34,7 +36,7 @@ namespace test
         SUBSTEPS()
         for (UINT32 n = 0; n < TEST_NUM_TSW; ++n)
         {
-            LSTEP(n)
+            STEP(n)
             ComTele tele{{}, {TSW_STATE_LEFT, PARAM_UNDEF}};
             nameElement(tele, TEST_NUM_TSW - n, "TSW");
 

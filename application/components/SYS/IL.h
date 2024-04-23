@@ -6,27 +6,23 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef IL_H
-#define IL_H
 
-#include <ifs/I_Com.h>
-#include <ifs/I_Dispatcher.h>
-#include <ifs/values.h>
-#include <ifs/I_Log.h>
-#include <ifs/I_Provider.h>
-#include <ifs/I_Reader.h>
-
-#include <BAS/coding.h>
+#include <LCR/LCR_Provider.h>
+#include <SIG/SIG_Provider.h>
+#include <SYS/Dispatcher.h>
+#include <SYS/Com.h>
+#include <SYS/Log.h>
+#include <SYS/Reader.h>
+#include <TSW/TSW_Provider.h>
 
 namespace IL
 {
-    I_Com& getCom();
-    I_Dispatcher& getDispatcher();
-    I_Log& getLog();
-    I_Provider& getLCR_Provider();
-    I_Provider& getSIG_Provider();
-    I_Provider& getTSW_Provider();
-    I_Reader& getReader();
+    inline I_Com& getCom() { return Com::instance(); }
+    inline I_Dispatcher& getDispatcher() { return Dispatcher::instance(); }
+    inline I_Log& getLog() { return Log::instance(); }
+    inline I_Provider& getLCR_Provider() { return LCR_Provider::instance(); }
+    inline I_Provider& getSIG_Provider() { return SIG_Provider::instance(); }
+    inline I_Provider& getTSW_Provider() { return TSW_Provider::instance(); }
+    inline I_Reader& getReader() { return Reader::instance(); }
 } // namespace
 
-#endif // _H

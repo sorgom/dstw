@@ -1,6 +1,4 @@
 #pragma once
-#ifndef ILPLUGS_H
-#define ILPLUGS_H
 
 #include <LCR/LCR_Provider.h>
 #include <SIG/SIG_Provider.h>
@@ -58,21 +56,7 @@ namespace test
         ILPLug<I_Provider> mTSW_Provider;
         ILPLug<I_Log> mLog;
 
-        inline void prodCom() { mCom.set(Com::instance()); }
-        inline void prodDispatcher() { mDispatcher.set(Dispatcher::instance()); }
-        inline void prodLCR_Provider() { mLCR_Provider.set(LCR_Provider::instance()); }
-        inline void prodSIG_Provider() { mSIG_Provider.set(SIG_Provider::instance()); }
-        inline void prodTSW_Provider() { mTSW_Provider.set(TSW_Provider::instance()); }
-        inline void prodLog() { mLog.set(Log::instance()); }
-        inline void prod()
-        {
-            prodCom();
-            prodDispatcher();
-            prodLCR_Provider();
-            prodSIG_Provider();
-            prodTSW_Provider();
-            prodLog();
-        }
+        void unmock();
 
         NOCOPY(ILPLugs)
     private:
@@ -81,4 +65,3 @@ namespace test
 
 } // namespace
 
-#endif // _H

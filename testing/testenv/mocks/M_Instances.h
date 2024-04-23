@@ -21,8 +21,6 @@
 namespace test
 {
     inline M_Com& m_Com() { return M_Com::instance(); }
-    inline void mock_Com() { ILPLugs::instance().mCom.set(m_Com()); }
-
     inline M_Dispatcher& m_Dispatcher() { return M_Dispatcher::instance(); }
     inline M_LCR_Provider& m_LCR_Provider() { return M_LCR_Provider::instance(); }
     inline M_SIG_Provider& m_SIG_Provider() { return M_SIG_Provider::instance(); }
@@ -32,8 +30,14 @@ namespace test
     inline M_SIG& m_SIG() { return M_SIG::instance(); }
     inline M_TSW& m_TSW() { return M_TSW::instance(); }
 
-    inline void unmock() { ILPLugs::instance().prod(); }
+    inline void unmock() { ILPLugs::instance().unmock(); }
     inline void mockAll() { ILPLugs::instance().reset(); }
+    inline void mock_Com() { ILPLugs::instance().mCom.set(m_Com()); }
+    inline void mock_Dispatcher() { ILPLugs::instance().mDispatcher.set(m_Dispatcher()); }
+    inline void mock_LCR_Provider() { ILPLugs::instance().mLCR_Provider.set(m_LCR_Provider()); }
+    inline void mock_SIG_Provider() { ILPLugs::instance().mSIG_Provider.set(m_SIG_Provider()); }
+    inline void mock_TSW_Provider() { ILPLugs::instance().mTSW_Provider.set(m_TSW_Provider()); }
+    inline void mock_Log() { ILPLugs::instance().mLog.set(m_Log()); }
 }
 
 #endif // _H

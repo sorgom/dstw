@@ -40,13 +40,13 @@ ifeq ($(config),ci)
 TARGETDIR = lib
 TARGET = $(TARGETDIR)/libsystests_app_ci.a
 OBJDIR = obj/gcc/systests_app/ci
-INCLUDES += -I../specification -I../application -I../application/components
+INCLUDES += -I../specification -I../application/components
 
 else ifeq ($(config),qnd)
 TARGETDIR = lib
 TARGET = $(TARGETDIR)/libsystests_app_qnd.a
 OBJDIR = obj/gcc/systests_app/qnd
-INCLUDES += -I../devel -I../specification -I../application -I../application/components
+INCLUDES += -I../devel -I../specification -I../application/components
 
 endif
 
@@ -63,7 +63,6 @@ OBJECTS :=
 GENERATED += $(OBJDIR)/BAS_Provider.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/Dispatcher.o
-GENERATED += $(OBJDIR)/IL.o
 GENERATED += $(OBJDIR)/LCR_Provider.o
 GENERATED += $(OBJDIR)/LCR_X.o
 GENERATED += $(OBJDIR)/Log.o
@@ -75,7 +74,6 @@ GENERATED += $(OBJDIR)/TSW_Provider.o
 OBJECTS += $(OBJDIR)/BAS_Provider.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
-OBJECTS += $(OBJDIR)/IL.o
 OBJECTS += $(OBJDIR)/LCR_Provider.o
 OBJECTS += $(OBJDIR)/LCR_X.o
 OBJECTS += $(OBJDIR)/Log.o
@@ -166,9 +164,6 @@ $(OBJDIR)/Com.o: ../application/components/SYS/src/Com.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Dispatcher.o: ../application/components/SYS/src/Dispatcher.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/IL.o: ../application/components/SYS/src/IL.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Log.o: ../application/components/SYS/src/Log.cpp

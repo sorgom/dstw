@@ -9,7 +9,6 @@
 
 #include <ifs/values.h>
 #include <ifs/I_Elem.h>
-#include <SYS/IL.h>
 #include <BAS/coding.h>
 
 class SIG_X : public I_Elem
