@@ -18,7 +18,7 @@ namespace test
 {
     class M_Provider : 
         public I_Provider,
-        protected M_Base
+        private M_Base
     {
     public:
 

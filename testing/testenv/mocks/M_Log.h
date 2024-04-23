@@ -13,7 +13,7 @@ namespace test
 {
     class M_Log : 
         public I_Log,
-        protected M_Base
+        private M_Base
     {
     public:
         M_Log() :
