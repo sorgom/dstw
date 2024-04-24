@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef I_DISPATCHER_H
-#define I_DISPATCHER_H
 
 #include "values.h"
 #include "DataTypes.h"
@@ -48,5 +46,3 @@ public:
     //  ============================================================
     virtual void toGui(size_t id, const ComData& data) const = 0;
 };
-
-#endif // H_

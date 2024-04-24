@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef TESTLIB_H
-#define TESTLIB_H
 
 #include <ifs/DataTypes.h>
 #include <codebase/Mem.h>
@@ -56,5 +54,3 @@ namespace test
         T* mPtr;
     };
 }
-
-#endif // H_

@@ -6,8 +6,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef OSTREAMS_H
-#define OSTREAMS_H
 
 #include <ifs/DataTypes.h>
 #include <ostream>
@@ -18,5 +16,3 @@ OSTREAM_DEC(ComName)
 OSTREAM_DEC(ComTele)
 OSTREAM_DEC(PosRes)
 OSTREAM_DEC(ProjItem)
-
-#endif // H_

@@ -12,8 +12,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef TEST_NUM_ELEMENTS_H
-#define TEST_NUM_ELEMENTS_H
 
 #ifndef TEST_NUM_TSW
 #define TEST_NUM_TSW 11
@@ -30,5 +28,3 @@
 #ifndef TEST_NUM_SEG
 #define TEST_NUM_SEG 8
 #endif 
-
-#endif // H_

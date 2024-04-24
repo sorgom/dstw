@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef LCR_PROVIDER_H
-#define LCR_PROVIDER_H
 
 #include <BAS/coding.h>
 #include <BAS/BAS_Provider.h>
@@ -22,5 +20,3 @@ protected:
     bool add(size_t id, const ProjItem& item) final;
     inline E_Comp comp() const final { return COMP_LCR; };  
 };
-
-#endif // H_

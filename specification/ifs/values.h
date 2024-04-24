@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef VALUES_H
-#define VALUES_H
 
 #include <codebase/BaseTypes.h>
 
@@ -123,5 +121,3 @@ enum E_LcrUbkState : UINT8
     LCR_UBK_STATE_OCCUPIED,
     LCR_UBK_STATE_FREE
 };
-
-#endif // _H

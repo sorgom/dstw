@@ -8,8 +8,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef M_INSTANCES_H
-#define M_INSTANCES_H
 
 #include "ILPlugs.h"
 #include "M_Com.h"
@@ -39,5 +37,3 @@ namespace test
     inline void mock_TSW_Provider() { ILPLugs::instance().mTSW_Provider.set(m_TSW_Provider()); }
     inline void mock_Log() { ILPLugs::instance().mLog.set(m_Log()); }
 }
-
-#endif // _H

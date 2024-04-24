@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef TESTGROUPBASE_H
-#define TESTGROUPBASE_H
 
 #include <testlib/CppUTest.h>
 
@@ -43,8 +41,6 @@ namespace test
     };
 
 } // namespace
-
-#endif // _H
 
 
 

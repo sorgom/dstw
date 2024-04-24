@@ -7,8 +7,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef COMPERATOR_H
-#define COMPERATOR_H
 
 #include <codebase/BaseTypes.h>
 #include <BAS/coding.h>
@@ -55,5 +53,3 @@ namespace test
         NOCOPY(Comparator)
     };
 }
-
-#endif // H_

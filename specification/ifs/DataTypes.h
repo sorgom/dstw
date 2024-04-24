@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo 
 
 #pragma once
-#ifndef DATAYPES_H
-#define DATAYPES_H
 
 #include "values.h"
 #include <codebase/BaseTypes.h>
@@ -83,5 +81,3 @@ struct PosRes
     {}
     NODEF(PosRes)
 };
-
-#endif // H_

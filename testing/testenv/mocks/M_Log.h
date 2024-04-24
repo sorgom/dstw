@@ -3,8 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 #pragma once
-#ifndef M_LOGGER_H
-#define M_LOGGER_H
 
 #include <ifs/I_Log.h>
 #include "M_Base.h"
@@ -40,5 +38,3 @@ namespace test
         INSTANCE_DEC(M_Log)
     };
 } 
-
-#endif // H_

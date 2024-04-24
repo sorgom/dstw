@@ -7,8 +7,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef M_PROVIDER_H
-#define M_PROVIDER_H
 
 #include <ifs/I_Provider.h>
 #include "M_Base.h"
@@ -98,4 +96,3 @@ namespace test
         }
     };
 }
-#endif // H_

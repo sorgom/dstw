@@ -7,8 +7,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef I_ELEM_H
-#define I_ELEM_H
 
 #include "DataTypes.h"
 
@@ -24,6 +22,3 @@ public:
     //  this is test code: type info if relevant
     virtual E_Type type() const = 0;
 };
-
-
-#endif // H_

@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef TSW_PROVIDER_H
-#define TSW_PROVIDER_H
 
 #include <BAS/coding.h>
 #include <BAS/BAS_Provider.h>
@@ -27,5 +25,3 @@ protected:
     }
     inline E_Comp comp() const final { return COMP_TSW; }; 
 };
-
-#endif // H_

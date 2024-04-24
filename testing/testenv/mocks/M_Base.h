@@ -4,11 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef M_BASE_H
-#define M_BASE_H
 
 #include <testlib/CppUTest.h>
-
 #include <codebase/BaseTypes.h>
 #include <BAS/coding.h>
 
@@ -73,4 +70,3 @@ namespace test
         NOCOPY(M_Base)
     };
 } // namespace
-#endif // _H

@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef SIG_X_H
-#define SIG_X_H
 
 #include <ifs/values.h>
 #include <ifs/I_Elem.h>
@@ -135,4 +133,3 @@ private:
     void proc_H1_N0(UINT8 speed);
     void proc_H1_N1(UINT8 speed);
 };
-#endif // _H

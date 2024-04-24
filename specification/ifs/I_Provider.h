@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef I_PROVIDER_H
-#define I_PROVIDER_H
 
 #include "I_Elem.h"
 #include "DataTypes.h"
@@ -19,5 +17,3 @@ public:
     virtual void clear() = 0;
     virtual void load(const ProjItem* data, UINT32 num) = 0;
 };
-
-#endif // H_
