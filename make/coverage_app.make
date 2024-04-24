@@ -60,6 +60,7 @@ GENERATED :=
 OBJECTS :=
 
 GENERATED += $(OBJDIR)/BAS_Provider.o
+GENERATED += $(OBJDIR)/BAS_Tcp.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/Dispatcher.o
 GENERATED += $(OBJDIR)/LCR_Provider.o
@@ -68,9 +69,12 @@ GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/Reader.o
 GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
+GENERATED += $(OBJDIR)/TCP_Clients.o
 GENERATED += $(OBJDIR)/TSW.o
 GENERATED += $(OBJDIR)/TSW_Provider.o
+GENERATED += $(OBJDIR)/Tcp.o
 OBJECTS += $(OBJDIR)/BAS_Provider.o
+OBJECTS += $(OBJDIR)/BAS_Tcp.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
 OBJECTS += $(OBJDIR)/LCR_Provider.o
@@ -79,8 +83,10 @@ OBJECTS += $(OBJDIR)/Log.o
 OBJECTS += $(OBJDIR)/Reader.o
 OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
+OBJECTS += $(OBJDIR)/TCP_Clients.o
 OBJECTS += $(OBJDIR)/TSW.o
 OBJECTS += $(OBJDIR)/TSW_Provider.o
+OBJECTS += $(OBJDIR)/Tcp.o
 
 # Rules
 # #############################################
@@ -147,6 +153,18 @@ endif
 $(OBJDIR)/BAS_Provider.o: ../application/components/BAS/src/BAS_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/BAS_Tcp.o: ../application/components/BAS/src/BAS_Tcp.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Tcp.o: ../application/components/BAS/src/Tcp.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Com.o: ../application/components/COM/src/Com.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/TCP_Clients.o: ../application/components/COM/src/TCP_Clients.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_Provider.o: ../application/components/LCR/src/LCR_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -157,9 +175,6 @@ $(OBJDIR)/SIG_Provider.o: ../application/components/SIG/src/SIG_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/SIG_X.o: ../application/components/SIG/src/SIG_X.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Com.o: ../application/components/SYS/src/Com.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Dispatcher.o: ../application/components/SYS/src/Dispatcher.cpp

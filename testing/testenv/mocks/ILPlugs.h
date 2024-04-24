@@ -1,12 +1,12 @@
 #pragma once
 
-#include <LCR/LCR_Provider.h>
-#include <SIG/SIG_Provider.h>
-#include <SYS/Com.h>
-#include <SYS/Dispatcher.h>
-#include <SYS/Log.h>
-#include <SYS/Reader.h>
-#include <TSW/TSW_Provider.h>
+#include <ifs/I_Com.h>
+#include <ifs/I_Dispatcher.h>
+#include <ifs/I_Log.h>
+#include <ifs/I_Provider.h>
+#include <ifs/I_Tcp.h>
+
+#include <BAS/coding.h>
 
 namespace test
 {
@@ -55,6 +55,7 @@ namespace test
         ILPLug<I_Provider> mSIG_Provider;
         ILPLug<I_Provider> mTSW_Provider;
         ILPLug<I_Log> mLog;
+        ILPLug<I_Tcp> mTcp;
 
         void unmock();
 

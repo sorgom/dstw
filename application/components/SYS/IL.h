@@ -7,10 +7,11 @@
 
 #pragma once
 
+#include <BAS/Tcp.h>
 #include <LCR/LCR_Provider.h>
 #include <SIG/SIG_Provider.h>
+#include <COM/Com.h>
 #include <SYS/Dispatcher.h>
-#include <SYS/Com.h>
 #include <SYS/Log.h>
 #include <SYS/Reader.h>
 #include <TSW/TSW_Provider.h>
@@ -24,5 +25,6 @@ namespace IL
     inline I_Provider& getSIG_Provider() { return SIG_Provider::instance(); }
     inline I_Provider& getTSW_Provider() { return TSW_Provider::instance(); }
     inline I_Reader& getReader() { return Reader::instance(); }
+    inline I_Tcp& getTcp() { return Tcp::instance(); }
 } // namespace
 

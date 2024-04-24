@@ -8,7 +8,7 @@
 #pragma once
 
 #include <mocks/ILPlugs.h>
-
+#include <SYS/Reader.h>
 namespace IL
 {
     inline I_Com& getCom() { return test::ILPLugs::instance().mCom.ref(); }
@@ -18,5 +18,6 @@ namespace IL
     inline I_Provider& getSIG_Provider() { return test::ILPLugs::instance().mSIG_Provider.ref(); }
     inline I_Provider& getTSW_Provider() { return test::ILPLugs::instance().mTSW_Provider.ref(); }
     inline I_Reader& getReader() { return Reader::instance(); }
+    inline I_Tcp& getTcp() { return test::ILPLugs::instance().mTcp.ref(); }
 } // namespace
 

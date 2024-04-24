@@ -4,6 +4,9 @@
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
+#include <SYS/Reader.h>
+#include <SYS/Dispatcher.h>
+#include <TSW/TSW_Provider.h>
 
 namespace test
 {

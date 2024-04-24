@@ -3,7 +3,7 @@
 //  ============================================================
 //  created by Manfred Sorgo
 #include <testlib/TestGroupBase.h>
-#include <SYS/Com.h>
+#include <COM/Com.h>
 #include <SYS/Log.h>
 
 namespace test
