@@ -52,11 +52,7 @@ bool TCP_CLient_Base::select()
 
 void TCP_CLient_Base::close()
 {
-    if (mSocket >= 0)
-    {
-        IL::getTCP().close(mSocket);
-        mSocket = -1;
-    }
+    IL::getTCP().close(mSocket);
 }
 
 void TCP_CLient_Base::send(const ComTele& tele) const

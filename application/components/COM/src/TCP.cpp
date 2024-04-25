@@ -12,7 +12,7 @@
 
 INSTANCE_DEF(TCP)
 
-void TCP::setSelectTimeout(const UINT32 ms)
+void TCP::setTimeout(const UINT32 ms)
 {
     mSec = ms / 1000;
     mMicro = (ms % 1000) * 1000;

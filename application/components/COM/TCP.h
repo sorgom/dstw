@@ -11,7 +11,7 @@
 class TCP : public I_TCP
 {
 public:
-    void setSelectTimeout(UINT32 ms);
+    void setTimeout(UINT32 ms);
 
     bool init();
 

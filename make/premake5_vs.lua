@@ -19,7 +19,7 @@ include 'premake5_settings.lua'
 --  ============================================================
 buildoptions_vs = '/std:c++17 /MP'
 buildoptions_vs_app = buildoptions_vs .. ' /W4 /wd4100 /wd4103'
-buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127'
+buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127 /D_WINSOCK_DEPRECATED_NO_WARNINGS'
 
 --  ============================================================
 --  > tests.sln

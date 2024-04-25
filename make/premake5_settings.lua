@@ -20,7 +20,6 @@ files_teststeps = {
 
 includedirs_app = {
     '../specification',
-    -- '../application',
     '../application/components'
 }
 
@@ -83,3 +82,5 @@ files_cpputest_gcc = {
     files_cpputest,
     base_cpputest .. '/src/Platforms/Gcc/*.cpp'
 }
+
+linkoptions_test_gcc = { '-pthread' }

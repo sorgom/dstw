@@ -39,8 +39,8 @@ workspace 'tests'
         language 'C++'
         objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
         targetsuffix '_%{cfg.name}'
-
         buildoptions { buildoptions_gcc }
+        linkoptions { linkoptions_test_gcc }
 
         project 'tests'
             kind 'ConsoleApp'
@@ -69,6 +69,7 @@ workspace 'tests'
             filter { 'configurations:tmp' }
                 includedirs { '../devel' }
                 files {
+                    '../testing/tests/moduletests/COM/*.cpp'
                 }
     
 --  ============================================================
@@ -104,7 +105,7 @@ workspace 'coverage'
             targetdir 'bin'
             libdirs { 'lib' }
             links { 'coverage_app', 'gcov', links_test_gcc }
-            linkoptions { '--coverage' }
+            linkoptions { linkoptions_test_gcc, '--coverage' }
             files { files_testenv }
             filter { 'configurations:ci' }
                 files { files_moduletest }
@@ -126,8 +127,8 @@ workspace 'systests'
         language 'C++'
         objdir 'obj/gcc/%{prj.name}'
         targetsuffix '_%{cfg.name}'
-
         buildoptions { buildoptions_gcc }
+        linkoptions { linkoptions_test_gcc }
 
         defines { 'DEBUG', defines_test }
         symbols 'On'

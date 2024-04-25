@@ -27,7 +27,7 @@ ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werr
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS += -lcppu_test
 LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS) -Llib
+ALL_LDFLAGS += $(LDFLAGS) -Llib -pthread
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -75,6 +75,7 @@ GENERATED += $(OBJDIR)/SIG_X.o
 GENERATED += $(OBJDIR)/SYST_01.o
 GENERATED += $(OBJDIR)/SYST_02.o
 GENERATED += $(OBJDIR)/TCP.o
+GENERATED += $(OBJDIR)/TCP_Client.o
 GENERATED += $(OBJDIR)/TCP_Clients.o
 GENERATED += $(OBJDIR)/TCP_Listeners.o
 GENERATED += $(OBJDIR)/TSW.o
@@ -102,6 +103,7 @@ OBJECTS += $(OBJDIR)/SIG_X.o
 OBJECTS += $(OBJDIR)/SYST_01.o
 OBJECTS += $(OBJDIR)/SYST_02.o
 OBJECTS += $(OBJDIR)/TCP.o
+OBJECTS += $(OBJDIR)/TCP_Client.o
 OBJECTS += $(OBJDIR)/TCP_Clients.o
 OBJECTS += $(OBJDIR)/TCP_Listeners.o
 OBJECTS += $(OBJDIR)/TSW.o
@@ -223,6 +225,9 @@ $(OBJDIR)/TSW.o: ../application/components/TSW/src/TSW.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW_Provider.o: ../application/components/TSW/src/TSW_Provider.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/TCP_Client.o: ../testing/testenv/TCP/src/TCP_Client.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Comparator.o: ../testing/testenv/comparators/src/Comparator.cpp

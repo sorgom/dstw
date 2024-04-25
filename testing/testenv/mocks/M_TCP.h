@@ -17,13 +17,13 @@ namespace test
 
         INSTANCE_DEC(M_TCP)
 
-        inline void setSelectTimeout(UINT32 ms)
+        inline void setTimeout(UINT32 ms)
         {
-            call("setSelectTimeout").PARAM(ms);
+            call("setTimeout").PARAM(ms);
         }
         inline void expectSetSelectTimeout(UINT32 ms) const
         {
-            expect("setSelectTimeout").PARAM(ms);
+            expect("setTimeout").PARAM(ms);
         }
 
         inline bool init()
