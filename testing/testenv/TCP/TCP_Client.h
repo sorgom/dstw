@@ -17,6 +17,15 @@ namespace test
         //  connect to localhost with port
         //  works if test and app run in different processes
         bool connect(UINT16 port);
+
+        bool send(const void* data, INT32 size);
+
+        template<typename T>
+        inline bool send(const T& data)
+        {
+            return send(&data, sizeof(data));
+        }
+
         //  connect to localhost with port
         //  in a temporary thread
         void t_connect(UINT16 port);

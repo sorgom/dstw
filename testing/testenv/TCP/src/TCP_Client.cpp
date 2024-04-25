@@ -39,6 +39,11 @@ namespace test
         return ok;
     }
 
+    bool TCP_Client::send(const void* data, INT32 size)
+    {
+        return ::send(mSocket, static_cast<const char*>(data), size, 0) == size;
+    }
+
     void TCP_Client::close()
     { 
         if (mSocket >= 0) 
