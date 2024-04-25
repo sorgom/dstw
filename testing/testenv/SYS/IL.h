@@ -1,7 +1,7 @@
 //  ============================================================
 //  Interface Locator IL
-//  - production application version
-//  - no exchange of providers 
+//  - test version
+//  - exchange of providers by default
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -18,6 +18,12 @@ namespace IL
     inline I_Provider& getSIG_Provider() { return test::ILPLugs::instance().mSIG_Provider.ref(); }
     inline I_Provider& getTSW_Provider() { return test::ILPLugs::instance().mTSW_Provider.ref(); }
     inline I_Reader& getReader() { return Reader::instance(); }
-    inline I_Tcp& getTcp() { return test::ILPLugs::instance().mTcp.ref(); }
+    inline I_TCP& getTCP() { return test::ILPLugs::instance().mTCP.ref(); }
+    inline I_TCP_Client& getTCP_Client_Fld() { return test::ILPLugs::instance().mTCP_Client_Fld.ref(); }
+    inline I_TCP_Client& getTCP_Client_Gui() { return test::ILPLugs::instance().mTCP_Client_Gui.ref(); }
+    inline I_TCP_Client& getTCP_Client_Ctrl() { return test::ILPLugs::instance().mTCP_Client_Ctrl.ref(); }
+    inline I_TCP_Listener& getTCP_Listener_Fld() { return test::ILPLugs::instance().mTCP_Listener_Fld.ref(); }
+    inline I_TCP_Listener& getTCP_Listener_Gui() { return test::ILPLugs::instance().mTCP_Listener_Gui.ref(); }
+    inline I_TCP_Listener& getTCP_Listener_Ctrl() { return test::ILPLugs::instance().mTCP_Listener_Ctrl.ref(); }
 } // namespace
 

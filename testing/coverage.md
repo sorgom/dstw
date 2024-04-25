@@ -81,7 +81,7 @@ But this isn't too bad, because some SIL4 coding guidelines require this anyhow.
 ```
 file                      lines  uncovered  percent
 BAS/src/BAS_Provider.cpp     26         --       --
-BAS/src/BAS_Tcp.cpp          39         20     51.3
+BAS/src/BAS_TCP.cpp          39         20     51.3
 BAS/src/Tcp.cpp              82         38     46.3
 COM/src/Com.cpp               2         --       --
 COM/src/TCP_Clients.cpp      77         45     58.4

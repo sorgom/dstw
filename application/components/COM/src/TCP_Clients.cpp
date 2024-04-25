@@ -7,7 +7,7 @@
 bool TCP_CLient_Base::accept(const INT32 socket)
 {
     close();
-    mSocket = IL::getTcp().accept(socket);
+    mSocket = IL::getTCP().accept(socket);
     const bool ok = mSocket >= 0;
     if (ok)
     {
@@ -20,7 +20,7 @@ bool TCP_CLient_Base::accept(const INT32 socket)
 
 bool TCP_CLient_Base::select()
 {
-    const I_Tcp& tcp = IL::getTcp();
+    const I_TCP& tcp = IL::getTCP();
     bool ok = true;
     if (mSocket < 0)
     { pass(); }
@@ -54,7 +54,7 @@ void TCP_CLient_Base::close()
 {
     if (mSocket >= 0)
     {
-        IL::getTcp().close(mSocket);
+        IL::getTCP().close(mSocket);
         mSocket = -1;
     }
 }
@@ -63,13 +63,11 @@ void TCP_CLient_Base::send(const ComTele& tele) const
 {
     if (mSocket >= 0)
     {
-        IL::getTcp().send(mSocket, reinterpret_cast<const CHAR*>(&tele), sizeof(ComTele));
+        IL::getTCP().send(mSocket, reinterpret_cast<const CHAR*>(&tele), sizeof(ComTele));
     }
 }
 
-//  ============================================================
 //  field client
-//  ============================================================
 INSTANCE_DEF(TCP_Client_Fld)
 
 void TCP_Client_Fld::onAccept() const
@@ -82,10 +80,7 @@ void TCP_Client_Fld::forward(const ComTele& tele) const
     IL::getDispatcher().fromFld(tele);
 }
 
-//  ============================================================
 //  GUI client
-//  ============================================================
-
 INSTANCE_DEF(TCP_Client_Gui)
 
 void TCP_Client_Gui::onAccept() const
@@ -97,4 +92,12 @@ void TCP_Client_Gui::onAccept() const
 void TCP_Client_Gui::forward(const ComTele& tele) const
 {
     IL::getDispatcher().fromGui(tele);
+}
+
+//  control client
+INSTANCE_DEF(TCP_Client_Ctrl)
+
+void TCP_Client_Ctrl::forward(const ComTele& tele) const
+{
+    //  TODO: evaluate telegram / shutdown
 }

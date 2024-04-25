@@ -7,7 +7,7 @@
 
 #include "DataTypes.h"
 
-class I_Tcp
+class I_TCP
 {
 public:
     //  set elect timeout in milli seconds
@@ -44,10 +44,10 @@ public:
     virtual INT32 send(INT32 socket, const CHAR* buffer, size_t size) const = 0;
 
     //  close a socket
-    virtual void close(INT32 socket) const = 0;
+    virtual void close(INT32& socket) const = 0;
 };
 
-class I_Tcp_Listener
+class I_TCP_Listener
 {
 public:
     //  listen at given port
@@ -58,7 +58,7 @@ public:
     virtual void close() = 0;
 };
 
-class I_Tcp_Client
+class I_TCP_Client
 {
 public:
     //  accept connection

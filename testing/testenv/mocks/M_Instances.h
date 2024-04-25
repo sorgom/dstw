@@ -11,6 +11,9 @@
 
 #include "ILPlugs.h"
 #include "M_Com.h"
+#include "M_TCP.h"
+#include "M_TCP_Client.h"
+#include "M_TCP_Listener.h"
 #include "M_Dispatcher.h"
 #include "M_Elem.h"
 #include "M_Log.h"
@@ -27,6 +30,13 @@ namespace test
     inline M_LCR& m_LCR() { return M_LCR::instance(); }
     inline M_SIG& m_SIG() { return M_SIG::instance(); }
     inline M_TSW& m_TSW() { return M_TSW::instance(); }
+    inline M_TCP& m_TCP() { return M_TCP::instance(); }
+    inline M_TCP_Client_Fld& m_TCP_Client_Fld() { return M_TCP_Client_Fld::instance(); }
+    inline M_TCP_Client_Gui& m_TCP_Client_Gui() { return M_TCP_Client_Gui::instance(); }
+    inline M_TCP_Client_Ctrl& m_TCP_Client_Ctrl() { return M_TCP_Client_Ctrl::instance(); }
+    inline M_TCP_Listener_Fld& m_TCP_Listener_Fld() { return M_TCP_Listener_Fld::instance(); }
+    inline M_TCP_Listener_Gui& m_TCP_Listener_Gui() { return M_TCP_Listener_Gui::instance(); }
+    inline M_TCP_Listener_Ctrl& m_TCP_Listener_Ctrl() { return M_TCP_Listener_Ctrl::instance(); }
 
     inline void unmock() { ILPLugs::instance().unmock(); }
     inline void mockAll() { ILPLugs::instance().reset(); }
@@ -36,4 +46,8 @@ namespace test
     inline void mock_SIG_Provider() { ILPLugs::instance().mSIG_Provider.set(m_SIG_Provider()); }
     inline void mock_TSW_Provider() { ILPLugs::instance().mTSW_Provider.set(m_TSW_Provider()); }
     inline void mock_Log() { ILPLugs::instance().mLog.set(m_Log()); }
+    inline void mock_TCP() { ILPLugs::instance().mTCP.set(m_TCP()); }
+    inline void mock_TCP_Client_Fld() { ILPLugs::instance().mTCP_Client_Fld.set(m_TCP_Client_Fld()); }
+    inline void mock_TCP_Client_Gui() { ILPLugs::instance().mTCP_Client_Gui.set(m_TCP_Client_Gui()); }
+    inline void mock_TCP_Client_Ctrl() { ILPLugs::instance().mTCP_Client_Ctrl.set(m_TCP_Client_Ctrl()); }
 }

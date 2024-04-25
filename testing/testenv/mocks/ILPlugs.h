@@ -4,7 +4,7 @@
 #include <ifs/I_Dispatcher.h>
 #include <ifs/I_Log.h>
 #include <ifs/I_Provider.h>
-#include <ifs/I_Tcp.h>
+#include <ifs/I_TCP.h>
 
 #include <BAS/coding.h>
 
@@ -55,7 +55,13 @@ namespace test
         ILPLug<I_Provider> mSIG_Provider;
         ILPLug<I_Provider> mTSW_Provider;
         ILPLug<I_Log> mLog;
-        ILPLug<I_Tcp> mTcp;
+        ILPLug<I_TCP> mTCP;
+        ILPLug<I_TCP_Client> mTCP_Client_Fld;
+        ILPLug<I_TCP_Client> mTCP_Client_Gui;
+        ILPLug<I_TCP_Client> mTCP_Client_Ctrl;
+        ILPLug<I_TCP_Listener> mTCP_Listener_Fld;
+        ILPLug<I_TCP_Listener> mTCP_Listener_Gui;
+        ILPLug<I_TCP_Listener> mTCP_Listener_Ctrl;
 
         void unmock();
 

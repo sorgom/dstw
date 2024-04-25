@@ -1,4 +1,4 @@
-#include <BAS/Tcp.h>
+#include <COM/TCP.h>
 
 #ifdef _WIN32
 #include <winsock2.h>
@@ -10,15 +10,15 @@
 #define closesocket close
 #endif
 
-INSTANCE_DEF(Tcp)
+INSTANCE_DEF(TCP)
 
-void Tcp::setSelectTimeout(const UINT32 ms)
+void TCP::setSelectTimeout(const UINT32 ms)
 {
     mSec = ms / 1000;
     mMicro = (ms % 1000) * 1000;
 }
 
-bool Tcp::init()
+bool TCP::init()
 {
 #ifdef _WIN32
     WSADATA wsaData;
@@ -28,19 +28,19 @@ bool Tcp::init()
 #endif
 }
 
-void Tcp::cleanup()
+void TCP::cleanup()
 {
 #ifdef _WIN32
     WSACleanup();
 #endif
 }
 
-INT32 Tcp::socket() const
+INT32 TCP::socket() const
 {
     return ::socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 }
 
-bool Tcp::bind(const INT32 socket, const UINT16 port) const
+bool TCP::bind(const INT32 socket, const UINT16 port) const
 {
     sockaddr_in addr;
     addr.sin_family = AF_INET;
@@ -49,12 +49,12 @@ bool Tcp::bind(const INT32 socket, const UINT16 port) const
     return ::bind(socket, (const sockaddr*)&addr, sizeof(addr)) >= 0; 
 }
 
-bool Tcp::listen(const INT32 socket) const
+bool TCP::listen(const INT32 socket) const
 {
     return ::listen(socket, SOMAXCONN) >= 0;
 }
 
-INT32 Tcp::select(const INT32 socket) const
+INT32 TCP::select(const INT32 socket) const
 {
     fd_set readfds;
     FD_ZERO(&readfds);
@@ -74,22 +74,28 @@ INT32 Tcp::select(const INT32 socket) const
     return ret;
 }
 
-INT32 Tcp::accept(const INT32 socket) const
+INT32 TCP::accept(const INT32 socket) const
 {
     return ::accept(socket, nullptr, nullptr);
 }
 
-INT32 Tcp::recv(const INT32 socket, CHAR* const buffer, const size_t size) const
+INT32 TCP::recv(const INT32 socket, CHAR* const buffer, const size_t size) const
 {
     return ::recv(socket, buffer, size, 0);
 }
 
-INT32 Tcp::send(const INT32 socket, const CHAR* const buffer, const size_t size) const
+INT32 TCP::send(const INT32 socket, const CHAR* const buffer, const size_t size) const
 {
     return ::send(socket, buffer, size, 0);
 }
 
-void Tcp::close(const INT32 socket) const
+void TCP::close(INT32& socket) const
 {
-    ::closesocket(socket);
+    if (socket >= 0)
+    {
+        ::closesocket(socket);
+        socket = -1;
+    }
+    else
+    { pass(); }
 }

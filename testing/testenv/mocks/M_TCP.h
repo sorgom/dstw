@@ -1,21 +1,21 @@
 //  ============================================================
-//  mock for interface I_Tcp
+//  mock for interface I_TCP
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
 
-#include <ifs/I_Tcp.h>
+#include <ifs/I_TCP.h>
 #include "M_Base.h"
 
 namespace test
 {
-    class M_Tcp : public I_Tcp, private M_Base
+    class M_TCP : public I_TCP, private M_Base
     {
     public:
-        inline M_Tcp() : M_Base("Tcp") {}
+        inline M_TCP() : M_Base("Tcp") {}
 
-        INSTANCE_DEC(M_Tcp)
+        INSTANCE_DEC(M_TCP)
 
         inline void setSelectTimeout(UINT32 ms)
         {
@@ -107,7 +107,7 @@ namespace test
             expect("send").PARAM(socket).PARAM(size).AND_RETURN(ret);
         }
 
-        inline void close(INT32 socket) const
+        inline void close(INT32& socket) const
         {
             call("close").PARAM(socket);
         }

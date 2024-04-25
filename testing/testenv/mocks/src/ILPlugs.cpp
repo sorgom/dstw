@@ -4,9 +4,13 @@
 #include <mocks/M_Dispatcher.h>
 #include <mocks/M_Log.h>
 #include <mocks/M_Provider.h>
-#include <mocks/M_Tcp.h>
+#include <mocks/M_TCP.h>
+#include <mocks/M_TCP_Client.h>
+#include <mocks/M_TCP_Listener.h>
 
-#include <BAS/Tcp.h>
+#include <COM/TCP.h>
+#include <COM/TCP_Clients.h>
+#include <COM/TCP_Listeners.h>
 #include <LCR/LCR_Provider.h>
 #include <SIG/SIG_Provider.h>
 #include <COM/Com.h>
@@ -26,7 +30,13 @@ namespace test
         mSIG_Provider(M_SIG_Provider::instance()),
         mTSW_Provider(M_TSW_Provider::instance()),
         mLog(M_Log::instance()),
-        mTcp(M_Tcp::instance())
+        mTCP(M_TCP::instance()),
+        mTCP_Client_Fld(M_TCP_Client_Fld::instance()),
+        mTCP_Client_Gui(M_TCP_Client_Gui::instance()),
+        mTCP_Client_Ctrl(M_TCP_Client_Ctrl::instance()),
+        mTCP_Listener_Fld(M_TCP_Listener_Fld::instance()),
+        mTCP_Listener_Gui(M_TCP_Listener_Gui::instance()),
+        mTCP_Listener_Ctrl(M_TCP_Listener_Ctrl::instance())
     {}
 
     void ILPLugs::reset()
@@ -37,7 +47,13 @@ namespace test
         mSIG_Provider.reset();
         mTSW_Provider.reset();
         mLog.reset();
-        mTcp.reset();
+        mTCP.reset();
+        mTCP_Client_Fld.reset();
+        mTCP_Client_Gui.reset();
+        mTCP_Client_Ctrl.reset();
+        mTCP_Listener_Fld.reset();
+        mTCP_Listener_Gui.reset();
+        mTCP_Listener_Ctrl.reset();
     }
 
     void ILPLugs::unmock()
@@ -48,7 +64,13 @@ namespace test
         mSIG_Provider.set(SIG_Provider::instance());
         mTSW_Provider.set(TSW_Provider::instance());
         mLog.set(Log::instance());
-        mTcp.set(Tcp::instance());
+        mTCP.set(TCP::instance());
+        mTCP_Client_Fld.set(TCP_Client_Fld::instance());
+        mTCP_Client_Gui.set(TCP_Client_Gui::instance());
+        mTCP_Client_Ctrl.set(TCP_Client_Ctrl::instance());
+        mTCP_Listener_Fld.set(TCP_Listener_Fld::instance());
+        mTCP_Listener_Gui.set(TCP_Listener_Gui::instance());
+        mTCP_Listener_Ctrl.set(TCP_Listener_Ctrl::instance());
     }
 
     INSTANCE_DEF(ILPLugs)

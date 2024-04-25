@@ -1,16 +1,16 @@
 //  ============================================================
-//  TCP clients
+//  TCP client classes and instances
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
 
-#include <ifs/I_Tcp.h>
+#include <ifs/I_TCP.h>
 #include <ifs/DataTypes.h>
 #include <BAS/coding.h>
 
 //  base tcp communication client
-class TCP_CLient_Base : public I_Tcp_Client
+class TCP_CLient_Base : public I_TCP_Client
 {
 public:
     bool accept(INT32 socket) override;
@@ -33,6 +33,7 @@ class TCP_Client_Fld : public TCP_CLient_Base
 public:
     inline TCP_Client_Fld() = default;
     INSTANCE_DEC(TCP_Client_Fld)
+    NOCOPY(TCP_Client_Fld)
 protected:
     void onAccept() const override;
     void forward(const ComTele& tele) const override;
@@ -44,7 +45,20 @@ class TCP_Client_Gui : public TCP_CLient_Base
 public:
     inline TCP_Client_Gui() = default;
     INSTANCE_DEC(TCP_Client_Gui)  
+    NOCOPY(TCP_Client_Gui) 
 protected:
     void onAccept() const override;
+    void forward(const ComTele& tele) const override;
+};
+
+//  control tcp communication client
+class TCP_Client_Ctrl : public TCP_CLient_Base
+{
+public:
+    inline TCP_Client_Ctrl() = default;
+    INSTANCE_DEC(TCP_Client_Ctrl)
+    NOCOPY(TCP_Client_Ctrl)
+protected:
+    inline void onAccept() const override {}
     void forward(const ComTele& tele) const override;
 };

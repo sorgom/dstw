@@ -5,10 +5,10 @@
 
 #pragma once
 
-#include <ifs/I_Tcp.h>
+#include <ifs/I_TCP.h>
 #include <BAS/coding.h>
 
-class Tcp : public I_Tcp
+class TCP : public I_TCP
 {
 public:
     void setSelectTimeout(UINT32 ms);
@@ -31,13 +31,13 @@ public:
 
     INT32 send(INT32 socket, const CHAR* buffer, size_t size) const;
 
-    void close(INT32 socket) const;
+    void close(INT32& socket) const;
 
-    INSTANCE_DEC(Tcp)
+    INSTANCE_DEC(TCP)
 
-    NOCOPY(Tcp)
+    NOCOPY(TCP)
 private:
-    Tcp() = default;
+    TCP() = default;
     UINT32 mSec = 0;
     UINT32 mMicro = 10000;    
 };
