@@ -11,4 +11,5 @@
 *.mdj   text eol=lf
 *.md    text eol=lf
 *.make  text eol=lf
+.git*   text eol=lf
 
