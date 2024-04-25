@@ -32,7 +32,7 @@ buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127 /D_WINSOCK_DEPRECATED_NO
 --  ============================================================
 workspace 'tests'
     filter { 'action:vs*' }
-        configurations { 'ci', 'dev', 'sys' }
+        configurations { 'ci', 'dev', 'sys', 'qnd' }
         language 'C++'
         objdir 'obj/vs/%{prj.name}'
 
@@ -50,6 +50,10 @@ workspace 'tests'
             
             filter { 'configurations:ci' }
                 files { files_moduletest }
+
+            filter { 'configurations:qnd' }
+                files { files_moduletest }
+                includedirs { includedirs_qnd }
 
             filter { 'configurations:dev' }
                 files { files_devtest }

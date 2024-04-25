@@ -30,6 +30,10 @@ includedirs_test = {
     includedirs_app
 }
 
+includedirs_qnd = {
+    '../devel'
+}
+
 files_app = {
     '../application/components/**.cpp'
 }

@@ -56,7 +56,7 @@ workspace 'tests'
 
             filter { 'configurations:qnd' }
                 files { files_moduletest }
-                includedirs { '../devel' }
+                includedirs { includedirs_qnd }
 
             filter { 'configurations:dev' }
                 files { files_devtest }
@@ -67,7 +67,7 @@ workspace 'tests'
                 prebuildcommands { 'cov01 -1 --no-banner' }
                 postbuildcommands { './bullseye.sh' }
             filter { 'configurations:tmp' }
-                includedirs { '../devel' }
+                includedirs { includedirs_qnd }
                 files {
                     '../testing/tests/moduletests/COM/*.cpp'
                 }
@@ -83,7 +83,7 @@ workspace 'tests'
 --  ============================================================
 workspace 'coverage'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'dev' }
+        configurations { 'ci', 'dev', 'qnd' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}'
         targetsuffix '_%{cfg.name}'
@@ -111,6 +111,9 @@ workspace 'coverage'
                 files { files_moduletest }
             filter { 'configurations:dev' }
                 files { files_devtest }
+            filter { 'configurations:qnd' }
+                files { files_moduletest }
+                includedirs { includedirs_qnd }
 
 --  ============================================================
 --  > systests.make

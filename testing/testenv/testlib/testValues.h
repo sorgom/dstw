@@ -13,6 +13,8 @@
 
 #pragma once
 
+#include <codebase/BaseTypes.h>
+
 #ifndef TEST_NUM_TSW
 #define TEST_NUM_TSW 11
 #endif 
@@ -28,3 +30,10 @@
 #ifndef TEST_NUM_SEG
 #define TEST_NUM_SEG 8
 #endif 
+
+namespace test
+{
+    constexpr UINT16 Port_Fld  = 8080;
+    constexpr UINT16 Port_Gui  = 8081;
+    constexpr UINT16 Port_Ctrl = 8082;
+} // namespace

@@ -17,7 +17,7 @@
 #pragma once
 
 #include <ifs/DataTypes.h>
-#include <testlib/testNumElements.h>
+#include <testlib/testValues.h>
 #include <testlib/TestLib.h>
 #include <fstream>
 #include <vector>

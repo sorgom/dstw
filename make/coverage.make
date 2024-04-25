@@ -16,6 +16,10 @@ else ifeq ($(config),dev)
   coverage_app_config = dev
   coverage_tests_config = dev
 
+else ifeq ($(config),qnd)
+  coverage_app_config = qnd
+  coverage_tests_config = qnd
+
 else
   $(error "invalid configuration $(config)")
 endif
@@ -48,6 +52,7 @@ help:
 	@echo "CONFIGURATIONS:"
 	@echo "  ci"
 	@echo "  dev"
+	@echo "  qnd"
 	@echo ""
 	@echo "TARGETS:"
 	@echo "   all (default)"

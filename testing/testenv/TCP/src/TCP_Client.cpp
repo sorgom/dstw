@@ -31,12 +31,21 @@ namespace test
             server_addr.sin_addr.s_addr = inet_addr("127.0.0.1"); // localhost
             if (::connect(mSocket, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0)
             {
-                closesocket(mSocket);
+                ::closesocket(mSocket);
                 mSocket = -1;
                 ok = false;
             }
         }
         return ok;
+    }
+
+    void TCP_Client::close()
+    { 
+        if (mSocket >= 0) 
+        { 
+            ::closesocket(mSocket); 
+            mSocket = -1; 
+        } 
     }
 
     void TCP_Client::t_connect(UINT16 port)

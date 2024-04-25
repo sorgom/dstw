@@ -47,6 +47,11 @@ TARGETDIR = lib
 TARGET = $(TARGETDIR)/libcoverage_app_dev.a
 OBJDIR = obj/gcc/coverage_app/dev
 
+else ifeq ($(config),qnd)
+TARGETDIR = lib
+TARGET = $(TARGETDIR)/libcoverage_app_qnd.a
+OBJDIR = obj/gcc/coverage_app/qnd
+
 endif
 
 # Per File Configurations
