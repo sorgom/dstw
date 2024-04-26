@@ -22,6 +22,7 @@ bool TCP_CLient_Base::select()
 {
     const I_TCP& tcp = IL::getTCP();
     bool ok = true;
+    // not operating
     if (mSocket < 0)
     { pass(); }
     else
@@ -31,7 +32,7 @@ bool TCP_CLient_Base::select()
         if (res > 0)
         {
             const INT32 len = tcp.recv(mSocket, mBuffer, sizeof(mBuffer));
-            //  telegram received
+            //  valid telegram received
             if (len == sizeof(ComTele))
             {
                 forward(*reinterpret_cast<const ComTele*>(mBuffer));
@@ -41,6 +42,7 @@ bool TCP_CLient_Base::select()
             {
                 close();
             }
+            //  invalid data size
             else
             {
                 ok = false; 
