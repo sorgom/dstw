@@ -4,6 +4,7 @@
 #include <mocks/M_Instances.h>
 #include <mocks/M_Log.h>
 #include <mocks/M_Provider.h>
+#include <mocks/M_Reader.h>
 #include <mocks/M_TCP.h>
 #include <mocks/M_TCP_Client.h>
 #include <mocks/M_TCP_Listener.h>
@@ -18,6 +19,7 @@ namespace test
     INSTANCE_DEF(M_LCR_Provider)
     INSTANCE_DEF(M_LCR)
     INSTANCE_DEF(M_Log)
+    INSTANCE_DEF(M_Reader) 
     INSTANCE_DEF(M_SIG_Provider)
     INSTANCE_DEF(M_SIG)
     INSTANCE_DEF(M_TCP)

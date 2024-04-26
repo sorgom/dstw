@@ -4,6 +4,7 @@
 #include <ifs/I_Dispatcher.h>
 #include <ifs/I_Log.h>
 #include <ifs/I_Provider.h>
+#include <ifs/I_Reader.h>
 #include <ifs/I_TCP.h>
 
 #include <BAS/coding.h>
@@ -54,6 +55,7 @@ namespace test
         ILPLug<I_Provider> mLCR_Provider;
         ILPLug<I_Provider> mSIG_Provider;
         ILPLug<I_Provider> mTSW_Provider;
+        ILPLug<I_Reader> mReader;
         ILPLug<I_Log> mLog;
         ILPLug<I_TCP> mTCP;
         ILPLug<I_TCP_Client> mTCP_Client_Fld;

@@ -37,6 +37,7 @@ namespace test
         ProjVec mTSWs, mSIGs, mLCRs, mSEGs;
 
     public:
+        ComSetup mComSetup = { tcpPortFld, tcpPortGui, tcpPortCtrl, tcpTimeout };
 
         GenProjData()
         {
@@ -102,6 +103,7 @@ namespace test
                 write(os, mSIGs);
                 write(os, mLCRs);
                 write(os, mSEGs);
+                write(os, mComSetup);
             }
             os.close();
         }
@@ -131,15 +133,21 @@ namespace test
             }
         }
 
+        template <typename T>
+        inline static void write(std::ofstream& os, const T& t)
+        {
+            os.write(reinterpret_cast<const CHAR*>(&t), sizeof(T));
+        }
+
         inline static void write(std::ofstream& os, const UINT32 n)
         {
             const UINT32 r = n;
-            os.write(reinterpret_cast<const char*>(&r), sizeof(UINT32));
+            os.write(reinterpret_cast<const CHAR*>(&r), sizeof(UINT32));
         }
 
-        static void write(std::ofstream& os, const ProjVec& vec)
+        inline static void write(std::ofstream& os, const ProjVec& vec)
         {
-            os.write(reinterpret_cast<const char*>(vec.data()), sizeof(ProjItem) * vec.size());
+            os.write(reinterpret_cast<const CHAR*>(vec.data()), sizeof(ProjItem) * vec.size());
         }    
     };
 } // namespace

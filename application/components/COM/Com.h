@@ -13,10 +13,14 @@ class Com : public I_Com
 {
 public:
     inline Com() = default;
+    void run() override;
+    void stop() override;
     inline void toFld(const ComTele& tele) const {}
     inline void toGui(const ComTele& tele) const {}
 
     INSTANCE_DEC(Com)
 
     NOCOPY(Com)
+private:
+    bool mRunning = false;
 };

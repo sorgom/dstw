@@ -33,7 +33,15 @@
 
 namespace test
 {
-    constexpr UINT16 Port_Fld  = 8080;
-    constexpr UINT16 Port_Gui  = 8081;
-    constexpr UINT16 Port_Ctrl = 8082;
+    constexpr UINT16 tcpPortFld  = 8080;
+    constexpr UINT16 tcpPortGui  = 8081;
+    constexpr UINT16 tcpPortCtrl = 8082;
+    constexpr UINT16 tcpTimeout  = 10;
+
+    enum E_TestVals: UINT8
+    {
+        NO_PARAM = PARAM_UNDEF - 1,
+        PARAM_UNKNOWN = PARAM_UNDEF - 2,
+
+    };
 } // namespace

@@ -4,6 +4,7 @@
 #include <mocks/M_Dispatcher.h>
 #include <mocks/M_Log.h>
 #include <mocks/M_Provider.h>
+#include <mocks/M_Reader.h>
 #include <mocks/M_TCP.h>
 #include <mocks/M_TCP_Client.h>
 #include <mocks/M_TCP_Listener.h>
@@ -29,6 +30,7 @@ namespace test
         mLCR_Provider(M_LCR_Provider::instance()),
         mSIG_Provider(M_SIG_Provider::instance()),
         mTSW_Provider(M_TSW_Provider::instance()),
+        mReader(M_Reader::instance()),
         mLog(M_Log::instance()),
         mTCP(M_TCP::instance()),
         mTCP_Client_Fld(M_TCP_Client_Fld::instance()),
@@ -46,6 +48,7 @@ namespace test
         mLCR_Provider.reset();
         mSIG_Provider.reset();
         mTSW_Provider.reset();
+        mReader.reset();
         mLog.reset();
         mTCP.reset();
         mTCP_Client_Fld.reset();
@@ -63,6 +66,7 @@ namespace test
         mLCR_Provider.set(LCR_Provider::instance());
         mSIG_Provider.set(SIG_Provider::instance());
         mTSW_Provider.set(TSW_Provider::instance());
+        mReader.set(Reader::instance());
         mLog.set(Log::instance());
         mTCP.set(TCP::instance());
         mTCP_Client_Fld.set(TCP_Client_Fld::instance());

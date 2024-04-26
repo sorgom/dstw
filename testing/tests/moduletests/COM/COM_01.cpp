@@ -37,7 +37,7 @@ namespace test
         //  bind socket 1 to port field
         //  should be ok
         STEP(3)
-        ok = tcp.bind(s1, Port_Fld);
+        ok = tcp.bind(s1, tcpPortFld);
         L_CHECK_TRUE(ok);
 
         //  bind socket 2 to same port field
@@ -45,7 +45,7 @@ namespace test
         STEP(4)
         s2 = tcp.socket();
         L_CHECK_TRUE(s2 >= 0);
-        ok = tcp.bind(s2, Port_Fld);
+        ok = tcp.bind(s2, tcpPortFld);
         L_CHECK_FALSE(ok);
         tcp.close(s2);
         L_CHECK_TRUE(s2 < 0);
@@ -83,7 +83,7 @@ namespace test
         
         //  connection to bound port must be ok
         STEP(9)
-        const bool con = client.connect(Port_Fld);
+        const bool con = client.connect(tcpPortFld);
         L_CHECK_TRUE(con);
 
         //  select on listener should return 1

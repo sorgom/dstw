@@ -16,6 +16,24 @@ namespace test
         inline M_Com() : M_Base("Com") {}
         INSTANCE_DEC(M_Com)
 
+        inline void run() override
+        {
+            call("run");
+        }
+        inline void expectRun() const
+        {
+            expect("run");
+        }
+
+        inline void stop() override
+        {
+            call("stop");
+        }
+        inline void expectStop() const
+        {
+            expect("stop");
+        }
+
         inline void toFld(const ComTele& tele) const
         {
             call("toFld").TPARAM(ComTele, tele);

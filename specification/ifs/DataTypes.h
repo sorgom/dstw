@@ -12,10 +12,7 @@
 
 #include <codebase/packBegin.h>
 
-//  ============================================================
-//  - communication telegrams
-//  ============================================================
-
+//  communication telegrams
 //  Com telegrams element identifier
 constexpr auto ComNameSize = 12;
 
@@ -55,9 +52,7 @@ struct ComTele
 
 static_assert(ComTelegramSize == sizeof(ComTele));
 
-//  ============================================================
-//  - project items
-//  ============================================================
+//  project items
 struct ProjItem
 {
     ComName name;
@@ -66,11 +61,23 @@ struct ProjItem
 };
 static_assert(ComNameSize + 8 == sizeof(ProjItem));
 
+//  Com TCP setup
+struct ComSetup
+{
+    //  TCP port field
+    UINT16 portFld;
+    //  TCP port DiB
+    UINT16 portGui;
+    //  TCP port control
+    UINT16 portCtrl;
+    //  TCP select timeout ms
+    UINT16 timeout;
+};
+static_assert(8 == sizeof(ComSetup));
+
 #include <codebase/packEnd.h>
 
-//  ============================================================
-//  - result of a find operation
-//  ============================================================
+//  result of a find operation
 struct PosRes
 {
     const size_t pos;

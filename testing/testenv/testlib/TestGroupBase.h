@@ -22,12 +22,7 @@ namespace test
     class TestGroupBase : public Utest
     {
     protected:
-        enum E_TestVals: UINT8
-        {
-            NO_PARAM = PARAM_UNDEF - 1,
-            PARAM_UNKNOWN = PARAM_UNDEF - 2,
-
-        };
+        
         inline TestGroupBase()
         {
             mockAll();

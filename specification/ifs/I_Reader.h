@@ -10,9 +10,10 @@
 #pragma once
 
 #include <codebase/BaseTypes.h>
-
+#include <ifs/DataTypes.h>
 class I_Reader
 {
 public:
-    virtual void read(CONST_C_STRING filename) const = 0;
+    virtual void read(CONST_C_STRING filename) = 0;
+    virtual const ComSetup& getComSetup() const = 0;
 };

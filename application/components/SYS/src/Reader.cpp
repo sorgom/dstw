@@ -9,7 +9,7 @@ using stype = std::streamoff;
 
 INSTANCE_DEF(Reader)
 
-void Reader::read(const CONST_C_STRING filename) const
+void Reader::read(const CONST_C_STRING filename)
 {
     IL::getDispatcher().clear();
     IL::getTSW_Provider().clear();
@@ -23,11 +23,12 @@ void Reader::read(const CONST_C_STRING filename) const
     {
         constexpr static stype nCAP = 4;
         constexpr static stype hSize = nCAP * sizeof(UINT32);
+        constexpr static stype minSize = hSize + sizeof(ComSetup);
         is.seekg(0, is.end);
         const stype end = is.tellg();
         is.seekg(0, is.beg);
         const stype fsize = end - is.tellg();
-        ok = fsize >= hSize;
+        ok = fsize >= minSize;
         if (ok)
         {
             union
@@ -45,7 +46,7 @@ void Reader::read(const CONST_C_STRING filename) const
             const stype sSEG = nSEG * sizeof(ProjItem);
             const stype sTOT = sTSW + sSIG + sLCR + sSEG;
 
-            ok = (sTOT > 0) and (fsize == hSize + sTOT);
+            ok = (sTOT > 0) and (fsize == minSize + sTOT);
 
             if (ok)
             {
@@ -65,6 +66,8 @@ void Reader::read(const CONST_C_STRING filename) const
                 //  SEG not yet implemented
 
                 delete [] buf;
+
+                is.read(reinterpret_cast<CHAR*>(&mComSetup), sizeof(ComSetup));
 
                 IL::getDispatcher().index();
             }    

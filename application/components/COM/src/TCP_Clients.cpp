@@ -95,5 +95,15 @@ INSTANCE_DEF(TCP_Client_Ctrl)
 
 void TCP_Client_Ctrl::forward(const ComTele& tele) const
 {
-    //  TODO: evaluate telegram / shutdown
+    //  evaluate telegram
+    //  - stop Com
+    if (
+        tele.data.param1 == COM_CTRL_STOP and
+        tele.data.param2 == COM_CTRL_STOP
+    )
+    {
+        IL::getCom().stop();
+    }
+    else
+    { pass();}
 }
