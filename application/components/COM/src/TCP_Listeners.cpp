@@ -23,17 +23,12 @@ bool Tcp_Listener_Base::listen(const UINT16 port)
 bool Tcp_Listener_Base::select()
 {
     const I_TCP& tcp = IL::getTCP();
-    bool ok = false;
     const INT32 res = tcp.select(mSocket);
-    if (res > 0)
-    {
-        ok = getClient().accept(mSocket);
-    }
-    if (res == 0)
-    {
-        ok = true;
-    }
-    else
+    bool ok = 
+        (res == 0)
+        or (res > 0 and getClient().accept(mSocket));
+
+    if (not ok) 
     {
         tcp.close(mSocket);
     }

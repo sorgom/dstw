@@ -165,6 +165,7 @@ ifeq ($(config),ci)
 GENERATED += $(OBJDIR)/BAS_01.o
 GENERATED += $(OBJDIR)/BAS_02.o
 GENERATED += $(OBJDIR)/COM_01.o
+GENERATED += $(OBJDIR)/COM_02.o
 GENERATED += $(OBJDIR)/LCR_01.o
 GENERATED += $(OBJDIR)/LCR_02.o
 GENERATED += $(OBJDIR)/SIG_01.o
@@ -177,6 +178,7 @@ GENERATED += $(OBJDIR)/TSW_02.o
 OBJECTS += $(OBJDIR)/BAS_01.o
 OBJECTS += $(OBJDIR)/BAS_02.o
 OBJECTS += $(OBJDIR)/COM_01.o
+OBJECTS += $(OBJDIR)/COM_02.o
 OBJECTS += $(OBJDIR)/LCR_01.o
 OBJECTS += $(OBJDIR)/LCR_02.o
 OBJECTS += $(OBJDIR)/SIG_01.o
@@ -191,6 +193,7 @@ else ifeq ($(config),qnd)
 GENERATED += $(OBJDIR)/BAS_01.o
 GENERATED += $(OBJDIR)/BAS_02.o
 GENERATED += $(OBJDIR)/COM_01.o
+GENERATED += $(OBJDIR)/COM_02.o
 GENERATED += $(OBJDIR)/LCR_01.o
 GENERATED += $(OBJDIR)/LCR_02.o
 GENERATED += $(OBJDIR)/SIG_01.o
@@ -203,6 +206,7 @@ GENERATED += $(OBJDIR)/TSW_02.o
 OBJECTS += $(OBJDIR)/BAS_01.o
 OBJECTS += $(OBJDIR)/BAS_02.o
 OBJECTS += $(OBJDIR)/COM_01.o
+OBJECTS += $(OBJDIR)/COM_02.o
 OBJECTS += $(OBJDIR)/LCR_01.o
 OBJECTS += $(OBJDIR)/LCR_02.o
 OBJECTS += $(OBJDIR)/SIG_01.o
@@ -225,6 +229,7 @@ else ifeq ($(config),bullseye)
 GENERATED += $(OBJDIR)/BAS_01.o
 GENERATED += $(OBJDIR)/BAS_02.o
 GENERATED += $(OBJDIR)/COM_01.o
+GENERATED += $(OBJDIR)/COM_02.o
 GENERATED += $(OBJDIR)/LCR_01.o
 GENERATED += $(OBJDIR)/LCR_02.o
 GENERATED += $(OBJDIR)/SIG_01.o
@@ -237,6 +242,7 @@ GENERATED += $(OBJDIR)/TSW_02.o
 OBJECTS += $(OBJDIR)/BAS_01.o
 OBJECTS += $(OBJDIR)/BAS_02.o
 OBJECTS += $(OBJDIR)/COM_01.o
+OBJECTS += $(OBJDIR)/COM_02.o
 OBJECTS += $(OBJDIR)/LCR_01.o
 OBJECTS += $(OBJDIR)/LCR_02.o
 OBJECTS += $(OBJDIR)/SIG_01.o
@@ -249,7 +255,9 @@ OBJECTS += $(OBJDIR)/TSW_02.o
 
 else ifeq ($(config),tmp)
 GENERATED += $(OBJDIR)/COM_01.o
+GENERATED += $(OBJDIR)/COM_02.o
 OBJECTS += $(OBJDIR)/COM_01.o
+OBJECTS += $(OBJDIR)/COM_02.o
 
 endif
 
@@ -404,6 +412,9 @@ $(OBJDIR)/BAS_02.o: ../testing/tests/moduletests/BAS/BAS_02.cpp
 $(OBJDIR)/COM_01.o: ../testing/tests/moduletests/COM/COM_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/COM_02.o: ../testing/tests/moduletests/COM/COM_02.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_01.o: ../testing/tests/moduletests/LCR/LCR_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -440,6 +451,9 @@ $(OBJDIR)/BAS_02.o: ../testing/tests/moduletests/BAS/BAS_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/COM_01.o: ../testing/tests/moduletests/COM/COM_01.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/COM_02.o: ../testing/tests/moduletests/COM/COM_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_01.o: ../testing/tests/moduletests/LCR/LCR_01.cpp
@@ -491,6 +505,9 @@ $(OBJDIR)/BAS_02.o: ../testing/tests/moduletests/BAS/BAS_02.cpp
 $(OBJDIR)/COM_01.o: ../testing/tests/moduletests/COM/COM_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/COM_02.o: ../testing/tests/moduletests/COM/COM_02.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_01.o: ../testing/tests/moduletests/LCR/LCR_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -521,6 +538,9 @@ $(OBJDIR)/TSW_02.o: ../testing/tests/moduletests/TSW/TSW_02.cpp
 
 else ifeq ($(config),tmp)
 $(OBJDIR)/COM_01.o: ../testing/tests/moduletests/COM/COM_01.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/COM_02.o: ../testing/tests/moduletests/COM/COM_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

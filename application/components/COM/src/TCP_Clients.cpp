@@ -27,23 +27,33 @@ bool TCP_CLient_Base::select()
     else
     {
         const INT32 res = tcp.select(mSocket);
+        //  activity on socket
         if (res > 0)
         {
             const INT32 len = tcp.recv(mSocket, mBuffer, sizeof(mBuffer));
+            //  telegram received
             if (len == sizeof(ComTele))
             {
                 forward(*reinterpret_cast<const ComTele*>(mBuffer));
             }
+            //  close event
+            else if (len <= 0)
+            {
+                close();
+            }
             else
-            { 
+            {
+                ok = false; 
                 close();    
             }
         }
+        //  select error
         else if (res < 0)
         {
             ok = false;
             close();
         }
+        //  no activity
         else
         { pass(); }
     }
@@ -96,7 +106,7 @@ INSTANCE_DEF(TCP_Client_Ctrl)
 void TCP_Client_Ctrl::forward(const ComTele& tele) const
 {
     //  evaluate telegram
-    //  - stop Com
+    //  - shutdown
     if (
         tele.data.param1 == COM_CTRL_STOP and
         tele.data.param2 == COM_CTRL_STOP
