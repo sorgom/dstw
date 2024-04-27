@@ -110,13 +110,21 @@ INSTANCE_DEF(TCP_Con_Ctrl)
 void TCP_Con_Ctrl::forward(const ComTele& tele) const
 {
     //  evaluate telegram
-    //  - shutdown
+    //  - stop
     if (
         tele.data.param1 == COM_CTRL_STOP and
         tele.data.param2 == COM_CTRL_STOP
     )
     {
         IL::getCom().stop();
+    }
+    //  - ping
+    else if (
+        tele.data.param1 == COM_CTRL_PING and
+        tele.data.param2 == COM_CTRL_PING
+    )
+    {
+        send(tele);
     }
     else
     { pass();}

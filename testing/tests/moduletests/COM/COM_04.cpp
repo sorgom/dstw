@@ -20,15 +20,28 @@ namespace test
             m_TCP_Listener_Ctrl().expectListen(tcpPortCtrl, true);
             m_TCP().expectSetTimeout(tcpTimeout);
         }
+
+        void expectExit()
+        {
+            m_TCP_Listener_Fld().expectClose();
+            m_TCP_Listener_Gui().expectClose();
+            m_TCP_Listener_Ctrl().expectClose();
+            m_TCP_Con_Fld().expectClose();
+            m_TCP_Con_Gui().expectClose();
+            m_TCP_Con_Ctrl().expectClose();
+            m_TCP().expectCleanup();
+        }
+
         void expectExitStartup()
         {
             m_Log().expectLog(COMP_COM, RET_ERR_STARTUP);
-            m_TCP().expectCleanup();
+            expectExit();
         }
+
         void expectExitRuntime()
         {
             m_Log().expectLog(COMP_COM, RET_ERR_COM);
-            m_TCP().expectCleanup();
+            expectExit();
         }
     };
 

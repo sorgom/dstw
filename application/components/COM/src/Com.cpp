@@ -1,9 +1,6 @@
 #include <COM/Com.h>
 #include <SYS/IL.h>
 
-#include <iostream>
-using std::cout, std::endl;
-
 INSTANCE_DEF(Com)
 
 void Com::run()
@@ -31,12 +28,10 @@ void Com::run()
     {
         tcp.setTimeout(setup.timeout);
         mRunning = true;
-        cout << "Com running" << endl;  
     }
     else
     {
         IL::getLog().log(COMP_COM, RET_ERR_STARTUP);
-        cout << "Com start failed" << endl;  
     }
 
     while (ok and mRunning)
@@ -53,11 +48,9 @@ void Com::run()
         {
             IL::getLog().log(COMP_COM, RET_ERR_COM);
             mRunning = false;
-            cout << "Com run failed" << endl;  
         } 
     }
-    cout << "Com stop" << endl;  
-
+ 
     listenerFld.close();
     listenerGui.close();
     listenerCtrl.close();

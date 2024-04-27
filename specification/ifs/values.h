@@ -116,5 +116,6 @@ enum E_LcrUbkState : UINT8
 //  COM control
 enum E_ComCtrl : UINT8
 {
-    COM_CTRL_STOP = 101
+    COM_CTRL_STOP = 101,
+    COM_CTRL_PING
 };
