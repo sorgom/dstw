@@ -6,7 +6,7 @@
 #include <mocks/M_Provider.h>
 #include <mocks/M_Reader.h>
 #include <mocks/M_TCP.h>
-#include <mocks/M_TCP_Client.h>
+#include <mocks/M_TCP_Con.h>
 #include <mocks/M_TCP_Listener.h>
 
 #include <BAS/coding.h>
@@ -25,9 +25,9 @@ namespace test
     INSTANCE_DEF(M_TCP)
     INSTANCE_DEF(M_TSW_Provider)
     INSTANCE_DEF(M_TSW)
-    INSTANCE_DEF(M_TCP_Client_Fld)
-    INSTANCE_DEF(M_TCP_Client_Gui)
-    INSTANCE_DEF(M_TCP_Client_Ctrl)
+    INSTANCE_DEF(M_TCP_Con_Fld)
+    INSTANCE_DEF(M_TCP_Con_Gui)
+    INSTANCE_DEF(M_TCP_Con_Ctrl)
     INSTANCE_DEF(M_TCP_Listener_Fld)
     INSTANCE_DEF(M_TCP_Listener_Gui)
     INSTANCE_DEF(M_TCP_Listener_Ctrl)

@@ -1,5 +1,5 @@
 //  ============================================================
-//  mock for interface I_TCP_Client
+//  mock for interface I_TCP_Con
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -10,7 +10,7 @@
 
 namespace test
 {
-    class M_TCP_Client : public I_TCP_Client, private M_Base
+    class M_TCP_Con : public I_TCP_Con, private M_Base
     {
     public:
 
@@ -50,35 +50,35 @@ namespace test
             expect("send").TPARAM(ComTele, tele);
         }
 
-        NOCOPY(M_TCP_Client)
-        NODEF(M_TCP_Client)
+        NOCOPY(M_TCP_Con)
+        NODEF(M_TCP_Con)
     protected:
-        inline M_TCP_Client(const CONST_C_STRING name) : M_Base(name) {}
+        inline M_TCP_Con(const CONST_C_STRING name) : M_Base(name) {}
 
     };
 
-    class M_TCP_Client_Fld : public M_TCP_Client
+    class M_TCP_Con_Fld : public M_TCP_Con
     {
     public:
-        inline M_TCP_Client_Fld() : M_TCP_Client("TCP_Client_Fld") {}
-        INSTANCE_DEC(M_TCP_Client_Fld)
-        NOCOPY(M_TCP_Client_Fld)
+        inline M_TCP_Con_Fld() : M_TCP_Con("TCP_Con_Fld") {}
+        INSTANCE_DEC(M_TCP_Con_Fld)
+        NOCOPY(M_TCP_Con_Fld)
     };
 
-    class M_TCP_Client_Gui : public M_TCP_Client
+    class M_TCP_Con_Gui : public M_TCP_Con
     {   
     public:
-        inline M_TCP_Client_Gui() : M_TCP_Client("TCP_Client_Gui") {}
-        INSTANCE_DEC(M_TCP_Client_Gui)
-        NOCOPY(M_TCP_Client_Gui)
+        inline M_TCP_Con_Gui() : M_TCP_Con("TCP_Con_Gui") {}
+        INSTANCE_DEC(M_TCP_Con_Gui)
+        NOCOPY(M_TCP_Con_Gui)
     };
 
-    class M_TCP_Client_Ctrl : public M_TCP_Client
+    class M_TCP_Con_Ctrl : public M_TCP_Con
     {
     public:
-        inline M_TCP_Client_Ctrl() : M_TCP_Client("TCP_Client_Ctrl") {}
-        INSTANCE_DEC(M_TCP_Client_Ctrl)
-        NOCOPY(M_TCP_Client_Ctrl)
+        inline M_TCP_Con_Ctrl() : M_TCP_Con("TCP_Con_Ctrl") {}
+        INSTANCE_DEC(M_TCP_Con_Ctrl)
+        NOCOPY(M_TCP_Con_Ctrl)
     };
 
 } // namespace

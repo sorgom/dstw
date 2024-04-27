@@ -58,9 +58,9 @@ namespace test
         ILPLug<I_Reader> mReader;
         ILPLug<I_Log> mLog;
         ILPLug<I_TCP> mTCP;
-        ILPLug<I_TCP_Client> mTCP_Client_Fld;
-        ILPLug<I_TCP_Client> mTCP_Client_Gui;
-        ILPLug<I_TCP_Client> mTCP_Client_Ctrl;
+        ILPLug<I_TCP_Con> mTCP_Con_Fld;
+        ILPLug<I_TCP_Con> mTCP_Con_Gui;
+        ILPLug<I_TCP_Con> mTCP_Con_Ctrl;
         ILPLug<I_TCP_Listener> mTCP_Listener_Fld;
         ILPLug<I_TCP_Listener> mTCP_Listener_Gui;
         ILPLug<I_TCP_Listener> mTCP_Listener_Ctrl;

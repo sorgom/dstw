@@ -25,9 +25,16 @@ includedirs_app = {
 
 includedirs_test = {
     '../testing/testenv',
-    base_cpputest .. '/include',
+    includedirs_cpputest,
     includedirs_teststeps,
     includedirs_app
+}
+
+includedirs_runtests = {
+    includedirs_app,
+    '../testing/testenv',
+    includedirs_cpputest,
+    includedirs_teststeps
 }
 
 includedirs_qnd = {
@@ -62,8 +69,9 @@ defines_gendata = {
 }
 
 files_moduletest = { '../testing/tests/moduletests/**.cpp' }
-files_systest = { '../testing/tests/systemtests/**.cpp' }
-files_devtest = { '../testing/tests/devtests/**.cpp' }
+files_systest  = { '../testing/tests/systemtests/*.cpp' }
+files_devtest  = { '../testing/tests/devtests/*.cpp' }
+files_runtests = { '../testing/tests/runtests/*.cpp'}
 
 files_gendata = { 
     '../testing/gendata/genDataMain.cpp', 

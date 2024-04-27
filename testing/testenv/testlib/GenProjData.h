@@ -37,7 +37,7 @@ namespace test
         ProjVec mTSWs, mSIGs, mLCRs, mSEGs;
 
     public:
-        ComSetup mComSetup = { tcpPortFld, tcpPortGui, tcpPortCtrl, tcpTimeout };
+        const ComSetup mComSetup = { tcpPortFld, tcpPortGui, tcpPortCtrl, tcpTimeout };
 
         GenProjData()
         {
@@ -99,11 +99,11 @@ namespace test
                 write(os, numSIG());
                 write(os, numLCR());
                 write(os, numSEG());
+                write(os, mComSetup);
                 write(os, mTSWs);
                 write(os, mSIGs);
                 write(os, mLCRs);
                 write(os, mSEGs);
-                write(os, mComSetup);
             }
             os.close();
         }

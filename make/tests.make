@@ -42,6 +42,16 @@ endef
 define POSTBUILDCMDS
 endef
 
+else ifeq ($(config),sys)
+TARGETDIR = bin
+TARGET = $(TARGETDIR)/tests_sys
+OBJDIR = obj/gcc/tests/sys
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
+define PREBUILDCMDS
+endef
+define POSTBUILDCMDS
+endef
+
 else ifeq ($(config),qnd)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_qnd
@@ -57,16 +67,6 @@ TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_dev
 OBJDIR = obj/gcc/tests/dev
 INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components -I../devel
-define PREBUILDCMDS
-endef
-define POSTBUILDCMDS
-endef
-
-else ifeq ($(config),dev_qnd)
-TARGETDIR = bin
-TARGET = $(TARGETDIR)/tests_dev_qnd
-OBJDIR = obj/gcc/tests/dev_qnd
-INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
 define PREBUILDCMDS
 endef
 define POSTBUILDCMDS
@@ -122,7 +122,7 @@ GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
 GENERATED += $(OBJDIR)/TCP.o
 GENERATED += $(OBJDIR)/TCP_Client.o
-GENERATED += $(OBJDIR)/TCP_Clients.o
+GENERATED += $(OBJDIR)/TCP_Cons.o
 GENERATED += $(OBJDIR)/TCP_Listeners.o
 GENERATED += $(OBJDIR)/TSW.o
 GENERATED += $(OBJDIR)/TSW_Provider.o
@@ -148,7 +148,7 @@ OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
 OBJECTS += $(OBJDIR)/TCP.o
 OBJECTS += $(OBJDIR)/TCP_Client.o
-OBJECTS += $(OBJDIR)/TCP_Clients.o
+OBJECTS += $(OBJDIR)/TCP_Cons.o
 OBJECTS += $(OBJDIR)/TCP_Listeners.o
 OBJECTS += $(OBJDIR)/TSW.o
 OBJECTS += $(OBJDIR)/TSW_Provider.o
@@ -192,6 +192,12 @@ OBJECTS += $(OBJDIR)/SYS_02.o
 OBJECTS += $(OBJDIR)/SYS_03.o
 OBJECTS += $(OBJDIR)/TSW_01.o
 OBJECTS += $(OBJDIR)/TSW_02.o
+
+else ifeq ($(config),sys)
+GENERATED += $(OBJDIR)/SYST_01.o
+GENERATED += $(OBJDIR)/SYST_02.o
+OBJECTS += $(OBJDIR)/SYST_01.o
+OBJECTS += $(OBJDIR)/SYST_02.o
 
 else ifeq ($(config),qnd)
 GENERATED += $(OBJDIR)/BAS_01.o
@@ -354,7 +360,7 @@ $(OBJDIR)/Com.o: ../application/components/COM/src/Com.cpp
 $(OBJDIR)/TCP.o: ../application/components/COM/src/TCP.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TCP_Clients.o: ../application/components/COM/src/TCP_Clients.cpp
+$(OBJDIR)/TCP_Cons.o: ../application/components/COM/src/TCP_Cons.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TCP_Listeners.o: ../application/components/COM/src/TCP_Listeners.cpp
@@ -462,6 +468,14 @@ $(OBJDIR)/TSW_01.o: ../testing/tests/moduletests/TSW/TSW_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW_02.o: ../testing/tests/moduletests/TSW/TSW_02.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+
+else ifeq ($(config),sys)
+$(OBJDIR)/SYST_01.o: ../testing/tests/systemtests/SYST_01.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/SYST_02.o: ../testing/tests/systemtests/SYST_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

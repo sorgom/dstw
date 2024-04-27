@@ -83,7 +83,7 @@ file                       lines  uncovered  percent
 BAS/src/BAS_Provider.cpp      26         --       --
 COM/src/Com.cpp               46         --       --
 COM/src/TCP.cpp               88         --       --
-COM/src/TCP_Clients.cpp       93         --       --
+COM/src/TCP_Cons.cpp       93         --       --
 COM/src/TCP_Listeners.cpp     52         --       --
 LCR/src/LCR_Provider.cpp      20         --       --
 LCR/src/LCR_X.cpp            126         --       --

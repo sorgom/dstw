@@ -50,6 +50,7 @@ void Reader::read(const CONST_C_STRING filename)
 
             if (ok)
             {
+                is.read(reinterpret_cast<CHAR*>(&mComSetup), sizeof(ComSetup));
                 
                 const auto mxSize = std::max({sTSW, sSIG, sLCR, sSEG});
                 CHAR* buf = new CHAR[static_cast<size_t>(mxSize)];
@@ -67,8 +68,6 @@ void Reader::read(const CONST_C_STRING filename)
 
                 delete [] buf;
 
-                is.read(reinterpret_cast<CHAR*>(&mComSetup), sizeof(ComSetup));
-
                 IL::getDispatcher().index();
             }    
             else
@@ -76,7 +75,6 @@ void Reader::read(const CONST_C_STRING filename)
         }
         else
         { pass(); }
-
     }
     else
     { pass(); }

@@ -4,7 +4,7 @@
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <COM/TCP_Clients.h>
+#include <COM/TCP_Cons.h>
 
 namespace test
 {
@@ -21,7 +21,7 @@ namespace test
     TEST(COM_03, T01)
     {
         SETUP()
-        I_TCP_Client& client = TCP_Client_Fld::instance();
+        I_TCP_Con& client = TCP_Con_Fld::instance();
 
         //  accept returns invalid socket
         STEP(1)
@@ -89,7 +89,7 @@ namespace test
     TEST(COM_03, T02)
     {
         SETUP()
-        I_TCP_Client& client = TCP_Client_Gui::instance();
+        I_TCP_Con& client = TCP_Con_Gui::instance();
 
         //  accept returns valid socket
         STEP(1)
@@ -137,7 +137,7 @@ namespace test
     TEST(COM_03, T03)
     {
         SETUP()
-        I_TCP_Client& client = TCP_Client_Ctrl::instance();
+        I_TCP_Con& client = TCP_Con_Ctrl::instance();
 
         //  accept returns valid socket
         STEP(1)

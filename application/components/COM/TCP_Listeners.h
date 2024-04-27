@@ -21,7 +21,7 @@ public:
 
 protected:
     Tcp_Listener_Base() = default;
-    virtual I_TCP_Client& getClient() const = 0;
+    virtual I_TCP_Con& getCon() const = 0;
 private:
     INT32 mSocket = -1;
 };
@@ -33,7 +33,7 @@ public:
     INSTANCE_DEC(TCP_Listener_Fld)
     NOCOPY(TCP_Listener_Fld)
 protected:
-    I_TCP_Client& getClient() const override;
+    I_TCP_Con& getCon() const override;
 };
 
 class TCP_Listener_Gui : public Tcp_Listener_Base
@@ -43,7 +43,7 @@ public:
     INSTANCE_DEC(TCP_Listener_Gui)
     NOCOPY(TCP_Listener_Gui)
 protected:
-    I_TCP_Client& getClient() const override;
+    I_TCP_Con& getCon() const override;
 };
 
 class TCP_Listener_Ctrl : public Tcp_Listener_Base
@@ -53,5 +53,5 @@ public:
     INSTANCE_DEC(TCP_Listener_Ctrl)
     NOCOPY(TCP_Listener_Ctrl)
 protected:
-    I_TCP_Client& getClient() const override;
+    I_TCP_Con& getCon() const override;
 };

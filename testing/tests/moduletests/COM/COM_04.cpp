@@ -119,7 +119,7 @@ namespace test
         m_TCP_Listener_Fld().expectSelect(true);
         m_TCP_Listener_Gui().expectSelect(true);
         m_TCP_Listener_Ctrl().expectSelect(true);
-        m_TCP_Client_Fld().expectSelect(false);
+        m_TCP_Con_Fld().expectSelect(false);
         com.run();
         CHECK_N_CLEAR()
 
@@ -130,8 +130,8 @@ namespace test
         m_TCP_Listener_Fld().expectSelect(true);
         m_TCP_Listener_Gui().expectSelect(true);
         m_TCP_Listener_Ctrl().expectSelect(true);
-        m_TCP_Client_Fld().expectSelect(true);
-        m_TCP_Client_Gui().expectSelect(false);
+        m_TCP_Con_Fld().expectSelect(true);
+        m_TCP_Con_Gui().expectSelect(false);
         com.run();
         CHECK_N_CLEAR()
 
@@ -142,9 +142,9 @@ namespace test
         m_TCP_Listener_Fld().expectSelect(true);
         m_TCP_Listener_Gui().expectSelect(true);
         m_TCP_Listener_Ctrl().expectSelect(true);
-        m_TCP_Client_Fld().expectSelect(true);
-        m_TCP_Client_Gui().expectSelect(true);
-        m_TCP_Client_Ctrl().expectSelect(false);
+        m_TCP_Con_Fld().expectSelect(true);
+        m_TCP_Con_Gui().expectSelect(true);
+        m_TCP_Con_Ctrl().expectSelect(false);
         com.run();
         CHECK_N_CLEAR()
 
@@ -155,9 +155,9 @@ namespace test
         m_TCP_Listener_Fld().expectSelect(true);
         m_TCP_Listener_Gui().expectSelect(true);
         m_TCP_Listener_Ctrl().expectSelect(true);
-        m_TCP_Client_Fld().expectSelect(true);
-        m_TCP_Client_Gui().expectSelect(true);
-        m_TCP_Client_Ctrl().expectSelect(true);
+        m_TCP_Con_Fld().expectSelect(true);
+        m_TCP_Con_Gui().expectSelect(true);
+        m_TCP_Con_Ctrl().expectSelect(true);
         m_TCP_Listener_Fld().expectSelect(false);
         com.run();
         CHECK_N_CLEAR()

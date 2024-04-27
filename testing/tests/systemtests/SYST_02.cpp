@@ -13,7 +13,7 @@ namespace test
 
     TEST_GROUP_BASE(SYST_02, TestGroupBase) {};
 
-    //  test type: blackbox test
+    //  test type: system test
     //  
     TEST(SYST_02, T01)
     {

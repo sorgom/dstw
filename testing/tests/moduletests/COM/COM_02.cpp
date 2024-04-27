@@ -75,7 +75,7 @@ namespace test
         //  accept returns true
         STEP(6)
         m_TCP().expectSelect(validSocket, 1);
-        m_TCP_Client_Fld().expectAccept(validSocket, true); 
+        m_TCP_Con_Fld().expectAccept(validSocket, true); 
         ok = listener.select();
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ok)       
@@ -92,7 +92,7 @@ namespace test
         //  accept returns false
         STEP(8)
         m_TCP().expectSelect(validSocket, 1);
-        m_TCP_Client_Fld().expectAccept(validSocket, false);
+        m_TCP_Con_Fld().expectAccept(validSocket, false);
         m_TCP().expectClose(validSocket); 
         ok = listener.select();
         CHECK_N_CLEAR()
@@ -122,7 +122,7 @@ namespace test
 
         STEP(2)
         m_TCP().expectSelect(validSocket, 1);
-        m_TCP_Client_Gui().expectAccept(validSocket, true); 
+        m_TCP_Con_Gui().expectAccept(validSocket, true); 
         ok = listener.select();
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ok)       
@@ -145,7 +145,7 @@ namespace test
 
         STEP(2)
         m_TCP().expectSelect(validSocket, 1);
-        m_TCP_Client_Ctrl().expectAccept(validSocket, true); 
+        m_TCP_Con_Ctrl().expectAccept(validSocket, true); 
         ok = listener.select();
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ok)       

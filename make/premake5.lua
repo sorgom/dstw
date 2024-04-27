@@ -35,7 +35,7 @@ workspace 'lib_cpputest'
 --  ============================================================
 workspace 'tests'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'qnd', 'dev', 'dev_qnd', 'bullseye', 'tmp' }
+        configurations { 'ci', 'sys', 'qnd', 'dev', 'bullseye', 'tmp' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
         targetsuffix '_%{cfg.name}'
@@ -54,18 +54,22 @@ workspace 'tests'
             filter { 'configurations:ci' }
                 files { files_moduletest }
 
+            filter { 'configurations:sys' }
+                files { files_systest }
+
             filter { 'configurations:qnd' }
                 files { files_moduletest }
                 includedirs { includedirs_qnd }
 
             filter { 'configurations:dev' }
                 files { files_devtest }
-                includedirs { '../devel' }
+                includedirs { includedirs_qnd }
 
             filter { 'configurations:bullseye' }
                 files { files_moduletest }
                 prebuildcommands { 'cov01 -1 --no-banner' }
                 postbuildcommands { './bullseye.sh' }
+
             filter { 'configurations:tmp' }
                 includedirs { includedirs_qnd }
                 files {
@@ -116,36 +120,41 @@ workspace 'coverage'
                 includedirs { includedirs_qnd }
 
 --  ============================================================
---  > systests.make
+--  > runtests.make
 --  -   application without test includes (static lib)
---  -   system tests only runtime
+--  -   run tests only runtime
 --  ->  bin/sysests_tests_{config}
 --  configurations: 
 --  - ci        module tests
 --  - qnd       with devel includes
 --  ============================================================
-workspace 'systests'
+workspace 'runtests'
     filter { 'action:gmake*' }
         configurations { 'ci', 'qnd' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}'
-        targetsuffix '_%{cfg.name}'
         buildoptions { buildoptions_gcc }
         linkoptions { linkoptions_test_gcc }
+        includedirs { includedirs_app }
 
         defines { 'DEBUG', defines_test }
         symbols 'On'
 
         filter { 'configurations:qnd' }
-            includedirs { '../devel' }
+            includedirs { includedirs_qnd }
 
-        project 'systests'
+        project 'run_app'
+            kind 'StaticLib'
+            targetdir 'lib'
+            files { files_app }
+
+        project 'run_tests'
             kind 'ConsoleApp'
             targetdir 'bin'
             libdirs { 'lib' }
-            links { links_test_gcc }
-            files { files_testenv, files_app, files_systest }
-            includedirs { includedirs_test }
+            links { links_test_gcc, 'run_app' }
+            files { files_testenv, files_runtests }
+            includedirs { includedirs_runtests }
 
 --  ============================================================
 --  > dstw.make

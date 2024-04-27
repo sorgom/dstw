@@ -1,4 +1,4 @@
-#include <COM/TCP_Clients.h>
+#include <COM/TCP_Cons.h>
 #include <SYS/IL.h>
 
 //  ============================================================
@@ -78,36 +78,36 @@ void TCP_CLient_Base::send(const ComTele& tele) const
 }
 
 //  field client
-INSTANCE_DEF(TCP_Client_Fld)
+INSTANCE_DEF(TCP_Con_Fld)
 
-void TCP_Client_Fld::onAccept() const
+void TCP_Con_Fld::onAccept() const
 {
     //  TODO: Dispatcher must recall all states
 }
 
-void TCP_Client_Fld::forward(const ComTele& tele) const
+void TCP_Con_Fld::forward(const ComTele& tele) const
 {
     IL::getDispatcher().fromFld(tele);
 }
 
 //  GUI client
-INSTANCE_DEF(TCP_Client_Gui)
+INSTANCE_DEF(TCP_Con_Gui)
 
-void TCP_Client_Gui::onAccept() const
+void TCP_Con_Gui::onAccept() const
 {
     //  TODO: Dispatcher resend all states
     //  call I_Elem::resend() or similar
 }
 
-void TCP_Client_Gui::forward(const ComTele& tele) const
+void TCP_Con_Gui::forward(const ComTele& tele) const
 {
     IL::getDispatcher().fromGui(tele);
 }
 
 //  control client
-INSTANCE_DEF(TCP_Client_Ctrl)
+INSTANCE_DEF(TCP_Con_Ctrl)
 
-void TCP_Client_Ctrl::forward(const ComTele& tele) const
+void TCP_Con_Ctrl::forward(const ComTele& tele) const
 {
     //  evaluate telegram
     //  - shutdown

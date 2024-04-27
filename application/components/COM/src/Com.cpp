@@ -1,18 +1,22 @@
 #include <COM/Com.h>
 #include <SYS/IL.h>
 
+#include <iostream>
+using std::cout, std::endl;
+
 INSTANCE_DEF(Com)
 
 void Com::run()
 {
-    mRunning = true;
+    mRunning = false;
+
     I_TCP_Listener& listenerFld = IL::getTCP_Listener_Fld();
     I_TCP_Listener& listenerGui = IL::getTCP_Listener_Gui();
     I_TCP_Listener& listenerCtrl = IL::getTCP_Listener_Ctrl();
 
-    I_TCP_Client &clientFld = IL::getTCP_Client_Fld();
-    I_TCP_Client &clientGui = IL::getTCP_Client_Gui();
-    I_TCP_Client &clientCtrl = IL::getTCP_Client_Ctrl();
+    I_TCP_Con &clientFld = IL::getTCP_Con_Fld();
+    I_TCP_Con &clientGui = IL::getTCP_Con_Gui();
+    I_TCP_Con &clientCtrl = IL::getTCP_Con_Ctrl();
 
     const ComSetup& setup = IL::getReader().getComSetup();
 
@@ -23,13 +27,16 @@ void Com::run()
         and listenerGui.listen(setup.portGui)
         and listenerCtrl.listen(setup.portCtrl);
 
-    if (not ok)
+    if (ok)
     {
-        IL::getLog().log(COMP_COM, RET_ERR_STARTUP);
+        tcp.setTimeout(setup.timeout);
+        mRunning = true;
+        cout << "Com running" << endl;  
     }
     else
     {
-        tcp.setTimeout(setup.timeout);
+        IL::getLog().log(COMP_COM, RET_ERR_STARTUP);
+        cout << "Com start failed" << endl;  
     }
 
     while (ok and mRunning)
@@ -45,8 +52,18 @@ void Com::run()
         if (not ok)
         {
             IL::getLog().log(COMP_COM, RET_ERR_COM);
+            mRunning = false;
+            cout << "Com run failed" << endl;  
         } 
     }
+    cout << "Com stop" << endl;  
+
+    listenerFld.close();
+    listenerGui.close();
+    listenerCtrl.close();
+    clientFld.close();
+    clientGui.close();
+    clientCtrl.close();
     tcp.cleanup();
 }
 

@@ -47,6 +47,7 @@ public:
     virtual void close(INT32& socket) const = 0;
 };
 
+//  TCP listener
 class I_TCP_Listener
 {
 public:
@@ -58,7 +59,8 @@ public:
     virtual void close() = 0;
 };
 
-class I_TCP_Client
+//  TCP client connection
+class I_TCP_Con
 {
 public:
     //  accept connection

@@ -10,7 +10,7 @@
 #include <BAS/coding.h>
 
 //  base tcp communication client
-class TCP_CLient_Base : public I_TCP_Client
+class TCP_CLient_Base : public I_TCP_Con
 {
 public:
     bool accept(INT32 socket) override;
@@ -28,36 +28,36 @@ private:
 };
 
 //  field tcp communication client
-class TCP_Client_Fld : public TCP_CLient_Base
+class TCP_Con_Fld : public TCP_CLient_Base
 {
 public:
-    inline TCP_Client_Fld() = default;
-    INSTANCE_DEC(TCP_Client_Fld)
-    NOCOPY(TCP_Client_Fld)
+    inline TCP_Con_Fld() = default;
+    INSTANCE_DEC(TCP_Con_Fld)
+    NOCOPY(TCP_Con_Fld)
 protected:
     void onAccept() const override;
     void forward(const ComTele& tele) const override;
 };
 
 //  GUI tcp communication client
-class TCP_Client_Gui : public TCP_CLient_Base
+class TCP_Con_Gui : public TCP_CLient_Base
 {
 public:
-    inline TCP_Client_Gui() = default;
-    INSTANCE_DEC(TCP_Client_Gui)  
-    NOCOPY(TCP_Client_Gui) 
+    inline TCP_Con_Gui() = default;
+    INSTANCE_DEC(TCP_Con_Gui)  
+    NOCOPY(TCP_Con_Gui) 
 protected:
     void onAccept() const override;
     void forward(const ComTele& tele) const override;
 };
 
 //  control tcp communication client
-class TCP_Client_Ctrl : public TCP_CLient_Base
+class TCP_Con_Ctrl : public TCP_CLient_Base
 {
 public:
-    inline TCP_Client_Ctrl() = default;
-    INSTANCE_DEC(TCP_Client_Ctrl)
-    NOCOPY(TCP_Client_Ctrl)
+    inline TCP_Con_Ctrl() = default;
+    INSTANCE_DEC(TCP_Con_Ctrl)
+    NOCOPY(TCP_Con_Ctrl)
 protected:
     inline void onAccept() const override {}
     void forward(const ComTele& tele) const override;

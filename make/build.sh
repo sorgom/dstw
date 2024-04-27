@@ -72,7 +72,7 @@ if test -z $run; then exit 0; fi
 for b in bin/*; do
     echo ''
     echo "====== $b"
-    $b -b
+    $b
     x=$?
     echo 'returned' $x
     if test $x -ne 0; then err=1; fi

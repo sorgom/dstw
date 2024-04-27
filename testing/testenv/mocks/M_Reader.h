@@ -17,9 +17,6 @@ namespace test
         inline M_Reader() : M_Base("Reader") {}
         INSTANCE_DEC(M_Reader)
 
-        const ComSetup setup = { tcpPortFld, tcpPortGui, tcpPortCtrl, tcpTimeout };
-
-
         inline void read(CONST_C_STRING filename) override
         {
             call("read");
@@ -39,5 +36,7 @@ namespace test
             expect("getComSetup");
         }
 
-      };
+    private:
+        const ComSetup setup = { tcpPortFld, tcpPortGui, tcpPortCtrl, tcpTimeout };
+    };
 } // namespace

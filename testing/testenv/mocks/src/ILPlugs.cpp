@@ -6,11 +6,11 @@
 #include <mocks/M_Provider.h>
 #include <mocks/M_Reader.h>
 #include <mocks/M_TCP.h>
-#include <mocks/M_TCP_Client.h>
+#include <mocks/M_TCP_Con.h>
 #include <mocks/M_TCP_Listener.h>
 
 #include <COM/TCP.h>
-#include <COM/TCP_Clients.h>
+#include <COM/TCP_Cons.h>
 #include <COM/TCP_Listeners.h>
 #include <LCR/LCR_Provider.h>
 #include <SIG/SIG_Provider.h>
@@ -33,9 +33,9 @@ namespace test
         mReader(M_Reader::instance()),
         mLog(M_Log::instance()),
         mTCP(M_TCP::instance()),
-        mTCP_Client_Fld(M_TCP_Client_Fld::instance()),
-        mTCP_Client_Gui(M_TCP_Client_Gui::instance()),
-        mTCP_Client_Ctrl(M_TCP_Client_Ctrl::instance()),
+        mTCP_Con_Fld(M_TCP_Con_Fld::instance()),
+        mTCP_Con_Gui(M_TCP_Con_Gui::instance()),
+        mTCP_Con_Ctrl(M_TCP_Con_Ctrl::instance()),
         mTCP_Listener_Fld(M_TCP_Listener_Fld::instance()),
         mTCP_Listener_Gui(M_TCP_Listener_Gui::instance()),
         mTCP_Listener_Ctrl(M_TCP_Listener_Ctrl::instance())
@@ -51,9 +51,9 @@ namespace test
         mReader.reset();
         mLog.reset();
         mTCP.reset();
-        mTCP_Client_Fld.reset();
-        mTCP_Client_Gui.reset();
-        mTCP_Client_Ctrl.reset();
+        mTCP_Con_Fld.reset();
+        mTCP_Con_Gui.reset();
+        mTCP_Con_Ctrl.reset();
         mTCP_Listener_Fld.reset();
         mTCP_Listener_Gui.reset();
         mTCP_Listener_Ctrl.reset();
@@ -69,9 +69,9 @@ namespace test
         mReader.set(Reader::instance());
         mLog.set(Log::instance());
         mTCP.set(TCP::instance());
-        mTCP_Client_Fld.set(TCP_Client_Fld::instance());
-        mTCP_Client_Gui.set(TCP_Client_Gui::instance());
-        mTCP_Client_Ctrl.set(TCP_Client_Ctrl::instance());
+        mTCP_Con_Fld.set(TCP_Con_Fld::instance());
+        mTCP_Con_Gui.set(TCP_Con_Gui::instance());
+        mTCP_Con_Ctrl.set(TCP_Con_Ctrl::instance());
         mTCP_Listener_Fld.set(TCP_Listener_Fld::instance());
         mTCP_Listener_Gui.set(TCP_Listener_Gui::instance());
         mTCP_Listener_Ctrl.set(TCP_Listener_Ctrl::instance());

@@ -26,7 +26,7 @@ bool Tcp_Listener_Base::select()
     const INT32 res = tcp.select(mSocket);
     bool ok = 
         (res == 0)
-        or (res > 0 and getClient().accept(mSocket));
+        or (res > 0 and getCon().accept(mSocket));
 
     if (not ok) 
     {
@@ -40,20 +40,20 @@ void Tcp_Listener_Base::close()
     IL::getTCP().close(mSocket);
 }
 
-I_TCP_Client& TCP_Listener_Fld::getClient() const
+I_TCP_Con& TCP_Listener_Fld::getCon() const
 {
-    return IL::getTCP_Client_Fld();
+    return IL::getTCP_Con_Fld();
 }
 INSTANCE_DEF(TCP_Listener_Fld)
 
-I_TCP_Client& TCP_Listener_Gui::getClient() const
+I_TCP_Con& TCP_Listener_Gui::getCon() const
 {
-    return IL::getTCP_Client_Gui();
+    return IL::getTCP_Con_Gui();
 }
 INSTANCE_DEF(TCP_Listener_Gui)
 
-I_TCP_Client& TCP_Listener_Ctrl::getClient() const
+I_TCP_Con& TCP_Listener_Ctrl::getCon() const
 {
-    return IL::getTCP_Client_Ctrl();
+    return IL::getTCP_Con_Ctrl();
 }
 INSTANCE_DEF(TCP_Listener_Ctrl)
