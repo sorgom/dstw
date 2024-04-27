@@ -5,7 +5,6 @@
 
 #include <testlib/TestGroupBase.h>
 #include <SIG/SIG_X.h>
-#include <limits>
 
 namespace test
 {
@@ -114,8 +113,7 @@ namespace test
         }
     };
 
-    TEST_GROUP_BASE(SIG_01, TestGroupSIG)
-    {};
+    TEST_GROUP_BASE(SIG_01, TestGroupSIG) {};
 
     //  test type: equivalence class test
     //  transitions SIG_H
