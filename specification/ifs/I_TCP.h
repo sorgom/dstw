@@ -38,10 +38,10 @@ public:
     virtual INT32 accept(INT32 socket) const = 0;
 
     //  receive data
-    virtual INT32 recv(INT32 socket, CHAR* buffer, size_t size) const = 0;
+    virtual INT32 recv(INT32 socket, PTR buffer, size_t size) const = 0;
 
     //  send data
-    virtual INT32 send(INT32 socket, const CHAR* buffer, size_t size) const = 0;
+    virtual INT32 send(INT32 socket, CPTR buffer, size_t size) const = 0;
 
     //  close a socket
     virtual void close(INT32& socket) const = 0;

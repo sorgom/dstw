@@ -98,10 +98,11 @@ namespace test
         CHECK_N_CLEAR()
         L_CHECK_FALSE(ok)
 
-        //  close
+        //  close valid socket
         STEP(9)
         m_TCP().expectClose(validSocket);
         listener.close();
+        CHECK_N_CLEAR()
     }
 
     //  test type: equivalence class test

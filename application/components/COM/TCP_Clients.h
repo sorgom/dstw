@@ -24,7 +24,7 @@ protected:
     virtual void forward(const ComTele& tele) const = 0;
 private:
     INT32 mSocket = -1;
-    CHAR mBuffer[sizeof(ComTele)];
+    ComTele mTele;
 };
 
 //  field tcp communication client

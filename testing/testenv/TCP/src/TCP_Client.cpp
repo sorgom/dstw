@@ -10,8 +10,8 @@
 #define closesocket close
 #endif
 
-#include <thread>
-#include <chrono>
+// #include <thread>
+// #include <chrono>
 
 namespace test
 {
@@ -39,9 +39,14 @@ namespace test
         return ok;
     }
 
-    bool TCP_Client::send(const void* data, INT32 size)
+    bool TCP_Client::send(CPTR data, INT32 size)
     {
         return ::send(mSocket, static_cast<const char*>(data), size, 0) == size;
+    }
+
+    bool TCP_Client::recv(PTR data, INT32 size)
+    {
+        return ::recv(mSocket, static_cast<char*>(data), size, 0) == size;
     }
 
     void TCP_Client::close()
@@ -53,14 +58,14 @@ namespace test
         } 
     }
 
-    void TCP_Client::t_connect(UINT16 port)
-    {
-        std::thread(&TCP_Client::_connect, this, port).detach();
-    }
+    // void TCP_Client::t_connect(UINT16 port)
+    // {
+    //     std::thread(&TCP_Client::_connect, this, port).detach();
+    // }
 
-    void TCP_Client::_connect(UINT16 port)
-    {
-        std::this_thread::sleep_for(std::chrono::milliseconds(mWait));
-        mRes = connect(port);
-    }
+    // void TCP_Client::_connect(UINT16 port)
+    // {
+    //     std::this_thread::sleep_for(std::chrono::milliseconds(mWait));
+    //     mRes = connect(port);
+    // }
 }

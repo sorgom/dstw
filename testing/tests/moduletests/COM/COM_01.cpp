@@ -103,7 +103,7 @@ namespace test
 
         //  client sends data: 1 ComTele
         STEP(13)
-        const ComTele tele{};
+        ComTele tele{};
         ok = client.send(tele);
         L_CHECK_TRUE(ok);
 
@@ -117,16 +117,25 @@ namespace test
         res = tcp.recv(s2, buffer, sizeof(buffer));
         L_CHECK_EQUAL(sizeof(ComTele), res);
 
+        //  send data to client
+        STEP(16)
+        res = tcp.send(s2, &tele, sizeof(tele));
+        L_CHECK_EQUAL(sizeof(ComTele), res);
+
+        STEP(17)
+        ok = client.recv(tele);
+        L_CHECK_TRUE(ok);
+
         //  close client
         //  select on listener should return 1 for activity
-        STEP(16)
+        STEP(18)
         client.close();
         res = tcp.select(s2);
         L_CHECK_EQUAL(1, res);
 
         //  recv on client socket should return 0
         //  when client closed
-        STEP(17)
+        STEP(19)
         res = tcp.recv(s2, buffer, sizeof(buffer));
         L_CHECK_EQUAL(0, res);
         
@@ -135,13 +144,19 @@ namespace test
 
         //  accept on invalid socket
         //  should fail
-        STEP(18)
+        STEP(20)
         res = tcp.accept(s1 + 100);
         L_CHECK_TRUE(res < 0);
 
+        STEP(21)
         tcp.close(s1);
         L_CHECK_TRUE(s1 < 0);
 
+        STEP(22)
+        tcp.close(s2);
+        L_CHECK_TRUE(s1 < 0);
+
+        STEP(23)
         tcp.cleanup();
     }
 } // namespace

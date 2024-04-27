@@ -79,14 +79,14 @@ INT32 TCP::accept(const INT32 socket) const
     return ::accept(socket, nullptr, nullptr);
 }
 
-INT32 TCP::recv(const INT32 socket, CHAR* const buffer, const size_t size) const
+INT32 TCP::recv(const INT32 socket, PTR buffer, const size_t size) const
 {
-    return ::recv(socket, buffer, size, 0);
+    return ::recv(socket, reinterpret_cast<CHAR*>(buffer), size, 0);
 }
 
-INT32 TCP::send(const INT32 socket, const CHAR* const buffer, const size_t size) const
+INT32 TCP::send(const INT32 socket, CPTR buffer, const size_t size) const
 {
-    return ::send(socket, buffer, size, 0);
+    return ::send(socket, reinterpret_cast<const CHAR*>(buffer), size, 0);
 }
 
 void TCP::close(INT32& socket) const

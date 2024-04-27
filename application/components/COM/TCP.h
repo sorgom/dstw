@@ -27,9 +27,9 @@ public:
 
     INT32 accept(INT32 socket) const;
 
-    INT32 recv(INT32 socket, CHAR* buffer, size_t size) const;
+    INT32 recv(INT32 socket, PTR buffer, size_t size) const;
 
-    INT32 send(INT32 socket, const CHAR* buffer, size_t size) const;
+    INT32 send(INT32 socket, CPTR buffer, size_t size) const;
 
     void close(INT32& socket) const;
 

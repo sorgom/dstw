@@ -31,11 +31,11 @@ bool TCP_CLient_Base::select()
         //  activity on socket
         if (res > 0)
         {
-            const INT32 len = tcp.recv(mSocket, mBuffer, sizeof(mBuffer));
+            const INT32 len = tcp.recv(mSocket, &mTele, sizeof(ComTele));
             //  valid telegram received
             if (len == sizeof(ComTele))
             {
-                forward(*reinterpret_cast<const ComTele*>(mBuffer));
+                forward(mTele);
             }
             //  close event
             else if (len <= 0)
@@ -73,6 +73,8 @@ void TCP_CLient_Base::send(const ComTele& tele) const
     {
         IL::getTCP().send(mSocket, reinterpret_cast<const CHAR*>(&tele), sizeof(ComTele));
     }
+    else
+    { pass(); }
 }
 
 //  field client

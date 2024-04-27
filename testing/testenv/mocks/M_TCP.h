@@ -7,6 +7,7 @@
 
 #include <ifs/I_TCP.h>
 #include "M_Base.h"
+#include <cstring>
 
 namespace test
 {
@@ -16,12 +17,13 @@ namespace test
         inline M_TCP() : M_Base("Tcp") {}
 
         INSTANCE_DEC(M_TCP)
+        NOCOPY(M_TCP)
 
         inline void setTimeout(UINT32 ms)
         {
             call("setTimeout").PARAM(ms);
         }
-        inline void expectSetSelectTimeout(UINT32 ms) const
+        inline void expectSetTimeout(UINT32 ms) const
         {
             expect("setTimeout").PARAM(ms);
         }
@@ -89,16 +91,32 @@ namespace test
             expect("accept").PARAM(socket).AND_RETURN(ret);
         }
 
-        inline INT32 recv(INT32 socket, CHAR* buffer, size_t size) const
+        inline INT32 recv(INT32 socket, PTR buffer, size_t size) const
         {
-            return call("recv").PARAM(socket).PARAM(size).RETURN_DEF_INT(size);
+            const INT32 res = call("recv").PARAM(socket).PARAM(size).RETURN_DEF_INT(size);
+            if (
+                mTele != nullptr and
+                size == sizeof(ComTele) and
+                static_cast<size_t>(res) == size
+            )
+            {
+                std::memcpy(buffer, mTele, size);
+            }
+            mTele = nullptr;
+            return res;
         }
         inline void expectRecv(INT32 socket, size_t size, INT32 ret = 0) const
         {
             expect("recv").PARAM(socket).PARAM(size).AND_RETURN(ret);
         }
+        inline void expectRecv(INT32 socket, const ComTele& tele) const
+        {
+            const INT32 size = sizeof(ComTele);
+            mTele = &tele;
+            expect("recv").PARAM(socket).PARAM(size).AND_RETURN(size);
+        }
 
-        inline INT32 send(INT32 socket, const CHAR* buffer, size_t size) const
+        inline INT32 send(INT32 socket, CPTR buffer, size_t size) const
         {
             return call("send").PARAM(socket).PARAM(size).RETURN_DEF_INT(size);
         }
@@ -115,6 +133,13 @@ namespace test
         {
             expect("close").PARAM(socket);
         }
+        inline void expectClose() const
+        {
+            expect("close").IGNORE();
+        }
+    private:
+        using TelePtr = const ComTele*;
+        mutable TelePtr mTele = nullptr;
     };
 } // namespace
 
