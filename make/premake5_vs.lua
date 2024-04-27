@@ -44,7 +44,7 @@ workspace 'tests'
             kind 'ConsoleApp'
             targetdir 'exe'
             warnings 'high'
-            links { 'winmm' }
+            links { 'winmm', 'ws2_32' }
             buildoptions { buildoptions_vs_test }
             files { files_cpputest_vs, files_testenv, files_app }
             
@@ -103,4 +103,5 @@ workspace 'dstw'
             includedirs { includedirs_app }
             kind 'ConsoleApp'
             files { files_app, files_app_main }
+            links { 'ws2_32' }
 

@@ -2,7 +2,6 @@
 
 #ifdef _WIN32
 #include <winsock2.h>
-#pragma comment(lib, "ws2_32")
 #else
 #include <sys/socket.h>
 #include <arpa/inet.h>
