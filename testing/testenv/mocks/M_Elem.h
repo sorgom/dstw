@@ -40,24 +40,27 @@ namespace test
     class M_TSW : public M_Elem
     {
     public:
-        inline M_TSW() : M_Elem("TSW") {}
         INSTANCE_DEC(M_TSW)
+    private:
+        inline M_TSW() : M_Elem("TSW") {}
     };
 
     // mock SIG
     class M_SIG : public M_Elem
     {
     public:
-        inline M_SIG() : M_Elem("SIG") {}
         INSTANCE_DEC(M_SIG)
+    private:
+        inline M_SIG() : M_Elem("SIG") {}
     };
 
     // mock LCR
     class M_LCR : public M_Elem
     {
     public:
-        inline M_LCR() : M_Elem("LCR") {}
         INSTANCE_DEC(M_LCR)
+    private:
+        inline M_LCR() : M_Elem("LCR") {}
     };
     
 } // namespace

@@ -15,9 +15,9 @@ void Com::run()
     I_TCP_Con &clientGui = IL::getTCP_Con_Gui();
     I_TCP_Con &clientCtrl = IL::getTCP_Con_Ctrl();
 
-    const ComSetup& setup = IL::getReader().getComSetup();
-
     I_TCP& tcp = IL::getTCP();
+
+    const ComSetup& setup = IL::getReader().getComSetup();
 
     bool ok = tcp.init()
         and listenerFld.listen(setup.portFld)

@@ -12,8 +12,8 @@ namespace test
     class M_Dispatcher : public I_Dispatcher, private M_Base
     {
     public:
-        inline M_Dispatcher() : M_Base("Dispatcher") {}
         INSTANCE_DEC(M_Dispatcher)
+        NOCOPY(M_Dispatcher)
 
         inline void clear()
         {
@@ -78,5 +78,8 @@ namespace test
         {
             expect("toGui").PARAM(id).TPARAM(ComData, data);
         }
+
+    private:
+        inline M_Dispatcher() : M_Base("Dispatcher") {}
     };
 } 

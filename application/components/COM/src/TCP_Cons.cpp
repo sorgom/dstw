@@ -2,7 +2,7 @@
 #include <SYS/IL.h>
 
 //  ============================================================
-//  base client
+//  base connection
 //  ============================================================
 bool TCP_Con_Base::accept(const INT32 socket)
 {
@@ -77,7 +77,7 @@ void TCP_Con_Base::send(const ComTele& tele) const
     { pass(); }
 }
 
-//  field client
+//  field connection
 INSTANCE_DEF(TCP_Con_Fld)
 
 void TCP_Con_Fld::onAccept() const
@@ -90,7 +90,7 @@ void TCP_Con_Fld::forward(const ComTele& tele) const
     IL::getDispatcher().fromFld(tele);
 }
 
-//  GUI client
+//  GUI connection
 INSTANCE_DEF(TCP_Con_Gui)
 
 void TCP_Con_Gui::onAccept() const
@@ -104,7 +104,7 @@ void TCP_Con_Gui::forward(const ComTele& tele) const
     IL::getDispatcher().fromGui(tele);
 }
 
-//  control client
+//  control connection
 INSTANCE_DEF(TCP_Con_Ctrl)
 
 void TCP_Con_Ctrl::forward(const ComTele& tele) const

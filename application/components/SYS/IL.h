@@ -7,12 +7,12 @@
 
 #pragma once
 
-#include <COM/TCP.h>
+#include <COM/Com.h>
 #include <COM/TCP_Cons.h>
 #include <COM/TCP_Listeners.h>
+#include <COM/TCP.h>
 #include <LCR/LCR_Provider.h>
 #include <SIG/SIG_Provider.h>
-#include <COM/Com.h>
 #include <SYS/Dispatcher.h>
 #include <SYS/Log.h>
 #include <SYS/Reader.h>

@@ -1,7 +1,6 @@
 //  ============================================================
-//  runtime tests vol. 1
-//  tests for runtime behaviour
-//  require a running application (in background)
+//  system tests vol. 1
+//  requiring a running application (in background)
 //  ============================================================
 //  created by Manfred Sorgo
 

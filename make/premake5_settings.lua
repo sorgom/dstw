@@ -23,8 +23,12 @@ includedirs_app = {
     '../application/components'
 }
 
+includedirs_testenv = {
+    '../testing/testenv'
+}
+
 includedirs_test = {
-    '../testing/testenv',
+    includedirs_testenv,
     includedirs_cpputest,
     includedirs_teststeps,
     includedirs_app
@@ -32,7 +36,7 @@ includedirs_test = {
 
 includedirs_runtests = {
     includedirs_app,
-    '../testing/testenv',
+    includedirs_testenv,
     includedirs_cpputest,
     includedirs_teststeps
 }
@@ -61,7 +65,7 @@ defines_test = {
 defines_app = { 'NDEBUG' }
 
 defines_gendata = { 
-    'NDEBUG', 
+    defines_test,
     'TEST_NUM_TSW=1001', 
     'TEST_NUM_SIG=1002', 
     'TEST_NUM_LCR=1003', 

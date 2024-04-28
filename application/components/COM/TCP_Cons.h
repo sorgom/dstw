@@ -31,34 +31,37 @@ private:
 class TCP_Con_Fld : public TCP_Con_Base
 {
 public:
-    inline TCP_Con_Fld() = default;
     INSTANCE_DEC(TCP_Con_Fld)
     NOCOPY(TCP_Con_Fld)
 protected:
     void onAccept() const override;
     void forward(const ComTele& tele) const override;
+private:
+    inline TCP_Con_Fld() = default;
 };
 
 //  GUI tcp communication client
 class TCP_Con_Gui : public TCP_Con_Base
 {
 public:
-    inline TCP_Con_Gui() = default;
     INSTANCE_DEC(TCP_Con_Gui)  
     NOCOPY(TCP_Con_Gui) 
 protected:
     void onAccept() const override;
     void forward(const ComTele& tele) const override;
+private:
+    inline TCP_Con_Gui() = default;
 };
 
 //  control tcp communication client
 class TCP_Con_Ctrl : public TCP_Con_Base
 {
 public:
-    inline TCP_Con_Ctrl() = default;
     INSTANCE_DEC(TCP_Con_Ctrl)
     NOCOPY(TCP_Con_Ctrl)
 protected:
     inline void onAccept() const override {}
     void forward(const ComTele& tele) const override;
+private:
+    inline TCP_Con_Ctrl() = default;
 };

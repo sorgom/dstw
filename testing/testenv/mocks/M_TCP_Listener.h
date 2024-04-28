@@ -43,33 +43,36 @@ namespace test
         
         NOCOPY(M_TCP_Listener)
         NODEF(M_TCP_Listener)
+
     protected:
         inline M_TCP_Listener(const CONST_C_STRING name) : M_Base(name) {}
-
     };
 
     class M_TCP_Listener_Fld : public M_TCP_Listener
     {
     public:
-        inline M_TCP_Listener_Fld() : M_TCP_Listener("TCP_Listener_Fld") {}
         INSTANCE_DEC(M_TCP_Listener_Fld)
         NOCOPY(M_TCP_Listener_Fld)
+    private:
+        M_TCP_Listener_Fld() : M_TCP_Listener("TCP_Listener_Fld") {}
     };
 
     class M_TCP_Listener_Gui : public M_TCP_Listener
     {   
     public:
-        inline M_TCP_Listener_Gui() : M_TCP_Listener("TCP_Listener_Gui") {}
         INSTANCE_DEC(M_TCP_Listener_Gui)
         NOCOPY(M_TCP_Listener_Gui)
+    private:
+        M_TCP_Listener_Gui() : M_TCP_Listener("TCP_Listener_Gui") {}
     };
 
     class M_TCP_Listener_Ctrl : public M_TCP_Listener
     {
     public:
-        inline M_TCP_Listener_Ctrl() : M_TCP_Listener("TCP_Listener_Ctrl") {}
         INSTANCE_DEC(M_TCP_Listener_Ctrl)
         NOCOPY(M_TCP_Listener_Ctrl)
+    private:
+        M_TCP_Listener_Ctrl() : M_TCP_Listener("TCP_Listener_Ctrl") {}
     };
     
 } // namespace

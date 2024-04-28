@@ -14,7 +14,6 @@ namespace test
     class M_Reader : public I_Reader, private M_Base
     {
     public:
-        inline M_Reader() : M_Base("Reader") {}
         INSTANCE_DEC(M_Reader)
 
         inline void read(CONST_C_STRING filename) override
@@ -37,6 +36,7 @@ namespace test
         }
 
     private:
+        M_Reader() : M_Base("Reader") {}
         const ComSetup setup = { tcpPortFld, tcpPortGui, tcpPortCtrl, tcpTimeout };
     };
 } // namespace

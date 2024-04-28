@@ -10,7 +10,7 @@
 class I_TCP
 {
 public:
-    //  set elect timeout in milli seconds
+    //  set select timeout in milli seconds
     virtual void setTimeout(UINT32 ms) = 0;
 
     //  initialize TCP system

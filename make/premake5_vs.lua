@@ -36,7 +36,7 @@ workspace 'tests'
         language 'C++'
         objdir 'obj/vs/%{prj.name}'
 
-        includedirs { includedirs_test, includedirs_app }
+        includedirs { includedirs_test }
 
         defines { 'NDEBUG', defines_test }
 

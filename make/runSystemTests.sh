@@ -1,6 +1,6 @@
 #!/bin/bash
 #   ====================================
-#   run real time tests
+#   run system tests
 #   ====================================
 #   created by Manfred Sorgo
 

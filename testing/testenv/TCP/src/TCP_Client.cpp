@@ -9,9 +9,6 @@
 #define closesocket close
 #endif
 
-// #include <thread>
-// #include <chrono>
-
 namespace test
 {
     bool TCP_Client::connect(UINT16 port)
@@ -68,15 +65,4 @@ namespace test
             mSocket = -1; 
         } 
     }
-
-    // void TCP_Client::t_connect(UINT16 port)
-    // {
-    //     std::thread(&TCP_Client::_connect, this, port).detach();
-    // }
-
-    // void TCP_Client::_connect(UINT16 port)
-    // {
-    //     std::this_thread::sleep_for(std::chrono::milliseconds(mWait));
-    //     mRes = connect(port);
-    // }
 }

@@ -57,42 +57,39 @@ namespace test
     class M_TSW_Provider : public M_Provider
     {
     public:
-        inline M_TSW_Provider():
-            M_Provider("TSW_Provider")
-        {}
         INSTANCE_DEC(M_TSW_Provider)
 
         inline I_Elem& at(size_t pos)
         {
             return M_TSW::instance();
         }
+    private:
+        M_TSW_Provider(): M_Provider("TSW_Provider") {}
     };
 
     class M_SIG_Provider : public M_Provider
     {
     public:
-        inline M_SIG_Provider():
-            M_Provider("SIG_Provider")
-        {}
         INSTANCE_DEC(M_SIG_Provider)
 
         inline I_Elem& at(size_t pos)
         {
             return M_SIG::instance();
         }
+    private:
+        M_SIG_Provider(): M_Provider("SIG_Provider") {}
     };
 
     class M_LCR_Provider : public M_Provider
     {
     public:
-        inline M_LCR_Provider():
-            M_Provider("LCR_Provider")
-        {}
         INSTANCE_DEC(M_LCR_Provider)
 
         inline I_Elem& at(size_t pos)
         {
             return M_LCR::instance();
         }
+    private:
+        M_LCR_Provider(): M_Provider("LCR_Provider") {}
     };
 }

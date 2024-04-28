@@ -130,7 +130,7 @@ workspace 'systemtests'
         objdir 'obj/gcc/%{prj.name}'
         buildoptions { buildoptions_gcc }
 
-        defines { 'DEBUG', defines_test }
+        defines { 'DEBUG', defines_gendata }
         symbols 'On'
 
         filter { 'configurations:qnd' }
@@ -170,7 +170,7 @@ workspace 'dstw'
         project 'dstw_gen'
             kind 'ConsoleApp'
             includedirs { includedirs_test }
-            defines { defines_gendata }
+            defines { 'NDEBUG', defines_gendata }
             files { files_gendata }
 
         project 'dstw_run'

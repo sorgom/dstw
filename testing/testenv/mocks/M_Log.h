@@ -14,9 +14,7 @@ namespace test
         private M_Base
     {
     public:
-        M_Log() :
-            M_Base("Log")
-        {}
+        INSTANCE_DEC(M_Log)
 
         inline void log(E_Comp comp, E_Ret ret)
         {
@@ -34,7 +32,7 @@ namespace test
         {
             expect("maxerr").AND_RETURN(ret);
         }
-
-        INSTANCE_DEC(M_Log)
+    private:
+        M_Log() : M_Base("Log") {}
     };
 } 

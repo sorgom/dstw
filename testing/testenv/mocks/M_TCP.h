@@ -14,8 +14,6 @@ namespace test
     class M_TCP : public I_TCP, private M_Base
     {
     public:
-        inline M_TCP() : M_Base("Tcp") {}
-
         INSTANCE_DEC(M_TCP)
         NOCOPY(M_TCP)
 
@@ -140,6 +138,7 @@ namespace test
     private:
         using TelePtr = const ComTele*;
         mutable TelePtr mTele = nullptr;
+        M_TCP() : M_Base("Tcp") {}
     };
 } // namespace
 

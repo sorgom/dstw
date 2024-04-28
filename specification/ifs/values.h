@@ -21,10 +21,16 @@ enum E_Comp : UINT8
 //  return types
 enum E_Ret : UINT8
 {
+    // no error
     RET_NO_ERR,
+    //  element name not found
+    //  or received state not valid
     RET_ERR_MATCH,
+    //  element position out of range
     RET_ERR_RANGE,
+    //  startup error in component
     RET_ERR_STARTUP,
+    //  communication error
     RET_ERR_COM
 };
                 
@@ -87,7 +93,7 @@ enum E_TswState : UINT8
     TSW_STATE_WAIT_RIGHT
 };
 
-enum E_TswGuiCmd : UINT8
+enum E_TswCmd : UINT8
 {
     TSW_CMD_WU = 221,
     TSW_CMD_LEFT,

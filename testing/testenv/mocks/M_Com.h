@@ -13,8 +13,8 @@ namespace test
     class M_Com : public I_Com, private M_Base
     {
     public:
-        inline M_Com() : M_Base("Com") {}
         INSTANCE_DEC(M_Com)
+        NOCOPY(M_Com)
 
         inline void run() override
         {
@@ -51,5 +51,7 @@ namespace test
         {
             expect("toGui").TPARAM(ComTele, tele);
         }
+    private:
+        inline M_Com() : M_Base("Com") {}
     };
 } // namespace
