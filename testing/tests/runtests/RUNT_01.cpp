@@ -5,7 +5,15 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#include <testlib/TestGroupBase.h>
+#include <testlib/CppUTest.h>
+
+#include <codebase/Mem.h>
+#include <comparators/ostreams.h>
+#include <ifs/values.h>
+#include <testlib/TestLib.h>
+#include <testlib/testValues.h>
+#include <TestSteps/TestSteps.h>
+
 #include <TCP/TCP_Client.h>
 
 #include <iostream>
@@ -13,7 +21,7 @@ using std::cerr, std::endl;
 
 namespace test
 {
-    class TestGroupRT : public TestGroupBase
+    class TestGroupRT : public Utest
     {
     public:
         TestGroupRT() = default;
@@ -45,9 +53,15 @@ namespace test
             clientGui.close();
             clientCtrl.close();
         }
+        
+        inline void teardown()
+        {
+            close();
+        }
+
     };
 
-    #define SETUP_CONNECT() SETUP() if (not connect()) {return; }
+    #define SETUP_CONNECT() SETUP() if (not connect()) { close(); return; }
 
     TEST_GROUP_BASE(RUNT_01, TestGroupRT) {};
 

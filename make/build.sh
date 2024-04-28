@@ -3,14 +3,12 @@
 help()
 {
     echo "Usage: $(basename $0) [options]"
-    echo "===================================="
     echo "build all major makes parallelly"
     echo "options:"
     echo "-c  clean ignored artifacts before"
     echo "-p  premake5 makefiles"
     echo "-r  run all binaries"
     echo "-h  this help"
-    echo "===================================="
     exit
 }
 

@@ -71,7 +71,11 @@ defines_gendata = {
 files_moduletest = { '../testing/tests/moduletests/**.cpp' }
 files_systest  = { '../testing/tests/systemtests/*.cpp' }
 files_devtest  = { '../testing/tests/devtests/*.cpp' }
-files_runtests = { '../testing/tests/runtests/*.cpp'}
+files_runtests = { '../testing/tests/runtests/RUNT_*.cpp'}
+files_stopapp  = { 
+    '../testing/tests/runtests/stopAppMain.cpp',
+    '../testing/testenv/TCP/src/TCP_Client.cpp'
+}
 
 files_gendata = { 
     '../testing/gendata/genDataMain.cpp', 

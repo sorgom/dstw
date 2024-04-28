@@ -14,6 +14,7 @@
 #pragma once
 
 #include <codebase/BaseTypes.h>
+#include <ifs/values.h>
 
 #ifndef TEST_NUM_TSW
 #define TEST_NUM_TSW 11

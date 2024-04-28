@@ -121,9 +121,7 @@ workspace 'coverage'
 
 --  ============================================================
 --  > runtests.make
---  -   application without test includes (static lib)
 --  -   run tests only runtime
---  ->  bin/sysests_tests_{config}
 --  configurations: 
 --  - ci        module tests
 --  - qnd       with devel includes
@@ -134,8 +132,6 @@ workspace 'runtests'
         language 'C++'
         objdir 'obj/gcc/%{prj.name}'
         buildoptions { buildoptions_gcc }
-        linkoptions { linkoptions_test_gcc }
-        includedirs { includedirs_app }
 
         defines { 'DEBUG', defines_test }
         symbols 'On'
@@ -143,18 +139,25 @@ workspace 'runtests'
         filter { 'configurations:qnd' }
             includedirs { includedirs_qnd }
 
-        project 'run_app'
-            kind 'StaticLib'
-            targetdir 'lib'
-            files { files_app }
+        project 'stop_app'
+            kind 'ConsoleApp'
+            targetdir 'bin'
+            libdirs { 'lib' }
+            -- links { links_test_gcc }
+            files { files_stopapp }    
+            includedirs { includedirs_test }
 
         project 'run_tests'
             kind 'ConsoleApp'
             targetdir 'bin'
             libdirs { 'lib' }
-            links { links_test_gcc, 'run_app' }
+            links { links_test_gcc }
             files { files_testenv, files_runtests }
-            includedirs { includedirs_runtests }
+            removefiles { 
+                '../testing/testenv/mocks/**.cpp'
+            }
+            includedirs { includedirs_test }
+            linkoptions { linkoptions_test_gcc }
 
 --  ============================================================
 --  > dstw.make

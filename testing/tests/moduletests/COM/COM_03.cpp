@@ -170,7 +170,6 @@ namespace test
         //  select returns 1 activity
         //  recv returns valid data
         //  that contains both COM_CTRL_STOP
-        //  Com receives stop
         STEP(3)
         {
             const ComTele tele1{{}, {COM_CTRL_STOP, COM_CTRL_STOP}};
@@ -182,8 +181,43 @@ namespace test
             L_CHECK_TRUE(ok)
         }
 
-        //  recv returns invalid size
+        //  select returns 1 activity
+        //  recv returns valid data
+        //  that don't contain both COM_CTRL_PING
         STEP(4)
+        {
+            const ComTele tele1{{}, {COM_CTRL_PING, COM_CTRL_PING - 1}};
+            m_TCP().expectSelect(validSocket, 1);
+            m_TCP().expectRecv(validSocket, tele1);
+            ok = client.select();
+            CHECK_N_CLEAR()
+            L_CHECK_TRUE(ok)
+
+            const ComTele tele2{{}, {COM_CTRL_PING - 1, COM_CTRL_PING}};
+            m_TCP().expectSelect(validSocket, 1);
+            m_TCP().expectRecv(validSocket, tele2);
+            ok = client.select();
+            CHECK_N_CLEAR()
+            L_CHECK_TRUE(ok)
+        }
+
+        //  select returns 1 activity
+        //  recv returns valid data
+        //  that contains both COM_CTRL_PING
+        //  send echo
+        STEP(5)
+        {
+            const ComTele tele1{{}, {COM_CTRL_PING, COM_CTRL_PING}};
+            m_TCP().expectSelect(validSocket, 1);
+            m_TCP().expectRecv(validSocket, tele1);
+            m_TCP().expectSend(validSocket, sizeof(ComTele));
+            ok = client.select();
+            CHECK_N_CLEAR()
+            L_CHECK_TRUE(ok)
+        }
+
+        //  recv returns invalid size
+        STEP(6)
         m_TCP().expectSelect(validSocket, 1);
         m_TCP().expectRecv(validSocket, sizeof(ComTele), sizeof(ComTele) - 1);
         m_TCP().expectClose();
