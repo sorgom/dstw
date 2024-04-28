@@ -1,74 +1,134 @@
 //  ============================================================
-//  system tests SIG
+//  runtime tests vol. 1
+//  tests for runtime behaviour
+//  require a running application (in background)
 //  ============================================================
 //  created by Manfred Sorgo
 
-#include <testlib/TestGroupBase.h>
-#include <SYS/Reader.h>
-#include <SYS/Dispatcher.h>
-#include <SIG/SIG_Provider.h>
+#include <testlib/CppUTest.h>
+
+#include <codebase/Mem.h>
+#include <comparators/ostreams.h>
+#include <ifs/values.h>
+#include <testlib/TestLib.h>
+#include <testlib/testValues.h>
+#include <TestSteps/TestSteps.h>
+
+#include <TCP/TCP_Client.h>
+
+#include <iostream>
+using std::cerr, std::endl;
 
 namespace test
 {
+    class TestGroupSYST : public Utest
+    {
+    protected:
+        TestGroupSYST() = default;
+        TCP_Client clientFld;
+        TCP_Client clientGui;
+        TCP_Client clientCtrl;
+        bool ok = false;
+        INT32 res = 0;
 
-    TEST_GROUP_BASE(SYST_01, TestGroupBase) {};
+        //  check if application is running
+        void connect()
+        {
+            SUBSTEPS()
+            STEP(1)
+            const bool ok = 
+                clientFld.connect(tcpPortFld) and
+                clientGui.connect(tcpPortGui) and
+                clientCtrl.connect(tcpPortCtrl);
 
-    //  test type: system test
+            L_CHECK_TRUE(ok)
+            ENDSTEPS()
+        }
+
+        //  terminate all connections
+        void close()
+        {
+            clientFld.close();
+            clientGui.close();
+            clientCtrl.close();
+        }
+
+        void setup()
+        {
+            connect();
+        }
+        
+        inline void teardown()
+        {
+            close();
+        }
+
+    };
+
+    #define SETUP_CONNECT() SETUP() if (not connect()) { close(); return; }
+
+    TEST_GROUP_BASE(SYST_01, TestGroupSYST) {};
+
+    //  ping pong test
     TEST(SYST_01, T01)
     {
-        SETUP()
-        unmock();
-        mock_Com();
-        mock_Log();
-        I_Dispatcher& dispatcher = Dispatcher::instance();
-        I_Reader& reader = Reader::instance();
-        I_Provider& provider = SIG_Provider::instance();
-
-        const CONST_C_STRING fname = "tmp.dat";
-        {
-            GenProjData<0, TEST_NUM_SIG, 0, 0> projData;
-            projData.dump(fname);
-        }
-        reader.read(fname);    
-
-        L_CHECK_EQUAL(TEST_NUM_SIG, provider.size())
-
+        //  send ping telegram
         STEP(1)
-        //  signal type SIG_H (default)
-        //  stimulation: send SIG field states H0 to dispatcher
-        //  expectation: GUI states H0 to Com
-        SUBSTEPS()
-        for (UINT32 n = 0; n < TEST_NUM_SIG; ++n)
-        {
-            STEP(n)
-            ComTele tele{{}, {SIG_STATE_H0, PARAM_UNDEF}};
-            nameElement(tele, TEST_NUM_SIG - n, "SIG");
+        const ComTele ts{genComName(22, "PING"), { COM_CTRL_PING, COM_CTRL_PING }};
+        ok = clientCtrl.send(ts);
+        L_CHECK_TRUE(ok)
 
-            m_Com().expectToGui(tele);
-            dispatcher.fromFld(tele);
-            CHECK_N_CLEAR()
-        }
-        ENDSTEPS()
-
+        //  receive pong telegram
         STEP(2)
-        //  stimulation: send GUI commands SIG_STATE_H1 to dispatcher
-        //  expectation: 
-        //  -   commands SIG_STATE_H1 to Com
-        //  -   GUI states SIG_STATE_WAIT to Com
-        SUBSTEPS()
-        for (UINT32 n = 0; n < TEST_NUM_SIG; ++n)
-        {
-            STEP(n)
-            ComTele fromGui{{}, {SIG_STATE_H1, PARAM_UNDEF}};
-            ComTele toGui{{}, {SIG_STATE_WAIT_H1, PARAM_UNDEF}};
-            nameElement(fromGui, TEST_NUM_SIG - n, "SIG");
-            toGui.name = fromGui.name;
+        ComTele tr;
+        ok = clientCtrl.recv(tr);
+        L_CHECK_TRUE(ok)
+        res = Mem::cmp(tr, ts);
+        L_CHECK_EQUAL(0, res)
+    }
 
-            m_Com().expectToFld(fromGui);
-            m_Com().expectToGui(toGui);
-            dispatcher.fromGui(fromGui);
-            CHECK_N_CLEAR()
-        }
-        ENDSTEPS()
+    //  switch a track switch state from field
+    TEST(SYST_01, T02)
+    {
+        //  send switch state telegram from field
+        STEP(1)
+        const ComTele ts{genComName(1, "TSW"), { TSW_STATE_LEFT, PARAM_UNDEF }};
+        ok = clientFld.send(ts);
+        L_CHECK_TRUE(ok)
+
+        //  receive switch state telegram to GUI
+        STEP(2)
+        ComTele tr;
+        ok = clientGui.recv(tr);
+        L_CHECK_TRUE(ok)
+        res = Mem::cmp(tr, ts);
+        L_CHECK_EQUAL(0, res)
+    }
+
+    //  switch a track switch state from GUI
+    TEST(SYST_01, T03)
+    {
+        //  send switch state telegram from GUI
+        STEP(1)
+        const ComName cname {genComName(2, "TSW")};
+        ok = clientGui.send(ComTele{cname, { TSW_CMD_RIGHT, PARAM_UNDEF }});
+        L_CHECK_TRUE(ok)
+
+        //  receive switch state telegram to field
+        //  receive wait state telegram to GUI
+        STEP(2)
+        const ComTele txf{cname, { TSW_STATE_RIGHT, PARAM_UNDEF }};
+        const ComTele txg{cname, { TSW_STATE_WAIT_RIGHT, PARAM_UNDEF }};
+        ComTele tr;
+        
+        ok = clientFld.recv(tr);
+        L_CHECK_TRUE(ok)
+        res = Mem::cmp(tr, txf);
+        L_CHECK_EQUAL(0, res)
+
+        ok = clientGui.recv(tr);
+        L_CHECK_TRUE(ok)
+        res = Mem::cmp(tr, txg);
+        L_CHECK_EQUAL(0, res)
     }
 }

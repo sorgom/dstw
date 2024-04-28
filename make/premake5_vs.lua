@@ -32,7 +32,7 @@ buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127 /D_WINSOCK_DEPRECATED_NO
 --  ============================================================
 workspace 'tests'
     filter { 'action:vs*' }
-        configurations { 'ci', 'dev', 'sys', 'qnd' }
+        configurations { 'ci', 'dev', 'qnd' }
         language 'C++'
         objdir 'obj/vs/%{prj.name}'
 
@@ -58,8 +58,6 @@ workspace 'tests'
             filter { 'configurations:dev' }
                 files { files_devtest }
 
-            filter { 'configurations:sys' }
-                files { files_systest }
 --  ============================================================
 --  > gendata.sln
 --  generate proj data for application runtime

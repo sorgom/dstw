@@ -42,16 +42,6 @@ endef
 define POSTBUILDCMDS
 endef
 
-else ifeq ($(config),sys)
-TARGETDIR = bin
-TARGET = $(TARGETDIR)/tests_sys
-OBJDIR = obj/gcc/tests/sys
-INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
-define PREBUILDCMDS
-endef
-define POSTBUILDCMDS
-endef
-
 else ifeq ($(config),qnd)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_qnd
@@ -192,12 +182,6 @@ OBJECTS += $(OBJDIR)/SYS_02.o
 OBJECTS += $(OBJDIR)/SYS_03.o
 OBJECTS += $(OBJDIR)/TSW_01.o
 OBJECTS += $(OBJDIR)/TSW_02.o
-
-else ifeq ($(config),sys)
-GENERATED += $(OBJDIR)/SYST_01.o
-GENERATED += $(OBJDIR)/SYST_02.o
-OBJECTS += $(OBJDIR)/SYST_01.o
-OBJECTS += $(OBJDIR)/SYST_02.o
 
 else ifeq ($(config),qnd)
 GENERATED += $(OBJDIR)/BAS_01.o
@@ -468,14 +452,6 @@ $(OBJDIR)/TSW_01.o: ../testing/tests/moduletests/TSW/TSW_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW_02.o: ../testing/tests/moduletests/TSW/TSW_02.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-
-else ifeq ($(config),sys)
-$(OBJDIR)/SYST_01.o: ../testing/tests/systemtests/SYST_01.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SYST_02.o: ../testing/tests/systemtests/SYST_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

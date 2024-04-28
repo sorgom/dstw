@@ -35,7 +35,7 @@ workspace 'lib_cpputest'
 --  ============================================================
 workspace 'tests'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'sys', 'qnd', 'dev', 'bullseye', 'tmp' }
+        configurations { 'ci', 'qnd', 'dev', 'bullseye', 'tmp' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
         targetsuffix '_%{cfg.name}'
@@ -53,9 +53,6 @@ workspace 'tests'
 
             filter { 'configurations:ci' }
                 files { files_moduletest }
-
-            filter { 'configurations:sys' }
-                files { files_systest }
 
             filter { 'configurations:qnd' }
                 files { files_moduletest }
@@ -142,9 +139,7 @@ workspace 'systemtests'
         project 'systemtests_stop'
             kind 'ConsoleApp'
             targetdir 'bin'
-            -- libdirs { 'lib' }
-            -- links { links_test_gcc }
-            files { files_stopapp }    
+            files { files_systemtest_stop }    
             includedirs { includedirs_test }
 
         project 'systemtests_run'
@@ -152,7 +147,7 @@ workspace 'systemtests'
             targetdir 'bin'
             libdirs { 'lib' }
             links { links_test_gcc }
-            files { files_testenv, files_runtests }
+            files { files_testenv, files_systemtest }
             removefiles { 
                 '../testing/testenv/mocks/**.cpp'
             }

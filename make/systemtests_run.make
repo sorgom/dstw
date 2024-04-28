@@ -59,7 +59,7 @@ GENERATED :=
 OBJECTS :=
 
 GENERATED += $(OBJDIR)/Comparator.o
-GENERATED += $(OBJDIR)/RUNT_01.o
+GENERATED += $(OBJDIR)/SYST_01.o
 GENERATED += $(OBJDIR)/TCP_Client.o
 GENERATED += $(OBJDIR)/TestGroupBase.o
 GENERATED += $(OBJDIR)/TestLib.o
@@ -70,7 +70,7 @@ GENERATED += $(OBJDIR)/installComparators.o
 GENERATED += $(OBJDIR)/ostreamHelpers.o
 GENERATED += $(OBJDIR)/ostreams.o
 OBJECTS += $(OBJDIR)/Comparator.o
-OBJECTS += $(OBJDIR)/RUNT_01.o
+OBJECTS += $(OBJDIR)/SYST_01.o
 OBJECTS += $(OBJDIR)/TCP_Client.o
 OBJECTS += $(OBJDIR)/TestGroupBase.o
 OBJECTS += $(OBJDIR)/TestLib.o
@@ -173,7 +173,7 @@ $(OBJDIR)/TestLib.o: ../testing/testenv/testlib/src/TestLib.cpp
 $(OBJDIR)/TestMain.o: ../testing/testenv/testlib/src/TestMain.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/RUNT_01.o: ../testing/tests/runtests/RUNT_01.cpp
+$(OBJDIR)/SYST_01.o: ../testing/tests/systemtests/SYST_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
