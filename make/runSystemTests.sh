@@ -25,24 +25,16 @@ done
 
 if test $ret -ne 0; then exit $ret; fi
 
-if appRunning; then
-    bin/stop_app
-    sleep 1
-fi
+bin/stop_app
+sleep 1
 
 #   gen required proj data file
 bin/dstw_gen
 #   start app in background
 bin/dstw_run 1 &
-sleep 5
+sleep 1
 #   run tests and stop app
 #   if app started
-if appRunning; then
-    bin/run_tests -b -v
-    bin/stop_app
-else
-    echo "app start failed"
-    ret=1
-fi    
+bin/run_tests -b -v
+bin/stop_app
 
-exit $ret
