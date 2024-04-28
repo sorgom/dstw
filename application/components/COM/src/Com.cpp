@@ -64,3 +64,13 @@ void Com::stop()
 {
     mRunning = false;
 }
+
+void Com::toFld(const ComTele& tele) const
+{
+    IL::getTCP_Con_Fld().send(tele);
+}
+
+void Com::toGui(const ComTele& tele) const
+{
+    IL::getTCP_Con_Gui().send(tele);
+}

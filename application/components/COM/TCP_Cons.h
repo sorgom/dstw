@@ -10,16 +10,16 @@
 #include <BAS/coding.h>
 
 //  base tcp communication client
-class TCP_CLient_Base : public I_TCP_Con
+class TCP_Con_Base : public I_TCP_Con
 {
 public:
     bool accept(INT32 socket) override;
     bool select() override;
     void close() override;
     void send(const ComTele& tele) const override;
-    NOCOPY(TCP_CLient_Base)
+    NOCOPY(TCP_Con_Base)
 protected:
-    inline TCP_CLient_Base() = default;
+    inline TCP_Con_Base() = default;
     virtual void onAccept() const = 0;
     virtual void forward(const ComTele& tele) const = 0;
 private:
@@ -28,7 +28,7 @@ private:
 };
 
 //  field tcp communication client
-class TCP_Con_Fld : public TCP_CLient_Base
+class TCP_Con_Fld : public TCP_Con_Base
 {
 public:
     inline TCP_Con_Fld() = default;
@@ -40,7 +40,7 @@ protected:
 };
 
 //  GUI tcp communication client
-class TCP_Con_Gui : public TCP_CLient_Base
+class TCP_Con_Gui : public TCP_Con_Base
 {
 public:
     inline TCP_Con_Gui() = default;
@@ -52,7 +52,7 @@ protected:
 };
 
 //  control tcp communication client
-class TCP_Con_Ctrl : public TCP_CLient_Base
+class TCP_Con_Ctrl : public TCP_Con_Base
 {
 public:
     inline TCP_Con_Ctrl() = default;

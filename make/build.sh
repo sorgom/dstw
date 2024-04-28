@@ -67,7 +67,7 @@ if test $err -ne 0; then exit 1; fi
 
 if test -z $run; then exit 0; fi
 
-for b in bin/*; do
+for b in $(ls bin/* | grep -v systemtests_); do
     echo ''
     echo "====== $b"
     $b

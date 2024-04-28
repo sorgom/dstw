@@ -58,7 +58,7 @@ namespace test
         for (UINT32 n = 0; n < TEST_NUM_TSW; ++n)
         {
             STEP(n)
-            ComTele fromGui{{}, {TSW_GUI_CMD_WU, PARAM_UNDEF}};
+            ComTele fromGui{{}, {TSW_CMD_WU, PARAM_UNDEF}};
             ComTele toFld{{}, {TSW_STATE_RIGHT, PARAM_UNDEF}};
             ComTele toGui{{}, {TSW_STATE_WAIT_RIGHT, PARAM_UNDEF}};
             nameElement(fromGui, TEST_NUM_TSW - n, "TSW");

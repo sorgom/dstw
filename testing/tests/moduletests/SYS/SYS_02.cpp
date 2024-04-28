@@ -1,5 +1,5 @@
 //  ============================================================
-//  test of module Dispatcher
+//  test of modules Dispatcher
 //  ============================================================
 //  created by Manfred Sorgo
 #include <testlib/TestGroupBase.h>

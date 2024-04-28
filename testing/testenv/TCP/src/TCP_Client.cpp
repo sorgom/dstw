@@ -45,7 +45,19 @@ namespace test
 
     bool TCP_Client::recv(PTR data, INT32 size)
     {
-        return ::recv(mSocket, static_cast<char*>(data), size, 0) == size;
+        fd_set readfds;
+        FD_ZERO(&readfds);
+        FD_SET(mSocket, &readfds);
+        timeval timeout{0, 50000};
+        bool ok = false;
+        if (
+            (::select(mSocket + 1, &readfds, nullptr, nullptr, &timeout) >= 0) and
+            (FD_ISSET(mSocket, &readfds))
+        )
+        {
+            ok = ::recv(mSocket, static_cast<char*>(data), size, 0) == size;
+        }
+        return ok;
     }
 
     void TCP_Client::close()

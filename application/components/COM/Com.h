@@ -15,8 +15,8 @@ public:
     inline Com() = default;
     void run() override;
     void stop() override;
-    inline void toFld(const ComTele& tele) const {}
-    inline void toGui(const ComTele& tele) const {}
+    void toFld(const ComTele& tele) const;
+    void toGui(const ComTele& tele) const;
 
     INSTANCE_DEC(Com)
 

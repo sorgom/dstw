@@ -1,9 +1,10 @@
 //  ============================================================
-//  test of module Reader
+//  test of module Reader, Log (coverage)
 //  ============================================================
 //  created by Manfred Sorgo
 #include <testlib/TestGroupBase.h>
 #include <SYS/Reader.h>
+#include <SYS/Log.h>
 
 namespace test
 {
@@ -113,5 +114,12 @@ namespace test
     {
         I_Reader& inst = Reader::instance();
         play(inst);
+    }
+
+    //  test type: coverage
+    //  log instance
+    TEST(SYS_01, T06)
+    {
+        Log::instance().log(COMP_SYS, RET_ERR_MATCH);
     }
 }

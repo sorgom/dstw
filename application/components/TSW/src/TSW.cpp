@@ -23,13 +23,13 @@ void TSW::fromGui(const ComData& data)
     const auto state = data.param1;
     switch(state)
     {
-    case TSW_GUI_CMD_WU:
+    case TSW_CMD_WU:
         wu();
         break;
-    case TSW_GUI_CMD_LEFT:
+    case TSW_CMD_LEFT:
         swLeft();
         break;
-    case TSW_GUI_CMD_RIGHT:
+    case TSW_CMD_RIGHT:
         swRight();
         break;
     default:

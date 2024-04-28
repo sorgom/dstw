@@ -180,4 +180,28 @@ namespace test
         com.stop();
         CHECK_N_CLEAR()
     }
+
+    //  test type: equivalence class test
+    //  Com to field / to GUI
+    TEST(COM_04, T03)
+    {
+        SETUP()
+        I_Com& com = Com::instance();
+
+        STEP(1)
+        {
+            const ComTele tf {{}, {101, 202}};
+            m_TCP_Con_Fld().expectSend(tf);
+            com.toFld(tf);
+            CHECK_N_CLEAR()
+        }    
+        STEP(2)
+        {
+            const ComTele tg {{}, {111, 212}};
+            m_TCP_Con_Gui().expectSend(tg);
+            com.toGui(tg);
+            CHECK_N_CLEAR()
+        }    
+    }
+
 } // namespace

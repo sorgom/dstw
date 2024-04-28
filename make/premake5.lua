@@ -120,13 +120,13 @@ workspace 'coverage'
                 includedirs { includedirs_qnd }
 
 --  ============================================================
---  > runtests.make
+--  > systemtests.make
 --  -   run tests only runtime
 --  configurations: 
 --  - ci        module tests
 --  - qnd       with devel includes
 --  ============================================================
-workspace 'runtests'
+workspace 'systemtests'
     filter { 'action:gmake*' }
         configurations { 'ci', 'qnd' }
         language 'C++'
@@ -139,15 +139,15 @@ workspace 'runtests'
         filter { 'configurations:qnd' }
             includedirs { includedirs_qnd }
 
-        project 'stop_app'
+        project 'systemtests_stop'
             kind 'ConsoleApp'
             targetdir 'bin'
-            libdirs { 'lib' }
+            -- libdirs { 'lib' }
             -- links { links_test_gcc }
             files { files_stopapp }    
             includedirs { includedirs_test }
 
-        project 'run_tests'
+        project 'systemtests_run'
             kind 'ConsoleApp'
             targetdir 'bin'
             libdirs { 'lib' }

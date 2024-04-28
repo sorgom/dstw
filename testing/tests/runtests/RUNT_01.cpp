@@ -30,20 +30,20 @@ namespace test
         TCP_Client clientGui;
         TCP_Client clientCtrl;
         bool ok = false;
+        INT32 res = 0;
 
         //  check if application is running
-        bool connect()
+        void connect()
         {
+            SUBSTEPS()
+            STEP(1)
             const bool ok = 
                 clientFld.connect(tcpPortFld) and
                 clientGui.connect(tcpPortGui) and
                 clientCtrl.connect(tcpPortCtrl);
-            if (not ok)
-            {
-                cerr << '\n' << "* application not running *" << '\n';
-                close();
-            }
-            return ok;
+
+            L_CHECK_TRUE(ok)
+            ENDSTEPS()
         }
 
         //  terminate all connections
@@ -52,6 +52,11 @@ namespace test
             clientFld.close();
             clientGui.close();
             clientCtrl.close();
+        }
+
+        void setup()
+        {
+            connect();
         }
         
         inline void teardown()
@@ -65,8 +70,66 @@ namespace test
 
     TEST_GROUP_BASE(RUNT_01, TestGroupRT) {};
 
+    //  ping pong test
     TEST(RUNT_01, T01)
     {
-        SETUP_CONNECT()
+        //  send ping telegram
+        STEP(1)
+        const ComTele ts{genComName(22, "PING"), { COM_CTRL_PING, COM_CTRL_PING }};
+        ok = clientCtrl.send(ts);
+        L_CHECK_TRUE(ok)
+
+        //  receive pong telegram
+        STEP(2)
+        ComTele tr;
+        ok = clientCtrl.recv(tr);
+        L_CHECK_TRUE(ok)
+        res = Mem::cmp(tr, ts);
+        L_CHECK_EQUAL(0, res)
+    }
+
+    //  switch a track switch state from field
+    TEST(RUNT_01, T02)
+    {
+        //  send switch state telegram from field
+        STEP(1)
+        const ComTele ts{genComName(1, "TSW"), { TSW_STATE_LEFT, PARAM_UNDEF }};
+        ok = clientFld.send(ts);
+        L_CHECK_TRUE(ok)
+
+        //  receive switch state telegram to GUI
+        STEP(2)
+        ComTele tr;
+        ok = clientGui.recv(tr);
+        L_CHECK_TRUE(ok)
+        res = Mem::cmp(tr, ts);
+        L_CHECK_EQUAL(0, res)
+    }
+
+    //  switch a track switch state from GUI
+    TEST(RUNT_01, T03)
+    {
+        //  send switch state telegram from GUI
+        STEP(1)
+        const ComName cname {genComName(2, "TSW")};
+        ok = clientGui.send(ComTele{cname, { TSW_CMD_RIGHT, PARAM_UNDEF }});
+        L_CHECK_TRUE(ok)
+
+        //  receive switch state telegram to field
+        //  receive wait state telegram to GUI
+        STEP(2)
+        const ComTele txf{cname, { TSW_STATE_RIGHT, PARAM_UNDEF }};
+        const ComTele txg{cname, { TSW_STATE_WAIT_RIGHT, PARAM_UNDEF }};
+        ComTele tr;
+        
+        ok = clientFld.recv(tr);
+        L_CHECK_TRUE(ok)
+        res = Mem::cmp(tr, txf);
+        L_CHECK_EQUAL(0, res)
+
+        ok = clientGui.recv(tr);
+        L_CHECK_TRUE(ok)
+        res = Mem::cmp(tr, txg);
+        L_CHECK_EQUAL(0, res)
     }
 }

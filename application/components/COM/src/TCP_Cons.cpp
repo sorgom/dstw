@@ -4,7 +4,7 @@
 //  ============================================================
 //  base client
 //  ============================================================
-bool TCP_CLient_Base::accept(const INT32 socket)
+bool TCP_Con_Base::accept(const INT32 socket)
 {
     close();
     mSocket = IL::getTCP().accept(socket);
@@ -18,7 +18,7 @@ bool TCP_CLient_Base::accept(const INT32 socket)
     return ok;
 }
 
-bool TCP_CLient_Base::select()
+bool TCP_Con_Base::select()
 {
     const I_TCP& tcp = IL::getTCP();
     bool ok = true;
@@ -62,12 +62,12 @@ bool TCP_CLient_Base::select()
     return ok;
 }
 
-void TCP_CLient_Base::close()
+void TCP_Con_Base::close()
 {
     IL::getTCP().close(mSocket);
 }
 
-void TCP_CLient_Base::send(const ComTele& tele) const
+void TCP_Con_Base::send(const ComTele& tele) const
 {
     if (mSocket >= 0)
     {
