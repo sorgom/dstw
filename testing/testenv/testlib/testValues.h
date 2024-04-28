@@ -34,11 +34,6 @@
 
 namespace test
 {
-    // constexpr UINT16 tcpPortFld  = 8080;
-    // constexpr UINT16 tcpPortGui  = 8081;
-    // constexpr UINT16 tcpPortCtrl = 8082;
-    // constexpr UINT16 tcpTimeout  = 10;
-
     enum E_TcpVals: UINT16
     {
         tcpPortFld  = 8080,
