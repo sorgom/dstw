@@ -22,12 +22,6 @@ namespace test
     class TestGroupBase : public Utest
     {
     protected:
-        
-        inline TestGroupBase()
-        {
-            mockAll();
-        }
-
         inline void teardown()
         {
             CHECK_N_CLEAR()
