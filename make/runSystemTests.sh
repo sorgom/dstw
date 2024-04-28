@@ -25,7 +25,6 @@ done
 
 if test $ret -ne 0; then exit $ret; fi
 
-runs=$(ps -u | grep dstw_run | grep -v grep | wc -l)
 if appRunning; then
     bin/stop_app
     sleep 1
@@ -35,7 +34,7 @@ fi
 bin/dstw_gen
 #   start app in background
 bin/dstw_run 1 &
-sleep 1
+sleep 5
 #   run tests and stop app
 #   if app started
 if appRunning; then
@@ -45,3 +44,5 @@ else
     echo "app start failed"
     ret=1
 fi    
+
+exit $ret
