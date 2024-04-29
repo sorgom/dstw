@@ -35,12 +35,12 @@ namespace test
         return ok;
     }
 
-    bool TCP_Client::send(CPTR data, INT32 size)
+    bool TCP_Client::send(CPTR data, INT32 size) const
     {
         return ::send(mSocket, static_cast<const char*>(data), size, 0) == size;
     }
 
-    bool TCP_Client::recv(PTR data, INT32 size)
+    bool TCP_Client::recv(PTR data, INT32 size) const
     {
         fd_set readfds;
         FD_ZERO(&readfds);

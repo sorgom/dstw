@@ -20,7 +20,7 @@ namespace test
         //  send structured data
         //  mainly ComTele
         template<typename T>
-        inline bool send(const T& data)
+        inline bool send(const T& data) const
         {
             return send(&data, sizeof(data));
         }
@@ -28,7 +28,7 @@ namespace test
         //  receive structured data
         //  mainly ComTele
         template<typename T>
-        inline bool recv(T& data)
+        inline bool recv(T& data) const
         {
             return recv(&data, sizeof(data));
         }
@@ -39,8 +39,7 @@ namespace test
         NOCOPY(TCP_Client)
     private:
         INT32 mSocket = -1;
-        bool send(CPTR data, INT32 size);
-        bool recv(PTR data, INT32 size);
+        bool send(CPTR data, INT32 size) const;
+        bool recv(PTR data, INT32 size) const;
     };
-
 }

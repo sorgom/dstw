@@ -20,9 +20,6 @@ namespace test
             mName(name)
         {}
 
-        const CONST_C_STRING mName;
-        static std::ostringstream mStream;
-
         inline virtual std::ostringstream& begin() const
         {
             prep() << mName;
@@ -41,11 +38,8 @@ namespace test
             return mkExpect();
         }
 
-        inline MockExpectedCall& expect(const UINT16 numCalls, const CONST_C_STRING meth) const
-        {
-            begin()  << "::" << meth;
-            return mkExpect(numCalls);
-        }
+        NOCOPY(M_Base)
+        NODEF(M_Base)
 
     private:
         inline static std::ostringstream& prep()
@@ -62,11 +56,7 @@ namespace test
             return mock().expectOneCall(mStream.str().c_str());
         }
 
-        inline static MockExpectedCall& mkExpect(const UINT16 numCalls)
-        {
-            return mock().expectNCalls(numCalls, mStream.str().c_str());
-        }
-
-        NOCOPY(M_Base)
+        const CONST_C_STRING mName;
+        static std::ostringstream mStream;
     };
 } // namespace

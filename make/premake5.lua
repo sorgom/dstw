@@ -148,9 +148,6 @@ workspace 'systemtests'
             libdirs { 'lib' }
             links { links_test_gcc }
             files { files_testenv, files_systemtest }
-            removefiles { 
-                '../testing/testenv/mocks/**.cpp'
-            }
             includedirs { includedirs_test }
             linkoptions { linkoptions_test_gcc }
 

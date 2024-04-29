@@ -66,10 +66,10 @@ defines_app = { 'NDEBUG' }
 
 defines_gendata = { 
     defines_test,
-    'TEST_NUM_TSW=1001', 
-    'TEST_NUM_SIG=1002', 
-    'TEST_NUM_LCR=1003', 
-    'TEST_NUM_SEG=1004' 
+    'TEST_NUM_TSW=101', 
+    'TEST_NUM_SIG=102', 
+    'TEST_NUM_LCR=103', 
+    'TEST_NUM_SEG=104' 
 }
 
 files_moduletest = { '../testing/tests/moduletests/**.cpp' }

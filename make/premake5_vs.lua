@@ -103,3 +103,38 @@ workspace 'dstw'
             files { files_app, files_app_main }
             links { 'ws2_32' }
 
+--  ============================================================
+--  > systemtests.sln
+--  -   run tests only runtime
+--  configurations: 
+--  - ci        module tests
+--  - qnd       with devel includes
+--  ============================================================
+workspace 'systemtests'
+    filter { 'action:vs*' }
+        configurations { 'ci', 'qnd' }
+        language 'C++'
+        objdir 'obj/gcc/%{prj.name}'
+        buildoptions { buildoptions_vs_test }
+
+        defines { 'DEBUG', defines_gendata }
+        symbols 'On'
+        warnings 'high'
+
+        filter { 'configurations:qnd' }
+            includedirs { includedirs_qnd }
+
+        project 'systemtests_stop'
+            kind 'ConsoleApp'
+            targetdir 'exe'
+            links { 'ws2_32' }
+            files { files_systemtest_stop }    
+            includedirs { includedirs_test }
+
+        project 'systemtests_run'
+            kind 'ConsoleApp'
+            targetdir 'exe'
+            libdirs { 'lib' }
+            links { 'winmm', 'ws2_32' }
+            files { files_cpputest_vs, files_testenv, files_systemtest }
+            includedirs { includedirs_test }
