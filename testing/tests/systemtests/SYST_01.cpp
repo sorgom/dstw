@@ -6,6 +6,10 @@
 
 #include <testlib/TestGroupBase.h>
 #include <mocks/M_TCP_Client.h>
+#include <COM/TCP.h>
+
+#include <thread>
+#include <chrono>
 
 namespace test
 {
@@ -26,6 +30,9 @@ namespace test
         {
             SUBSTEPS()
             STEP(1)
+            ok = TCP_Client::init();
+            L_CHECK_TRUE(ok)
+            STEP(2)
             clientFld.connect(tcpPortFld);
             clientGui.connect(tcpPortGui);
             clientCtrl.connect(tcpPortCtrl);
@@ -38,6 +45,7 @@ namespace test
             clientFld.close();
             clientGui.close();
             clientCtrl.close();
+            TCP_Client::cleanup();
         }
 
         void setup()
@@ -48,6 +56,7 @@ namespace test
         //  check all clients for received telegrams
         void recvAll()
         {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
             clientFld.recv();
             clientGui.recv();
             clientCtrl.recv();

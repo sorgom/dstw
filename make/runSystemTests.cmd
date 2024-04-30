@@ -6,7 +6,7 @@ rem created by ChatGPT
 
 cd /d "%~dp0"
 set ret=0
-set bins=gendata.exe dstw.exe systemtests_run.exe systemtests_stop.exe
+set bins=dstw_gen.exe dstw_run.exe systemtests_run.exe systemtests_stop.exe
 for %%I in (%bins%) do (
     if not exist exe\%%I (
         echo exe\%%I not found
@@ -20,10 +20,10 @@ exe\systemtests_stop.exe
 timeout /t 1 /nobreak >nul
 
 rem gen required proj data file
-exe\gendata.exe
+exe\dstw_gen.exe
 rem start app in background
-start /B exe\dstw.exe 1
-timeout /t 5 /nobreak >nul
+start /B exe\dstw_run.exe 1
+timeout /t 1 /nobreak >nul
 rem run tests and stop app
 rem if app started
 exe\systemtests_run.exe -b -v

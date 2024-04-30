@@ -59,82 +59,48 @@ workspace 'tests'
                 files { files_devtest }
 
 --  ============================================================
---  > gendata.sln
---  generate proj data for application runtime
---  ->  exe/gendata.exe
+--  > dstw_system.sln
+--  build all executables at once:
+--  - application runtime
+--  - generate proj data for runtime
+--  - system tests
+--  - TCP based application stop
 --  ============================================================
-workspace 'gendata'
+workspace 'dstw_system'
     filter { 'action:vs*' }
         configurations { 'ci' }
         language 'C++'
         objdir 'obj/vs/%{prj.name}'
+        kind 'ConsoleApp'
 
         targetdir 'exe'
         warnings 'high'
         buildoptions { buildoptions_vs_app }
-
-        defines { defines_gendata }
-    
-        project 'gendata'
-            kind 'ConsoleApp'
-            includedirs { includedirs_test }
-            files { files_gendata }
-
---  ============================================================
---  > dstw.sln
---  application runtime
---  ->  exe/dstw.exe
---  ============================================================
-workspace 'dstw'
-    filter { 'action:vs*' }
-        configurations { 'ci' }
-        language 'C++'
-        objdir 'obj/vs/%{prj.name}'
-
-        targetdir 'exe'
-        warnings 'high'
-        buildoptions { buildoptions_vs_app }
-
-        defines { defines_app }
-    
-        project 'dstw'
-            includedirs { includedirs_app }
-            kind 'ConsoleApp'
-            files { files_app, files_app_main }
-            links { 'ws2_32' }
-
---  ============================================================
---  > systemtests.sln
---  -   run tests only runtime
---  configurations: 
---  - ci        module tests
---  - qnd       with devel includes
---  ============================================================
-workspace 'systemtests'
-    filter { 'action:vs*' }
-        configurations { 'ci', 'qnd' }
-        language 'C++'
-        objdir 'obj/gcc/%{prj.name}'
-        buildoptions { buildoptions_vs_test }
-
-        defines { 'DEBUG', defines_gendata }
-        symbols 'On'
-        warnings 'high'
 
         filter { 'configurations:qnd' }
             includedirs { includedirs_qnd }
 
+        project 'dstw_gen'
+            defines { defines_gendata }
+            includedirs { includedirs_test }
+            files { files_gendata }
+
+        project 'dstw_run'
+            defines { defines_app }
+            includedirs { includedirs_app }
+            files { files_app, files_app_main }
+            links { 'ws2_32' }
+
         project 'systemtests_stop'
-            kind 'ConsoleApp'
-            targetdir 'exe'
             links { 'ws2_32' }
             files { files_systemtest_stop }    
             includedirs { includedirs_test }
+            buildoptions { buildoptions_vs_test }
 
         project 'systemtests_run'
             kind 'ConsoleApp'
-            targetdir 'exe'
-            libdirs { 'lib' }
             links { 'winmm', 'ws2_32' }
             files { files_cpputest_vs, files_testenv, files_systemtest }
             includedirs { includedirs_test }
+            buildoptions { buildoptions_vs_test }
+

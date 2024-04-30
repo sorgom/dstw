@@ -11,6 +11,23 @@
 
 namespace test
 {
+    bool TCP_Client::init()
+    {
+#ifdef _WIN32
+        WSADATA wsaData;
+        return WSAStartup(MAKEWORD(2, 2), &wsaData) == 0;
+#else
+        return true;
+#endif
+    }    
+
+    void TCP_Client::cleanup()
+    {
+#ifdef _WIN32
+        WSACleanup();
+#endif
+    }
+
     bool TCP_Client::connect(UINT16 port)
     {
         bool ok = true;

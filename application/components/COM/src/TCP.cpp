@@ -43,7 +43,7 @@ bool TCP::bind(const INT32 socket, const UINT16 port) const
 {
     sockaddr_in addr;
     addr.sin_family = AF_INET;
-    addr.sin_addr.s_addr = INADDR_ANY;
+    addr.sin_addr.s_addr = INADDR_ANY; // INADDR_LOOPBACK;
     addr.sin_port = htons(port);
     return ::bind(socket, (const sockaddr*)&addr, sizeof(addr)) >= 0; 
 }

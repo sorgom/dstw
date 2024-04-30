@@ -12,7 +12,12 @@ namespace test
     class TCP_Client
     {
     public:
+
         TCP_Client() = default;
+
+        static bool init();
+        static void cleanup();
+
         //  connect to localhost with port
         //  works if test and app run in different processes
         bool connect(UINT16 port);
