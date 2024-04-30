@@ -4,7 +4,7 @@
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <COM/TCP_Listeners.h>
+#include <COM/TCP_Com.h>
 
 namespace test
 {
@@ -14,6 +14,10 @@ namespace test
         constexpr static INT32 validSocket = 0;
         constexpr static INT32 invalidSocket = -1;
         bool ok = false;
+        static void expectComerr()
+        {
+            m_Log().expectLog(COMP_COM, RET_ERR_COM);
+        }
     };
 
     //  test type: equivalence class test
@@ -25,6 +29,7 @@ namespace test
 
         //  TCP socket returns invalid socket
         STEP(1)
+        expectComerr();
         m_TCP().expectSocket(invalidSocket);
         m_TCP().expectClose(invalidSocket);
         ok = listener.listen(tcpPortFld);
@@ -34,6 +39,7 @@ namespace test
         //  TCP socket returns valid socket
         //  TCP bind returns false
         STEP(2)
+        expectComerr();
         m_TCP().expectSocket(validSocket);
         m_TCP().expectBind(validSocket, tcpPortFld, false);
         m_TCP().expectClose(validSocket);
@@ -45,6 +51,7 @@ namespace test
         //  TCP bind returns true
         //  TCP listen returns false
         STEP(3)
+        expectComerr();
         m_TCP().expectSocket(validSocket);
         m_TCP().expectBind(validSocket, tcpPortFld, true);
         m_TCP().expectListen(validSocket, false);
@@ -82,6 +89,7 @@ namespace test
 
         //  select returns -1
         STEP(7)
+        expectComerr();
         m_TCP().expectSelect(validSocket, -1);
         m_TCP().expectClose(validSocket);
         ok = listener.select();
@@ -91,6 +99,7 @@ namespace test
         //  select returns 1
         //  accept returns false
         STEP(8)
+        expectComerr();
         m_TCP().expectSelect(validSocket, 1);
         m_TCP_Con_Fld().expectAccept(validSocket, false);
         m_TCP().expectClose(validSocket); 

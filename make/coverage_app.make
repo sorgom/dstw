@@ -74,8 +74,7 @@ GENERATED += $(OBJDIR)/Reader.o
 GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
 GENERATED += $(OBJDIR)/TCP.o
-GENERATED += $(OBJDIR)/TCP_Cons.o
-GENERATED += $(OBJDIR)/TCP_Listeners.o
+GENERATED += $(OBJDIR)/TCP_Com.o
 GENERATED += $(OBJDIR)/TSW.o
 GENERATED += $(OBJDIR)/TSW_Provider.o
 OBJECTS += $(OBJDIR)/BAS_Provider.o
@@ -88,8 +87,7 @@ OBJECTS += $(OBJDIR)/Reader.o
 OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
 OBJECTS += $(OBJDIR)/TCP.o
-OBJECTS += $(OBJDIR)/TCP_Cons.o
-OBJECTS += $(OBJDIR)/TCP_Listeners.o
+OBJECTS += $(OBJDIR)/TCP_Com.o
 OBJECTS += $(OBJDIR)/TSW.o
 OBJECTS += $(OBJDIR)/TSW_Provider.o
 
@@ -164,10 +162,7 @@ $(OBJDIR)/Com.o: ../application/components/COM/src/Com.cpp
 $(OBJDIR)/TCP.o: ../application/components/COM/src/TCP.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TCP_Cons.o: ../application/components/COM/src/TCP_Cons.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TCP_Listeners.o: ../application/components/COM/src/TCP_Listeners.cpp
+$(OBJDIR)/TCP_Com.o: ../application/components/COM/src/TCP_Com.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_Provider.o: ../application/components/LCR/src/LCR_Provider.cpp

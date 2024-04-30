@@ -8,8 +8,7 @@
 #pragma once
 
 #include <COM/Com.h>
-#include <COM/TCP_Cons.h>
-#include <COM/TCP_Listeners.h>
+#include <COM/TCP_Com.h>
 #include <COM/TCP.h>
 #include <LCR/LCR_Provider.h>
 #include <SIG/SIG_Provider.h>

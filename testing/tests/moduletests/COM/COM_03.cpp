@@ -4,7 +4,7 @@
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <COM/TCP_Cons.h>
+#include <COM/TCP_Com.h>
 
 namespace test
 {
@@ -14,6 +14,11 @@ namespace test
         constexpr static INT32 validSocket = 0;
         constexpr static INT32 invalidSocket = -1;
         bool ok = false;
+        static void expectComerr()
+        {
+            m_Log().expectLog(COMP_COM, RET_ERR_COM);
+        }
+
     };
 
     //  test type: equivalence class test
@@ -25,6 +30,7 @@ namespace test
 
         //  accept returns invalid socket
         STEP(1)
+        expectComerr();
         m_TCP().expectClose();
         m_TCP().expectAccept(validSocket, invalidSocket);
         ok = client.accept(validSocket);
@@ -77,6 +83,7 @@ namespace test
 
         //  select returns -1 error
         STEP(7)
+        expectComerr();
         m_TCP().expectSelect(validSocket, -1);
         m_TCP().expectClose();
         ok = client.select();
@@ -218,6 +225,7 @@ namespace test
 
         //  recv returns invalid size
         STEP(6)
+        expectComerr();
         m_TCP().expectSelect(validSocket, 1);
         m_TCP().expectRecv(validSocket, sizeof(ComTele), sizeof(ComTele) - 1);
         m_TCP().expectClose();
