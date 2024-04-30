@@ -111,6 +111,22 @@ void Dispatcher::toGui(const size_t id, const ComData& data) const
     { pass(); }
 }
 
+void Dispatcher::reGui() const
+{
+    reGui(IL::getTSW_Provider());
+    reGui(IL::getSIG_Provider());
+    reGui(IL::getLCR_Provider());
+}
+
+void Dispatcher::reGui(I_Provider& prov)
+{
+    const size_t size = prov.size();
+    for (size_t p = 0; p < size; ++p)
+    {
+        prov.at(p).toGui();
+    }
+}
+
 void Dispatcher::forwardFld(I_Provider& prov, const Ncp& ncp, const ComTele& tele)
 {
     if (prov.size() > ncp.pos)

@@ -19,6 +19,9 @@ public:
     //  process GUI commands
     virtual void fromGui(const ComData& data) = 0;
 
+    //  re-send current state to GUI
+    virtual void toGui() const = 0;
+
     //  this is test code: type info if relevant
     virtual E_Type type() const = 0;
 };

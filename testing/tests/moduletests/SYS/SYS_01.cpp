@@ -11,7 +11,6 @@ namespace test
     class TestGroupRDR : public TestGroupBase
     {
     protected:
-        Reader mSUT;
         static const CONST_C_STRING fname;
         void expectClear()
         {
@@ -40,7 +39,7 @@ namespace test
             }
             os.close();
             expectFail();
-            mSUT.read(fname);
+            Reader::instance().read(fname);
         }
     };
 
@@ -53,6 +52,9 @@ namespace test
     //  successfully load data 
     TEST(SYS_01, T01)
     {
+        SETUP()
+        I_Reader& rdr = Reader::instance();
+
         STEP(1)
         expectClear();
         GenProjData<> data;
@@ -61,7 +63,7 @@ namespace test
         m_LCR_Provider().expectLoad(data.numLCR());
         m_Dispatcher().expectIndex();
         data.dump(fname);
-        mSUT.read(fname);
+        rdr.read(fname);
         CHECK_N_CLEAR()
     }
 
@@ -69,9 +71,12 @@ namespace test
     //  failure: file does not exist 
     TEST(SYS_01, T02)
     {
+        SETUP()
+        I_Reader& rdr = Reader::instance();
+
         STEP(1)
         expectFail();
-        mSUT.read("does_not_exist.dat");
+        rdr.read("does_not_exist.dat");
         CHECK_N_CLEAR()
     }
 
@@ -95,6 +100,8 @@ namespace test
     TEST(SYS_01, T04)
     {
         SETUP()
+        I_Reader& rdr = Reader::instance();
+        
         std::ofstream os(fname, std::ios::binary);
         for (size_t n = 0; n < 4 * sizeof(UINT32) - 1; ++n)
         {
@@ -104,21 +111,13 @@ namespace test
 
         STEP(1)
         expectFail();
-        mSUT.read(fname);
+        rdr.read(fname);
         CHECK_N_CLEAR()
     }
 
     //  test type: coverage
-    //  retrieve instance
-    TEST(SYS_01, T05)
-    {
-        I_Reader& inst = Reader::instance();
-        play(inst);
-    }
-
-    //  test type: coverage
     //  log instance
-    TEST(SYS_01, T06)
+    TEST(SYS_01, T05)
     {
         Log::instance().log(COMP_SYS, RET_ERR_MATCH);
     }

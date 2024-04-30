@@ -20,6 +20,11 @@ namespace test
         {
             expect("recv").TPARAM(ComTele, tele);
         }
+        inline void expectRecv(UINT16 num) const
+        {
+            expect(num, "recv").IGNORE();
+        }
+
         inline void recv() const
         {
             ComTele tele;

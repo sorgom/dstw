@@ -22,20 +22,25 @@ namespace test
 
         inline virtual std::ostringstream& begin() const
         {
-            prep() << mName;
+            prep() << mName << "::";
             return mStream;
         }
 
         inline MockActualCall& call(const CONST_C_STRING meth) const
         {
-            begin() << "::" << meth;
+            begin() << meth;
             return mkCall();
         }
 
         inline MockExpectedCall& expect(const CONST_C_STRING meth) const
         {
-            begin() << "::" << meth;
+            begin() << meth;
             return mkExpect();
+        }
+        inline MockExpectedCall& expect(const UINT16 numCalls, const CONST_C_STRING meth) const
+        {
+            begin() << meth;
+            return mkExpect(numCalls);
         }
 
         NOCOPY(M_Base)
@@ -54,6 +59,10 @@ namespace test
         inline static MockExpectedCall& mkExpect()
         {
             return mock().expectOneCall(mStream.str().c_str());
+        }
+        inline static MockExpectedCall& mkExpect(const UINT16 numCalls)
+        {
+            return mock().expectNCalls(numCalls, mStream.str().c_str());
         }
 
         const CONST_C_STRING mName;

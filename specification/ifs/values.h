@@ -123,5 +123,6 @@ enum E_LcrUbkState : UINT8
 enum E_ComCtrl : UINT8
 {
     COM_CTRL_STOP = 101,
-    COM_CTRL_PING
+    COM_CTRL_PING,
+    COM_CTRL_RE_GUI
 };

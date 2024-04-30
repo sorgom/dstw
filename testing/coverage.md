@@ -82,16 +82,16 @@ But this isn't too bad, because some SIL4 coding guidelines require this anyhow.
 file                      lines  uncovered  percent
 BAS/src/BAS_Provider.cpp     26         --       --
 COM/src/Com.cpp              62         --       --
-COM/src/TCP.cpp              87         10     11.5
-COM/src/TCP_Com.cpp         172         --       --
+COM/src/TCP.cpp              87         --       --
+COM/src/TCP_Com.cpp         175         --       --
 LCR/src/LCR_Provider.cpp     20         --       --
 LCR/src/LCR_X.cpp           126         --       --
 SIG/src/SIG_Provider.cpp     23         --       --
-SIG/src/SIG_X.cpp           306         --       --
-SYS/src/Dispatcher.cpp      124         --       --
+SIG/src/SIG_X.cpp           310         --       --
+SYS/src/Dispatcher.cpp      138         --       --
 SYS/src/Log.cpp               9         --       --
 SYS/src/Reader.cpp           70         --       --
-TSW/src/TSW.cpp              95         --       --
+TSW/src/TSW.cpp              99         --       --
 TSW/src/TSW_Provider.cpp      2         --       --
-total                      1122         10      0.9
+total                      1147         --       --
 ```

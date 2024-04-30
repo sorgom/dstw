@@ -101,6 +101,7 @@ workspace 'dstw_system'
             kind 'ConsoleApp'
             links { 'winmm', 'ws2_32' }
             files { files_cpputest_vs, files_testenv, files_systemtest }
+            defines { defines_gendata }
             includedirs { includedirs_test }
             buildoptions { buildoptions_vs_test }
 

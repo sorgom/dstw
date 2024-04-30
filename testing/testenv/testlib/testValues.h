@@ -17,19 +17,19 @@
 #include <ifs/values.h>
 
 #ifndef TEST_NUM_TSW
-#define TEST_NUM_TSW 11
+#define TEST_NUM_TSW 101
 #endif 
 
 #ifndef TEST_NUM_SIG
-#define TEST_NUM_SIG 10
+#define TEST_NUM_SIG 102
 #endif 
 
 #ifndef TEST_NUM_LCR
-#define TEST_NUM_LCR 9
+#define TEST_NUM_LCR 103
 #endif 
 
 #ifndef TEST_NUM_SEG
-#define TEST_NUM_SEG 8
+#define TEST_NUM_SEG 104
 #endif 
 
 namespace test

@@ -56,7 +56,7 @@ namespace test
         //  check all clients for received telegrams
         void recvAll()
         {
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            std::this_thread::sleep_for(std::chrono::milliseconds(20));
             clientFld.recv();
             clientGui.recv();
             clientCtrl.recv();
@@ -144,4 +144,16 @@ namespace test
         }
         ENDSTEPS()
     }
+
+    //  this is a heavy one
+    //  call for reGui
+    TEST(SYST_01, T03)
+    {
+        STEP(1)
+        clientGui.expectRecv(TEST_NUM_TSW + TEST_NUM_SIG + TEST_NUM_LCR);
+        clientCtrl.send(ComTele{{}, { COM_CTRL_RE_GUI, COM_CTRL_RE_GUI }});
+        recvAll();
+        CHECK_N_CLEAR()
+    }
+
 }

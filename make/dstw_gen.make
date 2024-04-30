@@ -22,7 +22,7 @@ RESCOMP = windres
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/dstw_gen
 OBJDIR = obj/gcc/dstw_gen
-DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DTEST_NUM_TSW=101 -DTEST_NUM_SIG=102 -DTEST_NUM_LCR=103 -DTEST_NUM_SEG=104
+DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
 INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)

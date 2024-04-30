@@ -20,8 +20,10 @@ public:
         mState(TSW_STATE_UNDEF)
     {}
 
-    void fromFld(const ComData& data);
-    void fromGui(const ComData& data);
+    void toGui() const override;
+    void fromFld(const ComData& data) override;
+    void fromGui(const ComData& data) override;
+    
     inline E_Type type() const { return TYPE_TSW; }
     
     NOCOPY(TSW)

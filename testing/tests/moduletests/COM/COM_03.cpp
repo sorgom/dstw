@@ -1,5 +1,5 @@
 //  ============================================================
-//  test of COM TCP clients
+//  test of COM TCP connections
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -156,27 +156,19 @@ namespace test
 
         //  select returns 1 activity
         //  recv returns valid data
-        //  that don't contain both COM_CTRL_STOP
+        //  data contains different values
         STEP(2)
         {
-            const ComTele tele1{{}, {COM_CTRL_STOP, COM_CTRL_STOP - 1}};
+            const ComTele tele{{}, {COM_CTRL_STOP - 1, COM_CTRL_STOP}};
             m_TCP().expectSelect(validSocket, 1);
-            m_TCP().expectRecv(validSocket, tele1);
-            ok = client.select();
-            CHECK_N_CLEAR()
-            L_CHECK_TRUE(ok)
-
-            const ComTele tele2{{}, {COM_CTRL_STOP - 1, COM_CTRL_STOP}};
-            m_TCP().expectSelect(validSocket, 1);
-            m_TCP().expectRecv(validSocket, tele2);
+            m_TCP().expectRecv(validSocket, tele);
             ok = client.select();
             CHECK_N_CLEAR()
             L_CHECK_TRUE(ok)
         }
 
-        //  select returns 1 activity
-        //  recv returns valid data
-        //  that contains both COM_CTRL_STOP
+        //  data contains both COM_CTRL_STOP
+        //  Com::stop called
         STEP(3)
         {
             const ComTele tele1{{}, {COM_CTRL_STOP, COM_CTRL_STOP}};
@@ -188,31 +180,9 @@ namespace test
             L_CHECK_TRUE(ok)
         }
 
-        //  select returns 1 activity
-        //  recv returns valid data
-        //  that don't contain both COM_CTRL_PING
-        STEP(4)
-        {
-            const ComTele tele1{{}, {COM_CTRL_PING, COM_CTRL_PING - 1}};
-            m_TCP().expectSelect(validSocket, 1);
-            m_TCP().expectRecv(validSocket, tele1);
-            ok = client.select();
-            CHECK_N_CLEAR()
-            L_CHECK_TRUE(ok)
-
-            const ComTele tele2{{}, {COM_CTRL_PING - 1, COM_CTRL_PING}};
-            m_TCP().expectSelect(validSocket, 1);
-            m_TCP().expectRecv(validSocket, tele2);
-            ok = client.select();
-            CHECK_N_CLEAR()
-            L_CHECK_TRUE(ok)
-        }
-
-        //  select returns 1 activity
-        //  recv returns valid data
-        //  that contains both COM_CTRL_PING
+        //  data contains both COM_CTRL_PING
         //  send echo
-        STEP(5)
+        STEP(4)
         {
             const ComTele tele1{{}, {COM_CTRL_PING, COM_CTRL_PING}};
             m_TCP().expectSelect(validSocket, 1);
@@ -223,8 +193,33 @@ namespace test
             L_CHECK_TRUE(ok)
         }
 
+        //  data contains both COM_CTRL_RE_GUI
+        //  Dispatcher::reGui called
+        STEP(5)
+        {
+            const ComTele tele1{{}, {COM_CTRL_RE_GUI, COM_CTRL_RE_GUI}};
+            m_TCP().expectSelect(validSocket, 1);
+            m_TCP().expectRecv(validSocket, tele1);
+            m_Dispatcher().expectReGui();
+            ok = client.select();
+            CHECK_N_CLEAR()
+            L_CHECK_TRUE(ok)
+        }
+
+        //  data contains both unknown values
+        //  no reaction
+        STEP(5)
+        {
+            const ComTele tele1{{}, {PARAM_UNKNOWN, PARAM_UNKNOWN}};
+            m_TCP().expectSelect(validSocket, 1);
+            m_TCP().expectRecv(validSocket, tele1);
+            ok = client.select();
+            CHECK_N_CLEAR()
+            L_CHECK_TRUE(ok)
+        }
+
         //  recv returns invalid size
-        STEP(6)
+        STEP(7)
         expectComerr();
         m_TCP().expectSelect(validSocket, 1);
         m_TCP().expectRecv(validSocket, sizeof(ComTele), sizeof(ComTele) - 1);

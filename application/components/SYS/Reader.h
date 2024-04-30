@@ -9,12 +9,12 @@
 class Reader : public I_Reader
 {
 public:
-    inline Reader() = default;
-    void read(CONST_C_STRING filename);
-    inline const ComSetup& getComSetup() const { return mComSetup; }
+    void read(CONST_C_STRING filename) override;
+    inline const ComSetup& getComSetup() const override { return mComSetup; }
 
     INSTANCE_DEC(Reader)
     NOCOPY(Reader)
 private:
     ComSetup mComSetup = {};
+    inline Reader() = default;
 };

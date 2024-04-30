@@ -22,12 +22,16 @@ sleep 1
 #   gen required proj data file
 bin/dstw_gen
 #   start app in background
-bin/dstw_run 1 &
+bin/dstw_run 1 & pid=$!
 sleep 1
 #   run tests
 bin/systemtests_run -b -v
-ret=$?
+ret=$((ret+$?))
+
 #   stop app
 bin/systemtests_stop
 
+if ! wait $pid; then
+    ret=$((ret+1))
+fi
 exit $ret

@@ -15,7 +15,7 @@ namespace test
     public:
         inline M_Elem(const CONST_C_STRING name = "Elem") : M_Base(name) {}
 
-        inline void fromFld(const ComData& data)
+        inline void fromFld(const ComData& data) override
         {
             call("fromFld").TPARAM(ComData, data);
         }
@@ -24,7 +24,7 @@ namespace test
             expect("fromFld").TPARAM(ComData, data);
         }
 
-        inline void fromGui(const ComData& data)
+        inline void fromGui(const ComData& data) override
         {
             call("fromGui").TPARAM(ComData, data);
         }
@@ -33,7 +33,20 @@ namespace test
             expect("fromGui").TPARAM(ComData, data);
         }
         
-        inline E_Type type() const { return TYPE_UNDEF; }
+        inline void toGui() const override
+        {
+            call("toGui");
+        }
+        inline void expectToGui() const
+        {
+            expect("toGui");
+        }
+        inline void expectToGui(UINT16 num) const
+        {
+            expect(num, "toGui");
+        }
+
+        inline E_Type type() const override { return TYPE_UNDEF; }
     };
 
     // mock TSW
