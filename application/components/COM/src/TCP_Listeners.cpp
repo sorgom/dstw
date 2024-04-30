@@ -4,16 +4,27 @@
 bool Tcp_Listener_Base::listen(const UINT16 port)
 {
     const I_TCP& tcp = IL::getTCP();
+    bool ok = true;
     mSocket = tcp.socket();
-    const bool ok =
-        (mSocket >= 0)
-        and tcp.bind(mSocket, port)
-        and tcp.listen(mSocket);
-    if (ok)
+    if (mSocket < 0)
     {
-        pass();
+        ok = false;
+        IL::getLog().log(COMP_COM, RET_ERR_COM) << "E socket " << port << std::endl;
+    }
+    else if (not tcp.bind(mSocket, port))
+    {
+        ok = false;
+        IL::getLog().log(COMP_COM, RET_ERR_COM) << "E bind " << port << std::endl;
+    }
+    else if (not tcp.listen(mSocket))
+    {
+        ok = false;
+        IL::getLog().log(COMP_COM, RET_ERR_COM) << "E listen " << port << std::endl;
     }
     else
+    { pass();}
+
+    if (not ok)
     {
         tcp.close(mSocket);
     }

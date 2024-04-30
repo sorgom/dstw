@@ -6,6 +6,7 @@
 
 #include <ifs/I_Log.h>
 #include "M_Base.h"
+#include <testlib/NullStream.h>
 
 namespace test
 {
@@ -16,9 +17,10 @@ namespace test
     public:
         INSTANCE_DEC(M_Log)
 
-        inline void log(E_Comp comp, E_Ret ret)
+        inline std::ostream& log(E_Comp comp, E_Ret ret)
         {
             call("log").PARAM(comp).PARAM(ret);
+            return mStream;
         }
         inline void expectLog(E_Comp comp, E_Ret ret) const
         {
@@ -34,5 +36,6 @@ namespace test
         }
     private:
         M_Log() : M_Base("Log") {}
+        NullStream mStream;
     };
 } 

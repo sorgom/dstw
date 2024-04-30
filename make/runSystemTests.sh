@@ -24,10 +24,10 @@ bin/dstw_gen
 #   start app in background
 bin/dstw_run 1 &
 sleep 1
-#   run tests and stop app
-#   if app started
+#   run tests
 bin/systemtests_run -b -v
 ret=$?
+#   stop app
 bin/systemtests_stop
 
 exit $ret
