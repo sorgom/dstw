@@ -63,7 +63,7 @@ workspace 'tests'
 --  build all executables at once:
 --  - application runtime
 --  - generate proj data for runtime
---  - system tests
+--  - TCP based system tests
 --  - TCP based application stop
 --  ============================================================
 workspace 'dstw_system'

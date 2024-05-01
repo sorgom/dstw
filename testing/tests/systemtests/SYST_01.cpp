@@ -56,7 +56,9 @@ namespace test
         //  check all clients for received telegrams
         void recvAll()
         {
-            std::this_thread::sleep_for(std::chrono::milliseconds(20));
+            #ifdef _WIN32
+            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+            #endif
             clientFld.recv();
             clientGui.recv();
             clientCtrl.recv();
