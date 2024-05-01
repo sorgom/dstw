@@ -5,7 +5,7 @@
 
 ## valid transitions
 
-```
+```txt
 The track switch (TSW) has only 6 different states.
 State information from field can cause any transition,
 except transitions to WAIT states.
@@ -57,6 +57,8 @@ Sample: transitions TSW
 The potential transitions for each event consist of two columns
 - source states (from)
 - target states (to)
+- transitions from all source states to all target states are regarded as possible
+- transitions that make a change are the ones with different source and target state
 
 |FLD *| |CMD LEFT| |CMD RIGHT| |CMD WU| |CMD WU| |       
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|      
@@ -176,6 +178,9 @@ From here it's a last step to generate the test code using a template.
 
 Sample: test template json file for TSW
 
+```plaintext
+cat ../../testing/tests/moduletests/TSW/TSW_01.json
+```
 ```json
 {
     "//" : "===================================",
