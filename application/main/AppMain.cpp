@@ -11,7 +11,6 @@ int main(const INT32 argc, const CONST_C_STRING* const argv)
 
     E_Ret res = IL::getLog().maxerr();
     cout 
-        << endl
         << "TSW: " << setw(5) << IL::getTSW_Provider().size() << endl
         << "SIG: " << setw(5) << IL::getSIG_Provider().size() << endl
         << "LCR: " << setw(5) << IL::getLCR_Provider().size() << endl
@@ -20,17 +19,12 @@ int main(const INT32 argc, const CONST_C_STRING* const argv)
 
     if (res == RET_NO_ERR and argc > 1)
     {
-        cout 
-            << endl
-            << "run" << endl
-        ;
+        cout << "run .." << endl;
         IL::getCom().run();
         res = IL::getLog().maxerr();
+        cout 
+            << "ERR: " << setw(5) << static_cast<UINT16>(res) << endl
+        ;
     }
-    cout 
-        << endl
-        << "ERR: " << setw(5) << static_cast<UINT16>(res) << endl
-        << "term" << endl
-    ;
     return res;
 }
