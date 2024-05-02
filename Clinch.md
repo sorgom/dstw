@@ -1,11 +1,13 @@
 # The model driven approach
 ## the plan
-I happened to work for a project by the Clinch* that had (maybe still has) the following plan:
--	develop software for a digital interlocking from the scratch.
--	development should be model based.
--	use the IMB* toolchain including the Raggedy* modeling tool.
+I happened to work for a project of the Clinch* company that had (maybe still has) the following plan:
+-	develop software for a digital interlocking (DSTW) from the scratch
+-	development should be model based
+-	use the IMB* toolchain including the Raggedy* modeling tool
 
 ## SIL4
+A DSTW software has to meet the standards of SIL4 / EN 50 129. 
+
 Security Integrity Level 4 requires following some rules, e.g.:
 
 Before code can be checked in into a main branch it has to 

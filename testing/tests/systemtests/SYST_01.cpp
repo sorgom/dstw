@@ -13,44 +13,25 @@
 
 namespace test
 {
-    class TestGroupSYST : public Utest
+    TEST_GROUP_BASE(SYST_01, TestGroupBase)
     {
     protected:
-        TestGroupSYST() = default;
 
         M_TCP_Client clientFld{"FLD"};
         M_TCP_Client clientGui{"GUI"};
         M_TCP_Client clientCtrl{"CTRL"};
 
-        bool ok = false;
-        INT32 res = 0;
-
-        //  check if application is running
-        void connect()
+        void setup()
         {
             SUBSTEPS()
             STEP(1)
-            ok = TCP_Client::init();
+            const bool ok = TCP_Client::init();
             L_CHECK_TRUE(ok)
             STEP(2)
             clientFld.connect(tcpPortFld);
             clientGui.connect(tcpPortGui);
             clientCtrl.connect(tcpPortCtrl);
             ENDSTEPS()
-        }
-
-        //  terminate all connections
-        void close()
-        {
-            clientFld.close();
-            clientGui.close();
-            clientCtrl.close();
-            TCP_Client::cleanup();
-        }
-
-        void setup()
-        {
-            connect();
         }
         
         //  check all clients for received telegrams
@@ -64,16 +45,14 @@ namespace test
             clientCtrl.recv();
         }
 
-        inline void teardown()
+        void teardown()
         {
-            close();
+            clientFld.close();
+            clientGui.close();
+            clientCtrl.close();
+            TCP_Client::cleanup();
         }
-
     };
-
-    #define SETUP_CONNECT() SETUP() if (not connect()) { close(); return; }
-
-    TEST_GROUP_BASE(SYST_01, TestGroupSYST) {};
 
     //  ping pong test
     TEST(SYST_01, T01)
@@ -108,8 +87,8 @@ namespace test
         {
             STEP(n)
             const ComName cname {genComName(n, "TSW")};
-            const ComTele txgs{cname, { TSW_CMD_WU, PARAM_UNDEF }};
-            clientGui.send(txgs);
+            const ComTele txg{cname, { TSW_CMD_WU, PARAM_UNDEF }};
+            clientGui.send(txg);
             recvAll();
             CHECK_N_CLEAR()
         }
@@ -147,7 +126,6 @@ namespace test
         ENDSTEPS()
     }
 
-    //  this is a heavy one
     //  call for reGui
     TEST(SYST_01, T03)
     {
@@ -157,5 +135,4 @@ namespace test
         recvAll();
         CHECK_N_CLEAR()
     }
-
 }

@@ -48,11 +48,14 @@ Done (143ms).
 - open _tests.sln_
 - build and run
 
-#### 2.2) build and run application
-- open _gendata.sln_
-- build and run
-- open _dstw.sln_
-- build and run
+#### 2.2) build and run system tests
+- open _dstw_system.sln_
+- build
+- run _runSystemTests.cmd_ e.g. from Powershell
+
+```powershell
+PS ...\DSTW\make> .\runSystemTests.cmd
+```
 
 ### 3) VS keyboard shortcuts
 - build: [CTRL] [shift] [B]

@@ -12,7 +12,6 @@
 class Log : public I_Log
 {
 public:
-    inline Log() = default;
 
     std::ostream& log(E_Comp comp, E_Ret ret);
 
@@ -26,4 +25,5 @@ public:
     NOCOPY(Log)
 private:
     E_Ret mErr = RET_NO_ERR;
+    inline Log() = default;
 };

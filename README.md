@@ -8,6 +8,7 @@ It consists of the following components:
 - LCR: level crossings
 - SEG: track segments
 - SYS: commonly used system
+- COM: TCP communication to field and GUI
 
 The project does not intend an implementation that would work in a real digital interlocking (DSTW).
 
@@ -23,5 +24,5 @@ It shows a completely different approach than the [model driven](Clinch.md) one 
 - [testing](testing/README.md)
 - [transition tables](specification/doc/transition_tables.md)
 - [code coverage](testing/coverage.md)
-- [how to build](make/howto_build.md)
+- [how to build](make/README.md)
 - [current lines of code](CLOC.md)
