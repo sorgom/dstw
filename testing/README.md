@@ -91,5 +91,5 @@ The system tests take place that way:
 for current current code coverage see [coverage.md](coverage.md)
 
 ## used APIs
--   [CppUTestSteps](../CppUTestSteps/README.md)
+-   [CppUTestSteps](https://github.com/sorgom/CppUTestSteps)
 
