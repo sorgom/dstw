@@ -59,21 +59,26 @@ If testing a single application module (SUT, software under test)
 ![test Dispatcher](../specification/doc/test_dispatcher.svg) 
 
 #### sample test code
+with comments
 ```cpp
-        STEP(1)
-        //  setup test data
+        SETUP()
+        //  following tests call const methods
+        const I_Dispatcher& dsp = Dispatcher::instance();
+        //  setup test data and telegram
         const ComData data{55, 66};
-        //  prepare expected telegram
         ComTele teleExp{{}, data};
+
+        STEP(1)
+        //  prepare expected telegram for TSW
         nameElement(teleExp, 1, "TSW");
         //  describe expectation for mock:
         //  Com method toFld must be called with telegram
         m_Com().expectToFld(teleExp);
-        //  call Dispatcher's toFld method with data
+        //  call the Dispatcher's toFld method with data
         dsp.toFld(0, data);
         //  check if exactly this has happened
+        //  and clear CppUTest expectations stack
         CHECK_N_CLEAR()
-
 ```
 
 ## system tests

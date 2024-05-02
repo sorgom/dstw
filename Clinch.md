@@ -28,12 +28,15 @@ What the tools don’t provide is:
 -	a working source control
 -	a working review facility
 -	a continuous integration
+-   an understandable documentation
+-   a community
 
 What they provide is:
 -	the permanent need of workarounds and repetitive click surface work down
 -	a great collection of pitfalls and error driven frustration
 -	permanent dysfunction
--	a high demand on support by specialists
+-	a high demand on support by doubtful specialists
+-   repetitive "hm, last time it worked" in so called trainings
 -	crappy C-code in bits and pieces
 -   90 % of the effort spent for the tools and not for work to be done
 

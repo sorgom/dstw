@@ -77,8 +77,9 @@ sample:
 ```
 But this isn't too bad, because some SIL4 coding guidelines require this anyhow.
 
-## current gcov code coverage
+## sample gcov snapshot
 ```
+(2024-05-02 22:16)
 file                      lines  uncovered  percent
 BAS/src/BAS_Provider.cpp     26         --       --
 COM/src/Com.cpp              62         --       --
