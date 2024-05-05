@@ -138,7 +138,7 @@ namespace test
     private:
         using TelePtr = const ComTele*;
         mutable TelePtr mTele = nullptr;
-        M_TCP() : M_Base("Tcp") {}
+        inline M_TCP() : M_Base("Tcp") {}
     };
 } // namespace
 
