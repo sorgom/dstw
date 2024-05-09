@@ -4,7 +4,12 @@
 CppUTest is the base of testing in this project for good reasons:
 
 -   it's lean and fast
--   it runs on almost every device
+-   it runs on almost every device and platform. I have used (and customized) it with:
+    - CAD-UL
+    - IAR
+    - VS
+    - gcc
+    - eclipse / Mingw
 -   the greatest advantage to other frameworks: it natively handles unexpected calls as well as expected calls that aren't fulfilled
 
 ## module tests
