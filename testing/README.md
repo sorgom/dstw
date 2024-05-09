@@ -15,7 +15,7 @@ In test context every module instance that realizes an interface is substituted 
 
 The software compiled for production does not provide any substitution of the modules in charge.
 
-The whole thing is achieved by different include paths leading to two different [IL.h headers](##IL-headers).
+The whole thing is achieved by different include paths leading to two different IL.h headers.
 
 This concept has been SIL4 validated already.
 
