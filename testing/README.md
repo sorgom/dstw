@@ -15,36 +15,8 @@ In test context every module instance that realizes an interface is substituted 
 
 The software compiled for production does not provide any substitution of the modules in charge.
 
-The whole thing is achieved by different include paths leading to two different IL.h headers.
+The whole thing is achieved by different include paths leading to two different [IL.h headers](##IL-headers).
 
-#### header for production build 
-```cpp
-namespace IL
-{
-    inline I_Com& getCom() { return Com::instance(); }
-    inline I_Dispatcher& getDispatcher() { return Dispatcher::instance(); }
-    inline I_Log& getLog() { return Log::instance(); }
-    inline I_Provider& getLCR_Provider() { return LCR_Provider::instance(); }
-    inline I_Provider& getSIG_Provider() { return SIG_Provider::instance(); }
-    inline I_Provider& getTSW_Provider() { return TSW_Provider::instance(); }
-    inline I_Reader& getReader() { return Reader::instance(); }
-    ...
-}
-```
-#### header for test build 
-```cpp
-namespace IL
-{
-    inline I_Com& getCom() { return test::m_Com(); }
-    inline I_Dispatcher& getDispatcher() { return test::m_Dispatcher(); }
-    inline I_Log& getLog() { return test::m_Log(); }
-    inline I_Provider& getLCR_Provider() { return test::m_LCR_Provider(); }
-    inline I_Provider& getSIG_Provider() { return test::m_SIG_Provider(); }
-    inline I_Provider& getTSW_Provider() { return test::m_TSW_Provider(); }
-    inline I_Reader& getReader() { return test::m_Reader(); }
-    ...
-}
-```
 This concept has been SIL4 validated already.
 
 ### module test principle
@@ -98,3 +70,6 @@ for current current code coverage see [coverage.md](coverage.md)
 ## used APIs
 -   [CppUTestSteps](https://github.com/sorgom/CppUTestSteps)
 
+## IL headers
+- [header for production build](../application/components/SYS/IL.h)
+- [header for test build](../testing/testenv/SYS/IL.h)

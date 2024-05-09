@@ -21,17 +21,12 @@ endif
 RESCOMP = windres
 TARGETDIR = lib
 TARGET = $(TARGETDIR)/libcppu_test.a
-OBJDIR = obj/gcc/cppu_test/ci
-DEFINES += -DCPPUTEST_USE_LONG_LONG=0
 INCLUDES += -I../cpputest/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS) -s
 LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
 define PREBUILDCMDS
 endef
@@ -39,6 +34,22 @@ define PRELINKCMDS
 endef
 define POSTBUILDCMDS
 endef
+
+ifeq ($(config),ci)
+OBJDIR = obj/gcc/cppu_test/ci
+DEFINES += -DCPPUTEST_USE_LONG_LONG=0 -DNDEBUG
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
+ALL_LDFLAGS += $(LDFLAGS) -s
+
+else ifeq ($(config),debug)
+OBJDIR = obj/gcc/cppu_test/debug
+DEFINES += -DCPPUTEST_USE_LONG_LONG=0 -DDEBUG
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
+ALL_LDFLAGS += $(LDFLAGS)
+
+endif
 
 # Per File Configurations
 # #############################################

@@ -19,15 +19,11 @@ endif
 # #############################################
 
 RESCOMP = windres
-DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS += -lcppu_test
 LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS) -Llib -s -pthread
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PRELINKCMDS
 endef
@@ -36,17 +32,25 @@ ifeq ($(config),ci)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_ci
 OBJDIR = obj/gcc/tests/ci
+DEFINES += -DCPPUTEST_USE_LONG_LONG=0 -DNDEBUG
 INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
+ALL_LDFLAGS += $(LDFLAGS) -Llib -s -pthread
 define PREBUILDCMDS
 endef
 define POSTBUILDCMDS
 endef
 
-else ifeq ($(config),qnd)
+else ifeq ($(config),debug)
 TARGETDIR = bin
-TARGET = $(TARGETDIR)/tests_qnd
-OBJDIR = obj/gcc/tests/qnd
-INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components -I../devel
+TARGET = $(TARGETDIR)/tests_debug
+OBJDIR = obj/gcc/tests/debug
+DEFINES += -DCPPUTEST_USE_LONG_LONG=0 -DDEBUG
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
+ALL_LDFLAGS += $(LDFLAGS) -Llib -pthread
 define PREBUILDCMDS
 endef
 define POSTBUILDCMDS
@@ -56,7 +60,11 @@ else ifeq ($(config),dev)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_dev
 OBJDIR = obj/gcc/tests/dev
-INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components -I../devel
+DEFINES += -DCPPUTEST_USE_LONG_LONG=0 -DDEBUG
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
+ALL_LDFLAGS += $(LDFLAGS) -Llib -pthread
 define PREBUILDCMDS
 endef
 define POSTBUILDCMDS
@@ -66,7 +74,11 @@ else ifeq ($(config),bullseye)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_bullseye
 OBJDIR = obj/gcc/tests/bullseye
+DEFINES += -DCPPUTEST_USE_LONG_LONG=0 -DNDEBUG
 INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
+ALL_LDFLAGS += $(LDFLAGS) -Llib -s -pthread
 define PREBUILDCMDS
 	@echo Running prebuild commands
 	cov01 -1 --no-banner
@@ -80,7 +92,11 @@ else ifeq ($(config),tmp)
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/tests_tmp
 OBJDIR = obj/gcc/tests/tmp
+DEFINES += -DCPPUTEST_USE_LONG_LONG=0 -DDEBUG
 INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components -I../devel
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
+ALL_LDFLAGS += $(LDFLAGS) -Llib -pthread
 define PREBUILDCMDS
 endef
 define POSTBUILDCMDS
@@ -177,7 +193,7 @@ OBJECTS += $(OBJDIR)/SYS_02.o
 OBJECTS += $(OBJDIR)/TSW_01.o
 OBJECTS += $(OBJDIR)/TSW_02.o
 
-else ifeq ($(config),qnd)
+else ifeq ($(config),debug)
 GENERATED += $(OBJDIR)/BAS_01.o
 GENERATED += $(OBJDIR)/BAS_02.o
 GENERATED += $(OBJDIR)/COM_01.o
@@ -436,7 +452,7 @@ $(OBJDIR)/TSW_02.o: ../testing/tests/moduletests/TSW/TSW_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
-else ifeq ($(config),qnd)
+else ifeq ($(config),debug)
 $(OBJDIR)/BAS_01.o: ../testing/tests/moduletests/BAS/BAS_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"

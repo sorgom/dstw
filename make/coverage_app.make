@@ -19,6 +19,9 @@ endif
 # #############################################
 
 RESCOMP = windres
+TARGETDIR = lib
+TARGET = $(TARGETDIR)/libcoverage_app.a
+OBJDIR = obj/gcc/coverage_app
 DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
 INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
@@ -36,23 +39,6 @@ define PRELINKCMDS
 endef
 define POSTBUILDCMDS
 endef
-
-ifeq ($(config),ci)
-TARGETDIR = lib
-TARGET = $(TARGETDIR)/libcoverage_app_ci.a
-OBJDIR = obj/gcc/coverage_app/ci
-
-else ifeq ($(config),dev)
-TARGETDIR = lib
-TARGET = $(TARGETDIR)/libcoverage_app_dev.a
-OBJDIR = obj/gcc/coverage_app/dev
-
-else ifeq ($(config),qnd)
-TARGETDIR = lib
-TARGET = $(TARGETDIR)/libcoverage_app_qnd.a
-OBJDIR = obj/gcc/coverage_app/qnd
-
-endif
 
 # Per File Configurations
 # #############################################

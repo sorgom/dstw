@@ -8,13 +8,24 @@ buildoptions_gcc = '-std=c++17 -pedantic-errors -Werror -Wall'
 --  ============================================================
 --  > lib_cpputest.make
 --  cpputest lib
+--  configurations: 
+--  - ci        
+--  - debug     debug mode
 --  ============================================================
 workspace 'lib_cpputest'
     filter { 'action:gmake*' }
-        configurations { 'ci' }
+        configurations { 'ci', 'debug' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
         defines { defines_test }
+
+        filter { 'configurations:ci' }
+            defines { 'NDEBUG' }
+
+        filter { 'configurations:debug' }
+            defines { 'DEBUG' }
+            symbols 'On'
+
         project 'cppu_test'
             kind 'StaticLib'
             targetdir 'lib'
@@ -28,14 +39,14 @@ workspace 'lib_cpputest'
 --  ->  bin/tests_{config}
 --  configurations: 
 --  - ci        module tests
---  - qnd       module tests with devel includes
---  - dev       developer tests with devel includes
+--  - debug     module tests debug mode
+--  - dev       developer tests debug mode
 --  - bullseye  module tests with bullseye coverage
---  - none      no tests
+--  - tmp       temporary tests
 --  ============================================================
 workspace 'tests'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'qnd', 'dev', 'bullseye', 'tmp' }
+        configurations { 'ci', 'debug', 'dev', 'bullseye', 'tmp' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
         targetsuffix '_%{cfg.name}'
@@ -44,7 +55,8 @@ workspace 'tests'
 
         project 'tests'
             kind 'ConsoleApp'
-            defines { 'NDEBUG', defines_test }
+            defines { defines_test }
+
             targetdir 'bin'
             libdirs { 'lib' }
             includedirs { includedirs_test }
@@ -52,22 +64,28 @@ workspace 'tests'
             files { files_testenv, files_app }
 
             filter { 'configurations:ci' }
+                defines { 'NDEBUG' }
                 files { files_moduletest }
 
-            filter { 'configurations:qnd' }
+            filter { 'configurations:debug' }
+                defines { 'DEBUG' }
+                symbols 'On'
                 files { files_moduletest }
-                includedirs { includedirs_qnd }
 
             filter { 'configurations:dev' }
+                defines { 'DEBUG' }
+                symbols 'On'
                 files { files_devtest }
-                includedirs { includedirs_qnd }
 
             filter { 'configurations:bullseye' }
+                defines { 'NDEBUG' }
                 files { files_moduletest }
                 prebuildcommands { 'cov01 -1 --no-banner' }
                 postbuildcommands { './bullseye.sh' }
 
             filter { 'configurations:tmp' }
+                defines { 'DEBUG' }
+                symbols 'On'
                 includedirs { includedirs_qnd }
                 files {
                     '../testing/tests/moduletests/COM/*.cpp'
@@ -78,16 +96,12 @@ workspace 'tests'
 --  -   coverage instrumented application (static lib)
 --  -   module tests only runtime
 --  ->  bin/coverage_tests_{config}
---  configurations: 
---  - ci        module tests
---  - dev       developer tests
 --  ============================================================
 workspace 'coverage'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'dev', 'qnd' }
+        configurations { 'ci' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}'
-        targetsuffix '_%{cfg.name}'
 
         includedirs { includedirs_test }
         buildoptions { buildoptions_gcc }
@@ -99,7 +113,7 @@ workspace 'coverage'
             kind 'StaticLib'
             targetdir 'lib'
             files { files_app }
-            buildoptions {'-fprofile-arcs -ftest-coverage'}
+            buildoptions {'-fprofile-arcs -ftest-coverage' }
 
         project 'coverage_tests'
             kind 'ConsoleApp'
@@ -107,34 +121,29 @@ workspace 'coverage'
             libdirs { 'lib' }
             links { 'coverage_app', 'gcov', links_test_gcc }
             linkoptions { linkoptions_test_gcc, '--coverage' }
-            files { files_testenv }
-            filter { 'configurations:ci' }
-                files { files_moduletest }
-            filter { 'configurations:dev' }
-                files { files_devtest }
-            filter { 'configurations:qnd' }
-                files { files_moduletest }
-                includedirs { includedirs_qnd }
+            files { files_testenv, files_moduletest }
 
 --  ============================================================
 --  > systemtests.make
 --  -   run tests only runtime
 --  configurations: 
 --  - ci        module tests
---  - qnd       with devel includes
 --  ============================================================
 workspace 'systemtests'
     filter { 'action:gmake*' }
-        configurations { 'ci', 'qnd' }
+        configurations { 'ci', 'debug' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}'
         buildoptions { buildoptions_gcc }
 
-        defines { 'DEBUG', defines_gendata }
-        symbols 'On'
+        defines { defines_gendata }
 
-        filter { 'configurations:qnd' }
-            includedirs { includedirs_qnd }
+        filter { 'configurations:ci' }
+            defines { 'NDEBUG' }
+
+        filter { 'configurations:debug' }
+            defines { 'DEBUG' }
+            symbols 'On'
 
         project 'systemtests_stop'
             kind 'ConsoleApp'
@@ -157,12 +166,18 @@ workspace 'systemtests'
 --  ============================================================
 workspace 'dstw'
     filter { 'action:gmake*' }
-        configurations { 'ci' }
+        configurations { 'ci', 'debug' }
         language 'C++'
         objdir 'obj/gcc/%{prj.name}'
         targetdir 'bin'
         buildoptions { buildoptions_gcc }
-        optimize 'On'
+        
+        filter { 'configurations:ci' }
+            defines { 'NDEBUG' }
+
+        filter { 'configurations:debug' }
+            defines { 'DEBUG' }
+            symbols 'On'
 
         project 'dstw_gen'
             kind 'ConsoleApp'
@@ -175,22 +190,4 @@ workspace 'dstw'
             includedirs { includedirs_app }
             defines { defines_app }
             files { files_app, files_app_main }
-
---  ============================================================
---  > _valgrind.make
---  sample runtime with memory leak
---  ============================================================
-workspace '_valgrind'
-    filter { 'action:gmake*' }
-        configurations { 'ci' }
-        language 'C++'
-        objdir 'obj/gcc/%{prj.name}'
-        targetdir 'bin'
-        buildoptions { buildoptions_gcc }
-        defines { 'DEBUG' }
-        symbols 'On'
-
-        project '_valgrind'
-            kind 'ConsoleApp'
-            files { '../testing/valgrind/*.cpp' }
 

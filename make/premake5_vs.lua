@@ -28,17 +28,18 @@ buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127 /D_WINSOCK_DEPRECATED_NO
 --  ->  exe/tests.exe
 --  configurations: 
 --  - ci        module tests
---  - dev       developer tests
+--  - debug     module tests debug mode
+--  - dev       developer tests debug mode
 --  ============================================================
 workspace 'tests'
     filter { 'action:vs*' }
-        configurations { 'ci', 'dev', 'qnd' }
+        configurations { 'ci', 'debug', 'dev' }
         language 'C++'
         objdir 'obj/vs/%{prj.name}'
 
         includedirs { includedirs_test }
 
-        defines { 'NDEBUG', defines_test }
+        defines { defines_test }
 
         project 'tests'
             kind 'ConsoleApp'
@@ -49,13 +50,17 @@ workspace 'tests'
             files { files_cpputest_vs, files_testenv, files_app }
             
             filter { 'configurations:ci' }
+                defines { 'NDEBUG' }
                 files { files_moduletest }
 
-            filter { 'configurations:qnd' }
+            filter { 'configurations:debug' }
+                defines { 'DEBUG' }
+                symbols 'On'
                 files { files_moduletest }
-                includedirs { includedirs_qnd }
 
             filter { 'configurations:dev' }
+                defines { 'DEBUG', defines_test }
+                symbols 'On'
                 files { files_devtest }
 
 --  ============================================================
@@ -68,7 +73,7 @@ workspace 'tests'
 --  ============================================================
 workspace 'dstw_system'
     filter { 'action:vs*' }
-        configurations { 'ci' }
+        configurations { 'ci', 'debug' }
         language 'C++'
         objdir 'obj/vs/%{prj.name}'
         kind 'ConsoleApp'
@@ -77,8 +82,12 @@ workspace 'dstw_system'
         warnings 'high'
         buildoptions { buildoptions_vs_app }
 
-        filter { 'configurations:qnd' }
-            includedirs { includedirs_qnd }
+        filter { 'configurations:ci' }
+            defines { 'NDEBUG' }
+
+        filter { 'configurations:debug' }
+            defines { 'DEBUG' }
+            symbols 'On'
 
         project 'dstw_gen'
             defines { defines_gendata }

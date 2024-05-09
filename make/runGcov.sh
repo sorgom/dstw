@@ -4,18 +4,28 @@
 #   ====================================
 cd $(dirname $0)
 
+help()
+{
+    echo "Usage: $(basename $0) [options]"
+    echo "run coverage using gcov"
+    echo "options:"
+    echo "-s  show uncovered file content"
+    echo "-h  this help"
+    exit
+}
+
+
 show=0
-while getopts s option; do
+while getopts hs option; do
     case $option in
+      (h)  help;;
       (s)  show=1;;
     esac
 done
 shift $(($OPTIND - 1))
 
-conf=$1
-if test -z $conf; then conf=ci; fi
 
-gcov -o obj/gcc/coverage_app/$conf ../application/components/*/src/*.cpp > /dev/null 2> /dev/null  
+gcov -o obj/gcc/coverage_app ../application/components/*/src/*.cpp > /dev/null 2> /dev/null  
 
 out () {
     printf "%-25s: %4d\n" $1 $2

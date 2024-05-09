@@ -38,9 +38,7 @@ enum E_Ret : UINT8
 enum E_Param : UINT8
 {
     //  value not defined
-    PARAM_UNDEF = 254,
-    //  value recall to field
-    PARAM_RECALL = 255
+    PARAM_UNDEF = 255
 };
 
 //  module types

@@ -12,9 +12,9 @@ ifeq ($(config),ci)
   systemtests_stop_config = ci
   systemtests_run_config = ci
 
-else ifeq ($(config),qnd)
-  systemtests_stop_config = qnd
-  systemtests_run_config = qnd
+else ifeq ($(config),debug)
+  systemtests_stop_config = debug
+  systemtests_run_config = debug
 
 else
   $(error "invalid configuration $(config)")
@@ -47,7 +47,7 @@ help:
 	@echo ""
 	@echo "CONFIGURATIONS:"
 	@echo "  ci"
-	@echo "  qnd"
+	@echo "  debug"
 	@echo ""
 	@echo "TARGETS:"
 	@echo "   all (default)"

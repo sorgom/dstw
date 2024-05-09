@@ -115,10 +115,18 @@ namespace test
         CHECK_N_CLEAR()
     }
 
-    //  test type: coverage
-    //  log instance
+    //  test type: equivalence class test
+    //  log instance, log, maxerr
     TEST(SYS_01, T05)
     {
-        Log::instance().log(COMP_SYS, RET_ERR_MATCH);
+        STEP(1)
+        I_Log& logm = Log::instance();
+        logm.log(COMP_SYS, RET_ERR_MATCH);
+        logm.log(COMP_SYS, RET_ERR_STARTUP);
+
+        STEP(2)
+        const I_Log& logc = Log::instance();
+        const E_Ret ret = logc.maxerr();    
+        L_CHECK_EQUAL(RET_ERR_STARTUP, ret)
     }
 }
