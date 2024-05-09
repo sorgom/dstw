@@ -1,7 +1,8 @@
 //  ============================================================
-//  test of module Reader, Log (coverage)
+//  test of module Reader, Log
 //  ============================================================
 //  created by Manfred Sorgo
+
 #include <testlib/TestGroupBase.h>
 #include <SYS/Reader.h>
 #include <SYS/Log.h>
