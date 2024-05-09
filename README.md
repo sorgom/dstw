@@ -11,11 +11,13 @@ It consists of the following components:
 - COM: TCP communication to field and GUI
 
 ### goals
-- The project does not intend an implementation that would work in a real digital interlocking (DSTW).
-- The aim is to apply and demonstrate techniques to meet security integrity level 4 (SIL4).
-- It shows a completely different approach than the [model driven](Clinch.md) one I happened to experience.
-- As much modern C++ as possible
-- AI usage experience
+The project does not intend an implementation that would work in a real digital interlocking (DSTW).
+
+The aim is to
+- apply and demonstrate techniques to meet security integrity level 4 (SIL4).
+- show a completely different approach than the [model driven](Clinch.md) one I happened to experience.
+- use as much modern C++ as possible
+- gain AI usage experience
 
 ## components interaction overview
 ![overview](specification/doc/overview.svg)
