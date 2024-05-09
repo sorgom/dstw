@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef CONTAINERS_H
-#define CONTAINERS_H
 
 #include <BAS/coding.h>
 #include <ifs/DataTypes.h>
@@ -192,5 +190,3 @@ private:
         return dups;
     }
 };
-
-#endif // _H

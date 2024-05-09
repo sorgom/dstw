@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef NCPINDEX_H
-#define NCPINDEX_H
 
 #include <BAS/coding.h>
 #include <BAS/Containers.h>
@@ -48,5 +46,3 @@ protected:
         return ntp.name;
     }
 };
-
-#endif // H_

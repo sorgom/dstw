@@ -19,8 +19,11 @@ endif
 # #############################################
 
 RESCOMP = windres
+TARGETDIR = lib
+TARGET = $(TARGETDIR)/libcoverage_app.a
+OBJDIR = obj/gcc/coverage_app
 DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
-INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
@@ -36,18 +39,6 @@ define PRELINKCMDS
 endef
 define POSTBUILDCMDS
 endef
-
-ifeq ($(config),ci)
-TARGETDIR = lib
-TARGET = $(TARGETDIR)/libcoverage_app_ci.a
-OBJDIR = obj/gcc/coverage_app/ci
-
-else ifeq ($(config),dev)
-TARGETDIR = lib
-TARGET = $(TARGETDIR)/libcoverage_app_dev.a
-OBJDIR = obj/gcc/coverage_app/dev
-
-endif
 
 # Per File Configurations
 # #############################################
@@ -68,6 +59,8 @@ GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/Reader.o
 GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
+GENERATED += $(OBJDIR)/TCP.o
+GENERATED += $(OBJDIR)/TCP_Com.o
 GENERATED += $(OBJDIR)/TSW.o
 GENERATED += $(OBJDIR)/TSW_Provider.o
 OBJECTS += $(OBJDIR)/BAS_Provider.o
@@ -79,6 +72,8 @@ OBJECTS += $(OBJDIR)/Log.o
 OBJECTS += $(OBJDIR)/Reader.o
 OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
+OBJECTS += $(OBJDIR)/TCP.o
+OBJECTS += $(OBJDIR)/TCP_Com.o
 OBJECTS += $(OBJDIR)/TSW.o
 OBJECTS += $(OBJDIR)/TSW_Provider.o
 
@@ -147,6 +142,15 @@ endif
 $(OBJDIR)/BAS_Provider.o: ../application/components/BAS/src/BAS_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Com.o: ../application/components/COM/src/Com.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/TCP.o: ../application/components/COM/src/TCP.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/TCP_Com.o: ../application/components/COM/src/TCP_Com.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_Provider.o: ../application/components/LCR/src/LCR_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -157,9 +161,6 @@ $(OBJDIR)/SIG_Provider.o: ../application/components/SIG/src/SIG_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/SIG_X.o: ../application/components/SIG/src/SIG_X.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Com.o: ../application/components/SYS/src/Com.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Dispatcher.o: ../application/components/SYS/src/Dispatcher.cpp

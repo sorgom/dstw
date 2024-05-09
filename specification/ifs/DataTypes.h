@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo 
 
 #pragma once
-#ifndef DATAYPES_H
-#define DATAYPES_H
 
 #include "values.h"
 #include <codebase/BaseTypes.h>
@@ -14,29 +12,15 @@
 
 #include <codebase/packBegin.h>
 
-//  ============================================================
-//  - communication telegrams
-//  ============================================================
-
+//  communication telegrams
 //  Com telegrams element identifier
 constexpr auto ComNameSize = 12;
 
 struct ComName
 {
     CHAR chars[ComNameSize];
-    inline ComName()
-    {
-        Mem::set(chars);
-    }
+    inline ComName() = default;
     inline ComName(const ComName& src)
-    {
-        Mem::cpy(chars, src.chars);
-    }
-    inline ComName(const ComName&& src)
-    {
-        Mem::cpy(chars, src.chars);
-    }
-    inline void operator=(const ComName& src)
     {
         Mem::cpy(chars, src.chars);
     }
@@ -49,13 +33,14 @@ struct ComName
 static_assert(ComNameSize == sizeof(ComName));
 
 //  standard telegram size
-constexpr auto ComTelegramSize = ComNameSize + 2;
+constexpr auto ComTelegramSize = ComNameSize + 8;
 
 //  Com telegrams data
 struct ComData
 {
     UINT8 param1 = PARAM_UNDEF;
     UINT8 param2 = PARAM_UNDEF;
+    UINT8 reserve[6];
 };
 
 //  Com telegram
@@ -64,23 +49,35 @@ struct ComTele
     ComName name;
     ComData data;
 };
-static_assert(ComNameSize + 2 == sizeof(ComTele));
 
-//  ============================================================
-//  - project items
-//  ============================================================
+static_assert(ComTelegramSize == sizeof(ComTele));
+
+//  project items
 struct ProjItem
 {
     ComName name;
     UINT8 type;
+    UINT8 reserve[7];
 };
-static_assert(ComNameSize + 1 == sizeof(ProjItem));
+static_assert(ComNameSize + 8 == sizeof(ProjItem));
+
+//  Com TCP setup
+struct ComSetup
+{
+    //  TCP port field
+    UINT16 portFld;
+    //  TCP port DiB
+    UINT16 portGui;
+    //  TCP port control
+    UINT16 portCtrl;
+    //  TCP select timeout ms
+    UINT16 timeout;
+};
+static_assert(8 == sizeof(ComSetup));
 
 #include <codebase/packEnd.h>
 
-//  ============================================================
-//  - result of a find operation
-//  ============================================================
+//  result of a find operation
 struct PosRes
 {
     const size_t pos;
@@ -91,5 +88,3 @@ struct PosRes
     {}
     NODEF(PosRes)
 };
-
-#endif // H_

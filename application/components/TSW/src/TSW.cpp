@@ -23,13 +23,13 @@ void TSW::fromGui(const ComData& data)
     const auto state = data.param1;
     switch(state)
     {
-    case TSW_GUI_CMD_WU:
+    case TSW_CMD_WU:
         wu();
         break;
-    case TSW_GUI_CMD_LEFT:
+    case TSW_CMD_LEFT:
         swLeft();
         break;
-    case TSW_GUI_CMD_RIGHT:
+    case TSW_CMD_RIGHT:
         swRight();
         break;
     default:
@@ -90,10 +90,15 @@ void TSW::chgState(const UINT8 state)
     if (state != mState)
     {
         mState = state;
-        IL::getDispatcher().toGui(mId, ComData{mState});
+        toGui();
     }
     else
     { pass(); }
+}
+
+void TSW::toGui() const
+{
+    IL::getDispatcher().toGui(mId, ComData{mState});
 }
 
 void TSW::toFld(const UINT8 state) const

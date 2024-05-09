@@ -4,17 +4,16 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef SIG_X_H
-#define SIG_X_H
 
 #include <ifs/values.h>
 #include <ifs/I_Elem.h>
-#include <SYS/IL.h>
 #include <BAS/coding.h>
 
 class SIG_X : public I_Elem
 {
 public:
+    void toGui() const override;
+
     NOCOPY(SIG_X)
     NODEF(SIG_X)
 
@@ -32,8 +31,7 @@ protected:
     void procFromFld(UINT8 state);
     void procFromGui(UINT8 stateFld, UINT8 stateGui);
 
-    void toFld(UINT8 state, UINT8 speed = PARAM_UNDEF); 
-    void toGui(UINT8 state, UINT8 speed = PARAM_UNDEF);
+    void toFld(UINT8 state, UINT8 speed = PARAM_UNDEF) const; 
 
     static void logMismatch();
 };
@@ -41,9 +39,11 @@ protected:
 class SIG_XS : public SIG_X
 {
 public:
+    void toGui() const override;
 
     NOCOPY(SIG_XS)
     NODEF(SIG_XS)
+
 protected:
     inline SIG_XS(size_t id):
         SIG_X(id),
@@ -70,10 +70,10 @@ class SIG_H : public SIG_X
 public:
     inline SIG_H(size_t id): SIG_X(id) {}
 
-    void fromFld(const ComData& data);
-    void fromGui(const ComData& data);
+    void fromFld(const ComData& data) override;
+    void fromGui(const ComData& data) override;
 
-    inline E_Type type() const { return TYPE_SIG_H; }
+    inline E_Type type() const override { return TYPE_SIG_H; }
 
     NOCOPY(SIG_H)
     NODEF(SIG_H)
@@ -95,10 +95,10 @@ class SIG_N : public SIG_XS
 public:
     inline SIG_N(size_t id): SIG_XS(id) {}
 
-    void fromFld(const ComData& data);
-    void fromGui(const ComData& data);
+    void fromFld(const ComData& data) override;
+    void fromGui(const ComData& data) override;
 
-    inline E_Type type() const { return TYPE_SIG_N; }
+    inline E_Type type() const override { return TYPE_SIG_N; }
 
     NOCOPY(SIG_N)
     NODEF(SIG_N)
@@ -122,10 +122,10 @@ class SIG_H_N : public SIG_XS
 public:
     inline SIG_H_N(size_t id): SIG_XS(id) {}
 
-    void fromFld(const ComData& data);
-    void fromGui(const ComData& data);
+    void fromFld(const ComData& data) override;
+    void fromGui(const ComData& data) override;
 
-    inline E_Type type() const { return TYPE_SIG_H_N; }
+    inline E_Type type() const override { return TYPE_SIG_H_N; }
 
     NOCOPY(SIG_H_N)
     NODEF(SIG_H_N)
@@ -136,4 +136,3 @@ private:
     void proc_H1_N0(UINT8 speed);
     void proc_H1_N1(UINT8 speed);
 };
-#endif // _H

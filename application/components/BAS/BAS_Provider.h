@@ -9,8 +9,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef BAS_PROVIDER_H
-#define BAS_PROVIDER_H
 
 #include <BAS/Containers.h>
 #include <ifs/I_Provider.h>
@@ -46,6 +44,3 @@ protected:
 
     PolyVec<I_Elem> mElems;
 };
-
-
-#endif // H_

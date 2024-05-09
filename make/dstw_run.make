@@ -21,17 +21,12 @@ endif
 RESCOMP = windres
 TARGETDIR = bin
 TARGET = $(TARGETDIR)/dstw_run
-OBJDIR = obj/gcc/dstw_run
-DEFINES += -DNDEBUG
-INCLUDES += -I../specification -I../application -I../application/components
+INCLUDES += -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS) -s
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -39,6 +34,22 @@ define PRELINKCMDS
 endef
 define POSTBUILDCMDS
 endef
+
+ifeq ($(config),ci)
+OBJDIR = obj/gcc/dstw_run/ci
+DEFINES += -DNDEBUG
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
+ALL_LDFLAGS += $(LDFLAGS) -s
+
+else ifeq ($(config),debug)
+OBJDIR = obj/gcc/dstw_run/debug
+DEFINES += -DDEBUG -DNDEBUG
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
+ALL_LDFLAGS += $(LDFLAGS)
+
+endif
 
 # Per File Configurations
 # #############################################
@@ -54,28 +65,28 @@ GENERATED += $(OBJDIR)/AppMain.o
 GENERATED += $(OBJDIR)/BAS_Provider.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/Dispatcher.o
-GENERATED += $(OBJDIR)/IL.o
-GENERATED += $(OBJDIR)/IL_Com.o
 GENERATED += $(OBJDIR)/LCR_Provider.o
 GENERATED += $(OBJDIR)/LCR_X.o
 GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/Reader.o
 GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
+GENERATED += $(OBJDIR)/TCP.o
+GENERATED += $(OBJDIR)/TCP_Com.o
 GENERATED += $(OBJDIR)/TSW.o
 GENERATED += $(OBJDIR)/TSW_Provider.o
 OBJECTS += $(OBJDIR)/AppMain.o
 OBJECTS += $(OBJDIR)/BAS_Provider.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
-OBJECTS += $(OBJDIR)/IL.o
-OBJECTS += $(OBJDIR)/IL_Com.o
 OBJECTS += $(OBJDIR)/LCR_Provider.o
 OBJECTS += $(OBJDIR)/LCR_X.o
 OBJECTS += $(OBJDIR)/Log.o
 OBJECTS += $(OBJDIR)/Reader.o
 OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
+OBJECTS += $(OBJDIR)/TCP.o
+OBJECTS += $(OBJDIR)/TCP_Com.o
 OBJECTS += $(OBJDIR)/TSW.o
 OBJECTS += $(OBJDIR)/TSW_Provider.o
 
@@ -144,6 +155,15 @@ endif
 $(OBJDIR)/BAS_Provider.o: ../application/components/BAS/src/BAS_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/Com.o: ../application/components/COM/src/Com.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/TCP.o: ../application/components/COM/src/TCP.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/TCP_Com.o: ../application/components/COM/src/TCP_Com.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_Provider.o: ../application/components/LCR/src/LCR_Provider.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -156,16 +176,7 @@ $(OBJDIR)/SIG_Provider.o: ../application/components/SIG/src/SIG_Provider.cpp
 $(OBJDIR)/SIG_X.o: ../application/components/SIG/src/SIG_X.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Com.o: ../application/components/SYS/src/Com.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Dispatcher.o: ../application/components/SYS/src/Dispatcher.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/IL.o: ../application/components/SYS/src/IL.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/IL_Com.o: ../application/components/SYS/src/IL_Com.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Log.o: ../application/components/SYS/src/Log.cpp

@@ -19,14 +19,19 @@ endif
 # #############################################
 
 RESCOMP = windres
+TARGETDIR = bin
+TARGET = $(TARGETDIR)/coverage_tests
+OBJDIR = obj/gcc/coverage_tests
 DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
-INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application -I../application/components
+INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-ALL_LDFLAGS += $(LDFLAGS) -Llib --coverage
+LIBS += lib/libcoverage_app.a -lgcov -lcppu_test
+LDDEPS += lib/libcoverage_app.a
+ALL_LDFLAGS += $(LDFLAGS) -Llib -pthread --coverage
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -34,22 +39,6 @@ define PRELINKCMDS
 endef
 define POSTBUILDCMDS
 endef
-
-ifeq ($(config),ci)
-TARGETDIR = bin
-TARGET = $(TARGETDIR)/coverage_tests_ci
-OBJDIR = obj/gcc/coverage_tests/ci
-LIBS += lib/libcoverage_app_ci.a -lgcov -lcppu_test
-LDDEPS += lib/libcoverage_app_ci.a
-
-else ifeq ($(config),dev)
-TARGETDIR = bin
-TARGET = $(TARGETDIR)/coverage_tests_dev
-OBJDIR = obj/gcc/coverage_tests/dev
-LIBS += lib/libcoverage_app_dev.a -lgcov -lcppu_test
-LDDEPS += lib/libcoverage_app_dev.a
-
-endif
 
 # Per File Configurations
 # #############################################
@@ -61,66 +50,56 @@ endif
 GENERATED :=
 OBJECTS :=
 
+GENERATED += $(OBJDIR)/BAS_01.o
+GENERATED += $(OBJDIR)/BAS_02.o
+GENERATED += $(OBJDIR)/COM_01.o
+GENERATED += $(OBJDIR)/COM_02.o
+GENERATED += $(OBJDIR)/COM_03.o
+GENERATED += $(OBJDIR)/COM_04.o
 GENERATED += $(OBJDIR)/Comparator.o
-GENERATED += $(OBJDIR)/ILPlugs.o
+GENERATED += $(OBJDIR)/LCR_01.o
+GENERATED += $(OBJDIR)/LCR_02.o
 GENERATED += $(OBJDIR)/M_Instances.o
+GENERATED += $(OBJDIR)/SIG_01.o
+GENERATED += $(OBJDIR)/SIG_02.o
+GENERATED += $(OBJDIR)/SYS_01.o
+GENERATED += $(OBJDIR)/SYS_02.o
+GENERATED += $(OBJDIR)/TCP_Client.o
+GENERATED += $(OBJDIR)/TSW_01.o
+GENERATED += $(OBJDIR)/TSW_02.o
 GENERATED += $(OBJDIR)/TestGroupBase.o
 GENERATED += $(OBJDIR)/TestLib.o
 GENERATED += $(OBJDIR)/TestMain.o
 GENERATED += $(OBJDIR)/TestSteps.o
 GENERATED += $(OBJDIR)/TestStepsPlugin.o
 GENERATED += $(OBJDIR)/installComparators.o
-GENERATED += $(OBJDIR)/mock_IL.o
-GENERATED += $(OBJDIR)/mock_IL_Com.o
 GENERATED += $(OBJDIR)/ostreamHelpers.o
 GENERATED += $(OBJDIR)/ostreams.o
+OBJECTS += $(OBJDIR)/BAS_01.o
+OBJECTS += $(OBJDIR)/BAS_02.o
+OBJECTS += $(OBJDIR)/COM_01.o
+OBJECTS += $(OBJDIR)/COM_02.o
+OBJECTS += $(OBJDIR)/COM_03.o
+OBJECTS += $(OBJDIR)/COM_04.o
 OBJECTS += $(OBJDIR)/Comparator.o
-OBJECTS += $(OBJDIR)/ILPlugs.o
+OBJECTS += $(OBJDIR)/LCR_01.o
+OBJECTS += $(OBJDIR)/LCR_02.o
 OBJECTS += $(OBJDIR)/M_Instances.o
+OBJECTS += $(OBJDIR)/SIG_01.o
+OBJECTS += $(OBJDIR)/SIG_02.o
+OBJECTS += $(OBJDIR)/SYS_01.o
+OBJECTS += $(OBJDIR)/SYS_02.o
+OBJECTS += $(OBJDIR)/TCP_Client.o
+OBJECTS += $(OBJDIR)/TSW_01.o
+OBJECTS += $(OBJDIR)/TSW_02.o
 OBJECTS += $(OBJDIR)/TestGroupBase.o
 OBJECTS += $(OBJDIR)/TestLib.o
 OBJECTS += $(OBJDIR)/TestMain.o
 OBJECTS += $(OBJDIR)/TestSteps.o
 OBJECTS += $(OBJDIR)/TestStepsPlugin.o
 OBJECTS += $(OBJDIR)/installComparators.o
-OBJECTS += $(OBJDIR)/mock_IL.o
-OBJECTS += $(OBJDIR)/mock_IL_Com.o
 OBJECTS += $(OBJDIR)/ostreamHelpers.o
 OBJECTS += $(OBJDIR)/ostreams.o
-
-ifeq ($(config),ci)
-GENERATED += $(OBJDIR)/BAS_01.o
-GENERATED += $(OBJDIR)/BAS_02.o
-GENERATED += $(OBJDIR)/LCR_01.o
-GENERATED += $(OBJDIR)/LCR_02.o
-GENERATED += $(OBJDIR)/SIG_01.o
-GENERATED += $(OBJDIR)/SIG_02.o
-GENERATED += $(OBJDIR)/SYS_01.o
-GENERATED += $(OBJDIR)/SYS_02.o
-GENERATED += $(OBJDIR)/SYS_03.o
-GENERATED += $(OBJDIR)/TSW_01.o
-GENERATED += $(OBJDIR)/TSW_02.o
-OBJECTS += $(OBJDIR)/BAS_01.o
-OBJECTS += $(OBJDIR)/BAS_02.o
-OBJECTS += $(OBJDIR)/LCR_01.o
-OBJECTS += $(OBJDIR)/LCR_02.o
-OBJECTS += $(OBJDIR)/SIG_01.o
-OBJECTS += $(OBJDIR)/SIG_02.o
-OBJECTS += $(OBJDIR)/SYS_01.o
-OBJECTS += $(OBJDIR)/SYS_02.o
-OBJECTS += $(OBJDIR)/SYS_03.o
-OBJECTS += $(OBJDIR)/TSW_01.o
-OBJECTS += $(OBJDIR)/TSW_02.o
-
-else ifeq ($(config),dev)
-GENERATED += $(OBJDIR)/DT_01.o
-GENERATED += $(OBJDIR)/DT_02.o
-GENERATED += $(OBJDIR)/DT_03.o
-OBJECTS += $(OBJDIR)/DT_01.o
-OBJECTS += $(OBJDIR)/DT_02.o
-OBJECTS += $(OBJDIR)/DT_03.o
-
-endif
 
 # Rules
 # #############################################
@@ -190,6 +169,9 @@ $(OBJDIR)/TestSteps.o: ../CppUTestSteps/TestSteps/src/TestSteps.cpp
 $(OBJDIR)/TestStepsPlugin.o: ../CppUTestSteps/TestSteps/src/TestStepsPlugin.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/TCP_Client.o: ../testing/testenv/TCP/src/TCP_Client.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/Comparator.o: ../testing/testenv/comparators/src/Comparator.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -202,16 +184,7 @@ $(OBJDIR)/ostreamHelpers.o: ../testing/testenv/comparators/src/ostreamHelpers.cp
 $(OBJDIR)/ostreams.o: ../testing/testenv/comparators/src/ostreams.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/ILPlugs.o: ../testing/testenv/mocks/src/ILPlugs.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/M_Instances.o: ../testing/testenv/mocks/src/M_Instances.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/mock_IL.o: ../testing/testenv/mocks/src/mock_IL.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/mock_IL_Com.o: ../testing/testenv/mocks/src/mock_IL_Com.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TestGroupBase.o: ../testing/testenv/testlib/src/TestGroupBase.cpp
@@ -223,12 +196,22 @@ $(OBJDIR)/TestLib.o: ../testing/testenv/testlib/src/TestLib.cpp
 $(OBJDIR)/TestMain.o: ../testing/testenv/testlib/src/TestMain.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-
-ifeq ($(config),ci)
 $(OBJDIR)/BAS_01.o: ../testing/tests/moduletests/BAS/BAS_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/BAS_02.o: ../testing/tests/moduletests/BAS/BAS_02.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/COM_01.o: ../testing/tests/moduletests/COM/COM_01.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/COM_02.o: ../testing/tests/moduletests/COM/COM_02.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/COM_03.o: ../testing/tests/moduletests/COM/COM_03.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/COM_04.o: ../testing/tests/moduletests/COM/COM_04.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/LCR_01.o: ../testing/tests/moduletests/LCR/LCR_01.cpp
@@ -249,28 +232,12 @@ $(OBJDIR)/SYS_01.o: ../testing/tests/moduletests/SYS/SYS_01.cpp
 $(OBJDIR)/SYS_02.o: ../testing/tests/moduletests/SYS/SYS_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SYS_03.o: ../testing/tests/moduletests/SYS/SYS_03.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW_01.o: ../testing/tests/moduletests/TSW/TSW_01.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW_02.o: ../testing/tests/moduletests/TSW/TSW_02.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-
-else ifeq ($(config),dev)
-$(OBJDIR)/DT_01.o: ../testing/tests/devtests/DT_01.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/DT_02.o: ../testing/tests/devtests/DT_02.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/DT_03.o: ../testing/tests/devtests/DT_03.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-
-endif
 
 -include $(OBJECTS:%.o=%.d)
 ifneq (,$(PCH))

@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef LCR_X_H
-#define LCR_X_H
 
 #include <ifs/I_Elem.h>
 #include <BAS/coding.h>
@@ -15,7 +13,7 @@ class LCR_X : public I_Elem
 {
 public:
 
-    void fromGui(const ComData& data);
+    void fromGui(const ComData& data) override;
 
     NOCOPY(LCR_X)
     NODEF(LCR_X)
@@ -34,8 +32,6 @@ protected:
 
     void toFld(UINT8 state) const;
 
-    virtual void toGui() const = 0;
-
     static bool validState(UINT8 state);
 };
 
@@ -47,15 +43,13 @@ class LCR : public LCR_X
 public:
     inline LCR(size_t id): LCR_X(id) {}
 
-    void fromFld(const ComData& data);
+    void fromFld(const ComData& data) override;
+    void toGui() const override;
 
-    inline E_Type type() const { return TYPE_LCR; }
+    inline E_Type type() const override { return TYPE_LCR; }
 
     NOCOPY(LCR)
     NODEF(LCR)
-
-protected:
-    void toGui() const;
 };
 
 //  ============================================================
@@ -69,18 +63,15 @@ public:
         mUbkToGui(LCR_UBK_STATE_UNDEF)
     {}
 
-    void fromFld(const ComData& data);
+    void fromFld(const ComData& data) override;
+    void toGui() const override;
 
-    inline E_Type type() const { return TYPE_LCR_UBK; }
+    inline E_Type type() const override { return TYPE_LCR_UBK; }
 
     NOCOPY(LCR_UBK)
     NODEF(LCR_UBK)
 
-protected:    
-    void toGui() const;
 private:
     UINT8 mUbkToGui;
     static bool validUbk(UINT8 ubk);
 };
-
-#endif // _H

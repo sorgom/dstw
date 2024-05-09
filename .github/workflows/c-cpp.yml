@@ -27,6 +27,9 @@ jobs:
     - name: check coverage
       run: make/runGcov.sh
 
+    - name: run system tests
+      run: make/runSystemTests.sh
+
     # - name: check env
     #   run: make/checkEnv.sh
 

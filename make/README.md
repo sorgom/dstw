@@ -1,9 +1,12 @@
-# how to build
-## gcc build
-### preconditions
+# how to build and run
+## gcc 
+### build.sh
+**build & 1st run**
+
+requires
 - make
 - gcc
-### use build.sh
+
 call help
 ````shell
 DSTW/make$> ./build.sh -h
@@ -11,6 +14,32 @@ DSTW/make$> ./build.sh -h
 then call to build and run, e.g.
 ````shell
 DSTW/make$> ./build.sh -cr
+````
+### runGcov.sh
+**check coverage**
+
+requires
+- gcov
+- (coverage binary has run)
+
+call help
+````shell
+DSTW/make$> ./runGcov.sh -h
+````
+then call to check coverage, e.g.
+````shell
+DSTW/make$> ./runGcov.sh -s
+````
+
+### runSystemTests.sh
+**run system tests**
+
+requires
+- gcov
+- binaries built
+
+````shell
+DSTW/make$> ./runSystemTests.sh
 ````
 
 ## Visual Studio build
@@ -48,11 +77,14 @@ Done (143ms).
 - open _tests.sln_
 - build and run
 
-#### 2.2) build and run application
-- open _gendata.sln_
-- build and run
-- open _dstw.sln_
-- build and run
+#### 2.2) build and run system tests
+- open _dstw_system.sln_
+- build
+- run _runSystemTests.cmd_ e.g. from Powershell
+
+```powershell
+PS ...\DSTW\make> .\runSystemTests.cmd
+```
 
 ### 3) VS keyboard shortcuts
 - build: [CTRL] [shift] [B]

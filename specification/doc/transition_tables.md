@@ -5,7 +5,7 @@
 
 ## valid transitions
 
-```
+```txt
 The track switch (TSW) has only 6 different states.
 State information from field can cause any transition,
 except transitions to WAIT states.
@@ -29,12 +29,9 @@ This requires 28 test steps.
 ## events causing no transition
 
 But we do not only want to test all events that cause transition.
-
-In order to complete application code coverage we also want to test all events that cause no transition.
-
-And also we want to have as few test steps as possible.
-
-That means to generate sequences of test steps using the result state of the preceding steps.
+- In order to complete application code coverage we also want to test all events that cause no transition.
+- And also we want to have as few test steps as possible.
+- That means to generate sequences of test steps using the result state of the preceding steps.
 
 This is done by script.
 
@@ -57,15 +54,54 @@ Simple small csv files describing the possible transitions.
 
 Sample: transitions TSW
 
-| FLD *      |        | CMD LEFT   |           | CMD RIGHT |            | CMD WU |            | CMD WU |           |
-| :--------- | :----- | :--------- | :-------- | :-------- | :--------- | :----- | :--------- | :----- | :-------- |
-| UNDEF      | UNDEF  | UNDEF      | WAIT LEFT | UNDEF     | WAIT RIGHT |        | WAIT RIGHT |        | WAIT LEFT |
-| DEFECT     | LEFT   |            |           |           |            |        |            |        |           |
-| LEFT       | RIGHT  |            |           | LEFT      |            | LEFT   |            |        |           |
-| RIGHT      | DEFECT | RIGHT      |           |           |            |        |            | RIGHT  |           |
-| WAIT LEFT  |        |            |           | WAIT LEFT |            |        |            |        |           |
-| WAIT RIGHT |        | WAIT RIGHT |           |           |            |        |            |        |           |
-|            |        |            |           |           |            |        |            |        |           |
+The potential transitions for each event consist of two columns
+- source states (from)
+- target states (to)
+- transitions from all source states to all target states are regarded as possible
+- transitions that make a change are the ones with different source and target state
+
+|FLD *| |CMD LEFT| |CMD RIGHT| |CMD WU| |CMD WU| |       
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|      
+|UNDEF|UNDEF|UNDEF| |UNDEF| | | | | |
+|DEFECT|DEFECT| | | | | | | | |
+|LEFT|LEFT| | |LEFT| |LEFT| | | |
+|RIGHT|RIGHT|RIGHT| | | | | |RIGHT| |
+|WAIT LEFT| | |WAIT LEFT|WAIT LEFT| | | | |WAIT LEFT|    
+|WAIT RIGHT| |WAIT RIGHT| | |WAIT RIGHT| |WAIT RIGHT| | |
+
+How to read the table:
+```
+The FLD * state event's parameters are identical to the target state.
+In the given table we have 4 different state events.
+So for instance FLD RIGHT causes state RIGHT.
+That causes a change from all source states except state RIGHT itself.
+
+The calculation is similar
+The field (FLD) state event has
+6 source states
+4 target states
+= 24 transitions
+-  4 transitions A -> A
+= 20
+GUI commands (CMD) LEFT and RIGHT
+3 source states
+1 target state
+=  2 X 3 transitions 
+=  6
+The WU command can cause
+LEFT to WAIT_RIGHT
+RIGHT to WAIT_LEFT
+=  2
+= 28 events that cause a change
+
+To get all combinations we multiply all source states
+with the number of events
+4 field state events
+3 commands
+=  7
+X  6 source states
+= 42 combinations to test
+```
 
 ## test steps
 
@@ -142,6 +178,9 @@ From here it's a last step to generate the test code using a template.
 
 Sample: test template json file for TSW
 
+```plaintext
+cat ../../testing/tests/moduletests/TSW/TSW_01.json
+```
 ```json
 {
     "//" : "===================================",
@@ -149,7 +188,7 @@ Sample: test template json file for TSW
     "//" : "===================================",
     "prefixState": "TSW_STATE",
     "prefixCmd": "TSW_GUI_CMD",
-    "param1": "CMD(_CMD_, _FLD_, _GUI_);",
+    "cmd1": "CMD(_CMD_, _FLD_, _GUI_);",
     "cmd0": "CMD(_CMD_);",
     "fld1": "FLD(_VAL_, _VAL_);",
     "fld0": "FLD(_VAL_);",
@@ -162,19 +201,19 @@ Sample: generated test code for TSW
         STEP(1)
         FLD(TSW_STATE_LEFT, TSW_STATE_LEFT);
         STEP(2)
-        CMD(TSW_GUI_CMD_LEFT);
+        CMD(TSW_CMD_LEFT);
         STEP(3)
         FLD(TSW_STATE_LEFT);
         STEP(4)
         FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
         STEP(5)
-        CMD(TSW_GUI_CMD_WU);
+        CMD(TSW_CMD_WU);
         STEP(6)
         FLD(TSW_STATE_UNDEF);
         STEP(7)
         FLD(TSW_STATE_RIGHT, TSW_STATE_RIGHT);
         STEP(8)
-        CMD(TSW_GUI_CMD_RIGHT);
+        CMD(TSW_CMD_RIGHT);
         STEP(9)
         FLD(TSW_STATE_RIGHT);
         STEP(10)
@@ -183,23 +222,23 @@ Sample: generated test code for TSW
         STEP(40)
         FLD(TSW_STATE_RIGHT, TSW_STATE_RIGHT);
         STEP(41)
-        CMD(TSW_GUI_CMD_WU, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
+        CMD(TSW_CMD_WU, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
         STEP(42)
         FLD(TSW_STATE_DEFECT, TSW_STATE_DEFECT);
         STEP(43)
         FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
         STEP(44)
-        CMD(TSW_GUI_CMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
+        CMD(TSW_CMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
         STEP(45)
         FLD(TSW_STATE_DEFECT, TSW_STATE_DEFECT);
         STEP(46)
         FLD(TSW_STATE_UNDEF, TSW_STATE_UNDEF);
         STEP(47)
-        CMD(TSW_GUI_CMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
+        CMD(TSW_CMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
         STEP(48)
-        CMD(TSW_GUI_CMD_LEFT, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
+        CMD(TSW_CMD_LEFT, TSW_STATE_LEFT, TSW_STATE_WAIT_LEFT);
         STEP(49)
-        CMD(TSW_GUI_CMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
+        CMD(TSW_CMD_RIGHT, TSW_STATE_RIGHT, TSW_STATE_WAIT_RIGHT);
 ```
 
 ## sample: transitions SIG_H_N

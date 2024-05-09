@@ -5,8 +5,6 @@
 //  created by Manfred Sorgo 
 
 #pragma once
-#ifndef COM_H
-#define COM_H
 
 #include <ifs/I_Com.h>
 #include <BAS/coding.h>
@@ -14,13 +12,15 @@
 class Com : public I_Com
 {
 public:
-    inline Com() = default;
-    inline void toFld(const ComTele& tele) const {}
-    inline void toGui(const ComTele& tele) const {}
+    void run() override;
+    void stop() override;
+    void toFld(const ComTele& tele) const;
+    void toGui(const ComTele& tele) const;
 
     INSTANCE_DEC(Com)
-
     NOCOPY(Com)
-};
 
-#endif // H_
+private:
+    inline Com() = default;
+    bool mRunning = false;
+};

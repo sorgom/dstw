@@ -3,26 +3,24 @@
 //  ============================================================
 //  created by Manfred Sorgo
 #pragma once
-#ifndef M_LOGGER_H
-#define M_LOGGER_H
 
 #include <ifs/I_Log.h>
 #include "M_Base.h"
+#include <testlib/NullStream.h>
 
 namespace test
 {
     class M_Log : 
         public I_Log,
-        protected M_Base
+        private M_Base
     {
     public:
-        M_Log() :
-            M_Base("Log")
-        {}
+        INSTANCE_DEC(M_Log)
 
-        inline void log(E_Comp comp, E_Ret ret)
+        inline std::ostream& log(E_Comp comp, E_Ret ret)
         {
             call("log").PARAM(comp).PARAM(ret);
+            return mStream;
         }
         inline void expectLog(E_Comp comp, E_Ret ret) const
         {
@@ -36,9 +34,8 @@ namespace test
         {
             expect("maxerr").AND_RETURN(ret);
         }
-
-        INSTANCE_DEC(M_Log)
+    private:
+        M_Log() : M_Base("Log") {}
+        NullStream mStream;
     };
 } 
-
-#endif // H_

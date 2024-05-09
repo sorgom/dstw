@@ -12,6 +12,7 @@ from os.path import exists
 from glob import glob
 import re
 from sys import exit
+from datetime import datetime
 from modUtilz import checkLinux, procOut, commonLen
 
 rxUnc = re.compile(r'^ *#*: *\d+:', re.M)
@@ -57,6 +58,8 @@ class Gcov(object):
         srcs = [src[clen:] for src in srcs]
         nlen = max([len(src) for src in srcs])
 
+        # time stamp yyyy-mm-dd hh:mm
+        ts = datetime.now().strftime('(%Y-%m-%d %H:%M)')
         form = f'%-{nlen}s  %5d  %9d  %7.1f'
         head = f'%-{nlen}s  lines  uncovered  percent' % 'file'
         res = list()
@@ -71,7 +74,7 @@ class Gcov(object):
         res = sorted(res, key=str.lower)
         res.insert(0, head)
         res.append(form % ('total', tloc, tuncov, tuncov * 100.0 / tloc))
-        out = '\n'.join(res)
+        out = '\n'.join([ts, *res])
         out = rxNlp.sub('  --', rxNul.sub('-- ', out))
         if self.verbose: print(out)
         return out

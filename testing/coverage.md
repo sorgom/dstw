@@ -21,7 +21,7 @@ Source            Function Coverage      C/D Coverage
 Com.h                3 /   3 = 100%    0 /   0
 Dispatcher.cpp       7 /   7 = 100%   20 /  20 = 100%
 Dispatcher.h         1 /   1 = 100%    0 /   0
-I_Array.h       3 /   3 = 100%   18 /  18 = 100%
+I_Array.h            3 /   3 = 100%   18 /  18 = 100%
 LCR_Hub.cpp          4 /   4 = 100%    4 /   4 = 100%
 LCR_Hub.h            1 /   1 = 100%    0 /   0
 LCR_Provider.cpp     1 /   1 = 100%   15 /  15 = 100%
@@ -40,7 +40,7 @@ SIG_Provider.cpp     1 /   1 = 100%   16 /  16 = 100%
 SIG_Provider.h       3 /   3 = 100%    0 /   0
 SIG_X.cpp           18 /  18 = 100%   93 /  93 = 100%
 SIG_X.h              9 /   9 = 100%    0 /   0
-SortableStackArray.cpp       1 /   1 = 100%    0 /   0
+StackArray.cpp       1 /   1 = 100%    0 /   0
 StackArray.h        26 /  26 = 100%    2 /   2 = 100%
 TSW.cpp              7 /   7 = 100%   22 /  22 = 100%
 TSW.h                1 /   1 = 100%    0 /   0
@@ -77,21 +77,22 @@ sample:
 ```
 But this isn't too bad, because some SIL4 coding guidelines require this anyhow.
 
-## current gcov code coverage
+## sample gcov snapshot
 ```
+(2024-05-09 22:26)
 file                      lines  uncovered  percent
 BAS/src/BAS_Provider.cpp     26         --       --
+COM/src/Com.cpp              62         --       --
+COM/src/TCP.cpp              87         --       --
+COM/src/TCP_Com.cpp         175         --       --
 LCR/src/LCR_Provider.cpp     20         --       --
 LCR/src/LCR_X.cpp           126         --       --
 SIG/src/SIG_Provider.cpp     23         --       --
-SIG/src/SIG_X.cpp           306         --       --
-SYS/src/Com.cpp               2         --       --
-SYS/src/Dispatcher.cpp      124         --       --
-SYS/src/IL.cpp               16         --       --
-SYS/src/IL_Com.cpp            6         --       --
-SYS/src/Log.cpp               2         --       --
-SYS/src/Reader.cpp           68         --       --
-TSW/src/TSW.cpp              95         --       --
+SIG/src/SIG_X.cpp           310         --       --
+SYS/src/Dispatcher.cpp      138         --       --
+SYS/src/Log.cpp               9         --       --
+SYS/src/Reader.cpp           70         --       --
+TSW/src/TSW.cpp              99         --       --
 TSW/src/TSW_Provider.cpp      2         --       --
-total                       816         --       --
+total                      1147         --       --
 ```

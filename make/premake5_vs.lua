@@ -19,7 +19,7 @@ include 'premake5_settings.lua'
 --  ============================================================
 buildoptions_vs = '/std:c++17 /MP'
 buildoptions_vs_app = buildoptions_vs .. ' /W4 /wd4100 /wd4103'
-buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127'
+buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127 /D_WINSOCK_DEPRECATED_NO_WARNINGS'
 
 --  ============================================================
 --  > tests.sln
@@ -28,74 +28,89 @@ buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127'
 --  ->  exe/tests.exe
 --  configurations: 
 --  - ci        module tests
---  - dev       developer tests
+--  - debug     module tests debug mode
+--  - dev       developer tests debug mode
 --  ============================================================
 workspace 'tests'
     filter { 'action:vs*' }
-        configurations { 'ci', 'dev' }
+        configurations { 'ci', 'debug', 'dev' }
         language 'C++'
         objdir 'obj/vs/%{prj.name}'
 
         includedirs { includedirs_test }
 
-        defines { 'NDEBUG', defines_test }
+        defines { defines_test }
 
         project 'tests'
             kind 'ConsoleApp'
             targetdir 'exe'
             warnings 'high'
-            links { 'winmm' }
+            links { 'winmm', 'ws2_32' }
             buildoptions { buildoptions_vs_test }
             files { files_cpputest_vs, files_testenv, files_app }
-            removefiles { removefiles_test }
             
             filter { 'configurations:ci' }
+                defines { 'NDEBUG' }
+                files { files_moduletest }
+
+            filter { 'configurations:debug' }
+                defines { 'DEBUG' }
+                symbols 'On'
                 files { files_moduletest }
 
             filter { 'configurations:dev' }
+                defines { 'DEBUG', defines_test }
+                symbols 'On'
                 files { files_devtest }
 
 --  ============================================================
---  > gendata.sln
---  generate proj data for application runtime
---  ->  exe/gendata.exe
+--  > dstw_system.sln
+--  build all executables at once:
+--  - application runtime
+--  - generate proj data for runtime
+--  - TCP based system tests
+--  - TCP based application stop
 --  ============================================================
-workspace 'gendata'
+workspace 'dstw_system'
     filter { 'action:vs*' }
-        configurations { 'ci' }
+        configurations { 'ci', 'debug' }
         language 'C++'
         objdir 'obj/vs/%{prj.name}'
+        kind 'ConsoleApp'
 
         targetdir 'exe'
         warnings 'high'
         buildoptions { buildoptions_vs_app }
 
-        defines { defines_gendata }
-    
-        project 'gendata'
-            kind 'ConsoleApp'
+        filter { 'configurations:ci' }
+            defines { 'NDEBUG' }
+
+        filter { 'configurations:debug' }
+            defines { 'DEBUG' }
+            symbols 'On'
+
+        project 'dstw_gen'
+            defines { defines_gendata }
             includedirs { includedirs_test }
             files { files_gendata }
 
---  ============================================================
---  > dstw.sln
---  application runtime
---  ->  exe/dstw.exe
---  ============================================================
-workspace 'dstw'
-    filter { 'action:vs*' }
-        configurations { 'ci' }
-        language 'C++'
-        objdir 'obj/vs/%{prj.name}'
-
-        targetdir 'exe'
-        warnings 'high'
-        buildoptions { buildoptions_vs_app }
-
-        defines { defines_app }
-    
-        project 'dstw'
+        project 'dstw_run'
+            defines { defines_app }
             includedirs { includedirs_app }
+            files { files_app, files_app_main }
+            links { 'ws2_32' }
+
+        project 'systemtests_stop'
+            links { 'ws2_32' }
+            files { files_systemtest_stop }    
+            includedirs { includedirs_test }
+            buildoptions { buildoptions_vs_test }
+
+        project 'systemtests_run'
             kind 'ConsoleApp'
-            files { files_app }
+            links { 'winmm', 'ws2_32' }
+            files { files_cpputest_vs, files_testenv, files_systemtest }
+            defines { defines_gendata }
+            includedirs { includedirs_test }
+            buildoptions { buildoptions_vs_test }
 

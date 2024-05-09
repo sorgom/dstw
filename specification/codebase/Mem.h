@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef MEM_H
-#define MEM_H
 
 #include <codebase/BaseTypes.h>
 #include <cstring>
@@ -34,5 +32,10 @@ public:
         return std::memcmp(c1, c2, N);
     }
 
+    //  compare two objects
+    template <typename T>
+    inline static auto cmp(const T& c1, const T& c2)
+    {
+        return std::memcmp(&c1, &c2, sizeof(T));
+    }
 };
-#endif // _H

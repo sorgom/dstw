@@ -40,7 +40,7 @@ Visual Studio turned out to be an even more pedantic code analyzer with the righ
 |/W4|highest warning level|
 |/MP|multi processor build|
 
-Additional flags see header of [premake5_vs.lua](make/README.md####premake5_vs.lua)
+Additional flags see header of [premake5_vs.lua](make/premake5_vs.lua)
 
 ## code coverage
 Application code coverage by tests must be 100%.

@@ -4,8 +4,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef TESTLIB_H
-#define TESTLIB_H
 
 #include <ifs/DataTypes.h>
 #include <codebase/Mem.h>
@@ -13,14 +11,8 @@
 
 namespace test
 {
-    //  preset an ElmentName for testing
-    const ComName& genComName(UINT32 num, CONST_C_STRING name = "ELM");
-    void genComName(ComName& eName, UINT32 num, CONST_C_STRING name = "ELM");
-
-    inline void genComName(ComName& eName, UINT32 num, CONST_C_STRING name)
-    {
-        eName = genComName(num, name);
-    }
+    //  preset ComName for testing
+    void genComName(ComName& cName, UINT32 num, CONST_C_STRING name = "ELM");
 
     template <class T>
     void nameElement(T& elem, UINT32 num, CONST_C_STRING name = "ELM")
@@ -28,12 +20,24 @@ namespace test
         genComName(elem.name, num, name);
     }
 
+    const ComName& genComName(UINT32 num, CONST_C_STRING name = "ELM");
+
     inline bool operator==(const ComName& n1, const ComName& n2)
     {
         return Mem::cmp(n1.chars, n2.chars) == 0;
     }
 
-    //  avoid "not used" warning
+    inline bool operator==(const ComData& d1, const ComData& d2)
+    {
+        return Mem::cmp(d1, d2) == 0;
+    }
+
+    inline bool operator==(const ComTele& t1, const ComTele& t2)
+    {
+        return Mem::cmp(t1, t2) == 0;
+    }
+
+   //  avoid "not used" warning
     template<typename T>
     void play(const T&)
     {}
@@ -60,5 +64,3 @@ namespace test
         T* mPtr;
     };
 }
-
-#endif // H_

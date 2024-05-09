@@ -1,11 +1,13 @@
 # The model driven approach
 ## the plan
-I happened to work for a project by the Clinch* that had (maybe still has) the following plan:
--	develop software for a digital interlocking from the scratch.
--	development should be model based.
--	use the IMB* toolchain including the Raggedy* modeling tool.
+I happened to work for a project of the Clinch* company that had (maybe still has) the following plan:
+-	develop software for a digital interlocking (DSTW) from the scratch
+-	development should be model based
+-	use the IMB* toolchain including the Raggedy* modeling tool
 
 ## SIL4
+A DSTW software has to meet the standards of SIL4 / EN 50 129. 
+
 Security Integrity Level 4 requires following some rules, e.g.:
 
 Before code can be checked in into a main branch it has to 
@@ -26,12 +28,15 @@ What the tools don’t provide is:
 -	a working source control
 -	a working review facility
 -	a continuous integration
+-   an understandable documentation
+-   a community
 
 What they provide is:
 -	the permanent need of workarounds and repetitive click surface work down
 -	a great collection of pitfalls and error driven frustration
 -	permanent dysfunction
--	a high demand on support by specialists
+-	a high demand on support by doubtful specialists
+-   repetitive "hm, last time it worked" in so called trainings
 -	crappy C-code in bits and pieces
 -   90 % of the effort spent for the tools and not for work to be done
 

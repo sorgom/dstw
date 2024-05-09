@@ -4,16 +4,13 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef VALUES_H
-#define VALUES_H
 
 #include <codebase/BaseTypes.h>
 
-//  ============================================================
-//  - component identifiers
-//  ============================================================
+//  component identifiers
 enum E_Comp : UINT8
 {
+    COMP_COM,
     COMP_TSW,
     COMP_SIG,
     COMP_LCR,
@@ -21,28 +18,30 @@ enum E_Comp : UINT8
     COMP_SYS
 };
 
-//  ============================================================
-//  - return types
-//  ============================================================
+//  return types
 enum E_Ret : UINT8
 {
+    // no error
     RET_NO_ERR,
+    //  element name not found
+    //  or received state not valid
     RET_ERR_MATCH,
+    //  element position out of range
     RET_ERR_RANGE,
-    RET_ERR_STARTUP
+    //  startup error in component
+    RET_ERR_STARTUP,
+    //  communication error
+    RET_ERR_COM
 };
                 
-//  ============================================================
-//  - parameter values
-//  ============================================================
+//  reserved parameter values
 enum E_Param : UINT8
 {
+    //  value not defined
     PARAM_UNDEF = 255
 };
 
-//  ============================================================
-//  - module types
-//  ============================================================
+//  module types
 enum E_Type : UINT8
 {
     TYPE_LCR = 100,
@@ -56,9 +55,7 @@ enum E_Type : UINT8
     TYPE_UNDEF = PARAM_UNDEF
 };
 
-//  ============================================================
-//  - SIG states
-//  ============================================================
+//  SIG states
 enum E_SigState : UINT8
 {
     SIG_STATE_UNDEF = PARAM_UNDEF,
@@ -83,9 +80,7 @@ enum E_SigState : UINT8
     SIG_STATE_WAIT_H1_N1
 };
 
-//  ============================================================
-//  - TSW commands and states
-//  ============================================================
+//  TSW commands and states
 enum E_TswState : UINT8
 {
     TSW_STATE_UNDEF = PARAM_UNDEF,
@@ -96,16 +91,14 @@ enum E_TswState : UINT8
     TSW_STATE_WAIT_RIGHT
 };
 
-enum E_TswGuiCmd : UINT8
+enum E_TswCmd : UINT8
 {
-    TSW_GUI_CMD_WU = 221,
-    TSW_GUI_CMD_LEFT,
-    TSW_GUI_CMD_RIGHT
+    TSW_CMD_WU = 221,
+    TSW_CMD_LEFT,
+    TSW_CMD_RIGHT
 };
 
-//  ============================================================
-//  - LCR states
-//  ============================================================
+//  LCR states
 enum E_LcrState : UINT8
 {
     LCR_STATE_UNDEF = PARAM_UNDEF,
@@ -124,4 +117,10 @@ enum E_LcrUbkState : UINT8
     LCR_UBK_STATE_FREE
 };
 
-#endif // _H
+//  COM control
+enum E_ComCtrl : UINT8
+{
+    COM_CTRL_STOP = 101,
+    COM_CTRL_PING,
+    COM_CTRL_RE_GUI
+};

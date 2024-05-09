@@ -7,8 +7,6 @@
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef TSW_H
-#define TSW_H
 
 #include <ifs/values.h>
 #include <ifs/I_Elem.h>
@@ -22,8 +20,10 @@ public:
         mState(TSW_STATE_UNDEF)
     {}
 
-    void fromFld(const ComData& data);
-    void fromGui(const ComData& data);
+    void toGui() const override;
+    void fromFld(const ComData& data) override;
+    void fromGui(const ComData& data) override;
+    
     inline E_Type type() const { return TYPE_TSW; }
     
     NOCOPY(TSW)
@@ -38,6 +38,3 @@ private:
     void chgState(UINT8 state);
     void toFld(UINT8 state) const;
 };
-
-
-#endif // _H

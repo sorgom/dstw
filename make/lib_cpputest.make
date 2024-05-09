@@ -11,6 +11,9 @@ endif
 ifeq ($(config),ci)
   cppu_test_config = ci
 
+else ifeq ($(config),debug)
+  cppu_test_config = debug
+
 else
   $(error "invalid configuration $(config)")
 endif
@@ -35,6 +38,7 @@ help:
 	@echo ""
 	@echo "CONFIGURATIONS:"
 	@echo "  ci"
+	@echo "  debug"
 	@echo ""
 	@echo "TARGETS:"
 	@echo "   all (default)"

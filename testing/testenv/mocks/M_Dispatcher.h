@@ -3,8 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 #pragma once
-#ifndef M_DISPATCHER_H
-#define M_DISPATCHER_H
 
 #include <ifs/I_Dispatcher.h>
 #include "M_Base.h"
@@ -14,10 +12,10 @@ namespace test
     class M_Dispatcher : public I_Dispatcher, private M_Base
     {
     public:
-        inline M_Dispatcher() : M_Base("Dispatcher") {}
         INSTANCE_DEC(M_Dispatcher)
+        NOCOPY(M_Dispatcher)
 
-        inline void clear()
+        inline void clear() override
         {
             call("clear");
         }
@@ -26,7 +24,7 @@ namespace test
             expect("clear");
         }
 
-        inline void index()
+        inline void index() override
         {
             call("index");
         }
@@ -35,7 +33,7 @@ namespace test
             expect("index");
         }
 
-        inline const PosRes assign(const ComName& name, E_Comp comp, size_t pos)
+        inline const PosRes assign(const ComName& name, E_Comp comp, size_t pos) override
         {
             const INT32 i = call("assign").TPARAM(ComName, name).PARAM(comp).PARAM(pos).RETURN_DEF_INT(0);
             return i < 0 ? PosRes {0, false} : PosRes {static_cast<size_t>(i), true};
@@ -45,7 +43,7 @@ namespace test
             expect("assign").TPARAM(ComName, name).PARAM(comp).PARAM(pos).AND_RETURN(ret);
         }
 
-        inline void fromFld(const ComTele& tele) const
+        inline void fromFld(const ComTele& tele) const override
         {
             call("fromFld").TPARAM(ComTele, tele);
         }
@@ -54,7 +52,7 @@ namespace test
             expect("fromFld").TPARAM(ComTele, tele);
         }
 
-        inline void fromGui(const ComTele& tele) const
+        inline void fromGui(const ComTele& tele) const override
         {
             call("fromGui").TPARAM(ComTele, tele);
         }
@@ -63,7 +61,7 @@ namespace test
             expect("fromGui").TPARAM(ComTele, tele);
         }
 
-        inline void toFld(size_t id, const ComData& data) const
+        inline void toFld(size_t id, const ComData& data) const override
         {
             call("toFld").PARAM(id).TPARAM(ComData, data);
         }
@@ -72,7 +70,7 @@ namespace test
             expect("toFld").PARAM(id).TPARAM(ComData, data);
         }
 
-        inline void toGui(size_t id, const ComData& data) const
+        inline void toGui(size_t id, const ComData& data) const override
         {
             call("toGui").PARAM(id).TPARAM(ComData, data);
         }
@@ -80,7 +78,17 @@ namespace test
         {
             expect("toGui").PARAM(id).TPARAM(ComData, data);
         }
+
+        inline void reGui() const override
+        {
+            call("reGui");
+        }
+        inline void expectReGui() const
+        {
+            expect("reGui");
+        }
+
+    private:
+        inline M_Dispatcher() : M_Base("Dispatcher") {}
     };
 } 
-
-#endif // H_

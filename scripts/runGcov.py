@@ -7,7 +7,7 @@ from modGcov import Gcov
 from projectDirs import makDir, tsgDir
 from modUtilz import mdTxt, mdCode, writeFile
 
-ttl = '## current gcov code coverage'
+ttl = '## sample gcov snapshot'
 
 def runGcov(conf='ci', verbose=True):
     return Gcov().run(

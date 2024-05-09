@@ -5,21 +5,15 @@
 //  created by Manfred Sorgo 
 
 #pragma once
-#ifndef LOG_H
-#define LOG_H
 
 #include <ifs/I_Log.h>
 #include <BAS/coding.h>
-#include <algorithm>
 
 class Log : public I_Log
 {
 public:
-    inline Log(): mErr(RET_NO_ERR) {}
-    inline void log(E_Comp comp, E_Ret ret)
-    {
-        mErr = std::max(mErr, ret);
-    }
+
+    std::ostream& log(E_Comp comp, E_Ret ret);
 
     inline E_Ret maxerr() const
     {
@@ -30,7 +24,6 @@ public:
 
     NOCOPY(Log)
 private:
-    E_Ret mErr;
+    E_Ret mErr = RET_NO_ERR;
+    inline Log() = default;
 };
-
-#endif // H_

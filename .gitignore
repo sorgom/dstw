@@ -62,6 +62,7 @@ __pycache__
 # temporary
 tmp.*
 tmp_*
+old_*
 
 # vscode
 tempCodeRunnerFile.py
@@ -81,5 +82,7 @@ transitions_*.md
 # runtime test
 *.proj
 
+# valgrind
+*.out.[0-9]*
 
 .obsidian

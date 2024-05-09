@@ -3,14 +3,12 @@
 help()
 {
     echo "Usage: $(basename $0) [options]"
-    echo "===================================="
     echo "build all major makes parallelly"
     echo "options:"
     echo "-c  clean ignored artifacts before"
     echo "-p  premake5 makefiles"
     echo "-r  run all binaries"
     echo "-h  this help"
-    echo "===================================="
     exit
 }
 
@@ -69,10 +67,10 @@ if test $err -ne 0; then exit 1; fi
 
 if test -z $run; then exit 0; fi
 
-for b in bin/*; do
+for b in $(ls bin/* | grep -v systemtests_); do
     echo ''
     echo "====== $b"
-    $b -b
+    $b
     x=$?
     echo 'returned' $x
     if test $x -ne 0; then err=1; fi

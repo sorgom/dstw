@@ -12,6 +12,10 @@ ifeq ($(config),ci)
   dstw_gen_config = ci
   dstw_run_config = ci
 
+else ifeq ($(config),debug)
+  dstw_gen_config = debug
+  dstw_run_config = debug
+
 else
   $(error "invalid configuration $(config)")
 endif
@@ -43,6 +47,7 @@ help:
 	@echo ""
 	@echo "CONFIGURATIONS:"
 	@echo "  ci"
+	@echo "  debug"
 	@echo ""
 	@echo "TARGETS:"
 	@echo "   all (default)"
