@@ -4,7 +4,12 @@
 CppUTest is the base of testing in this project for good reasons:
 
 -   it's lean and fast
--   it runs on almost every device
+-   it runs on almost every device and platform. I have used (and customized) it with:
+    - CAD-UL
+    - IAR
+    - VS
+    - gcc
+    - eclipse / Mingw
 -   the greatest advantage to other frameworks: it natively handles unexpected calls as well as expected calls that aren't fulfilled
 
 ## module tests
@@ -15,7 +20,7 @@ In test context every module instance that realizes an interface is substituted 
 
 The software compiled for production does not provide any substitution of the modules in charge.
 
-The whole thing is achieved by different include paths leading to two different [IL.h headers](##IL-headers).
+The whole thing is achieved by different include paths leading to two different IL.h headers.
 
 This concept has been SIL4 validated already.
 
