@@ -26,15 +26,15 @@ namespace test
             m_Log().expectLog(COMP_SYS, RET_ERR_STARTUP);
         }
 
-        void wrongSize(int dev)
+        void wrongSize(int dev, const UINT32 n = 1)
         {
             std::ofstream os(fname, std::ios::binary);
-            constexpr static const UINT32 nums[] = { 1, 1, 1, 1 };
+            const UINT32 nums[] = { n, n, n, n };
             os.write(reinterpret_cast<const CHAR*>(nums), 4 * sizeof(UINT32));
 
-            constexpr static const size_t wSize = sizeof(ProjItem) * 4;
+            const size_t wSize = sizeof(ProjItem) * n * 4 + sizeof(ComSetup) + dev;
 
-            for (size_t n = 0; n < wSize + dev; ++n)
+            for (size_t n = 0; n < wSize; ++n)
             {
                 os << ' ';
             }
@@ -66,6 +66,13 @@ namespace test
         data.dump(fname);
         rdr.read(fname);
         CHECK_N_CLEAR()
+
+        STEP(2)
+        const ComSetup& cs = rdr.getComSetup();
+        L_CHECK_EQUAL(tcpPortFld,  cs.portFld)
+        L_CHECK_EQUAL(tcpPortGui,  cs.portGui)
+        L_CHECK_EQUAL(tcpPortCtrl, cs.portCtrl)
+        L_CHECK_EQUAL(tcpTimeout,  cs.timeout)
     }
 
     //  test type: equivalence class test
@@ -93,6 +100,11 @@ namespace test
         STEP(2)
         //  too large
         wrongSize(+1);
+        CHECK_N_CLEAR()
+
+        STEP(3)
+        //  no data
+        wrongSize(0, 0);
         CHECK_N_CLEAR()
     }
 

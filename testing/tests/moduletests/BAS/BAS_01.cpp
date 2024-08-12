@@ -179,8 +179,13 @@ namespace test
     {
     public:
         const Key key;
-        const int data[5];
-        inline Cont(int k, int d=0) : key(k), data{d, d, d, d, d} { ++cnt; }
+        const int cdata[5];
+        int vdata[5];
+        inline Cont(int k, int d=0) : 
+            key(k), 
+            cdata{d, d, d, d, d},  
+            vdata{0, 0, 0, 0, 0}
+        { ++cnt; }
         inline ~Cont() { --cnt; }    
         inline static UINT32 count() { return cnt; }
         NODEF(Cont)
@@ -206,7 +211,7 @@ namespace test
     protected:
         inline int getKey(const Cont& cont) const final
         {
-            return cont.data[0];
+            return cont.cdata[0];
         }
     };
 
@@ -289,7 +294,11 @@ namespace test
             const PosRes res2 = cxi.find(n);
             L_CHECK_TRUE(res2.valid);
             const Cont& c2 = cxi.at(res2);
-            L_CHECK_EQUAL(n, c2.data[0]);
+            L_CHECK_EQUAL(n, c2.cdata[0]);
+
+            // coverage: non const at position
+            Cont& c3 = mxi.at(res2.pos);
+            c3.vdata[0] = 123;
         }
         ENDSTEPS()
 

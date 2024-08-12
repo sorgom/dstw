@@ -161,5 +161,9 @@ namespace test
         STEP(2)
         m_Log().expectLog(COMP_TSW, RET_ERR_MATCH);
         FLD(PARAM_UNKNOWN);
+
+        STEP(3)
+        //  coverage
+        L_CHECK_EQUAL(TYPE_TSW, mSUT.type())
     }
 }
