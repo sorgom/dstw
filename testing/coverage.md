@@ -14,43 +14,28 @@ It's available for Windows and Linux.
 
 Bullseye is not for free - but they provide a free trial period. 
 
-Sample (and very outdated) text summary output:
+Sample text summary output:
 ```
-Source            Function Coverage      C/D Coverage
-----------------  -----------------  ----------------
-Com.h                3 /   3 = 100%    0 /   0
-Dispatcher.cpp       7 /   7 = 100%   20 /  20 = 100%
-Dispatcher.h         1 /   1 = 100%    0 /   0
-I_Array.h            3 /   3 = 100%   18 /  18 = 100%
-LCR_Hub.cpp          4 /   4 = 100%    4 /   4 = 100%
-LCR_Hub.h            1 /   1 = 100%    0 /   0
-LCR_Provider.cpp     1 /   1 = 100%   15 /  15 = 100%
-LCR_Provider.h       3 /   3 = 100%    0 /   0
-LCR_X.cpp            9 /   9 = 100%   37 /  37 = 100%
-LCR_X.h              7 /   7 = 100%    0 /   0
-Loader.cpp           1 /   1 = 100%    0 /   0
-Loader.h             1 /   1 = 100%    0 /   0
-Log.h                2 /   2 = 100%    0 /   0
-Mem.h                4 /   4 = 100%    0 /   0
-NtpArray.cpp         1 /   1 = 100%    0 /   0
-NtpArray.h           4 /   4 = 100%    0 /   0
-SIG_Hub.cpp          4 /   4 = 100%    4 /   4 = 100%
-SIG_Hub.h            1 /   1 = 100%    0 /   0
-SIG_Provider.cpp     1 /   1 = 100%   16 /  16 = 100%
-SIG_Provider.h       3 /   3 = 100%    0 /   0
-SIG_X.cpp           18 /  18 = 100%   93 /  93 = 100%
-SIG_X.h              9 /   9 = 100%    0 /   0
-StackArray.cpp       1 /   1 = 100%    0 /   0
-StackArray.h        26 /  26 = 100%    2 /   2 = 100%
-TSW.cpp              7 /   7 = 100%   22 /  22 = 100%
-TSW.h                1 /   1 = 100%    0 /   0
-TSW_Hub.cpp          4 /   4 = 100%    4 /   4 = 100%
-TSW_Hub.h            1 /   1 = 100%    0 /   0
-TSW_Provider.cpp     1 /   1 = 100%   12 /  12 = 100%
-TSW_Provider.h       3 /   3 = 100%    0 /   0
-coding.h             1 /   1 = 100%    0 /   0
-----------------  -----------------  ----------------
-Total              133 / 133 = 100%  247 / 247 = 100%
+Directory                        Function Coverage      C/D Coverage
+-------------------------------  -----------------  ----------------
+application/components/           135 / 135 = 100%  311 / 312 =  99%
+application/components/BAS/        26 /  26 = 100%   35 /  35 = 100%
+application/components/BAS/src/     1 /   1 = 100%   10 /  10 = 100%
+application/components/COM/        32 /  32 = 100%   79 /  80 =  98%
+application/components/COM/src/    31 /  31 = 100%   79 /  80 =  98%
+application/components/LCR/        17 /  17 = 100%   40 /  40 = 100%
+application/components/LCR/src/    11 /  11 = 100%   40 /  40 = 100%
+application/components/SIG/        33 /  33 = 100%   95 /  95 = 100%
+application/components/SIG/src/    24 /  24 = 100%   95 /  95 = 100%
+application/components/SYS/        15 /  15 = 100%   40 /  40 = 100%
+application/components/SYS/src/    13 /  13 = 100%   40 /  40 = 100%
+application/components/TSW/        12 /  12 = 100%   22 /  22 = 100%
+application/components/TSW/src/     8 /   8 = 100%   22 /  22 = 100%
+specification/                      6 /   6 = 100%    0 /   0
+specification/codebase/             3 /   3 = 100%    0 /   0
+specification/ifs/                  3 /   3 = 100%    0 /   0
+-------------------------------  -----------------  ----------------
+Total                             141 / 141 = 100%  311 / 312 =  99%
 ```
 For details see [bullseye html report](http://dstw.sorgo.de/bullseye/)
 
