@@ -1,6 +1,5 @@
 //  ============================================================
 //  class Com implements I_Com
-//  - currently without functionality
 //  ============================================================
 //  created by Manfred Sorgo 
 

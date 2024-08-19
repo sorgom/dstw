@@ -27,15 +27,15 @@ namespace test
         return Mem::cmp(n1.chars, n2.chars) == 0;
     }
 
-    inline bool operator==(const ComData& d1, const ComData& d2)
-    {
-        return Mem::cmp(d1, d2) == 0;
-    }
+    // inline bool operator==(const ComData& d1, const ComData& d2)
+    // {
+    //     return Mem::cmp(d1, d2) == 0;
+    // }
 
-    inline bool operator==(const ComTele& t1, const ComTele& t2)
-    {
-        return Mem::cmp(t1, t2) == 0;
-    }
+    // inline bool operator==(const ComTele& t1, const ComTele& t2)
+    // {
+    //     return Mem::cmp(t1, t2) == 0;
+    // }
 
    //  avoid "not used" warning
     template<typename T>
