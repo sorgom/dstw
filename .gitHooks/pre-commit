@@ -12,7 +12,27 @@ for file in `git diff-index --cached --name-only HEAD`;
 do
   if [[ -f $file ]]
   then
-    if [ $file == *.mdj ]; then $py scripts/cleanMdj.py $file; fi
-    if [ $file == *.svg ]; then $py scripts/cleanSvg.py $file; fi
+    add=1
+    echo checking file: $file 
+    if [[ $file == *.mdj ]]
+    then 
+      echo cleaning mdj file: $file
+      $py sompy/cleanMdj.py $file
+    elif [[ $file == *.svg ]]
+    then 
+      echo cleaning svg file: $file
+      $py sompy/cleanSvg.py $file
+    elif [[ $file == *.py ]] || [[ $file == *.cpp ]] || [[ $file == *.h ]] 
+    then 
+      echo cleaning text file: $file
+      $py sompy/cleanTxt.py $file
+    else
+      add=0
+    fi
+    
+    if [[ $add -eq 1 ]]
+    then 
+      git add $file
+    fi
   fi
 done

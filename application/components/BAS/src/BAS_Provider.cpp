@@ -10,20 +10,11 @@ void BAS_Provider::load(const ProjItem* data, const UINT32 num)
     for (UINT32 n = 0; ok and (n < num); ++n, ++data)
     {
         const PosRes res = IL::getDispatcher().assign(data->name, comp(), n);
-        ok = res.valid;
-        if (ok)
-        {
-            ok = add(res.pos, *data);
-        }
-        else 
-        { pass(); }
+        ok = res.valid and add(res.pos, *data);
     }
     if (not ok)
     {
         clear();
         IL::getLog().log(comp(), RET_ERR_STARTUP);
     }
-    else 
-    { pass(); }
-
 }

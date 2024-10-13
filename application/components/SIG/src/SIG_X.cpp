@@ -10,8 +10,6 @@ void SIG_X::procFromFld(const UINT8 state)
         mStateToGui = state;
         toGui();
     }
-    else
-    { pass(); }
 }
 
 void SIG_XS::procFromFld(const UINT8 state, UINT8 speed)
@@ -36,8 +34,6 @@ void SIG_XS::procFromFld(const UINT8 state, UINT8 speed)
         mSpeedToGui = speed;
         toGui();
     }
-    else
-    { pass(); }
 }
 
 void SIG_X::procFromGui(const UINT8 stateFld, const UINT8 stateGui)

@@ -75,11 +75,7 @@ bool LCR_X::validState(const UINT8 state)
 void LCR::fromFld(const ComData& data)
 {
     const auto state = data.param1;
-    if (state == mStateToGui)
-    { pass(); }
-    else if (not validState(state))
-    { pass(); }
-    else
+    if (validState(state) and state != mStateToGui)
     {
         mStateToGui = state;
         toGui();
@@ -111,18 +107,16 @@ bool LCR_UBK::validUbk(const UINT8 state)
 
 void LCR_UBK::fromFld(const ComData& data)
 {
-    const auto state = data.param1, ubk = data.param2;
+    const auto state = data.param1;
+    const auto ubk = data.param2;
     if (
-        (state == mStateToGui) and
-        (ubk   == mUbkToGui)
-    )
-    { pass(); }
-    else if (not (
+        (
+            (state != mStateToGui) or
+            (ubk   != mUbkToGui)
+        ) and
         validState(state) and 
-        validUbk(ubk))
+        validUbk(ubk)
     )
-    { pass(); }
-    else
     {
         mStateToGui = state;
         mUbkToGui = ubk;

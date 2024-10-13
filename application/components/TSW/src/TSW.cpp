@@ -92,8 +92,6 @@ void TSW::chgState(const UINT8 state)
         mState = state;
         toGui();
     }
-    else
-    { pass(); }
 }
 
 void TSW::toGui() const

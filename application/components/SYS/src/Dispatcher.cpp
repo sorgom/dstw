@@ -12,9 +12,7 @@ void Dispatcher::clear()
 
 void Dispatcher::index()
 {
-    if (mIndx.index())
-    { pass(); }
-    else
+    if (not mIndx.index())
     {
         IL::getLog().log(COMP_SYS, RET_ERR_STARTUP);
     }
@@ -96,8 +94,6 @@ void Dispatcher::toFld(const size_t id, const ComData& data) const
         const ComTele tele { mIndx.at(id).name, data };
         IL::getCom().toFld(tele);
     }
-    else
-    { pass(); }
 }
 
 void Dispatcher::toGui(const size_t id, const ComData& data) const
@@ -107,8 +103,6 @@ void Dispatcher::toGui(const size_t id, const ComData& data) const
         const ComTele tele { mIndx.at(id).name, data };
         IL::getCom().toGui(tele);
     }
-    else
-    { pass(); }
 }
 
 void Dispatcher::reGui() const

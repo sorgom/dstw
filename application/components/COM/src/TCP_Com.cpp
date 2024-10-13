@@ -31,8 +31,6 @@ bool Tcp_Listener_Base::listen(const UINT16 port)
         ok = false;
         comerr() << "listen " << port << endl;
     }
-    else
-    { pass();}
 
     if (not ok)
     {
@@ -105,9 +103,7 @@ bool TCP_Con_Base::select()
     const I_TCP& tcp = IL::getTCP();
     bool ok = true;
     // not operating
-    if (mSocket < 0)
-    { pass(); }
-    else
+    if (mSocket >= 0)
     {
         const INT32 res = tcp.select(mSocket);
         //  activity on socket
@@ -137,9 +133,6 @@ bool TCP_Con_Base::select()
             ok = false;
             close();
         }
-        //  no activity
-        else
-        { pass(); }
     }
     if (not ok)
     {
@@ -159,8 +152,6 @@ void TCP_Con_Base::send(const ComTele& tele) const
     {
         IL::getTCP().send(mSocket, reinterpret_cast<const CHAR*>(&tele), sizeof(ComTele));
     }
-    else
-    { pass(); }
 }
 
 //  field connection
@@ -213,6 +204,4 @@ void TCP_Con_Ctrl::forward(const ComTele& tele) const
             break;
         }
     }
-    else
-    { pass();}
 }

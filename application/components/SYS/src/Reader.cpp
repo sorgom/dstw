@@ -70,20 +70,12 @@ void Reader::read(const CONST_C_STRING filename)
 
                 IL::getDispatcher().index();
             }    
-            else
-            { pass(); }
         }
-        else
-        { pass(); }
     }
-    else
-    { pass(); }
     is.close();
 
     if (not ok)
     {
         IL::getLog().log(COMP_SYS, RET_ERR_STARTUP);
     }
-    else
-    { pass(); }
 }

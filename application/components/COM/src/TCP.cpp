@@ -95,6 +95,4 @@ void TCP::close(INT32& socket) const
         ::closesocket(socket);
         socket = -1;
     }
-    else
-    { pass(); }
 }
