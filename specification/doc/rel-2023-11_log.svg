@@ -3,9 +3,7 @@
 <g><g><rect fill="#FFDF82" stroke="none" x="560" y="576" width="128" height="96" transform="matrix(1 0 0 1 -310 -166)"/>
 </g><g>
 <path fill="none" stroke="#00B799" paint-order="fill stroke markers" d=" M 250 410 L 378 410 L 378 506 L 250 506 L 250 410 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
-</g>
-<g>
-<rect fill="#FFDF82" stroke="none" x="560" y="576" width="128" height="96" transform="matrix(1 0 0 1 -310 -166)"/>
+</g><g><rect fill="#FFDF82" stroke="none" x="560" y="576" width="128" height="96" transform="matrix(1 0 0 1 -310 -166)"/>
 </g>
 <g>
 <path fill="none" stroke="#00B799" paint-order="fill stroke markers" d=" M 250 410 L 378 410 L 378 506 L 250 506 L 250 410 Z Z" stroke-miterlimit="10" stroke-dasharray=""/>
