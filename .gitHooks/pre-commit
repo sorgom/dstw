@@ -12,7 +12,7 @@ for file in `git diff-index --cached --name-only HEAD`;
 do
   if [[ -f $file ]]
   then
-    if [ $file == *.mdj ] then $py scripts/cleanMdj.py $file; fi
-    if [ $file == *.svg ] then $py scripts/cleanSvg.py $file; fi
+    if [ $file == *.mdj ]; then $py scripts/cleanMdj.py $file; fi
+    if [ $file == *.svg ]; then $py scripts/cleanSvg.py $file; fi
   fi
 done
