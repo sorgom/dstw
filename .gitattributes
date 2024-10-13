@@ -3,18 +3,5 @@
 
 *.cmd eol=crlf
 *.bat eol=crlf
-
-* text=auto
-
-# *.cpp   text eol=lf
-# *.h     text eol=lf
-# *.py    text eol=lf
-# *.sh    text eol=lf
-# *.lua   text eol=lf
-# *.txt   text eol=lf
 *.svg   text eol=lf
 *.mdj   text eol=lf
-# *.md    text eol=lf
-# *.make  text eol=lf
-# .git*   text eol=lf
-
