@@ -19,8 +19,8 @@ void Dispatcher::index()
 }
 
 const PosRes Dispatcher::assign(
-    const ComName& name, 
-    const E_Comp comp, 
+    const ComName& name,
+    const E_Comp comp,
     const size_t pos)
 {
     mIndx.add(name, comp, pos);
@@ -52,7 +52,7 @@ void Dispatcher::fromFld(const ComTele& tele) const
         }
     }
     else
-    { 
+    {
         IL::getLog().log(COMP_SYS, RET_ERR_MATCH);
     }
 }
@@ -82,7 +82,7 @@ void Dispatcher::fromGui(const ComTele& tele) const
         }
     }
     else
-    { 
+    {
         IL::getLog().log(COMP_SYS, RET_ERR_MATCH);
     }
 }
@@ -128,8 +128,8 @@ void Dispatcher::forwardFld(I_Provider& prov, const Ncp& ncp, const ComTele& tel
         prov.at(ncp.pos).fromFld(tele.data);
     }
     else
-    { 
-        IL::getLog().log(COMP_SYS, RET_ERR_RANGE);    
+    {
+        IL::getLog().log(COMP_SYS, RET_ERR_RANGE);
     }
 }
 void Dispatcher::forwardGui(I_Provider& prov, const Ncp& ncp, const ComTele& tele)
@@ -139,7 +139,7 @@ void Dispatcher::forwardGui(I_Provider& prov, const Ncp& ncp, const ComTele& tel
         prov.at(ncp.pos).fromGui(tele.data);
     }
     else
-    { 
-        IL::getLog().log(COMP_SYS, RET_ERR_RANGE);    
+    {
+        IL::getLog().log(COMP_SYS, RET_ERR_RANGE);
     }
 }

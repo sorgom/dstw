@@ -1,5 +1,5 @@
 //  ============================================================
-//  implementation TCP base system 
+//  implementation TCP base system
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -39,5 +39,5 @@ public:
 private:
     TCP() = default;
     UINT32 mSec = 0;
-    UINT32 mMicro = 10000;    
+    UINT32 mMicro = 10000;
 };

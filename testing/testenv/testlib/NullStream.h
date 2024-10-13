@@ -14,7 +14,7 @@ namespace test
 {
     //  NullBuffer and NullStream are used to prevent from output
     //  thanks to ChatGPT for the basics of this
-    class NullBuffer : public std::streambuf 
+    class NullBuffer : public std::streambuf
     {
     public:
         inline int overflow(int c) override

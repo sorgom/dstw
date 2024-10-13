@@ -1,7 +1,7 @@
 //  ============================================================
 //  Interface Locator IL
 //  - production application version
-//  - no exchange of providers 
+//  - no exchange of providers
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -34,4 +34,3 @@ namespace IL
     inline I_TCP_Listener& getTCP_Listener_Gui() { return TCP_Listener_Gui::instance(); }
     inline I_TCP_Listener& getTCP_Listener_Ctrl() { return TCP_Listener_Ctrl::instance(); }
 } // namespace
-

@@ -46,7 +46,7 @@ class TransTable(object):
             states.add(tre.src)
             states.add(tre.trg)
             fromEvt.setdefault(tre.src, dict())[tre.evt] = tre.trg
-        
+
         noTrans = dict()
         for src in sorted(states):
             for evt in sorted(events):
@@ -96,7 +96,7 @@ class TransTable(object):
                     if con:
                         seqs[n].extend(con)
                     else:
-                        seqs[n].append(TransEvent('NO TRANSITION')) 
+                        seqs[n].append(TransEvent('NO TRANSITION'))
 
         #   flatten
         res = [tr for seq in seqs for tr in seq]
@@ -129,14 +129,14 @@ class TransTable(object):
     def cppName(self, prefix:str, state:str):
         return "%s_%s" % (prefix, state.replace(' ', '_'))
 
-    def genCpp(self, transEvents:list, 
+    def genCpp(self, transEvents:list,
             prefixState = 'SIG_STATE',
             prefixCmd = 'SIG_STATE',
             cmd1 = 'CMD(_VAL_, 0, _VAL_, 0, _TRG_, 0);',
             cmd0 = 'CMD(_VAL_, 0);',
             fld1 = 'FLD(_VAL_, 0, _VAL_, 0);',
             fld0 = 'FLD(_VAL_, 0);'
-        
+
     ):
         tbl = self.genTable(transEvents)
         step = 0
@@ -150,7 +150,7 @@ class TransTable(object):
                 templ = cmd0 if tre.isNone() else cmd1
             elif call == 'FLD':
                 templ = fld0 if tre.isNone() else fld1
-            
+
             if templ:
                 templ = templ.replace('_VAL_', self.cppName(prefixState, val))
                 templ = templ.replace('_GUI_', self.cppName(prefixState, gui))

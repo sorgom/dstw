@@ -15,7 +15,7 @@ public:
     virtual void index() = 0;
 
     //  when loading project data
-    //  components providers (TSW, SIG, LCR, SEG) 
+    //  components providers (TSW, SIG, LCR, SEG)
     //  assign themselves with:
     //  - element name
     //  - component id

@@ -234,7 +234,7 @@ namespace test
         FLD_H(SIG_STATE_H0, SIG_STATE_H0, 20);
 
         STEP(5)
-        mSUT().fromGui(ComData{SIG_STATE_H0, 30});   
+        mSUT().fromGui(ComData{SIG_STATE_H0, 30});
         CHECK_N_CLEAR()
 
         STEP(6)
@@ -379,7 +379,7 @@ namespace test
 
         STEP(7)
         CMD(SIG_STATE_N0, 20);
-    
+
         STEP(8)
         FLD(SIG_STATE_N0, 20);
     }

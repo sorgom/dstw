@@ -1,7 +1,7 @@
 //  ============================================================
 //  structured data types
 //  ============================================================
-//  created by Manfred Sorgo 
+//  created by Manfred Sorgo
 
 #pragma once
 

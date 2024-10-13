@@ -10,7 +10,7 @@
 
 namespace test
 {
-    class M_Log : 
+    class M_Log :
         public I_Log,
         private M_Base
     {
@@ -38,4 +38,4 @@ namespace test
         M_Log() : M_Base("Log") {}
         NullStream mStream;
     };
-} 
+}

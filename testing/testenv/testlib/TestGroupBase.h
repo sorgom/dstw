@@ -30,17 +30,3 @@ namespace test
     };
 
 } // namespace
-
-
-
-
-
-
-
-
-
-
-
-
-
-

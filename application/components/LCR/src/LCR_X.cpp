@@ -67,7 +67,7 @@ bool LCR_X::validState(const UINT8 state)
         break;
     default:
         IL::getLog().log(COMP_LCR, RET_ERR_MATCH);
-        break;    
+        break;
     };
     return ok;
 }
@@ -97,10 +97,10 @@ bool LCR_UBK::validUbk(const UINT8 state)
     case LCR_UBK_STATE_OCCUPIED:
     case LCR_UBK_STATE_FREE:
         ok = true;
-        break;    
+        break;
     default:
         IL::getLog().log(COMP_LCR, RET_ERR_MATCH);
-        break;    
+        break;
     };
     return ok;
 }
@@ -114,7 +114,7 @@ void LCR_UBK::fromFld(const ComData& data)
             (state != mStateToGui) or
             (ubk   != mUbkToGui)
         ) and
-        validState(state) and 
+        validState(state) and
         validUbk(ubk)
     )
     {

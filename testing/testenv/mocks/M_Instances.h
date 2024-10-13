@@ -1,7 +1,7 @@
 //  ============================================================
 //  mock instances for IL and tests
 //  for interface I_<NAME>
-//  - function m_<NAME>() returns mock instance 
+//  - function m_<NAME>() returns mock instance
 //  ============================================================
 //  created by Manfred Sorgo
 

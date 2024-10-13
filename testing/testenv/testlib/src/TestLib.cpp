@@ -23,6 +23,6 @@ namespace test
             std::memcpy(cName.chars, buf, sz - 1);
         }
     }
-    
+
 
 } // namespace

@@ -2,7 +2,7 @@
 //  class Log implements I_Log
 //  - currently without functionality
 //  ============================================================
-//  created by Manfred Sorgo 
+//  created by Manfred Sorgo
 
 #pragma once
 

@@ -15,7 +15,7 @@ namespace test
     {
         YES = true,
         NO = false
-    };  
+    };
 
     class Base
     {
@@ -85,7 +85,7 @@ namespace test
         // const reference
         const PolyVec<Base>& cv = vec;
         L_CHECK_EQUAL(0, cv.size())
-        
+
         //  reserve 30 elements
         STEP(2)
         mv.reserve(30);
@@ -105,7 +105,7 @@ namespace test
         L_CHECK_EQUAL(30, cv.size());
         L_CHECK_EQUAL(10, D_yes::count());
         L_CHECK_EQUAL(20, D_no::count());
-        
+
         //  check derived classes answers
         STEP(4)
         SUBSTEPS()
@@ -144,7 +144,7 @@ namespace test
         SETUP()
         L_CHECK_EQUAL(0, D_yes::count());
         L_CHECK_EQUAL(0, D_no::count());
-        
+
         STEP(1)
         {
             PolyVec<Base> vec;
@@ -181,12 +181,12 @@ namespace test
         const Key key;
         const int cdata[5];
         int vdata[5];
-        inline Cont(int k, int d=0) : 
-            key(k), 
-            cdata{d, d, d, d, d},  
+        inline Cont(int k, int d=0) :
+            key(k),
+            cdata{d, d, d, d, d},
             vdata{0, 0, 0, 0, 0}
         { ++cnt; }
-        inline ~Cont() { --cnt; }    
+        inline ~Cont() { --cnt; }
         inline static UINT32 count() { return cnt; }
         NODEF(Cont)
         NOCOPY(Cont)

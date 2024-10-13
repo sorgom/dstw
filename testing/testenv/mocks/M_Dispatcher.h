@@ -91,4 +91,4 @@ namespace test
     private:
         inline M_Dispatcher() : M_Base("Dispatcher") {}
     };
-} 
+}

@@ -18,13 +18,13 @@ protected:
 //  ============================================================
 //  TCP listeners
 //  ============================================================
-class Tcp_Listener_Base : 
+class Tcp_Listener_Base :
     public I_TCP_Listener,
     private TCP_Com_Base
 {
 public:
     bool listen(UINT16 port) override;
-    
+
     bool select() override;
 
     void close() override;
@@ -75,7 +75,7 @@ private:
 //  TCP connections
 //  ============================================================
 //  base tcp communication client
-class TCP_Con_Base : 
+class TCP_Con_Base :
     public I_TCP_Con,
     private TCP_Com_Base
 {
@@ -111,8 +111,8 @@ private:
 class TCP_Con_Gui : public TCP_Con_Base
 {
 public:
-    INSTANCE_DEC(TCP_Con_Gui)  
-    NOCOPY(TCP_Con_Gui) 
+    INSTANCE_DEC(TCP_Con_Gui)
+    NOCOPY(TCP_Con_Gui)
 protected:
     void onAccept() const override;
     void forward(const ComTele& tele) const override;

@@ -3,7 +3,7 @@
 
 OSTREAM_DEF(ComData)
 {
-    return os 
+    return os
         << DOUT(param1)
         << DOUT(param2)
     ;
@@ -16,7 +16,7 @@ OSTREAM_DEF(ComName)
 
 OSTREAM_DEF(ComTele)
 {
-    return os 
+    return os
         << DOUT(name)
         << d.data
     ;
@@ -24,7 +24,7 @@ OSTREAM_DEF(ComTele)
 
 OSTREAM_DEF(PosRes)
 {
-    return os 
+    return os
         << DOUT(pos)
         << DOUT(valid)
     ;
@@ -32,7 +32,7 @@ OSTREAM_DEF(PosRes)
 
 OSTREAM_DEF(ProjItem)
 {
-    return os 
+    return os
         << DOUT(name)
         << DOUT(type)
     ;

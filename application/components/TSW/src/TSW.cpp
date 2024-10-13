@@ -102,4 +102,4 @@ void TSW::toGui() const
 void TSW::toFld(const UINT8 state) const
 {
     IL::getDispatcher().toFld(mId, ComData{state});
-} 
+}

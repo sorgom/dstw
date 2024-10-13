@@ -36,7 +36,7 @@ void Reader::read(const CONST_C_STRING filename)
                 CHAR buf[hSize];
                 UINT32 vals[nCAP];
             } head;
-            
+
             is.read(head.buf, hSize);
             auto [nTSW, nSIG, nLCR, nSEG] = head.vals;
 
@@ -51,7 +51,7 @@ void Reader::read(const CONST_C_STRING filename)
             if (ok)
             {
                 is.read(reinterpret_cast<CHAR*>(&mComSetup), sizeof(ComSetup));
-                
+
                 const auto mxSize = std::max({sTSW, sSIG, sLCR, sSEG});
                 CHAR* buf = new CHAR[static_cast<size_t>(mxSize)];
 
@@ -69,7 +69,7 @@ void Reader::read(const CONST_C_STRING filename)
                 delete [] buf;
 
                 IL::getDispatcher().index();
-            }    
+            }
         }
     }
     is.close();

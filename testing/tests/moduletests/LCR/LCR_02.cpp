@@ -15,7 +15,7 @@ namespace test
         void setup()
         {
             mData.setLcrType(0, TYPE_LCR);
-            mData.setLcrType(1, TYPE_LCR_UBK); 
+            mData.setLcrType(1, TYPE_LCR_UBK);
         }
     };
 
@@ -42,8 +42,8 @@ namespace test
     {
         SETUP()
         I_Provider& prv = LCR_Provider::instance();
-        mData.setLcrType(1, TYPE_LCR_UBK + 100); 
-        
+        mData.setLcrType(1, TYPE_LCR_UBK + 100);
+
         STEP(1)
         m_Dispatcher().expectAssign(mData.lcrName(0), COMP_LCR, 0, 0);
         m_Dispatcher().expectAssign(mData.lcrName(1), COMP_LCR, 1, 1);

@@ -67,7 +67,7 @@ namespace test
     };
 
     class M_TCP_Con_Gui : public M_TCP_Con
-    {   
+    {
     public:
         INSTANCE_DEC(M_TCP_Con_Gui)
         NOCOPY(M_TCP_Con_Gui)
@@ -85,4 +85,3 @@ namespace test
     };
 
 } // namespace
-

@@ -43,11 +43,11 @@ bool Tcp_Listener_Base::select()
 {
     const I_TCP& tcp = IL::getTCP();
     const INT32 res = tcp.select(mSocket);
-    bool ok = 
+    bool ok =
         (res == 0)
         or (res > 0 and getCon().accept(mSocket));
 
-    if (not ok) 
+    if (not ok)
     {
         comerr() << "select" << endl;
         tcp.close(mSocket);
@@ -92,8 +92,8 @@ bool TCP_Con_Base::accept(const INT32 socket)
         onAccept();
     }
     else
-    { 
-        comerr() << "accept" << endl; 
+    {
+        comerr() << "accept" << endl;
     }
     return ok;
 }
@@ -123,8 +123,8 @@ bool TCP_Con_Base::select()
             //  invalid data size
             else
             {
-                ok = false; 
-                close();    
+                ok = false;
+                close();
             }
         }
         //  select error

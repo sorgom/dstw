@@ -1,6 +1,6 @@
 //  ============================================================
 //  class BAS_Provider: base class to implement I_Provider
-//  - provides almost everything to satisfy 
+//  - provides almost everything to satisfy
 //    an I_Provider derived interface
 //  To be defined by derived classes:
 //  - add: to add an element to the provider
@@ -32,7 +32,7 @@ public:
     }
 
     void load(const ProjItem* data, UINT32 num) final;
-    
+
 protected:
     inline BAS_Provider() = default;
 

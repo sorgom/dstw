@@ -1,16 +1,16 @@
 //  ============================================================
 //  proj data generator
-//      presets all proj data 
+//      presets all proj data
 //      with element names in reversed alphanumerical order
 //      from size down to 1
 //      e.g. TSW, size 100:
 //          "TSW 100 *" .. "TSW 001 *"
-//  
+//
 //      dumps data to file
-// 
+//
 //      additional features
 //      -   set SIG type for signal data
-//      -   set LCR type for level crossing data 
+//      -   set LCR type for level crossing data
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -25,12 +25,12 @@
 namespace test
 {
     template <
-        size_t NTSW = TEST_NUM_TSW, 
-        size_t NSIG = TEST_NUM_SIG, 
-        size_t NLCR = TEST_NUM_LCR, 
+        size_t NTSW = TEST_NUM_TSW,
+        size_t NSIG = TEST_NUM_SIG,
+        size_t NLCR = TEST_NUM_LCR,
         size_t NSEG = TEST_NUM_SEG
     >
-    class GenProjData 
+    class GenProjData
     {
     private:
         using ProjVec = std::vector<ProjItem>;
@@ -49,7 +49,7 @@ namespace test
             setSigType(TYPE_SIG_H);
             setLcrType(TYPE_LCR);
         }
-    
+
         inline UINT32 numTSW() const { return mTSWs.size(); }
         inline UINT32 numSIG() const { return mSIGs.size(); }
         inline UINT32 numLCR() const { return mLCRs.size(); }
@@ -148,6 +148,6 @@ namespace test
         inline static void write(std::ofstream& os, const ProjVec& vec)
         {
             os.write(reinterpret_cast<const CHAR*>(vec.data()), sizeof(ProjItem) * vec.size());
-        }    
+        }
     };
 } // namespace

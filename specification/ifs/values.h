@@ -33,7 +33,7 @@ enum E_Ret : UINT8
     //  communication error
     RET_ERR_COM
 };
-                
+
 //  reserved parameter values
 enum E_Param : UINT8
 {

@@ -19,12 +19,12 @@ namespace test
             mLCR(mId),
             rSUT(mLCR)
         {}
-        
+
         inline void setSUT(I_Elem& lcr)
         {
             rSUT.set(lcr);
         }
-        
+
         inline I_Elem& mSUT()
         {
             return rSUT.ref();

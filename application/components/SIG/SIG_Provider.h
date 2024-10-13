@@ -15,7 +15,7 @@ public:
     NOCOPY(SIG_Provider)
 protected:
     bool add(size_t id, const ProjItem& item) final;
-    inline E_Comp comp() const final { return COMP_SIG; }; 
+    inline E_Comp comp() const final { return COMP_SIG; };
 private:
     inline SIG_Provider() = default;
 };

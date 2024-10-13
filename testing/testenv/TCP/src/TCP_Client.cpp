@@ -19,7 +19,7 @@ namespace test
 #else
         return true;
 #endif
-    }    
+    }
 
     void TCP_Client::cleanup()
     {
@@ -75,11 +75,11 @@ namespace test
     }
 
     void TCP_Client::close()
-    { 
-        if (mSocket >= 0) 
-        { 
-            ::closesocket(mSocket); 
-            mSocket = -1; 
-        } 
+    {
+        if (mSocket >= 0)
+        {
+            ::closesocket(mSocket);
+            mSocket = -1;
+        }
     }
 }

@@ -43,7 +43,7 @@ namespace test
             CHECK_N_CLEAR()
         }
     };
-    
+
     TEST_GROUP_BASE(TSW_01, TestGroupTSW) {};
 
     //  test type: equivalence class test

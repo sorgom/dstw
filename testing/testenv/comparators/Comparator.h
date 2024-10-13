@@ -32,7 +32,7 @@ namespace test
     };
 
     template <class T>
-    class Comparator : 
+    class Comparator :
         public MockNamedValueComparator,
         private ComparatorBase
     {

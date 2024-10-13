@@ -28,7 +28,7 @@ namespace test
         STEP(1)
         ok = tcp.init();
         L_CHECK_TRUE(ok);
-        
+
         //  create socket 1
         STEP(2)
         socket1 = tcp.socket();
@@ -79,8 +79,8 @@ namespace test
         //  - accept client
         //  - select on client socket
         //    - without activity
-        //    - with close activity 
-        
+        //    - with close activity
+
         //  connection to bound port must be ok
         STEP(9)
         const bool con = client.connect(tcpPortFld);
@@ -138,7 +138,7 @@ namespace test
         STEP(19)
         res = tcp.recv(socket2, buffer, sizeof(buffer));
         L_CHECK_EQUAL(0, res);
-        
+
         //  close client socket for test cleanup
         tcp.close(socket2);
 
