@@ -23,9 +23,9 @@ public:
     void toGui() const override;
     void fromFld(const ComData& data) override;
     void fromGui(const ComData& data) override;
-    
+
     inline E_Type type() const { return TYPE_TSW; }
-    
+
     NOCOPY(TSW)
     NODEF(TSW)
 private:

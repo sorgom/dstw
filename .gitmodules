@@ -5,3 +5,7 @@
 	path = CppUTestSteps
 	url = git@github.com:sorgom/CppUTestSteps.git
 	branch = dev
+[submodule "sompy"]
+	path = sompy
+	url = git@github.com:sorgom/sompy.git
+	branch = dev

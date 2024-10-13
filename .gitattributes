@@ -1,15 +1,7 @@
 #   all text files unix line endings
-* text=auto
+* text=auto eol=lf
 
-*.cpp   text eol=lf
-*.h     text eol=lf
-*.py    text eol=lf
-*.sh    text eol=lf
-*.lua   text eol=lf
-*.txt   text eol=lf
+*.cmd eol=crlf
+*.bat eol=crlf
 *.svg   text eol=lf
 *.mdj   text eol=lf
-*.md    text eol=lf
-*.make  text eol=lf
-.git*   text eol=lf
-

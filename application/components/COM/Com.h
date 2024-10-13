@@ -1,7 +1,7 @@
 //  ============================================================
 //  class Com implements I_Com
 //  ============================================================
-//  created by Manfred Sorgo 
+//  created by Manfred Sorgo
 
 #pragma once
 

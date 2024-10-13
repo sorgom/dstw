@@ -38,7 +38,7 @@ namespace test
             const bool ok = mClient.send( tele );
             L_CHECK_TRUE(ok)
         }
-  
+
         inline void connect(UINT16 port)
         {
             const bool ok = mClient.connect(port);

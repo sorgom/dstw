@@ -7,11 +7,8 @@
 #include <codebase/BaseTypes.h>
 #include <codebase/nocopy.h>
 
-//  enable usage of "and", "or" 
+//  enable usage of "and", "or", "not" in place of "&&", "||", "!"
 #include <ciso646>
-
-//  put into empty if / else branches for coverage
-inline void pass() {}
 
 //  unified instance declaration
 #define INSTANCE_DEC(NAME) \

@@ -65,16 +65,16 @@ class StateCharts(object):
         if stateNames is None: return
         transEvents = [
             TransEvent(self.event(trg, evt), src, trg)
-                for evt, src, trg in [[evt, stateNames.get(src), stateNames.get(trg)] 
+                for evt, src, trg in [[evt, stateNames.get(src), stateNames.get(trg)]
                     for evt, src, trg in transitions]
         ]
         return transEvents
-    
+
     def getRef(self, data, key):
         ref = data.get(key)
         if ref is None: return None
         return ref['$ref']
-    
+
     def traverse(self, data:dict):
         if type(data) == dict:
             tp = data.get('_type', '')
@@ -101,15 +101,15 @@ class StateCharts(object):
         elif type(data) == list:
             for v in data:
                 self.traverse(v)
-    
+
     def main(self):
         opts, args = getopt(argv[1:], 'i')
         call = self.genMd
         for o, v in opts:
             if (o == '-i'): call = self.genInfo
-                
+
         for mdj in args:
-            call(mdj)        
+            call(mdj)
 
 if __name__ == '__main__':
     sc = StateCharts()

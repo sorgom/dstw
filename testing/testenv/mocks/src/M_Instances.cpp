@@ -20,7 +20,7 @@ namespace test
     INSTANCE_DEF(M_LCR_Provider)
     INSTANCE_DEF(M_LCR)
     INSTANCE_DEF(M_Log)
-    INSTANCE_DEF(M_Reader) 
+    INSTANCE_DEF(M_Reader)
     INSTANCE_DEF(M_SIG_Provider)
     INSTANCE_DEF(M_SIG)
     INSTANCE_DEF(M_TCP)
@@ -32,6 +32,6 @@ namespace test
     INSTANCE_DEF(M_TCP_Listener_Fld)
     INSTANCE_DEF(M_TCP_Listener_Gui)
     INSTANCE_DEF(M_TCP_Listener_Ctrl)
-    
+
     std::ostringstream M_Base::mStream;
 }

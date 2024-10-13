@@ -1,5 +1,5 @@
 #   ============================================================
-#   simple md table generator 
+#   simple md table generator
 #   - numeric align right
 #   - alpha   align left
 #   ============================================================

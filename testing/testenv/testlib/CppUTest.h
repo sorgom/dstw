@@ -28,7 +28,7 @@
 //      .withParameterOfType("SomeStruct", "param", param)
 //  use:
 //    .TPARAM(SomeStruct, param)
-// 
+//
 //  raw typing:
 //      .withParameter("param", param)
 //  use:
@@ -61,4 +61,3 @@
 
 #define IGNORE() \
     ignoreOtherParameters()
-

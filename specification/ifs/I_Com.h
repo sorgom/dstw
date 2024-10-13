@@ -2,7 +2,7 @@
 //  Interface Com
 //  - field and GUI communication device
 //  ============================================================
-//  created by Manfred Sorgo 
+//  created by Manfred Sorgo
 
 #pragma once
 

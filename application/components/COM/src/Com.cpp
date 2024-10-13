@@ -43,14 +43,14 @@ void Com::run()
             and clientFld.select()
             and clientGui.select()
             and clientCtrl.select();
-        
+
         if (not ok)
         {
             IL::getLog().log(COMP_COM, RET_ERR_COM);
             mRunning = false;
-        } 
+        }
     }
- 
+
     listenerFld.close();
     listenerGui.close();
     listenerCtrl.close();

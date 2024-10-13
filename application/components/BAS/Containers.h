@@ -20,11 +20,11 @@
 //  derived from interface class IF
 //  ============================================================
 template <typename IF>
-class PolyVec 
+class PolyVec
 {
 public:
     template <typename T, typename... Args>
-    inline void add(Args&&... args) 
+    inline void add(Args&&... args)
     {
         static_assert(std::is_base_of<IF, T>::value);
         mData.emplace_back(std::make_unique<T>(std::forward<Args>(args)...));
@@ -39,9 +39,9 @@ public:
     inline void clear() { mData.clear(); }
 
     //  reserve memory for size objects
-    inline void reserve(size_t size) 
-    { 
-        mData.reserve(size); 
+    inline void reserve(size_t size)
+    {
+        mData.reserve(size);
     }
 
 private:
@@ -49,7 +49,7 @@ private:
 };
 
 //  ============================================================
-//  class Index allows to 
+//  class Index allows to
 //  - store const CONT objects with KEY type member
 //    in the order that the were added
 //  - index and find objects by KEY type
@@ -182,7 +182,7 @@ private:
         size_t dups = 0;
         for (size_t a = 0, b = 1; b < mIdx.size(); ++a, ++b)
         {
-        	if (not gt(b, a))
+            if (not gt(b, a))
             {
                 ++dups;
             }

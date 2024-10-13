@@ -15,8 +15,8 @@ namespace test
         void setup()
         {
             mData.setSigType(0, TYPE_SIG_H);
-            mData.setSigType(1, TYPE_SIG_N); 
-            mData.setSigType(2, TYPE_SIG_H_N); 
+            mData.setSigType(1, TYPE_SIG_N);
+            mData.setSigType(2, TYPE_SIG_H_N);
         }
     };
 
@@ -45,8 +45,8 @@ namespace test
     {
         SETUP()
         I_Provider& prv = SIG_Provider::instance();
-        mData.setSigType(2, TYPE_SIG_H + 100); 
-        
+        mData.setSigType(2, TYPE_SIG_H + 100);
+
         STEP(1)
         m_Dispatcher().expectAssign(mData.sigName(0), COMP_SIG, 0, 0);
         m_Dispatcher().expectAssign(mData.sigName(1), COMP_SIG, 1, 1);

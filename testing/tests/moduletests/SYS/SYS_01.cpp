@@ -50,7 +50,7 @@ namespace test
     TEST_GROUP_BASE(SYS_01, TestGroupRDR) {};
 
     //  test type: equivalence class test
-    //  successfully load data 
+    //  successfully load data
     TEST(SYS_01, T01)
     {
         SETUP()
@@ -76,7 +76,7 @@ namespace test
     }
 
     //  test type: equivalence class test
-    //  failure: file does not exist 
+    //  failure: file does not exist
     TEST(SYS_01, T02)
     {
         SETUP()
@@ -114,7 +114,7 @@ namespace test
     {
         SETUP()
         I_Reader& rdr = Reader::instance();
-        
+
         std::ofstream os(fname, std::ios::binary);
         for (size_t n = 0; n < 4 * sizeof(UINT32) - 1; ++n)
         {
@@ -139,7 +139,7 @@ namespace test
 
         STEP(2)
         const I_Log& logc = Log::instance();
-        const E_Ret ret = logc.maxerr();    
+        const E_Ret ret = logc.maxerr();
         L_CHECK_EQUAL(RET_ERR_STARTUP, ret)
     }
 }

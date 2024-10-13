@@ -15,7 +15,7 @@ public:
     NOCOPY(LCR_Provider)
 protected:
     bool add(size_t id, const ProjItem& item) final;
-    inline E_Comp comp() const final { return COMP_LCR; };  
+    inline E_Comp comp() const final { return COMP_LCR; };
 private:
     inline LCR_Provider() = default;
 };

@@ -33,7 +33,7 @@ namespace test
             clientCtrl.connect(tcpPortCtrl);
             ENDSTEPS()
         }
-        
+
         //  check all clients for received telegrams
         void recvAll()
         {

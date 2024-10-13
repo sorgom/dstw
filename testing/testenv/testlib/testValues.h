@@ -7,7 +7,7 @@
 //
 //  pre-defined here
 //  definable at compile time
-//  e.g.: -DTEST_NUM_SIG=500 
+//  e.g.: -DTEST_NUM_SIG=500
 //  ============================================================
 //  created by Manfred Sorgo
 
@@ -18,19 +18,19 @@
 
 #ifndef TEST_NUM_TSW
 #define TEST_NUM_TSW 101
-#endif 
+#endif
 
 #ifndef TEST_NUM_SIG
 #define TEST_NUM_SIG 102
-#endif 
+#endif
 
 #ifndef TEST_NUM_LCR
 #define TEST_NUM_LCR 103
-#endif 
+#endif
 
 #ifndef TEST_NUM_SEG
 #define TEST_NUM_SEG 104
-#endif 
+#endif
 
 namespace test
 {

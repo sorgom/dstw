@@ -38,7 +38,7 @@ class Gcov(object):
 
     def cloc(self, srcs):
         txt = procOut(f'cloc --by-file {srcs}')
-        self.locs = [ [a, int(b)] for a, b in rxLoc.findall(txt) if a != 'SUM:'] 
+        self.locs = [ [a, int(b)] for a, b in rxLoc.findall(txt) if a != 'SUM:']
 
     def run(self, workDir, app, objDir, srcs, verbose=True):
         checkLinux()
@@ -82,7 +82,7 @@ class Gcov(object):
     def cntLines(self, mo):
         self.cntNoc += len(rxLin.findall(mo.group(1)))
         return ''
-    
+
     def chkcov(self, fn:str):
         with open(fn) as fh:
             txt = fh.read()
@@ -102,4 +102,3 @@ if __name__ == '__main__':
         '../application/components/*/src/*.cpp ../application/components/*/*.h'
     )
     exit(ret)
-

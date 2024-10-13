@@ -127,7 +127,7 @@ namespace test
             m_TCP().expectSend(validSocket, sizeof(ComTele));
             client.send(tele);
             CHECK_N_CLEAR()
-        } 
+        }
 
         //  select returns 1 activity
         //  recv returns close event

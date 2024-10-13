@@ -32,7 +32,7 @@ namespace test
         {
             expect("fromGui").TPARAM(ComData, data);
         }
-        
+
         inline void toGui() const override
         {
             call("toGui");
@@ -75,5 +75,5 @@ namespace test
     private:
         inline M_LCR() : M_Elem("LCR") {}
     };
-    
+
 } // namespace

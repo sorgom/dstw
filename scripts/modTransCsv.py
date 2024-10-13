@@ -72,7 +72,7 @@ class TransCsv(object):
     def genInfo(self, srcCsv):
         print(basename(srcCsv))
         self.transTable.genInfo(self.genTransEvents(srcCsv))
- 
+
     def genJsonCpp(self, file):
         with open (file, 'r') as fh:
             res = []
@@ -115,7 +115,7 @@ class TransCsv(object):
             if (o == '-i'):
                 self.info = True
         for src in args:
-            self.fromFile(src)        
+            self.fromFile(src)
 
 if __name__ == '__main__':
     trc = TransCsv()

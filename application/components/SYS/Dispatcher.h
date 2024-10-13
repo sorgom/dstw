@@ -17,7 +17,7 @@ public:
     void index() override;
 
     const PosRes assign(const ComName& name, E_Comp comp, size_t pos) override;
-    
+
     void fromFld(const ComTele& tele) const override;
     void fromGui(const ComTele& tele) const override;
 

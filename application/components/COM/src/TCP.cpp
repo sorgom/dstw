@@ -45,7 +45,7 @@ bool TCP::bind(const INT32 socket, const UINT16 port) const
     addr.sin_family = AF_INET;
     addr.sin_addr.s_addr = INADDR_ANY; // INADDR_LOOPBACK;
     addr.sin_port = htons(port);
-    return ::bind(socket, (const sockaddr*)&addr, sizeof(addr)) >= 0; 
+    return ::bind(socket, (const sockaddr*)&addr, sizeof(addr)) >= 0;
 }
 
 bool TCP::listen(const INT32 socket) const
@@ -95,6 +95,4 @@ void TCP::close(INT32& socket) const
         ::closesocket(socket);
         socket = -1;
     }
-    else
-    { pass(); }
 }

@@ -92,8 +92,6 @@ void TSW::chgState(const UINT8 state)
         mState = state;
         toGui();
     }
-    else
-    { pass(); }
 }
 
 void TSW::toGui() const
@@ -104,4 +102,4 @@ void TSW::toGui() const
 void TSW::toFld(const UINT8 state) const
 {
     IL::getDispatcher().toFld(mId, ComData{state});
-} 
+}

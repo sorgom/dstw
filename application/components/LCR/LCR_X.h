@@ -58,7 +58,7 @@ public:
 class LCR_UBK : public LCR_X
 {
 public:
-    inline LCR_UBK(size_t id): 
+    inline LCR_UBK(size_t id):
         LCR_X(id),
         mUbkToGui(LCR_UBK_STATE_UNDEF)
     {}

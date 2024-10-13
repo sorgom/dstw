@@ -31,7 +31,7 @@ protected:
     void procFromFld(UINT8 state);
     void procFromGui(UINT8 stateFld, UINT8 stateGui);
 
-    void toFld(UINT8 state, UINT8 speed = PARAM_UNDEF) const; 
+    void toFld(UINT8 state, UINT8 speed = PARAM_UNDEF) const;
 
     static void logMismatch();
 };

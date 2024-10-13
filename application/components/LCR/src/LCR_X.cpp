@@ -67,7 +67,7 @@ bool LCR_X::validState(const UINT8 state)
         break;
     default:
         IL::getLog().log(COMP_LCR, RET_ERR_MATCH);
-        break;    
+        break;
     };
     return ok;
 }
@@ -75,11 +75,7 @@ bool LCR_X::validState(const UINT8 state)
 void LCR::fromFld(const ComData& data)
 {
     const auto state = data.param1;
-    if (state == mStateToGui)
-    { pass(); }
-    else if (not validState(state))
-    { pass(); }
-    else
+    if (validState(state) and state != mStateToGui)
     {
         mStateToGui = state;
         toGui();
@@ -101,28 +97,26 @@ bool LCR_UBK::validUbk(const UINT8 state)
     case LCR_UBK_STATE_OCCUPIED:
     case LCR_UBK_STATE_FREE:
         ok = true;
-        break;    
+        break;
     default:
         IL::getLog().log(COMP_LCR, RET_ERR_MATCH);
-        break;    
+        break;
     };
     return ok;
 }
 
 void LCR_UBK::fromFld(const ComData& data)
 {
-    const auto state = data.param1, ubk = data.param2;
+    const auto state = data.param1;
+    const auto ubk = data.param2;
     if (
-        (state == mStateToGui) and
-        (ubk   == mUbkToGui)
+        (
+            (state != mStateToGui) or
+            (ubk   != mUbkToGui)
+        ) and
+        validState(state) and
+        validUbk(ubk)
     )
-    { pass(); }
-    else if (not (
-        validState(state) and 
-        validUbk(ubk))
-    )
-    { pass(); }
-    else
     {
         mStateToGui = state;
         mUbkToGui = ubk;

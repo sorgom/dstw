@@ -40,7 +40,7 @@ namespace test
         {
             expect("close");
         }
-        
+
         NOCOPY(M_TCP_Listener)
         NODEF(M_TCP_Listener)
 
@@ -58,7 +58,7 @@ namespace test
     };
 
     class M_TCP_Listener_Gui : public M_TCP_Listener
-    {   
+    {
     public:
         INSTANCE_DEC(M_TCP_Listener_Gui)
         NOCOPY(M_TCP_Listener_Gui)
@@ -74,6 +74,5 @@ namespace test
     private:
         M_TCP_Listener_Ctrl() : M_TCP_Listener("TCP_Listener_Ctrl") {}
     };
-    
-} // namespace
 
+} // namespace

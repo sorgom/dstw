@@ -21,7 +21,7 @@ protected:
         mElems.add<TSW>(id);
         return true;
     }
-    inline E_Comp comp() const final { return COMP_TSW; }; 
+    inline E_Comp comp() const final { return COMP_TSW; };
 private:
     inline TSW_Provider() = default;
 };

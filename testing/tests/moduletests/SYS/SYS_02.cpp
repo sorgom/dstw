@@ -205,15 +205,15 @@ namespace test
         E_Comp comp = (E_Comp) 255;
         dsp.assign(genComName(1, "TSW"), comp, 1);
         dsp.index();
-        
+
         STEP(1)
         const ComTele tele{genComName(1, "TSW"), {99, 111}};
         dsp.fromFld(tele);
-        CHECK_N_CLEAR()    
+        CHECK_N_CLEAR()
 
         STEP(2)
         dsp.fromGui(tele);
-        CHECK_N_CLEAR()    
+        CHECK_N_CLEAR()
     }
 
     //  test type: equivalence class test
@@ -232,7 +232,7 @@ namespace test
         dsp.index();
         CHECK_N_CLEAR()
     }
-    
+
     //  test type: equivalence class test
     //  telegrams from field and GUI
     //  Provider returns wrong size

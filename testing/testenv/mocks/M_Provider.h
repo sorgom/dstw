@@ -14,7 +14,7 @@
 
 namespace test
 {
-    class M_Provider : 
+    class M_Provider :
         public I_Provider,
         private M_Base
     {
@@ -37,7 +37,7 @@ namespace test
         {
             expect("clear");
         }
-        
+
         inline void load(const ProjItem* data, UINT32 num)
         {
             call("load").PARAM(num);

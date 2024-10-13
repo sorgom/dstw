@@ -17,7 +17,7 @@ namespace test
     TEST(BAS_02, T01)
     {
         NcpIndex indx;
-        
+
         const UINT8 tSize = 10;
         const UINT8 tOffs = tSize - 1;
 
@@ -54,7 +54,7 @@ namespace test
     TEST(BAS_02, T02)
     {
         NcpIndex indx;
-        
+
         // no data added
         STEP(1)
         {
@@ -84,7 +84,7 @@ namespace test
     TEST(BAS_02, T03)
     {
         NcpIndex indx;
-        
+
         // no data added
         STEP(1)
         indx.add(genComName(1), 1, 1);

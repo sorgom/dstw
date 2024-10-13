@@ -33,7 +33,7 @@
 
 //  output line for standard types
 #define DOUT(NAME) \
-    std::setw(OUT_FILL_W) << std::setfill(OUT_FILL_C) << std::left << #NAME << ':' << ' ' << d.NAME << std::endl 
+    std::setw(OUT_FILL_W) << std::setfill(OUT_FILL_C) << std::left << #NAME << ':' << ' ' << d.NAME << std::endl
 
 //  output line for fixed character types
 #define DFIX(NAME) \

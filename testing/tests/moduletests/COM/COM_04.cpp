@@ -161,7 +161,7 @@ namespace test
         com.run();
         CHECK_N_CLEAR()
 
-        //  all selects pass for 1st time than listener field fails 
+        //  all selects pass for 1st time than listener field fails
         STEP(7)
         expectStartupOk();
         expectExitRuntime();
@@ -194,14 +194,14 @@ namespace test
             m_TCP_Con_Fld().expectSend(tf);
             com.toFld(tf);
             CHECK_N_CLEAR()
-        }    
+        }
         STEP(2)
         {
             const ComTele tg {{}, {111, 212}};
             m_TCP_Con_Gui().expectSend(tg);
             com.toGui(tg);
             CHECK_N_CLEAR()
-        }    
+        }
     }
 
 } // namespace
