@@ -111,14 +111,15 @@ call %executable% >NUL
 
 if %_update% == 1 exit /b 0
 
+call covselect -qd
+call covselect -q --import %excludeFile%
+
 if %_genhtml% == 1 (
     echo - html
     call covhtml -q --allNum %covHtmlDir%
 )
 
 echo - report
-call covselect -qd
-call covselect -q --import %excludeFile%
 
 cd %dstwDir%
 call covdir -q --by-name --srcdir . | tee %covLog%

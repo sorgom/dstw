@@ -5,10 +5,11 @@
 
 #include <testlib/TestGroupBase.h>
 #include <SIG/SIG_Provider.h>
+#include <SIG/SIG_X.h>
 
 namespace test
 {
-    TEST_GROUP_BASE(SIG_03, TestGroupBase)
+    TEST_GROUP_BASE(SIG_02, TestGroupBase)
     {
     protected:
         GenProjData<1, 3, 1, 1> mData;
@@ -22,7 +23,7 @@ namespace test
 
     //  test type: equivalence class test
     //  load valid ProjData SIG
-    TEST(SIG_03, T01)
+    TEST(SIG_02, T01)
     {
         SETUP()
         I_Provider& prv = SIG_Provider::instance();
@@ -34,14 +35,14 @@ namespace test
         prv.load(mData.pSIG(), mData.numSIG());
         CHECK_N_CLEAR()
         L_CHECK_EQUAL(3, prv.size())
-        L_CHECK_EQUAL(TYPE_SIG_H,   prv.at(0).type())
-        L_CHECK_EQUAL(TYPE_SIG_N,   prv.at(1).type())
-        L_CHECK_EQUAL(TYPE_SIG_H_N, prv.at(2).type())
+        L_CHECK_ELEM_TYPE(SIG_H,   prv.at(0))
+        L_CHECK_ELEM_TYPE(SIG_N,   prv.at(1))
+        L_CHECK_ELEM_TYPE(SIG_H_N, prv.at(2))
     }
 
     //  test type: equivalence class test
     //  load invalid ProjData SIG (unknown type)
-    TEST(SIG_03, T02)
+    TEST(SIG_02, T02)
     {
         SETUP()
         I_Provider& prv = SIG_Provider::instance();
@@ -59,7 +60,7 @@ namespace test
 
     //  test type: equivalence class test
     //  load valid ProjData SIG Dispatcher returns negative value
-    TEST(SIG_03, T03)
+    TEST(SIG_02, T03)
     {
         SETUP()
         I_Provider& prv = SIG_Provider::instance();

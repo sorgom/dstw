@@ -6,6 +6,7 @@
 #pragma once
 
 #include <ifs/DataTypes.h>
+#include <ifs/I_Elem.h>
 #include <codebase/Mem.h>
 #include <BAS/coding.h>
 
@@ -53,5 +54,12 @@ namespace test
     private:
         T* mPtr;
     };
-}
 
+    //  check if element is of type T
+    template <class T>
+    inline bool istype(const I_Elem& elem)
+    {
+        return dynamic_cast<const T*>(&elem) != nullptr;
+    }
+    #define L_CHECK_ELEM_TYPE(TYPE, ELEM) L_CHECK_TRUE(istype<TYPE>(ELEM))
+}

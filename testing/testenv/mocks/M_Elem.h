@@ -45,8 +45,6 @@ namespace test
         {
             expect(num, "toGui");
         }
-
-        inline E_Type type() const override { return TYPE_UNDEF; }
     };
 
     // mock TSW
