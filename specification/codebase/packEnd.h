@@ -3,6 +3,11 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
+//  prevent include guards to be inserted by script
+#ifndef PACKEND_H
+#define PACKEND_H
+#endif // _H
+
 //! check if packBegin.h has been included before
 #ifdef IS_PACKED
     #undef IS_PACKED

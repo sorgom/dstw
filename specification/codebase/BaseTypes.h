@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef BASETYPES_H
+#define BASETYPES_H
 
 #include <cstdint>
 
@@ -27,3 +29,4 @@ using CONST_C_STRING = const CHAR*;
 #ifndef _MSC_VER
 using std::size_t;
 #endif
+#endif // _H

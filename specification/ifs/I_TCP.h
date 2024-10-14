@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef I_TCP_H
+#define I_TCP_H
 
 #include "DataTypes.h"
 
@@ -72,3 +74,4 @@ public:
     //  close client
     virtual void close() = 0;
 };
+#endif // _H

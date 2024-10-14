@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef I_DISPATCHER_H
+#define I_DISPATCHER_H
 
 #include "values.h"
 #include "DataTypes.h"
@@ -39,3 +41,4 @@ public:
     //  dispatcher shall re-send all GUI states when triggered
     virtual void reGui() const = 0;
 };
+#endif // _H
