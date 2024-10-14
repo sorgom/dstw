@@ -3,6 +3,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 #pragma once
+#ifndef CODING_H
+#define CODING_H
 
 #include <codebase/BaseTypes.h>
 #include <codebase/nocopy.h>
@@ -21,3 +23,4 @@
         static NAME instance; \
         return instance; \
     }
+#endif // _H

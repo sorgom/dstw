@@ -2,6 +2,8 @@
 //  class Reader implements I_Reader
 //  ============================================================
 #pragma once
+#ifndef READER_H
+#define READER_H
 
 #include <ifs/I_Reader.h>
 #include <BAS/coding.h>
@@ -18,3 +20,4 @@ private:
     ComSetup mComSetup = {};
     inline Reader() = default;
 };
+#endif // _H

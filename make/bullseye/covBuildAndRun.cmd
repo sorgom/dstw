@@ -29,9 +29,9 @@ set excludeFile=%myDir%\_covexclude.txt
 set optsTxt=%myDir%\_covoptions.txt
 
 rem minimal function coverage %
-set minFunctionCov=98
+set minFunctionCov=100
 rem minimal decision coverage %
-set minDecisionCov=90
+set minDecisionCov=99
 
 set covMin=%minFunctionCov%,%minDecisionCov%
 
@@ -77,7 +77,6 @@ if %_cleanbuild% == 1 (
 
 if not exist %reportsDir% mkdir %reportsDir%
 
-cd %myDir%
 call cov01 -q1
 
 echo - build
@@ -96,23 +95,27 @@ if not exist %covfile% (
 
 rm -f %buildLog%
 
+call covclear -q
+
 echo - run
 call %executable% >NUL
 
 if %_update% == 1 exit /b 0
 
-call covselect -qd
-call covselect -q --import %excludeFile%
-
-cd %dstwDir%
-call covdir -q --by-name --srcdir . > %covLog%
-
-set _result=failed
-call covdir -q --checkmin %covMin%
-if %errorlevel% == 0 set _result=passed
-echo covmin %covMin% %_result% >> %covLog%
-
 if %_genhtml% == 1 (
     echo - html
     call covhtml -q --allNum %covHtmlDir%
 )
+
+echo - report
+call covselect -qd
+call covselect -q --import %excludeFile%
+
+cd %dstwDir%
+call covdir -q --by-name --srcdir . | tee %covLog%
+
+set _result=failed
+call covdir -q --checkmin %covMin%
+if %errorlevel% == 0 set _result=passed
+echo covmin %covMin% %_result% | tee -a %covLog%
+

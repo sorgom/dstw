@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef COM_H
+#define COM_H
 
 #include <ifs/I_Com.h>
 #include <BAS/coding.h>
@@ -23,3 +25,4 @@ private:
     inline Com() = default;
     bool mRunning = false;
 };
+#endif // _H

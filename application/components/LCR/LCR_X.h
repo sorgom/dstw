@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef LCR_X_H
+#define LCR_X_H
 
 #include <ifs/I_Elem.h>
 #include <BAS/coding.h>
@@ -75,3 +77,4 @@ private:
     UINT8 mUbkToGui;
     static bool validUbk(UINT8 ubk);
 };
+#endif // _H

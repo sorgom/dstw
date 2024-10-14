@@ -3,6 +3,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 #pragma once
+#ifndef DISPATCHER_H
+#define DISPATCHER_H
 
 #include <BAS/coding.h>
 #include <BAS/NcpIndex.h>
@@ -37,3 +39,4 @@ private:
     static void forwardGui(I_Provider& prov, const Ncp& ncp, const ComTele& tele);
     static void reGui(I_Provider& prov);
 };
+#endif // _H
