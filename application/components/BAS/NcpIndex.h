@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef NCPINDEX_H
+#define NCPINDEX_H
 
 #include <BAS/coding.h>
 #include <BAS/Containers.h>
@@ -41,8 +43,9 @@ public:
     NOCOPY(NcpIndex)
 
 protected:
-    inline const ComName& getKey(const Ncp& ntp) const final
+    inline const ComName& getKey(const Ncp& ncp) const final
     {
-        return ntp.name;
+        return ncp.name;
     }
 };
+#endif // _H

@@ -3,6 +3,11 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
+//  prevent include guards to be inserted by script
+#ifndef PACKBEGIN_H
+#define PACKBEGIN_H
+#endif // _H
+
 //! check if we have an nested Pack definition
 #ifdef IS_PACKED
     #error Nested use of PackBegin.h (probably missing #include "packEnd.h")

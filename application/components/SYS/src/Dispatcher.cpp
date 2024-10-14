@@ -24,7 +24,7 @@ const PosRes Dispatcher::assign(
     const size_t pos)
 {
     mIndx.add(name, comp, pos);
-    return PosRes{mIndx.size() - 1, true};
+    return PosRes{true, mIndx.size() - 1};
 }
 
 void Dispatcher::fromFld(const ComTele& tele) const

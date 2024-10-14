@@ -5,6 +5,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef LOG_H
+#define LOG_H
 
 #include <ifs/I_Log.h>
 #include <BAS/coding.h>
@@ -27,3 +29,4 @@ private:
     E_Ret mErr = RET_NO_ERR;
     inline Log() = default;
 };
+#endif // _H

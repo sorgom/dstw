@@ -6,6 +6,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef IL_H
+#define IL_H
 
 #include <COM/Com.h>
 #include <COM/TCP_Com.h>
@@ -34,3 +36,4 @@ namespace IL
     inline I_TCP_Listener& getTCP_Listener_Gui() { return TCP_Listener_Gui::instance(); }
     inline I_TCP_Listener& getTCP_Listener_Ctrl() { return TCP_Listener_Ctrl::instance(); }
 } // namespace
+#endif // _H

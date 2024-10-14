@@ -7,6 +7,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef TSW_H
+#define TSW_H
 
 #include <ifs/values.h>
 #include <ifs/I_Elem.h>
@@ -38,3 +40,4 @@ private:
     void chgState(UINT8 state);
     void toFld(UINT8 state) const;
 };
+#endif // _H

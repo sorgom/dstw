@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef VALUES_H
+#define VALUES_H
 
 #include <codebase/BaseTypes.h>
 
@@ -124,3 +126,4 @@ enum E_ComCtrl : UINT8
     COM_CTRL_PING,
     COM_CTRL_RE_GUI
 };
+#endif // _H

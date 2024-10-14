@@ -1,0 +1,3 @@
+exclude all /
+include folder application/
+include folder specification/

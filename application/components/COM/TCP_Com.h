@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef TCP_COM_H
+#define TCP_COM_H
 
 #include <ifs/I_TCP.h>
 #include <BAS/coding.h>
@@ -132,3 +134,4 @@ protected:
 private:
     inline TCP_Con_Ctrl() = default;
 };
+#endif // _H

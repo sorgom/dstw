@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef MEM_H
+#define MEM_H
 
 #include <codebase/BaseTypes.h>
 #include <cstring>
@@ -32,4 +34,4 @@ public:
         return std::memcmp(c1, c2, N);
     }
 };
-
+#endif // _H

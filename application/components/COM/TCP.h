@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef TCP_H
+#define TCP_H
 
 #include <ifs/I_TCP.h>
 #include <BAS/coding.h>
@@ -41,3 +43,4 @@ private:
     UINT32 mSec = 0;
     UINT32 mMicro = 10000;
 };
+#endif // _H

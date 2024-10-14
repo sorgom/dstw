@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef CONTAINERS_H
+#define CONTAINERS_H
 
 #include <BAS/coding.h>
 #include <ifs/DataTypes.h>
@@ -145,7 +147,7 @@ public:
                 pos = mid;
             }
         }
-        return PosRes{pos, found};
+        return PosRes{found, pos};
     }
 private:
     //  data storage
@@ -190,3 +192,4 @@ private:
         return dups;
     }
 };
+#endif // _H

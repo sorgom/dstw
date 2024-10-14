@@ -36,7 +36,7 @@ namespace test
         inline const PosRes assign(const ComName& name, E_Comp comp, size_t pos) override
         {
             const INT32 i = call("assign").TPARAM(ComName, name).PARAM(comp).PARAM(pos).RETURN_DEF_INT(0);
-            return i < 0 ? PosRes {0, false} : PosRes {static_cast<size_t>(i), true};
+            return i < 0 ? PosRes {false} : PosRes {true, static_cast<size_t>(i)};
         }
         inline void expectAssign(const ComName& name, E_Comp comp, size_t pos, INT32 ret = 0) const
         {

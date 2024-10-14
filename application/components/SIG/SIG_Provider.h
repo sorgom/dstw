@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef SIG_PROVIDER_H
+#define SIG_PROVIDER_H
 
 #include <BAS/coding.h>
 #include <BAS/BAS_Provider.h>
@@ -19,3 +21,4 @@ protected:
 private:
     inline SIG_Provider() = default;
 };
+#endif // _H

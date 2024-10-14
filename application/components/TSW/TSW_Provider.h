@@ -4,6 +4,8 @@
 //  created by Manfred Sorgo
 
 #pragma once
+#ifndef TSW_PROVIDER_H
+#define TSW_PROVIDER_H
 
 #include <BAS/coding.h>
 #include <BAS/BAS_Provider.h>
@@ -25,3 +27,4 @@ protected:
 private:
     inline TSW_Provider() = default;
 };
+#endif // _H
