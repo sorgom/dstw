@@ -82,11 +82,11 @@ static_assert(8 == sizeof(ComSetup));
 //  result of a find operation
 struct PosRes
 {
-    const size_t pos;
     const bool valid;
-    inline PosRes(size_t pos, bool valid):
-        pos(pos),
-        valid(valid)
+    const size_t pos;
+    inline PosRes(bool valid, size_t pos = 0) :
+        valid(valid),
+        pos(pos)
     {}
     NODEF(PosRes)
 };

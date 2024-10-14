@@ -43,9 +43,9 @@ public:
     NOCOPY(NcpIndex)
 
 protected:
-    inline const ComName& getKey(const Ncp& ntp) const final
+    inline const ComName& getKey(const Ncp& ncp) const final
     {
-        return ntp.name;
+        return ncp.name;
     }
 };
 #endif // _H

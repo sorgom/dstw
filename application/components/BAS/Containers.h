@@ -147,7 +147,7 @@ public:
                 pos = mid;
             }
         }
-        return PosRes{pos, found};
+        return PosRes{found, pos};
     }
 private:
     //  data storage

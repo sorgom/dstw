@@ -18,7 +18,7 @@ public:
 
     //  when loading project data
     //  components providers (TSW, SIG, LCR, SEG)
-    //  assign themselves with:
+    //  assign their elements with:
     //  - element name
     //  - component id
     //  - own processing element position

@@ -4,6 +4,11 @@ rem Bullseye coverage: build and run tests (requires VS shell)
 rem ========================================================================
 
 SETLOCAL
+rem minmal coverage setup
+rem - minimal function coverage %
+set minFunctionCov=100
+rem - minimal decision coverage %
+set minDecisionCov=99
 
 cd /d %~dp0
 set myDir=%cd%
@@ -28,16 +33,12 @@ set covcopt=--srcdir %dstwDir%
 set excludeFile=%myDir%\_covexclude.txt
 set optsTxt=%myDir%\_covoptions.txt
 
-rem minimal function coverage %
-set minFunctionCov=100
-rem minimal decision coverage %
-set minDecisionCov=99
-
 set covMin=%minFunctionCov%,%minDecisionCov%
 
 set _vsversion=vs2019
 set _premake=0
 set _cleanbuild=0
+set _cleanreports=0
 set _genhtml=0
 set _update=0
 
@@ -48,13 +49,15 @@ for %%p in (%*) do (
         exit /b 0
     ) else if "%%p" == "-c" (
         set _cleanbuild=1
+    ) else if "%%p" == "-r" (
+        set _cleanreports=1
     ) else if "%%p" == "-H" (
         set _genhtml=1
     ) else if "%%p" == "-u" (
         set _update=1
     ) else if "%%p" == "-p" (
         set _premake=1
-    ) else  (
+    ) else (
         set _vsversion=%%p
     )
 )
@@ -68,10 +71,14 @@ if %_premake% == 1 (
     set _cleanbuild=1
 )
 
+if %_cleanreports% == 1 (
+    echo - clean reports
+    if exist %reportsDir% rm -rf %reportsDir%
+)
+
 if %_cleanbuild% == 1 (
     echo - clean
     if exist %covfile% rm -f %covfile%
-    if exist %reportsDir% rm -rf %reportsDir%
     call msbuild /t:Clean %vsSolution% >NUL
 )
 
@@ -82,12 +89,13 @@ call cov01 -q1
 echo - build
 call msbuild /t:%vsBuildTarget% %vsSolution% > %buildLog% 2>&1
 
-call cov01 -q1
+call cov01 -q0
 
 if not exist %executable% (
     echo %executable% not found
     exit /b 1
 )
+
 if not exist %covfile% (
     echo %covfile% not found
     exit /b 1
@@ -95,6 +103,7 @@ if not exist %covfile% (
 
 rm -f %buildLog%
 
+rem rewind coverage file if it was not removed before
 call covclear -q
 
 echo - run
@@ -118,4 +127,3 @@ set _result=failed
 call covdir -q --checkmin %covMin%
 if %errorlevel% == 0 set _result=passed
 echo covmin %covMin% %_result% | tee -a %covLog%
-
