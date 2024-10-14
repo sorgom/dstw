@@ -86,3 +86,6 @@ transitions_*.md
 *.out.[0-9]*
 
 .obsidian
+
+!_cov*.txt
+reports
