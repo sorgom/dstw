@@ -4,21 +4,12 @@
 #   created by Manfred Sorgo
 
 from projectDirs import *
-from cleanMdj import cleanMdj
-from cleanSvg import cleanSvg
 from modGenCloc import genCloc
 from runGcov import gcovToMd
 from modUtilz import checkLinux
 
 from glob import glob
 from sys import argv, exit
-
-print("* cleanMdj")
-cleanMdj(glob(f'{docDir}/*.mdj'))
-print("* cleanSvg")
-cleanSvg(glob(f'{docDir}/*.svg'))
-
-if len(argv) > 1: exit()
 
 # linux only
 checkLinux()

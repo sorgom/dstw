@@ -18,24 +18,24 @@ Sample text summary output:
 ```
 Directory                        Function Coverage      C/D Coverage
 -------------------------------  -----------------  ----------------
-application/components/           135 / 135 = 100%  311 / 312 =  99%
-application/components/BAS/        26 /  26 = 100%   35 /  35 = 100%
-application/components/BAS/src/     1 /   1 = 100%   10 /  10 = 100%
+application/components/           128 / 128 = 100%  315 / 316 =  99%
+application/components/BAS/        25 /  25 = 100%   39 /  39 = 100%
+application/components/BAS/src/     1 /   1 = 100%   14 /  14 = 100%
 application/components/COM/        32 /  32 = 100%   79 /  80 =  98%
 application/components/COM/src/    31 /  31 = 100%   79 /  80 =  98%
-application/components/LCR/        17 /  17 = 100%   40 /  40 = 100%
+application/components/LCR/        15 /  15 = 100%   40 /  40 = 100%
 application/components/LCR/src/    11 /  11 = 100%   40 /  40 = 100%
-application/components/SIG/        33 /  33 = 100%   95 /  95 = 100%
+application/components/SIG/        30 /  30 = 100%   95 /  95 = 100%
 application/components/SIG/src/    24 /  24 = 100%   95 /  95 = 100%
 application/components/SYS/        15 /  15 = 100%   40 /  40 = 100%
 application/components/SYS/src/    13 /  13 = 100%   40 /  40 = 100%
-application/components/TSW/        12 /  12 = 100%   22 /  22 = 100%
+application/components/TSW/        11 /  11 = 100%   22 /  22 = 100%
 application/components/TSW/src/     8 /   8 = 100%   22 /  22 = 100%
 specification/                      6 /   6 = 100%    0 /   0
 specification/codebase/             3 /   3 = 100%    0 /   0
 specification/ifs/                  3 /   3 = 100%    0 /   0
 -------------------------------  -----------------  ----------------
-Total                             141 / 141 = 100%  311 / 312 =  99%
+Total                             134 / 134 = 100%  315 / 316 =  99%
 ```
 For details see [bullseye html report](http://dstw.sorgo.de/bullseye/)
 

@@ -19,17 +19,12 @@ for file in `git diff-index --cached --name-only HEAD`;
 do
   if [[ -f $file ]]
   then
-    add=1
     if [[ $file == *.mdj ]]; then mdjs="$mdjs $file"
     elif [[ $file == *.svg ]]; then svgs="$svgs $file"
     elif [[ $file == *.py ]] || [[ $file == *.cpp ]] || [[ $file == *.h ]]  || [[ $file == *.cmd ]] 
     then
       txts="$txts $file" 
-    else
-      add=0
     fi
-    
-    if [[ $add -eq 1 ]]; then git add $file; fi
   fi
 done
 
@@ -45,3 +40,4 @@ if [[ -n $txts ]]; then
   echo cleaning text files
   $py $sompy/cleanTxt.py $txts
 fi
+for file in $mdjs $svgs $txts; do git add $file; done

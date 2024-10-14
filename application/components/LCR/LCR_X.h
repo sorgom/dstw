@@ -48,8 +48,6 @@ public:
     void fromFld(const ComData& data) override;
     void toGui() const override;
 
-    inline E_Type type() const override { return TYPE_LCR; }
-
     NOCOPY(LCR)
     NODEF(LCR)
 };
@@ -67,8 +65,6 @@ public:
 
     void fromFld(const ComData& data) override;
     void toGui() const override;
-
-    inline E_Type type() const override { return TYPE_LCR_UBK; }
 
     NOCOPY(LCR_UBK)
     NODEF(LCR_UBK)

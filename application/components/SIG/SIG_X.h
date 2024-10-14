@@ -75,8 +75,6 @@ public:
     void fromFld(const ComData& data) override;
     void fromGui(const ComData& data) override;
 
-    inline E_Type type() const override { return TYPE_SIG_H; }
-
     NOCOPY(SIG_H)
     NODEF(SIG_H)
 
@@ -99,8 +97,6 @@ public:
 
     void fromFld(const ComData& data) override;
     void fromGui(const ComData& data) override;
-
-    inline E_Type type() const override { return TYPE_SIG_N; }
 
     NOCOPY(SIG_N)
     NODEF(SIG_N)
@@ -126,8 +122,6 @@ public:
 
     void fromFld(const ComData& data) override;
     void fromGui(const ComData& data) override;
-
-    inline E_Type type() const override { return TYPE_SIG_H_N; }
 
     NOCOPY(SIG_H_N)
     NODEF(SIG_H_N)

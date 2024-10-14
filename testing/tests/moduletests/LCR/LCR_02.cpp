@@ -5,6 +5,7 @@
 
 #include <testlib/TestGroupBase.h>
 #include <LCR/LCR_Provider.h>
+#include <LCR/LCR_X.h>
 
 namespace test
 {
@@ -32,8 +33,8 @@ namespace test
         prv.load(mData.pLCR(), mData.numLCR());
         CHECK_N_CLEAR()
         L_CHECK_EQUAL(2, prv.size())
-        L_CHECK_EQUAL(TYPE_LCR, prv.at(0).type())
-        L_CHECK_EQUAL(TYPE_LCR_UBK, prv.at(1).type())
+        L_CHECK_ELEM_TYPE(LCR,     prv.at(0))
+        L_CHECK_ELEM_TYPE(LCR_UBK, prv.at(1))
     }
 
     //  test type: equivalence class test
