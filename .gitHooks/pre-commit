@@ -18,7 +18,6 @@ do
   if [[ -f $file ]]
   then
     add=1
-    echo checking file: $file 
     if [[ $file == *.mdj ]]; then mdjs="$mdjs $file"
     elif [[ $file == *.svg ]]; then svgs="$svgs $file"
     elif [[ $file == *.py ]] || [[ $file == *.cpp ]] || [[ $file == *.h ]] 
@@ -28,10 +27,7 @@ do
       add=0
     fi
     
-    if [[ $add -eq 1 ]]
-    then 
-      git add $file
-    fi
+    if [[ $add -eq 1 ]]; then git add $file; fi
   fi
 done
 
