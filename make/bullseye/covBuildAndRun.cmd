@@ -28,7 +28,7 @@ set buildLog=%reportsDir%\buildReport.txt
 set covLog=%reportsDir%\coverageReport.txt
 set covHtmlDir=%reportsDir%\html
 
-set covfile=%makeDir%\dstw.cov
+set covfile=%makeDir%\modtest.cov
 set covcopt=--srcdir %dstwDir%
 set excludeFile=%myDir%\_covexclude.txt
 set optsTxt=%myDir%\_covoptions.txt
@@ -87,7 +87,7 @@ if not exist %reportsDir% mkdir %reportsDir%
 call cov01 -q1
 
 echo - build
-call msbuild /t:%vsBuildTarget% %vsSolution% > %buildLog% 2>&1
+call msbuild %vsSolution% > %buildLog% 2>&1
 
 call cov01 -q0
 
