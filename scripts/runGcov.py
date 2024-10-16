@@ -7,7 +7,7 @@ from modGcov import Gcov
 from projectDirs import makDir, tsgDir
 from modUtilz import mdTxt, mdCode, writeFile
 
-ttl = '## sample gcov snapshot'
+ttl = '# current gcov coverage'
 
 def runGcov(conf='ci', verbose=True):
     return Gcov().run(
@@ -19,9 +19,10 @@ def runGcov(conf='ci', verbose=True):
     )
 
 def gcovToMd():
-    cov = runGcov(verbose=False)
+    cov = runGcov(verbose=True)
     if not cov: return
-    mdf = f'{tsgDir}/coverage.md'
+    print(cov)
+    mdf = f'{tsgDir}/coverage_gcov.md'
     txt = mdTxt(mdf, ttl)
     res = [txt] if txt else []
     res.append('\n'.join([ttl, mdCode(cov)]))
