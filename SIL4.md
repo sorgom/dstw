@@ -1,5 +1,5 @@
 # meeting SIL4 (safety integrity level 4)
-EN 50128 / EN 50129 
+EN 50128 / EN 50129
 
 ## gitLab / github process
 ### peer review
@@ -45,4 +45,4 @@ Additional flags see header of [premake5_vs.lua](make/premake5_vs.lua)
 ## code coverage
 Application code coverage by tests must be 100%.
 
-See also [remarks on code coverage](testing/coverage_tools.md)
+See also [code coverage tools](testing/coverage_tools.md)

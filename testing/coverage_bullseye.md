@@ -1,7 +1,7 @@
-# current bullseye coverage 
- 
-### modTests 16.10.2024 18:24:47,67 
-``` 
+# current bullseye coverage
+
+### modTests 16.10.2024 19:38:34,49
+```
 Directory                        Function Coverage      C/D Coverage
 -------------------------------  -----------------  ----------------
 application/components/           128 / 128 = 100%  315 / 316 =  99%
@@ -22,11 +22,11 @@ specification/codebase/             2 /   2 = 100%    0 /   0
 specification/ifs/                  3 /   3 = 100%    0 /   0
 -------------------------------  -----------------  ----------------
 Total                             133 / 133 = 100%  315 / 316 =  99%
-covmin 100,99 passed 
-``` 
- 
-### sysTests 16.10.2024 18:27:29,41 
-``` 
+covmin 100,99 passed
+```
+
+### sysTests 16.10.2024 19:39:10,30
+```
 Directory                        Function Coverage      C/D Coverage
 -------------------------------  -----------------  ----------------
 application/                      100 / 143 =  69%  107 / 322 =  33%
@@ -49,6 +49,5 @@ specification/codebase/             2 /   2 = 100%    0 /   0
 specification/ifs/                  3 /   3 = 100%    0 /   0
 -------------------------------  -----------------  ----------------
 Total                             105 / 148 =  70%  107 / 322 =  33%
-covmin 50,30 passed 
-``` 
- 
+covmin 50,30 passed
+```

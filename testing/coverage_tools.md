@@ -1,4 +1,4 @@
-# code coverage
+# code coverage tools
 ## bullseye
 Bullseye coverage turned out a most excellent tool.
 
@@ -10,9 +10,9 @@ It analyses:
 
 It can generate several outputs from simple text to html documentation.
 
-It's available for Windows and Linux. 
+It's available for Windows and Linux.
 
-Bullseye is not for free - but they provide a free trial period. 
+Bullseye is not for free - but they provide a free trial period.
 
 - [current text report](coverage_bullseye.md)
 - [sample html report](http://dstw.sorgo.de/bullseye/)
@@ -22,7 +22,7 @@ Gcov comes with gnu compiler collection (gcc) and therefore is available
 -   on a standard linux
 -   for the github CI
 
-It 
+It
 -   provides a very limited impression of the source code coverage
 -   is quite useless with headers
 

@@ -21,7 +21,7 @@ do
   then
     if [[ $file == *.mdj ]]; then mdjs="$mdjs $file"
     elif [[ $file == *.svg ]]; then svgs="$svgs $file"
-    elif [[ $file == *.py ]] || [[ $file == *.cpp ]] || [[ $file == *.h ]]  || [[ $file == *.cmd ]] 
+    elif [[ $file == *.py ]] || [[ $file == *.cpp ]] || [[ $file == *.h ]] || [[ $file == *.cmd ]] || [[ $file == *.md ]]
     then
       txts="$txts $file" 
     fi
