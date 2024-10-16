@@ -13,13 +13,6 @@
 class Mem
 {
 public:
-    //  memset a char array
-    template <size_t N>
-    inline static void set(CHAR(& a)[N], CHAR b = 0)
-    {
-        std::memset(a, b, N);
-    }
-
     //  memcpy char array
     template <size_t N>
     inline static void cpy(CHAR(& trg)[N], const CHAR(& src)[N])

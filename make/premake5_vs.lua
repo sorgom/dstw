@@ -102,7 +102,7 @@ workspace 'dstw_system'
 
         project 'systemtests_stop'
             links { 'ws2_32' }
-            files { files_systemtest_stop }    
+            files { files_dstw_stop }    
             includedirs { includedirs_test }
             buildoptions { buildoptions_vs_test }
 

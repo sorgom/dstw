@@ -148,7 +148,7 @@ workspace 'systemtests'
         project 'systemtests_stop'
             kind 'ConsoleApp'
             targetdir 'bin'
-            files { files_systemtest_stop }    
+            files { files_dstw_stop }    
             includedirs { includedirs_test }
 
         project 'systemtests_run'

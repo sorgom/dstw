@@ -15,7 +15,7 @@ namespace test
 
     void genComName(ComName& cName, UINT32 num, CONST_C_STRING name)
     {
-        Mem::set(cName.chars, ' ');
+        std::memset(cName.chars, ' ', ComNameSize);
         static CHAR buf[sizeof(ComName) + 1];
         const int sz = std::snprintf(buf, sizeof(buf), "%s %03u ", name, num);
         if (sz > 0)

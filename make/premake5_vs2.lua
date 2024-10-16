@@ -38,6 +38,7 @@ workspace 'dstw'
         objdir 'obj/%{prj.name}/%{cfg.name}'
         kind 'ConsoleApp'
         targetdir 'exe'
+        libdirs { 'lib' }
         warnings 'high'
  
         filter { 'configurations:ci' }
@@ -51,12 +52,26 @@ workspace 'dstw'
             defines { 'DEBUG' }
             symbols 'On'
 
+        --  ============================================================
+        --  common
+        --  ============================================================
+        project 'testenv'
+            kind 'StaticLib'
+            targetdir 'lib'
+            buildoptions { buildoptions_vs_cpputest }
+            includedirs { includedirs_test }
+            files { files_cpputest_vs, files_testenv }
+
+        --  ============================================================
+        --  module tests
+        --  ============================================================
+        --  must be unstrumented for coverage
         project 'moduletests'
             buildoptions { buildoptions_vs_test }
             includedirs { includedirs_test }
-            links { 'winmm', 'ws2_32' }
+            links { 'winmm', 'ws2_32', 'testenv' }
         
-            files { files_cpputest_vs, files_testenv, files_app }
+            files { files_app }
             
             filter { 'configurations:ci' }
                 files { files_moduletest }
@@ -67,53 +82,34 @@ workspace 'dstw'
             filter { 'configurations:dev' }
                 files { files_devtest }
     
+        --  ============================================================
+        --  system tests
+        --  ============================================================
+        --  run first
         project 'dstw_gen'
             buildoptions { buildoptions_vs_app }
             includedirs { includedirs_test }
             files { files_gendata }
         
-        project 'dstw_run'
+         --  run second in background
+         --  must be unstrumented for coverage
+         project 'dstw_run'
             buildoptions { buildoptions_vs_app }
             includedirs { includedirs_app }
             files { files_app, files_app_main }
             links { 'ws2_32' }
 
-        project 'systemtests_stop'
-            buildoptions { buildoptions_vs_test }
-            includedirs { includedirs_test }
-            files { files_systemtest_stop }    
-            links { 'ws2_32' }
-
+        --  run third
         project 'systemtests_run'
             buildoptions { buildoptions_vs_test }
             includedirs { includedirs_test }
-            files { files_cpputest_vs, files_testenv, files_systemtest }
-            links { 'winmm', 'ws2_32' }
+            files { files_systemtest }
+            links { 'winmm', 'ws2_32', 'testenv' }
 
---  ============================================================
---  > dstw_system.sln
---  build all executables at once:
---  - application runtime
---  - generate proj data for runtime
---  - TCP based system tests
---  - TCP based application stop
---  ============================================================
--- workspace 'dstw_system'
---     filter { 'action:vs*' }
---         configurations { 'ci', 'debug' }
---         language 'C++'
---         objdir 'obj/vs/%{prj.name}'
---         kind 'ConsoleApp'
-
---         targetdir 'exe'
---         warnings 'high'
---         buildoptions { buildoptions_vs_app }
-
---         filter { 'configurations:ci' }
---             defines { 'NDEBUG' }
-
---         filter { 'configurations:debug' }
---             defines { 'DEBUG' }
---             symbols 'On'
-
+        --  run last to stop application in background
+        project 'dstw_stop'
+            buildoptions { buildoptions_vs_test }
+            includedirs { includedirs_test }
+            files { files_dstw_stop }    
+            links { 'ws2_32' }
 

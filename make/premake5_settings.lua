@@ -67,7 +67,7 @@ defines_app = { 'NDEBUG' }
 files_moduletest = { '../testing/tests/moduletests/**.cpp' }
 files_systemtest  = { '../testing/tests/systemtests/SYST_*.cpp' }
 files_devtest  = { '../testing/tests/devtests/*.cpp' }
-files_systemtest_stop  = { 
+files_dstw_stop  = { 
     '../testing/tests/systemtests/stopAppMain.cpp',
     '../testing/testenv/TCP/src/TCP_Client.cpp'
 }
