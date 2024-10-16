@@ -24,14 +24,15 @@ echo - gen data
 call %exeDir%\dstw_gen.exe >NUL
 
 set /a "myID=%random%"
-set tmpFile=%myDir%\run.%myID%.tmp
+set tmpFile=%reportsDir%\run.%myID%.tmp
 
 echo - launch application
 start /B %myDir%\_runapp.cmd
 
 timeout /t 2 /nobreak >NUL 2>&1
 echo - run tests
-call %exeDir%\systemtests_run.exe -b -v
+call %exeDir%\systemtests_run.exe -b -v > %testReport% 2>&1
+if %errorlevel% == 0 rm -f %testReport%
 
 echo - stop application ...
 call %exeDir%\dstw_stop.exe

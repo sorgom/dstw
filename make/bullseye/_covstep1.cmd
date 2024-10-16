@@ -11,30 +11,23 @@ set minFunctionCov=100
 rem - minimal decision coverage %
 set minDecisionCov=99
 
-cd /d %~dp0
-set myDir=%cd%
-cd ..
-set makeDir=%cd%
-cd ..
-set dstwDir=%cd%
+call %~dp0_covdirs.cmd
 
-set premakeFile=%makeDir%\premake5_vs2.lua
+set premakeFile=%makeDir%\premake5_vs.lua
 
 set exeDir=%makeDir%\exe
 set vsSolution=%makeDir%\dstw.sln
 set vsConfig=ci
-set reportsDir=%dstwDir%\reports
 set myReportsDir=%reportsDir%\%_me%
 set buildLog=%myReportsDir%\build_.txt
 set covLog=%myReportsDir%\coverage.txt
 set covHtmlDir=%myReportsDir%\html
-set testReport=%myReportsDir%\test.txt
+set testReport=%myReportsDir%\test_errors.txt
 
 set covfile=%reportsDir%\%_me%.cov
 set covcopt=--srcdir %dstwDir%
 set excludeFile=%myDir%\_covexclude.txt
 set optsTxt=%myDir%\_covoptions.txt
-
 
 set vsCall=msbuild %vsSolution% /p:Configuration=%vsConfig%
 
@@ -97,7 +90,7 @@ echo %DATE% %TIME% > %buildLog%
 
 echo - build
 call cov01 -q --off
-echo -- testenv
-call %vsCall% /t:testenv >> %buildLog% 2>&1
+echo -- cpputest
+call %vsCall% /t:cpputest >> %buildLog% 2>&1
 
 exit /b 0

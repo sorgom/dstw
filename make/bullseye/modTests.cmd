@@ -8,8 +8,6 @@ set _me=%~n0
 call %~dp0_covstep1.cmd %*
 if %errorlevel% neq 0 exit /b 0
 
-echo - %_me%
-
 call %myDir%\_covbuild.cmd --on moduletests
 if %errorlevel% NEQ 0 exit /b 1
 
@@ -24,6 +22,7 @@ rem rewind coverage file if it was not removed before
 call covclear -q
 
 echo - run
-call %exeDir%\moduletests.exe >NUL
+call %exeDir%\moduletests.exe -b -v > %testReport% 2>&1
+if %errorlevel% == 0 rm -f %testReport%
 
 call %myDir%\_covreport.cmd

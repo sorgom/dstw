@@ -45,4 +45,4 @@ Additional flags see header of [premake5_vs.lua](make/premake5_vs.lua)
 ## code coverage
 Application code coverage by tests must be 100%.
 
-See also [remarks on code coverage](testing/coverage.md)
+See also [remarks on code coverage](testing/coverage_tools.md)
