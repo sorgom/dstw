@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 # use: git config core.hooksPath .gitHooks
 
+# availabilty of python
 py=$(which py || which python || which python3)
 if [[ -z $py ]]
 then 
@@ -8,22 +9,28 @@ then
   exit 0
 fi
 
+# go to the root of the git repo
 cd $(git rev-parse --show-toplevel)
+
+# path to sompy python scripts
 sompy=$(pwd)/sompy/somutil
 
 mdjs=
 svgs=
+# files regarded as text files to be cleaned
 txts=
+# extensions of text files sorted by likeliness
+xtxt="h cpp cmd py md"
 
-for file in `git diff-index --cached --name-only HEAD`;
-do
+for file in `git diff-index --cached --name-only HEAD`; do
   if [[ -f $file ]]
   then
     if [[ $file == *.mdj ]]; then mdjs="$mdjs $file"
     elif [[ $file == *.svg ]]; then svgs="$svgs $file"
-    elif [[ $file == *.py ]] || [[ $file == *.cpp ]] || [[ $file == *.h ]]  || [[ $file == *.cmd ]] 
-    then
-      txts="$txts $file" 
+    else
+      for ext in $xtxt; do
+        if [[ $file == *.$ext ]]; then txts="$txts $file"; break; fi
+      done
     fi
   fi
 done

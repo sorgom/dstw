@@ -75,7 +75,6 @@ if %_cleanreports% == 1 (
 if %_premake% == 1 (
     echo - premake for %_vsversion%
     call premake5 --file=%premakeFile% %_vsversion%
-    set _cleanbuild=1
 )
 
 if %_cleanbuild% == 1 (
