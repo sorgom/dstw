@@ -63,6 +63,7 @@ __pycache__
 tmp.*
 tmp_*
 old_*
+tmp
 
 # vscode
 tempCodeRunnerFile.py
