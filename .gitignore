@@ -87,5 +87,5 @@ transitions_*.md
 
 .obsidian
 
-!_cov*.txt
+!*/bullseye/_*.*
 reports

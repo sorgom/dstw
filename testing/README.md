@@ -70,10 +70,11 @@ The system tests take place that way:
 ![system tests](../specification/doc/sys_tests.svg) 
 
 ## code coverage
-for current current code coverage see [coverage.md](coverage.md)
+- [coverage tools](coverage_tools.md)
+- [current bullseye coverage](coverage_bullseye.md)
 
 ## used APIs
--   [CppUTestSteps](https://github.com/sorgom/CppUTestSteps)
+- [CppUTestSteps](https://github.com/sorgom/CppUTestSteps)
 
 ## IL headers
 - [header for production build](../application/components/SYS/IL.h)

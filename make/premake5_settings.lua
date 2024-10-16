@@ -64,18 +64,10 @@ defines_test = {
 
 defines_app = { 'NDEBUG' }
 
-defines_gendata = { 
-    defines_test,
-    -- 'TEST_NUM_TSW=101', 
-    -- 'TEST_NUM_SIG=102', 
-    -- 'TEST_NUM_LCR=103', 
-    -- 'TEST_NUM_SEG=104' 
-}
-
 files_moduletest = { '../testing/tests/moduletests/**.cpp' }
 files_systemtest  = { '../testing/tests/systemtests/SYST_*.cpp' }
 files_devtest  = { '../testing/tests/devtests/*.cpp' }
-files_systemtest_stop  = { 
+files_dstw_stop  = { 
     '../testing/tests/systemtests/stopAppMain.cpp',
     '../testing/testenv/TCP/src/TCP_Client.cpp'
 }

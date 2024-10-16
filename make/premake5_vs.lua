@@ -20,68 +20,24 @@ include 'premake5_settings.lua'
 buildoptions_vs = '/std:c++17 /MP'
 buildoptions_vs_app = buildoptions_vs .. ' /W4 /wd4100 /wd4103'
 buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127 /D_WINSOCK_DEPRECATED_NO_WARNINGS'
-
+buildoptions_vs_cpputest = buildoptions_vs_app .. ' -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED'
 --  ============================================================
---  > tests.sln
---  module tests at once runtime
---  including CppUTest sources
---  ->  exe/tests.exe
+--  > dstw.sln
 --  configurations: 
---  - ci        module tests
---  - debug     module tests debug mode
---  - dev       developer tests debug mode
+--  - ci        no debug
+--  - debug     debug mode
+--  - dev       debug mode
 --  ============================================================
-workspace 'tests'
+workspace 'dstw'
     filter { 'action:vs*' }
         configurations { 'ci', 'debug', 'dev' }
         language 'C++'
-        objdir 'obj/vs/%{prj.name}'
-
-        includedirs { includedirs_test }
-
-        defines { defines_test }
-
-        project 'tests'
-            kind 'ConsoleApp'
-            targetdir 'exe'
-            warnings 'high'
-            links { 'winmm', 'ws2_32' }
-            buildoptions { buildoptions_vs_test }
-            files { files_cpputest_vs, files_testenv, files_app }
-            
-            filter { 'configurations:ci' }
-                defines { 'NDEBUG' }
-                files { files_moduletest }
-
-            filter { 'configurations:debug' }
-                defines { 'DEBUG' }
-                symbols 'On'
-                files { files_moduletest }
-
-            filter { 'configurations:dev' }
-                defines { 'DEBUG', defines_test }
-                symbols 'On'
-                files { files_devtest }
-
---  ============================================================
---  > dstw_system.sln
---  build all executables at once:
---  - application runtime
---  - generate proj data for runtime
---  - TCP based system tests
---  - TCP based application stop
---  ============================================================
-workspace 'dstw_system'
-    filter { 'action:vs*' }
-        configurations { 'ci', 'debug' }
-        language 'C++'
-        objdir 'obj/vs/%{prj.name}'
+        objdir 'obj/%{prj.name}/%{cfg.name}'
         kind 'ConsoleApp'
-
         targetdir 'exe'
+        libdirs { 'lib' }
         warnings 'high'
-        buildoptions { buildoptions_vs_app }
-
+ 
         filter { 'configurations:ci' }
             defines { 'NDEBUG' }
 
@@ -89,28 +45,72 @@ workspace 'dstw_system'
             defines { 'DEBUG' }
             symbols 'On'
 
+        filter { 'configurations:dev' }
+            defines { 'DEBUG' }
+            symbols 'On'
+
+        --  ============================================================
+        --  common
+        --  ============================================================
+        project 'cpputest'
+            kind 'StaticLib'
+            targetdir 'lib'
+            buildoptions { buildoptions_vs_cpputest }
+            includedirs { includedirs_cpputest }
+            files { files_cpputest_vs }
+
+        --  ============================================================
+        --  module tests
+        --  configurations: 
+        --  - ci        module tests
+        --  - debug     module tests debug mode
+        --  - dev       developer tests debug mode
+        --  ============================================================
+        --  must be unstrumented for coverage
+        project 'moduletests'
+            buildoptions { buildoptions_vs_test }
+            includedirs { includedirs_test }
+            links { 'winmm', 'ws2_32', 'cpputest' }
+        
+            files { files_app, files_testenv }
+            
+            filter { 'configurations:ci' }
+                files { files_moduletest }
+
+            filter { 'configurations:debug' }
+                files { files_moduletest }
+
+            filter { 'configurations:dev' }
+                files { files_devtest }
+    
+        --  ============================================================
+        --  system tests
+        --  ============================================================
+        --  run first
         project 'dstw_gen'
-            defines { defines_gendata }
+            buildoptions { buildoptions_vs_app }
             includedirs { includedirs_test }
             files { files_gendata }
-
-        project 'dstw_run'
-            defines { defines_app }
+        
+         --  run second in background
+         --  must be unstrumented for coverage
+         project 'dstw_run'
+            buildoptions { buildoptions_vs_app }
             includedirs { includedirs_app }
             files { files_app, files_app_main }
             links { 'ws2_32' }
 
-        project 'systemtests_stop'
-            links { 'ws2_32' }
-            files { files_systemtest_stop }    
-            includedirs { includedirs_test }
-            buildoptions { buildoptions_vs_test }
-
+        --  run third
         project 'systemtests_run'
-            kind 'ConsoleApp'
-            links { 'winmm', 'ws2_32' }
-            files { files_cpputest_vs, files_testenv, files_systemtest }
-            defines { defines_gendata }
-            includedirs { includedirs_test }
             buildoptions { buildoptions_vs_test }
+            includedirs { includedirs_test }
+            files { files_systemtest, files_testenv }
+            links { 'winmm', 'ws2_32', 'cpputest' }
+
+        --  run last to stop application in background
+        project 'dstw_stop'
+            buildoptions { buildoptions_vs_test }
+            includedirs { includedirs_test }
+            files { files_dstw_stop }    
+            links { 'ws2_32' }
 

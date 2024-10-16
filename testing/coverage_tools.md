@@ -14,30 +14,8 @@ It's available for Windows and Linux.
 
 Bullseye is not for free - but they provide a free trial period. 
 
-Sample text summary output:
-```
-Directory                        Function Coverage      C/D Coverage
--------------------------------  -----------------  ----------------
-application/components/           128 / 128 = 100%  315 / 316 =  99%
-application/components/BAS/        25 /  25 = 100%   39 /  39 = 100%
-application/components/BAS/src/     1 /   1 = 100%   14 /  14 = 100%
-application/components/COM/        32 /  32 = 100%   79 /  80 =  98%
-application/components/COM/src/    31 /  31 = 100%   79 /  80 =  98%
-application/components/LCR/        15 /  15 = 100%   40 /  40 = 100%
-application/components/LCR/src/    11 /  11 = 100%   40 /  40 = 100%
-application/components/SIG/        30 /  30 = 100%   95 /  95 = 100%
-application/components/SIG/src/    24 /  24 = 100%   95 /  95 = 100%
-application/components/SYS/        15 /  15 = 100%   40 /  40 = 100%
-application/components/SYS/src/    13 /  13 = 100%   40 /  40 = 100%
-application/components/TSW/        11 /  11 = 100%   22 /  22 = 100%
-application/components/TSW/src/     8 /   8 = 100%   22 /  22 = 100%
-specification/                      6 /   6 = 100%    0 /   0
-specification/codebase/             3 /   3 = 100%    0 /   0
-specification/ifs/                  3 /   3 = 100%    0 /   0
--------------------------------  -----------------  ----------------
-Total                             134 / 134 = 100%  315 / 316 =  99%
-```
-For details see [bullseye html report](http://dstw.sorgo.de/bullseye/)
+- [current text report](coverage_bullseye.md)
+- [sample html report](http://dstw.sorgo.de/bullseye/)
 
 ## gcov
 Gcov comes with gnu compiler collection (gcc) and therefore is available

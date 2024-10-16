@@ -136,7 +136,7 @@ workspace 'systemtests'
         objdir 'obj/gcc/%{prj.name}'
         buildoptions { buildoptions_gcc }
 
-        defines { defines_gendata }
+        defines { defines_test }
 
         filter { 'configurations:ci' }
             defines { 'NDEBUG' }
@@ -148,7 +148,7 @@ workspace 'systemtests'
         project 'systemtests_stop'
             kind 'ConsoleApp'
             targetdir 'bin'
-            files { files_systemtest_stop }    
+            files { files_dstw_stop }    
             includedirs { includedirs_test }
 
         project 'systemtests_run'
@@ -182,7 +182,7 @@ workspace 'dstw'
         project 'dstw_gen'
             kind 'ConsoleApp'
             includedirs { includedirs_test }
-            defines { 'NDEBUG', defines_gendata }
+            defines { 'NDEBUG', defines_test }
             files { files_gendata }
 
         project 'dstw_run'

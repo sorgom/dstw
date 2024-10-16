@@ -27,6 +27,6 @@ The aim is to
 - [AI usage](AI.md)
 - [testing](testing/README.md)
 - [transition tables](specification/doc/transition_tables.md)
-- [code coverage](testing/coverage.md)
+- [code coverage](testing/coverage_tools.md)
 - [how to build](make/README.md)
 - [current lines of code](CLOC.md)
