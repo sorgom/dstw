@@ -37,13 +37,21 @@ static_assert(ComNameSize == sizeof(ComName));
 //  standard telegram size
 constexpr auto ComTelegramSize = ComNameSize + 8;
 
+constexpr auto ComDataSize = 8;
+
 //  Com telegrams data
 struct ComData
 {
     UINT8 param1 = PARAM_UNDEF;
     UINT8 param2 = PARAM_UNDEF;
-    UINT8 reserve[6];
+    UINT8 param3 = PARAM_UNDEF;
+    UINT8 param4 = PARAM_UNDEF;
+    UINT8 param5 = PARAM_UNDEF;
+    UINT8 param6 = PARAM_UNDEF;
+    UINT8 param7 = PARAM_UNDEF;
+    UINT8 param8 = PARAM_UNDEF;
 };
+static_assert(ComDataSize == sizeof(ComData));
 
 //  Com telegram
 struct ComTele
@@ -52,7 +60,7 @@ struct ComTele
     ComData data;
 };
 
-static_assert(ComTelegramSize == sizeof(ComTele));
+static_assert(ComNameSize + ComDataSize == sizeof(ComTele));
 
 //  project items
 struct ProjItem

@@ -1,5 +1,6 @@
 #include <LCR/LCR_X.h>
 #include <SYS/IL.h>
+#include <BAS/utilz.h>
 
 void LCR_X::open()
 {
@@ -107,8 +108,7 @@ bool LCR_UBK::validUbk(const UINT8 state)
 
 void LCR_UBK::fromFld(const ComData& data)
 {
-    const auto state = data.param1;
-    const auto ubk = data.param2;
+    const auto [state, ubk] = getn<2>(data);
     if (
         (
             (state != mStateToGui) or
