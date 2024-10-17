@@ -35,7 +35,7 @@ workspace 'dstw'
         objdir 'obj/%{prj.name}/%{cfg.name}'
         kind 'ConsoleApp'
         targetdir 'exe'
-        libdirs { 'lib' }
+        libdirs { 'lib/%{cfg.name}' }
         warnings 'high'
  
         filter { 'configurations:ci' }
@@ -54,7 +54,7 @@ workspace 'dstw'
         --  ============================================================
         project 'cpputest'
             kind 'StaticLib'
-            targetdir 'lib'
+            targetdir 'lib/%{cfg.name}'
             buildoptions { buildoptions_vs_cpputest }
             includedirs { includedirs_cpputest }
             files { files_cpputest_vs }
