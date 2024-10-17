@@ -10,7 +10,7 @@ OSTREAM_DEF(ComData)
     ;
 }
 
-OSTREAM_DEF(ComName)
+OSTREAM_DEF(ComAddr)
 {
     return os << fixT(d.chars);
 }
@@ -18,7 +18,7 @@ OSTREAM_DEF(ComName)
 OSTREAM_DEF(ComTele)
 {
     return os
-        << DOUT(name)
+        << DOUT(addr)
         << d.data
     ;
 }
@@ -34,7 +34,7 @@ OSTREAM_DEF(PosRes)
 OSTREAM_DEF(ProjItem)
 {
     return os
-        << DOUT(name)
+        << DOUT(addr)
         << DOUT(type)
     ;
 }

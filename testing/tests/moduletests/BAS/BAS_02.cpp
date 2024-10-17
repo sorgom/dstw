@@ -1,11 +1,11 @@
 //  ============================================================
-//  test of NcpIndex
+//  test of AcpIndex
 //  - should also cover all methods of container class Index
 //  ============================================================
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
-#include <BAS/NcpIndex.h>
+#include <BAS/AcpIndex.h>
 
 namespace test
 {
@@ -16,7 +16,7 @@ namespace test
     //  add and find data
     TEST(BAS_02, T01)
     {
-        NcpIndex indx;
+        AcpIndex indx;
 
         const UINT8 tSize = 10;
         const UINT8 tOffs = tSize - 1;
@@ -24,7 +24,7 @@ namespace test
         STEP(1)
         for (UINT8 n = 0; n < tSize; ++n)
         {
-            indx.add(genComName(tOffs - n), n, n);
+            indx.add(genComAddr(tOffs - n), n, n);
         }
 
         STEP(2)
@@ -38,11 +38,11 @@ namespace test
         for (UINT8 n = 0; n < tSize; ++n)
         {
             LSTEP(n)
-            const auto& cn = genComName(tOffs - n);
+            const auto& cn = genComAddr(tOffs - n);
             const auto fnd = indx.find(cn);
             L_CHECK_TRUE(fnd.valid)
             L_CHECK_EQUAL(static_cast<size_t>(tOffs - n), fnd.pos)
-            const bool eq = (cn == indx.at(fnd).name);
+            const bool eq = (cn == indx.at(fnd).addr);
             L_CHECK_TRUE(eq)
         }
         ENDSTEPS()
@@ -53,14 +53,14 @@ namespace test
     //  after successful index
     TEST(BAS_02, T02)
     {
-        NcpIndex indx;
+        AcpIndex indx;
 
         // no data added
         STEP(1)
         {
             const auto ok = indx.index();
             L_CHECK_TRUE(ok);
-            const auto fnd = indx.find(genComName(1));
+            const auto fnd = indx.find(genComAddr(1));
             L_CHECK_FALSE(fnd.valid)
         }
 
@@ -69,13 +69,13 @@ namespace test
         STEP(2)
         for (UINT8 n = 0; n < 10; ++n)
         {
-            indx.add(genComName(n), n, n);
-            indx.add(genComName(n + 10), n, n);
+            indx.add(genComAddr(n), n, n);
+            indx.add(genComAddr(n + 10), n, n);
         }
         {
             const auto ok = indx.index();
             L_CHECK_TRUE(ok);
-            const auto fnd = indx.find(genComName(20));
+            const auto fnd = indx.find(genComAddr(20));
             L_CHECK_FALSE(fnd.valid)
         }
     }
@@ -83,12 +83,12 @@ namespace test
     //  failure of index due to duplicate data
     TEST(BAS_02, T03)
     {
-        NcpIndex indx;
+        AcpIndex indx;
 
         // no data added
         STEP(1)
-        indx.add(genComName(1), 1, 1);
-        indx.add(genComName(1), 2, 3);
+        indx.add(genComAddr(1), 1, 1);
+        indx.add(genComAddr(1), 2, 3);
         const auto ok = indx.index();
         L_CHECK_FALSE(ok);
     }

@@ -7,7 +7,7 @@
 #define DISPATCHER_H
 
 #include <BAS/coding.h>
-#include <BAS/NcpIndex.h>
+#include <BAS/AcpIndex.h>
 #include <ifs/I_Dispatcher.h>
 #include <ifs/I_Provider.h>
 
@@ -18,7 +18,7 @@ public:
     void clear() override;
     void index() override;
 
-    const PosRes assign(const ComName& name, E_Comp comp, size_t pos) override;
+    const PosRes assign(const ComAddr& addr, E_Comp comp, size_t pos) override;
 
     void fromFld(const ComTele& tele) const override;
     void fromGui(const ComTele& tele) const override;
@@ -33,10 +33,10 @@ public:
     NOCOPY(Dispatcher)
 
 private:
-    NcpIndex mIndx;
+    AcpIndex mIndx;
     inline Dispatcher() = default;
-    static void forwardFld(I_Provider& prov, const Ncp& ncp, const ComTele& tele);
-    static void forwardGui(I_Provider& prov, const Ncp& ncp, const ComTele& tele);
+    static void forwardFld(I_Provider& prov, const Acp& acp, const ComTele& tele);
+    static void forwardGui(I_Provider& prov, const Acp& acp, const ComTele& tele);
     static void reGui(I_Provider& prov);
 };
 #endif // _H

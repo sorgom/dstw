@@ -59,7 +59,7 @@ namespace test
     {
         //  send ping telegram
         STEP(1)
-        const ComTele ts{genComName(22, "PING"), { COM_CTRL_PING, COM_CTRL_PING }};
+        const ComTele ts{genComAddr(22, "PING"), { COM_CTRL_PING, COM_CTRL_PING }};
         clientCtrl.expectRecv(ts);
         clientCtrl.send(ts);
         recvAll();
@@ -86,7 +86,7 @@ namespace test
         for (UINT16 n = 1; n < TEST_NUM_TSW; n += 10)
         {
             STEP(n)
-            const ComName cname {genComName(n, "TSW")};
+            const ComAddr cname {genComAddr(n, "TSW")};
             const ComTele txg{cname, { TSW_CMD_WU, PARAM_UNDEF }};
             clientGui.send(txg);
             recvAll();
@@ -99,7 +99,7 @@ namespace test
         for (UINT16 n = 1; n < TEST_NUM_TSW; n += 10)
         {
             STEP(n)
-            const ComName cname {genComName(n, "TSW")};
+            const ComAddr cname {genComAddr(n, "TSW")};
             const ComTele txf{cname, { TSW_STATE_LEFT, PARAM_UNDEF }};
             clientGui.expectRecv(txf);
             clientFld.send(txf);
@@ -113,7 +113,7 @@ namespace test
         for (UINT16 n = 1; n < TEST_NUM_TSW; n += 10)
         {
             STEP(n)
-            const ComName cname {genComName(n, "TSW")};
+            const ComAddr cname {genComAddr(n, "TSW")};
             const ComTele txgs{cname, { TSW_CMD_WU, PARAM_UNDEF }};
             const ComTele txfr{cname, { TSW_STATE_RIGHT, PARAM_UNDEF }};
             const ComTele txgr{cname, { TSW_STATE_WAIT_RIGHT, PARAM_UNDEF }};

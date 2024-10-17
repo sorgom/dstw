@@ -29,9 +29,9 @@ namespace test
         I_Provider& prv = SIG_Provider::instance();
 
         STEP(1)
-        m_Dispatcher().expectAssign(mData.sigName(0), COMP_SIG, 0, 0);
-        m_Dispatcher().expectAssign(mData.sigName(1), COMP_SIG, 1, 1);
-        m_Dispatcher().expectAssign(mData.sigName(2), COMP_SIG, 2, 2);
+        m_Dispatcher().expectAssign(mData.sigAddr(0), COMP_SIG, 0, 0);
+        m_Dispatcher().expectAssign(mData.sigAddr(1), COMP_SIG, 1, 1);
+        m_Dispatcher().expectAssign(mData.sigAddr(2), COMP_SIG, 2, 2);
         prv.load(mData.pSIG(), mData.numSIG());
         CHECK_N_CLEAR()
         L_CHECK_EQUAL(3, prv.size())
@@ -49,9 +49,9 @@ namespace test
         mData.setSigType(2, TYPE_SIG_H + 100);
 
         STEP(1)
-        m_Dispatcher().expectAssign(mData.sigName(0), COMP_SIG, 0, 0);
-        m_Dispatcher().expectAssign(mData.sigName(1), COMP_SIG, 1, 1);
-        m_Dispatcher().expectAssign(mData.sigName(2), COMP_SIG, 2, 2);
+        m_Dispatcher().expectAssign(mData.sigAddr(0), COMP_SIG, 0, 0);
+        m_Dispatcher().expectAssign(mData.sigAddr(1), COMP_SIG, 1, 1);
+        m_Dispatcher().expectAssign(mData.sigAddr(2), COMP_SIG, 2, 2);
         m_Log().expectLog(COMP_SIG, RET_ERR_STARTUP);
         prv.load(mData.pSIG(), mData.numSIG());
         CHECK_N_CLEAR()
@@ -66,9 +66,9 @@ namespace test
         I_Provider& prv = SIG_Provider::instance();
 
         STEP(1)
-        m_Dispatcher().expectAssign(mData.sigName(0), COMP_SIG, 0, 0);
-        m_Dispatcher().expectAssign(mData.sigName(1), COMP_SIG, 1, 1);
-        m_Dispatcher().expectAssign(mData.sigName(2), COMP_SIG, 2, -1);
+        m_Dispatcher().expectAssign(mData.sigAddr(0), COMP_SIG, 0, 0);
+        m_Dispatcher().expectAssign(mData.sigAddr(1), COMP_SIG, 1, 1);
+        m_Dispatcher().expectAssign(mData.sigAddr(2), COMP_SIG, 2, -1);
         m_Log().expectLog(COMP_SIG, RET_ERR_STARTUP);
         prv.load(mData.pSIG(), mData.numSIG());
         CHECK_N_CLEAR()

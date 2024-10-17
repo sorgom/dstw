@@ -25,7 +25,7 @@ set covHtmlDir=%myReportsDir%\html
 set testReport=%myReportsDir%\test_errors.txt
 
 set covfile=%reportsDir%\%_me%.cov
-set covcopt=--srcdir %dstwDir%
+set covcopt=--srcdir %dstwDir% --macro
 set excludeFile=%myDir%\_covexclude.txt
 set optsTxt=%myDir%\_covoptions.txt
 

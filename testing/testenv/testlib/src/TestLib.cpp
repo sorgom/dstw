@@ -6,23 +6,21 @@
 namespace test
 {
 
-    const ComName& genComName(const UINT32 num, const CONST_C_STRING name)
+    const ComAddr& genComAddr(const UINT32 num, const CONST_C_STRING addr)
     {
-        static ComName cName;
-        genComName(cName, num, name);
-        return cName;
+        static ComAddr cAddr;
+        genComAddr(cAddr, num, addr);
+        return cAddr;
     }
 
-    void genComName(ComName& cName, UINT32 num, CONST_C_STRING name)
+    void genComAddr(ComAddr& cAddr, UINT32 num, CONST_C_STRING addr)
     {
-        std::memset(cName.chars, ' ', ComNameSize);
-        static CHAR buf[sizeof(ComName) + 1];
-        const int sz = std::snprintf(buf, sizeof(buf), "%s %03u ", name, num);
+        std::memset(cAddr.chars, ' ', ComNameSize);
+        static CHAR buf[sizeof(ComAddr) + 1];
+        const int sz = std::snprintf(buf, sizeof(buf), "%s %03u ", addr, num);
         if (sz > 0)
         {
-            std::memcpy(cName.chars, buf, sz - 1);
+            std::memcpy(cAddr.chars, buf, sz - 1);
         }
     }
-
-
 } // namespace

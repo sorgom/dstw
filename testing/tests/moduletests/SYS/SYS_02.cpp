@@ -13,10 +13,10 @@ namespace test
         {
             I_Dispatcher& dsp = Dispatcher::instance();
             dsp.clear();
-            dsp.assign(genComName(1, "TSW"), COMP_TSW, 1);
-            dsp.assign(genComName(2, "SIG"), COMP_SIG, 2);
-            dsp.assign(genComName(3, "LCR"), COMP_LCR, 3);
-            dsp.assign(genComName(4, "SEG"), COMP_SEG, 4);
+            dsp.assign(genComAddr(1, "TSW"), COMP_TSW, 1);
+            dsp.assign(genComAddr(2, "SIG"), COMP_SIG, 2);
+            dsp.assign(genComAddr(3, "LCR"), COMP_LCR, 3);
+            dsp.assign(genComAddr(4, "SEG"), COMP_SEG, 4);
             dsp.index();
         }
     };
@@ -33,21 +33,21 @@ namespace test
         ComTele tele{{}, data};
 
         STEP(1)
-        nameElement(tele, 1, "TSW");
+        adrrElement(tele, 1, "TSW");
         m_TSW_Provider().expectSize(2);
         m_TSW().expectFromFld(data);
         dsp.fromFld(tele);
         CHECK_N_CLEAR()
 
         STEP(2)
-        nameElement(tele, 2, "SIG");
+        adrrElement(tele, 2, "SIG");
         m_SIG_Provider().expectSize(3);
         m_SIG().expectFromFld(data);
         dsp.fromFld(tele);
         CHECK_N_CLEAR()
 
         STEP(3)
-        nameElement(tele, 3, "LCR");
+        adrrElement(tele, 3, "LCR");
         m_LCR_Provider().expectSize(4);
         m_LCR().expectFromFld(data);
         dsp.fromFld(tele);
@@ -55,14 +55,14 @@ namespace test
 
         STEP(4)
         //  SEG not part of current implementation
-        nameElement(tele, 4, "SEG");
+        adrrElement(tele, 4, "SEG");
         dsp.fromFld(tele);
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
         m_Log().expectLog(COMP_SYS, RET_ERR_MATCH);
-        nameElement(tele, 2, "TSW");
+        adrrElement(tele, 2, "TSW");
         dsp.fromFld(tele);
         CHECK_N_CLEAR()
     }
@@ -78,21 +78,21 @@ namespace test
         ComTele tele{{}, data};
 
         STEP(1)
-        nameElement(tele, 1, "TSW");
+        adrrElement(tele, 1, "TSW");
         m_TSW_Provider().expectSize(2);
         m_TSW().expectFromGui(data);
         dsp.fromGui(tele);
         CHECK_N_CLEAR()
 
         STEP(2)
-        nameElement(tele, 2, "SIG");
+        adrrElement(tele, 2, "SIG");
         m_SIG_Provider().expectSize(3);
         m_SIG().expectFromGui(data);
         dsp.fromGui(tele);
         CHECK_N_CLEAR()
 
         STEP(3)
-        nameElement(tele, 3, "LCR");
+        adrrElement(tele, 3, "LCR");
         m_LCR_Provider().expectSize(4);
         m_LCR().expectFromGui(data);
         dsp.fromGui(tele);
@@ -100,14 +100,14 @@ namespace test
 
         STEP(4)
         //  SEG not part of current implementation
-        nameElement(tele, 4, "SEG");
+        adrrElement(tele, 4, "SEG");
         dsp.fromGui(tele);
         CHECK_N_CLEAR()
 
         STEP(5)
         //  not assigned
         m_Log().expectLog(COMP_SYS, RET_ERR_MATCH);
-        nameElement(tele, 2, "TSW");
+        adrrElement(tele, 2, "TSW");
         dsp.fromGui(tele);
         CHECK_N_CLEAR()
     }
@@ -124,25 +124,25 @@ namespace test
         ComTele teleExp{{}, data};
 
         STEP(1)
-        nameElement(teleExp, 1, "TSW");
+        adrrElement(teleExp, 1, "TSW");
         m_Com().expectToFld(teleExp);
         dsp.toFld(0, data);
         CHECK_N_CLEAR()
 
         STEP(2)
-        nameElement(teleExp, 2, "SIG");
+        adrrElement(teleExp, 2, "SIG");
         m_Com().expectToFld(teleExp);
         dsp.toFld(1, data);
         CHECK_N_CLEAR()
 
         STEP(3)
-        nameElement(teleExp, 3, "LCR");
+        adrrElement(teleExp, 3, "LCR");
         m_Com().expectToFld(teleExp);
         dsp.toFld(2, data);
         CHECK_N_CLEAR()
 
         STEP(4)
-        nameElement(teleExp, 4, "SEG");
+        adrrElement(teleExp, 4, "SEG");
         m_Com().expectToFld(teleExp);
         dsp.toFld(3, data);
         CHECK_N_CLEAR()
@@ -165,25 +165,25 @@ namespace test
         ComTele teleExp{{}, data};
 
         STEP(1)
-        nameElement(teleExp, 1, "TSW");
+        adrrElement(teleExp, 1, "TSW");
         m_Com().expectToGui(teleExp);
         dsp.toGui(0, data);
         CHECK_N_CLEAR()
 
         STEP(2)
-        nameElement(teleExp, 2, "SIG");
+        adrrElement(teleExp, 2, "SIG");
         m_Com().expectToGui(teleExp);
         dsp.toGui(1, data);
         CHECK_N_CLEAR()
 
         STEP(3)
-        nameElement(teleExp, 3, "LCR");
+        adrrElement(teleExp, 3, "LCR");
         m_Com().expectToGui(teleExp);
         dsp.toGui(2, data);
         CHECK_N_CLEAR()
 
         STEP(4)
-        nameElement(teleExp, 4, "SEG");
+        adrrElement(teleExp, 4, "SEG");
         m_Com().expectToGui(teleExp);
         dsp.toGui(3, data);
         CHECK_N_CLEAR()
@@ -203,11 +203,11 @@ namespace test
         dsp.clear();
 
         E_Comp comp = (E_Comp) 255;
-        dsp.assign(genComName(1, "TSW"), comp, 1);
+        dsp.assign(genComAddr(1, "TSW"), comp, 1);
         dsp.index();
 
         STEP(1)
-        const ComTele tele{genComName(1, "TSW"), {99, 111}};
+        const ComTele tele{genComAddr(1, "TSW"), {99, 111}};
         dsp.fromFld(tele);
         CHECK_N_CLEAR()
 
@@ -222,10 +222,10 @@ namespace test
     {
         I_Dispatcher& dsp = Dispatcher::instance();
         dsp.clear();
-        dsp.assign(genComName(1, "TSW"), COMP_TSW, 1);
-        dsp.assign(genComName(1, "TSW"), COMP_TSW, 2);
-        dsp.assign(genComName(3, "LCR"), COMP_LCR, 3);
-        dsp.assign(genComName(4, "SEG"), COMP_SEG, 4);
+        dsp.assign(genComAddr(1, "TSW"), COMP_TSW, 1);
+        dsp.assign(genComAddr(1, "TSW"), COMP_TSW, 2);
+        dsp.assign(genComAddr(3, "LCR"), COMP_LCR, 3);
+        dsp.assign(genComAddr(4, "SEG"), COMP_SEG, 4);
         CHECK_N_CLEAR()
 
         m_Log().expectLog(COMP_SYS, RET_ERR_STARTUP);
@@ -244,7 +244,7 @@ namespace test
 
         const ComData data{33, 44};
         ComTele tele{{}, data};
-        nameElement(tele, 1, "TSW");
+        adrrElement(tele, 1, "TSW");
 
         STEP(1)
         m_TSW_Provider().expectSize(1);
