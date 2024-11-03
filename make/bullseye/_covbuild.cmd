@@ -20,5 +20,4 @@ if not exist %exeDir%\%1.exe (
     echo - exe not found
     exit /b 1
 )
-goto next
 :end
