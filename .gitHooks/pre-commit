@@ -45,6 +45,6 @@ if [[ -n $svgs ]]; then
 fi
 if [[ -n $txts ]]; then
   echo cleaning text files
-  $py $sompy/cleanTxt.py $txts
+  $py $sompy/cleanTxt.py -l $txts
 fi
 for file in $mdjs $svgs $txts; do git add $file; done
