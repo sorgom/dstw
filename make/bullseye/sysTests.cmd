@@ -8,9 +8,10 @@ set _me=%~n0
 call %~dp0_covstep1.cmd %*
 if %errorlevel% neq 0 exit /b 0
 
-call %myDir%\_covbuild.cmd --off dstw_gen dstw_stop systemtests_run
-if %errorlevel% NEQ 0 exit /b 1
-
+for %%t in (dstw_gen dstw_stop systemtests_run) do (
+    call %myDir%\_covbuild.cmd --off %%t
+    if %errorlevel% NEQ 0 exit /b 1
+)
 call %myDir%\_covbuild.cmd --on dstw_run
 if %errorlevel% NEQ 0 exit /b 1
 
