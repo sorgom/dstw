@@ -2,13 +2,13 @@
 --  common premake5 build settings gcc & VS
 --  ============================================================
 
-base_cpputest = '../cpputest'
+base_cpputest = '../submodules/cpputest'
 
 includedirs_cpputest = {
     base_cpputest .. '/include'
 }
 
-base_teststeps = '../CppUTestSteps/TestSteps'
+base_teststeps = '../submodules/CppUTestSteps/TestSteps'
 
 includedirs_teststeps = {
     base_teststeps .. '/include'

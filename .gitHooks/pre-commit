@@ -13,7 +13,7 @@ fi
 cd $(git rev-parse --show-toplevel)
 
 # path to sompy python scripts
-sompy=$(pwd)/sompy/somutil
+sompy=$(pwd)/submodules/sompy/somutil
 
 mdjs=
 svgs=

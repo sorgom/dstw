@@ -3,10 +3,10 @@ rem ====================================
 rem run system tests in windows
 rem ====================================
 rem created by ChatGPT
-
+SETLOCAL
 cd /d "%~dp0"
 set ret=0
-set bins=dstw_gen.exe dstw_run.exe systemtests_run.exe systemtests_stop.exe
+set bins=dstw_gen.exe dstw_run.exe systemtests_run.exe dstw_stop.exe
 for %%I in (%bins%) do (
     if not exist exe\%%I (
         echo not found: exe\%%I
@@ -16,21 +16,24 @@ for %%I in (%bins%) do (
 
 if %ret% neq 0 exit /b %ret%
 
-exe\systemtests_stop.exe
+set tmpfile=tmp_%random%.txt
+
+exe\dstw_stop.exe
 timeout /t 1 /nobreak >nul
 
 rem gen required proj data file
 exe\dstw_gen.exe
 rem start app in background
-start /B exe\dstw_run.exe 1
+echo run > %tmpfile%
+start /B runSub.cmd %tmpfile% exe\dstw_run.exe 1
 rem run tests after a second
 timeout /t 1 /nobreak >nul
 exe\systemtests_run.exe -b -v
 set ret=%errorlevel%
 rem stop app anyway
-exe\systemtests_stop.exe
+exe\dstw_stop.exe
+:wait
 timeout /t 1 /nobreak >nul
+if exist %tmpfile% goto wait
 
-pause
 exit /b %ret%
-

@@ -1,7 +1,5 @@
 #   all text files unix line endings
 * text=auto eol=lf
 
-*.cmd eol=crlf
-*.bat eol=crlf
 *.svg   text eol=lf
 *.mdj   text eol=lf

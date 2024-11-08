@@ -1,11 +1,11 @@
 [submodule "cpputest"]
-	path = cpputest
+	path = submodules/cpputest
 	url = git@github.com:cpputest/cpputest.git
 [submodule "CppUTestSteps"]
-	path = CppUTestSteps
+	path = submodules/CppUTestSteps
 	url = git@github.com:sorgom/CppUTestSteps.git
 	branch = dev
 [submodule "sompy"]
-	path = sompy
+	path = submodules/sompy
 	url = git@github.com:sorgom/sompy.git
 	branch = dev

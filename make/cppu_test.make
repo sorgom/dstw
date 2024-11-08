@@ -21,7 +21,7 @@ endif
 RESCOMP = windres
 TARGETDIR = lib
 TARGET = $(TARGETDIR)/libcppu_test.a
-INCLUDES += -I../cpputest/include
+INCLUDES += -I../submodules/cpputest/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
@@ -194,109 +194,109 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/CommandLineArguments.o: ../cpputest/src/CppUTest/CommandLineArguments.cpp
+$(OBJDIR)/CommandLineArguments.o: ../submodules/cpputest/src/CppUTest/CommandLineArguments.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/CommandLineTestRunner.o: ../cpputest/src/CppUTest/CommandLineTestRunner.cpp
+$(OBJDIR)/CommandLineTestRunner.o: ../submodules/cpputest/src/CppUTest/CommandLineTestRunner.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/JUnitTestOutput.o: ../cpputest/src/CppUTest/JUnitTestOutput.cpp
+$(OBJDIR)/JUnitTestOutput.o: ../submodules/cpputest/src/CppUTest/JUnitTestOutput.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MemoryLeakDetector.o: ../cpputest/src/CppUTest/MemoryLeakDetector.cpp
+$(OBJDIR)/MemoryLeakDetector.o: ../submodules/cpputest/src/CppUTest/MemoryLeakDetector.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MemoryLeakWarningPlugin.o: ../cpputest/src/CppUTest/MemoryLeakWarningPlugin.cpp
+$(OBJDIR)/MemoryLeakWarningPlugin.o: ../submodules/cpputest/src/CppUTest/MemoryLeakWarningPlugin.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SimpleMutex.o: ../cpputest/src/CppUTest/SimpleMutex.cpp
+$(OBJDIR)/SimpleMutex.o: ../submodules/cpputest/src/CppUTest/SimpleMutex.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SimpleString.o: ../cpputest/src/CppUTest/SimpleString.cpp
+$(OBJDIR)/SimpleString.o: ../submodules/cpputest/src/CppUTest/SimpleString.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/SimpleStringInternalCache.o: ../cpputest/src/CppUTest/SimpleStringInternalCache.cpp
+$(OBJDIR)/SimpleStringInternalCache.o: ../submodules/cpputest/src/CppUTest/SimpleStringInternalCache.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TeamCityTestOutput.o: ../cpputest/src/CppUTest/TeamCityTestOutput.cpp
+$(OBJDIR)/TeamCityTestOutput.o: ../submodules/cpputest/src/CppUTest/TeamCityTestOutput.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestFailure.o: ../cpputest/src/CppUTest/TestFailure.cpp
+$(OBJDIR)/TestFailure.o: ../submodules/cpputest/src/CppUTest/TestFailure.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestFilter.o: ../cpputest/src/CppUTest/TestFilter.cpp
+$(OBJDIR)/TestFilter.o: ../submodules/cpputest/src/CppUTest/TestFilter.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestHarness_c.o: ../cpputest/src/CppUTest/TestHarness_c.cpp
+$(OBJDIR)/TestHarness_c.o: ../submodules/cpputest/src/CppUTest/TestHarness_c.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestMemoryAllocator.o: ../cpputest/src/CppUTest/TestMemoryAllocator.cpp
+$(OBJDIR)/TestMemoryAllocator.o: ../submodules/cpputest/src/CppUTest/TestMemoryAllocator.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestOutput.o: ../cpputest/src/CppUTest/TestOutput.cpp
+$(OBJDIR)/TestOutput.o: ../submodules/cpputest/src/CppUTest/TestOutput.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestPlugin.o: ../cpputest/src/CppUTest/TestPlugin.cpp
+$(OBJDIR)/TestPlugin.o: ../submodules/cpputest/src/CppUTest/TestPlugin.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestRegistry.o: ../cpputest/src/CppUTest/TestRegistry.cpp
+$(OBJDIR)/TestRegistry.o: ../submodules/cpputest/src/CppUTest/TestRegistry.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestResult.o: ../cpputest/src/CppUTest/TestResult.cpp
+$(OBJDIR)/TestResult.o: ../submodules/cpputest/src/CppUTest/TestResult.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestTestingFixture.o: ../cpputest/src/CppUTest/TestTestingFixture.cpp
+$(OBJDIR)/TestTestingFixture.o: ../submodules/cpputest/src/CppUTest/TestTestingFixture.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Utest.o: ../cpputest/src/CppUTest/Utest.cpp
+$(OBJDIR)/Utest.o: ../submodules/cpputest/src/CppUTest/Utest.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/CodeMemoryReportFormatter.o: ../cpputest/src/CppUTestExt/CodeMemoryReportFormatter.cpp
+$(OBJDIR)/CodeMemoryReportFormatter.o: ../submodules/cpputest/src/CppUTestExt/CodeMemoryReportFormatter.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/GTest.o: ../cpputest/src/CppUTestExt/GTest.cpp
+$(OBJDIR)/GTest.o: ../submodules/cpputest/src/CppUTestExt/GTest.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/IEEE754ExceptionsPlugin.o: ../cpputest/src/CppUTestExt/IEEE754ExceptionsPlugin.cpp
+$(OBJDIR)/IEEE754ExceptionsPlugin.o: ../submodules/cpputest/src/CppUTestExt/IEEE754ExceptionsPlugin.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MemoryReportAllocator.o: ../cpputest/src/CppUTestExt/MemoryReportAllocator.cpp
+$(OBJDIR)/MemoryReportAllocator.o: ../submodules/cpputest/src/CppUTestExt/MemoryReportAllocator.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MemoryReportFormatter.o: ../cpputest/src/CppUTestExt/MemoryReportFormatter.cpp
+$(OBJDIR)/MemoryReportFormatter.o: ../submodules/cpputest/src/CppUTestExt/MemoryReportFormatter.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MemoryReporterPlugin.o: ../cpputest/src/CppUTestExt/MemoryReporterPlugin.cpp
+$(OBJDIR)/MemoryReporterPlugin.o: ../submodules/cpputest/src/CppUTestExt/MemoryReporterPlugin.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MockActualCall.o: ../cpputest/src/CppUTestExt/MockActualCall.cpp
+$(OBJDIR)/MockActualCall.o: ../submodules/cpputest/src/CppUTestExt/MockActualCall.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MockExpectedCall.o: ../cpputest/src/CppUTestExt/MockExpectedCall.cpp
+$(OBJDIR)/MockExpectedCall.o: ../submodules/cpputest/src/CppUTestExt/MockExpectedCall.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MockExpectedCallsList.o: ../cpputest/src/CppUTestExt/MockExpectedCallsList.cpp
+$(OBJDIR)/MockExpectedCallsList.o: ../submodules/cpputest/src/CppUTestExt/MockExpectedCallsList.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MockFailure.o: ../cpputest/src/CppUTestExt/MockFailure.cpp
+$(OBJDIR)/MockFailure.o: ../submodules/cpputest/src/CppUTestExt/MockFailure.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MockNamedValue.o: ../cpputest/src/CppUTestExt/MockNamedValue.cpp
+$(OBJDIR)/MockNamedValue.o: ../submodules/cpputest/src/CppUTestExt/MockNamedValue.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MockSupport.o: ../cpputest/src/CppUTestExt/MockSupport.cpp
+$(OBJDIR)/MockSupport.o: ../submodules/cpputest/src/CppUTestExt/MockSupport.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MockSupportPlugin.o: ../cpputest/src/CppUTestExt/MockSupportPlugin.cpp
+$(OBJDIR)/MockSupportPlugin.o: ../submodules/cpputest/src/CppUTestExt/MockSupportPlugin.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/MockSupport_c.o: ../cpputest/src/CppUTestExt/MockSupport_c.cpp
+$(OBJDIR)/MockSupport_c.o: ../submodules/cpputest/src/CppUTestExt/MockSupport_c.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/OrderedTest.o: ../cpputest/src/CppUTestExt/OrderedTest.cpp
+$(OBJDIR)/OrderedTest.o: ../submodules/cpputest/src/CppUTestExt/OrderedTest.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/UtestPlatform.o: ../cpputest/src/Platforms/Gcc/UtestPlatform.cpp
+$(OBJDIR)/UtestPlatform.o: ../submodules/cpputest/src/Platforms/Gcc/UtestPlatform.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
