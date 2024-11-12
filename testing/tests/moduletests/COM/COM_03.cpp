@@ -62,7 +62,7 @@ namespace test
 
         //  select returns 0 no activity
         STEP(5)
-        m_TCP().expectSelect(validSocket, 0);
+        m_TCP().expectSelect(validSocket, SELECT_NONE);
         ok = client.select();
         CHECK_N_CLEAR()
         L_CHECK_TRUE(ok)
@@ -73,7 +73,7 @@ namespace test
         STEP(6)
         {
             const ComTele tele{{}, {101, 202}};
-            m_TCP().expectSelect(validSocket, 1);
+            m_TCP().expectSelect(validSocket, SELECT_READY);
             m_TCP().expectRecv(validSocket, tele);
             m_Dispatcher().expectFromFld(tele);
             ok = client.select();
@@ -84,7 +84,7 @@ namespace test
         //  select returns -1 error
         STEP(7)
         expectComerr();
-        m_TCP().expectSelect(validSocket, -1);
+        m_TCP().expectSelect(validSocket, SELECT_ERR);
         m_TCP().expectClose();
         ok = client.select();
         CHECK_N_CLEAR()
@@ -112,7 +112,7 @@ namespace test
         STEP(2)
         {
             const ComTele tele{{}, {111, 212}};
-            m_TCP().expectSelect(validSocket, 1);
+            m_TCP().expectSelect(validSocket, SELECT_READY);
             m_TCP().expectRecv(validSocket, tele);
             m_Dispatcher().expectFromGui(tele);
             ok = client.select();
@@ -132,7 +132,7 @@ namespace test
         //  select returns 1 activity
         //  recv returns close event
         STEP(4)
-        m_TCP().expectSelect(validSocket, 1);
+        m_TCP().expectSelect(validSocket, SELECT_READY);
         m_TCP().expectRecv(validSocket, sizeof(ComTele), 0);
         m_TCP().expectClose();
         ok = client.select();
@@ -160,7 +160,7 @@ namespace test
         STEP(2)
         {
             const ComTele tele{{}, {COM_CTRL_STOP - 1, COM_CTRL_STOP}};
-            m_TCP().expectSelect(validSocket, 1);
+            m_TCP().expectSelect(validSocket, SELECT_READY);
             m_TCP().expectRecv(validSocket, tele);
             ok = client.select();
             CHECK_N_CLEAR()
@@ -172,7 +172,7 @@ namespace test
         STEP(3)
         {
             const ComTele tele1{{}, {COM_CTRL_STOP, COM_CTRL_STOP}};
-            m_TCP().expectSelect(validSocket, 1);
+            m_TCP().expectSelect(validSocket, SELECT_READY);
             m_TCP().expectRecv(validSocket, tele1);
             m_Com().expectStop();
             ok = client.select();
@@ -185,7 +185,7 @@ namespace test
         STEP(4)
         {
             const ComTele tele1{{}, {COM_CTRL_PING, COM_CTRL_PING}};
-            m_TCP().expectSelect(validSocket, 1);
+            m_TCP().expectSelect(validSocket, SELECT_READY);
             m_TCP().expectRecv(validSocket, tele1);
             m_TCP().expectSend(validSocket, sizeof(ComTele));
             ok = client.select();
@@ -198,7 +198,7 @@ namespace test
         STEP(5)
         {
             const ComTele tele1{{}, {COM_CTRL_RE_GUI, COM_CTRL_RE_GUI}};
-            m_TCP().expectSelect(validSocket, 1);
+            m_TCP().expectSelect(validSocket, SELECT_READY);
             m_TCP().expectRecv(validSocket, tele1);
             m_Dispatcher().expectReGui();
             ok = client.select();
@@ -211,7 +211,7 @@ namespace test
         STEP(5)
         {
             const ComTele tele1{{}, {PARAM_UNKNOWN, PARAM_UNKNOWN}};
-            m_TCP().expectSelect(validSocket, 1);
+            m_TCP().expectSelect(validSocket, SELECT_READY);
             m_TCP().expectRecv(validSocket, tele1);
             ok = client.select();
             CHECK_N_CLEAR()
@@ -221,7 +221,7 @@ namespace test
         //  recv returns invalid size
         STEP(7)
         expectComerr();
-        m_TCP().expectSelect(validSocket, 1);
+        m_TCP().expectSelect(validSocket, SELECT_READY);
         m_TCP().expectRecv(validSocket, sizeof(ComTele), sizeof(ComTele) - 1);
         m_TCP().expectClose();
         ok = client.select();
