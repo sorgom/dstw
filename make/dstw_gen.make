@@ -19,14 +19,19 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = bin
+TARGETDIR = ../build
 TARGET = $(TARGETDIR)/dstw_gen
+OBJDIR = ../build/linux/ci/dstw_gen
+DEFINES += -DNDEBUG
 INCLUDES += -I../testing/testenv -I../submodules/cpputest/include -I../submodules/CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
+ALL_LDFLAGS += $(LDFLAGS) -L../build -s -pthread
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -34,22 +39,6 @@ define PRELINKCMDS
 endef
 define POSTBUILDCMDS
 endef
-
-ifeq ($(config),ci)
-OBJDIR = obj/gcc/dstw_gen/ci
-DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-ALL_LDFLAGS += $(LDFLAGS) -s
-
-else ifeq ($(config),debug)
-OBJDIR = obj/gcc/dstw_gen/debug
-DEFINES += -DDEBUG -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
-ALL_LDFLAGS += $(LDFLAGS)
-
-endif
 
 # Per File Configurations
 # #############################################

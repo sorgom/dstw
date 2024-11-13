@@ -19,14 +19,19 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = bin
+TARGETDIR = ../build
 TARGET = $(TARGETDIR)/dstw_run
+OBJDIR = ../build/linux/ci/dstw_run
+DEFINES += -DNDEBUG
 INCLUDES += -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
+ALL_LDFLAGS += $(LDFLAGS) -L../build -s -pthread
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -34,22 +39,6 @@ define PRELINKCMDS
 endef
 define POSTBUILDCMDS
 endef
-
-ifeq ($(config),ci)
-OBJDIR = obj/gcc/dstw_run/ci
-DEFINES += -DNDEBUG
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-ALL_LDFLAGS += $(LDFLAGS) -s
-
-else ifeq ($(config),debug)
-OBJDIR = obj/gcc/dstw_run/debug
-DEFINES += -DDEBUG -DNDEBUG
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
-ALL_LDFLAGS += $(LDFLAGS)
-
-endif
 
 # Per File Configurations
 # #############################################

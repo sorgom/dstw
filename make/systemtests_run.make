@@ -19,14 +19,19 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = bin
+TARGETDIR = ../build
 TARGET = $(TARGETDIR)/systemtests_run
+OBJDIR = ../build/linux/ci/systemtests_run
+DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
 INCLUDES += -I../testing/testenv -I../submodules/cpputest/include -I../submodules/CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-LIBS += -lcppu_test
-LDDEPS +=
+LIBS += ../build/libcpputest.a
+LDDEPS += ../build/libcpputest.a
+ALL_LDFLAGS += $(LDFLAGS) -L../build -s -pthread
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -34,22 +39,6 @@ define PRELINKCMDS
 endef
 define POSTBUILDCMDS
 endef
-
-ifeq ($(config),ci)
-OBJDIR = obj/gcc/systemtests_run/ci
-DEFINES += -DCPPUTEST_USE_LONG_LONG=0 -DNDEBUG
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-ALL_LDFLAGS += $(LDFLAGS) -Llib -s -pthread
-
-else ifeq ($(config),debug)
-OBJDIR = obj/gcc/systemtests_run/debug
-DEFINES += -DCPPUTEST_USE_LONG_LONG=0 -DDEBUG
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
-ALL_LDFLAGS += $(LDFLAGS) -Llib -pthread
-
-endif
 
 # Per File Configurations
 # #############################################

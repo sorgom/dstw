@@ -19,14 +19,19 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = lib
-TARGET = $(TARGETDIR)/libcppu_test.a
+TARGETDIR = ../build
+TARGET = $(TARGETDIR)/libcpputest.a
+OBJDIR = ../build/linux/ci/cpputest
+DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
 INCLUDES += -I../submodules/cpputest/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Werror -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
+ALL_LDFLAGS += $(LDFLAGS) -L../build -s -pthread
 LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
 define PREBUILDCMDS
 endef
@@ -34,22 +39,6 @@ define PRELINKCMDS
 endef
 define POSTBUILDCMDS
 endef
-
-ifeq ($(config),ci)
-OBJDIR = obj/gcc/cppu_test/ci
-DEFINES += -DCPPUTEST_USE_LONG_LONG=0 -DNDEBUG
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
-ALL_LDFLAGS += $(LDFLAGS) -s
-
-else ifeq ($(config),debug)
-OBJDIR = obj/gcc/cppu_test/debug
-DEFINES += -DCPPUTEST_USE_LONG_LONG=0 -DDEBUG
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
-ALL_LDFLAGS += $(LDFLAGS)
-
-endif
 
 # Per File Configurations
 # #############################################
@@ -140,7 +129,7 @@ all: $(TARGET)
 
 $(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking cppu_test
+	@echo Linking cpputest
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -161,7 +150,7 @@ else
 endif
 
 clean:
-	@echo Cleaning cppu_test
+	@echo Cleaning cpputest
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(GENERATED)
