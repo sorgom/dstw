@@ -11,8 +11,8 @@ int main(const INT32 argc, const CONST_C_STRING* const argv)
 
     TestStepsPlugin::setup();
     test::installComparators(TestStepsPlugin::instance());
-#ifdef RUN_ON_DEMAND
-    return argc > 1 ? CommandLineTestRunner::RunAllTests(argc - 1, &argv[1]) : 0;
+#ifdef REQUIRE_PARAM
+    return argc > 1 ? CommandLineTestRunner::RunAllTests(argc, argv) : 0;
 #else
     return CommandLineTestRunner::RunAllTests(argc, argv);
 #endif

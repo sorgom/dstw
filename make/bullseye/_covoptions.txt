@@ -3,4 +3,6 @@ options:
 -r  remove reports
 -H  generate HTML
 -u  just update coverage file (no report, no HTML)
+-t  write todo files
+-m  write coverage md file (after module and system tests)
 -h  this help

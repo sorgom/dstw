@@ -128,7 +128,7 @@ workspace 'DSTW'
     project 'systemtests'
         files { files_testenv, '../testing/tests/systemtests/SYST_*.cpp' }
         includedirs { includedirs_test }
-        defines { defines_test, 'RUN_ON_DEMAND' }
+        defines { defines_test, 'REQUIRE_PARAM' }
         links { 'cpputest' }
 
         filter { 'action:vs*' }

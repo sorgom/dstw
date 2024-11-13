@@ -35,7 +35,7 @@ ifeq ($(config),ci)
 TARGETDIR = ../build/linux/ci/bin
 TARGET = $(TARGETDIR)/systemtests
 OBJDIR = ../build/linux/ci/obj/ci/systemtests
-DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DRUN_ON_DEMAND
+DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DREQUIRE_PARAM
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
 LIBS += ../build/linux/ci/lib/libcpputest.a
@@ -46,7 +46,7 @@ else ifeq ($(config),debug)
 TARGETDIR = ../build/linux/debug/bin
 TARGET = $(TARGETDIR)/systemtests
 OBJDIR = ../build/linux/debug/obj/debug/systemtests
-DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DRUN_ON_DEMAND
+DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DREQUIRE_PARAM
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 LIBS += ../build/linux/debug/lib/libcpputest.a
