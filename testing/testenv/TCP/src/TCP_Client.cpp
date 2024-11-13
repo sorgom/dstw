@@ -60,8 +60,14 @@ namespace test
     bool TCP_Client::recv(PTR data, INT32 size) const
     {
         fd_set readfds;
+#ifdef _WIN32
+#pragma warning(disable:4389)
+#endif
         FD_ZERO(&readfds);
         FD_SET(mSocket, &readfds);
+#ifdef _WIN32
+#pragma warning(default:4389)
+#endif
         timeval timeout{0, 50000};
         bool ok = false;
         if (

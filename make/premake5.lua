@@ -7,7 +7,7 @@ buildoptions_gcc = '-std=c++17 -pedantic-errors -Werror -Wall'
 buildoptions_vs = '/std:c++17 /MP'
 buildoptions_vs_app = buildoptions_vs .. ' /W4 /wd4100 /wd4103'
 buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127 /D_WINSOCK_DEPRECATED_NO_WARNINGS'
-buildoptions_vs_cpputest = buildoptions_vs_app .. ' /DCPPUTEST_MEM_LEAK_DETECTION_DISABLED'
+buildoptions_vs_cpputest = buildoptions_vs_app .. ' /DCPPUTEST_MEM_LEAK_DETECTION_DISABLED /wd4611 /wd4996'
 
 base_cpputest = '../submodules/cpputest'
 includedirs_cpputest = { base_cpputest .. '/include' }
@@ -34,17 +34,17 @@ includedirs_test = {
 }
 defines_test = { 'CPPUTEST_USE_LONG_LONG=0' }
 
+files_moduletest = { '../testing/tests/moduletests/**.cpp' }
+
 --  ============================================================
 --  premake5 build rules
 --  ============================================================
 
 workspace 'DSTW'
-    configurations { 'ci' }
+    configurations { 'ci', 'debug' }
     language 'C++'
     targetdir '../build/%{_TARGET_OS}/bin'
     objdir  '../build/%{_TARGET_OS}/obj'
-    defines { 'NDEBUG' }
-    optimize 'Speed'
     kind 'ConsoleApp'
     libdirs { '../build/%{_TARGET_OS}/lib' }
 
@@ -57,12 +57,20 @@ workspace 'DSTW'
         buildoptions { buildoptions_gcc }
         linkoptions { '-pthread' }
 
+    filter { 'configurations:ci' }
+        defines { 'NDEBUG' }
+
+    filter { 'configurations:debug' }
+        defines { 'DEBUG' }
+        symbols 'On'
+
     --  ============================================================
     --  cpputest
     --  ============================================================
     project 'cpputest'
         kind 'StaticLib'
         targetdir '../build/%{_TARGET_OS}/lib'
+        defines { 'NDEBUG' }
 
         defines { defines_test, 'CPPUTEST_MEM_LEAK_DETECTION_DISABLED' }
         includedirs { includedirs_cpputest }
@@ -82,7 +90,7 @@ workspace 'DSTW'
     --  module tests / dev tests
     --  ============================================================
     project 'moduletests'
-        files { files_app, files_testenv, '../testing/tests/moduletests/**.cpp' }
+        files { files_app, files_testenv, files_moduletest }
         includedirs { includedirs_test }
         defines { defines_test }
         links { 'cpputest' }
@@ -134,3 +142,23 @@ workspace 'DSTW'
             '../testing/testenv/TCP/src/TCP_Client.cpp'
         }
         includedirs { includedirs_test }
+
+    project 'gcov_app'
+        filter { 'action:vs*' }
+
+        filter { 'action:gmake*' }
+            kind 'StaticLib'
+            targetdir '../build/%{_TARGET_OS}/lib'
+            includedirs { includedirs_test }
+            files { files_app }
+            buildoptions {'-fprofile-arcs -ftest-coverage' }
+
+    project 'gcov_tests'
+        filter { 'action:vs*' }
+
+        filter { 'action:gmake*' }
+            files { files_testenv, files_moduletest }
+            includedirs { includedirs_test }
+            defines { defines_test }
+            links { 'gcov_app', 'gcov', 'cpputest' }
+            linkoptions { '--coverage' }

@@ -24,7 +24,6 @@ files_cpputest_gcc = {
     base_cpputest .. '/src/Platforms/Gcc/*.cpp'
 }
 
-
 base_teststeps = '../submodules/CppUTestSteps/TestSteps'
 includedirs_teststeps = { base_teststeps .. '/include' }
 files_teststeps = { base_teststeps .. '/src/*.cpp' }
@@ -33,12 +32,8 @@ includedirs_app = {
     '../specification',
     '../application/components'
 }
-files_app = {
-    '../application/components/**.cpp'
-}
-files_app_main = {
-    '../application/main/*.cpp'
-}
+files_app = { '../application/components/**.cpp'}
+files_app_main = { '../application/main/*.cpp' }
 
 includedirs_testenv = { '../testing/testenv' }
 files_testenv = {
@@ -58,11 +53,11 @@ defines_test = { 'CPPUTEST_USE_LONG_LONG=0' }
 files_moduletest = { '../testing/tests/moduletests/**.cpp' }
 files_systemtest  = { '../testing/tests/systemtests/SYST_*.cpp' }
 files_devtest  = { '../testing/tests/devtests/*.cpp' }
-files_dstw_stop  = { 
+files_dstw_stop  = {
     '../testing/tests/systemtests/stopAppMain.cpp',
     '../testing/testenv/TCP/src/TCP_Client.cpp'
 }
-files_gendata = { 
-    '../testing/gendata/genDataMain.cpp', 
+files_gendata = {
+    '../testing/gendata/genDataMain.cpp',
     '../testing/testenv/testlib/src/TestLib.cpp'
 }

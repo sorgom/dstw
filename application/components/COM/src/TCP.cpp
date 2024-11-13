@@ -57,11 +57,17 @@ bool TCP::listen(const INT32 socket) const
 E_Select TCP::select(const INT32 socket) const
 {
     fd_set readfds;
+#ifdef _WIN32
+#pragma warning(disable:4389)
+#endif
  // interns of fd_set macros must not be coverage instrumented
 COVERAGE_PAUSE
     FD_ZERO(&readfds);
     FD_SET(socket, &readfds);
 COVERAGE_RESUME
+#ifdef _WIN32
+#pragma warning(default:4389)
+#endif
     timeval timeout;
     timeout.tv_sec = mSec;
     timeout.tv_usec = mMicro;

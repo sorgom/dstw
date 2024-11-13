@@ -19,15 +19,15 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = ../build/linux/bin
-TARGET = $(TARGETDIR)/devtests
-INCLUDES += -I../testing/testenv -I../submodules/cpputest/include -I../submodules/CppUTestSteps/TestSteps/include -I../specification -I../application/components -I../devel
+TARGETDIR = ../build/linux/lib
+TARGET = $(TARGETDIR)/libgcov_app.a
+INCLUDES += -I../testing/testenv -I../submodules/cpputest/include -I../submodules/CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-LIBS += ../build/linux/lib/libcpputest.a
-LDDEPS += ../build/linux/lib/libcpputest.a
-LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
+LIBS +=
+LDDEPS +=
+LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
 define PREBUILDCMDS
 endef
 define PRELINKCMDS
@@ -36,17 +36,17 @@ define POSTBUILDCMDS
 endef
 
 ifeq ($(config),ci)
-OBJDIR = ../build/linux/obj/ci/devtests
-DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
+OBJDIR = ../build/linux/obj/ci/gcov_app
+DEFINES += -DNDEBUG
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
 ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread
 
 else ifeq ($(config),debug)
-OBJDIR = ../build/linux/obj/debug/devtests
-DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
+OBJDIR = ../build/linux/obj/debug/gcov_app
+DEFINES += -DDEBUG
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
 ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -pthread
 
 endif
@@ -63,58 +63,30 @@ OBJECTS :=
 
 GENERATED += $(OBJDIR)/BAS_Provider.o
 GENERATED += $(OBJDIR)/Com.o
-GENERATED += $(OBJDIR)/Comparator.o
-GENERATED += $(OBJDIR)/DT_01.o
-GENERATED += $(OBJDIR)/DT_02.o
-GENERATED += $(OBJDIR)/DT_03.o
 GENERATED += $(OBJDIR)/Dispatcher.o
 GENERATED += $(OBJDIR)/LCR_Provider.o
 GENERATED += $(OBJDIR)/LCR_X.o
 GENERATED += $(OBJDIR)/Log.o
-GENERATED += $(OBJDIR)/M_Instances.o
 GENERATED += $(OBJDIR)/Reader.o
 GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
 GENERATED += $(OBJDIR)/TCP.o
-GENERATED += $(OBJDIR)/TCP_Client.o
 GENERATED += $(OBJDIR)/TCP_Com.o
 GENERATED += $(OBJDIR)/TSW.o
 GENERATED += $(OBJDIR)/TSW_Provider.o
-GENERATED += $(OBJDIR)/TestGroupBase.o
-GENERATED += $(OBJDIR)/TestLib.o
-GENERATED += $(OBJDIR)/TestMain.o
-GENERATED += $(OBJDIR)/TestSteps.o
-GENERATED += $(OBJDIR)/TestStepsPlugin.o
-GENERATED += $(OBJDIR)/installComparators.o
-GENERATED += $(OBJDIR)/ostreamHelpers.o
-GENERATED += $(OBJDIR)/ostreams.o
 OBJECTS += $(OBJDIR)/BAS_Provider.o
 OBJECTS += $(OBJDIR)/Com.o
-OBJECTS += $(OBJDIR)/Comparator.o
-OBJECTS += $(OBJDIR)/DT_01.o
-OBJECTS += $(OBJDIR)/DT_02.o
-OBJECTS += $(OBJDIR)/DT_03.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
 OBJECTS += $(OBJDIR)/LCR_Provider.o
 OBJECTS += $(OBJDIR)/LCR_X.o
 OBJECTS += $(OBJDIR)/Log.o
-OBJECTS += $(OBJDIR)/M_Instances.o
 OBJECTS += $(OBJDIR)/Reader.o
 OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
 OBJECTS += $(OBJDIR)/TCP.o
-OBJECTS += $(OBJDIR)/TCP_Client.o
 OBJECTS += $(OBJDIR)/TCP_Com.o
 OBJECTS += $(OBJDIR)/TSW.o
 OBJECTS += $(OBJDIR)/TSW_Provider.o
-OBJECTS += $(OBJDIR)/TestGroupBase.o
-OBJECTS += $(OBJDIR)/TestLib.o
-OBJECTS += $(OBJDIR)/TestMain.o
-OBJECTS += $(OBJDIR)/TestSteps.o
-OBJECTS += $(OBJDIR)/TestStepsPlugin.o
-OBJECTS += $(OBJDIR)/installComparators.o
-OBJECTS += $(OBJDIR)/ostreamHelpers.o
-OBJECTS += $(OBJDIR)/ostreams.o
 
 # Rules
 # #############################################
@@ -124,7 +96,7 @@ all: $(TARGET)
 
 $(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking devtests
+	@echo Linking gcov_app
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -145,7 +117,7 @@ else
 endif
 
 clean:
-	@echo Cleaning devtests
+	@echo Cleaning gcov_app
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(GENERATED)
@@ -215,48 +187,6 @@ $(OBJDIR)/TSW.o: ../application/components/TSW/src/TSW.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TSW_Provider.o: ../application/components/TSW/src/TSW_Provider.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestSteps.o: ../submodules/CppUTestSteps/TestSteps/src/TestSteps.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestStepsPlugin.o: ../submodules/CppUTestSteps/TestSteps/src/TestStepsPlugin.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TCP_Client.o: ../testing/testenv/TCP/src/TCP_Client.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/Comparator.o: ../testing/testenv/comparators/src/Comparator.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/installComparators.o: ../testing/testenv/comparators/src/installComparators.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/ostreamHelpers.o: ../testing/testenv/comparators/src/ostreamHelpers.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/ostreams.o: ../testing/testenv/comparators/src/ostreams.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/M_Instances.o: ../testing/testenv/mocks/src/M_Instances.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestGroupBase.o: ../testing/testenv/testlib/src/TestGroupBase.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestLib.o: ../testing/testenv/testlib/src/TestLib.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/TestMain.o: ../testing/testenv/testlib/src/TestMain.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/DT_01.o: ../testing/tests/devtests/DT_01.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/DT_02.o: ../testing/tests/devtests/DT_02.cpp
-	@echo "$(notdir $<)"
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/DT_03.o: ../testing/tests/devtests/DT_03.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
