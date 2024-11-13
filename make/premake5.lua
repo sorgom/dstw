@@ -43,10 +43,10 @@ files_moduletest = { '../testing/tests/moduletests/**.cpp' }
 workspace 'DSTW'
     configurations { 'ci', 'debug' }
     language 'C++'
-    targetdir '../build/%{_TARGET_OS}/bin'
-    objdir  '../build/%{_TARGET_OS}/obj'
+    targetdir '../build/%{_TARGET_OS}/%{cfg.name}/bin'
+    objdir  '../build/%{_TARGET_OS}/%{cfg.name}/obj'
     kind 'ConsoleApp'
-    libdirs { '../build/%{_TARGET_OS}/lib' }
+    libdirs { '../build/%{_TARGET_OS}/%{cfg.name}/lib' }
 
     filter { 'action:vs*' }
         buildoptions { buildoptions_vs_test }
@@ -69,7 +69,7 @@ workspace 'DSTW'
     --  ============================================================
     project 'cpputest'
         kind 'StaticLib'
-        targetdir '../build/%{_TARGET_OS}/lib'
+        targetdir '../build/%{_TARGET_OS}/%{cfg.name}/lib'
         defines { 'NDEBUG' }
 
         defines { defines_test, 'CPPUTEST_MEM_LEAK_DETECTION_DISABLED' }
@@ -148,7 +148,7 @@ workspace 'DSTW'
 
         filter { 'action:gmake*' }
             kind 'StaticLib'
-            targetdir '../build/%{_TARGET_OS}/lib'
+            targetdir '../build/%{_TARGET_OS}/%{cfg.name}/lib'
             includedirs { includedirs_test }
             files { files_app }
             buildoptions {'-fprofile-arcs -ftest-coverage' }
