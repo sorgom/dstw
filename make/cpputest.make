@@ -19,9 +19,9 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = ../build
+TARGETDIR = ../build/linux/lib
 TARGET = $(TARGETDIR)/libcpputest.a
-OBJDIR = ../build/linux/ci/cpputest
+OBJDIR = ../build/linux/obj/ci/cpputest
 DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
 INCLUDES += -I../submodules/cpputest/include
 FORCE_INCLUDE +=
@@ -31,7 +31,7 @@ ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Wer
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS) -L../build -s -pthread
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread
 LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
 define PREBUILDCMDS
 endef

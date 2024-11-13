@@ -19,9 +19,9 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = ../build
+TARGETDIR = ../build/linux/bin
 TARGET = $(TARGETDIR)/dstw_run
-OBJDIR = ../build/linux/ci/dstw_run
+OBJDIR = ../build/linux/obj/ci/dstw_run
 DEFINES += -DNDEBUG
 INCLUDES += -I../specification -I../application/components
 FORCE_INCLUDE +=
@@ -31,7 +31,7 @@ ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Wer
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS) -L../build -s -pthread
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef

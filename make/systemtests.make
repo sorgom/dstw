@@ -19,19 +19,19 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = ../build
-TARGET = $(TARGETDIR)/systemtests_run
-OBJDIR = ../build/linux/ci/systemtests_run
-DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
+TARGETDIR = ../build/linux/bin
+TARGET = $(TARGETDIR)/systemtests
+OBJDIR = ../build/linux/obj/ci/systemtests
+DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DRUN_ON_DEMAND
 INCLUDES += -I../testing/testenv -I../submodules/cpputest/include -I../submodules/CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-LIBS += ../build/libcpputest.a
-LDDEPS += ../build/libcpputest.a
-ALL_LDFLAGS += $(LDFLAGS) -L../build -s -pthread
+LIBS += ../build/linux/lib/libcpputest.a
+LDDEPS += ../build/linux/lib/libcpputest.a
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -83,7 +83,7 @@ all: $(TARGET)
 
 $(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking systemtests_run
+	@echo Linking systemtests
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -104,7 +104,7 @@ else
 endif
 
 clean:
-	@echo Cleaning systemtests_run
+	@echo Cleaning systemtests
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(GENERATED)

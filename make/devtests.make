@@ -19,9 +19,9 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = ../build
+TARGETDIR = ../build/linux/bin
 TARGET = $(TARGETDIR)/devtests
-OBJDIR = ../build/linux/ci/devtests
+OBJDIR = ../build/linux/obj/ci/devtests
 DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
 INCLUDES += -I../testing/testenv -I../submodules/cpputest/include -I../submodules/CppUTestSteps/TestSteps/include -I../specification -I../application/components -I../devel
 FORCE_INCLUDE +=
@@ -29,9 +29,9 @@ ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O3 -std=c++17 -pedantic-errors -Werror -Wall
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-LIBS += ../build/libcpputest.a
-LDDEPS += ../build/libcpputest.a
-ALL_LDFLAGS += $(LDFLAGS) -L../build -s -pthread
+LIBS += ../build/linux/lib/libcpputest.a
+LDDEPS += ../build/linux/lib/libcpputest.a
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -53,6 +53,9 @@ OBJECTS :=
 GENERATED += $(OBJDIR)/BAS_Provider.o
 GENERATED += $(OBJDIR)/Com.o
 GENERATED += $(OBJDIR)/Comparator.o
+GENERATED += $(OBJDIR)/DT_01.o
+GENERATED += $(OBJDIR)/DT_02.o
+GENERATED += $(OBJDIR)/DT_03.o
 GENERATED += $(OBJDIR)/Dispatcher.o
 GENERATED += $(OBJDIR)/LCR_Provider.o
 GENERATED += $(OBJDIR)/LCR_X.o
@@ -77,6 +80,9 @@ GENERATED += $(OBJDIR)/ostreams.o
 OBJECTS += $(OBJDIR)/BAS_Provider.o
 OBJECTS += $(OBJDIR)/Com.o
 OBJECTS += $(OBJDIR)/Comparator.o
+OBJECTS += $(OBJDIR)/DT_01.o
+OBJECTS += $(OBJDIR)/DT_02.o
+OBJECTS += $(OBJDIR)/DT_03.o
 OBJECTS += $(OBJDIR)/Dispatcher.o
 OBJECTS += $(OBJDIR)/LCR_Provider.o
 OBJECTS += $(OBJDIR)/LCR_X.o
@@ -231,6 +237,15 @@ $(OBJDIR)/TestLib.o: ../testing/testenv/testlib/src/TestLib.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TestMain.o: ../testing/testenv/testlib/src/TestMain.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/DT_01.o: ../testing/tests/devtests/DT_01.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/DT_02.o: ../testing/tests/devtests/DT_02.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/DT_03.o: ../testing/tests/devtests/DT_03.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
