@@ -5,6 +5,6 @@ rem ========================================================================
 rem system tests: run app in background
 rem ========================================================================
 echo running > %tmpFile%
-call %exeDir%\dstw_run.exe loop >NUL
+%exeDir%\%1.exe loop >NUL
 rm -f %tmpFile%
 exit 0

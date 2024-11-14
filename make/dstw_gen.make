@@ -19,9 +19,9 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = bin
+TARGETDIR = ../build/linux/bin
 TARGET = $(TARGETDIR)/dstw_gen
-INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
+INCLUDES += -I../testing/testenv -I../submodules/cpputest/include -I../submodules/CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
@@ -36,18 +36,18 @@ define POSTBUILDCMDS
 endef
 
 ifeq ($(config),ci)
-OBJDIR = obj/gcc/dstw_gen/ci
-DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
+OBJDIR = ../build/linux/obj/ci/dstw_gen
+DEFINES += -DNDEBUG
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-ALL_LDFLAGS += $(LDFLAGS) -s
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread
 
 else ifeq ($(config),debug)
-OBJDIR = obj/gcc/dstw_gen/debug
-DEFINES += -DDEBUG -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
+OBJDIR = ../build/linux/obj/debug/dstw_gen
+DEFINES += -DDEBUG
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
-ALL_LDFLAGS += $(LDFLAGS)
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -pthread
 
 endif
 

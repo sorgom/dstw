@@ -34,7 +34,7 @@ namespace test
 
             const size_t wSize = sizeof(ProjItem) * n * 4 + sizeof(ComSetup) + dev;
 
-            for (size_t n = 0; n < wSize; ++n)
+            for (size_t i = 0; i < wSize; ++i)
             {
                 os << ' ';
             }

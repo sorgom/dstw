@@ -12,25 +12,25 @@
 
 namespace test
 {
-    //  preset ComName for testing
-    void genComName(ComName& cName, UINT32 num, CONST_C_STRING name = "ELM");
+    //  preset ComAddr for testing
+    void genComAddr(ComAddr& cName, UINT32 num, CONST_C_STRING addr = "ELM");
 
     template <class T>
-    void nameElement(T& elem, UINT32 num, CONST_C_STRING name = "ELM")
+    void adrrElement(T& elem, UINT32 num, CONST_C_STRING addr = "ELM")
     {
-        genComName(elem.name, num, name);
+        genComAddr(elem.addr, num, addr);
     }
 
-    const ComName& genComName(UINT32 num, CONST_C_STRING name = "ELM");
+    const ComAddr& genComAddr(UINT32 num, CONST_C_STRING addr = "ELM");
 
-    inline bool operator==(const ComName& n1, const ComName& n2)
+    inline bool operator==(const ComAddr& n1, const ComAddr& n2)
     {
         return Mem::cmp(n1.chars, n2.chars) == 0;
     }
 
    //  avoid "not used" warning
-    template<typename T>
-    void play(const T&)
+    template<typename ...T>
+    void play(const T&...)
     {}
 
     //  exchangeable non const reference

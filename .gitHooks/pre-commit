@@ -13,16 +13,16 @@ fi
 cd $(git rev-parse --show-toplevel)
 
 # path to sompy python scripts
-sompy=$(pwd)/sompy/somutil
+sompy=$(pwd)/submodules/sompy/somutil
 
 mdjs=
 svgs=
 # files regarded as text files to be cleaned
 txts=
 # extensions of text files sorted by likeliness
-xtxt="h cpp cmd py md"
+xtxt="h cpp cmd py md lua"
 
-for file in `git diff-index --cached --name-only HEAD`; do
+for file in $(git diff-index --cached --name-only HEAD); do
   if [[ -f $file ]]
   then
     if [[ $file == *.mdj ]]; then mdjs="$mdjs $file"
@@ -45,6 +45,6 @@ if [[ -n $svgs ]]; then
 fi
 if [[ -n $txts ]]; then
   echo cleaning text files
-  $py $sompy/cleanTxt.py $txts
+  $py $sompy/cleanTxt.py -l $txts
 fi
 for file in $mdjs $svgs $txts; do git add $file; done

@@ -1,9 +1,8 @@
 options:
--p  [VS-version] run premake e.g. -p vs2019
 -c  force clean build
 -r  remove reports
 -H  generate HTML
 -u  just update coverage file (no report, no HTML)
+-t  write todo files
+-m  write coverage md file (after module and system tests)
 -h  this help
-
-all options must be given separately

@@ -19,8 +19,8 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = bin
-TARGET = $(TARGETDIR)/dstw_run
+TARGETDIR = ../build/linux/bin
+TARGET = $(TARGETDIR)/dstw_runtime
 INCLUDES += -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
@@ -36,18 +36,18 @@ define POSTBUILDCMDS
 endef
 
 ifeq ($(config),ci)
-OBJDIR = obj/gcc/dstw_run/ci
+OBJDIR = ../build/linux/obj/ci/dstw_runtime
 DEFINES += -DNDEBUG
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-ALL_LDFLAGS += $(LDFLAGS) -s
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread
 
 else ifeq ($(config),debug)
-OBJDIR = obj/gcc/dstw_run/debug
-DEFINES += -DDEBUG -DNDEBUG
+OBJDIR = ../build/linux/obj/debug/dstw_runtime
+DEFINES += -DDEBUG
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
-ALL_LDFLAGS += $(LDFLAGS)
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -pthread
 
 endif
 
@@ -98,7 +98,7 @@ all: $(TARGET)
 
 $(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking dstw_run
+	@echo Linking dstw_runtime
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -119,7 +119,7 @@ else
 endif
 
 clean:
-	@echo Cleaning dstw_run
+	@echo Cleaning dstw_runtime
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(GENERATED)

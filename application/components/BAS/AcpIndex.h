@@ -1,11 +1,11 @@
 //  ============================================================
-//  name, component, position
+//  addr, component, position
 //  ============================================================
 //  created by Manfred Sorgo
 
 #pragma once
-#ifndef NCPINDEX_H
-#define NCPINDEX_H
+#ifndef ACPINDEX_H
+#define ACPINDEX_H
 
 #include <BAS/coding.h>
 #include <BAS/Containers.h>
@@ -13,39 +13,39 @@
 
 #include <codebase/packBegin.h>
 
-struct Ncp
+struct Acp
 {
-    const ComName name;
+    const ComAddr addr;
     const UINT8 comp;
     const size_t pos;
-    inline Ncp(
-        const ComName& name,
+    inline Acp(
+        const ComAddr& addr,
         UINT8 comp = 0,
         size_t pos = 0
     ):
-        name(name),
+        addr(addr),
         comp(comp),
         pos(pos)
     {}
-    NOCOPY(Ncp)
+    NOCOPY(Acp)
 };
 
 #include <codebase/packEnd.h>
 
 //  ============================================================
-//  class NcpIndex is the core of Dispatcher
+//  class AcpIndex is the core of Dispatcher
 //  see interface I_Dispatcher
 //  ============================================================
-class NcpIndex : public Index<const ComName&, Ncp>
+class AcpIndex : public Index<const ComAddr&, Acp>
 {
 public:
-    inline NcpIndex() = default;
-    NOCOPY(NcpIndex)
+    inline AcpIndex() = default;
+    NOCOPY(AcpIndex)
 
 protected:
-    inline const ComName& getKey(const Ncp& ncp) const final
+    inline const ComAddr& getKey(const Acp& acp) const final
     {
-        return ncp.name;
+        return acp.addr;
     }
 };
 #endif // _H

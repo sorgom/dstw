@@ -1,4 +1,5 @@
 #include <COM/TCP.h>
+#include <BAS/coverage.h>
 
 #ifdef _WIN32
 #include <winsock2.h>
@@ -53,22 +54,31 @@ bool TCP::listen(const INT32 socket) const
     return ::listen(socket, SOMAXCONN) >= 0;
 }
 
-INT32 TCP::select(const INT32 socket) const
+E_Select TCP::select(const INT32 socket) const
 {
     fd_set readfds;
+#ifdef _WIN32
+#pragma warning(disable:4389)
+#endif
+ // interns of fd_set macros must not be coverage instrumented
+COVERAGE_PAUSE
     FD_ZERO(&readfds);
     FD_SET(socket, &readfds);
+COVERAGE_RESUME
+#ifdef _WIN32
+#pragma warning(default:4389)
+#endif
     timeval timeout;
     timeout.tv_sec = mSec;
     timeout.tv_usec = mMicro;
-    INT32 ret = 0;
+    E_Select ret = SELECT_NONE;
     if (::select(socket + 1, &readfds, nullptr, nullptr, &timeout) < 0)
     {
-        ret = -1;
+        ret = SELECT_ERR;
     }
     else if (FD_ISSET(socket, &readfds))
     {
-        ret = 1;
+        ret = SELECT_READY;
     }
     return ret;
 }

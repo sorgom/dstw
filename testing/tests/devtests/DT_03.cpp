@@ -12,7 +12,6 @@
 
 namespace test
 {
-
     TEST_GROUP_BASE(DT_03, TestGroupBase) {};
 
     //  test type: equivalence class test
@@ -28,8 +27,8 @@ namespace test
         for (UINT32 n = 0; n < CAPTSW; ++n)
         {
             LSTEP(n)
-            const ComName& name = genComName(CAPTSW - n, "TSW");
-            L_CHECK_TRUE(name == projData.pTSW()[n].name)
+            const ComAddr& addr = genComAddr(CAPTSW - n, "TSW");
+            L_CHECK_TRUE(addr == projData.pTSW()[n].addr)
         }
         ENDSTEPS()
 
@@ -40,8 +39,8 @@ namespace test
         for (UINT32 n = 0; n < CAPSIG; ++n)
         {
             LSTEP(n)
-            const ComName& name = genComName(CAPSIG - n, "SIG");
-            L_CHECK_TRUE(name == projData.pSIG()[n].name)
+            const ComAddr& addr = genComAddr(CAPSIG - n, "SIG");
+            L_CHECK_TRUE(addr == projData.pSIG()[n].addr)
         }
         ENDSTEPS()
 
@@ -52,8 +51,8 @@ namespace test
         for (UINT32 n = 0; n < CAPLCR; ++n)
         {
             LSTEP(n)
-            const ComName& name = genComName(CAPLCR - n, "LCR");
-            L_CHECK_TRUE(name == projData.pLCR()[n].name)
+            const ComAddr& addr = genComAddr(CAPLCR - n, "LCR");
+            L_CHECK_TRUE(addr == projData.pLCR()[n].addr)
         }
         ENDSTEPS()
 
@@ -64,8 +63,8 @@ namespace test
         for (UINT32 n = 0; n < CAPSEG; ++n)
         {
             LSTEP(n)
-            const ComName& name = genComName(CAPSEG - n, "SEG");
-            L_CHECK_TRUE(name == projData.pSEG()[n].name)
+            const ComAddr& addr = genComAddr(CAPSEG - n, "SEG");
+            L_CHECK_TRUE(addr == projData.pSEG()[n].addr)
         }
         ENDSTEPS()
     }

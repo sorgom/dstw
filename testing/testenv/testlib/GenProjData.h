@@ -65,10 +65,10 @@ namespace test
         inline const ProjItem& lcr(size_t pos) const { return mLCRs.at(pos); }
         inline const ProjItem& seg(size_t pos) const { return mSEGs.at(pos); }
 
-        inline const ComName& tswName(size_t pos) const { return tsw(pos).name; }
-        inline const ComName& sigName(size_t pos) const { return sig(pos).name; }
-        inline const ComName& lcrName(size_t pos) const { return lcr(pos).name; }
-        inline const ComName& segName(size_t pos) const { return seg(pos).name; }
+        inline const ComAddr& tswAddr(size_t pos) const { return tsw(pos).addr; }
+        inline const ComAddr& sigAddr(size_t pos) const { return sig(pos).addr; }
+        inline const ComAddr& lcrAddr(size_t pos) const { return lcr(pos).addr; }
+        inline const ComAddr& segAddr(size_t pos) const { return seg(pos).addr; }
 
         void setSigType(size_t pos, UINT8 type)
         {
@@ -116,7 +116,7 @@ namespace test
         {
             vec.resize(num);
             for (auto& elem : vec)         {
-                nameElement(elem, num--, what);
+                adrrElement(elem, num--, what);
             }
         }
 

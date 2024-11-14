@@ -31,36 +31,51 @@
 //  begin of ostream operator declaration
 #define OSTREAM_DEC(NAME) OSTREAM_DEF(NAME);
 
+//  standard output begin of elements
+#define OUT_BEGIN(NAME) \
+    std::setw(OUT_FILL_W) << std::setfill(OUT_FILL_C) << std::left << #NAME << ':' << ' '
+
 //  output line for standard types
 #define DOUT(NAME) \
-    std::setw(OUT_FILL_W) << std::setfill(OUT_FILL_C) << std::left << #NAME << ':' << ' ' << d.NAME << std::endl
+    OUT_BEGIN(NAME) << d.NAME << std::endl
 
 //  output line for fixed character types
 #define DFIX(NAME) \
-    std::setw(OUT_FILL_W) << std::setfill(OUT_FILL_C) << std::left << #NAME << ':' << ' ' << fixC(d.NAME) << std::endl
+    OUT_BEGIN(NAME) << fixT(d.NAME) << std::endl
 
-//  helper struct for fixed character types
-struct FixChar
+//  output line for UINT8 arrays
+#define DU8X(NAME) \
+    OUT_BEGIN(NAME) << fixU(d.NAME) << std::endl
+
+//  helper struct for fixed array types
+template <typename T>
+struct FixArr
 {
-    const CONST_C_STRING str;
+    const T *const ptr;
     const size_t size;
-    inline FixChar(const CONST_C_STRING str, const size_t size):
-        str(str),
+    inline FixArr(const T* ptr, const size_t size):
+        ptr(ptr),
         size(size)
     {}
-    NOCOPY(FixChar)
-    NODEF(FixChar)
+    NOCOPY(FixArr)
+    NODEF(FixArr)
 };
 
 //  the streamable call
-template <size_t N>
-inline const FixChar fixC(const CHAR (&str)[N])
+template <typename T, size_t N>
+inline const FixArr<T> fixT(const T (&ptr)[N])
 {
-    return FixChar(str, N);
+    return FixArr<T>(ptr, N);
 }
 
+// template <size_t N>
+// using fixT = fixT<CHAR, N>;
+
+// template <size_t N>
+// using fixU = fixT<UINT8, N>;
+
 //  stream FixChar as rvalue
-std::ostream& operator << (std::ostream& os, const FixChar&& d);
+std::ostream& operator << (std::ostream& os, const FixArr<CHAR>&& d);
 
 //  make sure UINT8 output is numerical
 inline std::ostream& operator << (std::ostream& os, const UINT8 u)

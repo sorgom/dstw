@@ -18,46 +18,54 @@
 //  Com telegrams element identifier
 constexpr auto ComNameSize = 12;
 
-struct ComName
+struct ComAddr
 {
     CHAR chars[ComNameSize];
-    inline ComName() = default;
-    inline ComName(const ComName& src)
+    inline ComAddr() = default;
+    inline ComAddr(const ComAddr& src)
     {
         Mem::cpy(chars, src.chars);
     }
-    inline bool operator>(const ComName& b) const
+    inline bool operator>(const ComAddr& b) const
     {
         return Mem::cmp(chars, b.chars) > 0;
     }
 };
 
-static_assert(ComNameSize == sizeof(ComName));
+static_assert(ComNameSize == sizeof(ComAddr));
 
 //  standard telegram size
 constexpr auto ComTelegramSize = ComNameSize + 8;
+
+constexpr auto ComDataSize = 8;
 
 //  Com telegrams data
 struct ComData
 {
     UINT8 param1 = PARAM_UNDEF;
     UINT8 param2 = PARAM_UNDEF;
-    UINT8 reserve[6];
+    UINT8 param3 = PARAM_UNDEF;
+    UINT8 param4 = PARAM_UNDEF;
+    UINT8 param5 = PARAM_UNDEF;
+    UINT8 param6 = PARAM_UNDEF;
+    UINT8 param7 = PARAM_UNDEF;
+    UINT8 param8 = PARAM_UNDEF;
 };
+static_assert(ComDataSize == sizeof(ComData));
 
 //  Com telegram
 struct ComTele
 {
-    ComName name;
+    ComAddr addr;
     ComData data;
 };
 
-static_assert(ComTelegramSize == sizeof(ComTele));
+static_assert(ComNameSize + ComDataSize == sizeof(ComTele));
 
 //  project items
 struct ProjItem
 {
-    ComName name;
+    ComAddr addr;
     UINT8 type;
     UINT8 reserve[7];
 };

@@ -24,7 +24,7 @@ public:
     //  - own processing element position
     //  and shall receive:
     //  - dispatcher id (position of responsible dispatcher element)
-    virtual const PosRes assign(const ComName& name, E_Comp comp, size_t pos) = 0;
+    virtual const PosRes assign(const ComAddr& name, E_Comp comp, size_t pos) = 0;
 
     //  field state telegrams shall be dispatched to components
     virtual void fromFld(const ComTele& tele) const = 0;

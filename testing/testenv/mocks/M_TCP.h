@@ -71,11 +71,11 @@ namespace test
             expect("listen").PARAM(socket).AND_RETURN_BOOL(ret);
         }
 
-        inline INT32 select(INT32 socket) const
+        inline E_Select select(INT32 socket) const
         {
-            return call("select").PARAM(socket).RETURN_DEF_INT(0);
+            return static_cast<E_Select>(call("select").PARAM(socket).RETURN_DEF_INT(0));
         }
-        inline void expectSelect(INT32 socket, INT32 ret = 0) const
+        inline void expectSelect(INT32 socket, E_Select ret = SELECT_NONE) const
         {
             expect("select").PARAM(socket).AND_RETURN(ret);
         }

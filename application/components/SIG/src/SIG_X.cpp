@@ -1,5 +1,6 @@
 #include <SIG/SIG_X.h>
 #include <SYS/IL.h>
+#include <BAS/utilz.h>
 
 void SIG_X::procFromFld(const UINT8 state)
 {
@@ -152,7 +153,7 @@ void SIG_H::proc_H1()
 
 void SIG_N::fromFld(const ComData& data)
 {
-    const auto state = data.param1, speed = data.param2;
+    const auto [ state, speed ] = getn<2>(data);
     switch (state)
     {
     case SIG_STATE_UNDEF:
@@ -169,7 +170,7 @@ void SIG_N::fromFld(const ComData& data)
 
 void SIG_N::fromGui(const ComData& data)
 {
-    const auto state = data.param1, speed = data.param2;
+    const auto [ state, speed ] = getn<2>(data);
     switch (state)
     {
     case SIG_STATE_N0:
@@ -216,7 +217,7 @@ void SIG_N::proc_N1(const UINT8 speed)
 
 void SIG_H_N::fromFld(const ComData& data)
 {
-    const auto state = data.param1, speed = data.param2;
+    const auto [ state, speed ] = getn<2>(data);
     switch (state)
     {
     case SIG_STATE_UNDEF:
@@ -235,7 +236,7 @@ void SIG_H_N::fromFld(const ComData& data)
 
 void SIG_H_N::fromGui(const ComData& data)
 {
-    const auto state = data.param1, speed = data.param2;
+    const auto [ state, speed ] = getn<2>(data);
     switch (state)
     {
     case SIG_STATE_H0_N0:

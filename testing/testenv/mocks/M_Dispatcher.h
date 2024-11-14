@@ -33,14 +33,14 @@ namespace test
             expect("index");
         }
 
-        inline const PosRes assign(const ComName& name, E_Comp comp, size_t pos) override
+        inline const PosRes assign(const ComAddr& name, E_Comp comp, size_t pos) override
         {
-            const INT32 i = call("assign").TPARAM(ComName, name).PARAM(comp).PARAM(pos).RETURN_DEF_INT(0);
+            const INT32 i = call("assign").TPARAM(ComAddr, name).PARAM(comp).PARAM(pos).RETURN_DEF_INT(0);
             return i < 0 ? PosRes {false} : PosRes {true, static_cast<size_t>(i)};
         }
-        inline void expectAssign(const ComName& name, E_Comp comp, size_t pos, INT32 ret = 0) const
+        inline void expectAssign(const ComAddr& name, E_Comp comp, size_t pos, INT32 ret = 0) const
         {
-            expect("assign").TPARAM(ComName, name).PARAM(comp).PARAM(pos).AND_RETURN(ret);
+            expect("assign").TPARAM(ComAddr, name).PARAM(comp).PARAM(pos).AND_RETURN(ret);
         }
 
         inline void fromFld(const ComTele& tele) const override

@@ -33,7 +33,7 @@ If testing a single application module (SUT, software under test)
 ### sample: test of dispatcher
 #### mocks and calls scheme
 
-![test Dispatcher](../specification/doc/test_dispatcher.svg) 
+![test Dispatcher](../specification/doc/test_dispatcher.svg)
 
 #### sample test code
 with comments
@@ -47,7 +47,7 @@ with comments
 
         STEP(1)
         //  prepare expected telegram for TSW
-        nameElement(teleExp, 1, "TSW");
+        adrrElement(teleExp, 1, "TSW");
         //  describe expectation for mock:
         //  Com method toFld must be called with telegram
         m_Com().expectToFld(teleExp);
@@ -59,15 +59,15 @@ with comments
 ```
 
 ## system tests
-Here we have 
+Here we have
 -   a DSTW application built without any test code
--   a test application 
+-   a test application
 
 The system tests take place that way:
 - At startup the DSTW application reads project data provided for testing
-- The test application then communicates via TCP   
+- The test application then communicates via TCP
 
-![system tests](../specification/doc/sys_tests.svg) 
+![system tests](../specification/doc/sys_tests.svg)
 
 ## code coverage
 - [coverage tools](coverage_tools.md)

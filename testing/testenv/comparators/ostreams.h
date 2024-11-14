@@ -12,7 +12,7 @@
 #include <comparators/ostreamHelpers.h>
 
 OSTREAM_DEC(ComData)
-OSTREAM_DEC(ComName)
+OSTREAM_DEC(ComAddr)
 OSTREAM_DEC(ComTele)
 OSTREAM_DEC(PosRes)
 OSTREAM_DEC(ProjItem)

@@ -9,6 +9,13 @@
 
 #include "DataTypes.h"
 
+enum E_Select : INT8
+{
+    SELECT_ERR = -1,
+    SELECT_NONE = 0,
+    SELECT_READY = 1
+};
+
 class I_TCP
 {
 public:
@@ -31,10 +38,7 @@ public:
     virtual bool listen(INT32 socket) const = 0;
 
     //  read select a socket
-    //  -1 on error
-    //   0 if no socket is ready
-    //   1 if socket is ready
-    virtual INT32 select(INT32 socket) const = 0;
+    virtual E_Select select(INT32 socket) const = 0;
 
     //  accept a connection
     virtual INT32 accept(INT32 socket) const = 0;

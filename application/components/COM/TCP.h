@@ -25,7 +25,7 @@ public:
 
     bool listen(INT32 socket) const;
 
-    INT32 select(INT32 socket) const;
+    E_Select select(INT32 socket) const;
 
     INT32 accept(INT32 socket) const;
 

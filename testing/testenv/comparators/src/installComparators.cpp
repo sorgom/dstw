@@ -12,7 +12,7 @@ namespace test
 {
     void installComparators(MockSupportPlugin& plugin)
     {
-        ADD_COMP(ComName)
+        ADD_COMP(ComAddr)
         ADD_COMP(ComData)
         ADD_COMP(ComTele)
     }

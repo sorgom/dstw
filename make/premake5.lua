@@ -1,193 +1,164 @@
 --  ============================================================
---  premake5 build rules for gcc (gmake2):
+--  premake5 build settings
 --  ============================================================
 
-include 'premake5_settings.lua'
 buildoptions_gcc = '-std=c++17 -pedantic-errors -Werror -Wall'
 
+buildoptions_vs = '/std:c++17 /MP'
+buildoptions_vs_app = buildoptions_vs .. ' /W4 /wd4100 /wd4103'
+buildoptions_vs_test = buildoptions_vs_app .. ' /wd4127 /D_WINSOCK_DEPRECATED_NO_WARNINGS'
+buildoptions_vs_cpputest = buildoptions_vs_app .. ' /DCPPUTEST_MEM_LEAK_DETECTION_DISABLED /wd4611 /wd4996'
+
+base_cpputest = '../submodules/cpputest'
+includedirs_cpputest = { base_cpputest .. '/include' }
+
+base_teststeps = '../submodules/CppUTestSteps/TestSteps'
+
+includedirs_app = {
+    '../specification',
+    '../application/components'
+}
+files_app = { '../application/components/**.cpp'}
+
+includedirs_testenv = { '../testing/testenv' }
+files_testenv = {
+    '../testing/testenv/**.cpp',
+    base_teststeps .. '/src/*.cpp'
+}
+
+includedirs_test = {
+    includedirs_testenv,
+    includedirs_cpputest,
+    base_teststeps .. '/include',
+    includedirs_app
+}
+defines_test = { 'CPPUTEST_USE_LONG_LONG=0' }
+
+files_moduletest = { '../testing/tests/moduletests/**.cpp' }
+
 --  ============================================================
---  > lib_cpputest.make
---  cpputest lib
---  configurations: 
---  - ci        
---  - debug     debug mode
+--  premake5 build rules
 --  ============================================================
-workspace 'lib_cpputest'
+
+workspace 'DSTW'
+    configurations { 'ci', 'debug' }
+    language 'C++'
+    targetdir '../build/%{_TARGET_OS}/bin'
+    objdir  '../build/%{_TARGET_OS}/obj'
+    kind 'ConsoleApp'
+    libdirs { '../build/%{_TARGET_OS}/lib' }
+
+    filter { 'action:vs*' }
+        buildoptions { buildoptions_vs_test }
+        links { 'ws2_32' }
+        warnings 'high'
+
     filter { 'action:gmake*' }
-        configurations { 'ci', 'debug' }
-        language 'C++'
-        objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
-        defines { defines_test }
-
-        filter { 'configurations:ci' }
-            defines { 'NDEBUG' }
-
-        filter { 'configurations:debug' }
-            defines { 'DEBUG' }
-            symbols 'On'
-
-        project 'cppu_test'
-            kind 'StaticLib'
-            targetdir 'lib'
-            files { files_cpputest_gcc }
-            includedirs { includedirs_cpputest }
-            buildoptions { buildoptions_gcc .. ' -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED' }
-
---  ============================================================
---  > tests.make
---  app and tests at once runtime
---  ->  bin/tests_{config}
---  configurations: 
---  - ci        module tests
---  - debug     module tests debug mode
---  - dev       developer tests debug mode
---  - bullseye  module tests with bullseye coverage
---  - tmp       temporary tests
---  ============================================================
-workspace 'tests'
-    filter { 'action:gmake*' }
-        configurations { 'ci', 'debug', 'dev', 'bullseye', 'tmp' }
-        language 'C++'
-        objdir 'obj/gcc/%{prj.name}/%{cfg.name}'
-        targetsuffix '_%{cfg.name}'
         buildoptions { buildoptions_gcc }
-        linkoptions { linkoptions_test_gcc }
+        linkoptions { '-pthread' }
 
-        project 'tests'
-            kind 'ConsoleApp'
-            defines { defines_test }
+    filter { 'configurations:ci' }
+        defines { 'NDEBUG' }
 
-            targetdir 'bin'
-            libdirs { 'lib' }
-            includedirs { includedirs_test }
-            links { links_test_gcc }
-            files { files_testenv, files_app }
-
-            filter { 'configurations:ci' }
-                defines { 'NDEBUG' }
-                files { files_moduletest }
-
-            filter { 'configurations:debug' }
-                defines { 'DEBUG' }
-                symbols 'On'
-                files { files_moduletest }
-
-            filter { 'configurations:dev' }
-                defines { 'DEBUG' }
-                symbols 'On'
-                files { files_devtest }
-
-            filter { 'configurations:bullseye' }
-                defines { 'NDEBUG' }
-                files { files_moduletest }
-                prebuildcommands { 'cov01 -1 --no-banner' }
-                postbuildcommands { './bullseye.sh' }
-
-            filter { 'configurations:tmp' }
-                defines { 'DEBUG' }
-                symbols 'On'
-                includedirs { includedirs_qnd }
-                files {
-                    '../testing/tests/moduletests/COM/*.cpp'
-                }
-    
---  ============================================================
---  > coverage.make
---  -   coverage instrumented application (static lib)
---  -   module tests only runtime
---  ->  bin/coverage_tests_{config}
---  ============================================================
-workspace 'coverage'
-    filter { 'action:gmake*' }
-        configurations { 'ci' }
-        language 'C++'
-        objdir 'obj/gcc/%{prj.name}'
-
-        includedirs { includedirs_test }
-        buildoptions { buildoptions_gcc }
-
-        defines { 'DEBUG', defines_test }
+    filter { 'configurations:debug' }
+        defines { 'DEBUG' }
         symbols 'On'
 
-        project 'coverage_app'
+    --  ============================================================
+    --  cpputest
+    --  ============================================================
+    project 'cpputest'
+        kind 'StaticLib'
+        targetdir '../build/%{_TARGET_OS}/lib'
+        defines { 'NDEBUG' }
+
+        defines { defines_test, 'CPPUTEST_MEM_LEAK_DETECTION_DISABLED' }
+        includedirs { includedirs_cpputest }
+        files {
+            base_cpputest .. '/src/CppUTest/*.cpp',
+            base_cpputest .. '/src/CppUTestExt/*.cpp'
+        }
+
+        filter { 'action:vs*' }
+            buildoptions { buildoptions_vs_cpputest }
+            files { base_cpputest .. '/src/Platforms/VisualCpp/*.cpp' }
+
+        filter { 'action:gmake*' }
+            files { base_cpputest .. '/src/Platforms/Gcc/*.cpp' }
+
+    --  ============================================================
+    --  module tests / dev tests
+    --  ============================================================
+    project 'moduletests'
+        files { files_app, files_testenv, files_moduletest }
+        includedirs { includedirs_test }
+        defines { defines_test }
+        links { 'cpputest' }
+
+        filter { 'action:vs*' }
+        links { 'winmm' }
+
+    project 'devtests'
+        files { files_app, files_testenv, '../testing/tests/devtests/*.cpp' }
+        includedirs { includedirs_test, '../devel' }
+        defines { defines_test }
+        links { 'cpputest' }
+
+        filter { 'action:vs*' }
+        links { 'winmm' }
+
+    --  ============================================================
+    --  system tests
+    --  ============================================================
+    --  run first
+    project 'dstw_gen'
+        includedirs { includedirs_test }
+        files {
+            '../testing/gendata/genDataMain.cpp',
+            '../testing/testenv/testlib/src/TestLib.cpp'
+        }
+
+    --  run second in background
+    --  must be unstrumented for coverage
+    project 'dstw_runtime'
+        files { files_app, '../application/main/*.cpp' }
+        includedirs { includedirs_app }
+
+    --  run third
+    project 'systemtests'
+        files { files_testenv, '../testing/tests/systemtests/SYST_*.cpp' }
+        includedirs { includedirs_test }
+        defines { defines_test, 'REQUIRE_PARAM' }
+        links { 'cpputest' }
+
+        filter { 'action:vs*' }
+        links { 'winmm' }
+
+
+    --  run last to stop application in background
+    project 'dstw_stop'
+        files {
+            '../testing/tests/systemtests/stopAppMain.cpp',
+            '../testing/testenv/TCP/src/TCP_Client.cpp'
+        }
+        includedirs { includedirs_test }
+
+    project 'gcov_app'
+        filter { 'action:vs*' }
+
+        filter { 'action:gmake*' }
             kind 'StaticLib'
-            targetdir 'lib'
+            targetdir '../build/%{_TARGET_OS}/lib'
+            includedirs { includedirs_test }
             files { files_app }
             buildoptions {'-fprofile-arcs -ftest-coverage' }
 
-        project 'coverage_tests'
-            kind 'ConsoleApp'
-            targetdir 'bin'
-            libdirs { 'lib' }
-            links { 'coverage_app', 'gcov', links_test_gcc }
-            linkoptions { linkoptions_test_gcc, '--coverage' }
+    project 'gcov_tests'
+        filter { 'action:vs*' }
+
+        filter { 'action:gmake*' }
             files { files_testenv, files_moduletest }
-
---  ============================================================
---  > systemtests.make
---  -   run tests only runtime
---  configurations: 
---  - ci        module tests
---  ============================================================
-workspace 'systemtests'
-    filter { 'action:gmake*' }
-        configurations { 'ci', 'debug' }
-        language 'C++'
-        objdir 'obj/gcc/%{prj.name}'
-        buildoptions { buildoptions_gcc }
-
-        defines { defines_test }
-
-        filter { 'configurations:ci' }
-            defines { 'NDEBUG' }
-
-        filter { 'configurations:debug' }
-            defines { 'DEBUG' }
-            symbols 'On'
-
-        project 'systemtests_stop'
-            kind 'ConsoleApp'
-            targetdir 'bin'
-            files { files_dstw_stop }    
             includedirs { includedirs_test }
-
-        project 'systemtests_run'
-            kind 'ConsoleApp'
-            targetdir 'bin'
-            libdirs { 'lib' }
-            links { links_test_gcc }
-            files { files_testenv, files_systemtest }
-            includedirs { includedirs_test }
-            linkoptions { linkoptions_test_gcc }
-
---  ============================================================
---  > dstw.make
---  data generator and application runtime
---  ============================================================
-workspace 'dstw'
-    filter { 'action:gmake*' }
-        configurations { 'ci', 'debug' }
-        language 'C++'
-        objdir 'obj/gcc/%{prj.name}'
-        targetdir 'bin'
-        buildoptions { buildoptions_gcc }
-        
-        filter { 'configurations:ci' }
-            defines { 'NDEBUG' }
-
-        filter { 'configurations:debug' }
-            defines { 'DEBUG' }
-            symbols 'On'
-
-        project 'dstw_gen'
-            kind 'ConsoleApp'
-            includedirs { includedirs_test }
-            defines { 'NDEBUG', defines_test }
-            files { files_gendata }
-
-        project 'dstw_run'
-            kind 'ConsoleApp'
-            includedirs { includedirs_app }
-            defines { defines_app }
-            files { files_app, files_app_main }
-
+            defines { defines_test }
+            links { 'gcov_app', 'gcov', 'cpputest' }
+            linkoptions { '--coverage' }

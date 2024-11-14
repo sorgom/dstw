@@ -19,19 +19,14 @@ endif
 # #############################################
 
 RESCOMP = windres
-TARGETDIR = lib
-TARGET = $(TARGETDIR)/libcoverage_app.a
-OBJDIR = obj/gcc/coverage_app
-DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
-INCLUDES += -I../testing/testenv -I../cpputest/include -I../CppUTestSteps/TestSteps/include -I../specification -I../application/components
+TARGETDIR = ../build/linux/lib
+TARGET = $(TARGETDIR)/libgcov_app.a
+INCLUDES += -I../testing/testenv -I../submodules/cpputest/include -I../submodules/CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
 LIBS +=
 LDDEPS +=
-ALL_LDFLAGS += $(LDFLAGS)
 LINKCMD = $(AR) -rcs "$@" $(OBJECTS)
 define PREBUILDCMDS
 endef
@@ -39,6 +34,22 @@ define PRELINKCMDS
 endef
 define POSTBUILDCMDS
 endef
+
+ifeq ($(config),ci)
+OBJDIR = ../build/linux/obj/ci/gcov_app
+DEFINES += -DNDEBUG
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread
+
+else ifeq ($(config),debug)
+OBJDIR = ../build/linux/obj/debug/gcov_app
+DEFINES += -DDEBUG
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -pthread
+
+endif
 
 # Per File Configurations
 # #############################################
@@ -85,7 +96,7 @@ all: $(TARGET)
 
 $(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking coverage_app
+	@echo Linking gcov_app
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -106,7 +117,7 @@ else
 endif
 
 clean:
-	@echo Cleaning coverage_app
+	@echo Cleaning gcov_app
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(GENERATED)
