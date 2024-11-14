@@ -4,6 +4,8 @@ rem ========================================================================
 rem Bullseye coverage: reporting
 rem ========================================================================
 
+del /Q %buildLog% >NUL 2>&1
+
 if exist %testReport% (
     echo - test errors
     type %testReport%
@@ -26,6 +28,7 @@ if %_gentodo% (
     covbr -qu --srcdir . > %covTodoTxt%
     %binDir%\covbr2html.exe -co %myReportsDir% %covTodoTxt%
 )
+if %_genmd% call %myDir%\_cov2md.cmd
 
 echo - report
 
@@ -39,5 +42,3 @@ if %errorlevel% == 0 set _result=passed
 echo covmin %covMin% %_result% >> %covLog%
 echo ``` >> %covLog%
 type %covLog%
-
-if %_genmd% call %myDir%\_cov2md.cmd

@@ -18,4 +18,3 @@ echo. >> %target%
 type %reportMod% >> %target%
 echo. >> %target%
 type %reportSys% >> %target%
-echo. >> %target%

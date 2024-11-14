@@ -5,7 +5,7 @@ rem Bullseye coverage: build step
 rem ========================================================================
 
 SETLOCAL
-call cov01 -q %1
+cov01 -q %1
 shift
 if "%1"=="" goto end
 echo -- %1

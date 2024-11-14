@@ -3,12 +3,6 @@ if "%_me%" == "" exit /b 1
 rem ========================================================================
 rem Bullseye coverage: base directories
 rem ========================================================================
-rem minmal coverage setup
-rem - minimal function coverage %
-set minFunctionCov=100
-rem - minimal decision coverage %
-set minDecisionCov=99
-
 cd /d %~dp0
 set myDir=%cd%
 cd ..
@@ -38,16 +32,28 @@ set optsTxt=%myDir%\_covoptions.txt
 set vsCall=msbuild %vsSolution% -p:Configuration=%vsConfig%
 set tmpCmd=%buildDir%\tmp.cmd
 
+md %buildDir% >NUL 2>&1
+
 %binDir%\docopts.exe %optsTxt% %* > %tmpCmd%
 call %tmpCmd%
 
 if not exist %covfile% set _c=1==1
 
 if %_h% (
+    echo.
     echo usage: %_me%.cmd [options]
     type %optsTxt%
     exit /b 1
 )
+
+echo - setup
+
+if not exist %vsSolution% (
+    echo %vsSolution% not found
+    echo use premak5 vs... in make folder to generate it
+    exit /b 1
+)
+
 if %_c% (
     echo - clean
     del /Q %covfile% >NUL 2>&1
@@ -62,6 +68,8 @@ set _gentodo=%_t%
 set _genmd=%_m%
 
 md %myReportsDir% >NUL 2>&1
+
+echo - build
 
 call %myDir%\_covbuild.cmd --off cpputest
 if %errorlevel% NEQ 0 exit /b 1
