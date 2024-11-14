@@ -16,8 +16,7 @@ set myReportsDir=%reportsDir%\%_me%
 
 set binDir=%subsDir%\sombin
 set vsSolution=%makeDir%\DSTW.sln
-set vsConfig=ci
-set exeDir=%buildDir%\windows\%vsConfig%\bin
+set exeDir=%buildDir%\windows\bin
 set buildLog=%myReportsDir%\build.txt
 set covLog=%myReportsDir%\coverage.txt
 set covHtmlDir=%myReportsDir%\html
@@ -29,7 +28,7 @@ set excludeFile=%myDir%\_covexclude.txt
 set covTodoTxt=%buildDir%\%_me%_todo.txt
 
 set optsTxt=%myDir%\_covoptions.txt
-set vsCall=msbuild %vsSolution% -p:Configuration=%vsConfig%
+set vsCall=msbuild %vsSolution%
 set tmpCmd=%buildDir%\tmp.cmd
 
 md %buildDir% >NUL 2>&1

@@ -13,7 +13,7 @@ ifeq ($(config),ci)
   moduletests_config = ci
   devtests_config = ci
   dstw_gen_config = ci
-  dstw_run_config = ci
+  dstw_config = ci
   systemtests_config = ci
   dstw_stop_config = ci
   gcov_app_config = ci
@@ -24,7 +24,7 @@ else ifeq ($(config),debug)
   moduletests_config = debug
   devtests_config = debug
   dstw_gen_config = debug
-  dstw_run_config = debug
+  dstw_config = debug
   systemtests_config = debug
   dstw_stop_config = debug
   gcov_app_config = debug
@@ -34,7 +34,7 @@ else
   $(error "invalid configuration $(config)")
 endif
 
-PROJECTS := cpputest moduletests devtests dstw_gen dstw_run systemtests dstw_stop gcov_app gcov_tests
+PROJECTS := cpputest moduletests devtests dstw_gen dstw systemtests dstw_stop gcov_app gcov_tests
 
 .PHONY: all clean help $(PROJECTS) 
 
@@ -64,10 +64,10 @@ ifneq (,$(dstw_gen_config))
 	@${MAKE} --no-print-directory -C . -f dstw_gen.make config=$(dstw_gen_config)
 endif
 
-dstw_run:
-ifneq (,$(dstw_run_config))
-	@echo "==== Building dstw_run ($(dstw_run_config)) ===="
-	@${MAKE} --no-print-directory -C . -f dstw_run.make config=$(dstw_run_config)
+dstw:
+ifneq (,$(dstw_config))
+	@echo "==== Building dstw ($(dstw_config)) ===="
+	@${MAKE} --no-print-directory -C . -f dstw.make config=$(dstw_config)
 endif
 
 systemtests: cpputest
@@ -99,7 +99,7 @@ clean:
 	@${MAKE} --no-print-directory -C . -f moduletests.make clean
 	@${MAKE} --no-print-directory -C . -f devtests.make clean
 	@${MAKE} --no-print-directory -C . -f dstw_gen.make clean
-	@${MAKE} --no-print-directory -C . -f dstw_run.make clean
+	@${MAKE} --no-print-directory -C . -f dstw.make clean
 	@${MAKE} --no-print-directory -C . -f systemtests.make clean
 	@${MAKE} --no-print-directory -C . -f dstw_stop.make clean
 	@${MAKE} --no-print-directory -C . -f gcov_app.make clean
@@ -119,7 +119,7 @@ help:
 	@echo "   moduletests"
 	@echo "   devtests"
 	@echo "   dstw_gen"
-	@echo "   dstw_run"
+	@echo "   dstw"
 	@echo "   systemtests"
 	@echo "   dstw_stop"
 	@echo "   gcov_app"

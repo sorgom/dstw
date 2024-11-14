@@ -19,6 +19,8 @@ endif
 # #############################################
 
 RESCOMP = windres
+TARGETDIR = ../build/linux/lib
+TARGET = $(TARGETDIR)/libgcov_app.a
 INCLUDES += -I../testing/testenv -I../submodules/cpputest/include -I../submodules/CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
@@ -34,22 +36,18 @@ define POSTBUILDCMDS
 endef
 
 ifeq ($(config),ci)
-TARGETDIR = ../build/linux/ci/lib
-TARGET = $(TARGETDIR)/libgcov_app.a
-OBJDIR = ../build/linux/ci/obj/ci/gcov_app
+OBJDIR = ../build/linux/obj/ci/gcov_app
 DEFINES += -DNDEBUG
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
-ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/ci/lib -s -pthread
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread
 
 else ifeq ($(config),debug)
-TARGETDIR = ../build/linux/debug/lib
-TARGET = $(TARGETDIR)/libgcov_app.a
-OBJDIR = ../build/linux/debug/obj/debug/gcov_app
+OBJDIR = ../build/linux/obj/debug/gcov_app
 DEFINES += -DDEBUG
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall -fprofile-arcs -ftest-coverage
-ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/debug/lib -pthread
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -pthread
 
 endif
 

@@ -19,6 +19,8 @@ endif
 # #############################################
 
 RESCOMP = windres
+TARGETDIR = ../build/linux/lib
+TARGET = $(TARGETDIR)/libcpputest.a
 INCLUDES += -I../submodules/cpputest/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
@@ -34,22 +36,18 @@ define POSTBUILDCMDS
 endef
 
 ifeq ($(config),ci)
-TARGETDIR = ../build/linux/ci/lib
-TARGET = $(TARGETDIR)/libcpputest.a
-OBJDIR = ../build/linux/ci/obj/ci/cpputest
+OBJDIR = ../build/linux/obj/ci/cpputest
 DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/ci/lib -s -pthread
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread
 
 else ifeq ($(config),debug)
-TARGETDIR = ../build/linux/debug/lib
-TARGET = $(TARGETDIR)/libcpputest.a
-OBJDIR = ../build/linux/debug/obj/debug/cpputest
+OBJDIR = ../build/linux/obj/debug/cpputest
 DEFINES += -DDEBUG -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0 -DCPPUTEST_MEM_LEAK_DETECTION_DISABLED
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
-ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/debug/lib -pthread
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -pthread
 
 endif
 

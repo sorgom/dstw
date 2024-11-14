@@ -19,10 +19,14 @@ endif
 # #############################################
 
 RESCOMP = windres
+TARGETDIR = ../build/linux/bin
+TARGET = $(TARGETDIR)/devtests
 INCLUDES += -I../testing/testenv -I../submodules/cpputest/include -I../submodules/CppUTestSteps/TestSteps/include -I../specification -I../application/components -I../devel
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
+LIBS += ../build/linux/lib/libcpputest.a
+LDDEPS += ../build/linux/lib/libcpputest.a
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -32,26 +36,18 @@ define POSTBUILDCMDS
 endef
 
 ifeq ($(config),ci)
-TARGETDIR = ../build/linux/ci/bin
-TARGET = $(TARGETDIR)/devtests
-OBJDIR = ../build/linux/ci/obj/ci/devtests
+OBJDIR = ../build/linux/obj/ci/devtests
 DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-LIBS += ../build/linux/ci/lib/libcpputest.a
-LDDEPS += ../build/linux/ci/lib/libcpputest.a
-ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/ci/lib -s -pthread
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread
 
 else ifeq ($(config),debug)
-TARGETDIR = ../build/linux/debug/bin
-TARGET = $(TARGETDIR)/devtests
-OBJDIR = ../build/linux/debug/obj/debug/devtests
+OBJDIR = ../build/linux/obj/debug/devtests
 DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
-LIBS += ../build/linux/debug/lib/libcpputest.a
-LDDEPS += ../build/linux/debug/lib/libcpputest.a
-ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/debug/lib -pthread
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -pthread
 
 endif
 

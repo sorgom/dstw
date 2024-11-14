@@ -17,7 +17,7 @@ for %%t in (dstw_gen dstw_stop systemtests) do (
     call %myDir%\_covbuild.cmd --off %%t
     if %errorlevel% NEQ 0 exit /b 1
 )
-call %myDir%\_covbuild.cmd --on dstw_run
+call %myDir%\_covbuild.cmd --on dstw
 if %errorlevel% NEQ 0 exit /b 1
 
 cd /d %buildDir%
@@ -29,16 +29,16 @@ set /a "myID=%random%"
 set tmpFile=%buildDir%\run.%myID%.tmp
 
 echo - launch application
-start /B %myDir%\_runapp.cmd
+start /B %myDir%\_runapp.cmd dstw
 
 echo - wait
 timeout /t 5 /nobreak >NUL 2>&1
 echo - run tests
-call %exeDir%\systemtests.exe -b -v > %testReport% 2>&1
+%exeDir%\systemtests.exe -b -v > %testReport% 2>&1
 if %errorlevel% == 0 del %testReport%
 
 echo - stop application ...
-call %exeDir%\dstw_stop.exe
+%exeDir%\dstw_stop.exe
 
 :wait
 timeout /t 1 /nobreak >NUL 2>&1

@@ -5,31 +5,31 @@
 #   created by Manfred Sorgo
 
 cd $(dirname $0)
+myDir=$(pwd)
+cd ..
+buildDir=$(pwd)/build
+bindir=linux/bin
+
+cd $myDir
+make -j dstw dstw_gen  dstw_stop systemtests
+
+cd $buildDir
 ret=0
-bins="dstw_gen dstw_run systemtests_run systemtests_stop"
-for bin in $bins; do
-    if test ! -f bin/$bin; then 
-        echo "bin/$bin not found"
-        ret+=(1)
-    fi
-done
 
-if test $ret -ne 0; then exit $ret; fi
-
-bin/systemtests_stop
+$bindir/dstw_stop
 sleep 1
 
 #   gen required proj data file
-bin/dstw_gen
+$bindir/dstw_gen
 #   start app in background
-bin/dstw_run 1 & pid=$!
-sleep 1
+$bindir/dstw X & pid=$!
+sleep 2
 #   run tests
-bin/systemtests_run -b -v
+$bindir/systemtests -b -v
 ret=$((ret+$?))
 
 #   stop app
-bin/systemtests_stop
+$bindir/dstw_stop
 
 if ! wait $pid; then
     ret=$((ret+1))

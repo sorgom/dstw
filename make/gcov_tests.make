@@ -19,10 +19,14 @@ endif
 # #############################################
 
 RESCOMP = windres
+TARGETDIR = ../build/linux/bin
+TARGET = $(TARGETDIR)/gcov_tests
 INCLUDES += -I../testing/testenv -I../submodules/cpputest/include -I../submodules/CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
+LIBS += ../build/linux/lib/libgcov_app.a ../build/linux/lib/libcpputest.a -lgcov
+LDDEPS += ../build/linux/lib/libgcov_app.a ../build/linux/lib/libcpputest.a
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -32,26 +36,18 @@ define POSTBUILDCMDS
 endef
 
 ifeq ($(config),ci)
-TARGETDIR = ../build/linux/ci/bin
-TARGET = $(TARGETDIR)/gcov_tests
-OBJDIR = ../build/linux/ci/obj/ci/gcov_tests
+OBJDIR = ../build/linux/obj/ci/gcov_tests
 DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
-LIBS += ../build/linux/ci/lib/libgcov_app.a ../build/linux/ci/lib/libcpputest.a -lgcov
-LDDEPS += ../build/linux/ci/lib/libgcov_app.a ../build/linux/ci/lib/libcpputest.a
-ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/ci/lib -s -pthread --coverage
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread --coverage
 
 else ifeq ($(config),debug)
-TARGETDIR = ../build/linux/debug/bin
-TARGET = $(TARGETDIR)/gcov_tests
-OBJDIR = ../build/linux/debug/obj/debug/gcov_tests
+OBJDIR = ../build/linux/obj/debug/gcov_tests
 DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
-LIBS += ../build/linux/debug/lib/libgcov_app.a ../build/linux/debug/lib/libcpputest.a -lgcov
-LDDEPS += ../build/linux/debug/lib/libgcov_app.a ../build/linux/debug/lib/libcpputest.a
-ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/debug/lib -pthread --coverage
+ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -pthread --coverage
 
 endif
 
