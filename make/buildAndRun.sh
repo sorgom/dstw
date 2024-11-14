@@ -16,6 +16,9 @@ tot=0
 for bin in $bindir/*; do
 echo ==== $(basename $bin)
 $bin
-tot=$((tot+$?))
+ret=$?
+echo return: $ret
+tot=$((tot+ret))
 done
+if test $tot -eq 0; then echo OK; fi
 exit $tot

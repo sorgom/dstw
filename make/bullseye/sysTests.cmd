@@ -17,7 +17,7 @@ for %%t in (dstw_gen dstw_stop systemtests) do (
     call %myDir%\_covbuild.cmd --off %%t
     if %errorlevel% NEQ 0 exit /b 1
 )
-call %myDir%\_covbuild.cmd --on dstw
+call %myDir%\_covbuild.cmd --on dstw_runtime
 if %errorlevel% NEQ 0 exit /b 1
 
 cd /d %buildDir%
@@ -29,7 +29,7 @@ set /a "myID=%random%"
 set tmpFile=%buildDir%\run.%myID%.tmp
 
 echo - launch application
-start /B %myDir%\_runapp.cmd dstw
+start /B %myDir%\_runapp.cmd dstw_runtime
 
 echo - wait
 timeout /t 5 /nobreak >NUL 2>&1

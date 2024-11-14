@@ -120,7 +120,7 @@ workspace 'DSTW'
 
     --  run second in background
     --  must be unstrumented for coverage
-    project 'dstw'
+    project 'dstw_runtime'
         files { files_app, '../application/main/*.cpp' }
         includedirs { includedirs_app }
 

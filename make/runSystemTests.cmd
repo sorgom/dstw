@@ -4,34 +4,33 @@ rem run system tests in windows
 rem ====================================
 rem created by ChatGPT
 SETLOCAL
-cd /d "%~dp0"
-set ret=0
-set bins=dstw_gen.exe dstw_run.exe systemtests_run.exe dstw_stop.exe
-for %%I in (%bins%) do (
-    if not exist exe\%%I (
-        echo not found: exe\%%I
-        set /a ret+=1
-    )
-)
-
-if %ret% neq 0 exit /b %ret%
+cd /d %~dp0
+set myDir=%cd%
+cd ..
+set buildDir=%cd%\build
+set bindir=windows\bin
+cd %myDir%
+msbuild DSTW.sln -t:dstw_gen,dstw_runtime,systemtests,dstw_stop
+if %errorlevel% neq 0 exit /b %errorlevel%
 
 set tmpfile=tmp_%random%.txt
 
-exe\dstw_stop.exe
+cd %buildDir%
+
+%binDir%\dstw_stop.exe
 timeout /t 1 /nobreak >nul
 
 rem gen required proj data file
-exe\dstw_gen.exe
+%binDir%\dstw_gen.exe
 rem start app in background
 echo run > %tmpfile%
-start /B runSub.cmd %tmpfile% exe\dstw_run.exe 1
+start /B %myDir%\runSub.cmd %tmpfile% %binDir%\dstw_runtime.exe 1
 rem run tests after a second
 timeout /t 1 /nobreak >nul
-exe\systemtests_run.exe -b -v
+%binDir%\systemtests.exe -b -v
 set ret=%errorlevel%
 rem stop app anyway
-exe\dstw_stop.exe
+%binDir%\dstw_stop.exe
 :wait
 timeout /t 1 /nobreak >nul
 if exist %tmpfile% goto wait

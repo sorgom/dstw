@@ -11,7 +11,7 @@ buildDir=$(pwd)/build
 bindir=linux/bin
 
 cd $myDir
-make -j dstw dstw_gen  dstw_stop systemtests
+make -j dstw_gen dstw_runtime dstw_stop systemtests
 
 cd $buildDir
 ret=0
@@ -22,7 +22,7 @@ sleep 1
 #   gen required proj data file
 $bindir/dstw_gen
 #   start app in background
-$bindir/dstw X & pid=$!
+$bindir/dstw_runtime X & pid=$!
 sleep 2
 #   run tests
 $bindir/systemtests -b -v
