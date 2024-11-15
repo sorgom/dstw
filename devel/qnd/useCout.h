@@ -11,12 +11,9 @@
 
 #include <iostream>
 #include <iomanip>
-using std::ostream;
-using std::cout;
-using std::endl;
-using std::setw;
-using std::left;
-using std::setfill;
+using std::ostream, std::cout, std::endl;
+#include <iomanip>
+using std::setw, std::left, std::right, std::setfill, std::hex;
 
 #include <cstdio>
 

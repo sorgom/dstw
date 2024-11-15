@@ -16,11 +16,11 @@
 
 //  communication telegrams
 //  Com telegrams element identifier
-constexpr auto ComNameSize = 12;
+constexpr auto ComAddrSize = 12;
 
 struct ComAddr
 {
-    CHAR chars[ComNameSize];
+    CHAR chars[ComAddrSize];
     inline ComAddr() = default;
     inline ComAddr(const ComAddr& src)
     {
@@ -32,10 +32,10 @@ struct ComAddr
     }
 };
 
-static_assert(ComNameSize == sizeof(ComAddr));
+static_assert(ComAddrSize == sizeof(ComAddr));
 
 //  standard telegram size
-constexpr auto ComTelegramSize = ComNameSize + 8;
+constexpr auto ComTelegramSize = ComAddrSize + 8;
 
 constexpr auto ComDataSize = 8;
 
@@ -60,7 +60,7 @@ struct ComTele
     ComData data;
 };
 
-static_assert(ComNameSize + ComDataSize == sizeof(ComTele));
+static_assert(ComAddrSize + ComDataSize == sizeof(ComTele));
 
 //  project items
 struct ProjItem
@@ -69,7 +69,7 @@ struct ProjItem
     UINT8 type;
     UINT8 reserve[7];
 };
-static_assert(ComNameSize + 8 == sizeof(ProjItem));
+static_assert(ComAddrSize + 8 == sizeof(ProjItem));
 
 //  Com TCP setup
 struct ComSetup
@@ -98,4 +98,9 @@ struct PosRes
     {}
     NODEF(PosRes)
 };
+
+//  byte array
+template <size_t N>
+using ByteArray = UINT8[N];
+
 #endif // _H

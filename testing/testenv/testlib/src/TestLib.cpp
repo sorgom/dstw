@@ -15,7 +15,7 @@ namespace test
 
     void genComAddr(ComAddr& cAddr, UINT32 num, CONST_C_STRING addr)
     {
-        std::memset(cAddr.chars, ' ', ComNameSize);
+        std::memset(cAddr.chars, ' ', ComAddrSize);
         static CHAR buf[sizeof(ComAddr) + 1];
         const int sz = std::snprintf(buf, sizeof(buf), "%s %03u ", addr, num);
         if (sz > 0)
