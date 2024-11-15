@@ -150,48 +150,4 @@ private:
     }
 };
 
-
-// class Net
-// {
-// public:
-//     //  store host byte order numerical type
-//     //  into network byte order byte array
-//     template <typename NUM>
-//     static void toN(ByteArrayFor<NUM>& b, const NUM n)
-//     {
-//         toNet(b, n);
-//     }
-
-//     //  retrieve host byte order numerical type
-//     //  from network byte order byte array
-//     template <typename NUM>
-//     static void toH(NUM& n, const ByteArrayFor<NUM>& b)
-//     {
-//         toHost(n, b);
-//     }
-
-// private:
-//     template <typename NUM>
-//     static void toNet(UINT8* b, const NUM n)
-//     {
-//         static_assert(std::is_integral_v<NUM>);
-//         size_t j = sizeof(NUM) - 1;
-//         for (size_t i = 0; i < sizeof(NUM); ++i, --j)
-//         {
-//             b[j] = static_cast<BYTE>(n >> (i * 8));
-//         }
-//     }
-//     template <typename NUM>
-//     static void toHost(NUM& n, const UINT8* b)
-//     {
-//         static_assert(std::is_integral_v<NUM>);
-//         n = 0;
-//         size_t j = sizeof(NUM) - 1;
-//         for (size_t i = 0; i < sizeof(NUM); ++i, --j)
-//         {
-//             n |= static_cast<NUM>(b[j]) << (i * 8);
-//         }
-//     }
-// };
-
 #endif // _H
