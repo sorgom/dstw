@@ -1,12 +1,12 @@
 # current bullseye coverage
-14.11.2024
+16.11.2024
 
 ### modTests
 ```
 Directory                        Function Coverage      C/D Coverage
 -------------------------------  -----------------  ----------------
-application/components/           144 / 144 = 100%  315 / 316 =  99%
-application/components/BAS/        27 /  27 = 100%   39 /  39 = 100%
+application/components/           158 / 158 = 100%  319 / 320 =  99%
+application/components/BAS/        41 /  41 = 100%   43 /  43 = 100%
 application/components/BAS/src/     1 /   1 = 100%   14 /  14 = 100%
 application/components/COM/        40 /  40 = 100%   79 /  80 =  98%
 application/components/COM/src/    39 /  39 = 100%   79 /  80 =  98%
@@ -22,7 +22,7 @@ specification/                      5 /   5 = 100%    0 /   0
 specification/codebase/             2 /   2 = 100%    0 /   0
 specification/ifs/                  3 /   3 = 100%    0 /   0
 -------------------------------  -----------------  ----------------
-Total                             149 / 149 = 100%  315 / 316 =  99%
+Total                             163 / 163 = 100%  319 / 320 =  99%
 covmin 100,99 passed
 ```
 
@@ -30,9 +30,9 @@ covmin 100,99 passed
 ```
 Directory                        Function Coverage      C/D Coverage
 -------------------------------  -----------------  ----------------
-application/                      114 / 159 =  71%  107 / 322 =  33%
-application/components/           113 / 158 =  71%  104 / 316 =  32%
-application/components/BAS/        21 /  27 =  77%   30 /  39 =  76%
+application/                      114 / 173 =  65%  107 / 326 =  32%
+application/components/           113 / 172 =  65%  104 / 320 =  32%
+application/components/BAS/        21 /  41 =  51%   30 /  43 =  69%
 application/components/BAS/src/     1 /   1 = 100%    9 /  14 =  64%
 application/components/COM/        39 /  40 =  97%   49 /  80 =  61%
 application/components/COM/src/    38 /  39 =  97%   49 /  80 =  61%
@@ -49,6 +49,6 @@ specification/                      5 /   5 = 100%    0 /   0
 specification/codebase/             2 /   2 = 100%    0 /   0
 specification/ifs/                  3 /   3 = 100%    0 /   0
 -------------------------------  -----------------  ----------------
-Total                             119 / 164 =  72%  107 / 322 =  33%
+Total                             119 / 178 =  66%  107 / 326 =  32%
 covmin 50,30 passed
 ```
