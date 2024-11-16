@@ -8,6 +8,8 @@
 #include "M_Base.h"
 #include <TCP/TCP_Client.h>
 #include <ifs/DataTypes.h>
+#include <chrono>
+#include <thread>
 
 namespace test
 {
@@ -39,9 +41,14 @@ namespace test
             L_CHECK_TRUE(ok)
         }
 
-        inline void connect(UINT16 port)
+        inline void connect(UINT16 port, UINT16 timeout = 5)
         {
-            const bool ok = mClient.connect(port);
+            bool ok = false;
+            for (UINT16 i = 0; (not ok) and i < timeout * 2; ++i)
+            {
+                ok = mClient.connect(port);
+                if (not ok) std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            }
             L_CHECK_TRUE(ok)
         }
 

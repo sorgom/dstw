@@ -32,6 +32,8 @@ namespace test
         template <typename NUM, size_t P>
         inline void comTest(const NUM n1)
         {
+            SUBSTEPS()
+            STEP(1)
             // to net & back
             TestData data;
             Net::toN<P>(data, n1);
@@ -40,14 +42,23 @@ namespace test
             L_CHECK_EQUAL(n1, n2);
 
             //  check other bytes untouched
+            STEP(2)
+            SUBSTEPS()
             for (size_t i = 0; i < P; ++i)
             {
+                STEP(i)
                 L_CHECK_EQUAL(PARAM_UNDEF, data[i]);
             }
+            ENDSTEPS()
+            STEP(1)
+            SUBSTEPS()
             for (size_t i = P + sizeof(NUM); i < sizeof(ComData); ++i)
             {
+                STEP(i)
                 L_CHECK_EQUAL(PARAM_UNDEF, data[i]);
             }
+            ENDSTEPS()
+            ENDSTEPS()
         }
     };
 

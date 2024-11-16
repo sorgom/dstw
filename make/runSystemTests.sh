@@ -23,7 +23,6 @@ sleep 1
 $bindir/dstw_gen
 #   start app in background
 $bindir/dstw_runtime X & pid=$!
-sleep 2
 #   run tests
 $bindir/systemtests -b -v
 ret=$((ret+$?))

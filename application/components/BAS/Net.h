@@ -108,45 +108,49 @@ private:
     // net byte positions for 32 bit values
     static const size_t pn40, pn41, pn42, pn43;
 
+    template <typename NUM>
+    constexpr static void check()
+    {
+        static_assert(std::is_integral_v<NUM>);
+        static_assert(sizeof(NUM) == 2 or sizeof(NUM) == 4);
+    }
 
     template <typename NUM>
     static void toNet(UINT8* b, const NUM n)
     {
-        static_assert(std::is_integral_v<NUM>);
+        check<NUM>();
         const UINT8* p = reinterpret_cast<const UINT8*>(&n);
         if constexpr (sizeof(NUM) == 2)
         {
             b[pn20] = p[0];
             b[pn21] = p[1];
         }
-        else if constexpr (sizeof(NUM) == 4)
+        else
         {
             b[pn40] = p[0];
             b[pn41] = p[1];
             b[pn42] = p[2];
             b[pn43] = p[3];
         }
-        // TODO: else exception
     }
 
     template <typename NUM>
     static void toHost(NUM& n, const UINT8* b)
     {
-        static_assert(std::is_integral_v<NUM>);
+        check<NUM>();
         UINT8* p = reinterpret_cast<UINT8*>(&n);
         if constexpr (sizeof(NUM) == 2)
         {
             p[0] = b[pn20];
             p[1] = b[pn21];
         }
-        else if constexpr (sizeof(NUM) == 4)
+        else
         {
             p[0] = b[pn40];
             p[1] = b[pn41];
             p[2] = b[pn42];
             p[3] = b[pn43];
         }
-        // TODO: else exception
     }
 };
 
