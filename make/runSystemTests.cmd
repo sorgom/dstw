@@ -10,16 +10,14 @@ cd ..
 set buildDir=%cd%\build
 set bindir=windows\bin
 cd %myDir%
+echo - build
 msbuild DSTW.sln -t:dstw_gen,dstw_runtime,systemtests,dstw_stop >NUL
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 set tmpfile=tmp_%random%.txt
 
 cd %buildDir%
-
-%binDir%\dstw_stop.exe
-timeout /t 1 /nobreak >nul
-
+echo - run
 rem gen required proj data file
 %binDir%\dstw_gen.exe
 rem start app in background
@@ -30,8 +28,10 @@ rem run tests
 set ret=%errorlevel%
 rem stop app anyway
 %binDir%\dstw_stop.exe
+goto check
 :wait
-timeout /t 1 /nobreak >nul
+timeout /t 1 /nobreak >NUL
+:check
 if exist %tmpfile% goto wait
 
 exit /b %ret%
