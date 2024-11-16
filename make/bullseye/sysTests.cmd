@@ -31,8 +31,6 @@ set tmpFile=%buildDir%\run.%myID%.tmp
 echo - launch application
 start /B %myDir%\_runapp.cmd dstw_runtime
 
-echo - wait
-timeout /t 5 /nobreak >NUL 2>&1
 echo - run tests
 %exeDir%\systemtests.exe -b -v > %testReport% 2>&1
 if %errorlevel% == 0 del %testReport%

@@ -16,24 +16,9 @@ inline const ByteArray<N>& getn(const T& obj)
     return *(reinterpret_cast<const ByteArray<N>*>(&obj) + P);
 }
 
-//  get non const byte subset of an object
-template <class T, size_t N, size_t P=0>
-inline ByteArray<N>& getm(T& obj)
-{
-    static_assert(P + N <= sizeof(T));
-    return *(reinterpret_cast<ByteArray<N>*>(&obj) + P);
-}
-
 //  get byte subset of ComData
 template <size_t N, size_t P=0>
 inline const ByteArray<N>& getn(const ComData& obj)
-{
-    return getn<ComData, N, P>(obj);
-}
-
-//  get byte subset of ComData (non const)
-template <size_t N, size_t P=0>
-inline const ByteArray<N>& getm(ComData& obj)
 {
     return getn<ComData, N, P>(obj);
 }
