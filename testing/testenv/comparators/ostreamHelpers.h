@@ -37,15 +37,15 @@
 
 //  output line for standard types
 #define DOUT(NAME) \
-    OUT_BEGIN(NAME) << d.NAME << std::endl
+    OUT_BEGIN(NAME) << d.NAME << '\n'
 
 //  output line for fixed character types
 #define DFIX(NAME) \
-    OUT_BEGIN(NAME) << fixT(d.NAME) << std::endl
+    OUT_BEGIN(NAME) << fixT(d.NAME) << '\n'
 
 //  output line for UINT8 arrays
 #define DU8X(NAME) \
-    OUT_BEGIN(NAME) << fixU(d.NAME) << std::endl
+    OUT_BEGIN(NAME) << fixU(d.NAME) << '\n'
 
 //  helper struct for fixed array types
 template <typename T>

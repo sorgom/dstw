@@ -6,6 +6,6 @@ namespace test
     std::ostream& ComparatorBase::begin()
     {
         mStream.str("");
-        return mStream << std::endl;
+        return mStream << '\n';
     }
 }

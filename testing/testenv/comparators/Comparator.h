@@ -41,7 +41,7 @@ namespace test
 
         SimpleString valueToString(CPTR ptr)
         {
-            begin() << std::endl << *reinterpret_cast<const T*>(ptr);
+            begin() << '\n' << *reinterpret_cast<const T*>(ptr);
             //  content is copied by CppUTest
             //  cppcheck-suppress returnDanglingLifetime
             return mStream.str().c_str();
