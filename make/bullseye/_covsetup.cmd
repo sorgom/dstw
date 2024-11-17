@@ -15,6 +15,7 @@ set ReportsDir=%cd%\reports
 set myReportsDir=%reportsDir%\%_me%
 
 set binDir=%subsDir%\sombin
+set pyDir=%subsDir%\sompy
 set vsSolution=%makeDir%\DSTW.sln
 set exeDir=%buildDir%\windows\bin
 set buildLog=%myReportsDir%\build.txt

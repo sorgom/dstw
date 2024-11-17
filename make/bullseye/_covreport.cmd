@@ -26,7 +26,7 @@ cd %dstwDir%
 if %_gentodo% (
     echo - todo
     covbr -qu --srcdir . > %covTodoTxt%
-    %binDir%\covbr2html.exe -co %myReportsDir% %covTodoTxt%
+    %pyDir%\covbr2html\covbr2html.py -co %myReportsDir% %covTodoTxt%
 )
 if %_genmd% call %myDir%\_cov2md.cmd
 
