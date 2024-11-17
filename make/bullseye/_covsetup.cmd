@@ -14,7 +14,6 @@ set subsDir=%cd%\submodules
 set ReportsDir=%cd%\reports
 set myReportsDir=%reportsDir%\%_me%
 
-set binDir=%subsDir%\sombin
 set pyDir=%subsDir%\sompy
 set vsSolution=%makeDir%\DSTW.sln
 set exeDir=%buildDir%\windows\bin
@@ -34,7 +33,8 @@ set tmpCmd=%buildDir%\tmp.cmd
 
 md %buildDir% >NUL 2>&1
 
-%binDir%\docopts.exe %optsTxt% %* > %tmpCmd%
+%pyDir%\somutil\docopts.py %optsTxt% %* > %tmpCmd%
+if %errorlevel% NEQ 0 exit /b 1
 call %tmpCmd%
 
 if not exist %covfile% set _c=1==1
