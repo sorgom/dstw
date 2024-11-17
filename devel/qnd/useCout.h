@@ -11,10 +11,10 @@
 
 #include <iostream>
 #include <iomanip>
-using std::ostream, std::cout, std::endl;
+using std::ostream, std::cout;
 #include <iomanip>
 using std::setw, std::left, std::right, std::setfill, std::hex;
 
 #include <cstdio>
 
-#define TRACEVAR(VAR) cout << #VAR << ": " << VAR << endl;
+#define TRACEVAR(VAR) cout << #VAR << ": " << VAR << '\n';

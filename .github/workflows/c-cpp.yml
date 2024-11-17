@@ -6,9 +6,9 @@ name: DSTW CI
 
 on:
   push:
-    branches: [ "dev_98", "dev_20", "release" ]
+    branches: [ "dev", "dev_98" ]
   pull_request:
-    branches: [ "dev_98", "dev_20", "release" ]
+    branches: [ "dev", "dev_98" ]
 
 jobs:
   buildAndRunAll:

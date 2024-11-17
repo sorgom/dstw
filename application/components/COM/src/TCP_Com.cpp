@@ -2,8 +2,6 @@
 #include <SYS/IL.h>
 #include <BAS/coverage.h>
 
-using std::endl;
-
 std::ostream& TCP_Com_Base::comerr()
 {
     return IL::getLog().log(COMP_COM, RET_ERR_COM) << "E ";
@@ -20,17 +18,17 @@ bool Tcp_Listener_Base::listen(const UINT16 port)
     if (mSocket < 0)
     {
         ok = false;
-        comerr() << "socket " << port << endl;
+        comerr() << "socket " << port << '\n';
     }
     else if (not tcp.bind(mSocket, port))
     {
         ok = false;
-        comerr() << "bind " << port << endl;
+        comerr() << "bind " << port << '\n';
     }
     else if (not tcp.listen(mSocket))
     {
         ok = false;
-        comerr() << "listen " << port << endl;
+        comerr() << "listen " << port << '\n';
     }
 
     if (not ok)
@@ -50,7 +48,7 @@ bool Tcp_Listener_Base::select()
 
     if (not ok)
     {
-        comerr() << "select" << endl;
+        comerr() << "select" << '\n';
         tcp.close(mSocket);
     }
     return ok;
@@ -93,7 +91,7 @@ bool TCP_Con_Base::accept(const INT32 socket)
     }
     else
     {
-        comerr() << "accept" << endl;
+        comerr() << "accept" << '\n';
     }
     return ok;
 }
@@ -136,7 +134,7 @@ bool TCP_Con_Base::select()
     }
     if (not ok)
     {
-        comerr() << "select" << endl;
+        comerr() << "select" << '\n';
     }
     return ok;
 }

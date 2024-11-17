@@ -9,7 +9,3 @@
 	path = submodules/sompy
 	url = git@github.com:sorgom/sompy.git
 	branch = dev
-[submodule "sombin"]
-	path = submodules/sombin
-	url = git@github.com:sorgom/sombin.git
-	branch = dev
