@@ -20,13 +20,13 @@ endif
 
 RESCOMP = windres
 TARGETDIR = ../build/linux/bin
-TARGET = $(TARGETDIR)/gcov_tests
+TARGET = $(TARGETDIR)/gcovtests
 INCLUDES += -I../testing/testenv -I../submodules/cpputest/include -I../submodules/CppUTestSteps/TestSteps/include -I../specification -I../application/components
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-LIBS += ../build/linux/lib/libgcov_app.a ../build/linux/lib/libcpputest.a -lgcov
-LDDEPS += ../build/linux/lib/libgcov_app.a ../build/linux/lib/libcpputest.a
+LIBS += ../build/linux/lib/libgcovapp.a ../build/linux/lib/libcpputest.a -lgcov
+LDDEPS += ../build/linux/lib/libgcovapp.a ../build/linux/lib/libcpputest.a
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -36,14 +36,14 @@ define POSTBUILDCMDS
 endef
 
 ifeq ($(config),ci)
-OBJDIR = ../build/linux/obj/ci/gcov_tests
+OBJDIR = ../build/linux/obj/ci/gcovtests
 DEFINES += -DNDEBUG -DCPPUTEST_USE_LONG_LONG=0
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -std=c++17 -pedantic-errors -Werror -Wall
 ALL_LDFLAGS += $(LDFLAGS) -L../build/linux/lib -s -pthread --coverage
 
 else ifeq ($(config),debug)
-OBJDIR = ../build/linux/obj/debug/gcov_tests
+OBJDIR = ../build/linux/obj/debug/gcovtests
 DEFINES += -DDEBUG -DCPPUTEST_USE_LONG_LONG=0
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17 -pedantic-errors -Werror -Wall
@@ -122,7 +122,7 @@ all: $(TARGET)
 
 $(TARGET): $(GENERATED) $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking gcov_tests
+	@echo Linking gcovtests
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -143,7 +143,7 @@ else
 endif
 
 clean:
-	@echo Cleaning gcov_tests
+	@echo Cleaning gcovtests
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(GENERATED)

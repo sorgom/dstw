@@ -16,8 +16,8 @@ ifeq ($(config),ci)
   dstw_runtime_config = ci
   systemtests_config = ci
   dstw_stop_config = ci
-  gcov_app_config = ci
-  gcov_tests_config = ci
+  gcovapp_config = ci
+  gcovtests_config = ci
 
 else ifeq ($(config),debug)
   cpputest_config = debug
@@ -27,14 +27,14 @@ else ifeq ($(config),debug)
   dstw_runtime_config = debug
   systemtests_config = debug
   dstw_stop_config = debug
-  gcov_app_config = debug
-  gcov_tests_config = debug
+  gcovapp_config = debug
+  gcovtests_config = debug
 
 else
   $(error "invalid configuration $(config)")
 endif
 
-PROJECTS := cpputest moduletests devtests dstw_gen dstw_runtime systemtests dstw_stop gcov_app gcov_tests
+PROJECTS := cpputest moduletests devtests dstw_gen dstw_runtime systemtests dstw_stop gcovapp gcovtests
 
 .PHONY: all clean help $(PROJECTS) 
 
@@ -82,16 +82,16 @@ ifneq (,$(dstw_stop_config))
 	@${MAKE} --no-print-directory -C . -f dstw_stop.make config=$(dstw_stop_config)
 endif
 
-gcov_app:
-ifneq (,$(gcov_app_config))
-	@echo "==== Building gcov_app ($(gcov_app_config)) ===="
-	@${MAKE} --no-print-directory -C . -f gcov_app.make config=$(gcov_app_config)
+gcovapp:
+ifneq (,$(gcovapp_config))
+	@echo "==== Building gcovapp ($(gcovapp_config)) ===="
+	@${MAKE} --no-print-directory -C . -f gcovapp.make config=$(gcovapp_config)
 endif
 
-gcov_tests: gcov_app cpputest
-ifneq (,$(gcov_tests_config))
-	@echo "==== Building gcov_tests ($(gcov_tests_config)) ===="
-	@${MAKE} --no-print-directory -C . -f gcov_tests.make config=$(gcov_tests_config)
+gcovtests: gcovapp cpputest
+ifneq (,$(gcovtests_config))
+	@echo "==== Building gcovtests ($(gcovtests_config)) ===="
+	@${MAKE} --no-print-directory -C . -f gcovtests.make config=$(gcovtests_config)
 endif
 
 clean:
@@ -102,8 +102,8 @@ clean:
 	@${MAKE} --no-print-directory -C . -f dstw_runtime.make clean
 	@${MAKE} --no-print-directory -C . -f systemtests.make clean
 	@${MAKE} --no-print-directory -C . -f dstw_stop.make clean
-	@${MAKE} --no-print-directory -C . -f gcov_app.make clean
-	@${MAKE} --no-print-directory -C . -f gcov_tests.make clean
+	@${MAKE} --no-print-directory -C . -f gcovapp.make clean
+	@${MAKE} --no-print-directory -C . -f gcovtests.make clean
 
 help:
 	@echo "Usage: make [config=name] [target]"
@@ -122,7 +122,7 @@ help:
 	@echo "   dstw_runtime"
 	@echo "   systemtests"
 	@echo "   dstw_stop"
-	@echo "   gcov_app"
-	@echo "   gcov_tests"
+	@echo "   gcovapp"
+	@echo "   gcovtests"
 	@echo ""
 	@echo "For more information, see https://github.com/premake/premake-core/wiki"

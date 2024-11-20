@@ -43,17 +43,19 @@ files_moduletest = { '../testing/tests/moduletests/**.cpp' }
 workspace 'DSTW'
     configurations { 'ci', 'debug' }
     language 'C++'
-    targetdir '../build/%{_TARGET_OS}/bin'
+    targetdir '../build/%{_TARGET_OS}'
     objdir  '../build/%{_TARGET_OS}/obj'
     kind 'ConsoleApp'
     libdirs { '../build/%{_TARGET_OS}/lib' }
 
     filter { 'action:vs*' }
+        targetdir '../build/%{_TARGET_OS}'
         buildoptions { buildoptions_vs_test }
         links { 'ws2_32' }
         warnings 'high'
 
     filter { 'action:gmake*' }
+        targetdir '../build/%{_TARGET_OS}/bin'
         buildoptions { buildoptions_gcc }
         linkoptions { '-pthread' }
 
@@ -143,7 +145,7 @@ workspace 'DSTW'
         }
         includedirs { includedirs_test }
 
-    project 'gcov_app'
+    project 'gcovapp'
         filter { 'action:vs*' }
 
         filter { 'action:gmake*' }
@@ -153,12 +155,12 @@ workspace 'DSTW'
             files { files_app }
             buildoptions {'-fprofile-arcs -ftest-coverage' }
 
-    project 'gcov_tests'
+    project 'gcovtests'
         filter { 'action:vs*' }
 
         filter { 'action:gmake*' }
             files { files_testenv, files_moduletest }
             includedirs { includedirs_test }
             defines { defines_test }
-            links { 'gcov_app', 'gcov', 'cpputest' }
+            links { 'gcovapp', 'gcov', 'cpputest' }
             linkoptions { '--coverage' }
