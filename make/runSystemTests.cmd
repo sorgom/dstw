@@ -8,7 +8,7 @@ cd /d %~dp0
 set myDir=%cd%
 cd ..
 set buildDir=%cd%\build
-set bindir=windows\bin
+set bindir=windows
 cd %myDir%
 echo - build
 msbuild DSTW.sln -t:dstw_gen,dstw_runtime,systemtests,dstw_stop >NUL

@@ -8,15 +8,15 @@ cd ..
 repo=$(pwd)
 appDir=../application/components
 buildDir=$repo/build
-objDir=linux/obj/debug/gcov_app
+objDir=linux/obj/debug/gcovapp
 bindir=$buildDir/linux/bin
 
 cd $myDir
-make -j config=debug gcov_app gcov_tests
+make -j config=debug gcovapp gcovtests
 
 cd $buildDir
 rm -f *.gcov
-$bindir/gcov_tests > /dev/null
+$bindir/gcovtests > /dev/null
 gcov -o $objDir $appDir/*/src/*.cpp > /dev/null 2> /dev/null
 
 out () {
