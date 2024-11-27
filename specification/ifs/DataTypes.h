@@ -3,7 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef DATATYPES_H
 #define DATATYPES_H
 

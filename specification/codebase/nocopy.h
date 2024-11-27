@@ -2,7 +2,6 @@
 //  block any copying
 //  ============================================================
 //  created by Manfred Sorgo
-#pragma once
 #ifndef NOCOPY_H
 #define NOCOPY_H
 

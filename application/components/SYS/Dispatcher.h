@@ -2,7 +2,6 @@
 //  Dispatcher implements I_Dispatcher
 //  ============================================================
 //  created by Manfred Sorgo
-#pragma once
 #ifndef DISPATCHER_H
 #define DISPATCHER_H
 

@@ -14,7 +14,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef GENPROJDATA_H
+#define GENPROJDATA_H
 
 #include <ifs/DataTypes.h>
 #include <testlib/testValues.h>
@@ -151,3 +152,4 @@ namespace test
         }
     };
 } // namespace
+#endif // _H

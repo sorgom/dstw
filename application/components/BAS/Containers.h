@@ -3,7 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef CONTAINERS_H
 #define CONTAINERS_H
 

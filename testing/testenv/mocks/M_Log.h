@@ -2,7 +2,8 @@
 //  mock for interface Log
 //  ============================================================
 //  created by Manfred Sorgo
-#pragma once
+#ifndef M_LOG_H
+#define M_LOG_H
 
 #include <ifs/I_Log.h>
 #include "M_Base.h"
@@ -39,3 +40,4 @@ namespace test
         NullStream mStream;
     };
 }
+#endif // _H

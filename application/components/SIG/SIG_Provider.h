@@ -3,7 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef SIG_PROVIDER_H
 #define SIG_PROVIDER_H
 

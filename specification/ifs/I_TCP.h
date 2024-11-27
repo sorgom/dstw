@@ -3,7 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef I_TCP_H
 #define I_TCP_H
 

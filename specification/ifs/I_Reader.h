@@ -7,7 +7,6 @@
 //  -   call indexing of I_Dispatcher
 //  ============================================================
 //  created by Manfred Sorgo
-#pragma once
 #ifndef I_READER_H
 #define I_READER_H
 

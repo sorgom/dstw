@@ -3,7 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef LCR_PROVIDER_H
 #define LCR_PROVIDER_H
 

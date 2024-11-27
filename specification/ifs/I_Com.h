@@ -4,7 +4,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef I_COM_H
 #define I_COM_H
 

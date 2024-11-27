@@ -6,7 +6,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef I_ELEM_H
 #define I_ELEM_H
 

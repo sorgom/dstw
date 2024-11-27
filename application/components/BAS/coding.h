@@ -2,7 +2,6 @@
 //  misc coding enhancers
 //  ============================================================
 //  created by Manfred Sorgo
-#pragma once
 #ifndef CODING_H
 #define CODING_H
 

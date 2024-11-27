@@ -3,9 +3,8 @@
 //  see: https://en.wikipedia.org/wiki/Endianness
 //  ============================================================
 //  created by Manfred Sorgo
-#pragma once
-#ifndef BAS_NET_H
-#define BAS_NET_H
+#ifndef NET_H
+#define NET_H
 
 #include <codebase/BaseTypes.h>
 #include <ifs/DataTypes.h>

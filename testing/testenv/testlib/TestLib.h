@@ -3,7 +3,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef TESTLIB_H
+#define TESTLIB_H
 
 #include <ifs/DataTypes.h>
 #include <ifs/I_Elem.h>
@@ -63,3 +64,4 @@ namespace test
     }
     #define L_CHECK_ELEM_TYPE(TYPE, ELEM) L_CHECK_TRUE(istype<TYPE>(ELEM))
 }
+#endif // _H

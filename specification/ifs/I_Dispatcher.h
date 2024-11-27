@@ -3,7 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef I_DISPATCHER_H
 #define I_DISPATCHER_H
 

@@ -8,7 +8,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef BAS_PROVIDER_H
 #define BAS_PROVIDER_H
 

@@ -2,7 +2,6 @@
 //  misc utilities
 //  ============================================================
 //  created by Manfred Sorgo
-#pragma once
 #ifndef UTILZ_H
 #define UTILZ_H
 

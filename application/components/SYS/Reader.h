@@ -1,7 +1,6 @@
 //  ============================================================
 //  class Reader implements I_Reader
 //  ============================================================
-#pragma once
 #ifndef READER_H
 #define READER_H
 

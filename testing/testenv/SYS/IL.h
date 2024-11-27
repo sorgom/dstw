@@ -4,7 +4,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef IL_H
+#define IL_H
 
 #include <mocks/M_Instances.h>
 
@@ -25,4 +26,4 @@ namespace IL
     inline I_TCP_Listener& getTCP_Listener_Gui() { return test::m_TCP_Listener_Gui(); }
     inline I_TCP& getTCP() { return test::m_TCP(); }
 } // namespace
-
+#endif // _H

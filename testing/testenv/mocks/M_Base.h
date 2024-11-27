@@ -3,7 +3,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef M_BASE_H
+#define M_BASE_H
 
 #include <testlib/CppUTest.h>
 #include <codebase/BaseTypes.h>
@@ -69,3 +70,4 @@ namespace test
         static std::ostringstream mStream;
     };
 } // namespace
+#endif // _H

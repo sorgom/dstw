@@ -6,7 +6,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef TSW_H
 #define TSW_H
 

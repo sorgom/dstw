@@ -5,7 +5,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef IL_H
 #define IL_H
 

@@ -5,7 +5,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef M_INSTANCES_H
+#define M_INSTANCES_H
 
 #include "M_Com.h"
 #include "M_Dispatcher.h"
@@ -37,3 +38,4 @@ namespace test
     inline M_TSW_Provider& m_TSW_Provider() { return M_TSW_Provider::instance(); }
     inline M_TSW& m_TSW() { return M_TSW::instance(); }
 }
+#endif // _H

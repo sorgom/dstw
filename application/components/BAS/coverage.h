@@ -6,7 +6,6 @@
 //    - msvc: https://learn.microsoft.com/en-us/cpp/preprocessor/pragma-directives-and-the-pragma-keyword
 
 //  created by Manfred Sorgo
-#pragma once
 #ifndef COVERAGE_H
 #define COVERAGE_H
 

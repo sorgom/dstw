@@ -3,7 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef TSW_PROVIDER_H
 #define TSW_PROVIDER_H
 

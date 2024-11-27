@@ -2,7 +2,8 @@
 //  utilities for complex ostream operators
 //  ============================================================
 //  created by Manfred Sorgo
-#pragma once
+#ifndef OSTREAMHELPERS_H
+#define OSTREAMHELPERS_H
 
 #include <codebase/BaseTypes.h>
 #include <BAS/coding.h>
@@ -82,3 +83,4 @@ inline std::ostream& operator << (std::ostream& os, const UINT8 u)
 {
     return os << static_cast<UINT16>(u);
 }
+#endif // _H
