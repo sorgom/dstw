@@ -29,7 +29,7 @@ namespace test
         return Mem::cmp(n1.chars, n2.chars) == 0;
     }
 
-   //  avoid "not used" warning
+    //  avoid "not used" warning
     template<typename ...T>
     void play(const T&...)
     {}
