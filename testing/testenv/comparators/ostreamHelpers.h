@@ -69,12 +69,6 @@ inline const FixArr<T> fixT(const T (&ptr)[N])
     return FixArr<T>(ptr, N);
 }
 
-// template <size_t N>
-// using fixT = fixT<CHAR, N>;
-
-// template <size_t N>
-// using fixU = fixT<UINT8, N>;
-
 //  stream FixChar as rvalue
 std::ostream& operator << (std::ostream& os, const FixArr<CHAR>&& d);
 
