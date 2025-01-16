@@ -10,7 +10,7 @@
 #include <BAS/BAS_Provider.h>
 #include <TSW/TSW.h>
 
-class TSW_Provider : public BAS_Provider
+class TSW_Provider : public BAS_Provider<COMP_TSW>
 {
 public:
     INSTANCE_DEC(TSW_Provider)
@@ -22,7 +22,6 @@ protected:
         mElems.add<TSW>(id);
         return true;
     }
-    inline E_Comp comp() const final { return COMP_TSW; };
 private:
     inline TSW_Provider() = default;
 };

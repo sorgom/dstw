@@ -2,7 +2,7 @@
 #include <BAS/BAS_Provider.h>
 #include <SYS/IL.h>
 
-void BAS_Provider::load(const ProjItem* data, const UINT32 num)
+void X_Provider::load(const ProjItem* data, const UINT32 num)
 {
     clear();
     mElems.reserve(num);

@@ -9,14 +9,13 @@
 #include <BAS/coding.h>
 #include <BAS/BAS_Provider.h>
 
-class LCR_Provider : public BAS_Provider
+class LCR_Provider : public BAS_Provider<COMP_LCR>
 {
 public:
     INSTANCE_DEC(LCR_Provider)
     NOCOPY(LCR_Provider)
 protected:
     bool add(size_t id, const ProjItem& item) final;
-    inline E_Comp comp() const final { return COMP_LCR; };
 private:
     inline LCR_Provider() = default;
 };
