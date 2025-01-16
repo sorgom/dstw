@@ -1,5 +1,5 @@
 //  ============================================================
-//  class TSW implements I_TSW
+//  class TSW implements a track switch element
 //  state of implementation:
 //  - WU command from GUI
 //  - all states from field, forwarding to GUI

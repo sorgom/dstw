@@ -1,5 +1,5 @@
 //  ============================================================
-//  class SIG_Provider implements I_SIG_Provider
+//  class SIG_Provider implements I_Provider of signals
 //  ============================================================
 //  created by Manfred Sorgo
 

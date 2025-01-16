@@ -1,5 +1,5 @@
 //  ============================================================
-//  class LCR_Provider implements I_LCR_Provider
+//  class LCR_Provider implements I_Provider of level crossings
 //  ============================================================
 //  created by Manfred Sorgo
 

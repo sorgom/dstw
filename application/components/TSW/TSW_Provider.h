@@ -1,5 +1,5 @@
 //  ============================================================
-//  class TSW_Provider implements I_TSW_Provider
+//  class TSW_Provider implements I_Provider of track switches
 //  ============================================================
 //  created by Manfred Sorgo
 

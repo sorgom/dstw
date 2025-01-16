@@ -1,5 +1,5 @@
 //  ============================================================
-//  classes LCR_(X) implement I_LCR
+//  classes LCR_(X) implement level crossing elements
 //  ============================================================
 //  created by Manfred Sorgo
 
