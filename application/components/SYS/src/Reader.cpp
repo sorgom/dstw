@@ -5,7 +5,8 @@
 #include <fstream>
 #include <algorithm>
 
-using stype = std::streamoff;
+// using auto = std::streamoff;
+// using auto = UINT32;
 
 INSTANCE_DEF(Reader)
 
@@ -21,13 +22,23 @@ void Reader::read(const CONST_C_STRING filename)
     bool ok = is.good();
     if (ok)
     {
-        constexpr static stype nCAP = 4;
-        constexpr static stype hSize = nCAP * sizeof(UINT32);
-        constexpr static stype minSize = hSize + sizeof(ComSetup);
+        constexpr static auto nCAP = 4;
+        constexpr static auto hSize = nCAP * sizeof(UINT32);
+        constexpr static auto minSize = hSize + sizeof(ComSetup);
         is.seekg(0, is.end);
-        const stype end = is.tellg();
+        const std::streamoff end = is.tellg();
         is.seekg(0, is.beg);
-        const stype fsize = end - is.tellg();
+
+#ifdef _WIN32
+//  warning C4244: 'initializing': conversion from 'std::streamoff' to 'UINT32', possible loss of data
+//  warning C4244: 'initializing': conversion from 'std::streamoff' to 'const UINT32', possible loss of data
+//  UINT32_MAX cannot be exceeded in this context
+#pragma warning(disable:4244)
+#endif
+        const UINT32 fsize = end - is.tellg();
+#ifdef _WIN32
+#pragma warning(default:4244)
+#endif
         ok = fsize >= minSize;
         if (ok)
         {
@@ -40,11 +51,11 @@ void Reader::read(const CONST_C_STRING filename)
             is.read(head.buf, hSize);
             auto [nTSW, nSIG, nLCR, nSEG] = head.vals;
 
-            const stype sTSW = nTSW * sizeof(ProjItem);
-            const stype sSIG = nSIG * sizeof(ProjItem);
-            const stype sLCR = nLCR * sizeof(ProjItem);
-            const stype sSEG = nSEG * sizeof(ProjItem);
-            const stype sTOT = sTSW + sSIG + sLCR + sSEG;
+            const auto sTSW = nTSW * sizeof(ProjItem);
+            const auto sSIG = nSIG * sizeof(ProjItem);
+            const auto sLCR = nLCR * sizeof(ProjItem);
+            const auto sSEG = nSEG * sizeof(ProjItem);
+            const auto sTOT = sTSW + sSIG + sLCR + sSEG;
 
             ok = (sTOT > 0) and (fsize == minSize + sTOT);
 
