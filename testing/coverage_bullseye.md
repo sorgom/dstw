@@ -7,7 +7,7 @@ Directory                        Function Coverage      C/D Coverage
 -------------------------------  -----------------  ----------------
 application/components/           150 / 150 = 100%  315 / 316 =  99%
 application/components/BAS/        36 /  36 = 100%   39 /  39 = 100%
-application/components/BAS/src/     1 /   1 = 100%   14 /  14 = 100%
+application/components/BAS/src/     5 /   5 = 100%   14 /  14 = 100%
 application/components/COM/        40 /  40 = 100%   79 /  80 =  98%
 application/components/COM/src/    39 /  39 = 100%   79 /  80 =  98%
 application/components/LCR/        15 /  15 = 100%   40 /  40 = 100%
