@@ -14,3 +14,4 @@ if %errorlevel% NEQ 0 (
     echo - build error %1
     exit /b 1
 )
+:end

@@ -1,4 +1,5 @@
 #include <SYS/Reader.h>
+#include <BAS/Net.h>
 #include <ifs/DataTypes.h>
 #include <SYS/IL.h>
 
@@ -29,16 +30,16 @@ void Reader::read(const CONST_C_STRING filename)
         const std::streamoff end = is.tellg();
         is.seekg(0, is.beg);
 
-#ifdef _WIN32
-//  warning C4244: 'initializing': conversion from 'std::streamoff' to 'UINT32', possible loss of data
-//  warning C4244: 'initializing': conversion from 'std::streamoff' to 'const UINT32', possible loss of data
-//  UINT32_MAX cannot be exceeded in this context
-#pragma warning(disable:4244)
-#endif
+// #ifdef _WIN32
+// //  warning C4244: 'initializing': conversion from 'std::streamoff' to 'UINT32', possible loss of data
+// //  warning C4244: 'initializing': conversion from 'std::streamoff' to 'const UINT32', possible loss of data
+// //  UINT32_MAX cannot be exceeded in this context
+// #pragma warning(disable:4244)
+// #endif
         const UINT32 fsize = end - is.tellg();
-#ifdef _WIN32
-#pragma warning(default:4244)
-#endif
+// #ifdef _WIN32
+// #pragma warning(default:4244)
+// #endif
         ok = fsize >= minSize;
         if (ok)
         {
@@ -49,12 +50,16 @@ void Reader::read(const CONST_C_STRING filename)
             } head;
 
             is.read(head.buf, hSize);
-            auto [nTSW, nSIG, nLCR, nSEG] = head.vals;
+            const UINT32 nTSW = Net::toH(head.vals[0]);
+            const UINT32 nSIG = Net::toH(head.vals[1]);
+            const UINT32 nLCR = Net::toH(head.vals[2]);
+            const UINT32 nSEG = Net::toH(head.vals[3]);
+            // auto [nTSW, nSIG, nLCR, nSEG] = head.vals;
 
-            const auto sTSW = nTSW * sizeof(ProjItem);
-            const auto sSIG = nSIG * sizeof(ProjItem);
-            const auto sLCR = nLCR * sizeof(ProjItem);
-            const auto sSEG = nSEG * sizeof(ProjItem);
+            const UINT32 sTSW = nTSW * sizeof(ProjItem);
+            const UINT32 sSIG = nSIG * sizeof(ProjItem);
+            const UINT32 sLCR = nLCR * sizeof(ProjItem);
+            const UINT32 sSEG = nSEG * sizeof(ProjItem);
             const auto sTOT = sTSW + sSIG + sLCR + sSEG;
 
             ok = (sTOT > 0) and (fsize == minSize + sTOT);
@@ -62,8 +67,14 @@ void Reader::read(const CONST_C_STRING filename)
             if (ok)
             {
                 is.read(reinterpret_cast<CHAR*>(&mComSetup), sizeof(ComSetup));
+                mComSetup.portFld  = Net::toH(mComSetup.portFld);
+                mComSetup.portGui  = Net::toH(mComSetup.portGui);
+                mComSetup.portCtrl = Net::toH(mComSetup.portCtrl);
+                mComSetup.timeout  = Net::toH(mComSetup.timeout);
 
-                const auto mxSize = std::max({sTSW, sSIG, sLCR, sSEG});
+                std::initializer_list<UINT32> sizes = {sTSW, sSIG, sLCR, sSEG};
+                const auto mxSize = std::max(sizes);
+
                 CHAR* buf = new CHAR[static_cast<size_t>(mxSize)];
 
                 is.read(buf, sTSW);

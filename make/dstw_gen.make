@@ -61,8 +61,10 @@ endif
 GENERATED :=
 OBJECTS :=
 
+GENERATED += $(OBJDIR)/NetTest.o
 GENERATED += $(OBJDIR)/TestLib.o
 GENERATED += $(OBJDIR)/genDataMain.o
+OBJECTS += $(OBJDIR)/NetTest.o
 OBJECTS += $(OBJDIR)/TestLib.o
 OBJECTS += $(OBJDIR)/genDataMain.o
 
@@ -129,6 +131,9 @@ endif
 # #############################################
 
 $(OBJDIR)/genDataMain.o: ../testing/gendata/genDataMain.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/NetTest.o: ../testing/testenv/testlib/src/NetTest.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TestLib.o: ../testing/testenv/testlib/src/TestLib.cpp
