@@ -8,14 +8,24 @@
 
 #include <codebase/BaseTypes.h>
 
-#ifdef _WIN32
-#include <WinSock2.h>
-#else
+#ifndef _WIN32
 #include <arpa/inet.h>
 #endif
 
 namespace Net
 {
+    // unable to have this inline in WIN32
+    // WinSock header(s) corrupt algorithm std::max
+
+#ifdef _WIN32
+    UINT16 toN(UINT16 h);
+
+    UINT16 toH(UINT16 n);
+
+    UINT32 toN(UINT32 h);
+
+    UINT32 toH(UINT32 n);
+#else
     inline UINT16 toN(const UINT16 h)
     {
         return htons(h);
@@ -34,6 +44,7 @@ namespace Net
         return ntohl(n);
     }
 
+#endif
     inline INT16 toN(const INT16 h)
     {
         return static_cast<INT16>(toN(static_cast<const UINT16>(h)));
