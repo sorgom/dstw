@@ -3,7 +3,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef M_TCP_H
+#define M_TCP_H
 
 #include <ifs/I_TCP.h>
 #include "M_Base.h"
@@ -141,4 +142,4 @@ namespace test
         inline M_TCP() : M_Base("Tcp") {}
     };
 } // namespace
-
+#endif // _H

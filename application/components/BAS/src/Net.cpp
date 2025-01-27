@@ -1,11 +1,30 @@
+#ifdef _WIN32
+
 #include <BAS/Net.h>
+#include <WinSock.h>
 
-const UINT16 t16 = 0x0A0B;
-const bool Net::isBig = *reinterpret_cast<const UINT8*>(&t16) == 0x0A;
-const size_t Net::pn20 = isBig ? 0 : 1;
-const size_t Net::pn21 = isBig ? 1 : 0;
+namespace Net
+{
 
-const size_t Net::pn40 = isBig ? 0 : 3;
-const size_t Net::pn41 = isBig ? 1 : 2;
-const size_t Net::pn42 = isBig ? 2 : 1;
-const size_t Net::pn43 = isBig ? 3 : 0;
+    UINT16 toN(const UINT16 h)
+    {
+        return htons(h);
+    }
+    UINT16 toH(const UINT16 n)
+    {
+        return ntohs(n);
+    }
+
+    UINT32 toN(const UINT32 h)
+    {
+        return htonl(h);
+    }
+
+    UINT32 toH(const UINT32 n)
+    {
+        return ntohl(n);
+    }
+
+} // namespace
+
+#endif // _WIN32

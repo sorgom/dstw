@@ -11,7 +11,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef TESTVALUES_H
+#define TESTVALUES_H
 
 #include <codebase/BaseTypes.h>
 #include <ifs/values.h>
@@ -49,3 +50,4 @@ namespace test
 
     };
 } // namespace
+#endif // _H

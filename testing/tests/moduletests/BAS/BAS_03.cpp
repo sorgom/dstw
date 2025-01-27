@@ -4,111 +4,86 @@
 //  created by Manfred Sorgo
 
 #include <testlib/TestGroupBase.h>
+#include <testlib/NetTest.h>
 #include <BAS/Net.h>
+
+#include <limits>
 
 namespace test
 {
     TEST_GROUP_BASE(BAS_03, TestGroupBase)
-    {
-         struct TestData : ComData
-        {
-            inline UINT8 operator[](size_t p)
-            {
-                return reinterpret_cast<const UINT8*>(this)[p];
-            }
-        };
-
-        template <typename NUM>
-        inline void byteTest(const NUM n1)
-        {
-            // to net & back
-            ByteArrayFor<NUM> b = {0};
-            Net::toN(b, n1);
-            NUM n2 = 0;
-            Net::toH(n2, b);
-            L_CHECK_EQUAL(n1, n2);
-        }
-
-        template <typename NUM, size_t P>
-        inline void comTest(const NUM n1)
-        {
-            SUBSTEPS()
-            STEP(1)
-            // to net & back
-            TestData data;
-            Net::toN<P>(data, n1);
-            NUM n2 = 0;
-            Net::toH<P>(n2, data);
-            L_CHECK_EQUAL(n1, n2);
-
-            //  check other bytes untouched
-            STEP(2)
-            SUBSTEPS()
-            for (size_t i = 0; i < P; ++i)
-            {
-                STEP(i)
-                L_CHECK_EQUAL(PARAM_UNDEF, data[i]);
-            }
-            ENDSTEPS()
-            STEP(1)
-            SUBSTEPS()
-            for (size_t i = P + sizeof(NUM); i < sizeof(ComData); ++i)
-            {
-                STEP(i)
-                L_CHECK_EQUAL(PARAM_UNDEF, data[i]);
-            }
-            ENDSTEPS()
-            ENDSTEPS()
-        }
-    };
+    {};
 
     //  test type: equivalence class test
-    //  byte order conversion: byte arrays
+    //  byte order conversion: unsigned
     TEST(BAS_03, T01)
     {
         STEP(1)
-        //  explicit byte test acc. to specification
         {
-            const UINT32 n1 = 0x0A0B0C0D;
-            ByteArrayFor<UINT32> b = {0};
-            Net::toN(b, n1);
-            L_CHECK_EQUAL(0x0A, b[0]);
-            L_CHECK_EQUAL(0x0B, b[1]);
-            L_CHECK_EQUAL(0x0C, b[2]);
-            L_CHECK_EQUAL(0x0D, b[3]);
+            const UINT16 h = 0x010F;
+            const auto na = Net::toN(h);
+            const auto nt = NetTest::toN(h);
+            L_CHECK_EQUAL(nt, na);
+
+            const auto ha = Net::toH(na);
+            L_CHECK_EQUAL(h, ha);
         }
         STEP(2)
-        //  explicit byte test acc. to specification
         {
-            const UINT16 n1 = 0x0A0B;
-            ByteArrayFor<UINT16> b = {0};
-            Net::toN(b, n1);
-            L_CHECK_EQUAL(0x0A, b[0]);
-            L_CHECK_EQUAL(0x0B, b[1]);
+            const UINT32 h = 0x01020408;
+            const auto na = Net::toN(h);
+            const auto nt = NetTest::toN(h);
+            L_CHECK_EQUAL(nt, na);
+
+            const auto ha = Net::toH(na);
+            L_CHECK_EQUAL(h, ha);
         }
-        //  in / out tests
-        STEP(3)
-        byteTest<UINT32>(123456);
-        STEP(4)
-        byteTest<UINT16>(1234);
-        STEP(5)
-        byteTest<INT32>(-123456);
-        STEP(6)
-        byteTest<INT16>(-1234);
     }
 
     //  test type: equivalence class test
-    //  byte order conversion: ComData
-    //  in / out / untouched tests
+    //  byte order conversion: signed
     TEST(BAS_03, T02)
     {
         STEP(1)
-        comTest<UINT32, 4>(0x0A0B0C0D);
+        {
+            const INT16 h = INT16_MAX;
+            const auto na = Net::toN(h);
+            const auto nt = NetTest::toN(h);
+            L_CHECK_EQUAL(nt, na);
+
+            const auto ha = Net::toH(na);
+            L_CHECK_EQUAL(h, ha);
+        }
         STEP(2)
-        comTest<UINT16, 6>(0x0A0B);
+        {
+            const INT16 h = INT16_MIN;
+            const auto na = Net::toN(h);
+            const auto nt = NetTest::toN(h);
+            L_CHECK_EQUAL(nt, na);
+
+            const auto ha = Net::toH(na);
+            L_CHECK_EQUAL(h, ha);
+        }
         STEP(3)
-        comTest<INT32, 2>(-123456);
-        STEP(4)
-        comTest<INT16, 4>(-1234);
+        {
+            const INT32 h = INT32_MAX;
+            const auto na = Net::toN(h);
+            const auto nt = NetTest::toN(h);
+            L_CHECK_EQUAL(nt, na);
+
+            const auto ha = Net::toH(na);
+            L_CHECK_EQUAL(h, ha);
+        }
+        STEP(3)
+        {
+            const INT32 h = INT32_MIN;
+            const auto na = Net::toN(h);
+            const auto nt = NetTest::toN(h);
+            L_CHECK_EQUAL(nt, na);
+
+            const auto ha = Net::toH(na);
+            L_CHECK_EQUAL(h, ha);
+        }
     }
+
 } // namespace

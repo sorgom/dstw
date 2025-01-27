@@ -3,7 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef ACPINDEX_H
 #define ACPINDEX_H
 

@@ -14,9 +14,11 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef GENPROJDATA_H
+#define GENPROJDATA_H
 
 #include <ifs/DataTypes.h>
+#include <testlib/NetTest.h>
 #include <testlib/testValues.h>
 #include <testlib/TestLib.h>
 #include <fstream>
@@ -37,7 +39,13 @@ namespace test
         ProjVec mTSWs, mSIGs, mLCRs, mSEGs;
 
     public:
-        const ComSetup mComSetup = { tcpPortFld, tcpPortGui, tcpPortCtrl, tcpTimeout };
+        // const ComSetup mComSetup = { tcpPortFld, tcpPortGui, tcpPortCtrl, tcpTimeout };
+        const ComSetup mComSetup = {
+            NetTest::toN(tcpPortFld),
+            NetTest::toN(tcpPortGui),
+            NetTest::toN(tcpPortCtrl),
+            NetTest::toN(tcpTimeout)
+        };
 
         GenProjData()
         {
@@ -141,7 +149,7 @@ namespace test
 
         inline static void write(std::ofstream& os, const UINT32 n)
         {
-            const UINT32 r = n;
+            const UINT32 r = NetTest::toN(n);
             os.write(reinterpret_cast<const CHAR*>(&r), sizeof(UINT32));
         }
 
@@ -151,3 +159,4 @@ namespace test
         }
     };
 } // namespace
+#endif // _H

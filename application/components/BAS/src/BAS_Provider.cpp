@@ -2,15 +2,16 @@
 #include <BAS/BAS_Provider.h>
 #include <SYS/IL.h>
 
-void BAS_Provider::load(const ProjItem* data, const UINT32 num)
+void X_Provider::load(const ProjItem* const data, const UINT32 num)
 {
     clear();
     mElems.reserve(num);
     bool ok = true;
-    for (UINT32 n = 0; ok and (n < num); ++n, ++data)
+    const ProjItem* pd = data;
+    for (UINT32 n = 0; ok and (n < num); ++n, ++pd)
     {
-        const PosRes res = IL::getDispatcher().assign(data->addr, comp(), n);
-        ok = res.valid and add(res.pos, *data);
+        const PosRes res = IL::getDispatcher().assign(pd->addr, comp(), n);
+        ok = res.valid and add(res.pos, *pd);
     }
     if (not ok)
     {

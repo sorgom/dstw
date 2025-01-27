@@ -3,7 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef DATATYPES_H
 #define DATATYPES_H
 
@@ -85,8 +84,6 @@ struct ComSetup
 };
 static_assert(8 == sizeof(ComSetup));
 
-#include <codebase/packEnd.h>
-
 //  result of a find operation
 struct PosRes
 {
@@ -98,6 +95,8 @@ struct PosRes
     {}
     NODEF(PosRes)
 };
+
+#include <codebase/packEnd.h>
 
 //  byte array
 template <size_t N>

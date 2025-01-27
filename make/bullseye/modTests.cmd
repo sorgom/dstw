@@ -4,7 +4,7 @@ rem Bullseye coverage: build and run module tests (requires VS shell)
 rem ========================================================================
 SETLOCAL
 set _me=%~n0
-call %~dp0_covsetup.cmd %*
+call %~dp0_covoptions.cmd %*
 if %errorlevel% neq 0 exit /b 0
 
 rem minmal coverage setup

@@ -2,7 +2,8 @@
 //  mock for interface Dispatcher
 //  ============================================================
 //  created by Manfred Sorgo
-#pragma once
+#ifndef M_DISPATCHER_H
+#define M_DISPATCHER_H
 
 #include <ifs/I_Dispatcher.h>
 #include "M_Base.h"
@@ -92,3 +93,4 @@ namespace test
         inline M_Dispatcher() : M_Base("Dispatcher") {}
     };
 }
+#endif // _H

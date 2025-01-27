@@ -3,7 +3,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef M_BASE_H
+#define M_BASE_H
 
 #include <testlib/CppUTest.h>
 #include <codebase/BaseTypes.h>
@@ -19,12 +20,6 @@ namespace test
         M_Base(const CONST_C_STRING name):
             mName(name)
         {}
-
-        inline virtual std::ostringstream& begin() const
-        {
-            prep() << mName << "::";
-            return mStream;
-        }
 
         inline MockActualCall& call(const CONST_C_STRING meth) const
         {
@@ -47,11 +42,13 @@ namespace test
         NODEF(M_Base)
 
     private:
-        inline static std::ostringstream& prep()
+        inline std::ostringstream& begin() const
         {
             mStream.str("");
+            mStream << mName << "::";
             return mStream;
         }
+
         inline static MockActualCall& mkCall()
         {
             return mock().actualCall(mStream.str().c_str());
@@ -69,3 +66,4 @@ namespace test
         static std::ostringstream mStream;
     };
 } // namespace
+#endif // _H

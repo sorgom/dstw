@@ -4,7 +4,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef LOG_H
 #define LOG_H
 

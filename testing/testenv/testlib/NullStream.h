@@ -3,7 +3,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef NULLSTREAM_H
+#define NULLSTREAM_H
 
 #include <BAS/coding.h>
 
@@ -31,3 +32,4 @@ namespace test
         NullBuffer mBuffer;
     };
 } // namespace
+#endif // _H

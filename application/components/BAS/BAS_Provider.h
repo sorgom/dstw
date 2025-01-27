@@ -8,14 +8,13 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef BAS_PROVIDER_H
 #define BAS_PROVIDER_H
 
 #include <BAS/Containers.h>
 #include <ifs/I_Provider.h>
 
-class BAS_Provider : public I_Provider
+class X_Provider : public I_Provider
 {
 public:
     inline size_t size() const final
@@ -36,8 +35,6 @@ public:
     void load(const ProjItem* data, UINT32 num) final;
 
 protected:
-    inline BAS_Provider() = default;
-
     //  individual add method
     virtual bool add(size_t id, const ProjItem& item) = 0;
 
@@ -45,5 +42,12 @@ protected:
     virtual E_Comp comp() const = 0;
 
     PolyVec<I_Elem> mElems;
+};
+
+template <E_Comp COMP>
+class BAS_Provider : public X_Provider
+{
+protected:
+    inline E_Comp comp() const final { return COMP; }
 };
 #endif // _H

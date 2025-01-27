@@ -3,7 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef I_PROVIDER_H
 #define I_PROVIDER_H
 

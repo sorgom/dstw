@@ -5,7 +5,7 @@ rem ========================================================================
 
 SETLOCAL
 set _me=%~n0
-call %~dp0_covsetup.cmd %*
+call %~dp0_covoptions.cmd %*
 if %errorlevel% neq 0 exit /b 0
 
 rem - minimal function coverage %
@@ -22,8 +22,16 @@ if %errorlevel% NEQ 0 exit /b 1
 
 cd /d %buildDir%
 
+DEL /Q %projFile% >NUL 2>&1
+
+echo - launch application without data
+%exeDir%\dstw_runtime.exe X
+
 echo - gen data
 %exeDir%\dstw_gen.exe >NUL
+
+echo - launch application without parameter
+%exeDir%\dstw_runtime.exe
 
 set /a "myID=%random%"
 set tmpFile=%buildDir%\run.%myID%.tmp

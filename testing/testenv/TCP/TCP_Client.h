@@ -3,7 +3,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef TCP_CLIENT_H
+#define TCP_CLIENT_H
 
 #include <BAS/coding.h>
 
@@ -48,3 +49,4 @@ namespace test
         bool recv(PTR data, INT32 size) const;
     };
 }
+#endif // _H

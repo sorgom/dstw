@@ -3,7 +3,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef M_TCP_LISTENER_H
+#define M_TCP_LISTENER_H
 
 #include <ifs/I_TCP.h>
 #include "M_Base.h"
@@ -76,3 +77,4 @@ namespace test
     };
 
 } // namespace
+#endif // _H

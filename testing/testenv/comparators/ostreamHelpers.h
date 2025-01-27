@@ -2,7 +2,8 @@
 //  utilities for complex ostream operators
 //  ============================================================
 //  created by Manfred Sorgo
-#pragma once
+#ifndef OSTREAMHELPERS_H
+#define OSTREAMHELPERS_H
 
 #include <codebase/BaseTypes.h>
 #include <BAS/coding.h>
@@ -68,12 +69,6 @@ inline const FixArr<T> fixT(const T (&ptr)[N])
     return FixArr<T>(ptr, N);
 }
 
-// template <size_t N>
-// using fixT = fixT<CHAR, N>;
-
-// template <size_t N>
-// using fixU = fixT<UINT8, N>;
-
 //  stream FixChar as rvalue
 std::ostream& operator << (std::ostream& os, const FixArr<CHAR>&& d);
 
@@ -82,3 +77,4 @@ inline std::ostream& operator << (std::ostream& os, const UINT8 u)
 {
     return os << static_cast<UINT16>(u);
 }
+#endif // _H

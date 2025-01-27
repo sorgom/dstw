@@ -1,8 +1,7 @@
 #include <SYS/IL.h>
 #include <iostream>
-using std::cout;
 #include <iomanip>
-using std::setw;
+using std::cout, std::setw;
 
 int main(const INT32 argc, const CONST_C_STRING* const argv)
 {

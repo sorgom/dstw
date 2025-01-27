@@ -3,7 +3,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef M_COM_H
+#define M_COM_H
 
 #include <ifs/I_Com.h>
 #include "M_Base.h"
@@ -55,3 +56,4 @@ namespace test
         inline M_Com() : M_Base("Com") {}
     };
 } // namespace
+#endif // _H

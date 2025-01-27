@@ -117,7 +117,8 @@ workspace 'DSTW'
         includedirs { includedirs_test }
         files {
             '../testing/gendata/genDataMain.cpp',
-            '../testing/testenv/testlib/src/TestLib.cpp'
+            '../testing/testenv/testlib/src/TestLib.cpp',
+            '../testing/testenv/testlib/src/NetTest.cpp'
         }
 
     --  run second in background

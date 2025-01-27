@@ -3,7 +3,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef M_READER_H
+#define M_READER_H
 
 #include <ifs/I_Reader.h>
 #include "M_Base.h"
@@ -40,3 +41,4 @@ namespace test
         const ComSetup setup = { tcpPortFld, tcpPortGui, tcpPortCtrl, tcpTimeout };
     };
 } // namespace
+#endif // _H

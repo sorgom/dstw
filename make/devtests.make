@@ -73,6 +73,7 @@ GENERATED += $(OBJDIR)/LCR_X.o
 GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/M_Instances.o
 GENERATED += $(OBJDIR)/Net.o
+GENERATED += $(OBJDIR)/NetTest.o
 GENERATED += $(OBJDIR)/Reader.o
 GENERATED += $(OBJDIR)/SIG_Provider.o
 GENERATED += $(OBJDIR)/SIG_X.o
@@ -101,6 +102,7 @@ OBJECTS += $(OBJDIR)/LCR_X.o
 OBJECTS += $(OBJDIR)/Log.o
 OBJECTS += $(OBJDIR)/M_Instances.o
 OBJECTS += $(OBJDIR)/Net.o
+OBJECTS += $(OBJDIR)/NetTest.o
 OBJECTS += $(OBJDIR)/Reader.o
 OBJECTS += $(OBJDIR)/SIG_Provider.o
 OBJECTS += $(OBJDIR)/SIG_X.o
@@ -244,6 +246,9 @@ $(OBJDIR)/ostreams.o: ../testing/testenv/comparators/src/ostreams.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/M_Instances.o: ../testing/testenv/mocks/src/M_Instances.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/NetTest.o: ../testing/testenv/testlib/src/NetTest.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TestGroupBase.o: ../testing/testenv/testlib/src/TestGroupBase.cpp

@@ -3,7 +3,8 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
+#ifndef M_TCP_CLIENT_H
+#define M_TCP_CLIENT_H
 
 #include "M_Base.h"
 #include <TCP/TCP_Client.h>
@@ -64,3 +65,4 @@ namespace test
     };
 
 } // namespace
+#endif // _H

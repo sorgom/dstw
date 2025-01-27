@@ -3,7 +3,6 @@
 //  ============================================================
 //  created by Manfred Sorgo
 
-#pragma once
 #ifndef CONTAINERS_H
 #define CONTAINERS_H
 
@@ -171,7 +170,7 @@ private:
             {
                 if (gt(a, b))
                 {
-                    CONT* t = mIdx[a];
+                    CONT* const t = mIdx[a];
                     mIdx[a] = mIdx[b];
                     mIdx[b] = t;
                     swapped = true;
