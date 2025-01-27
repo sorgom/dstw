@@ -21,12 +21,6 @@ namespace test
             mName(name)
         {}
 
-        inline virtual std::ostringstream& begin() const
-        {
-            prep() << mName << "::";
-            return mStream;
-        }
-
         inline MockActualCall& call(const CONST_C_STRING meth) const
         {
             begin() << meth;
@@ -48,11 +42,13 @@ namespace test
         NODEF(M_Base)
 
     private:
-        inline static std::ostringstream& prep()
+        inline std::ostringstream& begin() const
         {
             mStream.str("");
+            mStream << mName << "::";
             return mStream;
         }
+
         inline static MockActualCall& mkCall()
         {
             return mock().actualCall(mStream.str().c_str());
